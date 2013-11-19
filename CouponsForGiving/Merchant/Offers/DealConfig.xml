@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<dealConfig>
+  <merchantSplit name="Merchant Split">.80</merchantSplit>
+  <npoSplit name="NPO Split">.10</npoSplit>
+  <ourSplit name="Our Split">.10</ourSplit>
+</dealConfig>

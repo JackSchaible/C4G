@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode>
+    <siteMapNode url="~/NPO/MyHome.aspx" title="Get Started"></siteMapNode>
+    <siteMapNode url="~/NPO/Partners/MyPartners.aspx" title="Merchant Partners">
+      <siteMapNode url="~/NPO/Partners/MyLocalMerchants.aspx" title="Local Merchants" />
+      <siteMapNode title="Global Marketplace" url="~/NPO/Partners/MyGlobalMerchants.aspx" />
+      <siteMapNode title="Preferred Merchants" />
+      <siteMapNode title="All" />
+    </siteMapNode>
+    <siteMapNode Selectable="False" title="Social Media Toolkit">
+      <siteMapNode Selectable="False" title="Coming Soon"></siteMapNode>
+    </siteMapNode>
+    <siteMapNode url="~/ContactUs.aspx" title="Help"></siteMapNode>
+  </siteMapNode>
+</siteMap>

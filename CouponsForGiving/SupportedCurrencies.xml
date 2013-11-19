@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Currencies>
+  <Currency name="Canadian Dollar (CAD)" code="CAD" />
+  <Currency name="United States Dollar (USD)" code ="USD" />
+  <Currency name="Euro (EUR)" code="EUR" />
+  <Currency name="Pound Sterling (GBP)" code="GBP" />
+</Currencies>

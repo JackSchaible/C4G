@@ -1,0 +1,143 @@
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll.config
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0.1\CouponsForGiving.Data\bin\Debug\EntityFramework.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0.1\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb
+C:\Users\Mark\Desktop\Version 2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll.config
+C:\Users\Mark\Desktop\Version 2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll
+C:\Users\Mark\Desktop\Version 2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.pdb
+C:\Users\Mark\Desktop\Version 2.0.1\CouponsForGiving.Data\bin\Debug\EntityFramework.dll
+C:\Users\Mark\Desktop\Version 2.0.1\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
+C:\Users\Mark\Desktop\Version 2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
+C:\Users\Mark\Desktop\Version 2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb
+C:\Users\Mark\Desktop\Version 2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\Version 2.0.1\Version 2.0.1\Version 2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll.config
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\Version 2.0.1\Version 2.0.1\Version 2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\Version 2.0.1\Version 2.0.1\Version 2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\Version 2.0.1\Version 2.0.1\Version 2.0.1\CouponsForGiving.Data\bin\Debug\EntityFramework.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\Version 2.0.1\Version 2.0.1\Version 2.0.1\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\Version 2.0.1\Version 2.0.1\Version 2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\Version 2.0.1\Version 2.0.1\Version 2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\Version 2.0.1\Version 2.0.1\Version 2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb
+C:\Users\Mark\Desktop\Version 2.0.1\Version 2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll.config
+C:\Users\Mark\Desktop\Version 2.0.1\Version 2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll
+C:\Users\Mark\Desktop\Version 2.0.1\Version 2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.pdb
+C:\Users\Mark\Desktop\Version 2.0.1\Version 2.0.1\CouponsForGiving.Data\bin\Debug\EntityFramework.dll
+C:\Users\Mark\Desktop\Version 2.0.1\Version 2.0.1\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
+C:\Users\Mark\Desktop\Version 2.0.1\Version 2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
+C:\Users\Mark\Desktop\Version 2.0.1\Version 2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb
+C:\Users\Mark\Desktop\Version 2.0.1\Version 2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll.config
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\CouponsForGiving.Data\bin\Debug\EntityFramework.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb
+C:\Users\Mark\Desktop\Version 2.0\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll.config
+C:\Users\Mark\Desktop\Version 2.0\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll
+C:\Users\Mark\Desktop\Version 2.0\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.pdb
+C:\Users\Mark\Desktop\Version 2.0\CouponsForGiving.Data\bin\Debug\EntityFramework.dll
+C:\Users\Mark\Desktop\Version 2.0\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
+C:\Users\Mark\Desktop\Version 2.0\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
+C:\Users\Mark\Desktop\Version 2.0\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
+C:\Users\Mark\Desktop\Version 2.0\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\Version 2.0\Version 2.0\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll.config
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\Version 2.0\Version 2.0\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\Version 2.0\Version 2.0\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\Version 2.0\Version 2.0\CouponsForGiving.Data\bin\Debug\EntityFramework.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\Version 2.0\Version 2.0\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\Version 2.0\Version 2.0\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\Version 2.0\Version 2.0\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\Version 2.0\Version 2.0\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb
+C:\Users\Mark\Desktop\2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll.config
+C:\Users\Mark\Desktop\2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll
+C:\Users\Mark\Desktop\2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.pdb
+C:\Users\Mark\Desktop\2.0.1\CouponsForGiving.Data\bin\Debug\EntityFramework.dll
+C:\Users\Mark\Desktop\2.0.1\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
+C:\Users\Mark\Desktop\2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
+C:\Users\Mark\Desktop\2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
+C:\Users\Mark\Desktop\2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1\2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1\2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1\2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll.config
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1\2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1\2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1\2.0.1\CouponsForGiving.Data\bin\Debug\EntityFramework.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1\2.0.1\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1\2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll.config
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\CouponsForGiving.Data\bin\Debug\EntityFramework.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.14\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll.config
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.14\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.14\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.14\CouponsForGiving.Data\bin\Debug\EntityFramework.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.14\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.14\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.14\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.14\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.15\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll.config
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.15\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.15\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.15\CouponsForGiving.Data\bin\Debug\EntityFramework.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.15\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.15\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.15\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.15\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.16\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll.config
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.16\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.16\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.16\CouponsForGiving.Data\bin\Debug\EntityFramework.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.16\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.16\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.16\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Version 2.0\2.0.1\2.0.1.16\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.17\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll.config
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.17\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.17\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.17\CouponsForGiving.Data\bin\Debug\EntityFramework.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.17\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.17\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.17\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.17\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.18\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll.config
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.18\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.18\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.18\CouponsForGiving.Data\bin\Debug\EntityFramework.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.18\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.18\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.18\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.18\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.19\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll.config
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.19\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.19\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.19\CouponsForGiving.Data\bin\Debug\EntityFramework.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.19\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.19\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.19\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.19\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\Downloads\2.0.1.20\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll.config
+C:\Users\Jack\Downloads\2.0.1.20\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\Downloads\2.0.1.20\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\Downloads\2.0.1.20\CouponsForGiving.Data\bin\Debug\EntityFramework.dll
+C:\Users\Jack\Downloads\2.0.1.20\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
+C:\Users\Jack\Downloads\2.0.1.20\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\Downloads\2.0.1.20\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\Downloads\2.0.1.20\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.20\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll.config
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.20\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.20\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.20\CouponsForGiving.Data\bin\Debug\EntityFramework.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.20\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.20\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.20\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb

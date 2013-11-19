@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode>
+      <siteMapNode title="About Us">
+      <siteMapNode url="~/AboutUs.aspx?c=WhoWeAre" title="Who We Are" />
+      <siteMapNode url="~/AboutUs.aspx?c=OurTeam" title="Our Team" />
+      <siteMapNode url="~/AboutUs.aspx?c=Community" title="In The Community" />
+    </siteMapNode>
+    <siteMapNode title="My Coupons" url="~/Default/MyHome.aspx" />
+    <siteMapNode title="My Campaigns" url="~/NPO/MyHome.aspx" />
+    <siteMapNode title="For Merchants" url="~/Merchant/MyHome.aspx" />
+    <siteMapNode title="Blog" url="/Blog.aspx" />
+  </siteMapNode>
+</siteMap>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Countries>
+  <country name="Canada" code="CA" />
+  <country name="Ireland" code="IE" />
+  <country name="United Kingdom" code="GB" />
+  <country name="United States" code="US" />
+</Countries>

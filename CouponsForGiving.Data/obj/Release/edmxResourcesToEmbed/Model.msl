@@ -1,0 +1,776 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="C4GModelStoreContainer" CdmEntityContainer="C4GEntities">
+    <EntitySetMapping Name="Campaigns">
+      <EntityTypeMapping TypeName="C4GModel.Campaign">
+        <MappingFragment StoreEntitySet="Campaign">
+          <ScalarProperty Name="CampaignStatusID" ColumnName="CampaignStatusID" />
+          <ScalarProperty Name="HasAcceptedTerms" ColumnName="HasAcceptedTerms" />
+          <ScalarProperty Name="CampaignGoal" ColumnName="CampaignGoal" />
+          <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NPOID" ColumnName="NPOID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="CampaignDescription" ColumnName="CampaignDescription" />
+          <ScalarProperty Name="FundraisingGoal" ColumnName="FundraisingGoal" />
+          <ScalarProperty Name="CampaignImage" ColumnName="CampaignImage" />
+          <ScalarProperty Name="ShowOnHome" ColumnName="ShowOnHome" />
+          <ScalarProperty Name="DisplayPriority" ColumnName="DisplayPriority" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="C4GModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cStatus">
+      <EntityTypeMapping TypeName="C4GModel.cStatu">
+        <MappingFragment StoreEntitySet="cStatus">
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cUsers">
+      <EntityTypeMapping TypeName="C4GModel.cUser">
+        <MappingFragment StoreEntitySet="cUser">
+          <ScalarProperty Name="StripeKey" ColumnName="StripeKey" />
+          <ScalarProperty Name="cUserID" ColumnName="cUserID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DealSEOs">
+      <EntityTypeMapping TypeName="C4GModel.DealSEO">
+        <MappingFragment StoreEntitySet="DealSEO">
+          <ScalarProperty Name="DealSEOID" ColumnName="DealSEOID" />
+          <ScalarProperty Name="DealID" ColumnName="DealID" />
+          <ScalarProperty Name="MetaKeywords" ColumnName="MetaKeywords" />
+          <ScalarProperty Name="MetaDescription" ColumnName="MetaDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DealStatus">
+      <EntityTypeMapping TypeName="C4GModel.DealStatu">
+        <MappingFragment StoreEntitySet="DealStatus">
+          <ScalarProperty Name="DealStatusID" ColumnName="DealStatusID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DealStatusDescription" ColumnName="DealStatusDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MerchantLocations">
+      <EntityTypeMapping TypeName="C4GModel.MerchantLocation">
+        <MappingFragment StoreEntitySet="MerchantLocation">
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="MerchantLocationID" ColumnName="MerchantLocationID" />
+          <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+          <ScalarProperty Name="cAddress" ColumnName="cAddress" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NewsletterUsers">
+      <EntityTypeMapping TypeName="C4GModel.NewsletterUser">
+        <MappingFragment StoreEntitySet="NewsletterUser">
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NPOMailingLists">
+      <EntityTypeMapping TypeName="C4GModel.NPOMailingList">
+        <MappingFragment StoreEntitySet="NPOMailingList">
+          <ScalarProperty Name="NPOMailingListID" ColumnName="NPOMailingListID" />
+          <ScalarProperty Name="NPOID" ColumnName="NPOID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderStatus">
+      <EntityTypeMapping TypeName="C4GModel.OrderStatu">
+        <MappingFragment StoreEntitySet="OrderStatus">
+          <ScalarProperty Name="OrderStatusID" ColumnName="OrderStatusID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="OrderStatusDescription" ColumnName="OrderStatusDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PoliticalDivisions">
+      <EntityTypeMapping TypeName="C4GModel.PoliticalDivision">
+        <MappingFragment StoreEntitySet="PoliticalDivision">
+          <ScalarProperty Name="PoliticalDivisionID" ColumnName="PoliticalDivisionID" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="DivisionCode" ColumnName="DivisionCode" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prices">
+      <EntityTypeMapping TypeName="C4GModel.Price">
+        <MappingFragment StoreEntitySet="Price">
+          <ScalarProperty Name="PriceID" ColumnName="PriceID" />
+          <ScalarProperty Name="DealID" ColumnName="DealID" />
+          <ScalarProperty Name="RetailValue" ColumnName="RetailValue" />
+          <ScalarProperty Name="GiftValue" ColumnName="GiftValue" />
+          <ScalarProperty Name="MerchantSplit" ColumnName="MerchantSplit" />
+          <ScalarProperty Name="NPOSplit" ColumnName="NPOSplit" />
+          <ScalarProperty Name="OurSplit" ColumnName="OurSplit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PurchaseTransactions">
+      <EntityTypeMapping TypeName="C4GModel.PurchaseTransaction">
+        <MappingFragment StoreEntitySet="PurchaseTransaction">
+          <ScalarProperty Name="PurchaseTransactionID" ColumnName="PurchaseTransactionID" />
+          <ScalarProperty Name="cUserID" ColumnName="cUserID" />
+          <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Themes">
+      <EntityTypeMapping TypeName="C4GModel.Theme">
+        <MappingFragment StoreEntitySet="Theme">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="ThemeID" ColumnName="ThemeID" />
+          <ScalarProperty Name="NPOID" ColumnName="NPOID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ThemeDescription" ColumnName="ThemeDescription" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="cStatus_ListAll" FunctionName="C4GModel.Store.cStatus_ListAll">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.cStatus_ListAll_Result">
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Merchant_Update" FunctionName="C4GModel.Store.Merchant_Update" />
+    <FunctionImportMapping FunctionImportName="NewsletterUser_Signup" FunctionName="C4GModel.Store.NewsletterUser_Signup" />
+    <FunctionImportMapping FunctionImportName="NPO_GetByURL" FunctionName="C4GModel.Store.NPO_GetByURL" />
+    <FunctionImportMapping FunctionImportName="NPO_Insert" FunctionName="C4GModel.Store.NPO_Insert" />
+    <FunctionImportMapping FunctionImportName="NPO_IsURLUnique" FunctionName="C4GModel.Store.NPO_IsURLUnique" />
+    <FunctionImportMapping FunctionImportName="NPO_Update" FunctionName="C4GModel.Store.NPO_Update" />
+    <FunctionImportMapping FunctionImportName="NPOcUser_Insert" FunctionName="C4GModel.Store.NPOcUser_Insert" />
+    <FunctionImportMapping FunctionImportName="City_ListAllWithDivisionCode" FunctionName="C4GModel.Store.City_ListAllWithDivisionCode">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.City_ListAllWithDivisionCode_Result">
+          <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="NPO_GetByUserid" FunctionName="C4GModel.Store.NPO_GetByUserid" />
+    <FunctionImportMapping FunctionImportName="NPO_GetByUsername" FunctionName="C4GModel.Store.NPO_GetByUsername" />
+    <FunctionImportMapping FunctionImportName="Theme_GetByNPO" FunctionName="C4GModel.Store.Theme_GetByNPO" />
+    <FunctionImportMapping FunctionImportName="NPO_HasCampaign" FunctionName="C4GModel.Store.NPO_HasCampaign" />
+    <FunctionImportMapping FunctionImportName="Theme_ListByUser" FunctionName="C4GModel.Store.Theme_ListByUser" />
+    <FunctionImportMapping FunctionImportName="Theme_HasActive" FunctionName="C4GModel.Store.Theme_HasActive" />
+    <FunctionImportMapping FunctionImportName="Theme_Insert" FunctionName="C4GModel.Store.Theme_Insert" />
+    <FunctionImportMapping FunctionImportName="Theme_SetAsActive" FunctionName="C4GModel.Store.Theme_SetAsActive" />
+    <FunctionImportMapping FunctionImportName="City_GetFullLocationByCityCode" FunctionName="C4GModel.Store.City_GetFullLocationByCityCode" />
+    <FunctionImportMapping FunctionImportName="cStatus_GetByID" FunctionName="C4GModel.Store.cStatus_GetByID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.cStatus_GetByID_Result">
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="StatusDescription" ColumnName="StatusDescription" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Theme_Get" FunctionName="C4GModel.Store.Theme_Get" />
+    <FunctionImportMapping FunctionImportName="Theme_Update" FunctionName="C4GModel.Store.Theme_Update" />
+    <FunctionImportMapping FunctionImportName="DealInstance_Insert" FunctionName="C4GModel.Store.DealInstance_Insert" />
+    <FunctionImportMapping FunctionImportName="DealInstance_Update" FunctionName="C4GModel.Store.DealInstance_Update" />
+    <FunctionImportMapping FunctionImportName="DealMerchantLocation_Insert" FunctionName="C4GModel.Store.DealMerchantLocation_Insert" />
+    <FunctionImportMapping FunctionImportName="DealSEO_Insert" FunctionName="C4GModel.Store.DealSEO_Insert" />
+    <FunctionImportMapping FunctionImportName="DealSEO_Update" FunctionName="C4GModel.Store.DealSEO_Update" />
+    <FunctionImportMapping FunctionImportName="MerchantLocation_Insert" FunctionName="C4GModel.Store.MerchantLocation_Insert" />
+    <FunctionImportMapping FunctionImportName="MerchantLocation_Update" FunctionName="C4GModel.Store.MerchantLocation_Update" />
+    <FunctionImportMapping FunctionImportName="Price_Insert" FunctionName="C4GModel.Store.Price_Insert" />
+    <FunctionImportMapping FunctionImportName="Price_Update" FunctionName="C4GModel.Store.Price_Update" />
+    <EntitySetMapping Name="NPOes">
+      <EntityTypeMapping TypeName="C4GModel.NPO">
+        <MappingFragment StoreEntitySet="NPO">
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="UseAllMerchants" ColumnName="UseAllMerchants" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="cAddress" ColumnName="cAddress" />
+          <ScalarProperty Name="NPODescription" ColumnName="NPODescription" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NPOID" ColumnName="NPOID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="NPOcUser" TypeName="C4GModel.NPOcUser" StoreEntitySet="NPOcUser">
+      <EndProperty Name="NPO">
+        <ScalarProperty Name="NPOID" ColumnName="NPOID" />
+      </EndProperty>
+      <EndProperty Name="cUser">
+        <ScalarProperty Name="cUserID" ColumnName="cUserID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <EntitySetMapping Name="Deals">
+      <EntityTypeMapping TypeName="C4GModel.Deal">
+        <MappingFragment StoreEntitySet="Deal">
+          <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+          <ScalarProperty Name="LimitPerCustomer" ColumnName="LimitPerCustomer" />
+          <ScalarProperty Name="AbsoluteCouponLimit" ColumnName="AbsoluteCouponLimit" />
+          <ScalarProperty Name="DealDescription" ColumnName="DealDescription" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+          <ScalarProperty Name="DealID" ColumnName="DealID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DealInstances">
+      <EntityTypeMapping TypeName="C4GModel.DealInstance">
+        <MappingFragment StoreEntitySet="DealInstance">
+          <ScalarProperty Name="DealStatusID" ColumnName="DealStatusID" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="RedeemableAfter" ColumnName="RedeemableAfter" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="DealID" ColumnName="DealID" />
+          <ScalarProperty Name="DealInstanceID" ColumnName="DealInstanceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="DealMerchantLocation" TypeName="C4GModel.DealMerchantLocation" StoreEntitySet="DealMerchantLocation">
+      <EndProperty Name="MerchantLocation">
+        <ScalarProperty Name="MerchantLocationID" ColumnName="MerchantLocationID" />
+      </EndProperty>
+      <EndProperty Name="Deal">
+        <ScalarProperty Name="DealID" ColumnName="DealID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CampaignDealInstance" TypeName="C4GModel.CampaignDealInstance" StoreEntitySet="CampaignDealInstance">
+      <EndProperty Name="DealInstance">
+        <ScalarProperty Name="DealInstanceID" ColumnName="DealInstanceID" />
+      </EndProperty>
+      <EndProperty Name="Campaign">
+        <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="DealMerchantLocation_Delete" FunctionName="C4GModel.Store.DealMerchantLocation_Delete" />
+    <FunctionImportMapping FunctionImportName="Merchant_GetByUsername" FunctionName="C4GModel.Store.Merchant_GetByUsername" />
+    <FunctionImportMapping FunctionImportName="MerchantLocation_GetActiveByDealID" FunctionName="C4GModel.Store.MerchantLocation_GetActiveByDealID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.MerchantLocation_GetActiveByDealID_Result">
+          <ScalarProperty Name="MerchantLocationID" ColumnName="MerchantLocationID" />
+          <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+          <ScalarProperty Name="cAddress" ColumnName="cAddress" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="MerchantLocation_GetByDealID" FunctionName="C4GModel.Store.MerchantLocation_GetByDealID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.MerchantLocation_GetByDealID_Result">
+          <ScalarProperty Name="MerchantLocationID" ColumnName="MerchantLocationID" />
+          <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+          <ScalarProperty Name="cAddress" ColumnName="cAddress" />
+          <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="MerchantLocation_GetByMerchantID" FunctionName="C4GModel.Store.MerchantLocation_GetByMerchantID">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.MerchantLocation_GetByMerchantID_Result">
+          <ScalarProperty Name="MerchantLocationID" ColumnName="MerchantLocationID" />
+          <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+          <ScalarProperty Name="cAddress" ColumnName="cAddress" />
+          <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="MerchantLocation_GetEligible" FunctionName="C4GModel.Store.MerchantLocation_GetEligible">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.MerchantLocation_GetEligible_Result">
+          <ScalarProperty Name="MerchantLocationID" ColumnName="MerchantLocationID" />
+          <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+          <ScalarProperty Name="cAddress" ColumnName="cAddress" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Deal_GetByID" FunctionName="C4GModel.Store.Deal_GetByID" />
+    <FunctionImportMapping FunctionImportName="PurchaseTransaction_Insert" FunctionName="C4GModel.Store.PurchaseTransaction_Insert" />
+    <EntitySetMapping Name="PurchaseOrders">
+      <EntityTypeMapping TypeName="C4GModel.PurchaseOrder">
+        <MappingFragment StoreEntitySet="PurchaseOrder">
+          <ScalarProperty Name="OurSplit" ColumnName="OurSplit" />
+          <ScalarProperty Name="MerchantSplit" ColumnName="MerchantSplit" />
+          <ScalarProperty Name="NPOSplit" ColumnName="NPOSplit" />
+          <ScalarProperty Name="PurchaseAmount" ColumnName="PurchaseAmount" />
+          <ScalarProperty Name="DealInstanceID" ColumnName="DealInstanceID" />
+          <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+          <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+          <ScalarProperty Name="OrderStatusID" ColumnName="OrderStatusID" />
+          <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+          <ScalarProperty Name="PurchaseOrderID" ColumnName="PurchaseOrderID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="PurchaseOrder_Insert" FunctionName="C4GModel.Store.PurchaseOrder_Insert" />
+    <FunctionImportMapping FunctionImportName="DealInstance_List" FunctionName="C4GModel.Store.DealInstance_List" />
+    <FunctionImportMapping FunctionImportName="Price_GetByDealInstance" FunctionName="C4GModel.Store.Price_GetByDealInstance" />
+    <EntitySetMapping Name="CardTypes">
+      <EntityTypeMapping TypeName="C4GModel.CardType">
+        <MappingFragment StoreEntitySet="CardType">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CardTypeID" ColumnName="CardTypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentOptions">
+      <EntityTypeMapping TypeName="C4GModel.PaymentOption">
+        <MappingFragment StoreEntitySet="PaymentOption">
+          <ScalarProperty Name="StripeToken" ColumnName="StripeToken" />
+          <ScalarProperty Name="Last4Digits" ColumnName="Last4Digits" />
+          <ScalarProperty Name="CardTypeID" ColumnName="CardTypeID" />
+          <ScalarProperty Name="cUserId" ColumnName="cUserId" />
+          <ScalarProperty Name="PaymentOptionID" ColumnName="PaymentOptionID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="PaymentOption_ListByUser" FunctionName="C4GModel.Store.PaymentOption_ListByUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.PaymentOption_ListByUser_Result">
+          <ScalarProperty Name="PaymentOptionID" ColumnName="PaymentOptionID" />
+          <ScalarProperty Name="cUserId" ColumnName="cUserId" />
+          <ScalarProperty Name="Last4Digits" ColumnName="Last4Digits" />
+          <ScalarProperty Name="StripeToken" ColumnName="StripeToken" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Campaign_Get" FunctionName="C4GModel.Store.Campaign_Get" />
+    <FunctionImportMapping FunctionImportName="Campaign_GetByNPO" FunctionName="C4GModel.Store.Campaign_GetByNPO" />
+    <FunctionImportMapping FunctionImportName="Campaign_Insert" FunctionName="C4GModel.Store.Campaign_Insert" />
+    <FunctionImportMapping FunctionImportName="Campaign_ListActiveByNPO" FunctionName="C4GModel.Store.Campaign_ListActiveByNPO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.Campaign_ListActiveByNPO_Result">
+          <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NPOID" ColumnName="NPOID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="CampaignDescription" ColumnName="CampaignDescription" />
+          <ScalarProperty Name="FundraisingGoal" ColumnName="FundraisingGoal" />
+          <ScalarProperty Name="CampaignImage" ColumnName="CampaignImage" />
+          <ScalarProperty Name="ShowOnHome" ColumnName="ShowOnHome" />
+          <ScalarProperty Name="DisplayPriority" ColumnName="DisplayPriority" />
+          <ScalarProperty Name="CampaignGoal" ColumnName="CampaignGoal" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Campaign_ListByNPO" FunctionName="C4GModel.Store.Campaign_ListByNPO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.Campaign_ListByNPO_Result">
+          <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NPOID" ColumnName="NPOID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="CampaignDescription" ColumnName="CampaignDescription" />
+          <ScalarProperty Name="FundraisingGoal" ColumnName="FundraisingGoal" />
+          <ScalarProperty Name="CampaignImage" ColumnName="CampaignImage" />
+          <ScalarProperty Name="ShowOnHome" ColumnName="ShowOnHome" />
+          <ScalarProperty Name="DisplayPriority" ColumnName="DisplayPriority" />
+          <ScalarProperty Name="CampaignGoal" ColumnName="CampaignGoal" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Campaign_Update" FunctionName="C4GModel.Store.Campaign_Update" />
+    <FunctionImportMapping FunctionImportName="DealInstance_Get" FunctionName="C4GModel.Store.DealInstance_Get">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.DealInstance_Get_Result">
+          <ScalarProperty Name="DealInstanceID" ColumnName="DealInstanceID" />
+          <ScalarProperty Name="DealID" ColumnName="DealID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="RedeemableAfter" ColumnName="RedeemableAfter" />
+          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+          <ScalarProperty Name="DealStatusID" ColumnName="DealStatusID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PaymentOption_Insert" FunctionName="C4GModel.Store.PaymentOption_Insert" />
+    <FunctionImportMapping FunctionImportName="cUser_GetByUsername" FunctionName="C4GModel.Store.cUser_GetByUsername">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.cUser_GetByUsername_Result">
+          <ScalarProperty Name="cUserID" ColumnName="cUserID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="StripeKey" ColumnName="StripeKey" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="cUser_Insert" FunctionName="C4GModel.Store.cUser_Insert" />
+    <FunctionImportMapping FunctionImportName="cUser_GetByName" FunctionName="C4GModel.Store.cUser_GetByName" />
+    <FunctionImportMapping FunctionImportName="PaymentOption_Get" FunctionName="C4GModel.Store.PaymentOption_Get" />
+    <FunctionImportMapping FunctionImportName="PaymentOption_Delete" FunctionName="C4GModel.Store.PaymentOption_Delete" />
+    <FunctionImportMapping FunctionImportName="CampaignDealInstance_Insert" FunctionName="C4GModel.Store.CampaignDealInstance_Insert" />
+    <EntitySetMapping Name="MerchantStripeInfoes">
+      <EntityTypeMapping TypeName="C4GModel.MerchantStripeInfo">
+        <MappingFragment StoreEntitySet="MerchantStripeInfo">
+          <ScalarProperty Name="ApiKey" ColumnName="ApiKey" />
+          <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+          <ScalarProperty Name="MerchantStripeInfoID" ColumnName="MerchantStripeInfoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="MerchantStripeInfo_Get" FunctionName="C4GModel.Store.MerchantStripeInfo_Get" />
+    <FunctionImportMapping FunctionImportName="MerchantStripeInfo_Insert" FunctionName="C4GModel.Store.MerchantStripeInfo_Insert" />
+    <FunctionImportMapping FunctionImportName="Deals_ListforSearchGrid" FunctionName="C4GModel.Store.Deals_ListforSearchGrid">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.Deals_ListforSearchGrid_Result">
+          <ScalarProperty Name="NPOName" ColumnName="NPOName" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+          <ScalarProperty Name="CampaignName" ColumnName="CampaignName" />
+          <ScalarProperty Name="DealInstanceID" ColumnName="DealInstanceID" />
+          <ScalarProperty Name="DealName" ColumnName="DealName" />
+          <ScalarProperty Name="CouponsRemaining" ColumnName="CouponsRemaining" />
+          <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+          <ScalarProperty Name="MerchantName" ColumnName="MerchantName" />
+          <ScalarProperty Name="GiftValue" ColumnName="GiftValue" />
+          <ScalarProperty Name="RetailValue" ColumnName="RetailValue" />
+          <ScalarProperty Name="NPOSplit" ColumnName="NPOSplit" />
+          <ScalarProperty Name="MerchantSplit" ColumnName="MerchantSplit" />
+          <ScalarProperty Name="OurSplit" ColumnName="OurSplit" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PreferredCity_InsertOrUpdate" FunctionName="C4GModel.Store.PreferredCity_InsertOrUpdate" />
+    <FunctionImportMapping FunctionImportName="GetCities" FunctionName="C4GModel.Store.GetCities">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.GetCities_Result">
+          <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+          <ScalarProperty Name="NumberOfDeals" ColumnName="NumberOfDeals" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="State_Province" ColumnName="State/Province" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="PreferredCity_Get" FunctionName="C4GModel.Store.PreferredCity_Get" />
+    <FunctionImportMapping FunctionImportName="NPO_AddMerchantPartner" FunctionName="C4GModel.Store.NPO_AddMerchantPartner" />
+    <FunctionImportMapping FunctionImportName="Merchant_ApproveRequest" FunctionName="C4GModel.Store.Merchant_ApproveRequest" />
+    <FunctionImportMapping FunctionImportName="ListPendingMerchants" FunctionName="C4GModel.Store.ListPendingMerchants">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.ListPendingMerchants_Result">
+          <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LargeLogo" ColumnName="LargeLogo" />
+          <ScalarProperty Name="SmallLogo" ColumnName="SmallLogo" />
+          <ScalarProperty Name="cAddress" ColumnName="cAddress" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Province_State" ColumnName="Province/State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ListPendingNPOs" FunctionName="C4GModel.Store.ListPendingNPOs">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.ListPendingNPOs_Result">
+          <ScalarProperty Name="NPOID" ColumnName="NPOID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NPODescription" ColumnName="NPODescription" />
+          <ScalarProperty Name="cAddress" ColumnName="cAddress" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="UseAllMerchants" ColumnName="UseAllMerchants" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Province_State" ColumnName="Province/State" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Merchant_Approve" FunctionName="C4GModel.Store.Merchant_Approve" />
+    <FunctionImportMapping FunctionImportName="NPO_Approve" FunctionName="C4GModel.Store.NPO_Approve" />
+    <FunctionImportMapping FunctionImportName="NPO_Get" FunctionName="C4GModel.Store.NPO_Get" />
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="C4GModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="definition" ColumnName="definition" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ApproveAllPendingAccounts" FunctionName="C4GModel.Store.ApproveAllPendingAccounts" />
+    <FunctionImportMapping FunctionImportName="Merchant_ApproveAllPending" FunctionName="C4GModel.Store.Merchant_ApproveAllPending" />
+    <FunctionImportMapping FunctionImportName="NPO_ApproveAllPending" FunctionName="C4GModel.Store.NPO_ApproveAllPending" />
+    <EntitySetMapping Name="MerchantInfoes">
+      <EntityTypeMapping TypeName="C4GModel.MerchantInfo">
+        <MappingFragment StoreEntitySet="MerchantInfo">
+          <ScalarProperty Name="MerchantDescription" ColumnName="MerchantDescription" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="cUserID" ColumnName="cUserID" />
+          <ScalarProperty Name="MerchantInfoID" ColumnName="MerchantInfoID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Merchants">
+      <EntityTypeMapping TypeName="C4GModel.Merchant">
+        <MappingFragment StoreEntitySet="Merchant">
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="cUserID" ColumnName="cUserID" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="cAddress" ColumnName="cAddress" />
+          <ScalarProperty Name="SmallLogo" ColumnName="SmallLogo" />
+          <ScalarProperty Name="LargeLogo" ColumnName="LargeLogo" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="MerchantNPO" TypeName="C4GModel.MerchantNPO" StoreEntitySet="MerchantNPO">
+      <EndProperty Name="NPO">
+        <ScalarProperty Name="NPOID" ColumnName="NPOID" />
+      </EndProperty>
+      <EndProperty Name="Merchant">
+        <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="NPOMerchant" TypeName="C4GModel.NPOMerchant" StoreEntitySet="NPOMerchant">
+      <EndProperty Name="NPO">
+        <ScalarProperty Name="NPOID" ColumnName="NPOID" />
+      </EndProperty>
+      <EndProperty Name="Merchant">
+        <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="Merchant_Get" FunctionName="C4GModel.Store.Merchant_Get" />
+    <FunctionImportMapping FunctionImportName="Merchant_ListByCity" FunctionName="C4GModel.Store.Merchant_ListByCity" />
+    <FunctionImportMapping FunctionImportName="Merchant_ListGlobal" FunctionName="C4GModel.Store.Merchant_ListGlobal" />
+    <FunctionImportMapping FunctionImportName="Merchant_Insert" FunctionName="C4GModel.Store.Merchant_Insert" />
+    <FunctionImportMapping FunctionImportName="Merchant_GetFeatured" FunctionName="C4GModel.Store.Merchant_GetFeatured" />
+    <FunctionImportMapping FunctionImportName="NPO_GetFeatured" FunctionName="C4GModel.Store.NPO_GetFeatured" />
+    <FunctionImportMapping FunctionImportName="Campaign_IsNameUnique" FunctionName="C4GModel.Store.Campaign_IsNameUnique" />
+    <FunctionImportMapping FunctionImportName="Campaign_GetByName" FunctionName="C4GModel.Store.Campaign_GetByName" />
+    <FunctionImportMapping FunctionImportName="Merchant_GetByName" FunctionName="C4GModel.Store.Merchant_GetByName" />
+    <FunctionImportMapping FunctionImportName="DealInstance_ListByMerchant" FunctionName="C4GModel.Store.DealInstance_ListByMerchant" />
+    <FunctionImportMapping FunctionImportName="DealInstance_GetByDealName" FunctionName="C4GModel.Store.DealInstance_GetByDealName" />
+    <FunctionImportMapping FunctionImportName="Countries_List" FunctionName="C4GModel.Store.Countries_List" />
+    <FunctionImportMapping FunctionImportName="Provinces_ListByCountry" FunctionName="C4GModel.Store.Provinces_ListByCountry" />
+    <EntitySetMapping Name="MerchantSettings">
+      <EntityTypeMapping TypeName="C4GModel.MerchantSetting">
+        <MappingFragment StoreEntitySet="MerchantSetting">
+          <ScalarProperty Name="AutoAcceptRequests" ColumnName="AutoAcceptRequests" />
+          <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+          <ScalarProperty Name="MerchantSettingsID" ColumnName="MerchantSettingsID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="MerchantSetting_GetByMerchant" FunctionName="C4GModel.Store.MerchantSetting_GetByMerchant" />
+    <FunctionImportMapping FunctionImportName="MerchantSetting_Insert" FunctionName="C4GModel.Store.MerchantSetting_Insert" />
+    <FunctionImportMapping FunctionImportName="MerchantSetting_Update" FunctionName="C4GModel.Store.MerchantSetting_Update" />
+    <FunctionImportMapping FunctionImportName="Deal_GetEligibleByUsername" FunctionName="C4GModel.Store.Deal_GetEligibleByUsername">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.Deal_GetEligibleByUsername_Result">
+          <ScalarProperty Name="DealInstanceID" ColumnName="DealInstanceID" />
+          <ScalarProperty Name="DealID" ColumnName="DealID" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="MerchantName" ColumnName="MerchantName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Campaign_IsComplete" FunctionName="C4GModel.Store.Campaign_IsComplete" />
+    <FunctionImportMapping FunctionImportName="Campaign_Save" FunctionName="C4GModel.Store.Campaign_Save" />
+    <FunctionImportMapping FunctionImportName="Campaign_ListActiveByUsername" FunctionName="C4GModel.Store.Campaign_ListActiveByUsername" />
+    <FunctionImportMapping FunctionImportName="Campaign_ListIncompleteByUsername" FunctionName="C4GModel.Store.Campaign_ListIncompleteByUsername" />
+    <FunctionImportMapping FunctionImportName="CampaignDealInstance_InsertIfNotExists" FunctionName="C4GModel.Store.CampaignDealInstance_InsertIfNotExists" />
+    <EntitySetMapping Name="CampaignStatus">
+      <EntityTypeMapping TypeName="C4GModel.CampaignStatu">
+        <MappingFragment StoreEntitySet="CampaignStatus">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CampaignStatusID" ColumnName="CampaignStatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="NPO_GetByUser" FunctionName="C4GModel.Store.NPO_GetByUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.NPO_GetByUser_Result">
+          <ScalarProperty Name="NPOID" ColumnName="NPOID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NPODescription" ColumnName="NPODescription" />
+          <ScalarProperty Name="cAddress" ColumnName="cAddress" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="UseAllMerchants" ColumnName="UseAllMerchants" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Campaign_UpdateImage" FunctionName="C4GModel.Store.Campaign_UpdateImage" />
+    <FunctionImportMapping FunctionImportName="RedeemDetails_Insert" FunctionName="C4GModel.Store.RedeemDetails_Insert" />
+    <FunctionImportMapping FunctionImportName="RedeemDetails_Update" FunctionName="C4GModel.Store.RedeemDetails_Update" />
+    <EntitySetMapping Name="RedeemDetails">
+      <EntityTypeMapping TypeName="C4GModel.RedeemDetail">
+        <MappingFragment StoreEntitySet="RedeemDetails">
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="RedeemDetailsDescription" ColumnName="RedeemDetailsDescription" />
+          <ScalarProperty Name="Highlights" ColumnName="Highlights" />
+          <ScalarProperty Name="Restrictions" ColumnName="Restrictions" />
+          <ScalarProperty Name="AdditionalDetails" ColumnName="AdditionalDetails" />
+          <ScalarProperty Name="DealID" ColumnName="DealID" />
+          <ScalarProperty Name="RedeemDetailsID" ColumnName="RedeemDetailsID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Merchant_ListNPORequests" FunctionName="C4GModel.Store.Merchant_ListNPORequests" />
+    <FunctionImportMapping FunctionImportName="Merchant_ApproveNPORequest" FunctionName="C4GModel.Store.Merchant_ApproveNPORequest" />
+    <FunctionImportMapping FunctionImportName="CampaignDealInstance_Remove" FunctionName="C4GModel.Store.CampaignDealInstance_Remove" />
+    <FunctionImportMapping FunctionImportName="Merchant_ListForNPO" FunctionName="C4GModel.Store.Merchant_ListForNPO" />
+    <FunctionImportMapping FunctionImportName="Merchant_ListGlobalPartnersByNPO" FunctionName="C4GModel.Store.Merchant_ListGlobalPartnersByNPO" />
+    <FunctionImportMapping FunctionImportName="Merchant_ListLocalPartnersByNPO" FunctionName="C4GModel.Store.Merchant_ListLocalPartnersByNPO" />
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="C4GModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="PoliticalDivisionID" ColumnName="PoliticalDivisionID" />
+          <ScalarProperty Name="CityCode" ColumnName="CityCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="PreferredCity" TypeName="C4GModel.PreferredCity" StoreEntitySet="PreferredCity">
+      <EndProperty Name="cUser">
+        <ScalarProperty Name="cUserID" ColumnName="cUserId" />
+      </EndProperty>
+      <EndProperty Name="City">
+        <ScalarProperty Name="CityID" ColumnName="CityID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="Campaign_MarkAsActive" FunctionName="C4GModel.Store.Campaign_MarkAsActive" />
+    <FunctionImportMapping FunctionImportName="MerchantSettings_GetByMerchantID" FunctionName="C4GModel.Store.MerchantSettings_GetByMerchantID" />
+    <FunctionImportMapping FunctionImportName="Merchant_InsertNPOPartner" FunctionName="C4GModel.Store.Merchant_InsertNPOPartner" />
+    <FunctionImportMapping FunctionImportName="Merchant_ListEligiblePartnersByNPO" FunctionName="C4GModel.Store.Merchant_ListEligiblePartnersByNPO" />
+    <FunctionImportMapping FunctionImportName="NPO_HasPartners" FunctionName="C4GModel.Store.NPO_HasPartners" />
+    <FunctionImportMapping FunctionImportName="City_GetByName" FunctionName="C4GModel.Store.City_GetByName" />
+    <FunctionImportMapping FunctionImportName="MerchantInfo_Get" FunctionName="C4GModel.Store.MerchantInfo_Get" />
+    <FunctionImportMapping FunctionImportName="MerchantInfo_Insert" FunctionName="C4GModel.Store.MerchantInfo_Insert" />
+    <FunctionImportMapping FunctionImportName="Deal_Get" FunctionName="C4GModel.Store.Deal_Get">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.Deal_Get_Result">
+          <ScalarProperty Name="DealID" ColumnName="DealID" />
+          <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DealDescription" ColumnName="DealDescription" />
+          <ScalarProperty Name="AbsoluteCouponLimit" ColumnName="AbsoluteCouponLimit" />
+          <ScalarProperty Name="LimitPerCustomer" ColumnName="LimitPerCustomer" />
+          <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Deal_Insert" FunctionName="C4GModel.Store.Deal_Insert" />
+    <FunctionImportMapping FunctionImportName="Deal_Update" FunctionName="C4GModel.Store.Deal_Update" />
+    <EntitySetMapping Name="FinePrints">
+      <EntityTypeMapping TypeName="C4GModel.FinePrint">
+        <MappingFragment StoreEntitySet="FinePrint">
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="FinePrintID" ColumnName="FinePrintID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Deal_FinePrint" TypeName="C4GModel.Deal_FinePrint" StoreEntitySet="Deal_FinePrint">
+      <EndProperty Name="FinePrint">
+        <ScalarProperty Name="FinePrintID" ColumnName="FinePrintID" />
+      </EndProperty>
+      <EndProperty Name="Deal">
+        <ScalarProperty Name="DealID" ColumnName="DealID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="Deal_FinePrint_Remove" FunctionName="C4GModel.Store.Deal_FinePrint_Remove" />
+    <FunctionImportMapping FunctionImportName="FinePrint_AddToDeal" FunctionName="C4GModel.Store.FinePrint_AddToDeal" />
+    <FunctionImportMapping FunctionImportName="FinePrint_List" FunctionName="C4GModel.Store.FinePrint_List" />
+    <FunctionImportMapping FunctionImportName="FinePrint_ListByDeal" FunctionName="C4GModel.Store.FinePrint_ListByDeal" />
+    <FunctionImportMapping FunctionImportName="NPO_ListNPOPartners" FunctionName="C4GModel.Store.NPO_ListNPOPartners" />
+    <FunctionImportMapping FunctionImportName="RemovePartnership" FunctionName="C4GModel.Store.RemovePartnership" />
+    <FunctionImportMapping FunctionImportName="NPO_List" FunctionName="C4GModel.Store.NPO_List" />
+    <FunctionImportMapping FunctionImportName="NPOSetting_Get" FunctionName="C4GModel.Store.NPOSetting_Get" />
+    <FunctionImportMapping FunctionImportName="NPOSetting_Insert" FunctionName="C4GModel.Store.NPOSetting_Insert" />
+    <EntitySetMapping Name="NPOSettings">
+      <EntityTypeMapping TypeName="C4GModel.NPOSetting">
+        <MappingFragment StoreEntitySet="NPOSetting">
+          <ScalarProperty Name="AutoAcceptMerchantRequests" ColumnName="AutoAcceptMerchantRequests" />
+          <ScalarProperty Name="NPOID" ColumnName="NPOID" />
+          <ScalarProperty Name="NPOSettingID" ColumnName="NPOSettingID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Merchant_ListPartnersByNPO" FunctionName="C4GModel.Store.Merchant_ListPartnersByNPO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.Merchant_ListPartnersByNPO_Result1">
+          <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="LargeLogo" ColumnName="LargeLogo" />
+          <ScalarProperty Name="SmallLogo" ColumnName="SmallLogo" />
+          <ScalarProperty Name="cAddress" ColumnName="cAddress" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Website" ColumnName="Website" />
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="cUserID" ColumnName="cUserID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="CityID" ColumnName="CityID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="InsertPartnership" FunctionName="C4GModel.Store.InsertPartnership" />
+    <FunctionImportMapping FunctionImportName="NPO_InsertMerchantPartner" FunctionName="C4GModel.Store.NPO_InsertMerchantPartner" />
+    <FunctionImportMapping FunctionImportName="NPO_ListEligiblePartnersByMerchant" FunctionName="C4GModel.Store.NPO_ListEligiblePartnersByMerchant" />
+    <FunctionImportMapping FunctionImportName="NPO_ListMerchantRequests" FunctionName="C4GModel.Store.NPO_ListMerchantRequests" />
+    <FunctionImportMapping FunctionImportName="NPO_ApproveMerchantRequest" FunctionName="C4GModel.Store.NPO_ApproveMerchantRequest" />
+  </EntityContainerMapping>
+</Mapping>

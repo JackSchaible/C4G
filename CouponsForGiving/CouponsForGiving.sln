@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Web
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CouponsForGiving.Data", "..\CouponsForGiving.Data\CouponsForGiving.Data.csproj", "{AE4453FB-7D51-4604-A589-BA58EC94B2AF}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "CouponsForGiving(3)", "http://localhost:20932", "{304EC8DC-C681-44E4-B444-89807D17EECF}"
+	ProjectSection(WebsiteProperties) = preProject
+		SccProjectName = ""
+		SccAuxPath = ""
+		SccLocalPath = ""
+		SccProvider = ""
+		Frontpage = "false"
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		ProjectReferences = "{ae4453fb-7d51-4604-a589-ba58ec94b2af}|CouponsForGiving.Data.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_49649"
+		Debug.AspNetCompiler.PhysicalPath = "..\CouponsForGiving\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49649\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_49649"
+		Release.AspNetCompiler.PhysicalPath = "..\CouponsForGiving\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_49649\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "..\CouponsForGiving\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE4453FB-7D51-4604-A589-BA58EC94B2AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE4453FB-7D51-4604-A589-BA58EC94B2AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE4453FB-7D51-4604-A589-BA58EC94B2AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE4453FB-7D51-4604-A589-BA58EC94B2AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{304EC8DC-C681-44E4-B444-89807D17EECF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{304EC8DC-C681-44E4-B444-89807D17EECF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{304EC8DC-C681-44E4-B444-89807D17EECF}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{304EC8DC-C681-44E4-B444-89807D17EECF}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

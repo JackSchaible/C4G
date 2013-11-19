@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode>
+    <siteMapNode url="~/Merchant/MyHome.aspx" title="Get Started"></siteMapNode>
+    <siteMapNode title="NPO Partners">
+      <siteMapNode title="My Requests" url="~/Merchant/MyPartners/Requests.aspx" />
+      <siteMapNode title="Search" url="~/Merchant/MyPartners/Search.aspx" />
+      <siteMapNode title="My Partners" url="~/Merchants/MyPartners/MyPartners.aspx" />
+    </siteMapNode>
+    <siteMapNode title="Manage My Offers">
+      <siteMapNode url="~/Merchant/Offers/New.aspx" title="New Offer"></siteMapNode>
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>

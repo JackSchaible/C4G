@@ -1,0 +1,1682 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="C4GModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="C4GModelStoreContainer">
+    <EntitySet Name="Campaign" EntityType="C4GModel.Store.Campaign" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="CampaignDealInstance" EntityType="C4GModel.Store.CampaignDealInstance" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="CampaignStatus" EntityType="C4GModel.Store.CampaignStatus" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="CardType" EntityType="C4GModel.Store.CardType" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="City" EntityType="C4GModel.Store.City" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="Country" EntityType="C4GModel.Store.Country" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="cStatus" EntityType="C4GModel.Store.cStatus" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="cUser" EntityType="C4GModel.Store.cUser" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="Deal" EntityType="C4GModel.Store.Deal" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="Deal_FinePrint" EntityType="C4GModel.Store.Deal_FinePrint" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="DealInstance" EntityType="C4GModel.Store.DealInstance" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="DealMerchantLocation" EntityType="C4GModel.Store.DealMerchantLocation" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="DealSEO" EntityType="C4GModel.Store.DealSEO" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="DealStatus" EntityType="C4GModel.Store.DealStatus" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="FinePrint" EntityType="C4GModel.Store.FinePrint" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="Merchant" EntityType="C4GModel.Store.Merchant" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="MerchantInfo" EntityType="C4GModel.Store.MerchantInfo" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="MerchantLocation" EntityType="C4GModel.Store.MerchantLocation" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="MerchantNPO" EntityType="C4GModel.Store.MerchantNPO" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="MerchantSetting" EntityType="C4GModel.Store.MerchantSetting" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="MerchantStripeInfo" EntityType="C4GModel.Store.MerchantStripeInfo" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="NewsletterUser" EntityType="C4GModel.Store.NewsletterUser" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="NPO" EntityType="C4GModel.Store.NPO" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="NPOcUser" EntityType="C4GModel.Store.NPOcUser" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="NPOMailingList" EntityType="C4GModel.Store.NPOMailingList" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="NPOMerchant" EntityType="C4GModel.Store.NPOMerchant" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="NPOSetting" EntityType="C4GModel.Store.NPOSetting" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="OrderStatus" EntityType="C4GModel.Store.OrderStatus" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="PaymentOption" EntityType="C4GModel.Store.PaymentOption" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="PoliticalDivision" EntityType="C4GModel.Store.PoliticalDivision" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="PreferredCity" EntityType="C4GModel.Store.PreferredCity" store:Type="Tables" store:Schema="Database_User" store:Name="PreferredCity">
+      <DefiningQuery>SELECT 
+      [PreferredCity].[cUserId] AS [cUserId], 
+      [PreferredCity].[CityID] AS [CityID]
+      FROM [Database_User].[PreferredCity] AS [PreferredCity]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Price" EntityType="C4GModel.Store.Price" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="PurchaseOrder" EntityType="C4GModel.Store.PurchaseOrder" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="PurchaseTransaction" EntityType="C4GModel.Store.PurchaseTransaction" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="RedeemDetails" EntityType="C4GModel.Store.RedeemDetails" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="Theme" EntityType="C4GModel.Store.Theme" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="sysdiagrams" EntityType="C4GModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Campaign_CampaignStatus" Association="C4GModel.Store.FK_Campaign_CampaignStatus">
+      <End Role="CampaignStatus" EntitySet="CampaignStatus" />
+      <End Role="Campaign" EntitySet="Campaign" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Campaign_NPO" Association="C4GModel.Store.FK_Campaign_NPO">
+      <End Role="NPO" EntitySet="NPO" />
+      <End Role="Campaign" EntitySet="Campaign" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CampaignDealInstance_Campaign" Association="C4GModel.Store.FK_CampaignDealInstance_Campaign">
+      <End Role="Campaign" EntitySet="Campaign" />
+      <End Role="CampaignDealInstance" EntitySet="CampaignDealInstance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CampaignDealInstance_DealInstance" Association="C4GModel.Store.FK_CampaignDealInstance_DealInstance">
+      <End Role="DealInstance" EntitySet="DealInstance" />
+      <End Role="CampaignDealInstance" EntitySet="CampaignDealInstance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_Country" Association="C4GModel.Store.FK_City_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_PoliticalDivision" Association="C4GModel.Store.FK_City_PoliticalDivision">
+      <End Role="PoliticalDivision" EntitySet="PoliticalDivision" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_cUser_Status" Association="C4GModel.Store.FK_cUser_Status">
+      <End Role="cStatus" EntitySet="cStatus" />
+      <End Role="cUser" EntitySet="cUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deal_FinePrint_Deal" Association="C4GModel.Store.FK_Deal_FinePrint_Deal">
+      <End Role="Deal" EntitySet="Deal" />
+      <End Role="Deal_FinePrint" EntitySet="Deal_FinePrint" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deal_FinePrint_FinePrint" Association="C4GModel.Store.FK_Deal_FinePrint_FinePrint">
+      <End Role="FinePrint" EntitySet="FinePrint" />
+      <End Role="Deal_FinePrint" EntitySet="Deal_FinePrint" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deal_Merchant" Association="C4GModel.Store.FK_Deal_Merchant">
+      <End Role="Merchant" EntitySet="Merchant" />
+      <End Role="Deal" EntitySet="Deal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DealInstance_Deal" Association="C4GModel.Store.FK_DealInstance_Deal">
+      <End Role="Deal" EntitySet="Deal" />
+      <End Role="DealInstance" EntitySet="DealInstance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DealInstance_DealStatus" Association="C4GModel.Store.FK_DealInstance_DealStatus">
+      <End Role="DealStatus" EntitySet="DealStatus" />
+      <End Role="DealInstance" EntitySet="DealInstance" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DealMerchantLocation_Deal" Association="C4GModel.Store.FK_DealMerchantLocation_Deal">
+      <End Role="Deal" EntitySet="Deal" />
+      <End Role="DealMerchantLocation" EntitySet="DealMerchantLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DealMerchantLocation_MerchantLocation" Association="C4GModel.Store.FK_DealMerchantLocation_MerchantLocation">
+      <End Role="MerchantLocation" EntitySet="MerchantLocation" />
+      <End Role="DealMerchantLocation" EntitySet="DealMerchantLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DealSEO_Deal" Association="C4GModel.Store.FK_DealSEO_Deal">
+      <End Role="Deal" EntitySet="Deal" />
+      <End Role="DealSEO" EntitySet="DealSEO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Merchant_Status" Association="C4GModel.Store.FK_Merchant_Status">
+      <End Role="cStatus" EntitySet="cStatus" />
+      <End Role="Merchant" EntitySet="Merchant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MerchantcUser" Association="C4GModel.Store.FK_MerchantcUser">
+      <End Role="cUser" EntitySet="cUser" />
+      <End Role="Merchant" EntitySet="Merchant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MerchantInfo_cUser" Association="C4GModel.Store.FK_MerchantInfo_cUser">
+      <End Role="cUser" EntitySet="cUser" />
+      <End Role="MerchantInfo" EntitySet="MerchantInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MerchantLocation_City" Association="C4GModel.Store.FK_MerchantLocation_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="MerchantLocation" EntitySet="MerchantLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MerchantLocation_Merchant" Association="C4GModel.Store.FK_MerchantLocation_Merchant">
+      <End Role="Merchant" EntitySet="Merchant" />
+      <End Role="MerchantLocation" EntitySet="MerchantLocation" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MerchantNPO_Merchant" Association="C4GModel.Store.FK_MerchantNPO_Merchant">
+      <End Role="Merchant" EntitySet="Merchant" />
+      <End Role="MerchantNPO" EntitySet="MerchantNPO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MerchantNPO_NPO" Association="C4GModel.Store.FK_MerchantNPO_NPO">
+      <End Role="NPO" EntitySet="NPO" />
+      <End Role="MerchantNPO" EntitySet="MerchantNPO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MerchantSettings_Merchant" Association="C4GModel.Store.FK_MerchantSettings_Merchant">
+      <End Role="Merchant" EntitySet="Merchant" />
+      <End Role="MerchantSetting" EntitySet="MerchantSetting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MerchantStripeInfo_Merchant" Association="C4GModel.Store.FK_MerchantStripeInfo_Merchant">
+      <End Role="Merchant" EntitySet="Merchant" />
+      <End Role="MerchantStripeInfo" EntitySet="MerchantStripeInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NPO_City" Association="C4GModel.Store.FK_NPO_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="NPO" EntitySet="NPO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NPO_Status" Association="C4GModel.Store.FK_NPO_Status">
+      <End Role="cStatus" EntitySet="cStatus" />
+      <End Role="NPO" EntitySet="NPO" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NPOcUser_cUser" Association="C4GModel.Store.FK_NPOcUser_cUser">
+      <End Role="cUser" EntitySet="cUser" />
+      <End Role="NPOcUser" EntitySet="NPOcUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NPOcUser_NPO" Association="C4GModel.Store.FK_NPOcUser_NPO">
+      <End Role="NPO" EntitySet="NPO" />
+      <End Role="NPOcUser" EntitySet="NPOcUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NPOMailingList_NPO" Association="C4GModel.Store.FK_NPOMailingList_NPO">
+      <End Role="NPO" EntitySet="NPO" />
+      <End Role="NPOMailingList" EntitySet="NPOMailingList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NPOMerchant_Merchant" Association="C4GModel.Store.FK_NPOMerchant_Merchant">
+      <End Role="Merchant" EntitySet="Merchant" />
+      <End Role="NPOMerchant" EntitySet="NPOMerchant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NPOMerchant_NPO" Association="C4GModel.Store.FK_NPOMerchant_NPO">
+      <End Role="NPO" EntitySet="NPO" />
+      <End Role="NPOMerchant" EntitySet="NPOMerchant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NPOSetting_NPO" Association="C4GModel.Store.FK_NPOSetting_NPO">
+      <End Role="NPO" EntitySet="NPO" />
+      <End Role="NPOSetting" EntitySet="NPOSetting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentOption" Association="C4GModel.Store.FK_PaymentOption">
+      <End Role="CardType" EntitySet="CardType" />
+      <End Role="PaymentOption" EntitySet="PaymentOption" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaymentOption_cUser" Association="C4GModel.Store.FK_PaymentOption_cUser">
+      <End Role="cUser" EntitySet="cUser" />
+      <End Role="PaymentOption" EntitySet="PaymentOption" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PoliticalDivision_Country" Association="C4GModel.Store.FK_PoliticalDivision_Country">
+      <End Role="Country" EntitySet="Country" />
+      <End Role="PoliticalDivision" EntitySet="PoliticalDivision" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PreferredCity_City" Association="C4GModel.Store.FK_PreferredCity_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="PreferredCity" EntitySet="PreferredCity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PreferredCity_cUser" Association="C4GModel.Store.FK_PreferredCity_cUser">
+      <End Role="cUser" EntitySet="cUser" />
+      <End Role="PreferredCity" EntitySet="PreferredCity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Price_Deal" Association="C4GModel.Store.FK_Price_Deal">
+      <End Role="Deal" EntitySet="Deal" />
+      <End Role="Price" EntitySet="Price" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseDate_User" Association="C4GModel.Store.FK_PurchaseDate_User">
+      <End Role="cUser" EntitySet="cUser" />
+      <End Role="PurchaseTransaction" EntitySet="PurchaseTransaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseOrder_Campaign" Association="C4GModel.Store.FK_PurchaseOrder_Campaign">
+      <End Role="Campaign" EntitySet="Campaign" />
+      <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseOrder_DealInstance" Association="C4GModel.Store.FK_PurchaseOrder_DealInstance">
+      <End Role="DealInstance" EntitySet="DealInstance" />
+      <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseOrder_OrderStatus" Association="C4GModel.Store.FK_PurchaseOrder_OrderStatus">
+      <End Role="OrderStatus" EntitySet="OrderStatus" />
+      <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PurchaseOrder_PurchaseTransaction" Association="C4GModel.Store.FK_PurchaseOrder_PurchaseTransaction">
+      <End Role="PurchaseTransaction" EntitySet="PurchaseTransaction" />
+      <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RedeemDetails_City" Association="C4GModel.Store.FK_RedeemDetails_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="RedeemDetails" EntitySet="RedeemDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RedeemDetails_Deal" Association="C4GModel.Store.FK_RedeemDetails_Deal">
+      <End Role="Deal" EntitySet="Deal" />
+      <End Role="RedeemDetails" EntitySet="RedeemDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Theme_NPO" Association="C4GModel.Store.FK_Theme_NPO">
+      <End Role="NPO" EntitySet="NPO" />
+      <End Role="Theme" EntitySet="Theme" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Campaign">
+    <Key>
+      <PropertyRef Name="CampaignID" />
+    </Key>
+    <Property Name="CampaignID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" MaxLength="256" />
+    <Property Name="NPOID" Type="int" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="EndDate" Type="datetime" />
+    <Property Name="CampaignDescription" Type="nvarchar(max)" />
+    <Property Name="FundraisingGoal" Type="int" />
+    <Property Name="CampaignImage" Type="nvarchar" MaxLength="256" />
+    <Property Name="ShowOnHome" Type="bit" />
+    <Property Name="DisplayPriority" Type="int" />
+    <Property Name="CampaignGoal" Type="nvarchar(max)" />
+    <Property Name="HasAcceptedTerms" Type="bit" Nullable="false" />
+    <Property Name="CampaignStatusID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CampaignDealInstance">
+    <Key>
+      <PropertyRef Name="CampaignID" />
+      <PropertyRef Name="DealInstanceID" />
+    </Key>
+    <Property Name="CampaignID" Type="int" Nullable="false" />
+    <Property Name="DealInstanceID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CampaignStatus">
+    <Key>
+      <PropertyRef Name="CampaignStatusID" />
+    </Key>
+    <Property Name="CampaignStatusID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="CardType">
+    <Key>
+      <PropertyRef Name="CardTypeID" />
+    </Key>
+    <Property Name="CardTypeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="16" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="CityCode" Type="nchar" Nullable="false" MaxLength="3" />
+    <Property Name="PoliticalDivisionID" Type="int" />
+    <Property Name="CountryCode" Type="nchar" MaxLength="2" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="CityID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="CountryCode" />
+    </Key>
+    <Property Name="CountryCode" Type="nchar" Nullable="false" MaxLength="2" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="cStatus">
+    <Key>
+      <PropertyRef Name="StatusID" />
+    </Key>
+    <Property Name="StatusID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+    <Property Name="StatusDescription" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="cUser">
+    <Key>
+      <PropertyRef Name="cUserID" />
+    </Key>
+    <Property Name="cUserID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="StatusID" Type="int" Nullable="false" />
+    <Property Name="StripeKey" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Deal">
+    <Key>
+      <PropertyRef Name="DealID" />
+    </Key>
+    <Property Name="DealID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MerchantID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="DealDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AbsoluteCouponLimit" Type="int" />
+    <Property Name="LimitPerCustomer" Type="int" />
+    <Property Name="ImageURL" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Deal_FinePrint">
+    <Key>
+      <PropertyRef Name="DealID" />
+      <PropertyRef Name="FinePrintID" />
+    </Key>
+    <Property Name="DealID" Type="int" Nullable="false" />
+    <Property Name="FinePrintID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DealInstance">
+    <Key>
+      <PropertyRef Name="DealInstanceID" />
+    </Key>
+    <Property Name="DealInstanceID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DealID" Type="int" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="EndDate" Type="datetime" Nullable="false" />
+    <Property Name="RedeemableAfter" Type="datetime" Nullable="false" />
+    <Property Name="ExpiryDate" Type="datetime" />
+    <Property Name="DealStatusID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DealMerchantLocation">
+    <Key>
+      <PropertyRef Name="DealID" />
+      <PropertyRef Name="MerchantLocationID" />
+    </Key>
+    <Property Name="DealID" Type="int" Nullable="false" />
+    <Property Name="MerchantLocationID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DealSEO">
+    <Key>
+      <PropertyRef Name="DealSEOID" />
+    </Key>
+    <Property Name="DealSEOID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DealID" Type="int" Nullable="false" />
+    <Property Name="MetaKeywords" Type="nvarchar(max)" />
+    <Property Name="MetaDescription" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="DealStatus">
+    <Key>
+      <PropertyRef Name="DealStatusID" />
+    </Key>
+    <Property Name="DealStatusID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="DealStatusDescription" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FinePrint">
+    <Key>
+      <PropertyRef Name="FinePrintID" />
+    </Key>
+    <Property Name="FinePrintID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Content" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Merchant">
+    <Key>
+      <PropertyRef Name="MerchantID" />
+    </Key>
+    <Property Name="MerchantID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="LargeLogo" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="SmallLogo" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="cAddress" Type="nvarchar" MaxLength="256" />
+    <Property Name="PostalCode" Type="nchar" MaxLength="16" />
+    <Property Name="PhoneNumber" Type="nvarchar" Nullable="false" MaxLength="16" />
+    <Property Name="Website" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="StatusID" Type="int" Nullable="false" />
+    <Property Name="cUserID" Type="int" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="CityID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MerchantInfo">
+    <Key>
+      <PropertyRef Name="MerchantInfoID" />
+    </Key>
+    <Property Name="MerchantInfoID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="cUserID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="PhoneNumber" Type="nvarchar" Nullable="false" MaxLength="16" />
+    <Property Name="MerchantDescription" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="MerchantLocation">
+    <Key>
+      <PropertyRef Name="MerchantLocationID" />
+    </Key>
+    <Property Name="MerchantLocationID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MerchantID" Type="int" Nullable="false" />
+    <Property Name="cAddress" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="PhoneNumber" Type="nvarchar" Nullable="false" MaxLength="16" />
+    <Property Name="CityID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MerchantNPO">
+    <Key>
+      <PropertyRef Name="NPOID" />
+      <PropertyRef Name="MerchantID" />
+    </Key>
+    <Property Name="NPOID" Type="int" Nullable="false" />
+    <Property Name="MerchantID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MerchantSetting">
+    <Key>
+      <PropertyRef Name="MerchantSettingsID" />
+    </Key>
+    <Property Name="MerchantSettingsID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MerchantID" Type="int" Nullable="false" />
+    <Property Name="AutoAcceptRequests" Type="bit" />
+  </EntityType>
+  <EntityType Name="MerchantStripeInfo">
+    <Key>
+      <PropertyRef Name="MerchantStripeInfoID" />
+    </Key>
+    <Property Name="MerchantStripeInfoID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="MerchantID" Type="int" Nullable="false" />
+    <Property Name="ApiKey" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NewsletterUser">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="NPO">
+    <Key>
+      <PropertyRef Name="NPOID" />
+    </Key>
+    <Property Name="NPOID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="NPODescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="cAddress" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="PostalCode" Type="nvarchar" Nullable="false" MaxLength="16" />
+    <Property Name="Website" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="PhoneNumber" Type="nchar" Nullable="false" MaxLength="16" />
+    <Property Name="Email" Type="nvarchar" MaxLength="256" />
+    <Property Name="StatusID" Type="int" Nullable="false" />
+    <Property Name="Logo" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="URL" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="UseAllMerchants" Type="bit" Nullable="false" />
+    <Property Name="CityID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NPOcUser">
+    <Key>
+      <PropertyRef Name="NPOID" />
+      <PropertyRef Name="cUserID" />
+    </Key>
+    <Property Name="NPOID" Type="int" Nullable="false" />
+    <Property Name="cUserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NPOMailingList">
+    <Key>
+      <PropertyRef Name="NPOMailingListID" />
+    </Key>
+    <Property Name="NPOMailingListID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NPOID" Type="int" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="NPOMerchant">
+    <Key>
+      <PropertyRef Name="NPOID" />
+      <PropertyRef Name="MerchantID" />
+    </Key>
+    <Property Name="NPOID" Type="int" Nullable="false" />
+    <Property Name="MerchantID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NPOSetting">
+    <Key>
+      <PropertyRef Name="NPOSettingID" />
+    </Key>
+    <Property Name="NPOSettingID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NPOID" Type="int" Nullable="false" />
+    <Property Name="AutoAcceptMerchantRequests" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OrderStatus">
+    <Key>
+      <PropertyRef Name="OrderStatusID" />
+    </Key>
+    <Property Name="OrderStatusID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="OrderStatusDescription" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PaymentOption">
+    <Key>
+      <PropertyRef Name="PaymentOptionID" />
+    </Key>
+    <Property Name="PaymentOptionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="cUserId" Type="int" Nullable="false" />
+    <Property Name="CardTypeID" Type="int" Nullable="false" />
+    <Property Name="Last4Digits" Type="nchar" Nullable="false" MaxLength="4" />
+    <Property Name="StripeToken" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PoliticalDivision">
+    <Key>
+      <PropertyRef Name="PoliticalDivisionID" />
+    </Key>
+    <Property Name="PoliticalDivisionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CountryCode" Type="nchar" Nullable="false" MaxLength="2" />
+    <Property Name="DivisionCode" Type="nvarchar" Nullable="false" MaxLength="16" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'C4G.Database_User.PreferredCity' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="PreferredCity">
+    <Key>
+      <PropertyRef Name="cUserId" />
+      <PropertyRef Name="CityID" />
+    </Key>
+    <Property Name="cUserId" Type="int" Nullable="false" />
+    <Property Name="CityID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Price">
+    <Key>
+      <PropertyRef Name="PriceID" />
+    </Key>
+    <Property Name="PriceID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DealID" Type="int" Nullable="false" />
+    <Property Name="RetailValue" Type="smallmoney" Nullable="false" />
+    <Property Name="GiftValue" Type="smallmoney" Nullable="false" />
+    <Property Name="MerchantSplit" Type="smallmoney" Nullable="false" />
+    <Property Name="NPOSplit" Type="smallmoney" Nullable="false" />
+    <Property Name="OurSplit" Type="smallmoney" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PurchaseOrder">
+    <Key>
+      <PropertyRef Name="PurchaseOrderID" />
+    </Key>
+    <Property Name="PurchaseOrderID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CampaignID" Type="int" Nullable="false" />
+    <Property Name="OrderStatusID" Type="int" Nullable="false" />
+    <Property Name="TransactionID" Type="int" Nullable="false" />
+    <Property Name="PurchaseDate" Type="datetime" Nullable="false" />
+    <Property Name="DealInstanceID" Type="int" Nullable="false" />
+    <Property Name="PurchaseAmount" Type="money" Nullable="false" />
+    <Property Name="NPOSplit" Type="money" Nullable="false" />
+    <Property Name="MerchantSplit" Type="money" Nullable="false" />
+    <Property Name="OurSplit" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PurchaseTransaction">
+    <Key>
+      <PropertyRef Name="PurchaseTransactionID" />
+    </Key>
+    <Property Name="PurchaseTransactionID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="cUserID" Type="int" Nullable="false" />
+    <Property Name="PurchaseDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RedeemDetails">
+    <Key>
+      <PropertyRef Name="RedeemDetailsID" />
+    </Key>
+    <Property Name="RedeemDetailsID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="DealID" Type="int" Nullable="false" />
+    <Property Name="AdditionalDetails" Type="nvarchar(max)" />
+    <Property Name="Restrictions" Type="nvarchar(max)" />
+    <Property Name="Highlights" Type="nvarchar(max)" />
+    <Property Name="RedeemDetailsDescription" Type="nvarchar(max)" />
+    <Property Name="CityID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Theme">
+    <Key>
+      <PropertyRef Name="ThemeID" />
+    </Key>
+    <Property Name="NPOID" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="ThemeDescription" Type="nvarchar(max)" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="ThemeID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Campaign_CampaignStatus">
+    <End Role="CampaignStatus" Type="C4GModel.Store.CampaignStatus" Multiplicity="1" />
+    <End Role="Campaign" Type="C4GModel.Store.Campaign" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CampaignStatus">
+        <PropertyRef Name="CampaignStatusID" />
+      </Principal>
+      <Dependent Role="Campaign">
+        <PropertyRef Name="CampaignStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Campaign_NPO">
+    <End Role="NPO" Type="C4GModel.Store.NPO" Multiplicity="1" />
+    <End Role="Campaign" Type="C4GModel.Store.Campaign" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NPO">
+        <PropertyRef Name="NPOID" />
+      </Principal>
+      <Dependent Role="Campaign">
+        <PropertyRef Name="NPOID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CampaignDealInstance_Campaign">
+    <End Role="Campaign" Type="C4GModel.Store.Campaign" Multiplicity="1" />
+    <End Role="CampaignDealInstance" Type="C4GModel.Store.CampaignDealInstance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Campaign">
+        <PropertyRef Name="CampaignID" />
+      </Principal>
+      <Dependent Role="CampaignDealInstance">
+        <PropertyRef Name="CampaignID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CampaignDealInstance_DealInstance">
+    <End Role="DealInstance" Type="C4GModel.Store.DealInstance" Multiplicity="1" />
+    <End Role="CampaignDealInstance" Type="C4GModel.Store.CampaignDealInstance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DealInstance">
+        <PropertyRef Name="DealInstanceID" />
+      </Principal>
+      <Dependent Role="CampaignDealInstance">
+        <PropertyRef Name="DealInstanceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_Country">
+    <End Role="Country" Type="C4GModel.Store.Country" Multiplicity="0..1" />
+    <End Role="City" Type="C4GModel.Store.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryCode" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="CountryCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_PoliticalDivision">
+    <End Role="PoliticalDivision" Type="C4GModel.Store.PoliticalDivision" Multiplicity="0..1" />
+    <End Role="City" Type="C4GModel.Store.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PoliticalDivision">
+        <PropertyRef Name="PoliticalDivisionID" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="PoliticalDivisionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_cUser_Status">
+    <End Role="cStatus" Type="C4GModel.Store.cStatus" Multiplicity="1" />
+    <End Role="cUser" Type="C4GModel.Store.cUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cStatus">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="cUser">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deal_FinePrint_Deal">
+    <End Role="Deal" Type="C4GModel.Store.Deal" Multiplicity="1" />
+    <End Role="Deal_FinePrint" Type="C4GModel.Store.Deal_FinePrint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deal">
+        <PropertyRef Name="DealID" />
+      </Principal>
+      <Dependent Role="Deal_FinePrint">
+        <PropertyRef Name="DealID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deal_FinePrint_FinePrint">
+    <End Role="FinePrint" Type="C4GModel.Store.FinePrint" Multiplicity="1" />
+    <End Role="Deal_FinePrint" Type="C4GModel.Store.Deal_FinePrint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinePrint">
+        <PropertyRef Name="FinePrintID" />
+      </Principal>
+      <Dependent Role="Deal_FinePrint">
+        <PropertyRef Name="FinePrintID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deal_Merchant">
+    <End Role="Merchant" Type="C4GModel.Store.Merchant" Multiplicity="1" />
+    <End Role="Deal" Type="C4GModel.Store.Deal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Merchant">
+        <PropertyRef Name="MerchantID" />
+      </Principal>
+      <Dependent Role="Deal">
+        <PropertyRef Name="MerchantID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DealInstance_Deal">
+    <End Role="Deal" Type="C4GModel.Store.Deal" Multiplicity="1" />
+    <End Role="DealInstance" Type="C4GModel.Store.DealInstance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deal">
+        <PropertyRef Name="DealID" />
+      </Principal>
+      <Dependent Role="DealInstance">
+        <PropertyRef Name="DealID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DealInstance_DealStatus">
+    <End Role="DealStatus" Type="C4GModel.Store.DealStatus" Multiplicity="1" />
+    <End Role="DealInstance" Type="C4GModel.Store.DealInstance" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DealStatus">
+        <PropertyRef Name="DealStatusID" />
+      </Principal>
+      <Dependent Role="DealInstance">
+        <PropertyRef Name="DealStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DealMerchantLocation_Deal">
+    <End Role="Deal" Type="C4GModel.Store.Deal" Multiplicity="1" />
+    <End Role="DealMerchantLocation" Type="C4GModel.Store.DealMerchantLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deal">
+        <PropertyRef Name="DealID" />
+      </Principal>
+      <Dependent Role="DealMerchantLocation">
+        <PropertyRef Name="DealID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DealMerchantLocation_MerchantLocation">
+    <End Role="MerchantLocation" Type="C4GModel.Store.MerchantLocation" Multiplicity="1" />
+    <End Role="DealMerchantLocation" Type="C4GModel.Store.DealMerchantLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MerchantLocation">
+        <PropertyRef Name="MerchantLocationID" />
+      </Principal>
+      <Dependent Role="DealMerchantLocation">
+        <PropertyRef Name="MerchantLocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DealSEO_Deal">
+    <End Role="Deal" Type="C4GModel.Store.Deal" Multiplicity="1" />
+    <End Role="DealSEO" Type="C4GModel.Store.DealSEO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deal">
+        <PropertyRef Name="DealID" />
+      </Principal>
+      <Dependent Role="DealSEO">
+        <PropertyRef Name="DealID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Merchant_Status">
+    <End Role="cStatus" Type="C4GModel.Store.cStatus" Multiplicity="1" />
+    <End Role="Merchant" Type="C4GModel.Store.Merchant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cStatus">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="Merchant">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MerchantcUser">
+    <End Role="cUser" Type="C4GModel.Store.cUser" Multiplicity="1" />
+    <End Role="Merchant" Type="C4GModel.Store.Merchant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cUser">
+        <PropertyRef Name="cUserID" />
+      </Principal>
+      <Dependent Role="Merchant">
+        <PropertyRef Name="cUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MerchantInfo_cUser">
+    <End Role="cUser" Type="C4GModel.Store.cUser" Multiplicity="1" />
+    <End Role="MerchantInfo" Type="C4GModel.Store.MerchantInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cUser">
+        <PropertyRef Name="cUserID" />
+      </Principal>
+      <Dependent Role="MerchantInfo">
+        <PropertyRef Name="cUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MerchantLocation_City">
+    <End Role="City" Type="C4GModel.Store.City" Multiplicity="1" />
+    <End Role="MerchantLocation" Type="C4GModel.Store.MerchantLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="MerchantLocation">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MerchantLocation_Merchant">
+    <End Role="Merchant" Type="C4GModel.Store.Merchant" Multiplicity="1" />
+    <End Role="MerchantLocation" Type="C4GModel.Store.MerchantLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Merchant">
+        <PropertyRef Name="MerchantID" />
+      </Principal>
+      <Dependent Role="MerchantLocation">
+        <PropertyRef Name="MerchantID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MerchantNPO_Merchant">
+    <End Role="Merchant" Type="C4GModel.Store.Merchant" Multiplicity="1" />
+    <End Role="MerchantNPO" Type="C4GModel.Store.MerchantNPO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Merchant">
+        <PropertyRef Name="MerchantID" />
+      </Principal>
+      <Dependent Role="MerchantNPO">
+        <PropertyRef Name="MerchantID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MerchantNPO_NPO">
+    <End Role="NPO" Type="C4GModel.Store.NPO" Multiplicity="1" />
+    <End Role="MerchantNPO" Type="C4GModel.Store.MerchantNPO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NPO">
+        <PropertyRef Name="NPOID" />
+      </Principal>
+      <Dependent Role="MerchantNPO">
+        <PropertyRef Name="NPOID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MerchantSettings_Merchant">
+    <End Role="Merchant" Type="C4GModel.Store.Merchant" Multiplicity="1" />
+    <End Role="MerchantSetting" Type="C4GModel.Store.MerchantSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Merchant">
+        <PropertyRef Name="MerchantID" />
+      </Principal>
+      <Dependent Role="MerchantSetting">
+        <PropertyRef Name="MerchantID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MerchantStripeInfo_Merchant">
+    <End Role="Merchant" Type="C4GModel.Store.Merchant" Multiplicity="1" />
+    <End Role="MerchantStripeInfo" Type="C4GModel.Store.MerchantStripeInfo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Merchant">
+        <PropertyRef Name="MerchantID" />
+      </Principal>
+      <Dependent Role="MerchantStripeInfo">
+        <PropertyRef Name="MerchantID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NPO_City">
+    <End Role="City" Type="C4GModel.Store.City" Multiplicity="1" />
+    <End Role="NPO" Type="C4GModel.Store.NPO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="NPO">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NPO_Status">
+    <End Role="cStatus" Type="C4GModel.Store.cStatus" Multiplicity="1" />
+    <End Role="NPO" Type="C4GModel.Store.NPO" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cStatus">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="NPO">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NPOcUser_cUser">
+    <End Role="cUser" Type="C4GModel.Store.cUser" Multiplicity="1" />
+    <End Role="NPOcUser" Type="C4GModel.Store.NPOcUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cUser">
+        <PropertyRef Name="cUserID" />
+      </Principal>
+      <Dependent Role="NPOcUser">
+        <PropertyRef Name="cUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NPOcUser_NPO">
+    <End Role="NPO" Type="C4GModel.Store.NPO" Multiplicity="1" />
+    <End Role="NPOcUser" Type="C4GModel.Store.NPOcUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NPO">
+        <PropertyRef Name="NPOID" />
+      </Principal>
+      <Dependent Role="NPOcUser">
+        <PropertyRef Name="NPOID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NPOMailingList_NPO">
+    <End Role="NPO" Type="C4GModel.Store.NPO" Multiplicity="1" />
+    <End Role="NPOMailingList" Type="C4GModel.Store.NPOMailingList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NPO">
+        <PropertyRef Name="NPOID" />
+      </Principal>
+      <Dependent Role="NPOMailingList">
+        <PropertyRef Name="NPOID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NPOMerchant_Merchant">
+    <End Role="Merchant" Type="C4GModel.Store.Merchant" Multiplicity="1" />
+    <End Role="NPOMerchant" Type="C4GModel.Store.NPOMerchant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Merchant">
+        <PropertyRef Name="MerchantID" />
+      </Principal>
+      <Dependent Role="NPOMerchant">
+        <PropertyRef Name="MerchantID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NPOMerchant_NPO">
+    <End Role="NPO" Type="C4GModel.Store.NPO" Multiplicity="1" />
+    <End Role="NPOMerchant" Type="C4GModel.Store.NPOMerchant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NPO">
+        <PropertyRef Name="NPOID" />
+      </Principal>
+      <Dependent Role="NPOMerchant">
+        <PropertyRef Name="NPOID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NPOSetting_NPO">
+    <End Role="NPO" Type="C4GModel.Store.NPO" Multiplicity="1" />
+    <End Role="NPOSetting" Type="C4GModel.Store.NPOSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NPO">
+        <PropertyRef Name="NPOID" />
+      </Principal>
+      <Dependent Role="NPOSetting">
+        <PropertyRef Name="NPOID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentOption">
+    <End Role="CardType" Type="C4GModel.Store.CardType" Multiplicity="1" />
+    <End Role="PaymentOption" Type="C4GModel.Store.PaymentOption" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CardType">
+        <PropertyRef Name="CardTypeID" />
+      </Principal>
+      <Dependent Role="PaymentOption">
+        <PropertyRef Name="CardTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaymentOption_cUser">
+    <End Role="cUser" Type="C4GModel.Store.cUser" Multiplicity="1" />
+    <End Role="PaymentOption" Type="C4GModel.Store.PaymentOption" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cUser">
+        <PropertyRef Name="cUserID" />
+      </Principal>
+      <Dependent Role="PaymentOption">
+        <PropertyRef Name="cUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PoliticalDivision_Country">
+    <End Role="Country" Type="C4GModel.Store.Country" Multiplicity="1" />
+    <End Role="PoliticalDivision" Type="C4GModel.Store.PoliticalDivision" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="CountryCode" />
+      </Principal>
+      <Dependent Role="PoliticalDivision">
+        <PropertyRef Name="CountryCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PreferredCity_City">
+    <End Role="City" Type="C4GModel.Store.City" Multiplicity="1" />
+    <End Role="PreferredCity" Type="C4GModel.Store.PreferredCity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="PreferredCity">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PreferredCity_cUser">
+    <End Role="cUser" Type="C4GModel.Store.cUser" Multiplicity="1" />
+    <End Role="PreferredCity" Type="C4GModel.Store.PreferredCity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cUser">
+        <PropertyRef Name="cUserID" />
+      </Principal>
+      <Dependent Role="PreferredCity">
+        <PropertyRef Name="cUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Price_Deal">
+    <End Role="Deal" Type="C4GModel.Store.Deal" Multiplicity="1" />
+    <End Role="Price" Type="C4GModel.Store.Price" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deal">
+        <PropertyRef Name="DealID" />
+      </Principal>
+      <Dependent Role="Price">
+        <PropertyRef Name="DealID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseDate_User">
+    <End Role="cUser" Type="C4GModel.Store.cUser" Multiplicity="1" />
+    <End Role="PurchaseTransaction" Type="C4GModel.Store.PurchaseTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cUser">
+        <PropertyRef Name="cUserID" />
+      </Principal>
+      <Dependent Role="PurchaseTransaction">
+        <PropertyRef Name="cUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseOrder_Campaign">
+    <End Role="Campaign" Type="C4GModel.Store.Campaign" Multiplicity="1" />
+    <End Role="PurchaseOrder" Type="C4GModel.Store.PurchaseOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Campaign">
+        <PropertyRef Name="CampaignID" />
+      </Principal>
+      <Dependent Role="PurchaseOrder">
+        <PropertyRef Name="CampaignID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseOrder_DealInstance">
+    <End Role="DealInstance" Type="C4GModel.Store.DealInstance" Multiplicity="1" />
+    <End Role="PurchaseOrder" Type="C4GModel.Store.PurchaseOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DealInstance">
+        <PropertyRef Name="DealInstanceID" />
+      </Principal>
+      <Dependent Role="PurchaseOrder">
+        <PropertyRef Name="DealInstanceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseOrder_OrderStatus">
+    <End Role="OrderStatus" Type="C4GModel.Store.OrderStatus" Multiplicity="1" />
+    <End Role="PurchaseOrder" Type="C4GModel.Store.PurchaseOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderStatus">
+        <PropertyRef Name="OrderStatusID" />
+      </Principal>
+      <Dependent Role="PurchaseOrder">
+        <PropertyRef Name="OrderStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PurchaseOrder_PurchaseTransaction">
+    <End Role="PurchaseTransaction" Type="C4GModel.Store.PurchaseTransaction" Multiplicity="1" />
+    <End Role="PurchaseOrder" Type="C4GModel.Store.PurchaseOrder" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PurchaseTransaction">
+        <PropertyRef Name="PurchaseTransactionID" />
+      </Principal>
+      <Dependent Role="PurchaseOrder">
+        <PropertyRef Name="TransactionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RedeemDetails_City">
+    <End Role="City" Type="C4GModel.Store.City" Multiplicity="1" />
+    <End Role="RedeemDetails" Type="C4GModel.Store.RedeemDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="CityID" />
+      </Principal>
+      <Dependent Role="RedeemDetails">
+        <PropertyRef Name="CityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RedeemDetails_Deal">
+    <End Role="Deal" Type="C4GModel.Store.Deal" Multiplicity="1" />
+    <End Role="RedeemDetails" Type="C4GModel.Store.RedeemDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deal">
+        <PropertyRef Name="DealID" />
+      </Principal>
+      <Dependent Role="RedeemDetails">
+        <PropertyRef Name="DealID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Theme_NPO">
+    <End Role="NPO" Type="C4GModel.Store.NPO" Multiplicity="1" />
+    <End Role="Theme" Type="C4GModel.Store.Theme" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NPO">
+        <PropertyRef Name="NPOID" />
+      </Principal>
+      <Dependent Role="Theme">
+        <PropertyRef Name="NPOID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="ApproveAllPendingAccounts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="Campaign_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="CampaignID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Campaign_GetByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="NPOURL" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Campaign_GetByNPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Campaign_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="name" Type="nvarchar" Mode="In" />
+    <Parameter Name="npoid" Type="int" Mode="In" />
+    <Parameter Name="startdate" Type="datetime" Mode="In" />
+    <Parameter Name="enddate" Type="datetime" Mode="In" />
+    <Parameter Name="campaigndescription" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="fundraisinggoal" Type="int" Mode="In" />
+    <Parameter Name="campaignimage" Type="nvarchar" Mode="In" />
+    <Parameter Name="showonhome" Type="bit" Mode="In" />
+    <Parameter Name="displaypriority" Type="int" Mode="In" />
+    <Parameter Name="campaigngoal" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Campaign_IsComplete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="CampaignID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Campaign_IsNameUnique" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Campaign_ListActiveByNPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Campaign_ListActiveByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Campaign_ListByNPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="npoid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Campaign_ListIncompleteByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Campaign_MarkAsActive" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="CampaignID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Campaign_Save" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="CampaignID" Type="int" Mode="In" />
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="StartDate" Type="datetime" Mode="In" />
+    <Parameter Name="EndDate" Type="datetime" Mode="In" />
+    <Parameter Name="CampaignDescription" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="FundraisingGoal" Type="int" Mode="In" />
+    <Parameter Name="CampaignImage" Type="nvarchar" Mode="In" />
+    <Parameter Name="ShowOnHome" Type="bit" Mode="In" />
+    <Parameter Name="DisplayPriority" Type="int" Mode="In" />
+    <Parameter Name="CampaignGoal" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Campaign_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="campaignid" Type="int" Mode="In" />
+    <Parameter Name="name" Type="nvarchar" Mode="In" />
+    <Parameter Name="npoid" Type="int" Mode="In" />
+    <Parameter Name="startdate" Type="datetime" Mode="In" />
+    <Parameter Name="enddate" Type="datetime" Mode="In" />
+    <Parameter Name="campaigndescription" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="fundraisinggoal" Type="int" Mode="In" />
+    <Parameter Name="campaignimage" Type="nvarchar" Mode="In" />
+    <Parameter Name="showonhome" Type="bit" Mode="In" />
+    <Parameter Name="displaypriority" Type="int" Mode="In" />
+    <Parameter Name="campaigngoal" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Campaign_UpdateImage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="CampaignID" Type="int" Mode="In" />
+    <Parameter Name="ImagePath" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="CampaignDealInstance_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="campaignid" Type="int" Mode="In" />
+    <Parameter Name="dealinstanceid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="CampaignDealInstance_InsertIfNotExists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="CampaignID" Type="int" Mode="In" />
+    <Parameter Name="DealInstanceID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="CampaignDealInstance_Remove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="DealInstanceID" Type="int" Mode="In" />
+    <Parameter Name="CampaignID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="City_GetByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="CityName" Type="nvarchar" Mode="In" />
+    <Parameter Name="ProvinceCode" Type="nchar" Mode="In" />
+    <Parameter Name="CountryCode" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="City_GetFullLocationByCityCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="cityid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="City_ListAllWithDivisionCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="Countries_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="cStatus_GetByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="statusid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="cStatus_ListAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="cUser_GetByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="cUser_GetByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="cUser_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="StripeKey" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Deal_FinePrint_Remove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="DealID" Type="int" Mode="In" />
+    <Parameter Name="FinePrintID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Deal_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="dealid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Deal_GetByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="DealInstanceID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Deal_GetEligibleByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="EndDate" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="Deal_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="merchantid" Type="int" Mode="In" />
+    <Parameter Name="name" Type="nvarchar" Mode="In" />
+    <Parameter Name="dealdescription" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="absolutecouponlimit" Type="int" Mode="In" />
+    <Parameter Name="limitpercustomer" Type="int" Mode="In" />
+    <Parameter Name="imageURL" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Deal_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="dealid" Type="int" Mode="In" />
+    <Parameter Name="merchantid" Type="int" Mode="In" />
+    <Parameter Name="name" Type="nvarchar" Mode="In" />
+    <Parameter Name="dealdescription" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="absolutecouponlimit" Type="int" Mode="In" />
+    <Parameter Name="limitpercustomer" Type="int" Mode="In" />
+    <Parameter Name="imageURL" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="DealInstance_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="dealinstanceid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DealInstance_GetByDealName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="DealName" Type="nvarchar" Mode="In" />
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DealInstance_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="dealid" Type="int" Mode="In" />
+    <Parameter Name="startdate" Type="datetime" Mode="In" />
+    <Parameter Name="enddate" Type="datetime" Mode="In" />
+    <Parameter Name="redeemableafter" Type="datetime" Mode="In" />
+    <Parameter Name="expirydate" Type="datetime" Mode="In" />
+    <Parameter Name="dealstatusid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DealInstance_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="DealInstance_ListByMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DealInstance_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="dealinstanceid" Type="int" Mode="In" />
+    <Parameter Name="dealid" Type="int" Mode="In" />
+    <Parameter Name="startdate" Type="datetime" Mode="In" />
+    <Parameter Name="enddate" Type="datetime" Mode="In" />
+    <Parameter Name="redeemableafter" Type="datetime" Mode="In" />
+    <Parameter Name="expirydate" Type="datetime" Mode="In" />
+    <Parameter Name="dealstatusid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DealMerchantLocation_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="dealid" Type="int" Mode="In" />
+    <Parameter Name="merchantlocationid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="DealMerchantLocation_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="dealid" Type="int" Mode="In" />
+    <Parameter Name="merchantlocationid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Deals_ListforSearchGrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="City" Type="nvarchar" Mode="In" />
+    <Parameter Name="PoliticalDivision" Type="nvarchar" Mode="In" />
+    <Parameter Name="Country" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="DealSEO_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="dealid" Type="int" Mode="In" />
+    <Parameter Name="metakeywords" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="metadescription" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="DealSEO_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="dealseoid" Type="int" Mode="In" />
+    <Parameter Name="dealid" Type="int" Mode="In" />
+    <Parameter Name="metakeywords" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="metadescription" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="FinePrint_AddToDeal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="DealID" Type="int" Mode="In" />
+    <Parameter Name="FinePrintID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="FinePrint_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="FinePrint_ListByDeal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="DealID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetCities" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="InsertPartnership" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ListPendingMerchants" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="ListPendingNPOs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="Merchant_Approve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Merchant_ApproveAllPending" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="Merchant_ApproveNPORequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Merchant_ApproveRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Merchant_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Merchant_GetByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Merchant_GetByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Merchant_GetFeatured" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="Merchant_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="name" Type="nvarchar" Mode="In" />
+    <Parameter Name="largelogo" Type="nvarchar" Mode="In" />
+    <Parameter Name="smalllogo" Type="nvarchar" Mode="In" />
+    <Parameter Name="caddress" Type="nvarchar" Mode="In" />
+    <Parameter Name="cityid" Type="int" Mode="In" />
+    <Parameter Name="postalcode" Type="nvarchar" Mode="In" />
+    <Parameter Name="phonenumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="website" Type="nvarchar" Mode="In" />
+    <Parameter Name="statusid" Type="int" Mode="In" />
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+    <Parameter Name="email" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Merchant_InsertNPOPartner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Merchant_ListByCity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="CityID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Merchant_ListEligiblePartnersByNPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="CityID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Merchant_ListForNPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="CityID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Merchant_ListGlobal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="Merchant_ListGlobalPartnersByNPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Merchant_ListLocalPartnersByNPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Merchant_ListNPORequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Merchant_ListPartnersByNPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Merchant_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="merchantid" Type="int" Mode="In" />
+    <Parameter Name="name" Type="nvarchar" Mode="In" />
+    <Parameter Name="largelogo" Type="nvarchar" Mode="In" />
+    <Parameter Name="smalllogo" Type="nvarchar" Mode="In" />
+    <Parameter Name="caddress" Type="nvarchar" Mode="In" />
+    <Parameter Name="cityid" Type="int" Mode="In" />
+    <Parameter Name="postalcode" Type="nvarchar" Mode="In" />
+    <Parameter Name="phonenumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="website" Type="nvarchar" Mode="In" />
+    <Parameter Name="statusid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="MerchantInfo_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="MerchantInfo_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="MerchantDescription" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="MerchantLocation_GetActiveByDealID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="dealid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="MerchantLocation_GetByDealID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="dealid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="MerchantLocation_GetByMerchantID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="merchantid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="MerchantLocation_GetEligible" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="merchantid" Type="int" Mode="In" />
+    <Parameter Name="dealid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="MerchantLocation_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="merchantid" Type="int" Mode="In" />
+    <Parameter Name="cAddress" Type="nvarchar" Mode="In" />
+    <Parameter Name="cityid" Type="int" Mode="In" />
+    <Parameter Name="phonenumber" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="MerchantLocation_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="merchantlocationid" Type="int" Mode="In" />
+    <Parameter Name="merchantid" Type="int" Mode="In" />
+    <Parameter Name="caddress" Type="nvarchar" Mode="In" />
+    <Parameter Name="cityID" Type="int" Mode="In" />
+    <Parameter Name="phonenumber" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="MerchantSetting_GetByMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="MerchantSetting_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="MerchantSetting_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
+    <Parameter Name="AutoAcceptRequests" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="MerchantSettings_GetByMerchantID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="MerchantStripeInfo_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="MerchantStripeInfo_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
+    <Parameter Name="ApiKey" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="NewsletterUser_Signup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="NPO_AddMerchantPartner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="NPO_Approve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="NPO_ApproveAllPending" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="NPO_ApproveMerchantRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="NPO_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="NPO_GetByURL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="URL" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="NPO_GetByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="NPO_GetByUserid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="cuserid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="NPO_GetByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="NPO_GetFeatured" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="NPO_HasCampaign" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="NPO_HasPartners" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="NPO_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="name" Type="nvarchar" Mode="In" />
+    <Parameter Name="npodescription" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="caddress" Type="nvarchar" Mode="In" />
+    <Parameter Name="cityid" Type="int" Mode="In" />
+    <Parameter Name="postalcode" Type="nvarchar" Mode="In" />
+    <Parameter Name="website" Type="nvarchar" Mode="In" />
+    <Parameter Name="phonenumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="email" Type="nvarchar" Mode="In" />
+    <Parameter Name="statusid" Type="int" Mode="In" />
+    <Parameter Name="logo" Type="nvarchar" Mode="In" />
+    <Parameter Name="url" Type="nvarchar" Mode="In" />
+    <Parameter Name="useallmerchants" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="NPO_InsertMerchantPartner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="NPO_IsURLUnique" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="testurl" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="NPO_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="NPO_ListEligiblePartnersByMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="NPO_ListMerchantRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="NPO_ListNPOPartners" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="NPO_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="npoid" Type="int" Mode="In" />
+    <Parameter Name="name" Type="nvarchar" Mode="In" />
+    <Parameter Name="npodescription" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="caddress" Type="nvarchar" Mode="In" />
+    <Parameter Name="cityid" Type="int" Mode="In" />
+    <Parameter Name="postalcode" Type="nvarchar" Mode="In" />
+    <Parameter Name="website" Type="nvarchar" Mode="In" />
+    <Parameter Name="phonenumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="email" Type="nvarchar" Mode="In" />
+    <Parameter Name="statusid" Type="int" Mode="In" />
+    <Parameter Name="logo" Type="nvarchar" Mode="In" />
+    <Parameter Name="url" Type="nvarchar" Mode="In" />
+    <Parameter Name="useallmerchants" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="NPOcUser_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+    <Parameter Name="npoid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="NPOSetting_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="NPOSetting_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+    <Parameter Name="AutoAcceptMerchantRequests" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="PaymentOption_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="PaymentOptionID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PaymentOption_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="PaymentOptionID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PaymentOption_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="CardTypeID" Type="int" Mode="In" />
+    <Parameter Name="Last4Digits" Type="nchar" Mode="In" />
+    <Parameter Name="StripeToken" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="PaymentOption_ListByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="cUsername" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PreferredCity_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PreferredCity_InsertOrUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="cityID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Price_GetByDealInstance" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="DealInstanceID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Price_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="dealid" Type="int" Mode="In" />
+    <Parameter Name="retailvalue" Type="smallmoney" Mode="In" />
+    <Parameter Name="giftvalue" Type="smallmoney" Mode="In" />
+    <Parameter Name="merchantsplit" Type="smallmoney" Mode="In" />
+    <Parameter Name="nposplit" Type="smallmoney" Mode="In" />
+    <Parameter Name="oursplit" Type="smallmoney" Mode="In" />
+  </Function>
+  <Function Name="Price_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="priceid" Type="int" Mode="In" />
+    <Parameter Name="dealid" Type="int" Mode="In" />
+    <Parameter Name="retailvalue" Type="smallmoney" Mode="In" />
+    <Parameter Name="giftvalue" Type="smallmoney" Mode="In" />
+    <Parameter Name="merchantsplit" Type="smallmoney" Mode="In" />
+    <Parameter Name="nposplit" Type="smallmoney" Mode="In" />
+    <Parameter Name="oursplit" Type="smallmoney" Mode="In" />
+  </Function>
+  <Function Name="Provinces_ListByCountry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="CountryCode" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="PurchaseOrder_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="DealID" Type="int" Mode="In" />
+    <Parameter Name="CampaignID" Type="int" Mode="In" />
+    <Parameter Name="TransactionID" Type="int" Mode="In" />
+    <Parameter Name="PurchaseAmount" Type="money" Mode="In" />
+    <Parameter Name="NPOSplit" Type="money" Mode="In" />
+    <Parameter Name="MerchantSplit" Type="money" Mode="In" />
+    <Parameter Name="OurSplit" Type="money" Mode="In" />
+  </Function>
+  <Function Name="PurchaseTransaction_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="cUser" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="RedeemDetails_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="dealid" Type="int" Mode="In" />
+    <Parameter Name="additionaldetails" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="restrictions" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="highlights" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="redeemdetailsdescription" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="RedeemDetails_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="redeemdetailsid" Type="int" Mode="In" />
+    <Parameter Name="dealid" Type="int" Mode="In" />
+    <Parameter Name="additionaldetails" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="restrictions" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="highlights" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="redeemdetailsdescription" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="RemovePartnership" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Theme_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="ThemeID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Theme_GetByNPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Theme_HasActive" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Theme_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="Desc" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Active" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="Theme_ListByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Theme_SetAsActive" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="ThemeID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Theme_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="ThemeID" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Desc" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
+  </Function>
+</Schema>
