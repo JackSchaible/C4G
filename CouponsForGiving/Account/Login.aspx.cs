@@ -26,16 +26,16 @@ public partial class Account_Login : Page
         if (User.Identity.IsAuthenticated)
         {
             if (User.IsInRole("Admin"))
-                Response.Redirect("../Admin/MyHome.aspx", true);
+                HttpContext.Current.Response.Redirect("../Admin/MyHome.aspx", true);
             else
             {
                 if (User.IsInRole("NPO"))
-                    Response.Redirect("../NPO/MyHome.aspx", true);
+                    HttpContext.Current.Response.Redirect("../NPO/MyHome.aspx", true);
 
                 if (User.IsInRole("Merchant"))
-                    Response.Redirect("../Merchant/MyHome.aspx", true);
+                    HttpContext.Current.Response.Redirect("../Merchant/MyHome.aspx", true);
 
-                Response.Redirect("../Default/MyHome.aspx", true);
+                HttpContext.Current.Response.Redirect("../Default/MyHome.aspx", true);
             }
         }
     }

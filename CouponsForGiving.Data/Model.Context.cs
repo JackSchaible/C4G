@@ -1555,13 +1555,13 @@ namespace CouponsForGiving.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Deal_GetEligibleByUsername_Result>("Deal_GetEligibleByUsername", usernameParameter, endDateParameter);
         }
     
-        public virtual ObjectResult<Nullable<bool>> Campaign_IsComplete(Nullable<int> campaignID)
+        public virtual ObjectResult<string> Campaign_IsComplete(Nullable<int> campaignID)
         {
             var campaignIDParameter = campaignID.HasValue ?
                 new ObjectParameter("CampaignID", campaignID) :
                 new ObjectParameter("CampaignID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<bool>>("Campaign_IsComplete", campaignIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Campaign_IsComplete", campaignIDParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> Campaign_Save(Nullable<int> campaignID, string username, string name, Nullable<System.DateTime> startDate, Nullable<System.DateTime> endDate, string campaignDescription, Nullable<int> fundraisingGoal, string campaignImage, Nullable<bool> showOnHome, Nullable<int> displayPriority, string campaignGoal)
@@ -2189,13 +2189,22 @@ namespace CouponsForGiving.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NPOSetting_Insert", nPOIDParameter, autoAcceptMerchantRequestsParameter);
         }
     
-        public virtual ObjectResult<Merchant_ListPartnersByNPO_Result1> Merchant_ListPartnersByNPO(string username)
+        public virtual ObjectResult<Merchant> Merchant_ListPartnersByNPO(string username)
         {
             var usernameParameter = username != null ?
                 new ObjectParameter("Username", username) :
                 new ObjectParameter("Username", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Merchant_ListPartnersByNPO_Result1>("Merchant_ListPartnersByNPO", usernameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Merchant>("Merchant_ListPartnersByNPO", usernameParameter);
+        }
+    
+        public virtual ObjectResult<Merchant> Merchant_ListPartnersByNPO(string username, MergeOption mergeOption)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Merchant>("Merchant_ListPartnersByNPO", mergeOption, usernameParameter);
         }
     
         public virtual int InsertPartnership(Nullable<int> nPOID, Nullable<int> merchantID)

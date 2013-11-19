@@ -22,4 +22,5 @@
     </asp:GridView>
     <asp:Label ID="ErrorLabel" runat="server"></asp:Label>
     <a href="Add.aspx" class="btn">Add A New Merchant</a>
+    <a href="../Campaigns/New.aspx" class="btn">Setup A Campaign</a>
 </asp:Content>

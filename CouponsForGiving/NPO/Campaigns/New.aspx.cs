@@ -17,6 +17,7 @@ using System.Web.Script.Services;
 public partial class NPO_newCampaign : System.Web.UI.Page
 {
     public NPO npo;
+    public List<string> Errors;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -44,6 +45,9 @@ public partial class NPO_newCampaign : System.Web.UI.Page
 
         EligibleDeals_GV.DataSource = Deals.GetEligibleByUsername(User.Identity.Name, EndDate.Date);
         EligibleDeals_GV.DataBind();
+
+        ErrorLabel.Text = "";
+        Errors = new List<string>();
     }
 
     protected void newCampaignSubmit_Click(object sender, EventArgs e)
@@ -112,6 +116,8 @@ public partial class NPO_newCampaign : System.Web.UI.Page
             if (valid)
             {
                 bool isComplete = false;
+                List<string> errors = new List<string>();
+
                 using (TransactionScope ts = new TransactionScope())
                 {
                     try
@@ -126,7 +132,8 @@ public partial class NPO_newCampaign : System.Web.UI.Page
                         else
                             campaignID = Campaigns.Save(User.Identity.Name, name, startDate, endDate, description, fundraisingGoal, image, showOnHome, 1, goal);
 
-                        isComplete = Campaigns.IsComplete(campaignID);
+                        errors = Campaigns.IsComplete(campaignID);
+                        isComplete = errors.Count == 0;
 
                         ts.Complete();
                     }
@@ -173,7 +180,8 @@ public partial class NPO_newCampaign : System.Web.UI.Page
                 }
                 else
                 {
-                    ErrorLabel.Text = "Your campaign was saved.";
+                    ErrorLabel.Text = "Your campaign was saved. In order to publish it, you still need a few things: ";
+                    Errors = errors;
                 }
             }
         }

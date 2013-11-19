@@ -45,9 +45,24 @@
     </style>
     <h1>New <%: npo.Name %> Campaign</h1>
     <img src="../../<%:npo.Logo %>" alt="Logo" />
-    <p>
-        <asp:Label ID="ErrorLabel" runat="server"></asp:Label>
-    </p>
+    <p>Set up a campaign and include information like:</p>
+    <ul>
+        <li>What your campaign is all about?</li>
+        <li>How much you want to raise?</li>
+        <li>What will the funds will be use for?</li>
+        <li>How long do you want to run your campaign?</li>
+        <li>You can add photos and links directly to your social networks such as Facebook, Twitter, and LinkedIn</li>
+        <li>Then add your merchant partners. You can invite as many merchants partners as you want to help you reach your goals. In other words, you can have multiple coupons listed on your campaign page.</li>
+        <li>Your campaign page even has a thermometer to help measure your progress</li>
+    </ul>
+    <p>Your campaign page will also be your public page you can share with your network of donors and supporters.</p>
+    <asp:Label ID="ErrorLabel" runat="server"></asp:Label>
+    <ul>
+        <%
+            foreach (string item in Errors)
+                Response.Write(String.Format("<li>{0}</li>", item));
+        %>
+    </ul>
     <div id="Form" style="width: 600px;">
         <div class="FormRow">
             <asp:Label ID="Label1" runat="server" Text="What is the name of your Campaign? "></asp:Label>

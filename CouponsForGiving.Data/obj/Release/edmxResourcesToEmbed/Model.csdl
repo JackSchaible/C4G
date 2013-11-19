@@ -512,7 +512,7 @@
       <Parameter Name="Username" Mode="In" Type="String" />
       <Parameter Name="EndDate" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="Campaign_IsComplete" ReturnType="Collection(Boolean)">
+    <FunctionImport Name="Campaign_IsComplete" ReturnType="Collection(String)">
       <Parameter Name="CampaignID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="Campaign_Save" ReturnType="Collection(Int32)">
@@ -704,7 +704,7 @@
       <End Role="NPO" EntitySet="NPOes" />
       <End Role="NPOSetting" EntitySet="NPOSettings" />
     </AssociationSet>
-    <FunctionImport Name="Merchant_ListPartnersByNPO" ReturnType="Collection(C4GModel.Merchant_ListPartnersByNPO_Result1)">
+    <FunctionImport Name="Merchant_ListPartnersByNPO" EntitySet="Merchants" ReturnType="Collection(C4GModel.Merchant)">
       <Parameter Name="Username" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="InsertPartnership">

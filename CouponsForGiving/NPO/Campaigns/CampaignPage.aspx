@@ -208,11 +208,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
     <h1><%: npo.Name %> <%: campaign.Name %></h1>
-    <p>Congratulations! You've just set up your campaign. Now you can share your campaign with your network.</p>
+    <p>Congratulations! You've just set up your campaign. What would you like to do now?</p>
     <div id="SocialStuff">
+        <h2>Share on Social Media</h2>
         <p>Bitly</p>
         <div class="fb-share-button" data-href="https://www.coupons4giving.ca/Causes/<%:npo.Name + "/" + campaign.Name %>" data-type="button"></div>
-        <p>FB, Twitter, LinkedIn</p>
+        <p>Twitter, LinkedIn</p>
+        <a href="New.aspx" class="btn">Setup Another Campaign</a>
     </div>
         <div class="TopContent">
             <h1><%: npo.Name %></h1>

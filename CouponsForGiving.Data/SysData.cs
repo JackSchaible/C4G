@@ -410,6 +410,11 @@ namespace CouponsForGiving.Data.Classes
 
     public static class Merchants
     {
+        public static List<Merchant> ListPartnersByNPO(string username)
+        {
+            return new C4GEntities().Merchant_ListPartnersByNPO(username).ToList<Merchant>();
+        }
+
         public static List<NPO> ListNPORequests(string username)
         {
             return (new C4GEntities().Merchant_ListNPORequests(username)).ToList<NPO>();
@@ -585,9 +590,9 @@ namespace CouponsForGiving.Data.Classes
                 showonhome, displaypriority, campaigngoal).FirstOrDefault<int?>() ?? default(int);
         }
 
-        public static bool IsComplete(int CampaignID)
+        public static List<string> IsComplete(int CampaignID)
         {
-            return (bool)new C4GEntities().Campaign_IsComplete(CampaignID).First();
+            return new C4GEntities().Campaign_IsComplete(CampaignID).FirstOrDefault<String>().Split(new char[] { '.' }, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
         }
 
         public static List<Campaign> ListActiveByUsername(string username)

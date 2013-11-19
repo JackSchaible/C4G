@@ -2200,7 +2200,7 @@
             <Parameter Name="Username" Mode="In" Type="String" />
             <Parameter Name="EndDate" Mode="In" Type="DateTime" />
           </FunctionImport>
-          <FunctionImport Name="Campaign_IsComplete" ReturnType="Collection(Boolean)">
+          <FunctionImport Name="Campaign_IsComplete" ReturnType="Collection(String)">
           <Parameter Name="CampaignID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Campaign_Save" ReturnType="Collection(Int32)">
@@ -2392,7 +2392,7 @@
             <End Role="NPO" EntitySet="NPOes" />
             <End Role="NPOSetting" EntitySet="NPOSettings" />
           </AssociationSet>
-          <FunctionImport Name="Merchant_ListPartnersByNPO" ReturnType="Collection(C4GModel.Merchant_ListPartnersByNPO_Result1)">
+          <FunctionImport Name="Merchant_ListPartnersByNPO" EntitySet="Merchants" ReturnType="Collection(C4GModel.Merchant)">
           <Parameter Name="Username" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="InsertPartnership">
@@ -4845,22 +4845,6 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="Merchant_ListPartnersByNPO" FunctionName="C4GModel.Store.Merchant_ListPartnersByNPO">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="C4GModel.Merchant_ListPartnersByNPO_Result1">
-                <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="LargeLogo" ColumnName="LargeLogo" />
-                <ScalarProperty Name="SmallLogo" ColumnName="SmallLogo" />
-                <ScalarProperty Name="cAddress" ColumnName="cAddress" />
-                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
-                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-                <ScalarProperty Name="Website" ColumnName="Website" />
-                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
-                <ScalarProperty Name="cUserID" ColumnName="cUserID" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="CityID" ColumnName="CityID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="InsertPartnership" FunctionName="C4GModel.Store.InsertPartnership" />
           <FunctionImportMapping FunctionImportName="NPO_InsertMerchantPartner" FunctionName="C4GModel.Store.NPO_InsertMerchantPartner" />
