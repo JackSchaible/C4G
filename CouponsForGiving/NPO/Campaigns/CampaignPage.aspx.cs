@@ -10,6 +10,8 @@ using CouponsForGiving.Data;
 using System.IO;
 using System.Net;
 using CouponsForGiving.Data.Classes;
+using ASPSnippets.FaceBookAPI;
+using System.Web.Configuration;
 
 public partial class Default_NpoPage : System.Web.UI.Page
 {
@@ -22,7 +24,7 @@ public partial class Default_NpoPage : System.Web.UI.Page
         base.OnPreInit(e);
 
         if (Request.QueryString["campaign"] == null)
-            Response.Redirect("~/NPO/Home.aspx", true);
+            Response.Redirect("~/NPO/MyHome.aspx", true);
         else
         {
             string npoName = NPOs.NPO_GetByUser(User.Identity.Name).Name;

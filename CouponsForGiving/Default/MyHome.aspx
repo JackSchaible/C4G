@@ -95,6 +95,9 @@
                     <section id="Section1">
                         <div id="Div1" class="no-sidebar">
                             <h1>Support Your Favorite Not-For-Profit</h1>
+                            <div style="padding: 10px;">
+
+                            </div>
                             <div class="quarter">
                                 <h4>STEP 1</h4>
                                 <img src="../images/c4g_home_step1.png" alt="Coupons 4 Giving" />
@@ -117,7 +120,9 @@
                             </div>
                             <h4 class="centered">Whether you are raising money, looking for a great restaurant or you are a merchant who wants to support local community groups, Coupons4Giving makes it easy!</h4>
                             <div class="clear"></div>
-                            <a href="DealsInMyArea.aspx" class="btn-center">GET STARTED TODAY!</a>
+                            <div class="FormRow" style="padding-top: 20px;">
+                                <a href="DealsInMyArea.aspx" style="margin-top: 10px;" class="HeaderButton">GET STARTED TODAY!</a>
+                            </div>
                         </div>
                     </section> <!-- Close How It Works Content Section -->
                 </div>

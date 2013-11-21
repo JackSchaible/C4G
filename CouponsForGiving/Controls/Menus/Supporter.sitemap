@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
     <siteMapNode>
-      <siteMapNode url="~/Default/MyHome.aspx" title="Home" />
+      <siteMapNode url="~/Default.aspx" title="Home" />
       <siteMapNode title="Deals in My Area" url="~/Default/DealsInMyArea.aspx" />
       <siteMapNode title="Search for a Deal" url="~/Default/Search.aspx">
         <siteMapNode title="Local Deals" />

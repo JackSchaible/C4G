@@ -23,15 +23,21 @@ public partial class NPO_Partners_Add : System.Web.UI.Page
         {
             CitiesDDL.DataSource = SysData.ListCities();
             CitiesDDL.DataBind();
-            
+            BindData();
         }
-        
-        BindData();
+        else
+        {
+            BindData();
+
+            if (LocalMerchantsGV.Rows.Count == 0)
+                ErrorLabel.Text = "Either we were unable to locate any merchants in your selected city, or you are already partnered with all of them.";
+        }
     }
 
     private void BindData()
     {
-        LocalMerchantsGV.DataSource = MerchantNPO.ListEligiblePartnersByNPO(User.Identity.Name, int.Parse(CitiesDDL.SelectedValue));
+        List<Merchant> local = MerchantNPO.ListEligiblePartnersByNPO(User.Identity.Name, int.Parse(CitiesDDL.SelectedValue));
+        LocalMerchantsGV.DataSource = local;
         LocalMerchantsGV.DataBind();
     }
 

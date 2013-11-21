@@ -9,5 +9,5 @@ Coupons4Giving is a fundraising tool that connects charities, not-for-profit org
 
 - Visual Studio 2012
 - SQL Database
-- ASP.Net 4.0 or higher
+- ASP.Net 4.5 or higher
 

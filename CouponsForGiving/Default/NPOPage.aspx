@@ -92,13 +92,13 @@
         <div id="Featured">
             <asp:Panel ID="FeaturedCampaign" runat="server">
                 <img alt="Featured Campaign Image" src="../<%: featured.CampaignImage %>" />
-                <a href="CampaignPage.aspx?npoName=<%: npo.URL + "&campaign=" + featured.Name %>"><%: featured.Name %></a>
+                <a href="../Default/CampaignPage.aspx?npoName=<%: npo.URL + "&campaign=" + featured.Name %>"><%: featured.Name %></a>
                 <div class="ClearFix"></div>
             </asp:Panel>
         </div>
         <%
             foreach (CouponsForGiving.Data.Campaign oc in (from c in npo.Campaigns where c.ShowOnHome == false && c.StartDate < DateTime.Now && c.EndDate > DateTime.Now select c))
-                Response.Write("<div class=\"Campaign\"><a href=\"CampaignPage.aspx?nponame=" + npo.URL + "&campaign=" + Server.UrlEncode(oc.Name) + "\">" + oc.Name + "</a></div>");
+                Response.Write("<div class=\"Campaign\"><a href=\"../Default/CampaignPage.aspx?nponame=" + npo.URL + "&campaign=" + Server.UrlEncode(oc.Name) + "\">" + oc.Name + "</a></div>");
         %>
     </asp:Panel>
 </asp:Content>

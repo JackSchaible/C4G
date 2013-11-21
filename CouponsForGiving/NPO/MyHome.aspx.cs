@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
@@ -93,5 +94,12 @@ public partial class Merchant_Home : System.Web.UI.Page
         EditImageButton.ImageUrl = "~/Images/save.jpg";
         Logo.Visible = false;
         ImageUpload.Visible = true;
+    }
+
+    protected void FBConnect_Click(object sender, EventArgs e)
+    {
+        Response.Redirect(String.Format("https://www.facebook.com/dialog/oauth?clientid={0}&redirecturi={1}&response_type=token&scope=",
+            WebConfigurationManager.AppSettings["FB_App_ID"],
+            Request.Url.AbsoluteUri));
     }
 }

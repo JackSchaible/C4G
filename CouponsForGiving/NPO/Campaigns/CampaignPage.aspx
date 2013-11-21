@@ -212,7 +212,10 @@
     <div id="SocialStuff">
         <h2>Share on Social Media</h2>
         <p>Bitly</p>
-        <div class="fb-share-button" data-href="https://www.coupons4giving.ca/Causes/<%:npo.Name + "/" + campaign.Name %>" data-type="button"></div>
+        <p class="btn" onclick="shareOnFB('https://www.coupons4giving.ca/Causes/<%:npo.Name + "/" + campaign.Name %>', 'https://www.coupons4giving.ca/<%:campaign.CampaignImage%>', 'We have a new Campaign on Coupons4Giving!', '<%:campaign.Name%> - Our New Campaign on C4G!', '<%:campaign.CampaignDescription%>')">Share on Facebook</p>
+        <div class="fb-like" data-href="https://www.coupons4giving.ca/Causes/<%:npo.Name%>/<%:campaign.Name%>"
+             data-layout="button" data-action="like" data-show-faces="true" data-share="false"></div>
+        <p id="FBMsg"></p>
         <p>Twitter, LinkedIn</p>
         <a href="New.aspx" class="btn">Setup Another Campaign</a>
     </div>
@@ -252,12 +255,11 @@
                             <ItemStyle CssClass="Offer"></ItemStyle>
                         </asp:BoundField>
                         <asp:ImageField DataImageUrlField="DealImage" DataImageUrlFormatString="../../{0}"></asp:ImageField>
-                        <asp:BoundField DataField="Savings" DataFormatString="{0:c}" HeaderText="Savings"></asp:BoundField>
                         <asp:BoundField DataField="Price" DataFormatString="{0:c}" HeaderText="Price"></asp:BoundField>
                         <asp:CommandField SelectText="Buy Now!" ShowSelectButton="True"></asp:CommandField>
                     </Columns>
                 </asp:GridView>
-                <asp:Label ID="ErrorLabel" runat="server"></asp:Label>
+                <asp:Label ID="ErrorLabel" ClientIDMode="Static" runat="server"></asp:Label>
             </div>
         </div>
         <div id="Campaign" ClientIDMode="static" runat="server">

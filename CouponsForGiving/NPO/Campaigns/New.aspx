@@ -36,6 +36,14 @@
                     $("#" + dealInstanceID).remove();
             });
         }
+
+        $("#Main_Content_EndDate_YearDDL").change(function() {
+            <asp:literal runat="server" id="ltCallback" />();
+        });
+
+        function loadOffers(data) {
+            $("#Offers").innerHTML = data;
+        }
     </script>
     <style type="text/css">
         #MainContent img {
@@ -74,11 +82,6 @@
             <div class="ClearFix"></div>
         </div>
         <div class="FormRow">
-            <asp:Label ID="Label6" runat="server" Text="Upload a Campaign Image: "></asp:Label>
-            <asp:FileUpload ID="newCampaignImage" runat="server" />
-            <div class="ClearFix"></div>
-        </div>
-        <div class="FormRow">
             <asp:Label ID="Label9" runat="server" Text="What will the funds be used for? "></asp:Label>
             <asp:TextBox ID="newCampaignGoal" runat="server" ClientIDMode="Static" TextMode="MultiLine"></asp:TextBox>
             <div class="ClearFix"></div>
@@ -88,12 +91,17 @@
         </div>
         <div class="FormRow"></div>
             <asp:Label ID="Label2" runat="server" Text="Start Date: "></asp:Label>
-            <UC:DateControl ID="StartDate" runat="server" AcceptPastDates="false" AutoPostBack="true" />
+            <UC:DateControl ID="StartDate" runat="server" AcceptPastDates="false" AutoPostBack="false" />
             <div class="ClearFix"></div>
         </div>
         <div class="FormRow">
             <asp:Label ID="Label3" runat="server" Text="End Date: "></asp:Label>
-            <UC:DateControl ID="EndDate" runat="server" AcceptPastDates="false" AutoPostBack="true" />
+            <UC:DateControl ID="EndDate" runat="server" AcceptPastDates="false" AutoPostBack="false" />
+            <div class="ClearFix"></div>
+        </div>
+            <div class="FormRow">
+            <asp:Label ID="Label6" runat="server" Text="Upload a Campaign Image: "></asp:Label>
+            <asp:FileUpload ID="newCampaignImage" runat="server" />
             <div class="ClearFix"></div>
         </div>
         <div class="FormRow">
@@ -104,23 +112,25 @@
         </div>
         <div class="FormRow">
             <asp:Label ID="Label11" runat="server" Text="Your Eligible Deals:"></asp:Label>
-            <asp:GridView ID="EligibleDeals_GV" runat="server" AutoGenerateColumns="False" Width="530px" AllowPaging="True" AllowSorting="True" OnPageIndexChanging="EligibleDeals_GV_PageIndexChanging" PageSize="5" DataKeyNames="DealInstanceID">
-                <Columns>
-                    <asp:TemplateField ShowHeader="False">
-                        <ItemTemplate>
-                            <input style="cursor: pointer;" type="button" onclick="addDeal(<%# Eval("DealInstanceID") %>, '<%# Server.UrlEncode(Eval("Name").ToString()).Replace("+", "%20") %>')" value="Add Deal" />
-                        </ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:HyperLinkField DataNavigateUrlFields="MerchantName,Name" DataNavigateUrlFormatString="../../Default/DealPage.aspx?merchantname={0}&amp;deal={1}" Text="View" />
-                    <asp:BoundField DataField="MerchantName" HeaderText="Merchant" />
-                    <asp:BoundField DataField="Name" HeaderText="Deal" />
-                    <asp:BoundField DataField="StartDate" DataFormatString="{0:MMM dd, yyyy}" HeaderText="Start Date" />
-                    <asp:BoundField DataField="EndDate" DataFormatString="{0:MMM dd, yyyy}" HeaderText="End Date" />
-                </Columns>
-                <EmptyDataTemplate>
-                    <p><%: CouponsForGiving.Data.Classes.NPOs.HasMerchantPartners(User.Identity.Name) ? "There are no deals from your merchant partners whose dates coincide with yours. Consider revising the End Date of your campaign." : "You have not yet added any Merchant partners! <a href='../Partners/Add.aspx'>Click here</a> to add some to see their great deals." %></p>
-                </EmptyDataTemplate>
-            </asp:GridView>
+            <div id="Offers">
+                <asp:GridView ID="EligibleDeals_GV" runat="server" AutoGenerateColumns="False" Width="530px" AllowPaging="True" AllowSorting="True" OnPageIndexChanging="EligibleDeals_GV_PageIndexChanging" PageSize="5" DataKeyNames="DealInstanceID">
+                    <Columns>
+                        <asp:TemplateField ShowHeader="False">
+                            <ItemTemplate>
+                                <input style="cursor: pointer;" type="button" onclick="addDeal(<%# Eval("DealInstanceID") %>, '<%# Server.UrlEncode(Eval("Name").ToString()).Replace("+", "%20") %>')" value="Add Deal" />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:HyperLinkField DataNavigateUrlFields="MerchantName,Name" DataNavigateUrlFormatString="../../Default/DealPage.aspx?merchantname={0}&amp;deal={1}" Text="View" />
+                        <asp:BoundField DataField="MerchantName" HeaderText="Merchant" />
+                        <asp:BoundField DataField="Name" HeaderText="Deal" />
+                        <asp:BoundField DataField="StartDate" DataFormatString="{0:MMM dd, yyyy}" HeaderText="Start Date" />
+                        <asp:BoundField DataField="EndDate" DataFormatString="{0:MMM dd, yyyy}" HeaderText="End Date" />
+                    </Columns>
+                    <EmptyDataTemplate>
+                        <p><%: CouponsForGiving.Data.Classes.NPOs.HasMerchantPartners(User.Identity.Name) ? "There are no deals from your merchant partners whose dates coincide with yours. Consider revising the End Date of your campaign." : "You have not yet added any Merchant partners! <a href='../Partners/Add.aspx'>Click here</a> to add some to see their great deals." %></p>
+                    </EmptyDataTemplate>
+                </asp:GridView>
+            </div>
             <div id="DealInstances"></div>
             <div class="ClearFix"></div>
         </div>
@@ -132,8 +142,6 @@
         <div class="FormRow">
             <asp:Label ID="Label7" runat="server" Text="Link to Your Social Networks: "></asp:Label>
             <p>Coming Soon!</p>
-            <!--<asp:ImageButton ID="Facebook" runat="server" ImageUrl="~/Images/fb.png" OnClick="Facebook_Click"/>
-            <asp:ImageButton ID="Twitter" runat="server" ImageUrl="~/Images/twitter.png" OnClick="Twitter_Click" />-->
             <div class="ClearFix"></div>
         </div>
         <div class="FormRow">

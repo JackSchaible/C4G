@@ -13,11 +13,20 @@ using System.Web.Security;
 using CouponsForGiving.Data.Classes;
 using System.Web.Services;
 using System.Web.Script.Services;
+using System.IO;
 
-public partial class NPO_newCampaign : System.Web.UI.Page
+public partial class NPO_newCampaign : System.Web.UI.Page, ICallbackEventHandler
 {
     public NPO npo;
     public List<string> Errors;
+
+    public string GetCallbackResult()
+    {
+        return _Callback;
+    }
+
+    private string _Callback;
+
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -36,6 +45,9 @@ public partial class NPO_newCampaign : System.Web.UI.Page
             ErrorLabel.Text = ex.ToString();
             ErrorLabel.ForeColor = Color.Red;
         }
+
+        if (!IsCallback)
+            ltCallback.Text = ClientScript.GetCallbackEventReference(this, "'bindgrid'", "EndGetData", "'asyncgrid'", false);
     }
 
     private void BindData()
@@ -284,13 +296,15 @@ public partial class NPO_newCampaign : System.Web.UI.Page
         return result;
     }
 
-    protected void Facebook_Click(object sender, ImageClickEventArgs e)
+    public void RaiseCallbackEvent(string arg)
     {
+        EligibleDeals_GV.DataSource = Deals.GetEligibleByUsername(User.Identity.Name, EndDate.Date);
+        EligibleDeals_GV.DataBind();
 
-    }
-
-    protected void Twitter_Click(object sender, ImageClickEventArgs e)
-    {
-
+        using (StringWriter sw = new StringWriter())
+        {
+            EligibleDeals_GV.RenderControl(new HtmlTextWriter(sw));
+            _Callback = sw.ToString();
+        }
     }
 }

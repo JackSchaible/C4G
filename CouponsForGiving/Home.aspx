@@ -59,7 +59,7 @@
                                     </AnonymousTemplate>
                                     <LoggedInTemplate>
                                         <asp:LoginStatus ID="signupButton" CssClass="HeaderButton" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
-                                        <a runat="server" ID="ProfileButton" class="HeaderButton">My Profile</a>
+                                        <a runat="server" ID="ProfileButton" class="HeaderButton" href="redirect.aspx">My Profile</a>
                                     </LoggedInTemplate>
                                 </asp:LoginView>
                                 <a href="~/ContactUs.aspx" class="HeaderButton" runat="server" id="contactUs">Contact Us</a>
@@ -108,8 +108,8 @@
                       <div id="content" class="no-sidebar">
                         <h1>What is Coupons4Giving?</h1>
                         <div class="two-thirds">
-                          <p>Coupons4Giving is a fundraising tool that allows you to support your favourite not-for-profit organization in just one click! </p>
-                          <p>Choose your organization and support them by purchasing a coupon to your favourite restaurant, retailer or E-tailer (online only merchant). As a not-for-profit you can create and manage successful fundraising campaigns. As a merchant or online retailer you can support your favourite causes by offering great deals with coupons.</p>
+                          <p>Coupons4Giving is a fundraising tool that allows you to support your favourite Not-For-Profit organization in just one click! </p>
+                          <p>Choose your organization and support them by purchasing a coupon to your favourite restaurant, retailer or E-tailer. As a Not-For-Profit you can create and manage successful fundraising campaigns. As a merchant or online retailer you can support your favourite causes by offering great deals with coupons.</p>
                         </div>
                         <div class="one-thirds"> <img src="images/c4g_landing_logo.png" alt="Coupons4Giving" class="centered LandingLogo" /> <a class="btn-large" href="">OUR global MARKETPLACE</a> </div>
                       </div>
@@ -130,7 +130,7 @@
                             <h4>CUSTOMERS</h4>
                             <img src="images/c4g_main_customers.png" alt="Coupons 4 Giving" />
                             <p class="centered">If you want to <strong>support your favourite
-                              causes and get great deals!</strong></p>
+                              causes you can buy great deals!</strong></p>
                             <a class="btn" href="Default/DealsInMyArea.aspx">SUPPORT A CAUSE</a> </div>
                           <div class="thirds">
                             <h4 class="centred">MERCHANTS</h4>
@@ -144,9 +144,19 @@
                     </div>
                     <section id="MainContent">
                       <div id="content" class="no-sidebar">
-                        <h1>Current Partners & Offers</h1>
-                        <h4 class="centered">OUR FEATURED DEALS</h4>
+                        <div class="merchantsList">
+                            <ul>
+                                <li><img src="../images/c4g_comingsoon_small.png" class="centered" /></li>
+                            </ul>
+                        </div>
+                        <a href="" class="btn">MORE MERCHANTS</a>
                         <h4 class="centered">OUR FEATURED CAUSES</h4>
+                        <div class="nposList">
+                            <ul>
+                                <li><img src="../images/c4g_comingsoon_small.png" class="centered" /></li>
+                            </ul>
+                            <a href="DealsInMyArea.aspx" class="btn">MORE CAUSES</a> </div>
+                        </div>
                       </div>
                     </section>
                     <!-- Close Merchants & NPOs Content Section --> 

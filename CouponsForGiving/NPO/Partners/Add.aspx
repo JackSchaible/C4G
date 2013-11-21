@@ -8,11 +8,16 @@
         td img {
             width: 30%;
         }
+
+
     </style>
-    <h1>My Merchant Partners</h1>
+    <h1>Merchant Partner Setup</h1>
     <p>Click on a merchant partner to view their page and their available offers. Then you can add them to your list.</p>
     <h2>Local Merchants</h2>
-    <asp:DropDownList ID="CitiesDDL" runat="server" DataTextField="City" DataValueField="CityID" AutoPostBack="True"></asp:DropDownList>
+    <div class="FormRow">
+        <label>Select a City</label>
+        <asp:DropDownList ID="CitiesDDL" runat="server" DataTextField="City" DataValueField="CityID" AutoPostBack="True"></asp:DropDownList>
+    </div>
     <asp:GridView ID="LocalMerchantsGV" runat="server" AutoGenerateColumns="False" DataKeyNames="MerchantID" OnSelectedIndexChanging="LocalMerchantsGV_SelectedIndexChanging">
         <Columns>
             <asp:CommandField ShowSelectButton="True" />
@@ -24,9 +29,6 @@
             <asp:BoundField DataField="PhoneNumber" HeaderText="Phone Number" SortExpression="PhoneNumber" />
             <asp:HyperLinkField DataNavigateUrlFields="Website" HeaderText="Website" Target="_blank" Text="Click Here to Visit" />
         </Columns>
-        <EmptyDataTemplate>
-            <p>Either we were unable to locate any merchants in your selected city, or you are already partnered with all of them.</p>
-        </EmptyDataTemplate>
     </asp:GridView>
     <asp:Label ID="ErrorLabel" runat="server"></asp:Label>
     <h2>Global Marketplace</h2>
@@ -40,12 +42,13 @@
             <asp:BoundField DataField="Website" HeaderText="Website" SortExpression="Website" />
         </Columns>
         <EmptyDataTemplate>
-            <p>Either there are no global merchants currently participating, or you are already partnered with all of them.</p>
+            <img src="../../images/c4g_comingsoon_small.png" style="width: 100%" />
         </EmptyDataTemplate>
     </asp:GridView>
+    <asp:Label ID="GlobalError" runat="server"></asp:Label>
     <asp:ObjectDataSource ID="GlobalMerchantsODS" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="Merchant_ListGlobal" TypeName="CouponsForGiving.Data.SysData"></asp:ObjectDataSource>
     <h2>Invite Your Preferred Merchants</h2>
-    <p>Want to add your own merchants? Send them an invitation to sign up with Coupons4Giving! When your
+    <p>You can add your own merchants by sending them an invitation to sign up with Coupons4Giving! When your
         preferred merchant accepts your invitation and registers with Coupons4Giving you will recieve
         an email notification and that merchant will be automatically added to your My Merchant Partner list.
     </p>

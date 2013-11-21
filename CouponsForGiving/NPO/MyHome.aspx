@@ -238,6 +238,6 @@
             foreach (CouponsForGiving.Data.Campaign oc in (from c in npo.Campaigns where c.ShowOnHome == false && c.StartDate < DateTime.Now && c.EndDate > DateTime.Now select c))
                 Response.Write("<div class=\"Campaign\"><a href=\"CampaignPage.aspx?nponame=" + npo.URL + "&campaign=" + Server.UrlEncode(oc.Name) + "\">" + oc.Name + "</a></div>");
         %>
-        <a href="Campaigns/New.aspx" class="HeaderButton">New Campaign</a>
+        <a href="Campaigns/New.aspx" class="btn">New Campaign</a>
     </asp:Panel>
 </asp:Content>

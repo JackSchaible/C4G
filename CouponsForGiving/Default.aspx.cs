@@ -9,7 +9,8 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Request.Cookies["IsUserLoggedIn"] != null)
+            Response.Redirect("Home.aspx", false);
     }
 
     protected void SubmitButton_Click(object sender, EventArgs e)
@@ -18,6 +19,8 @@ public partial class _Default : System.Web.UI.Page
 
         username = UsernameTextBox.Text.Trim();
         password = PasswordTextBox.Text.Trim();
+
+       
 
         if (username != "C4G_Beta")
             LoginErrorLabel.Text = "Username is wrong. ";

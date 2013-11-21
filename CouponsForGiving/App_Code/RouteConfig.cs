@@ -13,8 +13,8 @@ namespace CouponsForGiving
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.Ignore("{resource}.axd/{*pathInfo}");
-            routes.MapPageRoute("DefaultPage", "{nponame}", "~/Default/NPOPage.aspx");
-            routes.MapPageRoute("CampaignPage", "{nponame}/{campaignname}", "~/Default/CampaignPage.aspx"); //This one routes a lot of other requests
+            routes.MapPageRoute("DefaultPage", "Causes/{nponame}", "~/Default/NPOPage.aspx");
+            routes.MapPageRoute("CampaignPage", "Causes/{nponame}/{campaignname}", "~/Default/CampaignPage.aspx"); //This one routes a lot of other requests
             routes.EnableFriendlyUrls();
         }
     }

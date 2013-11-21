@@ -206,29 +206,54 @@
         }
     </style>
     <link rel="canonical" href="https://www.coupons4giving.ca/<%:npo.Name%>/<%:campaign.Name%>" />
-    <meta property="og:url" content="https://www.coupons4giving.ca/<%:npo.Name%>/<%:campaign.Name%>" />
-    <meta property="og:title" content="<%:campaign.Name%>" />
-    <meta property="og:site_name" content="Coupons4Giving" />
-    <meta property="og:description" content="<%:campaign.CampaignDescription %>" />
-    <meta property="og:image" content="https://www.coupons4giving.ca/<%:campaign.CampaignImage %>">
-    <meta property="og:image:type" content="<%: System.Web.MimeMapping.GetMimeMapping(campaign.CampaignImage) %>">
-    <meta property="og:image:width" content="<%: Image.Width %>">
-    <meta property="og:image:height" content="<%: Image.Height %>">
-    <meta property="fb:app_id" content="<%: System.Web.Configuration.WebConfigurationManager.AppSettings["FacebookID"] %>" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
-    <div class="SocialStuff">
-        <div class="fb-share-button" data-href="https://www.coupons4giving.ca/Causes/<%:npo.Name + "/" + campaign.Name %>" 
-            data-type="button"></div>
-        <div class="fb-like" data-href="https://www.coupons4giving.ca/Causes/<%:npo.Name + "/" + campaign.Name %>" 
-            data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+    <script type="text/javascript">
+        function shareOnFB() {
+            FB.login(function (response) {
+                if (response.authResponse) {
+                    FB.ui({
+                        display: 'iframe',
+                        method: 'feed',
+                        link: 'https://www.coupons4giving.ca/Causes/<%:npo.Name%>/<%:campaign.Name%>',
+                        picture: 'https://www.coupons4giving.ca/<%:campaign.CampaignImage%>',
+                        caption: 'Our New C4G Campaign',
+                        name: '<%:campaign.Name%> - C4G',
+                        description: '<%:campaign.CampaignDescription%>',
+                    },
+                    function (response) {
+                        if (response && response.post_id) {
+                            $("#FBMsg").val("Your campaign was successfully shared.");
+                            console.log(response);
+                        }
+                        else {
+                            $("#FBMsg").val("Something went wrong. Your campaign was not shared.");
+                        }
+                    });
+                }
+                else {
+                    $("#FBMsg").val("You must log in to Facebook in order to post your campaign there.");
+                }
+            });
+        }
+    </script>
+    <div id="SocialStuff">
+        <h2>Share on Social Media</h2>
+        <p>Bitly</p>
+        <p class="btn" onclick="shareOnFB()">Share on Facebook</p>
+        <div class="fb-like" data-href="https://www.coupons4giving.ca/Causes/<%:npo.Name + "/" + campaign.Name %>"
+             data-layout="button" data-action="like" data-show-faces="true" data-share="false"></div>
+        <p id="FBMsg"></p>
+        <a href="https://twitter.com/share" class="twitter-share-button"
+            data-text="Our campaign on C4G" data-hashtags="C4G, DealsThatMakeADifference">Tweet</a>
+        <p>LinkedIn</p>
     </div>
         <div class="TopContent">
             <h1><%: npo.Name %></h1>
-            <img alt="Logo" src="../<%: npo.Logo %>"/>
+            <img alt="Logo" src="../../<%: npo.Logo %>"/>
         </div>
         <div id="LeftContent">
-            <img id="CampaignImage" alt="Logo" src="../<%: campaign.CampaignImage %>"/>
+            <img id="CampaignImage" alt="Logo" src="../../<%: campaign.CampaignImage %>"/>
             <div class="FloatRight">
                 <h1><%: campaign.Name %></h1>
                 <p><%: campaign.CampaignDescription %></p>

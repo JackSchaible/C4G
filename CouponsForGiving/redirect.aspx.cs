@@ -14,11 +14,11 @@ public partial class redirect : System.Web.UI.Page
             if (User.IsInRole("Admin"))
                 Response.Redirect("Admin/MyDashboard.aspx");
             else if (User.IsInRole("NPO"))
-                Response.Redirect("NPO/MyDashboard.aspx");
+                Response.Redirect("NPO/MyHome.aspx");
             else if (User.IsInRole("Merchant"))
-                Response.Redirect("Merchant/MyDashboard.aspx");
+                Response.Redirect("Merchant/MyHome.aspx");
             else if (User.IsInRole("User"))
-                    Response.Redirect("Default/Home.aspx");
+                Response.Redirect("Default/MyHome.aspx");
         }
         else
             Response.Redirect("Default.aspx");

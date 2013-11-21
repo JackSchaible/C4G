@@ -4,7 +4,6 @@
 <head runat="server" prefix="og: http://ogp.me/ns#">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta property="og:locale" content="en_US" />
 
     <title><%: Page.Title %> - Coupons4Giving</title>
 
@@ -22,14 +21,58 @@
     <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
 </head>
 <body>
+    <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
     <div id="fb-root"></div>
-    <script>(function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1&appId=257813781034696";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+    <script>
+        window.fbAsyncInit = function () {
+            // init the FB JS SDK
+            FB.init({
+                appId: '<%:System.Web.Configuration.WebConfigurationManager.AppSettings["FB_App_ID"]%>', // App ID from the app dashboard
+                status: true,                                 // Check Facebook Login status
+                xfbml: true                                  // Look for social plugins on the page
+            });
+
+            // Additional initialization code such as adding Event Listeners goes here
+        };
+
+        // Load the SDK asynchronously
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+        function shareOnFB(linkURL, imagePath, postCaption, postTitle, postDescription) {
+            console.log('Posted URL:' + linkURL);
+            FB.login(function (response) {
+                if (response.authResponse) {
+                    FB.ui({
+                        display: 'iframe',
+                        method: 'feed',
+                        link: linkURL,
+                        picture: imagePath,
+                        caption: postCaption,
+                        name: postTitle,
+                        description: postDescription,
+                    },
+                    function (response) {
+                        if (response && response.post_id) {
+                            $("#FBMsg").val("Your campaign was successfully shared.");
+                            console.log(response);
+                        }
+                        else {
+                            $("#FBMsg").val("Something went wrong. Your campaign was not shared.");
+                        }
+                    });
+                }
+                else {
+                    $("#FBMsg").val("You must log in to Facebook in order to post your campaign there.");
+                }
+            });
+        }
+    </script>
     <div id="wrapper">
         <form runat="server">
             <ajaxToolkit:ToolkitScriptManager runat="server" EnablePageMethods="true">

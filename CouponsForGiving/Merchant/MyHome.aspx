@@ -11,7 +11,7 @@
         }
     </style>
     <asp:Panel ID="AnonPanel" runat="server">
-        <h1>Retailers, Restaurants or Online Merchants (E-tailers):</h1>
+        <h1>Retailers, Restaurants or Online Merchants:</h1>
         <h1>Increase footfall into your business or traffic to your website</h1>
         <ul>
             <li>Step 1: Set up your Offer with Coupons4Giving</li>
