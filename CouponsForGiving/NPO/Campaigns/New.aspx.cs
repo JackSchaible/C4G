@@ -14,19 +14,12 @@ using CouponsForGiving.Data.Classes;
 using System.Web.Services;
 using System.Web.Script.Services;
 using System.IO;
+using System.Globalization;
 
-public partial class NPO_newCampaign : System.Web.UI.Page, ICallbackEventHandler
+public partial class NPO_newCampaign : System.Web.UI.Page
 {
     public NPO npo;
     public List<string> Errors;
-
-    public string GetCallbackResult()
-    {
-        return _Callback;
-    }
-
-    private string _Callback;
-
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -46,8 +39,6 @@ public partial class NPO_newCampaign : System.Web.UI.Page, ICallbackEventHandler
             ErrorLabel.ForeColor = Color.Red;
         }
 
-        if (!IsCallback)
-            ltCallback.Text = ClientScript.GetCallbackEventReference(this, "'bindgrid'", "EndGetData", "'asyncgrid'", false);
     }
 
     private void BindData()
@@ -55,8 +46,8 @@ public partial class NPO_newCampaign : System.Web.UI.Page, ICallbackEventHandler
         npo = SysDatamk.NPO_GetByUsername(User.Identity.Name);
         Username.Value = User.Identity.Name;
 
-        EligibleDeals_GV.DataSource = Deals.GetEligibleByUsername(User.Identity.Name, EndDate.Date);
-        EligibleDeals_GV.DataBind();
+        //EligibleDeals_GV.DataSource = Deals.GetEligibleByUsername(User.Identity.Name, EndDate.Date);
+        //EligibleDeals_GV.DataBind();
 
         ErrorLabel.Text = "";
         Errors = new List<string>();
@@ -104,6 +95,7 @@ public partial class NPO_newCampaign : System.Web.UI.Page, ICallbackEventHandler
                 {
                     valid = false;
                     ErrorLabel.Text = "Fundraising goal is not a valid number.";
+                    ex.ToString();
                 }
             }
 
@@ -206,7 +198,7 @@ public partial class NPO_newCampaign : System.Web.UI.Page, ICallbackEventHandler
 
     protected void EligibleDeals_GV_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
-        EligibleDeals_GV.PageIndex = e.NewPageIndex;
+        //EligibleDeals_GV.PageIndex = e.NewPageIndex;
         BindData();
     }
 
@@ -296,15 +288,38 @@ public partial class NPO_newCampaign : System.Web.UI.Page, ICallbackEventHandler
         return result;
     }
 
-    public void RaiseCallbackEvent(string arg)
+    [WebMethod]
+    [ScriptMethod]
+    public static string GetGridView(string endDate)
     {
-        EligibleDeals_GV.DataSource = Deals.GetEligibleByUsername(User.Identity.Name, EndDate.Date);
-        EligibleDeals_GV.DataBind();
+        string result = "";
+        DateTime date = DateTime.Parse(endDate);
 
-        using (StringWriter sw = new StringWriter())
+        List<Deal_GetEligibleByUsername_Result> offers = Deals.GetEligibleByUsername(HttpContext.Current.User.Identity.Name, date);
+
+        if (offers.Count > 0)
         {
-            EligibleDeals_GV.RenderControl(new HtmlTextWriter(sw));
-            _Callback = sw.ToString();
+            result = "<div><table cellspacing=\"0\" rules=\"all\" border=\"1\" id=\"Main_Content_EligibleDeals_GV\" style=\"width:530px;border-collapse:collapse;\"><tr><th scope=\"col\">&nbsp;</th><th scope=\"col\">&nbsp;</th><th scope=\"col\">Merchant</th><th scope=\"col\">Deal</th><th scope=\"col\">Start Date</th><th scope=\"col\">End Date</th></tr>";
+
+            string row;
+
+            foreach (Deal_GetEligibleByUsername_Result item in offers)
+            {
+                row = "";
+                row = "<tr>";
+                row += String.Format("<td><input style=\"cursor: pointer;\" type=\"button\" onclick=\"addDeal({0}, '{1}')\" value=\"Add Deal\" />", item.DealInstanceID, HttpContext.Current.Server.UrlEncode(item.Name).Replace("+", "%20"));
+                row += String.Format("<td><a href=\"../../Default/DealPage.aspx?merchantname={0}&deal={1}\">View</a></td>", item.MerchantName, item.Name);
+                row += String.Format("<td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td>", item.MerchantName, item.Name, item.StartDate.ToString("MMM dd, yyyy"), item.EndDate.ToString("MMM dd, yyyy"));
+                row += "</tr>";
+
+                result += row;
+            }
+
+            result += "</tr></table></div>";
         }
+        else
+            result = "<p>" + (CouponsForGiving.Data.Classes.NPOs.HasMerchantPartners(HttpContext.Current.User.Identity.Name) ? "There are no deals from your merchant partners whose dates coincide with yours. Consider revising the End Date of your campaign." : "You have not yet added any Merchant partners! <a href='../Partners/Add.aspx'>Click here</a> to add some to see their great deals.") + "</p>";
+
+        return result;
     }
 }

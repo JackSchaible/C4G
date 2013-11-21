@@ -24,6 +24,9 @@
                    PageMethods.AddDealInstance(result, dealInstanceID, function(result, userContext, methodName) {
                        if (result != "false") {
                            $("#DealInstances").append("<input id=\"" + dealInstanceID + "\" class=\"JoinButton\" type=\"button\" onclick=\"removeDeal(" + dealInstanceID + ")\" value=\"" + decodeURIComponent(name) + "\" />");
+                           $("#EndDate>#DayDDL").prop('disabled', 'disabled');
+                           $("#EndDate>#MonthDDL").prop('disabled', 'disabled');
+                           $("#EndDate>#YearDDL").prop('disabled', 'disabled');
                        }
                    });
                }
@@ -34,16 +37,37 @@
             PageMethods.RemoveDealInstance(dealInstanceID, $("#CampaignID").val(), function(result, userContext, methodName) {
                 if (result == "Success!")
                     $("#" + dealInstanceID).remove();
+
+                if ($("#DealInstances").html() == "") {
+                    $("#EndDate>#DayDDL").prop('disabled', false);
+                    $("#EndDate>#MonthDDL").prop('disabled', false);
+                    $("#EndDate>#YearDDL").prop('disabled', false);
+
+                }
             });
         }
 
-        $("#Main_Content_EndDate_YearDDL").change(function() {
-            <asp:literal runat="server" id="ltCallback" />();
+        $(document).ready(function () {
+
+            $("#EndDate>select").change(function (e) {
+
+                if ($("#DealInstances").html() == "") {
+
+                    var day = $("#EndDate>#DayDDL").val();
+                    var month = $("#EndDate>#MonthDDL").val();
+                    var year = $("#EndDate>#YearDDL").val();
+                    var date = month + " " + day + ", " + year;
+
+                    PageMethods.GetGridView(date, function (result) {
+                        $("#Offers").html(result);
+                    });
+
+                }
+
+            });
+
         });
 
-        function loadOffers(data) {
-            $("#Offers").innerHTML = data;
-        }
     </script>
     <style type="text/css">
         #MainContent img {
@@ -73,33 +97,33 @@
     </ul>
     <div id="Form" style="width: 600px;">
         <div class="FormRow">
-            <asp:Label ID="Label1" runat="server" Text="What is the name of your Campaign? "></asp:Label>
+            <label>What is the name of your Campaign?</label>
             <asp:TextBox ID="newCampaignName" ClientIDMode="Static" runat="server" MaxLength="256"></asp:TextBox>
         </div>
         <div class="FormRow">
-            <asp:Label ID="Label4" runat="server" Text="Tell us about your Campaign: "></asp:Label>
+            <label>Tell us about your Campaign</label>
             <asp:TextBox ID="newCampaignDescription" ClientIDMode="Static" runat="server" TextMode="MultiLine"></asp:TextBox>
             <div class="ClearFix"></div>
         </div>
         <div class="FormRow">
-            <asp:Label ID="Label9" runat="server" Text="What will the funds be used for? "></asp:Label>
+            <label>What will the funds be used for?</label>
             <asp:TextBox ID="newCampaignGoal" runat="server" ClientIDMode="Static" TextMode="MultiLine"></asp:TextBox>
             <div class="ClearFix"></div>
         </div>
         <div class="FormRow">
-            <asp:Label ID="Label10" runat="server" Text="How long will your Campaign run for? "></asp:Label>
+            <label>How long will your Campaign run for?</label>
         </div>
-        <div class="FormRow"></div>
-            <asp:Label ID="Label2" runat="server" Text="Start Date: "></asp:Label>
-            <UC:DateControl ID="StartDate" runat="server" AcceptPastDates="false" AutoPostBack="false" />
+        <div class="FormRow">
+            <label>Start Date</label>
+            <UC:DateControl ID="StartDate" runat="server" AcceptPastDates="false" />
             <div class="ClearFix"></div>
         </div>
         <div class="FormRow">
-            <asp:Label ID="Label3" runat="server" Text="End Date: "></asp:Label>
-            <UC:DateControl ID="EndDate" runat="server" AcceptPastDates="false" AutoPostBack="false" />
+            <label>End Date <small>You will be unable to change this if you have any deals selected.</small></label>
+            <UC:DateControl ID="EndDate" runat="server" AcceptPastDates="false" ClientIDMode="Static" />
             <div class="ClearFix"></div>
         </div>
-            <div class="FormRow">
+        <div class="FormRow">
             <asp:Label ID="Label6" runat="server" Text="Upload a Campaign Image: "></asp:Label>
             <asp:FileUpload ID="newCampaignImage" runat="server" />
             <div class="ClearFix"></div>
@@ -113,23 +137,7 @@
         <div class="FormRow">
             <asp:Label ID="Label11" runat="server" Text="Your Eligible Deals:"></asp:Label>
             <div id="Offers">
-                <asp:GridView ID="EligibleDeals_GV" runat="server" AutoGenerateColumns="False" Width="530px" AllowPaging="True" AllowSorting="True" OnPageIndexChanging="EligibleDeals_GV_PageIndexChanging" PageSize="5" DataKeyNames="DealInstanceID">
-                    <Columns>
-                        <asp:TemplateField ShowHeader="False">
-                            <ItemTemplate>
-                                <input style="cursor: pointer;" type="button" onclick="addDeal(<%# Eval("DealInstanceID") %>, '<%# Server.UrlEncode(Eval("Name").ToString()).Replace("+", "%20") %>')" value="Add Deal" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:HyperLinkField DataNavigateUrlFields="MerchantName,Name" DataNavigateUrlFormatString="../../Default/DealPage.aspx?merchantname={0}&amp;deal={1}" Text="View" />
-                        <asp:BoundField DataField="MerchantName" HeaderText="Merchant" />
-                        <asp:BoundField DataField="Name" HeaderText="Deal" />
-                        <asp:BoundField DataField="StartDate" DataFormatString="{0:MMM dd, yyyy}" HeaderText="Start Date" />
-                        <asp:BoundField DataField="EndDate" DataFormatString="{0:MMM dd, yyyy}" HeaderText="End Date" />
-                    </Columns>
-                    <EmptyDataTemplate>
-                        <p><%: CouponsForGiving.Data.Classes.NPOs.HasMerchantPartners(User.Identity.Name) ? "There are no deals from your merchant partners whose dates coincide with yours. Consider revising the End Date of your campaign." : "You have not yet added any Merchant partners! <a href='../Partners/Add.aspx'>Click here</a> to add some to see their great deals." %></p>
-                    </EmptyDataTemplate>
-                </asp:GridView>
+                <p><%: CouponsForGiving.Data.Classes.NPOs.HasMerchantPartners(User.Identity.Name) ? "There are no deals from your merchant partners whose dates coincide with yours. Consider revising the End Date of your campaign." : "You have not yet added any Merchant partners! <a href='../Partners/Add.aspx'>Click here</a> to add some to see their great deals." %></p>
             </div>
             <div id="DealInstances"></div>
             <div class="ClearFix"></div>
