@@ -272,7 +272,7 @@ public partial class NPO_newNPO : System.Web.UI.Page
     {
         string[] result;
 
-        result = (from c in SysDatamk.ListCitiesWithDivisionCode() where c.Name.ToLower().Contains(prefixText.ToLower()) select c.Name).ToArray<string>();
+        result = (from c in SysDatamk.ListCitiesWithDivisionCode() where c.Name.ToLower().Contains(prefixText.ToLower()) orderby c.Name select c.Name).ToArray<string>();
 
         return result;
     }

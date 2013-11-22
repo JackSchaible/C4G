@@ -158,5 +158,8 @@ public partial class NPO_Partners_Add : System.Web.UI.Page
         client.Send(mm);
 
         ResultLabel.Text = "Your invite has been sent!";
+        NameTextBox.Text = "";
+        EmailTextBox.Text = "";
+        CompanyNameTextBox.Text = "";
     }
 }

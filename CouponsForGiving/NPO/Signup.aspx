@@ -68,13 +68,14 @@
                 ErrorMessage="Logo is Required" ForeColor="Red">*</asp:RequiredFieldValidator>
         </div>
         <div class="FormRow">
-            <asp:Label ID="Label8" runat="server" Text="Organization Website"></asp:Label>
+            <label>Organization Website</label>
             <asp:TextBox ID="newNPOWebsite" runat="server" MaxLength="256"></asp:TextBox>
             <asp:RequiredFieldValidator ID="websiteRequired" runat="server" ControlToValidate="newNPOWebsite" 
                 ErrorMessage="Website is Required" ForeColor="Red">*</asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="newNPOWebsite"
                 ErrorMessage="Website invalid. (Ex. 'http://www.mywebsite.com')" ForeColor="Red" 
                 ValidationExpression="^(ht|f)tp(s?)\:\/\/(([a-zA-Z0-9\-\._]+(\.[a-zA-Z0-9\-\._]+)+)|localhost)(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?([\d\w\.\/\%\+\-\=\&amp;\?\:\\\&quot;\'\,\|\~\;]*)$">*</asp:RegularExpressionValidator>
+            <p>Note: You must include the http:// prefix (for example, 'http://www.mysite.ca')</p>
         </div>
         <div class="FormRow">
             <p>I have read and undertand the <a href="../Content/Terms/NPOServiceAgreement.pdf">terms and conditions.</a></p>

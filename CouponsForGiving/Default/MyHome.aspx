@@ -92,8 +92,8 @@
                     </div>
                 </section><!-- Close Main Content -->
                 <div class="HowItWorksBanner">
-                    <section id="Section1">
-                        <div id="Div1" class="no-sidebar">
+                    <section id="MainContent">
+                        <div id="content" class="no-sidebar">
                             <h1>Support Your Favorite Not-For-Profit</h1>
                             <div style="padding: 10px;">
 

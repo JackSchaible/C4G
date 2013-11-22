@@ -205,7 +205,36 @@
             border: 1px solid #BBB;
         }
     </style>
-    <link rel="canonical" href="https://www.coupons4giving.ca/<%:npo.Name%>/<%:campaign.Name%>" />
+    <script type="text/javascript">
+        function shareOnFB(linkURL, imagePath, postCaption, postTitle, postDescription) {
+            console.log('Posted URL:' + linkURL);
+            FB.login(function (response) {
+                if (response.authResponse) {
+                    FB.ui({
+                        display: 'popup',
+                        method: 'feed',
+                        link: linkURL,
+                        picture: imagePath,
+                        caption: postCaption,
+                        name: postTitle,
+                        description: postDescription,
+                    },
+                    function (response) {
+                        if (response && response.post_id) {
+                            $("#FBMsg").val("Your campaign was successfully shared.");
+                            console.log(response);
+                        }
+                        else {
+                            $("#FBMsg").val("Something went wrong. Your campaign was not shared.");
+                        }
+                    });
+                }
+                else {
+                    $("#FBMsg").val("You must log in to Facebook in order to post your campaign there.");
+                }
+            });
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
     <script type="text/javascript">

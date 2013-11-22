@@ -6,7 +6,7 @@
       <siteMapNode url="~/AboutUs.aspx?c=OurTeam" title="Our Team" />
       <siteMapNode url="~/AboutUs.aspx?c=Community" title="In The Community" />
     </siteMapNode>
-    <siteMapNode title="My Coupons" url="~/Default/MyHome.aspx" />
+    <siteMapNode title="For Customers" url="~/Default/MyHome.aspx" />
     <siteMapNode title="My Campaigns" url="~/NPO/MyHome.aspx" />
     <siteMapNode title="For Merchants" url="~/Merchant/MyHome.aspx" />
     <siteMapNode title="Blog" url="/Blog.aspx" />
