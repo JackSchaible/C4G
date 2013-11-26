@@ -19,6 +19,16 @@ namespace CouponsForGiving
         HomePage, Admin, Anonymous, Supporter, NPO, Merchant
     }
 
+    public enum ShareType
+    {
+        Campaign, Profile, Generic
+    }
+
+    public enum CampaignType
+    {
+        Campaign, Offer
+    }
+
     public class EncryptionUtils
     {
         public static string Encrypt(string strToEncrypt)

@@ -209,16 +209,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
     <h1><%: npo.Name %> <%: campaign.Name %></h1>
     <p>Congratulations! You've just set up your campaign. What would you like to do now?</p>
-    <div id="SocialStuff">
-        <h2>Share on Social Media</h2>
-        <p>Bitly</p>
-        <p class="btn" onclick="shareOnFB('https://www.coupons4giving.ca/Causes/<%:npo.Name + "/" + campaign.Name %>', 'https://www.coupons4giving.ca/<%:campaign.CampaignImage%>', 'We have a new Campaign on Coupons4Giving!', '<%:campaign.Name%> - Our New Campaign on C4G!', '<%:campaign.CampaignDescription%>')">Share on Facebook</p>
-        <div class="fb-like" data-href="https://www.coupons4giving.ca/Causes/<%:npo.Name%>/<%:campaign.Name%>"
-             data-layout="button" data-action="like" data-show-faces="true" data-share="false"></div>
-        <p id="FBMsg"></p>
-        <p>Twitter, LinkedIn</p>
-        <a href="New.aspx" class="btn">Setup Another Campaign</a>
-    </div>
+            <UC:ShareControl ID='ShareControl' runat='server' Share="Campaign" CType='Campaign' Campaign="<%# campaign.Name %>" 
+            Name='<%# npo.Name %>' ImageURL='<%# "https://www.coupons4giving.ca/" + campaign.CampaignImage %>' 
+            Description='<%# campaign.CampaignDescription %>' />
+
         <div class="TopContent">
             <h1><%: npo.Name %></h1>
             <img alt="Logo" src="../../<%: npo.Logo %>"/>

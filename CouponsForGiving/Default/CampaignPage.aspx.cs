@@ -32,7 +32,6 @@ public partial class Default_NpoPage : System.Web.UI.Page
                 campaignName = Request.QueryString["campaign"];
 
                 campaign = SysData.Campaign_GetByName(campaignName, npoName);
-                Image = System.Drawing.Image.FromFile(MapPath("../" + campaign.CampaignImage));
 
                 if (campaign == null)
                     Response.Redirect("../" + npoName);

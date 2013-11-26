@@ -5,10 +5,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
     <h1><%: merchant.Name %> <%: deal.Name %></h1>
     <p>Congratulations! You've just set up your offer. Now you can share your offer with your network.</p>
-    <div id="SocialStuff">
-        <p>Bitly</p>
-        <p>FB, Twitter, LinkedIn</p>
-    </div>
+        <UC:ShareControl ID='ShareControl' runat='server' Share="Campaign" CType='Offer' Campaign="<%# deal.Name %>" 
+        Name='<%# merchant.Name %>' ImageURL='<%# "https://www.coupons4giving.ca/" + deal.ImageURL %>' 
+        Description='<%# deal.DealDescription %>' />
     <h2><%: merchant.Name %></h2>
     <img alt="Logo" src='../../<%: merchant.SmallLogo %>' />
     <h1><%: deal.Name %></h1>

@@ -4,6 +4,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
+    <UC:ShareControl ID='ShareControl' runat='server' Share="Campaign" CType='Offer' Campaign="<%# deal.Name %>" 
+        Name='<%# merchant.Name %>' ImageURL='<%# "https://www.coupons4giving.ca/" + deal.ImageURL %>' 
+        Description='<%# deal.DealDescription %>' />
     <h2><%: merchant.Name %></h2>
     <img alt="Logo" src='../<%: merchant.SmallLogo %>' />
     <h1><%: deal.Name %></h1>

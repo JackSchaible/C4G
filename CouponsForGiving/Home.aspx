@@ -16,6 +16,18 @@
         <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
         <link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet" type="text/css">
         <!--Additional head content-->
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-45976939-1', 'coupons4giving.ca');
+            ga('send', 'pageview');
+
+        </script>
     </head>
     <body>
         <div id="wrapper">
@@ -178,7 +190,7 @@
 			        <li><a href="/Blog.aspx">Blog</a></li>
 		        </ul>
                 <ul>
-                    <li><a href="privacyPolicy.aspx">Privacy Policy</a></li>
+                    <li><a href="Content/Terms/PrivacyPolicy.pdf">Privacy Policy</a></li>
                     <li><a href="Content/Terms/TermsOfUse.pdf">Terms of Use</a></li>
                     <li><a href="faq.aspx">FAQs</a></li>
                     <li><a href="Careers.aspx">Careers</a></li>
@@ -190,8 +202,8 @@
         <script>
             $(function () {
                 $('.SlideBanners').unslider({
-                    speed: 1000,
-                    delay: 4000,
+                    speed: 2350,
+                    delay: 6000,
                     keys: true,
                     dots: true,
                 });

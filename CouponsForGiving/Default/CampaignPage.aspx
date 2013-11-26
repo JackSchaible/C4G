@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="CampaignPage.aspx.cs" Inherits="Default_NpoPage" %>
 <%@ Reference Control="~/Controls/MenuBar.ascx" %>
+<%@ Reference Control="~/Controls/ShareControl.ascx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
     <style type="text/css">
@@ -205,78 +206,11 @@
             border: 1px solid #BBB;
         }
     </style>
-    <script type="text/javascript">
-        function shareOnFB(linkURL, imagePath, postCaption, postTitle, postDescription) {
-            console.log('Posted URL:' + linkURL);
-            FB.login(function (response) {
-                if (response.authResponse) {
-                    FB.ui({
-                        display: 'popup',
-                        method: 'feed',
-                        link: linkURL,
-                        picture: imagePath,
-                        caption: postCaption,
-                        name: postTitle,
-                        description: postDescription,
-                    },
-                    function (response) {
-                        if (response && response.post_id) {
-                            $("#FBMsg").val("Your campaign was successfully shared.");
-                            console.log(response);
-                        }
-                        else {
-                            $("#FBMsg").val("Something went wrong. Your campaign was not shared.");
-                        }
-                    });
-                }
-                else {
-                    $("#FBMsg").val("You must log in to Facebook in order to post your campaign there.");
-                }
-            });
-        }
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
-    <script type="text/javascript">
-        function shareOnFB() {
-            FB.login(function (response) {
-                if (response.authResponse) {
-                    FB.ui({
-                        display: 'iframe',
-                        method: 'feed',
-                        link: 'https://www.coupons4giving.ca/Causes/<%:npo.Name%>/<%:campaign.Name%>',
-                        picture: 'https://www.coupons4giving.ca/<%:campaign.CampaignImage%>',
-                        caption: 'Our New C4G Campaign',
-                        name: '<%:campaign.Name%> - C4G',
-                        description: '<%:campaign.CampaignDescription%>',
-                    },
-                    function (response) {
-                        if (response && response.post_id) {
-                            $("#FBMsg").val("Your campaign was successfully shared.");
-                            console.log(response);
-                        }
-                        else {
-                            $("#FBMsg").val("Something went wrong. Your campaign was not shared.");
-                        }
-                    });
-                }
-                else {
-                    $("#FBMsg").val("You must log in to Facebook in order to post your campaign there.");
-                }
-            });
-        }
-    </script>
-    <div id="SocialStuff">
-        <h2>Share on Social Media</h2>
-        <p>Bitly</p>
-        <p class="btn" onclick="shareOnFB()">Share on Facebook</p>
-        <div class="fb-like" data-href="https://www.coupons4giving.ca/Causes/<%:npo.Name + "/" + campaign.Name %>"
-             data-layout="button" data-action="like" data-show-faces="true" data-share="false"></div>
-        <p id="FBMsg"></p>
-        <a href="https://twitter.com/share" class="twitter-share-button"
-            data-text="Our campaign on C4G" data-hashtags="C4G, DealsThatMakeADifference">Tweet</a>
-        <p>LinkedIn</p>
-    </div>
+        <UC:ShareControl ID='ShareControl' runat='server' Share="Campaign" CType='Campaign' Campaign="<%# campaign.Name %>" 
+            Name='<%# npo.Name %>' ImageURL='<%# "https://www.coupons4giving.ca/" + campaign.CampaignImage %>' 
+            Description='<%# campaign.CampaignDescription %>' />
         <div class="TopContent">
             <h1><%: npo.Name %></h1>
             <img alt="Logo" src="../../<%: npo.Logo %>"/>

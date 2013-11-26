@@ -8,8 +8,6 @@
         td img {
             width: 30%;
         }
-
-
     </style>
     <h1>Merchant Partner Setup</h1>
     <p>Click on a merchant partner to view their page and their available offers. Then you can add them to your list.</p>
@@ -56,7 +54,7 @@
         brought back to this page and you may send another.
     </p>
     <div class="FormRow">
-        <asp:Label ID="TextBoxLabel" runat="server">Contact Name</asp:Label>
+        <label>Contact Name</label>
         <asp:TextBox ID="NameTextBox" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
             ErrorMessage="Name is required." ControlToValidate="NameTextBox">
@@ -64,7 +62,7 @@
         </asp:RequiredFieldValidator>
     </div>
     <div class="FormRow">
-        <asp:Label ID="CompanyLabel" runat="server">Company Name</asp:Label>
+        <label>Company Name</label>
         <asp:TextBox ID="CompanyNameTextBox" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
             ErrorMessage="Company Name is required." ControlToValidate="CompanyNameTextBox">
@@ -72,7 +70,7 @@
         </asp:RequiredFieldValidator>
     </div>
     <div class="FormRow">
-        <asp:Label ID="EmailLabel" runat="server">Email Address</asp:Label>
+        <label>Email Address</label>
         <asp:TextBox ID="EmailTextBox" runat="server"></asp:TextBox>
         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
             ErrorMessage="Email is required." ControlToValidate="EmailTextBox">

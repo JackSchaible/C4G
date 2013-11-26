@@ -27,10 +27,10 @@
     <div class="half"> 
         <a class="btn-blue" href="AllPartners.aspx">All Merchants</a> 
         <a class="btn" href="MyGlobalMerchants.aspx">Global Merchants</a>
-        <a href="../Campaigns/New.aspx" class="btn">Setup A Campaign</a>
     </div>
     <div class="half">
         <a class="btn" href="MyLocalMerchants.aspx">Local Merchants</a> 
         <a class="btn" href="MyPreferredMerchants.aspx">Preferred Merchants</a>
     </div>
+    <a href="../Campaigns/New.aspx" class="btn">Setup A Campaign</a>
 </asp:Content>

@@ -78,7 +78,7 @@
             <p>Note: You must include the http:// prefix (for example, 'http://www.mysite.ca')</p>
         </div>
         <div class="FormRow">
-            <p>I have read and undertand the <a href="../Content/Terms/NPOServiceAgreement.pdf">terms and conditions.</a></p>
+            <p>I have read and undertand the <a target="_blank" href="../Content/Terms/NPOServiceAgreement.pdf">terms and conditions.</a></p>
             <asp:CheckBox ID="TermsCheckbox" runat="server" />
         </div>
         <div class="FormRow">

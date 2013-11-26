@@ -22,9 +22,9 @@ public partial class _Default : System.Web.UI.Page
 
        
 
-        if (username != "C4G_Beta")
+        if (username != "Beta")
             LoginErrorLabel.Text = "Username is wrong. ";
-        else if (password != "1beta2beta3beta4")
+        else if (password != "generus123")
             LoginErrorLabel.Text += "Password is wrong.";
         else
         {

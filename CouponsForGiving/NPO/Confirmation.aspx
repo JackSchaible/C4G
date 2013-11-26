@@ -8,6 +8,8 @@
     <p>Your unique Coupons4Giving profile page is <a href='www.coupons4giving.ca/Default/NPOPage.aspx?name=<%: npo.URL %>'>coupons4giving.ca/<%: npo.URL %></a></p>
     <div class="SocialStuff">
         <p>Share this on your social media account!</p>
+            <UC:ShareControl ID='ShareControl' runat='server' Share='Profile' CType='Campaign'
+                Name='<%# npo.Name %>' ImageURL='<%# "https://www.coupons4giving.ca/" + npo.Logo %>' Description='<%# npo.NPODescription %>' />
 
     </div>
     <p>If you have any questions, please contact us at <a href="mailto:teamc4g@coupons4giving.ca">teamc4g@coupons4giving.ca.</a></p>

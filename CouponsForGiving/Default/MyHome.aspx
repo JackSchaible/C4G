@@ -74,7 +74,7 @@
                     </div>
                     <div id="content" class="no-sidebar">
                         <h1>Take a Look Around</h1>
-                        <p>Browse our local deals as well as our <strong>Global Marketplace of E-tailers</strong> (online only merchants)</p>
+                        <p>Browse our local deals as well as our <strong><a href="GlobalMarketplace.aspx">Marketplace of E-tailers</a></strong> (online only merchants)</p>
                         <h4 class="centered">OUR FEATURED DEALS</h4>
                         <div class="merchantsList">
                             <ul>
@@ -144,7 +144,7 @@
 			    <li><a href="/Blog.aspx">Blog</a></li>
 		    </ul>
             <ul>
-                <li><a href="privacyPolicy.aspx">Privacy Policy</a></li>
+                <li><a href="Content/Terms/PrivacyPolicy.pdf">Privacy Policy</a></li>
                 <li><a href="Content/Terms/TermsOfUse.pdf">Terms of Use</a></li>
                 <li><a href="faq.aspx">FAQs</a></li>
                 <li><a href="Careers.aspx">Careers</a></li>

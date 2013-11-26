@@ -26,11 +26,6 @@ white: #FFFFFF  Text Grey: #5e5e5e  Background Grey #ecebe9  Light Blue: #22bfe8
     border: none;
     margin: 0;
     padding: 0;
-    -webkit-transition: all 0.15s ease-in-out;
-	-moz-transition: all 0.15s ease-in-out;
-	-o-transition: all 0.15s ease-in-out;
-	-ms-transition: all 0.15s ease-in-out;
-	transition: all 0.15s ease-in-out;
 }
 
 
@@ -70,6 +65,16 @@ display: inline-block;}
     clear: both;
 }
 
+/* Transitions Animation
+------------------------------------------------------------------------------------ */
+
+a, a:hover, .btn:hover, .thirds:hover {-webkit-transition: all 0.15s ease-in-out;
+	-moz-transition: all 0.15s ease-in-out;
+	-o-transition: all 0.15s ease-in-out;
+	-ms-transition: all 0.15s ease-in-out;
+	transition: all 0.15s ease-in-out;
+}
+
 
 /*Sticky Footer*/
 
@@ -82,15 +87,8 @@ display: inline-block;}
     color: #5e5e5e;
 }
 
-.push, footer {
-    height: 125px;
-}
-
-footer {
-    position: relative;
-}
-
 .push {
+    height: 50px;
     clear: both;
 }
 

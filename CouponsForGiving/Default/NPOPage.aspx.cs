@@ -18,7 +18,7 @@ public partial class Default_NpoPage : System.Web.UI.Page
 
         if (Page.RouteData.Values["nponame"] == null)
             if (Request.QueryString["name"] == null)
-                Response.Redirect("~/Default/Home.aspx", true);
+                Response.Redirect("~/Default/MyHome.aspx", true);
 
         if (Page.RouteData.Values["nponame"] != null)
         {
@@ -68,7 +68,7 @@ public partial class Default_NpoPage : System.Web.UI.Page
         if (npo == null)
             Response.Redirect("Home.aspx", true);
 
-        Title = npo.Name + " - Coupons4Giving";
+        Title = npo.Name + " - Coupons4Giving";        
     }
 
     protected void Page_Load(object sender, EventArgs e)
@@ -94,10 +94,9 @@ public partial class Default_NpoPage : System.Web.UI.Page
         control.MenuBar = MenuBarType.Supporter;
 
         if ((from c in npo.Campaigns where c.CampaignStatusID == 2 select c).Count() == 0)
-        {
+        {http://localhost:20932/Default/CampaignPage.aspx
             Campaigns.Enabled = false;
             Campaigns.Visible = false;
         }
-
     }
 }

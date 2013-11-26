@@ -79,6 +79,8 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
+    <UC:ShareControl ID='ShareControl' runat='server' Share='Profile' CType='Campaign'
+        Name='<%# npo.Name %>' ImageURL='<%# "https://www.coupons4giving.ca/" + npo.Logo %>' Description='<%# npo.NPODescription %>' />
     <div id="NPO">
         <div id="Text">
             <h1><%: npo.Name %></h1>

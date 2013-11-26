@@ -70,6 +70,8 @@
             color: #22bfe8;
         }
     </style>
+    <UC:ShareControl ID='ShareControl' runat='server' Share='Profile' CType="Offer"
+        Name='<%# merchant.Name %>' ImageURL='<%# "https://www.coupons4giving.ca/" + merchant.LargeLogo %>' Description='<%# merchant.cUser.MerchantInfoes.First<CouponsForGiving.Data.MerchantInfo>().MerchantDescription %>' />
     <div id="NPO">
         <div id="Text">
             <h1><%: merchant.Name %></h1>
