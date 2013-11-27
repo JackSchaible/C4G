@@ -6,5 +6,9 @@
     <siteMapNode title="Manage My Offers">
       <siteMapNode url="~/Merchant/Offers/New.aspx" title="New Offer" />
     </siteMapNode>
+    <siteMapNode title="My Coupons">
+      <siteMapNode title="Redeem A Coupon" url="~/Merchants/MyCoupons/Redeem.aspx" />
+      <siteMapNode title="View" url="~/Merchants/MyCoupons/" />
+    </siteMapNode>
   </siteMapNode>
 </siteMap>

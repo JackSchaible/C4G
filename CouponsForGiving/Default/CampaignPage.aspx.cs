@@ -77,7 +77,7 @@ public partial class Default_NpoPage : System.Web.UI.Page
             in
                 campaign.DealInstances
             where
-                d.StartDate < DateTime.Now && d.EndDate > DateTime.Now && d.DealStatusID == 2
+                d.EndDate > DateTime.Now && d.DealStatusID == 2
             select
                 new
                 { 
@@ -118,7 +118,7 @@ public partial class Default_NpoPage : System.Web.UI.Page
         {
             List<Deals_ListforSearchGrid_Result> orders = new List<Deals_ListforSearchGrid_Result>() { order };
             Session["Cart"] = orders;
-            ErrorLabel.Text = "Limit per customer exceeded.";
+            ErrorLabel.Text = "Your coupons has been added to your cart.";
         }
         else
         {
@@ -137,16 +137,16 @@ public partial class Default_NpoPage : System.Web.UI.Page
 
             if (found)
                 if (1 + curQTY > deal.Deal.LimitPerCustomer)
-                    ErrorLabel.Text = "Limit per customer exceeded.";
+                    ErrorLabel.Text = String.Format("You have exceeded the limit of coupons per customer ({0}).", deal.Deal.LimitPerCustomer);
                 else
                 {
                     orders.Add(order);
-                    ErrorLabel.Text = "Item successfully added to your cart!";
+                    ErrorLabel.Text = "Your coupon has been added to your cart!";
                 }
             else
             {
                 orders.Add(order);
-                ErrorLabel.Text = "Item successfully added to your cart!";
+                ErrorLabel.Text = "Your coupon has been added to your cart!";
             }
 
             Session["Cart"] = orders;
@@ -159,7 +159,5 @@ public partial class Default_NpoPage : System.Web.UI.Page
         string campaignID = DealsGV.DataKeys[e.NewSelectedIndex].Values[0].ToString();
 
         AddToCart(int.Parse(dealInstanceID), int.Parse(campaignID));
-
-        //Response.Redirect(String.Format("DealPage.aspx?did={0}&cid={1}", dealInstanceID, campaignID));
     }
 }

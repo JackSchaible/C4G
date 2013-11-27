@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="C4GModel.Campaign" Width="1.5" PointX="7.5" PointY="15.875" IsExpanded="true" />
         <EntityTypeShape EntityType="C4GModel.Country" Width="1.5" PointX="1.5" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="C4GModel.cStatu" Width="1.5" PointX="0.75" PointY="19.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="C4GModel.cUser" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="C4GModel.cUser" Width="1.5" PointX="3.125" PointY="15.125" IsExpanded="true" />
         <EntityTypeShape EntityType="C4GModel.DealSEO" Width="1.5" PointX="7.5" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="C4GModel.DealStatu" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="C4GModel.MerchantLocation" Width="1.5" PointX="5.25" PointY="25" IsExpanded="true" />
@@ -17,7 +17,7 @@
         <EntityTypeShape EntityType="C4GModel.OrderStatu" Width="1.5" PointX="5.25" PointY="32" IsExpanded="true" />
         <EntityTypeShape EntityType="C4GModel.PoliticalDivision" Width="1.5" PointX="1.5" PointY="22.5" IsExpanded="true" />
         <EntityTypeShape EntityType="C4GModel.Price" Width="1.5" PointX="8.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="C4GModel.PurchaseTransaction" Width="1.5" PointX="3.875" PointY="28.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="C4GModel.PurchaseTransaction" Width="1.5" PointX="1.875" PointY="28.25" IsExpanded="true" />
         <EntityTypeShape EntityType="C4GModel.Theme" Width="1.5" PointX="7.5" PointY="22.5" IsExpanded="true" />
         <AssociationConnector Association="C4GModel.FK_PoliticalDivision_Country" ManuallyRouted="false" />
         <AssociationConnector Association="C4GModel.FK_cUser_Status" ManuallyRouted="false" />
@@ -61,7 +61,7 @@
         <AssociationConnector Association="C4GModel.FK_MerchantSettings_Merchant" />
         <EntityTypeShape EntityType="C4GModel.CampaignStatu" Width="1.5" PointX="7.8886882829892855" PointY="26.405825701731175" />
         <AssociationConnector Association="C4GModel.FK_Campaign_CampaignStatus" />
-        <EntityTypeShape EntityType="C4GModel.RedeemDetail" Width="1.5" PointX="2.1987790512846686" PointY="20.571394706411006" />
+        <EntityTypeShape EntityType="C4GModel.RedeemDetail" Width="1.5" PointX="12.5" PointY="17" />
         <AssociationConnector Association="C4GModel.FK_RedeemDetails_Deal" />
         <EntityTypeShape EntityType="C4GModel.City" Width="1.5" PointX="6.3824750792153537" PointY="24.344112049948475" />
         <AssociationConnector Association="C4GModel.FK_City_Country" />

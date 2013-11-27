@@ -130,7 +130,7 @@ public partial class NPO_Partners_Add : System.Web.UI.Page
                 }
             </style>
             <p>Dear " + name + @"</p>
-            <p>My not-for-profit " + npo.Name + @" is running a campaign on Coupons4Giving to raise funds for our organization. We would like to partner with you to help ur reach our goals. To learn more about Coupons4Giving, or to register your company and set up offers, <a href='https://www.couponsforgiving.ca/Account/Signup.aspx'>Click Here</a></p>
+            <p>My not-for-profit " + npo.Name + @" is running a campaign on Coupons4Giving to raise funds for our organization. We would like to partner with you to help ur reach our goals. To learn more about Coupons4Giving, or to register your company and set up offers, <a href='https://www.coupons4giving.ca/Account/Register.aspx'>Click Here</a></p>
             <p>Thanks in Advance For Your Support,</p>
             <p>" + npo.cUsers.FirstOrDefault<cUser>().Username +  " - " + npo.Name + "</p>";
 

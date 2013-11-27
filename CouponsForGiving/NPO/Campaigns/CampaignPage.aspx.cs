@@ -10,7 +10,6 @@ using CouponsForGiving.Data;
 using System.IO;
 using System.Net;
 using CouponsForGiving.Data.Classes;
-using ASPSnippets.FaceBookAPI;
 using System.Web.Configuration;
 
 public partial class Default_NpoPage : System.Web.UI.Page

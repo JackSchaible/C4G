@@ -55,11 +55,13 @@ margin: 30px auto;
 padding: 0;
 background: none;
 border: 0;
-border-top: 1px solid #dadada;
+border-top: 1px solid #ecebe9;;
 clear: both;
 width: 100%;
 text-align: center;
 display: inline-block;}
+
+strong a, #MainContent strong a {font-weight: 700;}
 .centered, #MainContent p.centered {margin: auto; text-align: center;}
 .ClearFix, .clear {
     clear: both;
@@ -114,6 +116,13 @@ body {
 height: 60px;
 padding: 20px 0 15px 0;
 }
+
+#mainHeader .beta_button {
+margin: 0px;
+position: relative;
+top: 0px;
+left: 0px;
+z-index: 10;}
 
 .headerWrap {
 margin: 0 auto;
@@ -287,13 +296,22 @@ width: 1024px;
 margin: 0px auto;
 }
 
+nav, nav #MeuBarControl_Menu {
+text-align: center;
+}
+
+#MenuBarControl_Menu a.static {
+padding-left: 0px;
+padding-right: 0px;
+}
+
 nav #MenuBarControl_Menu a, nav a {
 color: #FFF;
 display: inline-block;
 font-size: 16px;
 height: 40px;
 text-transform: uppercase;
-padding: 20px 0px 0px 0px;
+padding: 20px 15px 0px 15px;
 width: 100%;
 text-decoration: none;
 }
@@ -310,12 +328,11 @@ nav #MenuBarControl_Menu ul, nav ul {
 }
 
 nav #MenuBarControl_Menu li, nav li {
-display: inline-block;
-margin: 0 0px;
+display: inline;
+margin: 0px 10px 0px;
 text-align: center;
 float: left;
 height: 100%;
-width: 16%;
 z-index: 100;
 }
 
@@ -347,16 +364,26 @@ z-index: 100;
 display: none;
 position: absolute;
 top: 100%;
-width: 125%;
+width: 200px;
 padding: 0px 0px;
 background: #22bfe8;
+margin: 0px;
 
     }
 
 	nav #MenuBarControl_Menu li ul li, nav li ul li {
-	float: none;
-	display: inline;
-	max-width: 2%;
+float: none;
+display: inline;
+margin: 0px;
+padding: 0px;
+	}
+
+	nav #MenuBarControl_Menu li ul li a, nav li ul li a {
+display: inline-block;
+margin: 0px;
+padding: 20px 0px;
+height: 100%;
+width: 100%;
 	}
 
         nav li:hover ul, nav #MenuBarControl_Menu li:hover ul
@@ -778,6 +805,16 @@ min-height: 100px;}
 #MainContent .tipList li.merchantstep2 {background-image: url('../images/c4g_tips_merchant_step2.png'); background-repeat: no-repeat;}
 #MainContent .tipList li.merchantstep3 {background-image: url('../images/c4g_tips_merchant_step3.png'); background-repeat: no-repeat;}
 #MainContent .tipList li.merchantstep4 {background-image: url('../images/c4g_tips_merchant_step4.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.merchanthomestep2 {background-image: url('../images/c4g_home_npos_step2.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.merchanthomestep3 {background-image: url('../images/c4g_home_step4.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.homestep1 {background-image: url('../images/c4g_home_step1.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.homestep2 {background-image: url('../images/c4g_home_step2.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.homestep3 {background-image: url('../images/c4g_home_step3.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.homestep4 {background-image: url('../images/c4g_home_step4.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.npohomestep1 {background-image: url('../images/c4g_home_npos_step1.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.npohomestep2 {background-image: url('../images/c4g_home_npos_step2.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.npohomestep3 {background-image: url('../images/c4g_home_npos_step3.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.npohomestep4 {background-image: url('../images/c4g_home_npos_step4.png'); background-repeat: no-repeat;}
 
 /* Home Page Banners 
 ---------------------------------------------------------------- */
@@ -820,6 +857,12 @@ display: inline-block;
 margin: -170px 0px;
 }
 
+#MainContent .homeBanners .right-merchant {
+float: right;
+display: inline-block;
+margin: -155px 0px;
+}
+
 .HowItWorksBanner #MainContent .quarter h4 {
 line-height: 175%;
 margin-bottom: 15px;
@@ -852,7 +895,7 @@ width: 70%;
 margin-right: 3%;
 float: left;
 display: inline-block;
-margin-top: 50px;
+margin-top: 30px;
 font-size: 19px;
 letter-spacing: .5px;}
 
@@ -1051,7 +1094,7 @@ float: right;
 min-height: 200px;
 width: 26%;
 padding: 0px;
-margin: 50px 0px 0px 1%;
+margin: 35px 0px 0px 1%;
 display: inline-block;
 }
 

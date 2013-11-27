@@ -22,6 +22,7 @@ public partial class NPO_Confirmation : System.Web.UI.Page
         }
         catch (Exception ex)
         {
+            ex.ToString();
         }
 
         if (npo == null)

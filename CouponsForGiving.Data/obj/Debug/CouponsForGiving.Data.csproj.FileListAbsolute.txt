@@ -141,3 +141,11 @@ C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.20\CouponsForGi
 C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.20\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
 C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.20\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
 C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.20\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll.config
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\bin\Debug\CouponsForGiving.Data.pdb
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\bin\Debug\EntityFramework.dll
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\bin\Debug\EntityFramework.xml
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.dll
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\obj\Debug\CouponsForGiving.Data.pdb

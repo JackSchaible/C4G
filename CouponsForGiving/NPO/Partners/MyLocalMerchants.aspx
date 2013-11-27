@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="MyLocalMerchants.aspx.cs" Inherits="NPO_Partners_MyLocalMerchants" %>
+﻿<%@ Page Title="My Local Merchants" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="MyLocalMerchants.aspx.cs" Inherits="NPO_Partners_MyLocalMerchants" %>
 <%@ Reference Control="~/Controls/MenuBar.ascx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
@@ -21,6 +21,10 @@
         </EmptyDataTemplate>
     </asp:GridView>
     <asp:Label ID="ErrorLabel" runat="server"></asp:Label>
-    <a href="Add.aspx" class="btn">Add A New Merchant</a>
-    <a href="../Campaigns/New.aspx" class="btn">Setup A Campaign</a>
+    <div class="half">
+        <a href="Add.aspx" class="btn">Add A New Merchant</a>
+    </div>
+    <div class="half">
+        <a href="../Campaigns/New.aspx" class="btn">Setup A Campaign</a>
+    </div>
 </asp:Content>

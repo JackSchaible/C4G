@@ -40,9 +40,12 @@ public partial class Default_NpoPage : System.Web.UI.Page
                     }
                     catch (Exception ex2)
                     {
-                        Response.Redirect("Home.aspx");
+                        ex2.ToString();
+                        Response.Redirect("MyHome.aspx");
                     }
                 }
+
+                ex.ToString();
             }
         }
         else
@@ -57,13 +60,14 @@ public partial class Default_NpoPage : System.Web.UI.Page
                 }
                 catch (Exception ex)
                 {
-                    Response.Redirect("Home.aspx");
+                    ex.ToString();
+                    Response.Redirect("MyHome.aspx");
                 }
             }
         }
 
         if (npo == null)
-            Response.Redirect("Home.aspx", true);
+            Response.Redirect("MyHome.aspx", true);
 
         Title = npo.Name + " - Coupons4Giving";
     }

@@ -14,7 +14,6 @@
     <EntitySet Name="PoliticalDivisions" EntityType="C4GModel.PoliticalDivision" />
     <EntitySet Name="Prices" EntityType="C4GModel.Price" />
     <EntitySet Name="PurchaseTransactions" EntityType="C4GModel.PurchaseTransaction" />
-    <EntitySet Name="Slideshows" EntityType="C4GModel.Slideshow" />
     <EntitySet Name="Themes" EntityType="C4GModel.Theme" />
     <AssociationSet Name="FK_PoliticalDivision_Country" Association="C4GModel.FK_PoliticalDivision_Country">
       <End Role="Country" EntitySet="Countries" />
@@ -128,21 +127,6 @@
       <Parameter Name="Desc" Mode="In" Type="String" />
       <Parameter Name="Content" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="Deal_Insert" ReturnType="Collection(Int32)">
-      <Parameter Name="merchantid" Mode="In" Type="Int32" />
-      <Parameter Name="name" Mode="In" Type="String" />
-      <Parameter Name="dealdescription" Mode="In" Type="String" />
-      <Parameter Name="absolutecouponlimit" Mode="In" Type="Int32" />
-      <Parameter Name="limitpercustomer" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="Deal_Update">
-      <Parameter Name="dealid" Mode="In" Type="Int32" />
-      <Parameter Name="merchantid" Mode="In" Type="Int32" />
-      <Parameter Name="name" Mode="In" Type="String" />
-      <Parameter Name="dealdescription" Mode="In" Type="String" />
-      <Parameter Name="absolutecouponlimit" Mode="In" Type="Int32" />
-      <Parameter Name="limitpercustomer" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="DealInstance_Insert" ReturnType="Collection(Int32)">
       <Parameter Name="dealid" Mode="In" Type="Int32" />
       <Parameter Name="startdate" Mode="In" Type="DateTime" />
@@ -205,11 +189,6 @@
       <Parameter Name="nposplit" Mode="In" Type="Decimal" />
       <Parameter Name="oursplit" Mode="In" Type="Decimal" />
     </FunctionImport>
-    <FunctionImport Name="Slideshow_Insert" ReturnType="Collection(Int32)">
-      <Parameter Name="dealid" Mode="In" Type="Int32" />
-      <Parameter Name="imageurl" Mode="In" Type="String" />
-      <Parameter Name="imagedescription" Mode="In" Type="String" />
-    </FunctionImport>
     <EntitySet Name="NPOes" EntityType="C4GModel.NPO" />
     <AssociationSet Name="FK_Campaign_NPO" Association="C4GModel.FK_Campaign_NPO">
       <End Role="NPO" EntitySet="NPOes" />
@@ -245,10 +224,6 @@
       <End Role="Deal" EntitySet="Deals" />
       <End Role="Price" EntitySet="Prices" />
     </AssociationSet>
-    <AssociationSet Name="FK_Slideshow_Deal" Association="C4GModel.FK_Slideshow_Deal">
-      <End Role="Deal" EntitySet="Deals" />
-      <End Role="Slideshow" EntitySet="Slideshows" />
-    </AssociationSet>
     <AssociationSet Name="FK_DealInstance_DealStatus" Association="C4GModel.FK_DealInstance_DealStatus">
       <End Role="DealStatu" EntitySet="DealStatus" />
       <End Role="DealInstance" EntitySet="DealInstances" />
@@ -261,9 +236,6 @@
       <End Role="Campaign" EntitySet="Campaigns" />
       <End Role="DealInstance" EntitySet="DealInstances" />
     </AssociationSet>
-    <FunctionImport Name="Deal_Get" ReturnType="Collection(C4GModel.Deal_Get_Result)">
-      <Parameter Name="dealid" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="DealMerchantLocation_Delete">
       <Parameter Name="dealid" Mode="In" Type="Int32" />
       <Parameter Name="merchantlocationid" Mode="In" Type="Int32" />
@@ -282,9 +254,6 @@
     </FunctionImport>
     <FunctionImport Name="MerchantLocation_GetEligible" ReturnType="Collection(C4GModel.MerchantLocation_GetEligible_Result)">
       <Parameter Name="merchantid" Mode="In" Type="Int32" />
-      <Parameter Name="dealid" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="SlideShow_GetByDealID" ReturnType="Collection(C4GModel.SlideShow_GetByDealID_Result)">
       <Parameter Name="dealid" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="Deal_GetByID" EntitySet="DealInstances" ReturnType="Collection(C4GModel.DealInstance)">
@@ -446,9 +415,6 @@
     <FunctionImport Name="ApproveAllPendingAccounts" />
     <FunctionImport Name="Merchant_ApproveAllPending" />
     <FunctionImport Name="NPO_ApproveAllPending" />
-    <FunctionImport Name="MerchantInfo_Get" EntitySet="MerchantInfoes" ReturnType="Collection(C4GModel.MerchantInfo)">
-      <Parameter Name="Username" Mode="In" Type="String" />
-    </FunctionImport>
     <EntitySet Name="MerchantInfoes" EntityType="C4GModel.MerchantInfo" />
     <AssociationSet Name="FK_MerchantInfo_cUser" Association="C4GModel.FK_MerchantInfo_cUser">
       <End Role="cUser" EntitySet="cUsers" />
@@ -503,11 +469,6 @@
       <Parameter Name="username" Mode="In" Type="String" />
       <Parameter Name="email" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="MerchantInfo_Insert">
-      <Parameter Name="Username" Mode="In" Type="String" />
-      <Parameter Name="Name" Mode="In" Type="String" />
-      <Parameter Name="PhoneNumber" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="Merchant_GetFeatured" EntitySet="Merchants" ReturnType="Collection(C4GModel.Merchant)" />
     <FunctionImport Name="NPO_GetFeatured" EntitySet="NPOes" ReturnType="Collection(C4GModel.NPO)" />
     <FunctionImport Name="Campaign_IsNameUnique" ReturnType="Collection(Int32)">
@@ -551,7 +512,7 @@
       <Parameter Name="Username" Mode="In" Type="String" />
       <Parameter Name="EndDate" Mode="In" Type="DateTime" />
     </FunctionImport>
-    <FunctionImport Name="Campaign_IsComplete" ReturnType="Collection(Boolean)">
+    <FunctionImport Name="Campaign_IsComplete" ReturnType="Collection(String)">
       <Parameter Name="CampaignID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="Campaign_Save" ReturnType="Collection(Int32)">
@@ -655,10 +616,6 @@
       <End Role="City" EntitySet="Cities" />
       <End Role="cUser" EntitySet="cUsers" />
     </AssociationSet>
-    <FunctionImport Name="Merchant_RemoveNPOPartner">
-      <Parameter Name="Username" Mode="In" Type="String" />
-      <Parameter Name="MerchantID" Mode="In" Type="Int32" />
-    </FunctionImport>
     <FunctionImport Name="Campaign_MarkAsActive">
       <Parameter Name="CampaignID" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -680,6 +637,106 @@
       <Parameter Name="CityName" Mode="In" Type="String" />
       <Parameter Name="ProvinceCode" Mode="In" Type="String" />
       <Parameter Name="CountryCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="MerchantInfo_Get" EntitySet="MerchantInfoes" ReturnType="Collection(C4GModel.MerchantInfo)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="MerchantInfo_Insert">
+      <Parameter Name="Username" Mode="In" Type="String" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="PhoneNumber" Mode="In" Type="String" />
+      <Parameter Name="MerchantDescription" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Deal_Get" ReturnType="Collection(C4GModel.Deal_Get_Result)">
+      <Parameter Name="dealid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Deal_Insert" ReturnType="Collection(Int32)">
+      <Parameter Name="merchantid" Mode="In" Type="Int32" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="dealdescription" Mode="In" Type="String" />
+      <Parameter Name="absolutecouponlimit" Mode="In" Type="Int32" />
+      <Parameter Name="limitpercustomer" Mode="In" Type="Int32" />
+      <Parameter Name="imageURL" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Deal_Update">
+      <Parameter Name="dealid" Mode="In" Type="Int32" />
+      <Parameter Name="merchantid" Mode="In" Type="Int32" />
+      <Parameter Name="name" Mode="In" Type="String" />
+      <Parameter Name="dealdescription" Mode="In" Type="String" />
+      <Parameter Name="absolutecouponlimit" Mode="In" Type="Int32" />
+      <Parameter Name="limitpercustomer" Mode="In" Type="Int32" />
+      <Parameter Name="imageURL" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="FinePrints" EntityType="C4GModel.FinePrint" />
+    <AssociationSet Name="Deal_FinePrint" Association="C4GModel.Deal_FinePrint">
+      <End Role="Deal" EntitySet="Deals" />
+      <End Role="FinePrint" EntitySet="FinePrints" />
+    </AssociationSet>
+    <FunctionImport Name="Deal_FinePrint_Remove">
+      <Parameter Name="DealID" Mode="In" Type="Int32" />
+      <Parameter Name="FinePrintID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="FinePrint_AddToDeal">
+      <Parameter Name="DealID" Mode="In" Type="Int32" />
+      <Parameter Name="FinePrintID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="FinePrint_List" EntitySet="FinePrints" ReturnType="Collection(C4GModel.FinePrint)" />
+    <FunctionImport Name="FinePrint_ListByDeal" EntitySet="FinePrints" ReturnType="Collection(C4GModel.FinePrint)">
+      <Parameter Name="DealID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="NPO_ListNPOPartners" EntitySet="NPOes" ReturnType="Collection(C4GModel.NPO)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="RemovePartnership">
+      <Parameter Name="NPOID" Mode="In" Type="Int32" />
+      <Parameter Name="MerchantID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="NPO_List" EntitySet="NPOes" ReturnType="Collection(C4GModel.NPO)" />
+    <FunctionImport Name="NPOSetting_Get" EntitySet="NPOSettings" ReturnType="Collection(C4GModel.NPOSetting)">
+      <Parameter Name="NPOID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="NPOSetting_Insert">
+      <Parameter Name="NPOID" Mode="In" Type="Int32" />
+      <Parameter Name="AutoAcceptMerchantRequests" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <EntitySet Name="NPOSettings" EntityType="C4GModel.NPOSetting" />
+    <AssociationSet Name="FK_NPOSetting_NPO" Association="C4GModel.FK_NPOSetting_NPO">
+      <End Role="NPO" EntitySet="NPOes" />
+      <End Role="NPOSetting" EntitySet="NPOSettings" />
+    </AssociationSet>
+    <FunctionImport Name="Merchant_ListPartnersByNPO" EntitySet="Merchants" ReturnType="Collection(C4GModel.Merchant)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="InsertPartnership">
+      <Parameter Name="NPOID" Mode="In" Type="Int32" />
+      <Parameter Name="MerchantID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="NPO_InsertMerchantPartner">
+      <Parameter Name="MerchantID" Mode="In" Type="Int32" />
+      <Parameter Name="NPOID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="NPO_ListEligiblePartnersByMerchant" EntitySet="NPOes" ReturnType="Collection(C4GModel.NPO)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="NPO_ListMerchantRequests" EntitySet="Merchants" ReturnType="Collection(C4GModel.Merchant)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="NPO_ApproveMerchantRequest">
+      <Parameter Name="Username" Mode="In" Type="String" />
+      <Parameter Name="MerchantID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Campaign_ListByCity" EntitySet="Campaigns" ReturnType="Collection(C4GModel.Campaign)">
+      <Parameter Name="CityName" Mode="In" Type="String" />
+      <Parameter Name="CountryName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PurchaseOrder_ListUnredeemedByMerchant" EntitySet="PurchaseOrders" ReturnType="Collection(C4GModel.PurchaseOrder)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PurchaseOrder_Redeem">
+      <Parameter Name="PurchaseOrderID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PurchaseOrder_Unredeem">
+      <Parameter Name="PurchaseOrderID" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <EntityType Name="Campaign">
@@ -829,16 +886,6 @@
     <Property Name="PurchaseDate" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="cUser" Relationship="C4GModel.FK_PurchaseDate_User" FromRole="PurchaseTransaction" ToRole="cUser" />
     <NavigationProperty Name="PurchaseOrders" Relationship="C4GModel.FK_PurchaseOrder_PurchaseTransaction" FromRole="PurchaseTransaction" ToRole="PurchaseOrder" />
-  </EntityType>
-  <EntityType Name="Slideshow">
-    <Key>
-      <PropertyRef Name="ImageID" />
-    </Key>
-    <Property Name="ImageID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-    <Property Name="DealID" Type="Int32" Nullable="false" />
-    <Property Name="ImageURL" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
-    <Property Name="ImageDescription" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <NavigationProperty Name="Deal" Relationship="C4GModel.FK_Slideshow_Deal" FromRole="Slideshow" ToRole="Deal" />
   </EntityType>
   <EntityType Name="Theme">
     <Key>
@@ -992,6 +1039,7 @@
     <NavigationProperty Name="Merchants1" Relationship="C4GModel.NPOMerchant" FromRole="NPO" ToRole="Merchant" />
     <Property Type="Int32" Name="CityID" Nullable="false" />
     <NavigationProperty Name="City" Relationship="C4GModel.FK_NPO_City" FromRole="NPO" ToRole="City" />
+    <NavigationProperty Name="NPOSettings" Relationship="C4GModel.FK_NPOSetting_NPO" FromRole="NPO" ToRole="NPOSetting" />
   </EntityType>
   <Association Name="FK_Campaign_NPO">
     <End Type="C4GModel.NPO" Role="NPO" Multiplicity="1" />
@@ -1058,10 +1106,11 @@
     <NavigationProperty Name="DealInstances" Relationship="C4GModel.FK_DealInstance_Deal" FromRole="Deal" ToRole="DealInstance" />
     <NavigationProperty Name="DealSEOs" Relationship="C4GModel.FK_DealSEO_Deal" FromRole="Deal" ToRole="DealSEO" />
     <NavigationProperty Name="Prices" Relationship="C4GModel.FK_Price_Deal" FromRole="Deal" ToRole="Price" />
-    <NavigationProperty Name="Slideshows" Relationship="C4GModel.FK_Slideshow_Deal" FromRole="Deal" ToRole="Slideshow" />
     <NavigationProperty Name="MerchantLocations" Relationship="C4GModel.DealMerchantLocation" FromRole="Deal" ToRole="MerchantLocation" />
     <NavigationProperty Name="Merchant" Relationship="C4GModel.FK_Deal_Merchant" FromRole="Deal" ToRole="Merchant" />
     <NavigationProperty Name="RedeemDetails" Relationship="C4GModel.FK_RedeemDetails_Deal" FromRole="Deal" ToRole="RedeemDetail" />
+    <Property Type="String" Name="ImageURL" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="FinePrints" Relationship="C4GModel.Deal_FinePrint" FromRole="Deal" ToRole="FinePrint" />
   </EntityType>
   <EntityType Name="DealInstance">
     <Key>
@@ -1115,18 +1164,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Slideshow_Deal">
-    <End Type="C4GModel.Deal" Role="Deal" Multiplicity="1" />
-    <End Type="C4GModel.Slideshow" Role="Slideshow" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Deal">
-        <PropertyRef Name="DealID" />
-      </Principal>
-      <Dependent Role="Slideshow">
-        <PropertyRef Name="DealID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_DealInstance_DealStatus">
     <End Type="C4GModel.DealStatu" Role="DealStatu" Multiplicity="1" />
     <End Type="C4GModel.DealInstance" Role="DealInstance" Multiplicity="*" />
@@ -1154,6 +1191,7 @@
     <Property Type="String" Name="DealDescription" Nullable="false" />
     <Property Type="Int32" Name="AbsoluteCouponLimit" Nullable="true" />
     <Property Type="Int32" Name="LimitPerCustomer" Nullable="true" />
+    <Property Type="String" Name="ImageURL" Nullable="false" />
   </ComplexType>
   <ComplexType Name="Merchant_GetByUsername_Result">
     <Property Type="Int32" Name="MerchantID" Nullable="false" />
@@ -1195,12 +1233,6 @@
     <Property Type="String" Name="cAddress" Nullable="false" MaxLength="256" />
     <Property Type="String" Name="City" Nullable="true" MaxLength="278" />
     <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="16" />
-  </ComplexType>
-  <ComplexType Name="SlideShow_GetByDealID_Result">
-    <Property Type="Int32" Name="ImageID" Nullable="false" />
-    <Property Type="Int32" Name="DealID" Nullable="false" />
-    <Property Type="String" Name="ImageURL" Nullable="false" MaxLength="256" />
-    <Property Type="String" Name="ImageDescription" Nullable="false" />
   </ComplexType>
   <ComplexType Name="Deal_GetByID_Result">
     <Property Type="Int32" Name="DealInstanceID" Nullable="false" />
@@ -1589,6 +1621,7 @@
     <Property Type="String" Name="Name" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="cUser" Relationship="C4GModel.FK_MerchantInfo_cUser" FromRole="MerchantInfo" ToRole="cUser" />
+    <Property Type="String" Name="MerchantDescription" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_MerchantInfo_cUser">
     <End Type="C4GModel.cUser" Role="cUser" Multiplicity="1" />
@@ -2204,5 +2237,182 @@
     <Property Type="Int32" Name="PoliticalDivisionID" Nullable="true" />
     <Property Type="String" Name="CountryCode" Nullable="true" MaxLength="2" />
     <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+  </ComplexType>
+  <ComplexType Name="MerchantInfo_Get_Result1">
+    <Property Type="Int32" Name="MerchantInfoID" Nullable="false" />
+    <Property Type="Int32" Name="cUserID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="16" />
+    <Property Type="String" Name="MerchantDescription" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="Deal_Get_Result1">
+    <Property Type="Int32" Name="DealID" Nullable="false" />
+    <Property Type="Int32" Name="MerchantID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="DealDescription" Nullable="false" />
+    <Property Type="Int32" Name="AbsoluteCouponLimit" Nullable="true" />
+    <Property Type="Int32" Name="LimitPerCustomer" Nullable="true" />
+    <Property Type="String" Name="ImageURL" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="FinePrint">
+    <Key>
+      <PropertyRef Name="FinePrintID" />
+    </Key>
+    <Property Type="Int32" Name="FinePrintID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Content" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Deals" Relationship="C4GModel.Deal_FinePrint" FromRole="FinePrint" ToRole="Deal" />
+  </EntityType>
+  <Association Name="Deal_FinePrint">
+    <End Type="C4GModel.Deal" Role="Deal" Multiplicity="*" />
+    <End Type="C4GModel.FinePrint" Role="FinePrint" Multiplicity="*" />
+  </Association>
+  <ComplexType Name="FinePrint_List_Result">
+    <Property Type="Int32" Name="FinePrintID" Nullable="false" />
+    <Property Type="String" Name="Content" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="FinePrint_ListByDeal_Result">
+    <Property Type="Int32" Name="FinePrintID" Nullable="false" />
+    <Property Type="String" Name="Content" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="NPO_ListNPOPartners_Result">
+    <Property Type="Int32" Name="NPOID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="NPODescription" Nullable="false" />
+    <Property Type="String" Name="cAddress" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="PostalCode" Nullable="false" MaxLength="16" />
+    <Property Type="String" Name="Website" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="16" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="256" />
+    <Property Type="Int32" Name="StatusID" Nullable="false" />
+    <Property Type="String" Name="Logo" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="URL" Nullable="false" MaxLength="256" />
+    <Property Type="Boolean" Name="UseAllMerchants" Nullable="false" />
+    <Property Type="Int32" Name="CityID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="NPO_List_Result">
+    <Property Type="Int32" Name="NPOID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="NPODescription" Nullable="false" />
+    <Property Type="String" Name="cAddress" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="PostalCode" Nullable="false" MaxLength="16" />
+    <Property Type="String" Name="Website" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="16" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="256" />
+    <Property Type="Int32" Name="StatusID" Nullable="false" />
+    <Property Type="String" Name="Logo" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="URL" Nullable="false" MaxLength="256" />
+    <Property Type="Boolean" Name="UseAllMerchants" Nullable="false" />
+    <Property Type="Int32" Name="CityID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="NPOSetting_Get_Result">
+    <Property Type="Int32" Name="NPOSettingID" Nullable="false" />
+    <Property Type="Int32" Name="NPOID" Nullable="false" />
+    <Property Type="Boolean" Name="AutoAcceptMerchantRequests" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="NPOSetting">
+    <Key>
+      <PropertyRef Name="NPOSettingID" />
+    </Key>
+    <Property Type="Int32" Name="NPOSettingID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="NPOID" Nullable="false" />
+    <Property Type="Boolean" Name="AutoAcceptMerchantRequests" Nullable="false" />
+    <NavigationProperty Name="NPO" Relationship="C4GModel.FK_NPOSetting_NPO" FromRole="NPOSetting" ToRole="NPO" />
+  </EntityType>
+  <Association Name="FK_NPOSetting_NPO">
+    <End Type="C4GModel.NPO" Role="NPO" Multiplicity="1" />
+    <End Type="C4GModel.NPOSetting" Role="NPOSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NPO">
+        <PropertyRef Name="NPOID" />
+      </Principal>
+      <Dependent Role="NPOSetting">
+        <PropertyRef Name="NPOID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="Merchant_ListPartnersByNPO_Result1">
+    <Property Type="Int32" Name="MerchantID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="LargeLogo" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="SmallLogo" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="cAddress" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="PostalCode" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="16" />
+    <Property Type="String" Name="Website" Nullable="false" MaxLength="256" />
+    <Property Type="Int32" Name="StatusID" Nullable="false" />
+    <Property Type="Int32" Name="cUserID" Nullable="false" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="256" />
+    <Property Type="Int32" Name="CityID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="NPO_ListEligiblePartnersByMerchant_Result">
+    <Property Type="Int32" Name="NPOID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="NPODescription" Nullable="false" />
+    <Property Type="String" Name="cAddress" Nullable="false" MaxLength="128" />
+    <Property Type="String" Name="PostalCode" Nullable="false" MaxLength="16" />
+    <Property Type="String" Name="Website" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="16" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="256" />
+    <Property Type="Int32" Name="StatusID" Nullable="false" />
+    <Property Type="String" Name="Logo" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="URL" Nullable="false" MaxLength="256" />
+    <Property Type="Boolean" Name="UseAllMerchants" Nullable="false" />
+    <Property Type="Int32" Name="CityID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="NPO_ListMerchantRequests_Result">
+    <Property Type="Int32" Name="MerchantID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="LargeLogo" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="SmallLogo" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="cAddress" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="PostalCode" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="16" />
+    <Property Type="String" Name="Website" Nullable="false" MaxLength="256" />
+    <Property Type="Int32" Name="StatusID" Nullable="false" />
+    <Property Type="Int32" Name="cUserID" Nullable="false" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="256" />
+    <Property Type="Int32" Name="CityID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Campaign_ListByCity_Result">
+    <Property Type="Int32" Name="CampaignID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="256" />
+    <Property Type="Int32" Name="NPOID" Nullable="false" />
+    <Property Type="DateTime" Name="StartDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CampaignDescription" Nullable="true" />
+    <Property Type="Int32" Name="FundraisingGoal" Nullable="true" />
+    <Property Type="String" Name="CampaignImage" Nullable="true" MaxLength="256" />
+    <Property Type="Boolean" Name="ShowOnHome" Nullable="true" />
+    <Property Type="Int32" Name="DisplayPriority" Nullable="true" />
+    <Property Type="String" Name="CampaignGoal" Nullable="true" />
+    <Property Type="Boolean" Name="HasAcceptedTerms" Nullable="false" />
+    <Property Type="Int32" Name="CampaignStatusID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Campaign_ListByCity_Result1">
+    <Property Type="Int32" Name="CampaignID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="256" />
+    <Property Type="Int32" Name="NPOID" Nullable="false" />
+    <Property Type="DateTime" Name="StartDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CampaignDescription" Nullable="true" />
+    <Property Type="Int32" Name="FundraisingGoal" Nullable="true" />
+    <Property Type="String" Name="CampaignImage" Nullable="true" MaxLength="256" />
+    <Property Type="Boolean" Name="ShowOnHome" Nullable="true" />
+    <Property Type="Int32" Name="DisplayPriority" Nullable="true" />
+    <Property Type="String" Name="CampaignGoal" Nullable="true" />
+    <Property Type="Boolean" Name="HasAcceptedTerms" Nullable="false" />
+    <Property Type="Int32" Name="CampaignStatusID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PurchaseOrder_ListUnredeemedByMerchant_Result">
+    <Property Type="Int32" Name="PurchaseOrderID" Nullable="false" />
+    <Property Type="Int32" Name="CampaignID" Nullable="false" />
+    <Property Type="Int32" Name="OrderStatusID" Nullable="false" />
+    <Property Type="Int32" Name="TransactionID" Nullable="false" />
+    <Property Type="DateTime" Name="PurchaseDate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="DealInstanceID" Nullable="false" />
+    <Property Type="Decimal" Name="PurchaseAmount" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="NPOSplit" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="MerchantSplit" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="OurSplit" Nullable="false" Precision="19" />
   </ComplexType>
 </Schema>

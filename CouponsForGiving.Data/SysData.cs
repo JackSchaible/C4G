@@ -571,6 +571,11 @@ namespace CouponsForGiving.Data.Classes
 
     public static class Campaigns
     {
+        public static List<Campaign> ListByCity(string city, string country)
+        {
+            return new C4GEntities().Campaign_ListByCity(city, country).ToList<Campaign>();
+        }
+
         public static void MarkAsActive(int CampaignID)
         {
             new C4GEntities().Campaign_MarkAsActive(CampaignID);
@@ -630,6 +635,24 @@ namespace CouponsForGiving.Data.Classes
         public static void Remove(int CampaignID, int DealInstanceID)
         {
             new C4GEntities().CampaignDealInstance_Remove(DealInstanceID, CampaignID);
+        }
+    }
+
+    public static class PurchaseOrders
+    {
+        public static List<PurchaseOrder> ListActiveByMerchant(string username)
+        {
+            return new C4GEntities().PurchaseOrder_ListUnredeemedByMerchant(username).ToList<PurchaseOrder>();
+        }
+
+        public static void Redeem(int PurchaseOrderID)
+        {
+            new C4GEntities().PurchaseOrder_Redeem(PurchaseOrderID);
+        }
+
+        public static void Unredeem(int PurchaseOrderID)
+        {
+            new C4GEntities().PurchaseOrder_Unredeem(PurchaseOrderID);
         }
     }
 }

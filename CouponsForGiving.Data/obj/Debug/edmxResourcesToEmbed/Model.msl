@@ -134,16 +134,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Slideshows">
-      <EntityTypeMapping TypeName="C4GModel.Slideshow">
-        <MappingFragment StoreEntitySet="Slideshow">
-          <ScalarProperty Name="ImageID" ColumnName="ImageID" />
-          <ScalarProperty Name="DealID" ColumnName="DealID" />
-          <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
-          <ScalarProperty Name="ImageDescription" ColumnName="ImageDescription" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Themes">
       <EntityTypeMapping TypeName="C4GModel.Theme">
         <MappingFragment StoreEntitySet="Theme">
@@ -201,8 +191,6 @@
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="Theme_Get" FunctionName="C4GModel.Store.Theme_Get" />
     <FunctionImportMapping FunctionImportName="Theme_Update" FunctionName="C4GModel.Store.Theme_Update" />
-    <FunctionImportMapping FunctionImportName="Deal_Insert" FunctionName="C4GModel.Store.Deal_Insert" />
-    <FunctionImportMapping FunctionImportName="Deal_Update" FunctionName="C4GModel.Store.Deal_Update" />
     <FunctionImportMapping FunctionImportName="DealInstance_Insert" FunctionName="C4GModel.Store.DealInstance_Insert" />
     <FunctionImportMapping FunctionImportName="DealInstance_Update" FunctionName="C4GModel.Store.DealInstance_Update" />
     <FunctionImportMapping FunctionImportName="DealMerchantLocation_Insert" FunctionName="C4GModel.Store.DealMerchantLocation_Insert" />
@@ -212,7 +200,6 @@
     <FunctionImportMapping FunctionImportName="MerchantLocation_Update" FunctionName="C4GModel.Store.MerchantLocation_Update" />
     <FunctionImportMapping FunctionImportName="Price_Insert" FunctionName="C4GModel.Store.Price_Insert" />
     <FunctionImportMapping FunctionImportName="Price_Update" FunctionName="C4GModel.Store.Price_Update" />
-    <FunctionImportMapping FunctionImportName="Slideshow_Insert" FunctionName="C4GModel.Store.Slideshow_Insert" />
     <EntitySetMapping Name="NPOes">
       <EntityTypeMapping TypeName="C4GModel.NPO">
         <MappingFragment StoreEntitySet="NPO">
@@ -243,6 +230,7 @@
     <EntitySetMapping Name="Deals">
       <EntityTypeMapping TypeName="C4GModel.Deal">
         <MappingFragment StoreEntitySet="Deal">
+          <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
           <ScalarProperty Name="LimitPerCustomer" ColumnName="LimitPerCustomer" />
           <ScalarProperty Name="AbsoluteCouponLimit" ColumnName="AbsoluteCouponLimit" />
           <ScalarProperty Name="DealDescription" ColumnName="DealDescription" />
@@ -281,18 +269,6 @@
         <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
       </EndProperty>
     </AssociationSetMapping>
-    <FunctionImportMapping FunctionImportName="Deal_Get" FunctionName="C4GModel.Store.Deal_Get">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="C4GModel.Deal_Get_Result">
-          <ScalarProperty Name="DealID" ColumnName="DealID" />
-          <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="DealDescription" ColumnName="DealDescription" />
-          <ScalarProperty Name="AbsoluteCouponLimit" ColumnName="AbsoluteCouponLimit" />
-          <ScalarProperty Name="LimitPerCustomer" ColumnName="LimitPerCustomer" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="DealMerchantLocation_Delete" FunctionName="C4GModel.Store.DealMerchantLocation_Delete" />
     <FunctionImportMapping FunctionImportName="Merchant_GetByUsername" FunctionName="C4GModel.Store.Merchant_GetByUsername" />
     <FunctionImportMapping FunctionImportName="MerchantLocation_GetActiveByDealID" FunctionName="C4GModel.Store.MerchantLocation_GetActiveByDealID">
@@ -336,16 +312,6 @@
           <ScalarProperty Name="cAddress" ColumnName="cAddress" />
           <ScalarProperty Name="City" ColumnName="City" />
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SlideShow_GetByDealID" FunctionName="C4GModel.Store.SlideShow_GetByDealID">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="C4GModel.SlideShow_GetByDealID_Result">
-          <ScalarProperty Name="ImageID" ColumnName="ImageID" />
-          <ScalarProperty Name="DealID" ColumnName="DealID" />
-          <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
-          <ScalarProperty Name="ImageDescription" ColumnName="ImageDescription" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -571,10 +537,10 @@
     <FunctionImportMapping FunctionImportName="ApproveAllPendingAccounts" FunctionName="C4GModel.Store.ApproveAllPendingAccounts" />
     <FunctionImportMapping FunctionImportName="Merchant_ApproveAllPending" FunctionName="C4GModel.Store.Merchant_ApproveAllPending" />
     <FunctionImportMapping FunctionImportName="NPO_ApproveAllPending" FunctionName="C4GModel.Store.NPO_ApproveAllPending" />
-    <FunctionImportMapping FunctionImportName="MerchantInfo_Get" FunctionName="C4GModel.Store.MerchantInfo_Get" />
     <EntitySetMapping Name="MerchantInfoes">
       <EntityTypeMapping TypeName="C4GModel.MerchantInfo">
         <MappingFragment StoreEntitySet="MerchantInfo">
+          <ScalarProperty Name="MerchantDescription" ColumnName="MerchantDescription" />
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="cUserID" ColumnName="cUserID" />
@@ -620,7 +586,6 @@
     <FunctionImportMapping FunctionImportName="Merchant_ListByCity" FunctionName="C4GModel.Store.Merchant_ListByCity" />
     <FunctionImportMapping FunctionImportName="Merchant_ListGlobal" FunctionName="C4GModel.Store.Merchant_ListGlobal" />
     <FunctionImportMapping FunctionImportName="Merchant_Insert" FunctionName="C4GModel.Store.Merchant_Insert" />
-    <FunctionImportMapping FunctionImportName="MerchantInfo_Insert" FunctionName="C4GModel.Store.MerchantInfo_Insert" />
     <FunctionImportMapping FunctionImportName="Merchant_GetFeatured" FunctionName="C4GModel.Store.Merchant_GetFeatured" />
     <FunctionImportMapping FunctionImportName="NPO_GetFeatured" FunctionName="C4GModel.Store.NPO_GetFeatured" />
     <FunctionImportMapping FunctionImportName="Campaign_IsNameUnique" FunctionName="C4GModel.Store.Campaign_IsNameUnique" />
@@ -727,12 +692,72 @@
         <ScalarProperty Name="CityID" ColumnName="CityID" />
       </EndProperty>
     </AssociationSetMapping>
-    <FunctionImportMapping FunctionImportName="Merchant_RemoveNPOPartner" FunctionName="C4GModel.Store.Merchant_RemoveNPOPartner" />
     <FunctionImportMapping FunctionImportName="Campaign_MarkAsActive" FunctionName="C4GModel.Store.Campaign_MarkAsActive" />
     <FunctionImportMapping FunctionImportName="MerchantSettings_GetByMerchantID" FunctionName="C4GModel.Store.MerchantSettings_GetByMerchantID" />
     <FunctionImportMapping FunctionImportName="Merchant_InsertNPOPartner" FunctionName="C4GModel.Store.Merchant_InsertNPOPartner" />
     <FunctionImportMapping FunctionImportName="Merchant_ListEligiblePartnersByNPO" FunctionName="C4GModel.Store.Merchant_ListEligiblePartnersByNPO" />
     <FunctionImportMapping FunctionImportName="NPO_HasPartners" FunctionName="C4GModel.Store.NPO_HasPartners" />
     <FunctionImportMapping FunctionImportName="City_GetByName" FunctionName="C4GModel.Store.City_GetByName" />
+    <FunctionImportMapping FunctionImportName="MerchantInfo_Get" FunctionName="C4GModel.Store.MerchantInfo_Get" />
+    <FunctionImportMapping FunctionImportName="MerchantInfo_Insert" FunctionName="C4GModel.Store.MerchantInfo_Insert" />
+    <FunctionImportMapping FunctionImportName="Deal_Get" FunctionName="C4GModel.Store.Deal_Get">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.Deal_Get_Result">
+          <ScalarProperty Name="DealID" ColumnName="DealID" />
+          <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="DealDescription" ColumnName="DealDescription" />
+          <ScalarProperty Name="AbsoluteCouponLimit" ColumnName="AbsoluteCouponLimit" />
+          <ScalarProperty Name="LimitPerCustomer" ColumnName="LimitPerCustomer" />
+          <ScalarProperty Name="ImageURL" ColumnName="ImageURL" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Deal_Insert" FunctionName="C4GModel.Store.Deal_Insert" />
+    <FunctionImportMapping FunctionImportName="Deal_Update" FunctionName="C4GModel.Store.Deal_Update" />
+    <EntitySetMapping Name="FinePrints">
+      <EntityTypeMapping TypeName="C4GModel.FinePrint">
+        <MappingFragment StoreEntitySet="FinePrint">
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="FinePrintID" ColumnName="FinePrintID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="Deal_FinePrint" TypeName="C4GModel.Deal_FinePrint" StoreEntitySet="Deal_FinePrint">
+      <EndProperty Name="FinePrint">
+        <ScalarProperty Name="FinePrintID" ColumnName="FinePrintID" />
+      </EndProperty>
+      <EndProperty Name="Deal">
+        <ScalarProperty Name="DealID" ColumnName="DealID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="Deal_FinePrint_Remove" FunctionName="C4GModel.Store.Deal_FinePrint_Remove" />
+    <FunctionImportMapping FunctionImportName="FinePrint_AddToDeal" FunctionName="C4GModel.Store.FinePrint_AddToDeal" />
+    <FunctionImportMapping FunctionImportName="FinePrint_List" FunctionName="C4GModel.Store.FinePrint_List" />
+    <FunctionImportMapping FunctionImportName="FinePrint_ListByDeal" FunctionName="C4GModel.Store.FinePrint_ListByDeal" />
+    <FunctionImportMapping FunctionImportName="NPO_ListNPOPartners" FunctionName="C4GModel.Store.NPO_ListNPOPartners" />
+    <FunctionImportMapping FunctionImportName="RemovePartnership" FunctionName="C4GModel.Store.RemovePartnership" />
+    <FunctionImportMapping FunctionImportName="NPO_List" FunctionName="C4GModel.Store.NPO_List" />
+    <FunctionImportMapping FunctionImportName="NPOSetting_Get" FunctionName="C4GModel.Store.NPOSetting_Get" />
+    <FunctionImportMapping FunctionImportName="NPOSetting_Insert" FunctionName="C4GModel.Store.NPOSetting_Insert" />
+    <EntitySetMapping Name="NPOSettings">
+      <EntityTypeMapping TypeName="C4GModel.NPOSetting">
+        <MappingFragment StoreEntitySet="NPOSetting">
+          <ScalarProperty Name="AutoAcceptMerchantRequests" ColumnName="AutoAcceptMerchantRequests" />
+          <ScalarProperty Name="NPOID" ColumnName="NPOID" />
+          <ScalarProperty Name="NPOSettingID" ColumnName="NPOSettingID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Merchant_ListPartnersByNPO" FunctionName="C4GModel.Store.Merchant_ListPartnersByNPO" />
+    <FunctionImportMapping FunctionImportName="InsertPartnership" FunctionName="C4GModel.Store.InsertPartnership" />
+    <FunctionImportMapping FunctionImportName="NPO_InsertMerchantPartner" FunctionName="C4GModel.Store.NPO_InsertMerchantPartner" />
+    <FunctionImportMapping FunctionImportName="NPO_ListEligiblePartnersByMerchant" FunctionName="C4GModel.Store.NPO_ListEligiblePartnersByMerchant" />
+    <FunctionImportMapping FunctionImportName="NPO_ListMerchantRequests" FunctionName="C4GModel.Store.NPO_ListMerchantRequests" />
+    <FunctionImportMapping FunctionImportName="NPO_ApproveMerchantRequest" FunctionName="C4GModel.Store.NPO_ApproveMerchantRequest" />
+    <FunctionImportMapping FunctionImportName="Campaign_ListByCity" FunctionName="C4GModel.Store.Campaign_ListByCity" />
+    <FunctionImportMapping FunctionImportName="PurchaseOrder_ListUnredeemedByMerchant" FunctionName="C4GModel.Store.PurchaseOrder_ListUnredeemedByMerchant" />
+    <FunctionImportMapping FunctionImportName="PurchaseOrder_Redeem" FunctionName="C4GModel.Store.PurchaseOrder_Redeem" />
+    <FunctionImportMapping FunctionImportName="PurchaseOrder_Unredeem" FunctionName="C4GModel.Store.PurchaseOrder_Unredeem" />
   </EntityContainerMapping>
 </Mapping>

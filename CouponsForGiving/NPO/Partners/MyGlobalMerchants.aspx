@@ -20,5 +20,5 @@
         </EmptyDataTemplate>
     </asp:GridView>
     <asp:Label ID="ErrorLabel" runat="server"></asp:Label>
-    <a href="Add.aspx">Add A New Merchant</a>
+    <a class="btn" href="Add.aspx">Add A New Merchant</a>
 </asp:Content>

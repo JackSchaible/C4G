@@ -2281,5 +2281,67 @@ namespace CouponsForGiving.Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NPO_ApproveMerchantRequest", usernameParameter, merchantIDParameter);
         }
+    
+        public virtual ObjectResult<Campaign> Campaign_ListByCity(string cityName, string countryName)
+        {
+            var cityNameParameter = cityName != null ?
+                new ObjectParameter("CityName", cityName) :
+                new ObjectParameter("CityName", typeof(string));
+    
+            var countryNameParameter = countryName != null ?
+                new ObjectParameter("CountryName", countryName) :
+                new ObjectParameter("CountryName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Campaign>("Campaign_ListByCity", cityNameParameter, countryNameParameter);
+        }
+    
+        public virtual ObjectResult<Campaign> Campaign_ListByCity(string cityName, string countryName, MergeOption mergeOption)
+        {
+            var cityNameParameter = cityName != null ?
+                new ObjectParameter("CityName", cityName) :
+                new ObjectParameter("CityName", typeof(string));
+    
+            var countryNameParameter = countryName != null ?
+                new ObjectParameter("CountryName", countryName) :
+                new ObjectParameter("CountryName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Campaign>("Campaign_ListByCity", mergeOption, cityNameParameter, countryNameParameter);
+        }
+    
+        public virtual ObjectResult<PurchaseOrder> PurchaseOrder_ListUnredeemedByMerchant(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PurchaseOrder>("PurchaseOrder_ListUnredeemedByMerchant", usernameParameter);
+        }
+    
+        public virtual ObjectResult<PurchaseOrder> PurchaseOrder_ListUnredeemedByMerchant(string username, MergeOption mergeOption)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PurchaseOrder>("PurchaseOrder_ListUnredeemedByMerchant", mergeOption, usernameParameter);
+        }
+    
+        public virtual int PurchaseOrder_Redeem(Nullable<int> purchaseOrderID)
+        {
+            var purchaseOrderIDParameter = purchaseOrderID.HasValue ?
+                new ObjectParameter("PurchaseOrderID", purchaseOrderID) :
+                new ObjectParameter("PurchaseOrderID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PurchaseOrder_Redeem", purchaseOrderIDParameter);
+        }
+    
+        public virtual int PurchaseOrder_Unredeem(Nullable<int> purchaseOrderID)
+        {
+            var purchaseOrderIDParameter = purchaseOrderID.HasValue ?
+                new ObjectParameter("PurchaseOrderID", purchaseOrderID) :
+                new ObjectParameter("PurchaseOrderID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PurchaseOrder_Unredeem", purchaseOrderIDParameter);
+        }
     }
 }

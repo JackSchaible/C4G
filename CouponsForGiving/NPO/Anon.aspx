@@ -7,7 +7,7 @@
     <asp:PlaceHolder ID="PlaceHolder1" runat="server">      
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
-    <link href="Images/favicon-1.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="../Images/favicon-1.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     <link href="~/Content/style.css" rel="stylesheet"/>
     <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
@@ -82,66 +82,60 @@
                     <div class="homeBanners">
                         <h2>Coupons4Giving is a fundraising tool that is easy to use! Share great deals to support your cause!</h2>
                         <h3>Register for a Coupons4Giving account and get started right away!</h3>
-                        <img src="../images/c4g_fundraising_home.png" class="right-fundraising" /> </div>
-                        <div id="content" class="no-sidebar">
-                          <p><strong>Coupons4Giving</strong> allows you to create and manage successful fundraising campaigns in just a few simple clicks. You do not need to be a registered charity but you do have to have a Not-For-Profit that is looking to raise money for a cause. </p>
-                          <blockquote><img src="../images/c4g_npos.png" class="bio_head">Remember those days of selling chocolate almonds door-to-door? Managing those volunteers, keeping track of all those quarters, dimes and nickels, checks are a pain! Coupons4Giving makes fundraising easy and secure.</blockquote>
-                        </div>
-                    </section>
-                <div class="HowItWorksBanner">
-                <section id="MainContent">
-                  <div id="content" class="no-sidebar">
-                    <h1>It’s easy to build simple and effective campaigns.</h1>
-                    <h4 class="centered">As a <strong>Not-for-Profit with Coupons4Giving</strong> you will receive up to <strong>25%</strong> from every offer purchased from the Coupons4Giving offers registered to your campaign.</h4>
-                    <div class="quarter">
-                      <h4>STEP 1</h4>
-                      <img src="../images/c4g_home_npos_step1.png" alt="Coupons 4 Giving" />
-                      <p><strong>Setup</strong> your <strong>profile page</strong> and fundraising <strong>campaign</strong> with Coupons4Giving</p>
+                        <img src="../Images/c4g_fundraising_home.png" class="right-fundraising" />
                     </div>
-                    <div class="quarter">
-                      <h4>STEP 2</h4>
-                      <img src="../images/c4g_home_npos_step2.png" alt="Coupons 4 Giving" />
-                      <p><strong>Select</strong> partners to participate. Select from a list of local merchants or from our Global Marketplace.</p>
-                    </div>
-                    <div class="quarter">
-                      <h4>STEP 3</h4>
-                      <img src="../images/c4g_home_npos_step3.png" alt="Coupons 4 Giving" />
-                      <p><strong>Engage</strong> your local supporters – use our simple social media toolkit to help promote your campaign </p>
-                    </div>
-                    <div class="quarter">
-                      <h4>STEP 4</h4>
-                      <img src="../images/c4g_home_npos_step4.png" alt="Coupons 4 Giving" />
-                      <p><strong>Save</strong> time and reach your goals!</p>
+                    <div id="content">
+                        <p><strong>Coupons4Giving</strong> allows you to create and manage successful fundraising campaigns in just a few simple clicks. You do not need to be a registered charity but you do have to have a Not-For-Profit that is looking to raise money for a cause.</p>
+                        <blockquote><img src="../Images/c4g_npos.png" class="bio_head">Remember those days of selling chocolate almonds door-to-door? Managing those volunteers, keeping track of all those quarters, dimes and nickels! Coupons4Giving makes fundraising easy and secure.</blockquote>
+                        <hr>
+                        <h3>It’s easy to build simple and effective campaigns.</h3>
+                        <p>As a <strong>Not-for-Profit with Coupons4Giving</strong> you will receive up to <strong>25%</strong> from every offer purchased from the Coupons4Giving offers registered to your campaign.</p>
+                        <div class="tipList">
+                        <ul>
+                            <li class="npohomestep1">
+                                <h4>STEP 1</h4>
+                                <p><strong>Setup</strong> your <strong>profile page</strong> and fundraising <strong>campaign</strong> with Coupons4Giving</p>
+                            </li>
+                            <li class="npohomestep2">
+                                <h4>STEP 2</h4>
+                                <p><strong>Select</strong> partners to participate. Select from a list of local merchants or from our Global Marketplace.</p>
+                            </li>
+                            <li class="npohomestep3">
+                                <h4>STEP 3</h4>
+                                <p><strong>Engage</strong> your local supporters – use our simple social media toolkit to help promote your campaign.</p>
+                            </li>
+                            <li class="npohomestep4">
+                                <h4>STEP 4</h4>
+                                <p><strong>Save</strong> time and reach your goals!</p>
+                            </li>
+                        </ul>
                     </div>
                     <div class="clear"></div>
-                    <a href="../Account/Register.aspx" class="btn-center">GET STARTED TODAY!</a> </div>
+                        <a href="../Account/Register.aspx" class="btn-center">GET STARTED TODAY!</a>
+                        <hr>
+                        <h3>Take a Look Around</h3>
+                        <p>Browse our local deals as well as our <strong>Global Marketplace of E-tailers</strong> (online only merchants)</p>
+                        <div class="merchantsList">
+                            <ul>
+                                <li><img src="../Images/c4g_comingsoon_small.png" class="centered" /></li>
+                            </ul>
+                        </div>
+                        <a href="../Default/CausesInMyArea.aspx" class="btn">MORE MERCHANTS</a>
+                        <h4 class="centered">OUR FEATURED CAUSES</h4>
+                        <div class="nposList">
+                            <ul>
+                                <li><img src="../Images/c4g_comingsoon_small.png" class="centered" /></li>
+                            </ul>
+                        <a href="../Default/CausesInMyArea.aspx" class="btn">MORE CAUSES</a>
+                        </div>
+                    </div>
                 </section>
-                <!-- Close How It Works Content Section --> 
-              </div>
-              <section id="MainContent">
-                <div id="content" class="no-sidebar">
-                  <h1>Take a Look Around</h1>
-                  <p>Browse our local deals as well as our <strong>Global Marketplace of E-tailers</strong> (online only merchants)</p>
-                  <div class="merchantsList">
-                    <ul>
-                      <li><img src="../images/c4g_comingsoon_small.png" class="centered" /></li>
-                    </ul>
-                  </div>
-                  <a href="" class="btn">MORE MERCHANTS</a>
-                  <h4 class="centered">OUR FEATURED CAUSES</h4>
-                  <div class="nposList">
-                    <ul>
-                      <li><img src="../images/c4g_comingsoon_small.png" class="centered" /></li>
-                    </ul>
-                    <a href="" class="btn">MORE CAUSES</a> </div>
-                </div>
-              </section>
             </div>
             <div class="push"></div>
         </form>
     </div>
     <footer>
-        <div id="Div2">
+        <div id="wrapper">
     	    <img id="Img2" src="~/images/logo_footer.png" alt="Coupons4Giving" runat="server"/>
 		    <ul class="footer-nav">
 			    <li><a href="/">Home</a></li>

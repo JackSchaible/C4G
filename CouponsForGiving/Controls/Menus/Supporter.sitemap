@@ -2,7 +2,7 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
     <siteMapNode>
       <siteMapNode url="~/Default.aspx" title="Home" />
-      <siteMapNode title="Deals in My Area" url="~/Default/DealsInMyArea.aspx" />
+      <siteMapNode title="Causes in My Area" url="~/Default/CausesInMyArea.aspx" />
       <siteMapNode title="Search for a Deal" url="~/Default/Search.aspx">
         <siteMapNode title="Local Deals" />
         <siteMapNode title="Global Marketplace" />

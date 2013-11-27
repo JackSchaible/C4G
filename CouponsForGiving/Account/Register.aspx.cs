@@ -44,7 +44,7 @@ public partial class Account_Register : Page
         {
             case "Customer":
                 Response.Redirect("../Default/MyHome.aspx", false);
-                mm.Body = "<h1>Welcome to Coupons4Giving!<h1><p>Thanks for registering with Coupons4Giving. Once you login to your account you can start supporting your favorite causes and purchasing great deals from a wide range of merchants and E-tailers (online only merchants).</p><p>Please contact us at <a href='mailto:teamc4g@coupons4giving.ca'>teamc4g@coupons4giving.ca</a> with any questions!</p><p>Click <a href='https://www.coupons4giving.ca/Default/DealsInMyArea.aspx'>here</a> to check out Coupons & Causes!</p><p>Cheers!</p><p>The Coupons4Giving Team</p>";
+                mm.Body = "<h1>Welcome to Coupons4Giving!<h1><p>Thanks for registering with Coupons4Giving. Once you login to your account you can start supporting your favorite causes and purchasing great deals from a wide range of merchants and E-tailers (online only merchants).</p><p>Please contact us at <a href='mailto:teamc4g@coupons4giving.ca'>teamc4g@coupons4giving.ca</a> with any questions!</p><p>Click <a href='https://www.coupons4giving.ca/Default/CausesInMyArea.aspx'>here</a> to check out Coupons & Causes!</p><p>Cheers!</p><p>The Coupons4Giving Team</p>";
                 break;
 
             case "NPO":

@@ -94,7 +94,7 @@ public partial class Default_NpoPage : System.Web.UI.Page
         control.MenuBar = MenuBarType.Supporter;
 
         if ((from c in npo.Campaigns where c.CampaignStatusID == 2 select c).Count() == 0)
-        {http://localhost:20932/Default/CampaignPage.aspx
+        {
             Campaigns.Enabled = false;
             Campaigns.Visible = false;
         }

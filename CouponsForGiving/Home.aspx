@@ -91,7 +91,7 @@
                                   that allows you to support 
                                   your favourite <strong>not-for-profit organization 
                                   in just one click!</strong></h2>
-                                <a href="Default/DealsInMyArea.aspx" class="btn">SUPPORT A CAUSE</a> </div>
+                                <a href="Default/CausesInMyArea.aspx" class="btn">SUPPORT A CAUSE</a> </div>
                             </div>
                           </li>
                           <li class="marketplace">
@@ -143,7 +143,7 @@
                             <img src="images/c4g_main_customers.png" alt="Coupons 4 Giving" />
                             <p class="centered">If you want to <strong>support your favourite
                               causes you can buy great deals!</strong></p>
-                            <a class="btn" href="Default/DealsInMyArea.aspx">SUPPORT A CAUSE</a> </div>
+                            <a class="btn" href="Default/CausesInMyArea.aspx">SUPPORT A CAUSE</a> </div>
                           <div class="thirds">
                             <h4 class="centred">MERCHANTS</h4>
                             <img src="images/c4g_main_market.png" alt="Coupons 4 Giving" />
@@ -167,7 +167,7 @@
                             <ul>
                                 <li><img src="../images/c4g_comingsoon_small.png" class="centered" /></li>
                             </ul>
-                            <a href="DealsInMyArea.aspx" class="btn">MORE CAUSES</a> </div>
+                            <a href="CausesInMyArea.aspx" class="btn">MORE CAUSES</a> </div>
                         </div>
                       </div>
                     </section>

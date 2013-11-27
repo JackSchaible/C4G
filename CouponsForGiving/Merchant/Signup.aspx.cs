@@ -40,9 +40,9 @@ public partial class Merchant_Signup : System.Web.UI.Page
         {
             string email = "", url = "", yourPhoneNumber = "", businessName = "", businessType = "", firstName = "",
                 lastName = "", address = "", city = "",
-                state = "", zipCode = "", physicalProduct = "", shippingTime = "", productType = "",
-                averagePayment = "", lastYearVolume = "", country = "", currency = "", largeLogo = "", smallLogo = "",
-                cityCode = "", businessPhoneNumber = "";
+                state = "", zipCode = "", physicalProduct = "", productType = "",
+                country = "", currency = "", largeLogo = "", smallLogo = "",
+                businessPhoneNumber = "";
 
             DateTime birthdate = BirthDate.Date;
             email = YourEmailTextBox.Text.Trim();

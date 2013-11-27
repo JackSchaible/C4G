@@ -78,6 +78,12 @@
     <Compile Include="Campaign_ListActiveByUsername_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Campaign_ListByCity_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Campaign_ListByCity_Result1.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Campaign_ListByNPO_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -374,6 +380,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="PurchaseOrder.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseOrder_ListUnredeemedByMerchant_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="PurchaseTransaction.cs">

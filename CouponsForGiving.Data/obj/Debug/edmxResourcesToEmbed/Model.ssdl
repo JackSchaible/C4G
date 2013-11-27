@@ -10,10 +10,12 @@
     <EntitySet Name="cStatus" EntityType="C4GModel.Store.cStatus" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="cUser" EntityType="C4GModel.Store.cUser" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="Deal" EntityType="C4GModel.Store.Deal" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="Deal_FinePrint" EntityType="C4GModel.Store.Deal_FinePrint" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="DealInstance" EntityType="C4GModel.Store.DealInstance" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="DealMerchantLocation" EntityType="C4GModel.Store.DealMerchantLocation" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="DealSEO" EntityType="C4GModel.Store.DealSEO" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="DealStatus" EntityType="C4GModel.Store.DealStatus" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="FinePrint" EntityType="C4GModel.Store.FinePrint" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="Merchant" EntityType="C4GModel.Store.Merchant" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="MerchantInfo" EntityType="C4GModel.Store.MerchantInfo" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="MerchantLocation" EntityType="C4GModel.Store.MerchantLocation" store:Type="Tables" Schema="Database_User" />
@@ -25,6 +27,7 @@
     <EntitySet Name="NPOcUser" EntityType="C4GModel.Store.NPOcUser" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="NPOMailingList" EntityType="C4GModel.Store.NPOMailingList" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="NPOMerchant" EntityType="C4GModel.Store.NPOMerchant" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="NPOSetting" EntityType="C4GModel.Store.NPOSetting" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="OrderStatus" EntityType="C4GModel.Store.OrderStatus" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="PaymentOption" EntityType="C4GModel.Store.PaymentOption" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="PoliticalDivision" EntityType="C4GModel.Store.PoliticalDivision" store:Type="Tables" Schema="Database_User" />
@@ -38,7 +41,6 @@
     <EntitySet Name="PurchaseOrder" EntityType="C4GModel.Store.PurchaseOrder" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="PurchaseTransaction" EntityType="C4GModel.Store.PurchaseTransaction" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="RedeemDetails" EntityType="C4GModel.Store.RedeemDetails" store:Type="Tables" Schema="Database_User" />
-    <EntitySet Name="Slideshow" EntityType="C4GModel.Store.Slideshow" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="Theme" EntityType="C4GModel.Store.Theme" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="sysdiagrams" EntityType="C4GModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Campaign_CampaignStatus" Association="C4GModel.Store.FK_Campaign_CampaignStatus">
@@ -68,6 +70,14 @@
     <AssociationSet Name="FK_cUser_Status" Association="C4GModel.Store.FK_cUser_Status">
       <End Role="cStatus" EntitySet="cStatus" />
       <End Role="cUser" EntitySet="cUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deal_FinePrint_Deal" Association="C4GModel.Store.FK_Deal_FinePrint_Deal">
+      <End Role="Deal" EntitySet="Deal" />
+      <End Role="Deal_FinePrint" EntitySet="Deal_FinePrint" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Deal_FinePrint_FinePrint" Association="C4GModel.Store.FK_Deal_FinePrint_FinePrint">
+      <End Role="FinePrint" EntitySet="FinePrint" />
+      <End Role="Deal_FinePrint" EntitySet="Deal_FinePrint" />
     </AssociationSet>
     <AssociationSet Name="FK_Deal_Merchant" Association="C4GModel.Store.FK_Deal_Merchant">
       <End Role="Merchant" EntitySet="Merchant" />
@@ -157,6 +167,10 @@
       <End Role="NPO" EntitySet="NPO" />
       <End Role="NPOMerchant" EntitySet="NPOMerchant" />
     </AssociationSet>
+    <AssociationSet Name="FK_NPOSetting_NPO" Association="C4GModel.Store.FK_NPOSetting_NPO">
+      <End Role="NPO" EntitySet="NPO" />
+      <End Role="NPOSetting" EntitySet="NPOSetting" />
+    </AssociationSet>
     <AssociationSet Name="FK_PaymentOption" Association="C4GModel.Store.FK_PaymentOption">
       <End Role="CardType" EntitySet="CardType" />
       <End Role="PaymentOption" EntitySet="PaymentOption" />
@@ -208,10 +222,6 @@
     <AssociationSet Name="FK_RedeemDetails_Deal" Association="C4GModel.Store.FK_RedeemDetails_Deal">
       <End Role="Deal" EntitySet="Deal" />
       <End Role="RedeemDetails" EntitySet="RedeemDetails" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Slideshow_Deal" Association="C4GModel.Store.FK_Slideshow_Deal">
-      <End Role="Deal" EntitySet="Deal" />
-      <End Role="Slideshow" EntitySet="Slideshow" />
     </AssociationSet>
     <AssociationSet Name="FK_Theme_NPO" Association="C4GModel.Store.FK_Theme_NPO">
       <End Role="NPO" EntitySet="NPO" />
@@ -302,6 +312,15 @@
     <Property Name="DealDescription" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AbsoluteCouponLimit" Type="int" />
     <Property Name="LimitPerCustomer" Type="int" />
+    <Property Name="ImageURL" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Deal_FinePrint">
+    <Key>
+      <PropertyRef Name="DealID" />
+      <PropertyRef Name="FinePrintID" />
+    </Key>
+    <Property Name="DealID" Type="int" Nullable="false" />
+    <Property Name="FinePrintID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="DealInstance">
     <Key>
@@ -340,6 +359,13 @@
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
     <Property Name="DealStatusDescription" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
+  <EntityType Name="FinePrint">
+    <Key>
+      <PropertyRef Name="FinePrintID" />
+    </Key>
+    <Property Name="FinePrintID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Content" Type="nvarchar(max)" />
+  </EntityType>
   <EntityType Name="Merchant">
     <Key>
       <PropertyRef Name="MerchantID" />
@@ -365,6 +391,7 @@
     <Property Name="cUserID" Type="int" Nullable="false" />
     <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
     <Property Name="PhoneNumber" Type="nvarchar" Nullable="false" MaxLength="16" />
+    <Property Name="MerchantDescription" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="MerchantLocation">
     <Key>
@@ -447,6 +474,14 @@
     </Key>
     <Property Name="NPOID" Type="int" Nullable="false" />
     <Property Name="MerchantID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NPOSetting">
+    <Key>
+      <PropertyRef Name="NPOSettingID" />
+    </Key>
+    <Property Name="NPOSettingID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NPOID" Type="int" Nullable="false" />
+    <Property Name="AutoAcceptMerchantRequests" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="OrderStatus">
     <Key>
@@ -532,15 +567,6 @@
     <Property Name="Highlights" Type="nvarchar(max)" />
     <Property Name="RedeemDetailsDescription" Type="nvarchar(max)" />
     <Property Name="CityID" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Slideshow">
-    <Key>
-      <PropertyRef Name="ImageID" />
-    </Key>
-    <Property Name="ImageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-    <Property Name="DealID" Type="int" Nullable="false" />
-    <Property Name="ImageURL" Type="nvarchar" Nullable="false" MaxLength="256" />
-    <Property Name="ImageDescription" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Theme">
     <Key>
@@ -644,6 +670,30 @@
       </Principal>
       <Dependent Role="cUser">
         <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deal_FinePrint_Deal">
+    <End Role="Deal" Type="C4GModel.Store.Deal" Multiplicity="1" />
+    <End Role="Deal_FinePrint" Type="C4GModel.Store.Deal_FinePrint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deal">
+        <PropertyRef Name="DealID" />
+      </Principal>
+      <Dependent Role="Deal_FinePrint">
+        <PropertyRef Name="DealID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Deal_FinePrint_FinePrint">
+    <End Role="FinePrint" Type="C4GModel.Store.FinePrint" Multiplicity="1" />
+    <End Role="Deal_FinePrint" Type="C4GModel.Store.Deal_FinePrint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FinePrint">
+        <PropertyRef Name="FinePrintID" />
+      </Principal>
+      <Dependent Role="Deal_FinePrint">
+        <PropertyRef Name="FinePrintID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -911,6 +961,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_NPOSetting_NPO">
+    <End Role="NPO" Type="C4GModel.Store.NPO" Multiplicity="1" />
+    <End Role="NPOSetting" Type="C4GModel.Store.NPOSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NPO">
+        <PropertyRef Name="NPOID" />
+      </Principal>
+      <Dependent Role="NPOSetting">
+        <PropertyRef Name="NPOID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_PaymentOption">
     <End Role="CardType" Type="C4GModel.Store.CardType" Multiplicity="1" />
     <End Role="PaymentOption" Type="C4GModel.Store.PaymentOption" Multiplicity="*" />
@@ -1067,18 +1129,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Slideshow_Deal">
-    <End Role="Deal" Type="C4GModel.Store.Deal" Multiplicity="1" />
-    <End Role="Slideshow" Type="C4GModel.Store.Slideshow" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Deal">
-        <PropertyRef Name="DealID" />
-      </Principal>
-      <Dependent Role="Slideshow">
-        <PropertyRef Name="DealID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Theme_NPO">
     <End Role="NPO" Type="C4GModel.Store.NPO" Multiplicity="1" />
     <End Role="Theme" Type="C4GModel.Store.Theme" Multiplicity="*" />
@@ -1126,6 +1176,10 @@
   </Function>
   <Function Name="Campaign_ListActiveByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="Campaign_ListByCity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="CityName" Type="nvarchar" Mode="In" />
+    <Parameter Name="CountryName" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="Campaign_ListByNPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="npoid" Type="int" Mode="In" />
@@ -1202,6 +1256,10 @@
     <Parameter Name="Username" Type="nvarchar" Mode="In" />
     <Parameter Name="StripeKey" Type="nvarchar(max)" Mode="In" />
   </Function>
+  <Function Name="Deal_FinePrint_Remove" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="DealID" Type="int" Mode="In" />
+    <Parameter Name="FinePrintID" Type="int" Mode="In" />
+  </Function>
   <Function Name="Deal_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="dealid" Type="int" Mode="In" />
   </Function>
@@ -1218,6 +1276,7 @@
     <Parameter Name="dealdescription" Type="nvarchar(max)" Mode="In" />
     <Parameter Name="absolutecouponlimit" Type="int" Mode="In" />
     <Parameter Name="limitpercustomer" Type="int" Mode="In" />
+    <Parameter Name="imageURL" Type="nvarchar(max)" Mode="In" />
   </Function>
   <Function Name="Deal_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="dealid" Type="int" Mode="In" />
@@ -1226,6 +1285,7 @@
     <Parameter Name="dealdescription" Type="nvarchar(max)" Mode="In" />
     <Parameter Name="absolutecouponlimit" Type="int" Mode="In" />
     <Parameter Name="limitpercustomer" Type="int" Mode="In" />
+    <Parameter Name="imageURL" Type="nvarchar(max)" Mode="In" />
   </Function>
   <Function Name="DealInstance_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="dealinstanceid" Type="int" Mode="In" />
@@ -1279,7 +1339,19 @@
     <Parameter Name="metakeywords" Type="nvarchar(max)" Mode="In" />
     <Parameter Name="metadescription" Type="nvarchar(max)" Mode="In" />
   </Function>
+  <Function Name="FinePrint_AddToDeal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="DealID" Type="int" Mode="In" />
+    <Parameter Name="FinePrintID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="FinePrint_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="FinePrint_ListByDeal" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="DealID" Type="int" Mode="In" />
+  </Function>
   <Function Name="GetCities" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="InsertPartnership" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
+  </Function>
   <Function Name="ListPendingMerchants" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
   <Function Name="ListPendingNPOs" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
   <Function Name="Merchant_Approve" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
@@ -1342,9 +1414,8 @@
   <Function Name="Merchant_ListNPORequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="Username" Type="nvarchar" Mode="In" />
   </Function>
-  <Function Name="Merchant_RemoveNPOPartner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+  <Function Name="Merchant_ListPartnersByNPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="Username" Type="nvarchar" Mode="In" />
-    <Parameter Name="MerchantID" Type="int" Mode="In" />
   </Function>
   <Function Name="Merchant_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="merchantid" Type="int" Mode="In" />
@@ -1365,6 +1436,7 @@
     <Parameter Name="Username" Type="nvarchar" Mode="In" />
     <Parameter Name="Name" Type="nvarchar" Mode="In" />
     <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="MerchantDescription" Type="nvarchar(max)" Mode="In" />
   </Function>
   <Function Name="MerchantLocation_GetActiveByDealID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="dealid" Type="int" Mode="In" />
@@ -1423,6 +1495,10 @@
     <Parameter Name="NPOID" Type="int" Mode="In" />
   </Function>
   <Function Name="NPO_ApproveAllPending" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="NPO_ApproveMerchantRequest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
+  </Function>
   <Function Name="NPO_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="NPOID" Type="int" Mode="In" />
   </Function>
@@ -1459,8 +1535,22 @@
     <Parameter Name="url" Type="nvarchar" Mode="In" />
     <Parameter Name="useallmerchants" Type="bit" Mode="In" />
   </Function>
+  <Function Name="NPO_InsertMerchantPartner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+  </Function>
   <Function Name="NPO_IsURLUnique" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="testurl" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="NPO_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="NPO_ListEligiblePartnersByMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="NPO_ListMerchantRequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="NPO_ListNPOPartners" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="NPO_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="npoid" Type="int" Mode="In" />
@@ -1480,6 +1570,13 @@
   <Function Name="NPOcUser_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="username" Type="nvarchar" Mode="In" />
     <Parameter Name="npoid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="NPOSetting_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="NPOSetting_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+    <Parameter Name="AutoAcceptMerchantRequests" Type="bit" Mode="In" />
   </Function>
   <Function Name="PaymentOption_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="PaymentOptionID" Type="int" Mode="In" />
@@ -1535,6 +1632,15 @@
     <Parameter Name="MerchantSplit" Type="money" Mode="In" />
     <Parameter Name="OurSplit" Type="money" Mode="In" />
   </Function>
+  <Function Name="PurchaseOrder_ListUnredeemedByMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PurchaseOrder_Redeem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="PurchaseOrderID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PurchaseOrder_Unredeem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="PurchaseOrderID" Type="int" Mode="In" />
+  </Function>
   <Function Name="PurchaseTransaction_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="cUser" Type="nvarchar" Mode="In" />
   </Function>
@@ -1553,13 +1659,9 @@
     <Parameter Name="highlights" Type="nvarchar(max)" Mode="In" />
     <Parameter Name="redeemdetailsdescription" Type="nvarchar(max)" Mode="In" />
   </Function>
-  <Function Name="SlideShow_GetByDealID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
-    <Parameter Name="dealid" Type="int" Mode="In" />
-  </Function>
-  <Function Name="Slideshow_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
-    <Parameter Name="dealid" Type="int" Mode="In" />
-    <Parameter Name="imageurl" Type="nvarchar" Mode="In" />
-    <Parameter Name="imagedescription" Type="nvarchar(max)" Mode="In" />
+  <Function Name="RemovePartnership" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="NPOID" Type="int" Mode="In" />
+    <Parameter Name="MerchantID" Type="int" Mode="In" />
   </Function>
   <Function Name="Theme_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="ThemeID" Type="int" Mode="In" />

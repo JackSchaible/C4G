@@ -35,22 +35,23 @@
         <h1>What is Coupons4Giving?</h1>
         <p><strong><a href=<%: (User.Identity.IsAuthenticated) ? "NPO/Campaigns/New.aspx" : "Account/Register.aspx" %>>As a not-for-profit</a></strong> you can expand both your donor base and engagement by building simple and effective campaigns using Coupons4Giving. Raise more money for your cause by offering great deals to your supporters. Setup your profile page with your organization’s information and then set up your campaigns with the target amount you want to raise and what the funds will be used for. Then select as many merchant partners you need to help you reach your goals. Use our social media toolkit to share those great deals that will support your cause.</p>
         <p><strong><a href=<%: (User.Identity.IsAuthenticated) ? "Merchant/Offers/New.aspx" : "Account/Signup.aspx" %>>As a merchant</a></strong> you can increase footfall into your business or create more website traffic while supporting great causes with Coupons4Giving. Connect with not-for-profits in your community and you both can use Coupons4Giving. Support new causes by discovering them through Coupons4Giving. Setup your profile page and make offers available to your preferred Not-For-Profit organizations. Manage your offers through your dashboard and redeem offers easily with the Coupons4Giving POS app.</p>
-        <p><strong><a href=<%: (User.Identity.IsAuthenticated) ? "Default/DealsInMyArea.aspx" : "Account/Signup.aspx" %>>Supporting your favorite causes</a></strong> is easy with Coupons4Giving. Discover great deals from local merchants or support causes through our Global Marketplace of E-tailers. Purchasing coupons is simple! Learn about great causes and share great deals with your social network!</p>
+        <p><strong><a href=<%: (User.Identity.IsAuthenticated) ? "Default/CausesInMyArea.aspx" : "Account/Signup.aspx" %>>Supporting your favorite causes</a></strong> is easy with Coupons4Giving. Discover great deals from local merchants or support causes through our Global Marketplace of E-tailers. Purchasing coupons is simple! Learn about great causes and share great deals with your social network!</p>
         <blockquote><img src="Images/c4g_heartinhand.png" class="bio_head" />Whether you are raising money, looking for a great restaurant or you are a merchant who wants to support local community groups, <strong>Coupons4Giving makes it easy!</strong></blockquote>
     </div>
+    <div class="clear"></div>
     <%
-        //if (!User.Identity.IsAuthenticated)
-        //{
-        //    Response.Write("<a class='btn-large' href='Account/Register.aspx'>GET STARTED!</a>");
-        //}
-        //else
-        //{
-        //    if (User.IsInRole("NPO"))
-        //        Response.Write("<a class='btn-large' href='NPO/Campaigns/New.aspx'>GET STARTED!</a>");
-        //    else if (User.IsInRole("Merchant"))
-        //        Response.Write("<a class='btn-large' href='Merchant/Offers/New.aspx'>GET STARTED!</a>");
-        //    else
-        //        Response.Write("<a class='btn-large' href='Default/DealsInMyArea.aspx'>GET STARTED!</a>");
-        //}
+        if (!User.Identity.IsAuthenticated)
+        {
+            Response.Write("<a class='btn-large' href='Account/Register.aspx'>GET STARTED!</a>");
+        }
+        else
+        {
+            if (User.IsInRole("NPO"))
+                Response.Write("<a class='btn-large' href='NPO/Campaigns/New.aspx'>GET STARTED!</a>");
+            else if (User.IsInRole("Merchant"))
+                Response.Write("<a class='btn-large' href='Merchant/Offers/New.aspx'>GET STARTED!</a>");
+            else
+                Response.Write("<a class='btn-large' href='Default/CausesInMyArea.aspx'>GET STARTED!</a>");
+        }
     %>
 </asp:Content>

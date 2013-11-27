@@ -1,5 +1,6 @@
 ﻿using CouponsForGiving;
 using CouponsForGiving.Data;
+using CouponsForGiving.Data.Classes;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -39,7 +40,22 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
 
     private void BindData()
     {
-        DealsGV.DataSource = SysData.DealInstance_ListByCity(City, Province, Country);
+        List<Campaign> campaigns = Campaigns.ListByCity(City, Country);
+
+        DealsGV.DataSource =
+        (
+            from c
+            in campaigns
+            select new
+            {
+                CampaignID = c.CampaignID,
+                Campaign = c.Name,
+                CampaignImage = c.CampaignImage,
+                NPO = c.NPO.Name,
+                NPOLogo = c.NPO.Logo,
+                NoOfOffers = c.DealInstances.Count()
+            }
+        );
         DealsGV.DataBind();
     }
 
@@ -74,24 +90,11 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
             City = "Edmonton";
             Province = "Alberta";
             Country = "Canada";
-
+            ex.ToString();
         }
         finally
         {
             objWebReq = null;
         }
-    }
-
-    protected void CitiesGV_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-    {
-
-    }
-
-    protected void DealsGV_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
-    {
-        string uri = String.Format("DealPage.aspx?did={0}&cid={1}",
-            DealsGV.DataKeys[e.NewSelectedIndex].Values[0].ToString(),
-            DealsGV.DataKeys[e.NewSelectedIndex].Values[1].ToString());
-        Response.Redirect(uri);
     }
 }
