@@ -123,7 +123,10 @@
                           <p>Coupons4Giving is a fundraising tool that allows you to support your favourite Not-For-Profit organization in just one click! </p>
                           <p>Choose your organization and support them by purchasing a coupon to your favourite restaurant, retailer or E-tailer. As a Not-For-Profit you can create and manage successful fundraising campaigns. As a merchant or online retailer you can support your favourite causes by offering great deals with coupons.</p>
                         </div>
-                        <div class="one-thirds"> <img src="images/c4g_landing_logo.png" alt="Coupons4Giving" class="centered LandingLogo" /> <a class="btn-large" href="">OUR global MARKETPLACE</a> </div>
+                        <div class="one-thirds"> <img src="images/c4g_landing_logo.png" alt="Coupons4Giving" class="centered LandingLogo" /> 
+                            <a class="btn-large" href="Default/CausesInMyArea.aspx">Buy Deals Now</a>
+                            <a class="btn-large" href="Default/CausesInMyArea.aspx">Discover Causes</a>
+                        </div>
                       </div>
                     </section>
                     <!-- Close About Banner Content Section -->
@@ -148,7 +151,7 @@
                             <h4 class="centred">MERCHANTS</h4>
                             <img src="images/c4g_main_market.png" alt="Coupons 4 Giving" />
                             <p class="centered">If you are a <strong>Merchant or E-tailer</strong>, set up your offers with Coupons4Giving</p>
-                            <a class="btn" href="Account/Register.aspx">BECOME A MERCHANT</a>
+                            <a class="btn" href="<%: (User.IsInRole("Merchant")) ? "Merchant/MyHome.aspx" : "Account/Register.aspx" %>">BECOME A MERCHANT</a>
                           </div>
                         </div>
                       </section>
@@ -156,6 +159,7 @@
                     </div>
                     <section id="MainContent">
                       <div id="content" class="no-sidebar">
+                          <h4 class="centered">OUR FEATURED DEALS</h4>
                         <div class="merchantsList">
                             <ul>
                                 <li><img src="../images/c4g_comingsoon_small.png" class="centered" /></li>

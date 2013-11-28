@@ -432,7 +432,8 @@ font-weight: 400;
 vertical-align: middle;
 }
 
-#MainContent .TextAreaRow label {vertical-align: top;}
+#MainContent .TextAreaRow label {vertical-align: top;
+padding-top: 15px;}
 
 
 .Form {
@@ -448,7 +449,7 @@ border-radius: 20px;}
 
 .FormRow {
 min-height: 50px;
-margin: 5px 0px 5px;
+margin: 5px 0px 20px;
 }
 
 .Form fieldset .FormRow {
@@ -471,7 +472,7 @@ display: inline;
 
 }
 
-.FormRow input, .FormRow select, .FormRow textarea {
+.FormRow input, .FormRow select, .FormRow textarea, .TextAreaRow textarea {
 border: 1px solid #BBB;
 border-radius: 0px;
 float: none;
@@ -539,6 +540,7 @@ box-shadow: 0px 4px 0px #ff9900;
 text-transform: uppercase;
 width: 200px;
 float: right;
+cursor: pointer;
 }
 
 input[type=submit]:hover, .FormRow input[type="submit"]:hover {background: #22bfe8;
@@ -573,14 +575,13 @@ width: 30%;
 min-width: 100px;
 }
 
-#MainContent .FormRow #BirthDate {float: right;
+#MainContent .FormRow #BirthDate, #MainContent .FormRow #StartDate, #MainContent .FormRow #EndDate {float: right;
 width: 65%;}
 
-#MainContent .FormRow select #Main_Content_BirthDate_DayDDL, #MainContent .FormRow select #Main_Content_BirthDate_MonthDDL, #MainContent .FormRow select#Main_Content_BirthDate_YearDDL
+#MainContent .FormRow select #Main_Content_BirthDate_DayDDL, #MainContent .FormRow select #Main_Content_BirthDate_MonthDDL, #MainContent .FormRow select#Main_Content_BirthDate_YearDDL, #MainContent .FormRow select #Main_Content_StartDate_DayDDL, #MainContent .FormRow select #Main_Content_StartDate_MonthDDL, #MainContent .FormRow select#Main_Content_StartDate_YearDDL, #MainContent .FormRow select #Main_Content_EndDate_DayDDL, #MainContent .FormRow select #Main_Content_EndDate_MonthDDL, #MainContent .FormRow select#Main_Content_EndDate_YearDDL
 {width: 100px;
-
 font-size: 14px;
-min-width: 75px;}
+min-width: 65px;}
 
 
 span, label, ul, ol, li {
@@ -790,32 +791,6 @@ margin: 0px auto 30px;
 .HowItWorksBanner #MainContent h4 {
 line-height: 175%;}
 
-#MainContent .nposList, #MainContent .merchantsList { text-align: center; }
-#MainContent .nposList ul, #MainContent .merchantsList ul { list-style: none; }
-#MainContent .nposList ul li, #MainContent .merchantsList ul li {display: inline;
-margin: 10px 10px 10px 0px; }
-
-#MainContent .tipList {}
-#MainContent .tipList h4 {margin: 30px 0px 0px;}
-#MainContent .tipList li {list-style-type: none;
-margin-left: 0px;
-padding-left: 120px;
-min-height: 100px;}
-#MainContent .tipList li.merchantstep1 {background-image: url('../images/c4g_home_step1.png'); background-repeat: no-repeat;}
-#MainContent .tipList li.merchantstep2 {background-image: url('../images/c4g_tips_merchant_step2.png'); background-repeat: no-repeat;}
-#MainContent .tipList li.merchantstep3 {background-image: url('../images/c4g_tips_merchant_step3.png'); background-repeat: no-repeat;}
-#MainContent .tipList li.merchantstep4 {background-image: url('../images/c4g_tips_merchant_step4.png'); background-repeat: no-repeat;}
-#MainContent .tipList li.merchanthomestep2 {background-image: url('../images/c4g_home_npos_step2.png'); background-repeat: no-repeat;}
-#MainContent .tipList li.merchanthomestep3 {background-image: url('../images/c4g_home_step4.png'); background-repeat: no-repeat;}
-#MainContent .tipList li.homestep1 {background-image: url('../images/c4g_home_step1.png'); background-repeat: no-repeat;}
-#MainContent .tipList li.homestep2 {background-image: url('../images/c4g_home_step2.png'); background-repeat: no-repeat;}
-#MainContent .tipList li.homestep3 {background-image: url('../images/c4g_home_step3.png'); background-repeat: no-repeat;}
-#MainContent .tipList li.homestep4 {background-image: url('../images/c4g_home_step4.png'); background-repeat: no-repeat;}
-#MainContent .tipList li.npohomestep1 {background-image: url('../images/c4g_home_npos_step1.png'); background-repeat: no-repeat;}
-#MainContent .tipList li.npohomestep2 {background-image: url('../images/c4g_home_npos_step2.png'); background-repeat: no-repeat;}
-#MainContent .tipList li.npohomestep3 {background-image: url('../images/c4g_home_npos_step3.png'); background-repeat: no-repeat;}
-#MainContent .tipList li.npohomestep4 {background-image: url('../images/c4g_home_npos_step4.png'); background-repeat: no-repeat;}
-
 /* Home Page Banners 
 ---------------------------------------------------------------- */
 
@@ -913,7 +888,7 @@ font-weight: 300;
 letter-spacing: .5px;}
 
 #MainContent ol, #MainContent ul {
-margin: 30px 0px 30px;
+margin: 20px 0px 20px;
 padding: 0px;
 font-size: 16px;
 letter-spacing: 0.5px;
@@ -940,6 +915,7 @@ font-size: 30px;
 font-weight: 100;
 padding: 0px 0 0 0;
 margin: 20px 0px 20px;
+line-height: 155%;
 }
 
 #MainContent h2 {
@@ -969,6 +945,11 @@ margin: 40px 0px 20px;
 letter-spacing: 0.5px;
 font-size: 20px;
 }
+
+
+
+/* Buttons
+------------------------------------------------------------------------------- */
 
 #MainContent a.btn, #MainContent a.btn-large, #MainContent a.btn-center, #MainContent a.btn-blue, #MainContent a.btn-regular {
 background: #fbad3e;
@@ -1024,6 +1005,83 @@ box-shadow: 0px 4px 0px #ff9900;
 -moz-box-shadow: 0px 4px 0px #ff9900;
 -webkit-box-shadow: 0px 4px 0px #ff9900;
 }
+
+/* Site Tips & Action Lists
+------------------------------------------------------------------------------------- */
+
+#MainContent .nposList, #MainContent .merchantsList { text-align: center; }
+#MainContent .nposList ul, #MainContent .merchantsList ul { list-style: none; }
+#MainContent .nposList ul li, #MainContent .merchantsList ul li {display: inline;
+margin: 10px 10px 10px 0px; }
+
+#MainContent .tipList {}
+#MainContent .tipList h4 {margin: 30px 0px 0px;}
+#MainContent .tipList li {list-style-type: none;
+margin-left: 0px;
+padding-left: 120px;
+min-height: 100px;}
+#MainContent .tipList li.merchantstep1 {background-image: url('../images/c4g_home_step1.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.merchantstep2 {background-image: url('../images/c4g_tips_merchant_step2.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.merchantstep3 {background-image: url('../images/c4g_tips_merchant_step3.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.merchantstep4 {background-image: url('../images/c4g_tips_merchant_step4.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.merchanthomestep2 {background-image: url('../images/c4g_home_npos_step2.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.merchanthomestep3 {background-image: url('../images/c4g_home_step4.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.homestep1 {background-image: url('../images/c4g_home_step1.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.homestep2 {background-image: url('../images/c4g_home_step2.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.homestep3 {background-image: url('../images/c4g_home_step3.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.homestep4 {background-image: url('../images/c4g_home_step4.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.npohomestep1 {background-image: url('../images/c4g_home_npos_step1.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.npohomestep2 {background-image: url('../images/c4g_home_npos_step2.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.npohomestep3 {background-image: url('../images/c4g_home_npos_step3.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.npohomestep4 {background-image: url('../images/c4g_home_npos_step4.png'); background-repeat: no-repeat;}
+
+#MainContent .actionList {}
+#MainContent .actionList li {list-style-type: none;
+margin-left: 0px;
+padding-left: 60px;
+min-height: 55px;
+margin: 10px 0px 0px 15px;
+padding-top: 10px;}
+#MainContent .actionList li.merchantstep1 {background-image: url('../images/c4g_action_step1.png'); background-repeat: no-repeat;}
+#MainContent .actionList li.merchantstep2 {background-image: url('../images/c4g_action_step2.png'); background-repeat: no-repeat;}
+#MainContent .actionList li.merchantstep3 {background-image: url('../images/c4g_action_step3.png'); background-repeat: no-repeat;}
+#MainContent .actionList li.thumb {background-image: url('../images/c4g_action_thumb.png');
+background-repeat: no-repeat;
+margin-left: 0px;}
+#MainContent .actionList li.info {background-image: url('../images/c4g_action_info.png');
+background-repeat: no-repeat;
+margin-left: 0px;}
+
+#MainContent .actionList li.new-campaign-1 {background-image: url('../images/c4g_action_thumb.png');
+background-repeat: no-repeat;
+margin-left: 0px;}
+#MainContent .actionList li.new-campaign-2 {background-image: url('../images/c4g_action_thumb.png');
+background-repeat: no-repeat;
+margin-left: 0px;}
+
+#MainContent .actionList li.new-campaign-3 {background-image: url('../images/c4g_action_thumb.png');
+background-repeat: no-repeat;
+margin-left: 0px;}
+
+#MainContent .actionList li.new-campaign-4 {background-image: url('../images/c4g_action_thumb.png');
+background-repeat: no-repeat;
+margin-left: 0px;}
+
+#MainContent .actionList li.new-campaign-5 {background-image: url('../images/c4g_action_thumb.png');
+background-repeat: no-repeat;
+margin-left: 0px;}
+
+#MainContent .actionList li.new-campaign-6 {background-image: url('../images/c4g_action_thumb.png');
+background-repeat: no-repeat;
+margin-left: 0px;}
+#MainContent .actionList li.new-campaign-7 {background-image: url('../images/c4g_action_thumb.png');
+background-repeat: no-repeat;
+margin-left: 0px;}
+
+
+
+/* Blockquotes, Images, Tables, 
+-------------------------------------------------------------------------------------- */
         
 #MainContent blockquote {
 padding: 30px 35px;
@@ -1050,6 +1108,16 @@ float: left;
 display: inline-block;
 margin: 0px 30px 40px 0px;
 width: 135px;
+}
+
+#MainContent .campaign_logo {
+border-radius: 200px;
+float: right;
+display: inline-block;
+margin: 0px 0px 40px 30px;
+width: 157px;
+border: 10px solid #ecebe9;
+padding: 10px;
 }
 
 #MainContent .circle_image_left, #MainContent .circle_image_right {

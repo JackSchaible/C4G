@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CouponsForGiving;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,7 @@ public partial class Default_My_MyHome : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Controls_MenuBar control = (Controls_MenuBar)FindControl("MenuBarControl");
+        control.MenuBar = MenuBarType.Supporter;
     }
 }

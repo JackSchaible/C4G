@@ -1,4 +1,5 @@
-﻿using CouponsForGiving.Data;
+﻿using CouponsForGiving;
+using CouponsForGiving.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +50,7 @@ public partial class Default_DealPage : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
+        control.MenuBar = MenuBarType.Supporter;
     }
 }

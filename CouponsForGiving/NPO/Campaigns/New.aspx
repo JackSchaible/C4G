@@ -76,18 +76,22 @@
         }
     </style>
     <h1>New <%: npo.Name %> Campaign</h1>
-    <img src="../../<%:npo.Logo %>" alt="Logo" />
+    <img src="../<%: npo.Logo %>" class="campaign_logo" />
     <p>Set up a campaign and include information like:</p>
-    <ul>
-        <li>What your campaign is all about?</li>
-        <li>How much you want to raise?</li>
-        <li>What will the funds will be use for?</li>
-        <li>How long do you want to run your campaign?</li>
-        <li>You can add photos and links directly to your social networks such as Facebook, Twitter, and LinkedIn</li>
-        <li>Then add your merchant partners. You can invite as many merchants partners as you want to help you reach your goals. In other words, you can have multiple coupons listed on your campaign page.</li>
-        <li>Your campaign page even has a thermometer to help measure your progress</li>
-    </ul>
-    <p>Your campaign page will also be your public page you can share with your network of donors and supporters.</p>
+    <div class="actionList">
+        <ul>
+            <li class="info">What your campaign is all <strong>about?</strong></li>
+            <li class="info">How much you want to <strong>raise?</strong></li>
+            <li class="info">What will the funds will be <strong>use for?</strong></li>
+            <li class="info">How long do you want to run your <strong>campaign?</strong></li>
+            <li class="info">You can add photos and links directly to your social networks such as <strong>Facebook</strong>, <strong>Twitter</strong>, and <strong>LinkedIn</strong></li>
+            <li class="info">Then <strong>add your merchant partners</strong>. You can invite as many merchants partners as you want to help you reach your goals. In other words, you can have multiple coupons listed on your campaign page.</li>
+            <li class="info">Your campaign page even has a thermometer to help <strong>measure your progress</strong></li>
+        </ul>
+    </div>
+    <hr>
+    <h2>Build Your Campaign Page</h2>
+    <p>Your campaign page will also be your public page you can <strong>share with your network of donors and supporters</strong>.</p>
     <asp:Label ID="ErrorLabel" runat="server"></asp:Label>
     <ul>
         <%

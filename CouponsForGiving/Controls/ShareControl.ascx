@@ -48,7 +48,7 @@
         authorize: true
     </script>
     <div id="SocialStuff">
-        <h2>Share on Social Media</h2>
+        <%--<h2>Share on Social Media</h2>
         <p>URL <%: URL %></p>
         <p class="btn" onclick="shareOnFB()">Share on Facebook</p>
         <div class="fb-like" data-href="<%: URL %>"
@@ -56,5 +56,31 @@
         <p id="FBMsg"></p>
         <a href="https://twitter.com/share" class="twitter-share-button"
             data-text="<%: Caption %>" data-hashtags="C4G, DealsThatMakeADifference">Tweet</a>
-        <p onclick="shareOnLinkedIn()">Share on LinkedIn</p>
+        <p onclick="shareOnLinkedIn()">Share on LinkedIn</p>--%>
+        <h2>Share this on your social media account!</h2>
+            
+<!-- Script Work Removed to save space -->
+
+		<div class="quarter">
+		    <h4>The Web</h4>
+		    <img runat="server" src="~/Images/c4g_action_link.png" class="centered" />
+            <p>URL <%: URL %></p>
+        </div>
+        <div class="quarter" onclick="shareOnFB()">
+            <h4>Facebook</h4>
+        	<img runat="server" src="~/Images/c4g_action_facebook.png" class="centered" />
+            <p class="btw" onclick="shareOnFB()">Share on Facebook</p>
+            <p id="FBMsg"></p>
+        </div>
+        <div class="quarter">
+            <h4>Twitter</h4>
+        	<img runat="server" src="~/Images/c4g_action_twitter.png" class="centered" />
+            <p><a href="https://twitter.com/share" class="twitter-share-button"
+                data-text="<%: Caption %>" data-hashtags="C4G, DealsThatMakeADifference">Tweet</a></p>
+        </div>
+        <div class="quarter">
+            <h4>LinkedIn</h4>
+        	<img runat="server" src="~/Images/c4g_action_linkedin.png" class="centered" />
+            <p onclick="shareOnLinkedIn()">Share on LinkedIn</p>
+        </div>
     </div>

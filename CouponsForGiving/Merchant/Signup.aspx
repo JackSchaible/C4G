@@ -61,7 +61,7 @@
                 <asp:TextBox ID="AddressTextBox" runat="server"></asp:TextBox>
             </div>
             <div class="FormRow">
-                <asp:Label ID="Label10" runat="server" Text="City" AssociatedControlID="CityTextBox"></asp:Label>
+                <label>City <small>Please select from the dropdown.</small></label>
                 <asp:TextBox ID="CityTextBox" runat="server"></asp:TextBox>
                 <ajaxToolkit:AutoCompleteExtender ID="CityACE" runat="server" 
                     CompletionInterval="0" MinimumPrefixLength="1" UseContextKey="True" 
@@ -135,7 +135,7 @@
                 </asp:DropDownList>
             </div>
             <div class="FormRow">
-                <asp:Label ID="Label2" runat="server" Text="Website" AssociatedControlID="URLTextBox"></asp:Label>
+                <label>Website<br /><small>Note: You must include the http:// prefix (for example, 'http://www.mysite.ca')</small></label>
                 <asp:TextBox ID="URLTextBox" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
                     ControlToValidate="URLTextBox" ErrorMessage="Website is required">*</asp:RequiredFieldValidator>
@@ -167,7 +167,7 @@
                 <div class="ClearFix"></div>
             </div>
             <div class="FormRow">
-                <label>I have read and agree to the <a href="../Content/Terms/MerchantServicesAgreement.pdf">Terms & Conditions</a>.</label>
+                <label>I have read and agree to the <a target="_blank" href="../Content/Terms/MerchantServicesAgreement.pdf">Terms & Conditions</a>.</label>
                 <asp:CheckBox ID="TermsCheckBox" runat="server" />
             </div>
             <div class="FormRow">
