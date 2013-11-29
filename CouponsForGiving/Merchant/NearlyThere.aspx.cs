@@ -79,9 +79,9 @@ public partial class Merchant_NearlyThere : System.Web.UI.Page
                                     font-family: Corbel, Arial, sans-serif;
                                 }
                             </style>
-                            <p>Congratulations! You have just set up your Coupons4Giving Profile page. Now you can get started and set up your offers. A team member will be in touch with you shortly with some tips on how to get started. In the meantime, if you have any questions, please contact us at <a href='mailto:teamc4g@coupons4giving.ca'>teamc4g@coupons4giving.ca</a>.</p>
+                            <p>Congratulations! You have just set up your Coupons4Giving Profile page. Now you can get started and set up your offers. A team member will be in touch with you shortly with some tips on how to get started. In the meantime, if you have any questions, please contact us at <a href='mailto:support@coupons4giving.ca'>support@coupons4giving.ca</a>.</p>
                             <p>Your unique Coupons4Giving company profile page is <a href='https://www.coupons4giving.ca/" + merch.Name + @"'>www.coupons4giving.ca/" + merch.Name + @"</a></p>
-                            <p>Click <a href='https://www.coupons4giving.ca/Merchant/Deals/New.aspx'>here</a> to set up an offer.</p>
+                            <p>Click <a href='https://www.coupons4giving.ca/Merchant/Offers/New.aspx'>here</a> to set up an offer.</p>
                             <p>Cheers!</p>
                             <p>The Coupons4Giving.ca Team</p>
                             ";

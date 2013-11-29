@@ -76,7 +76,7 @@ namespace CouponsForGiving
             return virtualPath;
         }
 
-        private static string GetOrCreateFolder(string folderPath)
+        public static string GetOrCreateFolder(string folderPath)
         {
             string returnValue = "";
 

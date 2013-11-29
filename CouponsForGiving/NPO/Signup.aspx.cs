@@ -34,6 +34,24 @@ public partial class NPO_newNPO : System.Web.UI.Page
             newNPOMessage.Text = ex.ToString();
             newNPOMessage.ForeColor = Color.Red;
         }
+
+        if (newNPOLogo.HasFile)
+        {
+            HttpPostedFile file = newNPOLogo.PostedFile;
+            string folderPath = Server.MapPath("..\\tmp\\Images\\Signup\\");
+            string fileName = User.Identity.Name + "--" + file.FileName;
+
+            string physPath = folderPath + @"\" + fileName;
+
+            file.SaveAs(physPath);
+            ViewState["LogoPath"] = folderPath;
+            ViewState["LogoFileName"] = file.FileName;
+        }
+
+        if (ViewState["Logo"] != null)
+        {
+            //Tell the fucking user that there's a goddamn file here
+        }
     }
 
     protected void newNPOSubmit_Click(object sender, EventArgs e)
@@ -128,7 +146,7 @@ public partial class NPO_newNPO : System.Web.UI.Page
                     }
                 }
 
-                if ((newNPOLogo.HasFile) && valid)
+                if (newNPOLogo.HasFile && valid)
                 {
                     if (!(Utilsmk.ValidLogoSize(newNPOLogo.PostedFile.ContentLength)))
                     {
@@ -168,8 +186,25 @@ public partial class NPO_newNPO : System.Web.UI.Page
                                     newNPOID = SysDatamk.AddNPO(newName, newDescription, newAddress, dbCity.CityID, newPostalCode, newWebsite, newPhoneNumber, newEmail, newStatusID, tempLogo, newURL, useall);
                                     if (newNPOID > -1)
                                     {
-                                        newLogo = Utilsmk.SaveNewLogo(newNPOLogo.PostedFile, newNPOID, Server, "NPO");
-                                        string virtualPath = newLogo.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
+                                        string virtualPath = "";
+
+                                        if (ViewState["Logo"] != null)
+                                        {
+                                            string newPath = Server.MapPath("..\\Images\\NPO\\" + newNPOID);
+                                            newPath = Utilsmk.GetOrCreateFolder(newPath) + ViewState["LogoFileName"].ToString();
+
+                                            string oldPath = ViewState["LogoPath"].ToString() + ViewState["LogoFileName"].ToString();
+
+                                            File.Move(oldPath, newPath);
+
+                                            newLogo = Utilsmk.ResolveVirtualPath(newPath);
+                                        }
+                                        else
+                                        {
+                                            newLogo = Utilsmk.SaveNewLogo(newNPOLogo.PostedFile, newNPOID, Server, "NPO");
+                                            virtualPath = newLogo.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
+                                        }
+                                        
                                         SysDatamk.UpdateNPO(newNPOID, newName, newDescription, newAddress, dbCity.CityID, newPostalCode, newWebsite, newPhoneNumber, newEmail, newStatusID, virtualPath, newURL, useall);
                                         SysDatamk.NPOcUser_Insert(thisusername, newNPOID);
                                         ts.Complete();
@@ -217,7 +252,7 @@ public partial class NPO_newNPO : System.Web.UI.Page
                                             font-family: Corbel, Arial, sans-serif;
                                         }
                                     </style>
-                                    <p>Congratulations! You have just set up your Coupons4Giving Profile page. Now you can get started and set up your campaigns. A team member will be in touch shortly with some tips on how to get started! In the meantime if you have any questions, please contact us at <a href='mailto:teamc4g@coupons4giving.ca'>teamc4g@coupons4giving.ca</a>.</p>
+                                    <p>Congratulations! You have just set up your Coupons4Giving Profile page. Now you can get started and set up your campaigns. A team member will be in touch shortly with some tips on how to get started! In the meantime if you have any questions, please contact us at <a href='mailto:support@coupons4giving.ca'>support@coupons4giving.ca</a>.</p>
                                     <p>Your unique Coupons4Giving profile page is <a href='https://www.coupons4giving.ca/" + name + @"'>www.coupons4giving.ca/" + newName + @"</a><p>
                                     <p><a href='https://www.coupons4giving.ca/NPO/Campaigns/New.aspx'>Click here</a> to set up a campaign!</p>
                                     <p>Cheers!</p>
