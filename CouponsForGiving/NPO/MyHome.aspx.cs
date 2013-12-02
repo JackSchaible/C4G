@@ -19,7 +19,7 @@ public partial class Merchant_Home : System.Web.UI.Page
 
     protected override void OnPreInit(EventArgs e)
     {
-        if (!User.Identity.IsAuthenticated)
+        if (!User.IsInRole("NPO"))
             Response.Redirect("Anon.aspx");
 
         base.OnPreInit(e);

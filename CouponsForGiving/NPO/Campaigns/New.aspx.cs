@@ -46,8 +46,26 @@ public partial class NPO_newCampaign : System.Web.UI.Page
         npo = SysDatamk.NPO_GetByUsername(User.Identity.Name);
         Username.Value = User.Identity.Name;
 
-        //EligibleDeals_GV.DataSource = Deals.GetEligibleByUsername(User.Identity.Name, EndDate.Date);
-        //EligibleDeals_GV.DataBind();
+        ((DropDownList)EndDate.FindControl("DayDDL")).Enabled = true;
+        ((DropDownList)EndDate.FindControl("MonthDDL")).Enabled = true;
+        ((DropDownList)EndDate.FindControl("YearDDL")).Enabled = true;
+
+        int campaignID = -1;
+
+        if (CampaignID.Value != "")
+            campaignID = int.Parse(CampaignID.Value);
+
+        Campaign campaign = SysData.Campaign_Get(campaignID);
+
+        //if (campaign != null)
+        //{
+        //    if (campaign.DealInstances.Count > 0)
+        //    {
+        //        ((DropDownList)EndDate.FindControl("DayDDL")).Enabled = false;
+        //        ((DropDownList)EndDate.FindControl("MonthDDL")).Enabled = false;
+        //        ((DropDownList)EndDate.FindControl("YearDDL")).Enabled = false;
+        //    }
+        //}
 
         ErrorLabel.Text = "";
         Errors = new List<string>();
@@ -68,15 +86,16 @@ public partial class NPO_newCampaign : System.Web.UI.Page
             string image = newCampaignImage.FileName.ToString();
             bool showOnHome = newCampaignShowOnHome.Checked;
 
-            DateTime? startDate = null, endDate = null;
+            DateTime? startDate = StartDate.Date, endDate = null;
             int? fundraisingGoal = null;
             int campaignID = -1;
 
             if (CampaignID.Value != "")
+            {
                 campaignID = int.Parse(CampaignID.Value);
+                endDate = SysData.Campaign_Get(campaignID).EndDate;
+            }
 
-            startDate = StartDate.Date;
-            endDate = EndDate.Date;
 
             if (startDate != null && endDate != null)
                 if (endDate < startDate)
@@ -169,8 +188,8 @@ public partial class NPO_newCampaign : System.Web.UI.Page
                                 font-family: Corbel, Arial, sans-serif;
                             }
                         </style>
-                        <p>Congratulations! Your campaign " + name + @" has been set up! Here is your unique campaign URL: <a href='https://www.coupons4giving.ca/" + npo.Name + "/" + name + @"'>www.coupons4giving.ca/" + npo.Name + "/" + name + @"</a></p>
-                        <p>If you need any help, don't hesitate to contact our support team at <a href='mailto:teamc4g@coupons4giving.ca'>teamc4g@coupons4giving.ca</a></p>
+                        <p>Congratulations! Your campaign " + name + @" has been set up! Here is your unique campaign URL: <a href='https://www.coupons4giving.ca/Causes/" + npo.Name + "/" + name + @"'>www.coupons4giving.ca/" + npo.Name + "/" + name + @"</a></p>
+                        <p>If you need any help, don't hesitate to contact our support team at <a href='mailto:support@coupons4giving.ca'>support@coupons4giving.ca</a></p>
                         <p>Cheers!</p>
                         <p>The Coupons4Giving Team</p>
                         ";
@@ -204,17 +223,31 @@ public partial class NPO_newCampaign : System.Web.UI.Page
 
     [WebMethod]
     [ScriptMethod]
-    public static string SaveCampaign(string campaignID, string username, string name, string startdate, string enddate, string description,
-        string goal, string showonhome, string campaigngoal)
+    public static string SaveCampaign(string campaignID, string username, string name, string description,
+        string startdate, string enddate, string goal, string showonhome, string campaigngoal)
     {
         int result = -1;
+
+        string startDateDay, startDateMonth, startDateYear, endDateDay, endDateMonth, endDateYear;
+
+        char[] split = new char[] { '-' };
+
+        startDateDay = startdate.Split(split)[0];
+        startDateMonth = startdate.Split(split)[1];
+        startDateYear = startdate.Split(split)[2];
+
+        endDateDay = enddate.Split(split)[0];
+        endDateMonth = enddate.Split(split)[1];
+        endDateYear = enddate.Split(split)[2];
+
+        DateTime startDate = new DateTime(int.Parse(startDateYear), DateTime.ParseExact(startDateMonth, "MMMM", CultureInfo.CurrentCulture).Month, int.Parse(startDateDay));
+        DateTime endDate = new DateTime(int.Parse(endDateYear), DateTime.ParseExact(endDateMonth, "MMMM", CultureInfo.CurrentCulture).Month, int.Parse(endDateDay));
 
         try
         {
             bool featured = (showonhome == "on") ? true : false;
             int cID = -1;
             int? goalValue = null;
-            DateTime? sDate = null, eDate = null;
 
             if (campaignID != "")
                 cID = int.Parse(campaignID);
@@ -223,11 +256,11 @@ public partial class NPO_newCampaign : System.Web.UI.Page
                 goalValue = int.Parse(goal);
 
             if (cID == -1)
-                result = Campaigns.Save(username, name, sDate, eDate, description, goalValue,
+                result = Campaigns.Save(username, name, startDate, endDate, description, goalValue,
                     "", featured, 1, campaigngoal);
             else
             {
-                Campaigns.Save(cID, username, name, sDate, eDate, description, goalValue,
+                Campaigns.Save(cID, username, name, startDate, endDate, description, goalValue,
                     "", featured, 1, campaigngoal);
                 result = cID;
             }

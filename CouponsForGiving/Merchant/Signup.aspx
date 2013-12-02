@@ -4,6 +4,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
+    <script type="text/javascript">
+        function notify() {
+            if ($("#AutoAcceptRequestsCheckBox").checked) {
+                alert('You will be notified of every not-for-profit request.');
+            }
+        }
+    </script>
         <h1>Profile Page Setup</h1>
         <p style="padding: 0 0 0 30px">
             Set up your profile with information about your business. 
@@ -48,7 +55,7 @@
             </div>
             <div class="FormRow">
                 <asp:Label AssociatedControlID="DescriptionTextBox" ID="DescLabel" runat="server" Text="Description"></asp:Label>
-                <asp:TextBox ID="DescriptionTextBox" runat="server" TextMode="MultiLine"></asp:TextBox>
+                <asp:TextBox ID="DescriptionTextBox" runat="server" TextMode="MultiLine" MaxLength="200"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="DescriptionTextBoxRFV" runat="server"
                     ControlToValidate="DescriptionTextBox" ErrorMessage="Description is required.">
                     *
@@ -91,7 +98,7 @@
                 <asp:Label ID="AARLabel" runat="server" Text="Accept All Not-For-Profit Partner Requests" 
                     AssociatedControlID="AutoAcceptRequestsCheckBox"></asp:Label>
                 <asp:CheckBox ID="AutoAcceptRequestsCheckBox" runat="server" Checked="true" 
-                    onClick="alert('You will be notified whenever a Not-For-Profit wants to partner with you.');"/>
+                    onClick="notify()" ClientIDMode="Static"/>
             </div>
             <div class="FormRow">
                 <label>Email<small>(if different from the one you used to register)</small></label>
@@ -141,19 +148,19 @@
                     ControlToValidate="URLTextBox" ErrorMessage="Website is required">*</asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
                     ControlToValidate="URLTextBox" ErrorMessage="Website is invalid (i.e., http://www.mywebsite.com/)"
-                    ValidationExpression="^(ht|f)tp(s?)\:\/\/(([a-zA-Z0-9\-\._]+(\.[a-zA-Z0-9\-\._]+)+)|localhost)(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?([\d\w\.\/\%\+\-\=\&amp;\?\:\\\&quot;\'\,\|\~\;]*)$">
+                    ValidationExpression="^((http:\/\/www\.)|(www\.)|(http:\/\/))[a-zA-Z0-9._-]+\.[a-zA-Z.]{2,5}$">
                     *
                 </asp:RegularExpressionValidator>
             </div>
             <div class="FormRow">
                 <label>Large Logo<br /><small>This will be the large logo on your Coupons4Giving Profile page.</small></label>
                 <asp:FileUpload ID="newMerchantLargeLogo" runat="server" />
-                <asp:RequiredFieldValidator ID="largeLogoRequired" runat="server" ControlToValidate="newMerchantLargeLogo" ErrorMessage="Large Logo is Required">*</asp:RequiredFieldValidator>
+                <p><%: (hasLargeLogo) ? "You have already uploaded a large logo." : "" %></p>
             </div>
             <div class="FormRow">
                 <label>Small Logo<br /><small>This is a small logo, or icon, used in lists to easily identify your company and brand.</small></label>
                 <asp:FileUpload ID="newMerchantSmallLogo" runat="server" />
-                <asp:RequiredFieldValidator ID="smallLogoRequired" runat="server" ControlToValidate="newMerchantSmallLogo" ErrorMessage="Small Logo is Required">*</asp:RequiredFieldValidator>
+                <p><%: (hasSmallLogo) ? "You have already uploaded a small logo." : "" %></p>
             </div>
             <h4>Additional Information (For Stripe)</h4>
             <div class="FormRow">
@@ -167,7 +174,8 @@
                 <div class="ClearFix"></div>
             </div>
             <div class="FormRow">
-                <label>I have read and agree to the <a target="_blank" href="../Content/Terms/MerchantServicesAgreement.pdf">Terms & Conditions</a>.</label>
+                <iframe src="../Content/Terms/MerchantServicesAgreement.txt" style="width: 100%;"></iframe>
+                <label>I have read and agree to the Terms & Conditions.</label>
                 <asp:CheckBox ID="TermsCheckBox" runat="server" />
             </div>
             <div class="FormRow">

@@ -15,6 +15,9 @@ using CouponsForGiving.Data.Classes;
 
 public partial class Merchant_Signup : System.Web.UI.Page
 {
+    public bool hasLargeLogo { get; set; }
+    public bool hasSmallLogo { get; set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
@@ -32,6 +35,42 @@ public partial class Merchant_Signup : System.Web.UI.Page
         {
             newMerchantMessage.Text = ex.ToString();
         }
+
+        hasLargeLogo = false;
+        hasSmallLogo = false;
+
+        if (newMerchantSmallLogo.HasFile)
+        {
+            HttpPostedFile file = newMerchantSmallLogo.PostedFile;
+            string folderPath = Server.MapPath("..\\tmp\\Images\\Signup\\");
+            string fileName = User.Identity.Name + "--" + file.FileName;
+
+            string physPath = folderPath + @"\" + fileName;
+
+            file.SaveAs(physPath);
+            Session["SmallLogoPath"] = folderPath;
+            Session["SmallLogoFileName"] = fileName;
+
+        }
+
+        if (newMerchantLargeLogo.HasFile)
+        {
+            HttpPostedFile file = newMerchantLargeLogo.PostedFile;
+            string folderPath = Server.MapPath("..\\tmp\\Images\\Signup\\");
+            string fileName = User.Identity.Name + "--" + file.FileName;
+
+            string physPath = folderPath + @"\" + fileName;
+
+            file.SaveAs(physPath);
+            Session["LargeLogoPath"] = folderPath;
+            Session["LargeLogoFileName"] = fileName;
+        }
+
+        if (Session["LargeLogoPath"] != null)
+            hasLargeLogo = true;
+
+        if (Session["SmallLogoPath"] != null)
+            hasSmallLogo = true;
     }
 
     protected void SubmitButton_Click(object sender, EventArgs e)
@@ -98,7 +137,7 @@ public partial class Merchant_Signup : System.Web.UI.Page
 
             try
             {
-                if ((businessName == "") || (largeLogo == "") || (address == "") || (zipCode == "") || (businessPhoneNumber == "") || (url == "") || (smallLogo == ""))
+                if ((businessName == "") || (address == "") || (zipCode == "") || (businessPhoneNumber == "") || (url == ""))
                 {
                     valid = false;
                     newMerchantMessage.Text = "All fields are required.";
@@ -199,10 +238,53 @@ public partial class Merchant_Signup : System.Web.UI.Page
 
                                 if (newMerchantID > -1)
                                 {
-                                    largeLogo = Utilsmk.SaveNewLogo(newMerchantLargeLogo.PostedFile, newMerchantID, Server, "Merchant");
-                                    smallLogo = Utilsmk.SaveNewLogo(newMerchantSmallLogo.PostedFile, newMerchantID, Server, "Merchant");
-                                    string virtualPathL = largeLogo.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
-                                    string virtualPathS = smallLogo.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
+                                    string virtualPathL = "";
+                                    string virtualPathS = "";
+
+                                    if (Session["LargeLogoPath"] != null)
+                                    {
+                                        string newPath = Server.MapPath("..\\Images\\NPO\\" + newMerchantID);
+                                        newPath = Utilsmk.GetOrCreateFolder(newPath) + Session["LargeLogoFileName"].ToString();
+
+                                        string oldPath = Session["LargeLogoPath"].ToString() + Session["LargeLogoFileName"].ToString();
+
+                                        File.Move(oldPath, newPath);
+
+                                        virtualPathL = Utilsmk.ResolveVirtualPath(newPath);
+                                    }
+                                    else
+                                    {
+                                        if (newMerchantLargeLogo.HasFile)
+                                        { 
+                                            largeLogo = Utilsmk.SaveNewLogo(newMerchantLargeLogo.PostedFile, newMerchantID, Server, "Merchant");
+                                            virtualPathL = largeLogo.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
+                                        }
+                                        else
+                                            virtualPathL = "Images/c4g_logo_temporary_profile.png";
+                                    }
+
+                                    if (Session["SmallLogoPath"] != null)
+                                    {
+                                        string newPath = Server.MapPath("..\\Images\\NPO\\" + newMerchantID);
+                                        newPath = Utilsmk.GetOrCreateFolder(newPath) + Session["SmallLogoFileName"].ToString();
+
+                                        string oldPath = Session["SmallLogoPath"].ToString() + Session["SmallLogoFileName"].ToString();
+
+                                        File.Move(oldPath, newPath);
+
+                                        virtualPathS = Utilsmk.ResolveVirtualPath(newPath);
+                                    }
+                                    else
+                                    {
+                                        if (newMerchantSmallLogo.HasFile)
+                                        {
+                                            smallLogo = Utilsmk.SaveNewLogo(newMerchantSmallLogo.PostedFile, newMerchantID, Server, "Merchant");
+                                            virtualPathS = smallLogo.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
+                                        }
+                                        else
+                                            virtualPathS = "Images/c4g_logo_temporary_profile.png";
+                                    }
+
                                     SysDatamk.UpdateMerchant(newMerchantID, businessName, virtualPathL, virtualPathS, address, cityID, zipCode, businessPhoneNumber, url, newStatusID);
                                     SysDatamk.AddMerchantLocation(newMerchantID, address, cityID, businessPhoneNumber);
                                     SysData.MerchantInfo_Insert(User.Identity.Name, FirstNameTextBox.Text.Trim() + LastNameTextBox.Text.Trim(), yourPhoneNumber, DescriptionTextBox.Text.Trim());
@@ -244,7 +326,7 @@ public partial class Merchant_Signup : System.Web.UI.Page
     {
         string[] result;
 
-        result = (from c in SysDatamk.ListCitiesWithDivisionCode() where c.Name.ToLower().Contains(prefixText.ToLower()) select c.Name).ToArray<string>();
+        result = (from c in SysDatamk.ListCitiesWithDivisionCode() where c.Name.ToLower().Contains(prefixText.ToLower()) orderby c.Name select c.Name).ToArray<string>();
 
         return result;
     }

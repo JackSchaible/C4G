@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="MyPartners.aspx.cs" Inherits="Merchant_MyPartners_MyPartners" %>
+﻿<%@ Page Title="My Partners" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="MyPartners.aspx.cs" Inherits="Merchant_MyPartners_MyPartners" %>
 <%@ Reference Control="~/Controls/MenuBar.ascx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">

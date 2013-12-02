@@ -15,6 +15,7 @@ using System.Web.Services;
 using CouponsForGiving.Data.Classes;
 using System.Net.Mail;
 using System.Web.Security;
+using System.Web.Configuration;
 
 public partial class Merchant_Deals_New : System.Web.UI.Page
 {
@@ -85,8 +86,8 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
             string testnewAbsoluteCouponLimit = newDealAbsoluteCouponLimit.Text.Trim();
             string testnewLimitPerCustomer = newDealLimitPerCustomer.Text.Trim();
 
-            string testRetail = newDealRetailValue.Text.Trim();
-            string testGift = newDealGiftValue.Text.Trim();
+            string testRetail = newDealRetailValue.Text.Trim().Replace(",", "").Replace(" ", "").Replace("$", "");
+            string testGift = newDealGiftValue.Text.Trim().Replace(",", "").Replace(" ", "").Replace("$", "");
 
             //Assign default values to optional fields
             if (testnewLimitPerCustomer == "")
@@ -188,10 +189,9 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
 
             try
             {
-                var document = XDocument.Load(Server.MapPath("DealConfig.xml"));
-                decimal mSplit = decimal.Parse(document.Element("dealConfig").Element("merchantSplit").Value);
-                decimal nSplit = decimal.Parse(document.Element("dealConfig").Element("npoSplit").Value);
-                decimal oSplit = decimal.Parse(document.Element("dealConfig").Element("ourSplit").Value);
+                decimal mSplit = decimal.Parse(WebConfigurationManager.AppSettings["MerchantSplit"]);
+                decimal nSplit = decimal.Parse(WebConfigurationManager.AppSettings["NPOSplit"]);
+                decimal oSplit = decimal.Parse(WebConfigurationManager.AppSettings["OurSplit"]);
                 newMerchantSplit = newGiftValue * mSplit;
                 newNPOSplit = newGiftValue * nSplit;
                 newOurSplit = newGiftValue * oSplit;
@@ -312,8 +312,8 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
                                     font-family: Corbel, Arial, sans-serif;
                                 }
                             </style>
-                            <p>Congratulations! Your offer " + newName + @" has been created! Here is your unique offer URL: <a href='https://www.coupons4giving.ca/" + merch.Name + "/" + newName + @"'>www.coupons4giving.ca/" + merch.Name + "/" + newName + @"</a></p>
-                            <p>If you need any help, don't hesitate to contact our support team at <a href='mailto:teamc4g@coupons4giving.ca'>teamc4g@coupons4giving.ca</a>.</p>
+                            <p>Congratulations! Your offer " + newName + @" has been created! Here is your unique offer URL: <a href='https://www.coupons4giving.ca/Offers/" + merch.Name + "/" + newName + @"'>www.coupons4giving.ca/" + merch.Name + "/" + newName + @"</a></p>
+                            <p>If you need any help, don't hesitate to contact our support team at <a href='mailto:support@coupons4giving.ca'>support@coupons4giving.ca</a>.</p>
                             <p>Cheers!</p>
                             <p>The Coupons4Giving.ca Team</p>
                             ";

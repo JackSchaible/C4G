@@ -32,7 +32,7 @@ public partial class Default_NpoPage : System.Web.UI.Page
             campaign = SysData.Campaign_GetByName(campaignName, npoName);
 
             if (campaign == null)
-                Response.Redirect("../" + npoName);
+                Response.Redirect("../Causes/" + npoName);
 
             npo = campaign.NPO;
             Title = String.Format("{1} - {0}", campaign.Name, npo.Name);

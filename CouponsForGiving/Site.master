@@ -81,7 +81,7 @@
                 <div id="mainHeader">
                     <div class="headerWrap">
                         <div class="header-logo">
-                            <a id="homeLink" runat="server" href="~/Home.aspx"><img id="Img1" alt="Logo" src="~/Images/logo_2_color.png" runat="server"/>
+                            <a id="homeLink" runat="server" href="~/Home.aspx"><img id="Img1" alt="Logo" src="~/Images/logo_beta.png" runat="server"/>
                                 <h2 class="tagLine">Share Great Deals! Support Great Causes!</h2>
                             </a>
                         </div>

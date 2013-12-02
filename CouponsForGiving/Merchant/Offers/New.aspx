@@ -61,7 +61,7 @@
         <div class="FormRow">
             <asp:Label ID="Label4" runat="server" Text="Description" 
                 AssociatedControlID="newDealDescription"></asp:Label>
-            <asp:TextBox ID="newDealDescription" runat="server" TextMode="MultiLine"></asp:TextBox>
+            <asp:TextBox ID="newDealDescription" runat="server" TextMode="MultiLine" MaxLength="200"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
                 ControlToValidate="newDealDescription" ErrorMessage="A description of your offer is required.">
                 *
@@ -110,7 +110,7 @@
             </ajaxToolkit:FilteredTextBoxExtender>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
                 ControlToValidate="newDealRetailValue" ErrorMessage="The regular Retail Value of your offer is invalid. (ex. 15.00)" 
-                ValidationExpression="^\d+(?:\.\d{0,2})?$">
+                ValidationExpression="^\$?\d{1,3}(,?\d{3})*(\.\d{1,2})?$">
                 *
             </asp:RegularExpressionValidator>
         </div>
@@ -126,7 +126,7 @@
                 ValidChars="." runat="server"></ajaxToolkit:FilteredTextBoxExtender>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
                 ControlToValidate="newDealGiftValue" ErrorMessage="The Gift Value of your offer is invalid. (i.e., 15.00)" 
-                ValidationExpression="^[\d]{1,}?\.[\d]{2}$">*</asp:RegularExpressionValidator>
+                ValidationExpression="^\$?\d{1,3}(,?\d{3})*(\.\d{1,2})?$">*</asp:RegularExpressionValidator>
             <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="newDealRetailValue" 
                 ControlToValidate="newDealGiftValue" ErrorMessage="Gift Value must be less than Retail Value" 
                 Operator="LessThan" Type="Currency">*</asp:CompareValidator>

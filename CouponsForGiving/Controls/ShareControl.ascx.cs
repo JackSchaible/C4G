@@ -19,7 +19,6 @@ public partial class Controls_SocialShare : System.Web.UI.UserControl
     public string Campaign { get; set; }
     public string ImageURL { get; set; }
     public string Description { get; set; }
-
     public string URL { get; set; }
 
     //Derived Values

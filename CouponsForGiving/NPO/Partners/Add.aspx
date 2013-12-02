@@ -83,9 +83,14 @@
         </asp:RegularExpressionValidator>
     </div>
     <div class="FormRow">
-        <asp:Button ID="EmailSubmit" runat="server" OnClick="EmailSubmit_Click" CssClass="btn" Text="Click to Send Invitation"/>
+        <asp:Button ID="EmailSubmit" runat="server" OnClick="EmailSubmit_Click" CssClass="btn" Text="Send Invitation"/>
         <asp:Label ID="ResultLabel" runat="server"></asp:Label>
     </div>
-    <a href="MyPartners.aspx" class="HeaderButton">View Your Merchant Partner List</a>
-    <a href="../Campaigns/New.aspx" class="HeaderButton">Set Up A Campaign</a>
+    <hr>
+    <div class="thirds">
+        <a href="MyPartners.aspx" class="btn">Merchant Partners</a>
+    </div>    
+    <div class="thirds">
+        <a href="../Campaigns/New.aspx" class="btn">Set Up A Campaign</a>
+    </div>
 </asp:Content>

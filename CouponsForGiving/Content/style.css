@@ -301,8 +301,8 @@ text-align: center;
 }
 
 #MenuBarControl_Menu a.static {
-padding-left: 0px;
-padding-right: 0px;
+padding-left: 10px;
+padding-right: 10px;
 }
 
 nav #MenuBarControl_Menu a, nav a {
@@ -389,6 +389,7 @@ width: 100%;
         nav li:hover ul, nav #MenuBarControl_Menu li:hover ul
         {
             display: block;
+            left: -10px;
 		}
 
 
@@ -430,10 +431,35 @@ width: 30%;
 display: inline-block;
 font-weight: 400;
 vertical-align: middle;
+line-height: 130%;
+}
+
+.field-validation-error {
+display: block;
+background: #f9d8a9;
+padding: 10px;
+font-size: 13px;
+float: left;
+margin: 20px 0px;
+width: 100%;
+border: 1px solid #ff9900;}
+
+#FormRow label.checkbox {
+width: 50%;
+padding-left: 31px;
+}
+
+
+#MainContent .FormRow label p {
+line-height: 135%;
+margin: 10px 0px 10px;
 }
 
 #MainContent .TextAreaRow label {vertical-align: top;
-padding-top: 15px;}
+padding-top: 15px;
+padding-right: 0px;
+line-height: 130%;
+word-wrap: break-word;}
 
 
 .Form {
@@ -495,6 +521,8 @@ float: ;
 position: absolute;
 }
 
+
+
 .FormRow input[type='file'] {
 display: inline-block;
 margin: 20px 0px;
@@ -514,6 +542,17 @@ font-size: 11px;
     border-radius: 5px;
     padding: 4px 0 4px 10px;
     width: 40px;
+}
+
+.FormRow input[type="number"]{
+border: 1px solid #BBB;
+border-radius: 0px;
+float: none;
+font-size: 18px;
+color: #5f5f5f;
+min-width: 250px;
+width: 60%;
+margin: 10px 0px;
 }
 
 .FormRow input[type="radio"] {
@@ -652,7 +691,33 @@ margin-left: 0px;
 height: 100%;
 }
 
-#MainContent .quarter p {text-align: center;}
+.three-quarters {
+display: inline-table;
+width: 73%;
+margin-right: 1.5%;
+padding: 0px 0px 20px 0px;
+margin-left: 0px;
+height: 100%;
+float: left;
+}
+
+.one-quarters {
+display: inline-table;
+width: 23%;
+margin-right: 1.5%;
+padding: 0px 0px 20px 0px;
+margin-left: 0px;
+height: 100%;
+float: left;
+}
+
+#MainContent .quarter p {text-align: center;
+margin: 10px 0px;}
+#MainContent .quarter h4 {
+margin: 10px 0px 10px;
+font-size: 14px;
+text-transform: uppercase;
+}
 
 
 .thirds:hover, .quarter:hover {
@@ -665,7 +730,7 @@ border-radius: 10px;
 #LandingCarousel {
 width: 100%;
 background: #675642;
-height: 375px;
+height: 350px;
 display: inline-block;
 margin: 0px;
 padding:0px;
@@ -703,14 +768,15 @@ display: block;
 letter-spacing: .5px;}
 
 #LandingCarousel .SlideBanners { position: relative; overflow: auto; }
-#LandingCarousel .SlideBanners ul { list-style: none; width: 100%; max-height: 375px; height: 100%; display: inline-block;
+#LandingCarousel .SlideBanners ul { list-style: none; width: 100%; max-height: 350px; height: 100%; display: inline-block;
     -moz-transition: none;
     -webkit-transition: none;
     -o-transition: none;
     transition: none;}
-#LandingCarousel .SlideBanners ul li { float: left; width: 100%; max-height: 375px; height: 100%; display: inline-block;}
+#LandingCarousel .SlideBanners ul li { float: left; width: 100%; max-height: 350px; height: 100%; display: inline-block;}
 #LandingCarousel .SlideBanners ul li.marketplace {background-image: url(../images/c4g_banner_background2.png); background-position: right bottom; background-repeat: no-repeat; }
 #LandingCarousel .SlideBanners ul li.customers { background-image: url(../images/c4g_banner_background1.png); background-position: right bottom; background-repeat: no-repeat; }
+#LandingCarousel .SlideBanners ul li.coupons { background-image: url(../images/c4g_banner_background4.png); background-position: right bottom; background-repeat: no-repeat; }
 #LandingCarousel .SlideBanners ul li.fundraising { background-image: url(../images/c4g_banner_background3.png); background-position: right bottom; background-repeat: no-repeat; }
 #LandingCarousel .SlideBanners ul li.fundraising h2 {}
 
@@ -773,7 +839,12 @@ margin: 0px auto;
 			}
 			
 #MainContent .LandingLogo {
-margin-top: -50px;}
+margin-top: 10px;
+width: 75%;}
+
+#MainContent .LandingButtons {
+margin-top: 45px;
+}
  
 .HowItWorksBanner {
 background: #ecebe9;
@@ -789,7 +860,9 @@ margin: 0px auto 30px;
 }
 
 .HowItWorksBanner #MainContent h4 {
-line-height: 175%;}
+line-height: 175%;
+margin-top: 20px;
+margin-bottom: 0px;}
 
 /* Home Page Banners 
 ---------------------------------------------------------------- */
@@ -840,7 +913,7 @@ margin: -155px 0px;
 
 .HowItWorksBanner #MainContent .quarter h4 {
 line-height: 175%;
-margin-bottom: 15px;
+margin-bottom: 0px;
 margin-top: 20px;
 }
 
@@ -848,6 +921,88 @@ margin-top: 20px;
 line-height: 150%;
 }
 
+
+/* Company, Merchant and Public Profiles 
+---------------------------------------------------------------- */
+
+#MainContent h3.merchant-address, #MainContent h3.npo-address {
+margin: -20px 0px 20px;
+font-size: 18px;
+color: #5e5e5e;
+font-weight: 500;
+}
+
+#MainContent .charity-info h4 {margin: 10px 0px 10px;}
+#MainContent .charity-info p {margin: 0px 0px 5px;
+line-height: 135%;}
+
+
+/* Thermometer column and text */
+.thermometer-wrap {width: 100px;
+float: right;}
+
+#MainContent p.campaign-goal {
+font-size: 45px;
+font-weight: 700;
+color: #22bfe8;
+margin: 10px 0px;
+}
+
+.thermometer {
+margin: 0px 0 0 50px;
+width: 25px;
+height: 142px;
+display: block;
+letter-spacing: 0px;
+font: bold 14px/152px helvetica, arial, sans-serif;
+text-indent: 50px;
+background: -webkit-linear-gradient(top, #fff 0%, #fff 50%, #22bfe8 50%, #22bfe8 100%);
+border-radius: 22px 22px 0 0;
+border: 5px solid #4a1c03;
+border-bottom: none;
+box-shadow: inset 0 0 0 4px #fff;
+color: #4a1c03;
+position:relative;
+z-index: 2;
+}
+
+/* Thermometer Bulb */
+.thermometer:before {
+content: ' ';
+width: 48px;
+height: 48px;
+display: block;
+top: 135px;
+left: -16px;
+z-index: 0;
+background: #22bfe8;
+border-radius: 44px;
+border: 5px solid #4a1c03;
+box-shadow: inset 0 0 0 4px #fff;
+position: relative;
+}
+/* This piece here connects the column with the bulb */
+.thermometer:after {
+content: ' ';
+width: 17px;
+height: 12px;
+display: block;
+position: relative;
+top: 76px;
+left: 0px;
+background: #22bfe8;
+z-index: 6;
+border-right: 4px solid #fff;
+border-left: 4px solid #fff;
+}
+
+.thermometer-raised {float: right;
+top: -90px;
+position: relative;
+font-size: 36px;
+color: #fbad3e;
+right: 65px;
+font-weight: 700;}
 
 /* Main Content 
 ---------------------------------------------------------------- */
@@ -870,7 +1025,7 @@ width: 70%;
 margin-right: 3%;
 float: left;
 display: inline-block;
-margin-top: 30px;
+margin-top: 10px;
 font-size: 19px;
 letter-spacing: .5px;}
 
@@ -946,6 +1101,10 @@ letter-spacing: 0.5px;
 font-size: 20px;
 }
 
+#MainContent h4 a {
+font-weight: 500;
+text-decoration: none;}
+
 
 
 /* Buttons
@@ -1005,6 +1164,336 @@ box-shadow: 0px 4px 0px #ff9900;
 -moz-box-shadow: 0px 4px 0px #ff9900;
 -webkit-box-shadow: 0px 4px 0px #ff9900;
 }
+
+/* Coupons
+---------------------------------------------------------------------------- */
+
+#MainContent .c4g-coupon {
+background: #f3f3f3;
+border-radius: 20px;
+box-shadow: 0px 7px 0px #e5e4e4;
+-moz-box-shadow: 0px 7px 0px #e5e4e4;
+-webkit-box-shadow: 0px 7px 0px #e5e4e4;
+border: 1px solid #e5e4e4;
+width: 100%;
+min-width: 570px;
+padding: 0px 0px 10px;
+font-family: 'Lato', sans-serif;
+margin-top: 50px;
+}
+
+#MainContent .coupon_c4g_logo {
+float: left;
+position: relative;
+top: -30px;
+left: -35px;
+width: 70px;
+}
+
+#MainContent .c4g-coupon h2 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    margin: 0px;
+    padding: 0px;
+    font-size: 36px;
+}
+
+#MainContent .c4g-coupon h3 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    margin: 5px 0px 0px;
+    padding: 0px;
+    font-size: 19px;
+}
+
+#MainContent .c4g-coupon p {
+	margin: 10px 0px;
+	line-height: 150%;
+	font-size: 14px;
+}
+
+#MainContent .coupon-title {
+width: 47%;
+float: left;
+display: inline-table;
+margin-right: 0;
+height: 200px;
+margin-left: -65px;
+margin-top: 20px;
+padding-left: 20px;
+}
+
+#MainContent .coupon-image-block {
+width: 47%;
+float: right;
+display: inline-table;
+height: 150px;
+margin-top: 20px;
+}
+
+#MainContent .coupon-image-block img {
+width: 85%;
+margin: 10px auto;
+border: 5px solid #fff;
+display: block;
+}
+
+#MainContent .coupon-details {
+border-top: 1px solid #e6e6e6;
+border-bottom: 1px solid #e6e6e6;
+height: 100%;
+padding: 15px 0px 15px 0px;
+width: 48%;
+margin-left: 20px;
+display: inline-block;
+}
+
+#MainContent .coupon-details h4, #MainContent .coupon-info span {
+font-family: 'Lato', sans-serif;
+text-align: center;
+margin: 0px auto;
+font-weight: 900;
+font-size: 14px;
+display: block;
+}
+
+#MainContent .coupon-value, #MainContent .coupon-discount, #MainContent .coupon-giving {
+width: 30%;
+float: left;
+display: inline-table;
+}
+
+#MainContent .coupon-value, #MainContent .coupon-discount {
+border-right: 1px solid #e6e6e6;
+padding-right: 1.5%;
+margin-right: 1.5%;
+}
+
+#MainContent .coupon-value span, #MainContent .coupon-discount span, #MainContent .coupon-giving span {
+font-weight: 700;
+text-align: center;
+font-size: 36px;
+margin: 17px auto;
+width: inherit;
+display: block;
+height: 100%;
+}
+
+#MainContent .coupon-discount span, #MainContent .coupon-discount h4 {}
+#MainContent .coupon-value span, #MainContent .coupon-value h4 {color: #fbad3e;}
+#MainContent .coupon-giving span, #MainContent .coupon-giving h4 {color: #22bfe8;}
+
+#MainContent .coupon-info {
+height: 100%;
+padding: 15px 20px 15px 0px;
+width: 42%;
+margin-right: 0%;
+display: inline-table;
+float: right;
+text-align: centre;
+}
+
+#MainContent .coupon-info p {
+font-size: 15px;
+font-weight: 400;
+text-align: center;}
+
+#MainContent .coupon-info span {
+font-size: 20px;
+}
+
+#MainContent p.coupon-id {
+font-size: 22px;
+font-weight: 500;
+color: #22bfe8;
+width: 50%;
+display: inline-block;
+padding-left: 20px;
+}
+
+#MainContent .coupon-id span {color: #535353;}
+
+
+#MainContent a.btn-coupon {
+background: #22bfe8;
+color: #FFF;
+font-family: Ubuntu, Corbel, Arial, sans-serif;
+border-radius: 5px;
+padding: 10px 5%;
+border: none;
+font-size: 18px;
+font-weight: 400;
+box-shadow: 0px 4px 0px #0099cc;
+-moz-box-shadow: 0px 4px 0px #0099cc;
+-webkit-box-shadow: 0px 4px 0px #0099cc;
+text-transform: uppercase;
+width: 205px;
+display: inline-block;
+text-align: center;
+text-decoration: none;
+margin: 5px 20px 0px 10px;
+float: right;
+}
+
+#MainContent .c4g-coupon-tile a.btn-coupon, #MainContent .c4g-campaign-tile a.btn-coupon {
+background: #fbad3e;
+color: #FFF;
+font-family: Ubuntu, Corbel, Arial, sans-serif;
+border-radius: 5px;
+padding: 10px 5%;
+border: none;
+font-size: 18px;
+font-weight: 400;
+box-shadow: 0px 4px 0px #ff9900;
+-moz-box-shadow: 0px 4px 0px #ff9900;
+-webkit-box-shadow: 0px 4px 0px #ff9900;
+text-transform: uppercase;
+text-align: center;
+text-decoration: none;
+float: none;
+margin: 5px auto;
+display: block;
+width: 210px;
+}
+
+#MainContent a.btn-coupon:hover {background: #22bfe8;
+box-shadow: 0px 4px 0px #0099cc;
+-moz-box-shadow: 0px 4px 0px #0099cc;
+-webkit-box-shadow: 0px 4px 0px #0099cc;}
+
+.coupon_sponsor {
+float: left;
+display: inline-block;
+margin: 0px 20px 0px 0px;
+width: 70px;
+}
+
+
+
+/* Coupons Tile
+------------------------------------------------------------------------------- */
+
+#MainContent .c4g-coupon-tile, #MainContent .c4g-campaign-tile {
+background: #f3f3f3;
+border-radius: 20px;
+box-shadow: 0px 7px 0px #e5e4e4;
+-moz-box-shadow: 0px 7px 0px #e5e4e4;
+-webkit-box-shadow: 0px 4px 0px #e5e4e4;
+border: 1px solid #e5e4e4;
+width: 100%;
+padding: 0px 0px 25px;
+font-family: 'Lato', sans-serif;
+margin: 10px 5px 30px;
+display: inline-table;
+}
+
+#MainContent .c4g-coupon-tile .coupon_c4g_logo, #MainContent .c4g-campaign-tile .coupon_c4g_logo {
+float: left;
+position: relative;
+top: -20px;
+left: -20px;
+width: 50px;
+}
+
+#MainContent .c4g-coupon-tile h2, #MainContent .c4g-campaign-tile h2 {
+font-family: 'Lato', sans-serif;
+font-weight: 700;
+margin: 25px 0px 0px 0px;
+padding: 0px 0px 0px 20px;
+font-size: 26px;
+text-align: center;
+float: ;
+position: relative;
+left: -20px;
+display: block;
+}
+
+#MainContent .c4g-coupon-tile h3, #MainContent .c4g-campaign-tile h3 {
+font-family: 'Lato', sans-serif;
+font-weight: 700;
+margin: 0px 0px 0px;
+padding: 0px 0px 0px 0px;
+font-size: 19px;
+text-align: center;
+left: 0px;
+}
+
+#MainContent .c4g-campaign-tile h3 {
+font-size: 16px;
+width: 80%;
+margin: 0px auto;
+}
+
+#MainContent .c4g-coupon-tile p, #MainContent .c4g-campaign-tile p {
+margin: 10px 0px;
+line-height: 150%;
+font-size: 14px;
+/* padding: 0px 20px 0px 30px; */
+}
+
+#MainContent .c4g-campaign-tile p {
+width: 90%;
+line-height: 135%;
+margin: 10px auto;
+text-align: center;
+}
+
+#MainContent .coupon-details-tile {
+border-top: 1px solid #e6e6e6;
+border-bottom: 1px solid #e6e6e6;
+height: 70px;
+padding: 11px 0px 3px 0px;
+width: 96%;
+margin: 20px auto 10px;
+display: block;
+}
+
+#MainContent .campaign-details-tile {
+border-top: 1px solid #e6e6e6;
+border-bottom: 1px solid #e6e6e6;
+height: 100%;
+padding: 11px 0px 3px 0px;
+width: 96%;
+margin: 20px auto 10px;
+display: block;
+}
+
+#MainContent .coupon-details-tile h4 {
+font-family: 'Lato', sans-serif;
+text-align: center;
+margin: 0px auto;
+font-weight: 900;
+font-size: 14px;
+display: block;
+}
+
+#MainContent .coupon-details-tile .coupon-value, #MainContent .coupon-details-tile .coupon-discount, #MainContent .coupon-details-tile .coupon-giving {
+width: 30%;
+float: left;
+display: inline-table;
+}
+
+#MainContent .coupon-details-tile .coupon-value, #MainContent .coupon-details-tile .coupon-discount {
+border-right: 1px solid #e6e6e6;
+padding-right: 1.5%;
+margin-right: 1.5%;
+}
+
+#MainContent .coupon-details-tile .coupon-value span, #MainContent .coupon-details-tile .coupon-discount span, #MainContent .coupon-details-tile .coupon-giving span {
+font-weight: 700;
+text-align: center;
+font-size: 28px;
+margin: 12px auto 0px;
+width: inherit;
+display: block;
+height: 100%;
+}
+
+#MainContent .coupon-details-tile .coupon-value p, #MainContent .coupon-details-tile .coupon-discount p, #MainContent .coupon-details-tile .coupon-giving p {padding: 0px;}
+
+#MainContent .coupon-discount span, #MainContent .coupon-discount h4 {}
+#MainContent .coupon-value span, #MainContent .coupon-value h4 {color: #fbad3e;}
+#MainContent .coupon-giving span, #MainContent .coupon-giving h4 {color: #22bfe8;}
 
 /* Site Tips & Action Lists
 ------------------------------------------------------------------------------------- */
@@ -1110,15 +1599,17 @@ margin: 0px 30px 40px 0px;
 width: 135px;
 }
 
-#MainContent .campaign_logo {
+#MainContent .campaign_logo,  #MainContent .merchant_logo, #MainContent .npo_logo{
 border-radius: 200px;
 float: right;
-display: inline-block;
+display: block;
 margin: 0px 0px 40px 30px;
-width: 157px;
+width: 150px;
 border: 10px solid #ecebe9;
-padding: 10px;
+padding: 0px;
+height: 150px;
 }
+
 
 #MainContent .circle_image_left, #MainContent .circle_image_right {
 border-radius: 200px;
@@ -1133,24 +1624,45 @@ th {
 	
 }
 
+#MainContent .content tr {
+font-size: 12px;
+text-align: center;
+border-bottom: 1px solid #e5e5e5;
+padding-bottom: 10px;
+border-top: 1px solid #e5e5e5;
+padding-top: 10px;
+}
+
 td {
     padding: 5px;
     text-align: center;
 }
 
-td a, td button, td input[type="button"], .JoinButton {
-    text-decoration: none;
-    border-radius: 5px;
-    background-color: #22bfe8;
-    color: #FFF;
-    padding: 2px 7px 2px 7px;
-    border: 1px solid #BBB;
-    display: block;
+#MainContent .content td a, #MainContent .content td button, #MainContent .content td input[type="button"], .JoinButton {
+text-decoration: none;
+border-radius: 5px;
+background-color: #fbad3e;
+box-shadow: 0px 4px 0px #ff9900;
+-moz-box-shadow: 0px 4px 0px #ff9900;
+-webkit-box-shadow: 0px 4px 0px #ff9900;
+color: #FFF;
+padding: 2px 7px 2px 7px;
+border: 1px solid #BBB;
+display: block;
+font-size: 12px;
+font-weight: 500;
 }
 
-td a:hover {
+#MainContent .content td a:hover {
     background: #FFF;
     color: #22bfe8;
+}
+
+#MainContent .content td img {
+width: 60px;
+border-radius: 200px;
+height: 60px;
+border: 3px solid #fff;
 }
 
 /* Sidebar
@@ -1248,6 +1760,8 @@ border: none;
 font-size: 16px;
 font-weight: 400;
 box-shadow: 0px 4px 0px #ff9900;
+-moz-box-shadow: 0px 4px 0px #ff9900;
+-webkit-box-shadow: 0px 4px 0px #ff9900;
 text-transform: uppercase;
 width: 90%;
 display: block;
@@ -1260,6 +1774,65 @@ margin-left: 3%;
 box-shadow: 0px 4px 0px #0099cc;
 -moz-box-shadow: 0px 4px 0px #0099cc;
 -webkit-box-shadow: 0px 4px 0px #0099cc;}
+
+/* Social Side Bar 
+----------------------------------------------------------------------- */
+#MainContent .SocialSidebar {
+margin: 35px 0px 0px 0px;
+display: inline-block;
+}
+
+#MainContent .SocialSidebar h2 {
+text-align: center;
+color: #22bfe7;
+margin: 25px 0px 20px;
+font-weight: 400;
+font-size: 22px;
+}
+
+#MainContent .SocialSidebar h3 {
+color: #22bfe7;
+text-align: center;
+font-weight: 500;
+font-size: 18px;
+margin: 14px 0px 0px;
+height: 100%;
+background: #fff;
+padding: 0px 0px 10px;
+}
+
+#MainContent .SocialSidebar .SidebarShare {
+background-color: #ecebe9;
+border: none;
+color: #5e5e5e;
+display: inline-block;
+padding: 7px 0px 7px 5%;
+text-align: left;
+text-transform: none;
+width: 95%;
+font-size: 14px;
+margin: 1px 0px 1px 7px;
+border-radius: 0px;
+text-decoration: none;
+font-weight: 400;
+}
+
+#MainContent .SocialSidebar .SidebarShare p {
+margin: 0px;
+font-weight: 400;
+padding: 0px;
+word-wrap: normal;
+word-break: normal;
+line-height: 100%;
+text-align: left;
+font-size: 14px;
+padding: 15px 0px;
+}
+
+#MainContent .SocialSidebar .SidebarShare .left {
+float: left;
+margin: 10px 5px 10px 0px;
+width: 40px;}
 
 
 

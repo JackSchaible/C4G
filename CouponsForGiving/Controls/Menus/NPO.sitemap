@@ -2,14 +2,14 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode>
     <siteMapNode url="~/NPO/MyHome.aspx" title="My Profile"></siteMapNode>
+    <siteMapNode url="~/NPO/Campaigns/New.aspx" title="Set Up A Campaign"></siteMapNode>
     <siteMapNode url="~/NPO/Partners/MyPartners.aspx" title="Merchant Partners">
       <siteMapNode url="~/NPO/Partners/MyLocalMerchants.aspx" title="Local Merchants" />
       <siteMapNode title="Global Marketplace" url="~/NPO/Partners/MyGlobalMerchants.aspx" />
-      <siteMapNode title="Preferred Merchants" />
+      <siteMapNode title="Preferred Merchants" url="~/NPO/Partners/MyPreferredMerchants.aspx" />
       <siteMapNode title="All"  url="~/NPO/Partners/AllPartners.aspx"/>
     </siteMapNode>
-    <siteMapNode Selectable="False" title="Social Media Toolkit">
-      <siteMapNode Selectable="False" title="Coming Soon"></siteMapNode>
+    <siteMapNode title="Social Media Toolkit" url="~/NPO/SocialMediaToolkit.aspx">
     </siteMapNode>
     <siteMapNode url="~/ContactUs.aspx" title="Help"></siteMapNode>
   </siteMapNode>

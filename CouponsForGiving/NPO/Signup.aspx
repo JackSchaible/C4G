@@ -56,27 +56,28 @@
         </div>
         <div class="FormRow TextAreaRow">
             <asp:Label ID="Label3" runat="server" Text="Describe Your Organization" AssociatedControlID="newNPODescription"></asp:Label>
-            <asp:TextBox ID="newNPODescription" runat="server" TextMode="MultiLine"></asp:TextBox>
+            <asp:TextBox ID="newNPODescription" runat="server" TextMode="MultiLine" MaxLength="200"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="newNPODescription" 
                 ErrorMessage="Description is Required" ForeColor="Red">*</asp:RequiredFieldValidator>
         </div>
         <div class="FormRow">
-            <asp:Label ID="Label2" runat="server" Text="Upload Your Logo" AssociatedControlID="newNPOLogo"></asp:Label>
+            <label>Upload Your Logo<br /><small>Images must be no larger than 4MB</small></label>
             <asp:FileUpload ID="newNPOLogo" runat="server" />
-            <p>Note: Images must be no larger than 4MB.</p>
-            <asp:RequiredFieldValidator ID="logoRequired" runat="server" ControlToValidate="newNPOLogo" 
-                ErrorMessage="Logo is Required" ForeColor="Red">*</asp:RequiredFieldValidator>
+            <p><%: (hasImage) ? "You have already uploaded an image." : "" %></p>
         </div>
         <div class="FormRow">
-            <label>Organization Website<br /><small>Note: You must include the http:// prefix (for example, 'http://www.mysite.ca')</small></label>
+            <label>Organization Website</label>
             <asp:TextBox ID="newNPOWebsite" runat="server" MaxLength="256"></asp:TextBox>
             <asp:RequiredFieldValidator ID="websiteRequired" runat="server" ControlToValidate="newNPOWebsite" 
                 ErrorMessage="Website is Required" ForeColor="Red">*</asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="newNPOWebsite"
                 ErrorMessage="Website invalid. (Ex. 'http://www.mywebsite.com')" ForeColor="Red" 
-                ValidationExpression="^(ht|f)tp(s?)\:\/\/(([a-zA-Z0-9\-\._]+(\.[a-zA-Z0-9\-\._]+)+)|localhost)(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?([\d\w\.\/\%\+\-\=\&amp;\?\:\\\&quot;\'\,\|\~\;]*)$">*</asp:RegularExpressionValidator>
+                ValidationExpression="^((http:\/\/www\.)|(www\.)|(http:\/\/))[a-zA-Z0-9._-]+\.[a-zA-Z.]{2,5}$">
+                *
+            </asp:RegularExpressionValidator>
         </div>
         <div class="FormRow">
+            <iframe name="termsAndConditions" style="width: 100%;" src="../Content/Terms/NPOServicesAgreement.txt"></iframe>
             <p>I have read and undertand the <a target="_blank" href="../Content/Terms/NPOServiceAgreement.pdf">terms and conditions.</a></p>
             <asp:CheckBox ID="TermsCheckbox" runat="server" />
         </div>

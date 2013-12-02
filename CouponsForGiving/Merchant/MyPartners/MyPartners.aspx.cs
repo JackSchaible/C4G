@@ -61,10 +61,11 @@ public partial class Merchant_MyPartners_MyPartners : System.Web.UI.Page
                 in npos
                 select new
                 {
+                    NPOID = n.NPOID,
                     Name = n.Name,
                     City = n.City.Name,
                     Province = n.City.PoliticalDivision.Name,
-                    NoOfCampaigns = (from c in n.Campaigns where c.CampaignStatusID == 2 select c).Count()
+                    Campaigns = (from c in n.Campaigns where c.CampaignStatusID == 2 select c).Count()
                 }
             );
         NPOGV.DataBind();
@@ -78,10 +79,11 @@ public partial class Merchant_MyPartners_MyPartners : System.Web.UI.Page
                 in npos
                 select new
                 {
+                    NPOID = n.NPOID,
                     Name = n.Name,
                     City = n.City.Name,
                     Province = n.City.PoliticalDivision.Name,
-                    NoOfCampaigns = (from c in n.Campaigns where c.CampaignStatusID == 2 select c).Count()
+                    Campaigns = (from c in n.Campaigns where c.CampaignStatusID == 2 select c).Count()
                 }
             );
         NPOGV.DataBind();

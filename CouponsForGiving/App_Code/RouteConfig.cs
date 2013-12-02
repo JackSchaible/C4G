@@ -14,7 +14,9 @@ namespace CouponsForGiving
         {
             routes.Ignore("{resource}.axd/{*pathInfo}");
             routes.MapPageRoute("DefaultPage", "Causes/{nponame}", "~/Default/NPOPage.aspx");
-            routes.MapPageRoute("CampaignPage", "Causes/{nponame}/{campaignname}", "~/Default/CampaignPage.aspx"); //This one routes a lot of other requests
+            routes.MapPageRoute("CampaignPage", "Causes/{nponame}/{campaignname}", "~/Default/CampaignPage.aspx");
+            routes.MapPageRoute("OfferPage", "Offers/{MerchantName}/{OfferName}", "~/Default/DealPage.aspx");
+            routes.MapPageRoute("MerchantProfilePage", "Offers/{MerchantName}", "~/Default/MerchantPage.aspx");
             routes.EnableFriendlyUrls();
         }
     }

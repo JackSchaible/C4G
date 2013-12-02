@@ -16,10 +16,13 @@ using CouponsForGiving.Data.Classes;
 
 public partial class NPO_newNPO : System.Web.UI.Page
 {
+    public bool hasImage { get; set; }
     protected void Page_Load(object sender, EventArgs e)
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.Anonymous;
+
+        hasImage = false;
 
         try
         {
@@ -44,13 +47,13 @@ public partial class NPO_newNPO : System.Web.UI.Page
             string physPath = folderPath + @"\" + fileName;
 
             file.SaveAs(physPath);
-            ViewState["LogoPath"] = folderPath;
-            ViewState["LogoFileName"] = file.FileName;
+            Session["LogoPath"] = folderPath;
+            Session["LogoFileName"] = fileName;
         }
 
-        if (ViewState["Logo"] != null)
+        if (Session["LogoPath"] != null)
         {
-            //Tell the fucking user that there's a goddamn file here
+            hasImage = true;
         }
     }
 
@@ -90,7 +93,7 @@ public partial class NPO_newNPO : System.Web.UI.Page
 
                 string newURL = newName;
 
-                if ((newName == "") || (newLogo == "") || (newAddress == "") || (newPostalCode == "") || (newPhoneNumber == "") || (newWebsite == "") || (newDescription == "") || (newEmail == "") || (newURL == ""))
+                if ((newName == "") || (newAddress == "") || (newPostalCode == "") || (newPhoneNumber == "") || (newWebsite == "") || (newDescription == "") || (newEmail == "") || (newURL == ""))
                 {
                     valid = false;
                     newNPOMessage.Text = "All fields are required.";
@@ -102,7 +105,7 @@ public partial class NPO_newNPO : System.Web.UI.Page
                 if (urlunique != 1)
                 {
                     valid = false;
-                    newNPOMessage.Text = "We're sorry, but somebody else is using that name. Please select another (this is used for your unique Coupons4Giving URL.";
+                    newNPOMessage.Text = "We're sorry, but somebody else is using that name. Please select another (this is used for your unique Coupons4Giving URL).";
                     newNPOMessage.ForeColor = Color.Red;
                 }
 
@@ -112,8 +115,6 @@ public partial class NPO_newNPO : System.Web.UI.Page
                     newNPOMessage.Text = "Website invalid. (Ex. 'www.website.com')";
                     newNPOMessage.ForeColor = Color.Red;
                 }
-                else
-                    newWebsite = "http://" + newWebsite;
 
                 if (!(Utilsmk.ValidPostal(newPostalCode)))
                 {
@@ -188,23 +189,27 @@ public partial class NPO_newNPO : System.Web.UI.Page
                                     {
                                         string virtualPath = "";
 
-                                        if (ViewState["Logo"] != null)
+                                        if (Session["LogoPath"] != null)
                                         {
                                             string newPath = Server.MapPath("..\\Images\\NPO\\" + newNPOID);
-                                            newPath = Utilsmk.GetOrCreateFolder(newPath) + ViewState["LogoFileName"].ToString();
+                                            newPath = Utilsmk.GetOrCreateFolder(newPath) + Session["LogoFileName"].ToString();
 
-                                            string oldPath = ViewState["LogoPath"].ToString() + ViewState["LogoFileName"].ToString();
+                                            string oldPath = Session["LogoPath"].ToString() + Session["LogoFileName"].ToString();
 
                                             File.Move(oldPath, newPath);
 
-                                            newLogo = Utilsmk.ResolveVirtualPath(newPath);
+                                            virtualPath = Utilsmk.ResolveVirtualPath(newPath);
                                         }
                                         else
                                         {
-                                            newLogo = Utilsmk.SaveNewLogo(newNPOLogo.PostedFile, newNPOID, Server, "NPO");
-                                            virtualPath = newLogo.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
-                                        }
-                                        
+                                            if (newNPOLogo.HasFile)
+                                            {
+                                                newLogo = Utilsmk.SaveNewLogo(newNPOLogo.PostedFile, newNPOID, Server, "NPO");
+                                                virtualPath = newLogo.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
+                                            }
+                                            else
+                                                virtualPath = "Images/c4g_logo_temporary_profile.png";
+                                        }                                        
                                         SysDatamk.UpdateNPO(newNPOID, newName, newDescription, newAddress, dbCity.CityID, newPostalCode, newWebsite, newPhoneNumber, newEmail, newStatusID, virtualPath, newURL, useall);
                                         SysDatamk.NPOcUser_Insert(thisusername, newNPOID);
                                         ts.Complete();
@@ -217,6 +222,7 @@ public partial class NPO_newNPO : System.Web.UI.Page
                                     {
                                         newNPOMessage.Text = "Error! NPO was not submitted.";
                                         newNPOMessage.ForeColor = Color.Red;
+                                        newNPOID = -1;
                                         ts.Dispose();
                                     }
                                 }
@@ -226,6 +232,7 @@ public partial class NPO_newNPO : System.Web.UI.Page
                                 newNPOMessage.Text = ex.ToString();
                                 newNPOMessage.ForeColor = Color.Red;
                                 ts.Dispose();
+                                newNPOID = -1;
                             }
                         }
 
@@ -253,7 +260,7 @@ public partial class NPO_newNPO : System.Web.UI.Page
                                         }
                                     </style>
                                     <p>Congratulations! You have just set up your Coupons4Giving Profile page. Now you can get started and set up your campaigns. A team member will be in touch shortly with some tips on how to get started! In the meantime if you have any questions, please contact us at <a href='mailto:support@coupons4giving.ca'>support@coupons4giving.ca</a>.</p>
-                                    <p>Your unique Coupons4Giving profile page is <a href='https://www.coupons4giving.ca/" + name + @"'>www.coupons4giving.ca/" + newName + @"</a><p>
+                                    <p>Your unique Coupons4Giving profile page is <a href='https://www.coupons4giving.ca/Causes/" + name + @"'>www.coupons4giving.ca/" + newName + @"</a><p>
                                     <p><a href='https://www.coupons4giving.ca/NPO/Campaigns/New.aspx'>Click here</a> to set up a campaign!</p>
                                     <p>Cheers!</p>
                                     <p>The Coupons4Giving Team</p>
@@ -295,11 +302,6 @@ public partial class NPO_newNPO : System.Web.UI.Page
         newNPOMessage.Text = "";
         newNPODescription.Text = "";
         newNPOEmail.Text = "";
-    }
-
-    protected void newNPOClear_Click(object sender, EventArgs e)
-    {
-        clearForm();
     }
 
     [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]

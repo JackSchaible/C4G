@@ -6,11 +6,22 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using CouponsForGiving;
 using CouponsForGiving.Data;
+using System.Web.Configuration;
 
 public partial class Default_NpoPage : System.Web.UI.Page
 {
     public NPO npo;
     public Campaign featured;
+    public List<Campaign> campaigns;
+    public string Caption
+    {
+        get
+        {
+            return WebConfigurationManager.AppSettings["ProfilePostTitle"];
+        }
+    }
+    public string URL { get; set; }
+
 
     protected override void OnPreInit(EventArgs e)
     {
@@ -40,7 +51,7 @@ public partial class Default_NpoPage : System.Web.UI.Page
                     }
                     catch (Exception ex2)
                     {
-                        Response.Redirect("Home.aspx");
+                        Response.Redirect("MyHome.aspx");
                         ex2.ToString();
                     }
                 }
@@ -59,44 +70,36 @@ public partial class Default_NpoPage : System.Web.UI.Page
                 }
                 catch (Exception ex)
                 {
-                    Response.Redirect("Home.aspx");
+                    Response.Redirect("MyHome.aspx");
                     ex.ToString();
                 }
             }
         }
 
         if (npo == null)
-            Response.Redirect("Home.aspx", true);
+            Response.Redirect("MyHome.aspx", true);
 
-        Title = npo.Name + " - Coupons4Giving";        
+        Title = npo.Name + " - Coupons4Giving";
+        URL = WebServices.GetGoogleURL("https://www.coupons4giving.ca/Causes/" + npo.Name);
+
+        campaigns = 
+            (
+                from
+                    c
+                in 
+                    npo.Campaigns
+                where
+                    c.CampaignStatusID == 2
+                    && c.StartDate <= DateTime.Now
+                    && c.EndDate >= DateTime.Now
+                select
+                    c
+            ).ToList<Campaign>();
     }
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        featured = 
-            (
-                from ca 
-                in npo.Campaigns 
-                where ca.ShowOnHome == true 
-                    && ca.StartDate < DateTime.Now 
-                    && ca.EndDate > DateTime.Now 
-                    && ca.CampaignStatusID == 2
-                select ca
-             ).FirstOrDefault<CouponsForGiving.Data.Campaign>();
-
-        if (featured == null)
-        {
-            FeaturedCampaign.Visible = false;
-            FeaturedCampaign.Enabled = false;
-        }
-
-        Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
+        Controls_MenuBar control = (Controls_MenuBar)FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.Supporter;
-
-        if ((from c in npo.Campaigns where c.CampaignStatusID == 2 select c).Count() == 0)
-        {
-            Campaigns.Enabled = false;
-            Campaigns.Visible = false;
-        }
     }
 }

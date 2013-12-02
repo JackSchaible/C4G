@@ -17,7 +17,13 @@
         //120000);
 
         function addDeal(dealInstanceID, name) {
-            PageMethods.SaveCampaign($("#CampaignID").val(), $("#Username").val(), $("#newCampaignName").val(), $("#newCampaignDescription").val(), '', '',
+            var startDate = $("#StartDate>#DayDDL").val() + '-' + $("#StartDate>#MonthDDL").val() + '-' + $("#StartDate>#YearDDL").val();
+            var endDate = $("#EndDate>#DayDDL").val() + '-' + $("#EndDate>#MonthDDL").val() + '-' + $("#EndDate>#YearDDL").val();
+
+            console.log(startDate);
+            console.log(endDate);
+
+            PageMethods.SaveCampaign($("#CampaignID").val(), $("#Username").val(), $("#newCampaignName").val(), $("#newCampaignDescription").val(), startDate, endDate,
                $("#newCampaignFundraisingGoal").val(), $("#newCampaignShowOnHome").val(), $("#newCampaignGoal").val(), function (result, userContext, methodName) {
                    $("#CampaignID").val(result);
 
@@ -76,7 +82,7 @@
         }
     </style>
     <h1>New <%: npo.Name %> Campaign</h1>
-    <img src="../<%: npo.Logo %>" class="campaign_logo" />
+    <img src="../../<%: npo.Logo %>" class="campaign_logo" />
     <p>Set up a campaign and include information like:</p>
     <div class="actionList">
         <ul>
@@ -106,7 +112,7 @@
         </div>
         <div class="FormRow">
             <label>Tell us about your Campaign</label>
-            <asp:TextBox ID="newCampaignDescription" ClientIDMode="Static" runat="server" TextMode="MultiLine"></asp:TextBox>
+            <asp:TextBox ID="newCampaignDescription" ClientIDMode="Static" runat="server" TextMode="MultiLine" MaxLength="200"></asp:TextBox>
             <div class="ClearFix"></div>
         </div>
         <div class="FormRow">
@@ -119,7 +125,7 @@
         </div>
         <div class="FormRow">
             <label>Start Date</label>
-            <UC:DateControl ID="StartDate" runat="server" AcceptPastDates="false" />
+            <UC:DateControl ID="StartDate" runat="server" AcceptPastDates="false" ClientIDMode="Static" />
             <div class="ClearFix"></div>
         </div>
         <div class="FormRow">

@@ -75,7 +75,7 @@
         <div class="quarter">
             <h4>Twitter</h4>
         	<img runat="server" src="~/Images/c4g_action_twitter.png" class="centered" />
-            <p><a href="https://twitter.com/share" class="twitter-share-button"
+            <p><a href="https://twitter.com/share" class="twitter-share-button" data-url="<%: URL %>"
                 data-text="<%: Caption %>" data-hashtags="C4G, DealsThatMakeADifference">Tweet</a></p>
         </div>
         <div class="quarter">
