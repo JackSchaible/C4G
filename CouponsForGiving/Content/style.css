@@ -300,7 +300,7 @@ nav, nav #MeuBarControl_Menu {
 text-align: center;
 }
 
-#MenuBarControl_Menu a.static {
+nav #MenuBarControl_Menu a.static {
 padding-left: 10px;
 padding-right: 10px;
 }
@@ -364,11 +364,11 @@ z-index: 100;
 display: none;
 position: absolute;
 top: 100%;
-width: 200px;
+width: 225px !important;
 padding: 0px 0px;
 background: #22bfe8;
 margin: 0px;
-
+left: -10px !important;
     }
 
 	nav #MenuBarControl_Menu li ul li, nav li ul li {
@@ -435,18 +435,28 @@ line-height: 130%;
 }
 
 .field-validation-error {
-display: block;
+display: none;
 background: #f9d8a9;
 padding: 10px;
 font-size: 13px;
 float: left;
 margin: 20px 0px;
-width: 100%;
+width: 90%;
 border: 1px solid #ff9900;}
 
-#FormRow label.checkbox {
+#Main_Content_ErrorLabel {
+background: #22bfe8;
+padding: 10px;
+font-size: 16px;
+float: left;
+margin: 40px 0px;
+width: 100%;
+color: #fff;
+}
+
+#MainContent .FormRow label.checkbox {
+padding-left: 30px;
 width: 50%;
-padding-left: 31px;
 }
 
 
@@ -571,7 +581,7 @@ color: #FFF;
 font-family: Ubuntu, Corbel, Arial, sans-serif;
 border-radius: 2px;
 padding: 10px 20px;
-min-width: 200px;
+min-width: 250px;
 border: none;
 font-size: 18px;
 font-weight: 400;
@@ -586,6 +596,14 @@ input[type=submit]:hover, .FormRow input[type="submit"]:hover {background: #22bf
 box-shadow: 0px 4px 0px #0099cc;
 -moz-box-shadow: 0px 4px 0px #0099cc;
 -webkit-box-shadow: 0px 4px 0px #0099cc;}
+
+iframe {
+width: 100%;
+border: 1px solid #ccc;
+padding: 20px 0px;
+margin: 20px 0px;
+}
+
 
 #MainContent .FormRow table {
     width: 80%;
@@ -868,14 +886,14 @@ margin-bottom: 0px;}
 ---------------------------------------------------------------- */
 
 #MainContent .homeBanners {
-margin: 10px 0px -40px;
+margin: 10px 0px -20px;
 display: block;
 height: 300px;
 }
 
 #MainContent .homeBanners h2 {
 width: 64%;
-margin: 100px 0px 0px;
+margin: 75px 0px 0px;
 display: inline-block;
 float: left;
 font-size: 30px;
@@ -889,8 +907,8 @@ width: 64%;
 display: inline-block;
 float: left;
 margin-top: 20px;
-line-height: 165%;
 font-weight: 400;
+line-height: 135%;
 }
 
 #MainContent .homeBanners .right-heartinhand {
@@ -908,7 +926,7 @@ margin: -170px 0px;
 #MainContent .homeBanners .right-merchant {
 float: right;
 display: inline-block;
-margin: -155px 0px;
+margin: -130px 0px;
 }
 
 .HowItWorksBanner #MainContent .quarter h4 {
@@ -925,12 +943,18 @@ line-height: 150%;
 /* Company, Merchant and Public Profiles 
 ---------------------------------------------------------------- */
 
-#MainContent h3.merchant-address, #MainContent h3.npo-address {
-margin: -20px 0px 20px;
+#MainContent h3.merchant-address, #MainContent h3.npo-address, #MainContent h4.merchant-website {
+margin: -15px 0px 20px;
 font-size: 18px;
 color: #5e5e5e;
 font-weight: 500;
 }
+
+#MainContent h3.npo-name {
+margin: -15px 0px 20px;
+font-size: 24px;
+color: #5e5e5e;
+font-weight: 500;}
 
 #MainContent .charity-info h4 {margin: 10px 0px 10px;}
 #MainContent .charity-info p {margin: 0px 0px 5px;
@@ -1003,6 +1027,44 @@ font-size: 36px;
 color: #fbad3e;
 right: 65px;
 font-weight: 700;}
+
+/* Public Profiles Edit
+
+---------------------------------------------------------------- */
+
+.profile-edit {
+}
+
+.profile-edit .edit {cursor: pointer;
+position: relative;
+left: 0px;
+top: 0px;
+width: ;
+z-index: 5;
+float: right;
+vertical-align: top;
+margin: 0px;
+padding: 0px;
+display: block;}
+
+.profile-edit #profile-edit-description {
+width: 100%;
+float; left;
+}
+
+.profile-edit #profile-edit-image {
+float: right;
+width: 150px;
+display: inline-block;
+}
+
+.profile-edit #profile-edit-address, .profile-edit #profile-edit-postal-code, .profile-edit #profile-edit-email, .profile-edit #profile-edit-phone-number, .profile-edit #profile-edit-city, .profile-edit #profile-edit-province, .profile-edit #profile-edit-country {
+
+}
+
+.profile-edit #profile-edit-address p, .profile-edit #profile-edit-postal-code p, .profile-edit #profile-edit-email p, .profile-edit #profile-edit-phone-number p, .profile-edit #profile-edit-city p, .profile-edit #profile-edit-province p, .profile-edit #profile-edit-country p {
+width: 60%; display: inline-block;
+}
 
 /* Main Content 
 ---------------------------------------------------------------- */
@@ -1110,7 +1172,7 @@ text-decoration: none;}
 /* Buttons
 ------------------------------------------------------------------------------- */
 
-#MainContent a.btn, #MainContent a.btn-large, #MainContent a.btn-center, #MainContent a.btn-blue, #MainContent a.btn-regular {
+#MainContent a.btn, #MainContent a.btn-large, #MainContent a.btn-center, #MainContent a.btn-blue, #MainContent a.btn-regular, #MainContent input[type=submit].btn-shoppingcart {
 background: #fbad3e;
 color: #FFF;
 font-family: Ubuntu, Corbel, Arial, sans-serif;
@@ -1146,6 +1208,11 @@ min-width: 250px;
 margin: 20px auto 30px;
 }
 
+#MainContent input[type=submit].btn-shoppingcart {
+width: 175px;
+margin: 10px 5px;
+}
+
 #MainContent a.btn-blue {
 background: #22bfe8;
 box-shadow: 0px 4px 0px #0099cc;
@@ -1153,7 +1220,7 @@ box-shadow: 0px 4px 0px #0099cc;
 -webkit-box-shadow: 0px 4px 0px #0099cc;
 }
 
-#MainContent a.btn:hover, #MainContent a.btn-large:hover, #MainContent a.btn-center:hover, #MainContent a.btn-regular:hover  {background: #22bfe8;
+#MainContent a.btn:hover, #MainContent a.btn-large:hover, #MainContent a.btn-center:hover, #MainContent a.btn-regular:hover, #MainContent input[type=submit].btn-shoppingcart:hover  {background: #22bfe8;
 box-shadow: 0px 4px 0px #0099cc;
 -moz-box-shadow: 0px 4px 0px #0099cc;
 -webkit-box-shadow: 0px 4px 0px #0099cc;}
@@ -1321,13 +1388,13 @@ font-family: Ubuntu, Corbel, Arial, sans-serif;
 border-radius: 5px;
 padding: 10px 5%;
 border: none;
-font-size: 18px;
+font-size: 16px;
 font-weight: 400;
 box-shadow: 0px 4px 0px #0099cc;
 -moz-box-shadow: 0px 4px 0px #0099cc;
 -webkit-box-shadow: 0px 4px 0px #0099cc;
 text-transform: uppercase;
-width: 205px;
+width: 80%;
 display: inline-block;
 text-align: center;
 text-decoration: none;
@@ -1342,7 +1409,7 @@ font-family: Ubuntu, Corbel, Arial, sans-serif;
 border-radius: 5px;
 padding: 10px 5%;
 border: none;
-font-size: 18px;
+font-size: 16px;
 font-weight: 400;
 box-shadow: 0px 4px 0px #ff9900;
 -moz-box-shadow: 0px 4px 0px #ff9900;
@@ -1353,7 +1420,7 @@ text-decoration: none;
 float: none;
 margin: 5px auto;
 display: block;
-width: 210px;
+width: 80%;
 }
 
 #MainContent a.btn-coupon:hover {background: #22bfe8;
@@ -1425,10 +1492,12 @@ margin: 0px auto;
 }
 
 #MainContent .c4g-coupon-tile p, #MainContent .c4g-campaign-tile p {
-margin: 10px 0px;
+margin: 10px auto;
 line-height: 150%;
 font-size: 14px;
-/* padding: 0px 20px 0px 30px; */
+padding: 0px 0px 0px 0px;
+width: 90%;
+text-align: center;
 }
 
 #MainContent .c4g-campaign-tile p {
@@ -1463,7 +1532,7 @@ font-family: 'Lato', sans-serif;
 text-align: center;
 margin: 0px auto;
 font-weight: 900;
-font-size: 14px;
+font-size: 13px;
 display: block;
 }
 
@@ -1599,7 +1668,7 @@ margin: 0px 30px 40px 0px;
 width: 135px;
 }
 
-#MainContent .campaign_logo,  #MainContent .merchant_logo, #MainContent .npo_logo{
+#MainContent .merchant_logo, #MainContent .npo_logo{
 border-radius: 200px;
 float: right;
 display: block;
@@ -1608,6 +1677,15 @@ width: 150px;
 border: 10px solid #ecebe9;
 padding: 0px;
 height: 150px;
+}
+
+#MainContent .campaign_logo {
+float: right;
+display: block;
+margin: 0px 0px 40px 30px;
+width: 200px;
+border: none;
+padding: 0px;
 }
 
 
@@ -1624,12 +1702,11 @@ th {
 	
 }
 
-#MainContent .content tr {
+#MainContent #content tr {
 font-size: 12px;
 text-align: center;
 border-bottom: 1px solid #e5e5e5;
 padding-bottom: 10px;
-border-top: 1px solid #e5e5e5;
 padding-top: 10px;
 }
 
@@ -1638,7 +1715,7 @@ td {
     text-align: center;
 }
 
-#MainContent .content td a, #MainContent .content td button, #MainContent .content td input[type="button"], .JoinButton {
+#MainContent #content td a, #MainContent .content td .button, #MainContent .content td input[type="button"], .JoinButton {
 text-decoration: none;
 border-radius: 5px;
 background-color: #fbad3e;
@@ -1647,23 +1724,54 @@ box-shadow: 0px 4px 0px #ff9900;
 -webkit-box-shadow: 0px 4px 0px #ff9900;
 color: #FFF;
 padding: 2px 7px 2px 7px;
-border: 1px solid #BBB;
 display: block;
-font-size: 12px;
+font-size: 14px;
 font-weight: 500;
+border: none;
 }
 
-#MainContent .content td a:hover {
-    background: #FFF;
-    color: #22bfe8;
+#MainContent #content td a:hover, #MainContent .content td .button:hover, #MainContent .content td input[type="button"]:hover {
+background: #22bfe8;
+box-shadow: 0px 4px 0px #0099cc;
+-moz-box-shadow: 0px 4px 0px #0099cc;
+-webkit-box-shadow: 0px 4px 0px #0099cc;
 }
 
-#MainContent .content td img {
+#MainContent #content td img {
 width: 60px;
 border-radius: 200px;
 height: 60px;
 border: 3px solid #fff;
 }
+
+/* Cart
+---------------------------------------------------------------- */
+
+       #Totals {
+            float: right;
+            margin: 0 0px 0 0;
+            width: 250px;
+        }
+
+        #Totals p {
+            width: auto !important;
+        }
+        
+        #Totals p span {
+        font-size: 20px;
+        float: right;
+        font-weight: 700;}
+        
+        #Totals p span#Main_Content_TotalLabel {
+        color: #22bfe7;
+        }
+
+        #Buttons {
+float: right;
+padding: 0px 0px;
+text-align: right;
+        }
+
 
 /* Sidebar
 ________________________________________________________________ */
@@ -1705,10 +1813,11 @@ display: block;
 
 #MainContent aside h2, #MainContent .Sidebar h1 {
 text-align: center;
-color: #22bfe7;
+color: #5e5e5e;
 margin: 25px 0px 20px;
-font-weight: 400;
-font-size: 22px;
+font-weight: 500;
+font-size: 20px;
+line-height: 135%;
 }
 
 #MainContent aside h3, #MainContent aside th, #MainContent .Sidebar th {
@@ -1834,7 +1943,12 @@ float: left;
 margin: 10px 5px 10px 0px;
 width: 40px;}
 
-
+#MainContent .SocialSidebar .SidebarShare iframe.twitter-share-button, #MainContent iframe.twitter-share-button {
+width: 100%;
+padding: 20px 0px;
+padding: 0px 0px 0px;
+border: none;
+margin: 0px;}
 
 /* Footer 
 ----------------------------------------------------------------------- */

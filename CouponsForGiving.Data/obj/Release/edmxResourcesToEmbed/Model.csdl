@@ -738,6 +738,24 @@
     <FunctionImport Name="PurchaseOrder_Unredeem">
       <Parameter Name="PurchaseOrderID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="Deal_ListByCity" EntitySet="DealInstances" ReturnType="Collection(C4GModel.DealInstance)">
+      <Parameter Name="City" Mode="In" Type="String" />
+      <Parameter Name="PoliticalDivision" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="CampaignDealInstance_Exists" ReturnType="Collection(String)">
+      <Parameter Name="CampaignID" Mode="In" Type="Int32" />
+      <Parameter Name="DealInstanceID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Campaign_List" EntitySet="Campaigns" ReturnType="Collection(C4GModel.Campaign)" />
+    <FunctionImport Name="NPOSettings_Update">
+      <Parameter Name="Username" Mode="In" Type="String" />
+      <Parameter Name="AutoAcceptMerchantRequests" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="City_GetByNameWithProvinceAndCountry" EntitySet="Cities" ReturnType="Collection(C4GModel.City)">
+      <Parameter Name="CityName" Mode="In" Type="String" />
+      <Parameter Name="ProvinceName" Mode="In" Type="String" />
+      <Parameter Name="CountryName" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="Campaign">
     <Key>
@@ -2414,5 +2432,36 @@
     <Property Type="Decimal" Name="NPOSplit" Nullable="false" Precision="19" />
     <Property Type="Decimal" Name="MerchantSplit" Nullable="false" Precision="19" />
     <Property Type="Decimal" Name="OurSplit" Nullable="false" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="Deal_ListByCity_Result">
+    <Property Type="Int32" Name="DealInstanceID" Nullable="false" />
+    <Property Type="Int32" Name="DealID" Nullable="false" />
+    <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="EndDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="RedeemableAfter" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="ExpiryDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="DealStatusID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Campaign_List_Result">
+    <Property Type="Int32" Name="CampaignID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="true" MaxLength="256" />
+    <Property Type="Int32" Name="NPOID" Nullable="false" />
+    <Property Type="DateTime" Name="StartDate" Nullable="true" Precision="23" />
+    <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CampaignDescription" Nullable="true" />
+    <Property Type="Int32" Name="FundraisingGoal" Nullable="true" />
+    <Property Type="String" Name="CampaignImage" Nullable="true" MaxLength="256" />
+    <Property Type="Boolean" Name="ShowOnHome" Nullable="true" />
+    <Property Type="Int32" Name="DisplayPriority" Nullable="true" />
+    <Property Type="String" Name="CampaignGoal" Nullable="true" />
+    <Property Type="Boolean" Name="HasAcceptedTerms" Nullable="false" />
+    <Property Type="Int32" Name="CampaignStatusID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="City_GetByNameWithProvinceAndCountry_Result">
+    <Property Type="String" Name="CityCode" Nullable="false" MaxLength="3" />
+    <Property Type="Int32" Name="PoliticalDivisionID" Nullable="true" />
+    <Property Type="String" Name="CountryCode" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+    <Property Type="Int32" Name="CityID" Nullable="false" />
   </ComplexType>
 </Schema>

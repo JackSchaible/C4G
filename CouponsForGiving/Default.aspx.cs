@@ -43,9 +43,11 @@ public partial class _Default : System.Web.UI.Page
 
         MailMessage mm = new MailMessage();
 
-        mm.To.Add(new MailAddress("michelle@coupons4giving.ca"));
-        mm.To.Add(new MailAddress("thompson@coupons4giving.ca"));
-        mm.To.Add(new MailAddress("jack@coupons4giving.ca"));
+        //mm.To.Add(new MailAddress("michelle@coupons4giving.ca"));
+        //mm.To.Add(new MailAddress("thompson@coupons4giving.ca"));
+        //mm.To.Add(new MailAddress("jack@coupons4giving.ca"));
+        mm.To.Add(new MailAddress("jack.schaible@hotmail.com"));
+        mm.To.Add(new MailAddress("michelle.a.sklar@gmail.com"));
 
         mm.IsBodyHtml = true;
 
@@ -80,5 +82,7 @@ public partial class _Default : System.Web.UI.Page
         }
         SmtpClient client = new SmtpClient();
         client.Send(mm);
+
+        SignupLabel.Text = "Your request has been sent. A Coupons4Giving team member will respond to you shortly.";
     }
 }

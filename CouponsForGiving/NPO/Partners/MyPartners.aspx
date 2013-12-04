@@ -7,6 +7,7 @@
     <h1>My Merchant Partners</h1>
     <p><img src="../../images/c4g_merchantpartners.png" class="circle_image_right" />Coupons4Giving allows you to build a custom list of Merchant Partners. These partners are providing offers for you to add to your campaign. You can add as many merchant offers as you like to your campaigns to help you reach your goals. In order for you to activate a merchant offer for you campaign, that merchant must have offers available that match your campaign timelines. </p>
     <p>Our goal is to provide you with a robust list of exciting merchants to help you run successful campaigns. Adding or refreshing your list of merchants will keep your supporters wanting to come back for more great deals, which in turn helps you make more money. </p>
+    <hr />
     <h2>See All of Your Merchants</h2>
     <div class="half"> 
         <a class="btn-blue" href="AllPartners.aspx">All Merchants</a> 
@@ -15,9 +16,11 @@
     <div class="half">
         <a class="btn" href="MyLocalMerchants.aspx">Local Merchants</a> 
         <a class="btn" href="MyPreferredMerchants.aspx">Preferred Merchants</a>
-    </div>
+    </div>   
     <div class="clear"></div>
     <a href="../Campaigns/New.aspx" class="btn-center">Setup A Campaign</a>
+    <hr />
+    <h2>Helpful Tips</h2>
     <div class="tipList">
         <ul>
             <li class="merchantstep1">

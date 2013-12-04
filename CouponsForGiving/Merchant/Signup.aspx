@@ -12,8 +12,7 @@
         }
     </script>
         <h1>Profile Page Setup</h1>
-        <p style="padding: 0 0 0 30px">
-            Set up your profile with information about your business. 
+        <p> Set up your profile with information about your business. 
             This page will now be your public page so that customers 
             and not-for-profits can learn about you. You can include 
             images and your social media channels.You can share with 
@@ -25,8 +24,8 @@
         <p>You must have a bank account and business number (GST or Tax ID number) in order to set up a Stripe account. Stripe directly deposits money into your account.</p>
         <p>Tell us about your organization:</p>
         <div class="Form">
-        <h3>Tell Us About Yourself and Your Business:</h3>
-        <p><asp:Label ID="newMerchantMessage" runat="server"></asp:Label></p>
+            <h3>Tell Us About Yourself and Your Business:</h3>
+            <p><asp:Label ID="newMerchantMessage" runat="server"></asp:Label></p>
             <div class="FormRow">
                 <asp:Label ID="Label6" runat="server" Text="First Name" AssociatedControlID="FirstNameTextBox"></asp:Label>
                 <asp:TextBox ID="FirstNameTextBox" runat="server"></asp:TextBox>
@@ -142,7 +141,7 @@
                 </asp:DropDownList>
             </div>
             <div class="FormRow">
-                <label>Website<br /><small>Note: You must include the http:// prefix (for example, 'http://www.mysite.ca')</small></label>
+                <label>Website</label>
                 <asp:TextBox ID="URLTextBox" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
                     ControlToValidate="URLTextBox" ErrorMessage="Website is required">*</asp:RequiredFieldValidator>
@@ -153,14 +152,9 @@
                 </asp:RegularExpressionValidator>
             </div>
             <div class="FormRow">
-                <label>Large Logo<br /><small>This will be the large logo on your Coupons4Giving Profile page.</small></label>
+                <label>Logo<br /><small>This will be the large logo on your Coupons4Giving Profile page.</small></label>
                 <asp:FileUpload ID="newMerchantLargeLogo" runat="server" />
                 <p><%: (hasLargeLogo) ? "You have already uploaded a large logo." : "" %></p>
-            </div>
-            <div class="FormRow">
-                <label>Small Logo<br /><small>This is a small logo, or icon, used in lists to easily identify your company and brand.</small></label>
-                <asp:FileUpload ID="newMerchantSmallLogo" runat="server" />
-                <p><%: (hasSmallLogo) ? "You have already uploaded a small logo." : "" %></p>
             </div>
             <h4>Additional Information (For Stripe)</h4>
             <div class="FormRow">

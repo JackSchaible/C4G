@@ -58,7 +58,7 @@ public partial class NPO_Partners_Add : System.Web.UI.Page
 
             if (MerchantSettings.AcceptsAllRequests(merch.MerchantID))
             {
-                mm.To.Add(npo.Email);
+                mm.To.Add(merch.Email);
                 Merchants.AddNPOPartner(npo.NPOID, merch.MerchantID);
                 mm.Subject = "C4G: " + npo.Name + " Has Partnered with You!";
                 mm.Body = @"
@@ -74,7 +74,7 @@ public partial class NPO_Partners_Add : System.Web.UI.Page
                            ";
 
                 ErrorLabel.Text = "Congratulations! You are now partnered with that Merchant!";
-                ErrorLabel.ForeColor = Color.Black;
+                ErrorLabel.Style.Add("display", "block");
             }
             else
             {

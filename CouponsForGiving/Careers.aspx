@@ -3,20 +3,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
-    <style type="text/css">
-        #MainContent {
-            padding: 0 0 0 5%;
-            width: 60% !important;
-        }
-
-        li ul li {
-            margin: 0 0 0 2%;
-        }
-
-        #MainContent h2 {
-            margin: 2% 0 0 0;
-        }
-    </style>
     <h1>Coupons4Giving Careers</h1>
     <p>Looking to work with a great team, fun environment and exciting and challenging tech innovations? Join our GenerUS Team!</p>
     <p>Coupons4Giving, a subsidiary of GenerUS Marketing Solutions is looking for:</p>

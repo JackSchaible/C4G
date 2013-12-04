@@ -383,6 +383,11 @@ namespace CouponsForGiving.Data.Classes
         {
             return new C4GEntities().City_GetByName(name, provinceCode, countryCode).FirstOrDefault<City>();
         }
+
+        public static City GetByNameWithProvinceAndCountry(string name, string province, string country)
+        {
+            return new C4GEntities().City_GetByNameWithProvinceAndCountry(name, province, country).FirstOrDefault<City>();
+        }
     }
 
     public static class FinePrints
@@ -492,6 +497,11 @@ namespace CouponsForGiving.Data.Classes
         {
             new C4GEntities().NPOSetting_Insert(NPOID, AutoAcceptMerchantRequests);
         }
+
+        public static void Update(string username, bool AutoAcceptMerchantRequests)
+        {
+            new C4GEntities().NPOSettings_Update(username, AutoAcceptMerchantRequests);
+        }
     }
 
     public static class MerchantNPO
@@ -554,6 +564,11 @@ namespace CouponsForGiving.Data.Classes
             return new C4GEntities().Deal_GetEligibleByUsername(username, endDate).ToList<Deal_GetEligibleByUsername_Result>();
         }
 
+        public static List<DealInstance> ListByCity(string city, string province)
+        {
+            return new C4GEntities().Deal_ListByCity(city, province).ToList<DealInstance>();
+        }
+
         public static int Insert (int merchantID, string name, string description, 
             int absoluteCouponLimit, int limitPerCustomer, string image)
         {
@@ -571,6 +586,11 @@ namespace CouponsForGiving.Data.Classes
 
     public static class Campaigns
     {
+        public static List<Campaign> List()
+        {
+            return new C4GEntities().Campaign_List().ToList<Campaign>();
+        }
+
         public static List<Campaign> ListByCity(string city, string country)
         {
             return new C4GEntities().Campaign_ListByCity(city, country).ToList<Campaign>();
@@ -635,6 +655,15 @@ namespace CouponsForGiving.Data.Classes
         public static void Remove(int CampaignID, int DealInstanceID)
         {
             new C4GEntities().CampaignDealInstance_Remove(DealInstanceID, CampaignID);
+        }
+
+        public static bool Exists(int CampaignID, int DealInstanceID)
+        {
+            bool result = false;
+
+            result = bool.Parse(new C4GEntities().CampaignDealInstance_Exists(CampaignID, DealInstanceID).FirstOrDefault<string>());
+
+            return result;
         }
     }
 

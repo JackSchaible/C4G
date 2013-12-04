@@ -30,7 +30,7 @@
     </asp:GridView>
     <asp:Label ID="ErrorLabel" runat="server"></asp:Label>
     <h2>Global Marketplace</h2>
-    <asp:GridView ID="GlobalMarketplaceGV" runat="server" AutoGenerateColumns="False" DataKeyNames="MerchantID" DataSourceID="GlobalMerchantsODS" OnSelectedIndexChanging="GlobalMarketplaceGV_SelectedIndexChanging">
+    <%--<asp:GridView ID="GlobalMarketplaceGV" runat="server" AutoGenerateColumns="False" DataKeyNames="MerchantID" DataSourceID="GlobalMerchantsODS" OnSelectedIndexChanging="GlobalMarketplaceGV_SelectedIndexChanging">
         <Columns>
             <asp:CommandField InsertText="Add" NewText="Add" SelectText="View" ShowInsertButton="True" ShowSelectButton="True" />
             <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
@@ -40,9 +40,9 @@
             <asp:BoundField DataField="Website" HeaderText="Website" SortExpression="Website" />
         </Columns>
         <EmptyDataTemplate>
-            <img src="../../images/c4g_comingsoon_small.png" style="width: 100%" />
         </EmptyDataTemplate>
-    </asp:GridView>
+    </asp:GridView>--%>
+    <img src="../../images/c4g_comingsoon.png" />
     <asp:Label ID="GlobalError" runat="server"></asp:Label>
     <asp:ObjectDataSource ID="GlobalMerchantsODS" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="Merchant_ListGlobal" TypeName="CouponsForGiving.Data.SysData"></asp:ObjectDataSource>
     <h2>Invite Your Preferred Merchants</h2>

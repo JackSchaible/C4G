@@ -182,9 +182,9 @@
 			    <li><a runat="server" href="~/AboutUs.aspx?c=WhoWeAre">Who We Are</a></li>
 			    <li><a runat="server" href="~/AboutUs.aspx?c=OurTeam">Our Team</a></li>
 			    <li><a runat="server" href="~/InTheCommunity.aspx">In The Community</a></li>
-			    <li><a runat="server" href="~/Default/Home.aspx">My Coupons</a></li>
-			    <li><a runat="server" href="~/NPO/Home.aspx">My Campaigns</a></li>
-			    <li><a runat="server" href="~/Merchant/Home.aspx">For Merchants</a></li>
+			    <li><a runat="server" href="~/Default/MyHome.aspx">My Coupons</a></li>
+			    <li><a runat="server" href="~/NPO/MyHome.aspx">My Campaigns</a></li>
+			    <li><a runat="server" href="~/Merchant/MyHome.aspx">For Merchants</a></li>
 			    <li><a runat="server" href="~/Blog.aspx">Blog</a></li>
 		    </ul>
             <ul>

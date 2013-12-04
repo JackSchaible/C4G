@@ -4,13 +4,17 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
-    <h1>Thank You for Signing up with Coupons4Giving!</h1>
-    <p>Thanks for registering with Coupons4Giving. A team member will be in touch with shortly with some tips on how to get started! In the meantime if you have any questions, please contact us at <a href="mailto:support@couponsforgiving.ca">support@coupons4giving.ca.</a></p> 
-    <p>Your unique Coupons4Giving profile page is <a href='www.coupons4giving.ca/Default/MerchantPage.aspx?MerchantName=<%: Server.UrlEncode(merchant.Name) %>'>coupons4giving.ca/<%: merchant.Name %></a></p>
-    <UC:ShareControl ID='ShareControl' runat='server' Share='Profile' CType="Offer"
-        Name='<%# merchant.Name %>' ImageURL='<%# "https://www.coupons4giving.ca/" + merchant.LargeLogo %>' 
-        Description='<%# merchant.cUser.MerchantInfoes.First<CouponsForGiving.Data.MerchantInfo>().MerchantDescription %>' />
-    <p>Now you are ready for step 2: set up offers with Coupons4Giving!</p>
-    <a class="HeaderButton" href="Offers/New.aspx">Get Started!</a>
-    <p>If you have any Not-For-Profits you'd like to partner with, or invite to join Coupons4Giving, <a href="Partners/Add.aspx" class="btn">click here</a> to add or invite them!</p>
+    <h1>Congratulations, You've Just Created Your Profile With Coupons4Giving!</h1>
+    <div class="actionList">
+        <ul>
+            <li class="thumb">Your unique <strong>Coupons4Giving profile page</strong> is <strong><a href='https://www.coupons4giving.ca/Causes/<%: merchant.Name %>'>coupons4giving.ca/Causes/<%: merchant.Name %></a></strong></li>
+        </ul>
+    </div>
+    <hr>
+        <UC:ShareControl ID='ShareControl1' runat='server' Share='Profile' CType='Campaign'
+            Name='<%# merchant.Name %>' ImageURL='<%# "https://www.coupons4giving.ca/" + merchant.LargeLogo %>' Description='<%# merchant.cUser.MerchantInfoes.FirstOrDefault<CouponsForGiving.Data.MerchantInfo>().MerchantDescription %>' />
+    <hr>
+    <p>If you have any questions, please contact us at <a href="mailto:support@coupons4giving.ca">support@coupons4giving.ca.</a></p>
+    <p>Now you are ready for <strong>Step 2: set up your offers with Coupons4Giving!</strong></p>
+    <a class="btn-center" href="Offers/New.aspx">Get Started!</a>
 </asp:Content>

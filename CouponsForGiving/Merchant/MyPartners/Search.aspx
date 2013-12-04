@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Search.aspx.cs" Inherits="Merchant_MyPartners_Search" %>
+﻿<%@ Page Title="Search " Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Search.aspx.cs" Inherits="Merchant_MyPartners_Search" %>
 <%@ Reference Control="~/Controls/MenuBar.ascx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
@@ -15,7 +15,7 @@
     <div class="FormRow">
         <label>Search by Name</label>
         <asp:TextBox ID="NameTextBox" runat="server"></asp:TextBox>
-        <ajaxToolkit:AutoCompleteExtender ID="NameACE" runat="server" 
+        <ajaxToolkit:AutoCompleteExtender ID="NameACE" runat="server"
             UseContextKey="True" ServiceMethod="GetCompletionList2"
             TargetControlID="NameTextBox">
         </ajaxToolkit:AutoCompleteExtender>
@@ -24,17 +24,17 @@
         <asp:Label ID="ErrorLabel" runat="server"></asp:Label>
         <asp:Button ID="SearchButton" runat="server" Text="Search" OnClick="SearchButton_Click" />
     </div>
-    <asp:GridView ID="NPOGV" runat="server" OnSelectedIndexChanging="NPOGV_SelectedIndexChanging">
+    <asp:GridView ID="NPOGV" runat="server" OnSelectedIndexChanging="NPOGV_SelectedIndexChanging" AutoGenerateColumns="false">
         <Columns>
-            <asp:ImageField DataImageUrlField="SmallLogo" DataImageUrlFormatString="../../{0}">
+            <asp:ImageField DataImageUrlField="Logo" DataImageUrlFormatString="../../{0}">
             </asp:ImageField>
             <asp:BoundField DataField="Name" />
             <asp:BoundField DataField="City" />
             <asp:BoundField DataField="Province" />
             <asp:HyperLinkField DataNavigateUrlFields="Name" 
-                DataNavigateUrlFormatString="../../Default/MerchantPage.aspx?MerchantName={0}" 
-                Text="Click to View Offers" />
-            <asp:BoundField DataField="Offers" DataFormatString="{0} Offers Available" />
+                DataNavigateUrlFormatString="../../Default/NPOPage.aspx?name={0}" 
+                Text="Click to View Profile" />
+            <asp:BoundField DataField="Offers" DataFormatString="{0} Campaigns" />
             <asp:CommandField SelectText="Remove" ShowSelectButton="True" />
         </Columns>
         <EmptyDataTemplate>

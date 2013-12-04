@@ -10,12 +10,21 @@ using System.Web.Configuration;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 public partial class Merchant_Home : System.Web.UI.Page
 {
     public NPO npo;
-    public Campaign featured;
+    public List<DealInstance> deals;
+    public string Caption
+    {
+        get
+        {
+            return WebConfigurationManager.AppSettings["ProfilePostTitle"];
+        }
+    }
+    public string URL { get; set; }
 
     protected override void OnPreInit(EventArgs e)
     {
@@ -27,26 +36,28 @@ public partial class Merchant_Home : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
+        Controls_MenuBar control = (Controls_MenuBar)FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.NPO;
+
+        if (Page.User.Identity.IsAuthenticated)
+        {
+            HtmlAnchor button = (HtmlAnchor)LoginView1.FindControl("manageButton");
+            HtmlAnchor profileButton = (HtmlAnchor)LoginView1.FindControl("ProfileButton");
+            string path = "";
+
+            if (Page.User.IsInRole("NPO"))
+                path = Server.MapPath("~/NPO/MyHome.aspx").Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty).Replace("~", String.Empty);
+            else if (Page.User.IsInRole("Merchant"))
+                path = Server.MapPath("~/Merchant/MyHome.aspx").Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty).Replace("~", String.Empty);
+            else if (Page.User.IsInRole("User"))
+                path = Server.MapPath("~/Default/MyHome.aspx").Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty).Replace("~", String.Empty);
+
+            profileButton.HRef = path;
+        }
 
         npo = NPOs.NPO_GetByUser(User.Identity.Name);
 
-        if (npo.Campaigns.Count == 0)
-        {
-            Campaigns.Enabled = false;
-            Campaigns.Visible = false;
-        }
-        else
-        {
-            featured = (from ca in npo.Campaigns where ca.ShowOnHome == true && ca.StartDate < DateTime.Now && ca.EndDate > DateTime.Now select ca).FirstOrDefault<CouponsForGiving.Data.Campaign>();
-
-            if (featured == null)
-            {
-                FeaturedCampaign.Visible = false;
-                FeaturedCampaign.Enabled = false;
-            }
-        }
+        URL = WebServices.GetGoogleURL("https://www.coupons4giving.ca/Causes/" + npo.Name);
 
         if (!IsPostBack)
             BindData();
@@ -54,52 +65,76 @@ public partial class Merchant_Home : System.Web.UI.Page
 
     private void BindData()
     {
-        Logo.ImageUrl = "../" + npo.Logo;
+        DataBind();
     }
 
     [WebMethod]
     [ScriptMethod]
-    public static void Save(string npoid, string name, string description, string address, string cityID, 
-        string postalcode, string website, string phoneNumber, string email, string statusid,
-        string logo, string url)
+    public static void Save(string name, string description, string address, string city,
+        string province, string country, string postalcode, string website, string phoneNumber, string email, string statusid,
+        string logo, string autoAcceptMerchantRequests)
     {
-        npoid = HttpUtility.UrlDecode(npoid);
-        name = HttpUtility.UrlDecode(name);
-        description = HttpUtility.UrlDecode(description);
-        address = HttpUtility.UrlDecode(address);
-        cityID = HttpUtility.UrlDecode(cityID);
-        postalcode = HttpUtility.UrlDecode(postalcode);
-        website = HttpUtility.UrlDecode(website);
-        phoneNumber = HttpUtility.UrlDecode(phoneNumber);
-        email = HttpUtility.UrlDecode(email);
-        statusid = HttpUtility.UrlDecode(statusid);
-        logo = HttpUtility.UrlDecode(logo);
-        url = HttpUtility.UrlDecode(url);
+        name = HttpUtility.UrlDecode(name).Trim();
+        description = HttpUtility.UrlDecode(description).Trim();
+        address = HttpUtility.UrlDecode(address).Trim();
+        city = HttpUtility.UrlDecode(city).Trim();
+        province = HttpUtility.UrlDecode(province).Trim();
+        country = HttpUtility.UrlDecode(country).Trim();
+        postalcode = HttpUtility.UrlDecode(postalcode).Trim();
+        website = HttpUtility.UrlDecode(website).Trim();
+        phoneNumber = HttpUtility.UrlDecode(phoneNumber).Trim();
+        email = HttpUtility.UrlDecode(email).Trim();
+        statusid = HttpUtility.UrlDecode(statusid).Trim();
+        logo = HttpUtility.UrlDecode(logo).Trim();
+        string url = name;
+        int cityID = -1;
+        bool AutoAcceptMerchantRequests = bool.Parse(autoAcceptMerchantRequests);
 
-        SysDatamk.UpdateNPO(int.Parse(npoid), name, description, address, int.Parse(cityID), postalcode, website,
+        if (name == null)
+            throw new ArgumentNullException("name", "An NPO name is required.");
+
+        if (description == null)
+            throw new ArgumentNullException("description", "A description for your NPO is required.");
+
+        if (description == null)
+            throw new ArgumentNullException("address", "An adddress for your NPO is required.");
+
+        if (description == null)
+            throw new ArgumentNullException("city", "A city for your NPO is required.");
+
+        if (description == null)
+            throw new ArgumentNullException("province", "A province for your NPO is required.");
+
+        if (description == null)
+            throw new ArgumentNullException("country", "A country for your NPO is required.");
+
+        if (description == null)
+            throw new ArgumentNullException("postalcode", "A postal code for your NPO is required.");
+
+        if (description == null)
+            throw new ArgumentNullException("phoneNumber", "A phone number for your NPO is required.");
+
+        if (description == null)
+            throw new ArgumentNullException("email", "An email for your NPO is required.");
+
+        try
+        {
+            cityID = Cities.GetByNameWithProvinceAndCountry(city, province, country).CityID;
+        }
+        catch (Exception ex)
+        {
+            ex.ToString();
+        }
+
+        if (cityID == -1)
+            throw new Exception("Your city could not be found. Please ensure that the city, province, and country were spelt correctly and try again.");
+
+        if (description.Length < 5)
+            throw new Exception("The description for your NPO must be at least 5 characters long.");
+
+        SysDatamk.UpdateNPO(NPOs.NPO_GetByUser(HttpContext.Current.User.Identity.Name).NPOID, name, description, address, cityID, postalcode, website,
             phoneNumber, email, int.Parse(statusid), logo, url, false);
-    }
 
-    protected void fileUploadComplete(object sender, AsyncFileUploadEventArgs e)
-    {
-        string newLogo = Utilsmk.SaveNewLogo(ImageUpload.PostedFile, npo.NPOID, Server, "NPO");
-        string virtualPath = newLogo.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
-        SysDatamk.UpdateNPO(npo.NPOID, npo.Name, npo.NPODescription, npo.cAddress, npo.CityID, npo.PostalCode, npo.Website, npo.PhoneNumber, npo.Email, npo.StatusID, virtualPath, npo.URL, npo.UseAllMerchants);
-
-        Response.Redirect(Request.Url.ToString(), true);
-    }
-
-    protected void EditImageButton_Click(object sender, ImageClickEventArgs e)
-    {
-        EditImageButton.ImageUrl = "~/Images/save.jpg";
-        Logo.Visible = false;
-        ImageUpload.Visible = true;
-    }
-
-    protected void FBConnect_Click(object sender, EventArgs e)
-    {
-        Response.Redirect(String.Format("https://www.facebook.com/dialog/oauth?clientid={0}&redirecturi={1}&response_type=token&scope=",
-            WebConfigurationManager.AppSettings["FB_App_ID"],
-            Request.Url.AbsoluteUri));
+        NPOSettings.Update(HttpContext.Current.User.Identity.Name, AutoAcceptMerchantRequests);
     }
 }

@@ -1171,6 +1171,7 @@
     <Parameter Name="Name" Type="nvarchar" Mode="In" />
     <Parameter Name="NPOID" Type="int" Mode="In" />
   </Function>
+  <Function Name="Campaign_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
   <Function Name="Campaign_ListActiveByNPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="NPOID" Type="int" Mode="In" />
   </Function>
@@ -1220,6 +1221,10 @@
     <Parameter Name="CampaignID" Type="int" Mode="In" />
     <Parameter Name="ImagePath" Type="nvarchar(max)" Mode="In" />
   </Function>
+  <Function Name="CampaignDealInstance_Exists" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="CampaignID" Type="int" Mode="In" />
+    <Parameter Name="DealInstanceID" Type="int" Mode="In" />
+  </Function>
   <Function Name="CampaignDealInstance_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="campaignid" Type="int" Mode="In" />
     <Parameter Name="dealinstanceid" Type="int" Mode="In" />
@@ -1236,6 +1241,11 @@
     <Parameter Name="CityName" Type="nvarchar" Mode="In" />
     <Parameter Name="ProvinceCode" Type="nchar" Mode="In" />
     <Parameter Name="CountryCode" Type="nchar" Mode="In" />
+  </Function>
+  <Function Name="City_GetByNameWithProvinceAndCountry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="CityName" Type="nvarchar" Mode="In" />
+    <Parameter Name="ProvinceName" Type="nvarchar" Mode="In" />
+    <Parameter Name="CountryName" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="City_GetFullLocationByCityCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="cityid" Type="int" Mode="In" />
@@ -1277,6 +1287,10 @@
     <Parameter Name="absolutecouponlimit" Type="int" Mode="In" />
     <Parameter Name="limitpercustomer" Type="int" Mode="In" />
     <Parameter Name="imageURL" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="Deal_ListByCity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="City" Type="nvarchar" Mode="In" />
+    <Parameter Name="PoliticalDivision" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="Deal_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="dealid" Type="int" Mode="In" />
@@ -1576,6 +1590,10 @@
   </Function>
   <Function Name="NPOSetting_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="NPOID" Type="int" Mode="In" />
+    <Parameter Name="AutoAcceptMerchantRequests" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="NPOSettings_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
     <Parameter Name="AutoAcceptMerchantRequests" Type="bit" Mode="In" />
   </Function>
   <Function Name="PaymentOption_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">

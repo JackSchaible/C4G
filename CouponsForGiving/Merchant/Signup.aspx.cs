@@ -39,20 +39,6 @@ public partial class Merchant_Signup : System.Web.UI.Page
         hasLargeLogo = false;
         hasSmallLogo = false;
 
-        if (newMerchantSmallLogo.HasFile)
-        {
-            HttpPostedFile file = newMerchantSmallLogo.PostedFile;
-            string folderPath = Server.MapPath("..\\tmp\\Images\\Signup\\");
-            string fileName = User.Identity.Name + "--" + file.FileName;
-
-            string physPath = folderPath + @"\" + fileName;
-
-            file.SaveAs(physPath);
-            Session["SmallLogoPath"] = folderPath;
-            Session["SmallLogoFileName"] = fileName;
-
-        }
-
         if (newMerchantLargeLogo.HasFile)
         {
             HttpPostedFile file = newMerchantLargeLogo.PostedFile;
@@ -80,8 +66,7 @@ public partial class Merchant_Signup : System.Web.UI.Page
             string email = "", url = "", yourPhoneNumber = "", businessName = "", businessType = "", firstName = "",
                 lastName = "", address = "", city = "",
                 state = "", zipCode = "", physicalProduct = "", productType = "",
-                country = "", currency = "", largeLogo = "", smallLogo = "",
-                businessPhoneNumber = "";
+                country = "", currency = "", largeLogo = "", businessPhoneNumber = "";
 
             DateTime birthdate = BirthDate.Date;
             email = YourEmailTextBox.Text.Trim();
@@ -123,7 +108,6 @@ public partial class Merchant_Signup : System.Web.UI.Page
             productType = ProductTypesDDL.SelectedValue;
             currency = CurrencyRBL.SelectedValue;
             largeLogo = newMerchantLargeLogo.FileName;
-            smallLogo = newMerchantSmallLogo.FileName;
             businessPhoneNumber = PhoneNumberTextBox.Text.Trim();
 
             string vars = String.Format("stripe_user[email]={0}&stripe_user[url]={1}&stripe_user[phone_number]={2}&stripe_user[business_name]={3}&stripe_user[business_type]={4}&stripe_user[first_name]={5}&stripe_user[last_name]={6}&stripe_user[dob_day]={7}&stripe_user[dob_month]={8}&stripe_user[dob_year]={9}&stripe_user[street_address]={10}&stripe_user[city]={11}&stripe_user[state]={12}&stripe_user[zip]={13}&stripe_user[physical_product]={14}&stripe_user[product_category]={15}&stripe_user[country]={16}&stripe_user[currency]={17}", Server.UrlEncode(email), Server.UrlEncode(url), Server.UrlEncode(businessPhoneNumber), Server.UrlEncode(businessName), Server.UrlEncode(businessType), Server.UrlEncode(firstName), Server.UrlEncode(lastName), Server.UrlEncode(birthdate.ToString("dd")), Server.UrlEncode(birthdate.ToString("MM")), Server.UrlEncode(birthdate.ToString("yyyy")), Server.UrlEncode(address), Server.UrlEncode(city), Server.UrlEncode(state), Server.UrlEncode(zipCode), Server.UrlEncode(physicalProduct), Server.UrlEncode(productType), Server.UrlEncode(country), Server.UrlEncode(currency));
@@ -198,26 +182,6 @@ public partial class Merchant_Signup : System.Web.UI.Page
                     }
                 }
 
-                if (newMerchantSmallLogo.HasFile)
-                {
-                    if (!(Utilsmk.ValidImage(newMerchantLargeLogo.PostedFile.InputStream)))
-                    {
-                        valid = false;
-                        newMerchantMessage.Text = "Small Logo is not a valid image file type. (Ex. .png, .jpeg, .png, .gif)";
-
-                    }
-                }
-
-                if ((newMerchantSmallLogo.HasFile) && valid)
-                {
-                    if (!(Utilsmk.ValidLogoSize(newMerchantLargeLogo.PostedFile.ContentLength)))
-                    {
-                        valid = false;
-                        newMerchantMessage.Text = "Small Logo file size must be less than 4MB.";
-
-                    }
-                }
-
                 if (email == "")
                     email = Membership.GetUser().Email;
 
@@ -258,31 +222,10 @@ public partial class Merchant_Signup : System.Web.UI.Page
                                         { 
                                             largeLogo = Utilsmk.SaveNewLogo(newMerchantLargeLogo.PostedFile, newMerchantID, Server, "Merchant");
                                             virtualPathL = largeLogo.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
+                                            virtualPathS = virtualPathL;
                                         }
                                         else
                                             virtualPathL = "Images/c4g_logo_temporary_profile.png";
-                                    }
-
-                                    if (Session["SmallLogoPath"] != null)
-                                    {
-                                        string newPath = Server.MapPath("..\\Images\\NPO\\" + newMerchantID);
-                                        newPath = Utilsmk.GetOrCreateFolder(newPath) + Session["SmallLogoFileName"].ToString();
-
-                                        string oldPath = Session["SmallLogoPath"].ToString() + Session["SmallLogoFileName"].ToString();
-
-                                        File.Move(oldPath, newPath);
-
-                                        virtualPathS = Utilsmk.ResolveVirtualPath(newPath);
-                                    }
-                                    else
-                                    {
-                                        if (newMerchantSmallLogo.HasFile)
-                                        {
-                                            smallLogo = Utilsmk.SaveNewLogo(newMerchantSmallLogo.PostedFile, newMerchantID, Server, "Merchant");
-                                            virtualPathS = smallLogo.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
-                                        }
-                                        else
-                                            virtualPathS = "Images/c4g_logo_temporary_profile.png";
                                     }
 
                                     SysDatamk.UpdateMerchant(newMerchantID, businessName, virtualPathL, virtualPathS, address, cityID, zipCode, businessPhoneNumber, url, newStatusID);

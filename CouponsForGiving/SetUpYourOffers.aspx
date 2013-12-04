@@ -4,33 +4,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
-    <style type="text/css">
-        #MainImage {
-            background-color: #e3f0f8;
-            border-top: 4px solid #464646;
-            border-bottom: 4px solid #464646;
-        }
-
-        #MainImage img{
-            display: block;
-            margin: 0 auto;
-        }
-
-        #MainContent img {
-            position: relative;
-            top: 2px;
-            width: 25px;
-        }
-
-        p {
-            font-weight: normal !important;
-            margin: 20px 0 20px 0 !important;
-        }
-
-        h4 {
-            margin: 75px 0 0 0;
-        }
-    </style>
     <div id="MainImage">
         <img alt="Banner" src="Images/banner.jpg" />
     </div>

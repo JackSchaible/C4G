@@ -320,7 +320,7 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
                 new SmtpClient().Send(mm);
 
                 //Redirect
-                Response.Redirect("DealPage.aspx?deal=" + newInstanceID, false);
+                Response.Redirect("DealPage.aspx?deal=" + newName + "&merchantname=" + merch.Name, false);
             }
         }
         catch (Exception ex)

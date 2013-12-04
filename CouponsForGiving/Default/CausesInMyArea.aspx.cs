@@ -21,6 +21,7 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
     public string City { get; set; }
     public string Province { get; set; }
     public string Country { get; set; }
+    public List<Campaign> LocalCampaigns { get; set; }
 
     protected override void OnPreInit(EventArgs e)
     {
@@ -40,23 +41,7 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
 
     private void BindData()
     {
-        List<Campaign> campaigns = Campaigns.ListByCity(City, Country);
-
-        DealsGV.DataSource =
-        (
-            from c
-            in campaigns
-            select new
-            {
-                CampaignID = c.CampaignID,
-                Campaign = c.Name,
-                CampaignImage = c.CampaignImage,
-                NPO = c.NPO.Name,
-                NPOLogo = c.NPO.Logo,
-                NoOfOffers = c.DealInstances.Count()
-            }
-        );
-        DealsGV.DataBind();
+        LocalCampaigns = Campaigns.ListByCity(City, Country);
     }
 
 

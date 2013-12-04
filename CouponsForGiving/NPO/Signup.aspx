@@ -25,7 +25,7 @@
                 ErrorMessage="Address is Required" ForeColor="Red">*</asp:RequiredFieldValidator>
         </div>
         <div class="FormRow">
-            <asp:Label ID="Label5" runat="server" Text="City" AssociatedControlID="CityTextBox"></asp:Label>
+            <label>City<br /><small>Please select from the dropdown.</small></label>
             <asp:TextBox ID="CityTextBox" runat="server"></asp:TextBox>
             <ajaxToolkit:AutoCompleteExtender ID="CityAutoCompleteExtender" runat="server"
                 TargetControlID="CityTextBox" UseContextKey="True" ServiceMethod="GetCompletionList" 

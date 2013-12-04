@@ -759,5 +759,10 @@
     <FunctionImportMapping FunctionImportName="PurchaseOrder_ListUnredeemedByMerchant" FunctionName="C4GModel.Store.PurchaseOrder_ListUnredeemedByMerchant" />
     <FunctionImportMapping FunctionImportName="PurchaseOrder_Redeem" FunctionName="C4GModel.Store.PurchaseOrder_Redeem" />
     <FunctionImportMapping FunctionImportName="PurchaseOrder_Unredeem" FunctionName="C4GModel.Store.PurchaseOrder_Unredeem" />
+    <FunctionImportMapping FunctionImportName="Deal_ListByCity" FunctionName="C4GModel.Store.Deal_ListByCity" />
+    <FunctionImportMapping FunctionImportName="CampaignDealInstance_Exists" FunctionName="C4GModel.Store.CampaignDealInstance_Exists" />
+    <FunctionImportMapping FunctionImportName="Campaign_List" FunctionName="C4GModel.Store.Campaign_List" />
+    <FunctionImportMapping FunctionImportName="NPOSettings_Update" FunctionName="C4GModel.Store.NPOSettings_Update" />
+    <FunctionImportMapping FunctionImportName="City_GetByNameWithProvinceAndCountry" FunctionName="C4GModel.Store.City_GetByNameWithProvinceAndCountry" />
   </EntityContainerMapping>
 </Mapping>

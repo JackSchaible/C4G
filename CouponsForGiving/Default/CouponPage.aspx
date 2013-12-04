@@ -213,7 +213,7 @@
                                 <h3>Share this Deal on social media!</h3>
                                 <div class="SidebarShare">
                                     <img src="../Images/c4g_action_link.png" class="left" />
-                                    <p>URL <%: URL %></p>
+                                    <p>Copy & Paste  <%: URL %></p>
                                 </div>
                                 <div class="SidebarShare">
                                     <img src="../Images/c4g_action_facebook.png" class="left" />       

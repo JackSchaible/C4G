@@ -93,50 +93,52 @@
                                     </div>
                                 </li>
                                 <li class="customers">
-                                <div class="content">
-                                <div class="two-thirds"><h2><strong>Coupons4Giving</strong> is an e-commercex platform 
-                                that allows you to support 
-                                your favourite <strong>not-for-profit organization 
-                                in just one click!</strong></h2>
-                                <a href="" class="btn"><i class="fa fa-arrow-circle-o-right"></i> SUPPORT A CAUSE</a>
-                                </div>
-                                </div>
+                                    <div class="content">
+                                        <div class="two-thirds"><h2><strong>Coupons4Giving</strong> is an fundraising tool 
+                                            that allows you to support 
+                                            your favourite <strong>not-for-profit organization 
+                                            in just one click!</strong></h2>
+                                            <a href="Default/CausesInMyArea.aspx" class="btn"><i class="fa fa-arrow-circle-o-right"></i> SUPPORT A CAUSE</a>
+                                        </div>
+                                    </div>
                                 </li>
                                 <li class="marketplace">
-                                <div class="content">
-                                <div class="two-thirds"><h2>Remember those days of selling chocolate almonds 
-                                door-to-door? Managing those volunteers, 
-                                keeping track of all those quarters, dimes and nickels, 
-                                checks are a pain! <br />
-                                <strong>Coupons4Giving makes fundraising easy and secure.</strong></h2>
-                                <a href="" class="btn"><i class="fa fa-arrow-circle-o-right"></i> START A CAMPAIGN</a>
-                                </div>
-                                </div>
+                                    <div class="content">
+                                        <div class="two-thirds"><h2>Remember those days of selling chocolate almonds 
+                                            door-to-door? Managing those volunteers, 
+                                            keeping track of all those quarters, dimes and nickels, 
+                                            checks are a pain! <br />
+                                            <strong>Coupons4Giving makes fundraising easy and secure.</strong></h2>
+                                            <a href="<%: User.Identity.IsAuthenticated ? "NPO/Campaigns/New.aspx" : "Account/Register.aspx" %>" class="btn"><i class="fa fa-arrow-circle-o-right"></i> START A CAMPAIGN</a>
+                                        </div>
+                                    </div>
                                 </li>
-
                                 <li class="fundraising">
-                                <div class="content">
-                                <div class="two-thirds"><h2>Be effective and target the right customers while supporting local charities and community groups.<br />
-                                <strong>Coupons4Giving makes fundraising easy and secure.</strong></h2>
-                                <a href="" class="btn"><i class="fa fa-arrow-circle-o-right"></i> BECOME A MERCHANT</a>
-                                </div>
-                                </div>
+                                    <div class="content">
+                                        <div class="two-thirds"><h2>Be effective and target the right customers while supporting local charities and community groups.<br />
+                                            <strong>Coupons4Giving makes fundraising easy and secure.</strong></h2>
+                                            <a href="Account/Register.aspx" class="btn"><i class="fa fa-arrow-circle-o-right"></i> BECOME A MERCHANT</a>
+                                        </div>
+                                    </div>
                                 </li>
                             </ul>
                         </div>
                     </section>
                     <section id="MainContent">
-                      <div id="content" class="no-sidebar">
-                        <h1>What is Coupons4Giving?</h1>
-                        <div class="two-thirds">
-                          <p>It's <strong>Free</strong> to sign up with Coupons4Giving! Coupons4Giving is a fundraising tool that allows you to support your favourite Not-For-Profit organization in just one click! </p>
-                          <p>Choose your organization and support them by purchasing a coupon to your favourite restaurant, retailer or E-tailer. As a Not-For-Profit you can create and manage successful fundraising campaigns. As a merchant or online retailer you can support your favourite causes by offering great deals with coupons.</p>
+                        <div id="content" class="no-sidebar">
+                            <div class="two-thirds">
+                                <h1>What is Coupons4Giving?</h1>
+                                <p><strong>Coupons4Giving is a fundraising tool</strong> that allows you to support your favourite Not-For-Profit organization in just one click!</p>
+                                <p>Choose your organization and support them by purchasing a coupon to your favourite restaurant, retailer or E-tailer. As a Not-For-Profit you can create and manage successful fundraising campaigns. As a merchant or online retailer you can support your favourite causes by offering great deals with coupons.</p>
+                                <h4>It's <strong>Free</strong> to <a href="Account/Register.aspx">sign up with Coupons4Giving!</a></h4>
+                            </div>
+                            <div class="one-thirds LandingButtons">
+                                <a class="btn-large" href="Default/DealsInMyArea.aspx">Buy Deals Now</a>
+                                <a class="btn-large" href="Default/CausesInMyArea.aspx">Discover Causes</a>
+                                <a class="btn-large" href="Default/GlobalMarketplace.aspx">OUR global MARKETPLACE</a>
+                                <img src="images/c4g_landing_logo.png" alt="Coupons4Giving" class="centered LandingLogo" />
+                            </div>
                         </div>
-                        <div class="one-thirds"> <img src="images/c4g_landing_logo.png" alt="Coupons4Giving" class="centered LandingLogo" /> 
-                            <a class="btn-large" href="Default/CausesInMyArea.aspx">Buy Deals Now</a>
-                            <a class="btn-large" href="Default/CausesInMyArea.aspx">Discover Causes</a>
-                        </div>
-                      </div>
                     </section>
                     <!-- Close About Banner Content Section -->
     
@@ -174,7 +176,7 @@
                                 <li><img src="../images/c4g_comingsoon_small.png" class="centered" /></li>
                             </ul>
                         </div>
-                        <a href="" class="btn">MORE MERCHANTS</a>
+                        <a href="Default/DealsInMyArea.aspx" class="btn">MORE MERCHANTS</a>
                         <h4 class="centered">OUR FEATURED CAUSES</h4>
                         <div class="nposList">
                             <ul>
@@ -197,9 +199,9 @@
 			        <li><a href="/AboutUs.aspx?c=WhoWeAre">Who We Are</a></li>
 			        <li><a href="/AboutUs.aspx?c=OurTeam">Our Team</a></li>
 			        <li><a href="/InTheCommunity.aspx">In The Community</a></li>
-			        <li><a href="/Default/Home.aspx">My Coupons</a></li>
-			        <li><a href="/NPO/Home.aspx">My Campaigns</a></li>
-			        <li><a href="/Merchant/Home.aspx">For Merchants</a></li>
+			        <li><a href="/Default/MyHome.aspx">My Coupons</a></li>
+			        <li><a href="/NPO/MyHome.aspx">My Campaigns</a></li>
+			        <li><a href="/Merchant/MyHome.aspx">For Merchants</a></li>
 			        <li><a href="/Blog.aspx">Blog</a></li>
 		        </ul>
                 <ul>

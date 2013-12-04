@@ -147,7 +147,7 @@
                                 </AnonymousTemplate>
                                 <LoggedInTemplate>
                                     <asp:LoginStatus ID="signupButton" CssClass="HeaderButton" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
-                                    <a runat="server" ID="ProfileButton" class="HeaderButton">My Profile</a>
+                                    <a runat="server" href="../redirect.aspx" class="HeaderButton">My Profile</a>
                                 </LoggedInTemplate>
                             </asp:LoginView>
                             <a href="~/ContactUs.aspx" class="HeaderButton" runat="server" id="contactUs">Contact Us</a>
@@ -179,7 +179,7 @@
                             <h3>Share this NPO on social media!</h3>
                             <div class="SidebarShare">
                                 <img src="../../images/c4g_action_link.png" class="left" />
-                                <p>URL <%: URL %></p>
+                                <p>Copy & Paste <%: URL %></p>
                             </div>
                             <div class="SidebarShare">
                                 <img src="../../images/c4g_action_facebook.png" class="left" />       

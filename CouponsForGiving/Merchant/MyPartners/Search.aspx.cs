@@ -33,7 +33,8 @@ public partial class Merchant_MyPartners_Search : System.Web.UI.Page
                     Name = n.Name,
                     City = n.City.Name,
                     Province = n.City.PoliticalDivision.Name,
-                    NoOfCampaigns = (from c in n.Campaigns where c.CampaignStatusID == 2 select c).Count()
+                    Offers = (from c in n.Campaigns where c.CampaignStatusID == 2 select c).Count(),
+                    Logo = n.Logo
                 }
             );
         NPOGV.DataBind();
@@ -54,7 +55,8 @@ public partial class Merchant_MyPartners_Search : System.Web.UI.Page
                     Name = n.Name,
                     City = n.City.Name,
                     Province = n.City.PoliticalDivision.Name,
-                    NoOfCampaigns = (from c in n.Campaigns where c.CampaignStatusID == 2 select c).Count()
+                    Offers = (from c in n.Campaigns where c.CampaignStatusID == 2 select c).Count(),
+                    Logo = n.Logo
                 }
             );
         NPOGV.DataBind();
@@ -68,13 +70,14 @@ public partial class Merchant_MyPartners_Search : System.Web.UI.Page
             (
                 from n
                 in npos
-                where n.Name.Contains(Name)
+                where n.Name.ToLower().Contains(Name.ToLower())
                 select new
                 {
                     Name = n.Name,
                     City = n.City.Name,
                     Province = n.City.PoliticalDivision.Name,
-                    NoOfCampaigns = (from c in n.Campaigns where c.CampaignStatusID == 2 select c).Count()
+                    Offers = (from c in n.Campaigns where c.CampaignStatusID == 2 select c).Count(),
+                    Logo = n.Logo
                 }
             );
         NPOGV.DataBind();
@@ -96,7 +99,8 @@ public partial class Merchant_MyPartners_Search : System.Web.UI.Page
                     Name = n.Name,
                     City = n.City.Name,
                     Province = n.City.PoliticalDivision.Name,
-                    NoOfCampaigns = (from c in n.Campaigns where c.CampaignStatusID == 2 select c).Count()
+                    Offers = (from c in n.Campaigns where c.CampaignStatusID == 2 select c).Count(),
+                    Logo = n.Logo
                 }
             );
         NPOGV.DataBind();
@@ -213,6 +217,6 @@ public partial class Merchant_MyPartners_Search : System.Web.UI.Page
     [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
     public static string[] GetCompletionList2(string prefixText, int count, string contextKey)
     {
-        return (from n in NPOs.List() where n.Name.Contains(prefixText) select n.Name).ToArray<string>();
+        return (from n in NPOs.List() where n.Name.ToLower().Contains(prefixText.ToLower()) select n.Name).ToArray<string>();
     }
 }

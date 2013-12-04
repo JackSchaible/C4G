@@ -33,6 +33,11 @@ public partial class Default_My_Cart : System.Web.UI.Page
             //Replace with localized tax
             TotalLabel.Text = String.Format("{0:C}", (subtotal * 1.05M));
         }
+        else
+        {
+            SubtotalLabel.Text = "$0.00";
+            TotalLabel.Text = "$0.00";
+        }
     }
 
     protected void Cart_SelectedIndexChanged(object sender, EventArgs e)

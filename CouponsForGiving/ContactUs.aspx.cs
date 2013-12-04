@@ -26,13 +26,18 @@ public partial class ContactUs : System.Web.UI.Page
 
         MailMessage mm = new MailMessage();
 
-        mm.To.Add(new MailAddress("support@coupons4giving.ca"));
-        mm.To.Add(new MailAddress("Thompson@coupons4giving.ca"));
-        mm.To.Add(new MailAddress("michelle@coupons4giving.ca"));
+        //mm.To.Add(new MailAddress("support@coupons4giving.ca"));
+        mm.To.Add(new MailAddress("michelle.a.sklar@gmail.com"));
+        mm.To.Add(new MailAddress("jack.schaible@hotmail.com"));
         mm.Subject = String.Format("Coupons4Giving Help: {0}", name);
         mm.IsBodyHtml = true;
 
-        mm.Body = String.Format("<style> h1, p { font-family: Corbel, Arial, sans-serif; } span { font-weight: bold; } </style> <h1>Request for Help from Coupons4Giving</h1> <p><span>Name:</span> {0}</p><p><span>Organization:</span> {1}</p><p><span>Email:</span> {2}</p><p><span>Content:</span> {3}</p>", name, org, email, content);
+        mm.Body = @"<style> h1, p { font-family: Corbel, Arial, sans-serif; } span { font-weight: bold; } </style>"
+            + "<h1>Request for Help from Coupons4Giving</h1>"
+            + "<p><span>Name:</span>" +  name + "</p>"
+            + "<p><span>Organization:</span>" +  org + "</p>"
+            + "<p><span>Email:</span>" + email + "</p>"
+            + "<p><span>Content:</span>" +  content + "</p>";
 
         try
         {

@@ -90,10 +90,16 @@
     <Compile Include="Campaign_ListIncompleteByUsername_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Campaign_List_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="CardType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="City.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="City_GetByNameWithProvinceAndCountry_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="City_GetByName_Result.cs">
@@ -166,6 +172,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Deal_Get_Result1.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Deal_ListByCity_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="FinePrint.cs">

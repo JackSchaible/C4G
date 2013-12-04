@@ -234,7 +234,51 @@ namespace CouponsForGiving
                         result += "</div> <!-- Close Coupon Value-->";
                         result += "</div><!-- Close Details -->";
                         result += "<div class=\"clear\"></div>";
-                        result += "<a href=\"../Offers/" + item.Deal.Merchant.Name + "/" + item.Deal.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> More Details</a>";
+                        result += "<a href=\"../../Offers/" + item.Deal.Merchant.Name + "/" + item.Deal.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> More Details</a>";
+                        result += "</article>";
+                        result += "</div><!-- First Coupon -->";
+                    }
+                }
+                else
+                    result = "<p>We currently have no Merchant Offers. <strong>Please check back soon.</strong></p>";
+
+            return result;
+        }
+
+        public static string ListCampaignDealsForNPO(List<DealInstance> deals)
+        {
+            string result = "";
+
+            if (deals != null)
+                if (deals.Count > 0)
+                {
+                    foreach (DealInstance item in deals)
+                    {
+                        result += "<div class=\"thirds\"><!-- Wrap with a third to control size/spacing of tiles -->";
+                        result += "<article class=\"c4g-coupon-tile\">";
+                        result += "<img src=\"../../Images/c4g_coupon_logo.png\" class=\"coupon_c4g_logo\" />";
+                        result += "<div class=\"coupon-title-tile\">";
+                        result += "<h2>" + item.Deal.Name + "</h2><!-- Merchant Offer -->";
+                        result += "<h3>" + item.Deal.Merchant.Name + "</h3><!-- Merchant Name -->";
+                        result += "<p>" + item.Deal.DealDescription + "</p><!-- Merchant Offer Description -->";
+                        result += "</div><!--Close Coupon Title -->";
+                        result += "<div class=\"clear\"></div>";
+                        result += "<div class=\"coupon-details-tile\">";
+                        result += "<div class=\"coupon-value\">";
+                        result += "<h4>Value</h4>";
+                        result += "<p><span>$" + ((int)(item.Deal.Prices.FirstOrDefault<Price>().RetailValue)).ToString("D") + "</span></p> <!-- Coupon Value -->";
+                        result += "</div> <!-- Close Coupon Value-->";
+                        result += "<div class=\"coupon-discount\">";
+                        result += "<h4>Discount</h4>";
+                        result += "<p><span>" + (1 - (item.Deal.Prices.FirstOrDefault<Price>().GiftValue / item.Deal.Prices.FirstOrDefault<Price>().RetailValue)).ToString("0%") + "</span></p> <!-- Coupon Savings/Discount -->";
+                        result += "</div> <!-- Close Coupon Value-->";
+                        result += "<div class=\"coupon-giving\">";
+                        result += "<h4>You're Giving</h4>";
+                        result += "<p><span>$" + ((int)(item.Deal.Prices.FirstOrDefault<Price>().NPOSplit)).ToString("D") + "</span></p> <!-- NPO Return or portion -->";
+                        result += "</div> <!-- Close Coupon Value-->";
+                        result += "</div><!-- Close Details -->";
+                        result += "<div class=\"clear\"></div>";
+                        result += "<a href=\"DealPage.aspx?merchantname=" + item.Deal.Merchant.Name + "&deal=" + item.Deal.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> More Details</a>";
                         result += "</article>";
                         result += "</div><!-- First Coupon -->";
                     }
@@ -275,7 +319,37 @@ namespace CouponsForGiving
                         result += "</div>";
                     }
                 else
-                    result = "<p>We currently aren't running any campaigns. <strong>Please check back soon!</strong></p>";
+                    result = "<p>We currently aren't running any campaigns in your city. <strong>Please check back soon!</strong></p><br /><a href=\"AllCauses.aspx\" class=\"btn\">See all our Campaigns!</a>";
+
+            return result;
+        }
+
+        public static string ListMerchantOffers(List<DealInstance> deals)
+        {
+            string result = "";
+
+            if (deals != null)
+                if (deals.Count > 0)
+                    foreach (DealInstance item in deals)
+                    {
+                        result += "<div class=\"thirds\"><!-- Wrap with a third to control size/spacing of tiles -->";
+                        result += "<article class=\"c4g-campaign-tile\"><!-- New Class Campaign Title -->";
+                        result += "<img src=\"../../Images/c4g_campaign_logo.png\" class=\"coupon_c4g_logo\" />";
+                        result += "<div class=\"coupon-title-tile\">";
+                        result += "<h2>" + item.Deal.Name + "</h2><!-- Camapign Title -->";
+                        result += "<h3>" + (item.StartDate != null ? item.StartDate.ToString("MMMM dd, yyyy") : "") + " - " + (item.EndDate != null ? item.EndDate.ToString("MMMM dd, yyyy") : "") + "</h3><!-- Campaign Dates Format in anyway that works for you-->";
+                        result += "</div><!--Close Coupon Title -->";
+                        result += "<div class=\"clear\"></div>";
+                        result += "<div class=\"campaign-details-tile\">";
+                        result += "<p>" + item.Deal.DealDescription + "</p><!-- Coupon Description (limited to 200 characters if possible -->";
+                        result += "</div><!-- Close Details -->";
+                        result += "<div class=\"clear\"></div>";
+                        result += "<a href=\"../../Offers/" + item.Deal.Merchant.Name + "/" + item.Deal.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> Offer Details</a><!-- Link To Campaign Page -->";
+                        result += "</article>";
+                        result += "</div>";
+                    }
+                else
+                    result = "<p>We currently aren't running any offers. <strong>Please check back soon!</strong></p>";
 
             return result;
         }
@@ -320,7 +394,7 @@ namespace CouponsForGiving
 
             result += "<div class=\"thirds\">";
             result += "<article class=\"c4g-coupon-tile\">";
-            result += "<img src=\"../Images/c4g_coupon_logo.png\" class=\"coupon_c4g_logo\" />";
+            result += "<img src=\"../../Images/c4g_coupon_logo.png\" class=\"coupon_c4g_logo\" />";
             result += "<div class=\"coupon-title-tile\">";
             result += "<h2>" + campaign.Name + "</h2><!-- Merchant Offer -->";
             result += "<div class=\"campaign-details-tile\">";
@@ -329,12 +403,34 @@ namespace CouponsForGiving
             result += "</div><!--Close Coupon Title -->";
             result += "<div class=\"clear\"></div>";
             result += "<div class=\"clear\"></div>";
-            result += "<a href=\"CouponPage.aspx?merchantname=" + deal.Merchant.Name + "&deal=" + deal.Name + "&nponame=" + campaign.NPO.Name + "&campaign=" + campaign.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> Buy Now</a>";
+            result += "<a href=\"../../Default/CouponPage.aspx?merchant=" + deal.Merchant.Name + "&deal=" + deal.Name + "&npo=" + campaign.NPO.Name + "&campaign=" + campaign.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> Buy Now</a>";
             result += "</article>";
             result += "</div>";
 
             return result;
 
+        }
+
+        public static string GetNPOCampaignForMerchant(Campaign campaign, Deal deal)
+        {
+            string result = "";
+
+            result += "<div class=\"thirds\">";
+            result += "<article class=\"c4g-coupon-tile\">";
+            result += "<img src=\"../../Images/c4g_coupon_logo.png\" class=\"coupon_c4g_logo\" />";
+            result += "<div class=\"coupon-title-tile\">";
+            result += "<h2>" + campaign.Name + "</h2><!-- Merchant Offer -->";
+            result += "<div class=\"campaign-details-tile\">";
+            result += "<p>" + campaign.CampaignDescription + "</p><!-- Merchant Offer Description -->";
+            result += "</div>";
+            result += "</div><!--Close Coupon Title -->";
+            result += "<div class=\"clear\"></div>";
+            result += "<div class=\"clear\"></div>";
+            result += "<a href=\"CampaignPage.aspx?nponame=" + campaign.NPO.Name + "&campaign=" + campaign.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> Buy Now</a>";
+            result += "</article>";
+            result += "</div>";
+
+            return result;
         }
     }
 }

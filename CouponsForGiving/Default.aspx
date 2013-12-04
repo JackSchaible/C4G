@@ -47,17 +47,16 @@
                     ErrorMessage="Email address is required." ControlToValidate="EmailTextBox">
                 </asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
-                    ErrorMessage="Email must be valid (i.e., name@domain.com)." ControlToValidate="EmailTextBox" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                    ErrorMessage="Email must be valid (i.e., name@domain.com)." ControlToValidate="EmailTextBox" 
+                    ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$">
+                </asp:RegularExpressionValidator>
                 <div class="ClearFix"></div>
             </div>
             <div class="FormRow">
                 <asp:Label ID="Label8" runat="server" Text="Organization" AssociatedControlID="EmailTextBox"></asp:Label>
                 <asp:TextBox ID="OrganizationTextBox" runat="server"></asp:TextBox>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server"
-                    ErrorMessage="Email must be valid (i.e., name@domain.com)." 
-                    ControlToValidate="OrganizationTextBox" 
-                    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">
-                </asp:RegularExpressionValidator>
+                <asp:RequiredFieldValidator ID="RFV1" runat="server" ControlToValidate="OrganizationTextBox" ErrorMessage="Organization is required.">
+                </asp:RequiredFieldValidator>
                 <div class="ClearFix"></div>
             </div>
             <div class="FormRow">
@@ -65,6 +64,7 @@
                 <asp:Button ID="EmailButton" runat="server" OnClick="EmailButton_Click" Text="Sign Up"/>
                 <div class="ClearFix"></div>
             </div>
+            <asp:Label ID="SignupLabel" runat="server"></asp:Label>
         </fieldset>
     </div>
     <h2>Please Add Me to Your E-Mail List</h2>
@@ -85,7 +85,8 @@
                     ErrorMessage="Email address is required." ControlToValidate="EmailTextBox">
                 </asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
-                    ErrorMessage="Email must be valid (i.e., name@domain.com)." ControlToValidate="EmailTextBox" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                    ErrorMessage="Email must be valid (i.e., name@domain.com)." ControlToValidate="EmailTextBox" 
+                    ValidationExpression="^([a-zA-Z0-9]+([\.+_-][a-zA-Z0-9]+)*)@(([a-zA-Z0-9]+((\.|[-]{1,2})[a-zA-Z0-9]+)*)\.[a-zA-Z]{2,6})$"></asp:RegularExpressionValidator>
                 <div class="ClearFix"></div>
             </div>
             <div class="FormRow">

@@ -4,16 +4,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
-    <style type="text/css">
-        .Form {
-            margin: 30px 0 0 15px;
-            width: 190px;
-        }
-
-        .FormRow {
-            min-height: 25px;
-        }
-    </style>
         <h1>Sign Up for Our Newsletter</h1>
         <div class="Form">
             <div class="FormRow">

@@ -26,26 +26,26 @@ public partial class Merchant_My_Coupons_Redeem : System.Web.UI.Page
         List<PurchaseOrder> pos = PurchaseOrders.ListActiveByMerchant(User.Identity.Name);
         orders = pos;
         ErrorLabel.Text = "";
-        CouponsGV.DataSource =
-            (
-                from
-                    po
-                in
-                    pos
-                orderby
-                    po.PurchaseDate
-                select new
-                {
-                    CouponCode = po.PurchaseOrderID,
-                    MerchantName = po.DealInstance.Deal.Merchant.Name,
-                    DealName = po.DealInstance.Deal.Name,
-                    Customer = po.PurchaseTransaction.cUser.Username,
-                    NPOName = po.Campaign.NPO.Name,
-                    CampaignName = po.Campaign.Name,
-                    StartDate = po.DealInstance.StartDate.ToString("dd MMM yyyy"),
-                    EndDate = po.DealInstance.EndDate.ToString("dd MMM yyyy")
-                }
-            );
+        CouponsGV.DataSource = null;
+            //(
+            //    from
+            //        po
+            //    in
+            //        pos
+            //    orderby
+            //        po.PurchaseDate
+            //    select new
+            //    {
+            //        CouponCode = po.PurchaseOrderID,
+            //        MerchantName = po.DealInstance.Deal.Merchant.Name,
+            //        DealName = po.DealInstance.Deal.Name,
+            //        Customer = po.PurchaseTransaction.cUser.Username,
+            //        NPOName = po.Campaign.NPO.Name,
+            //        CampaignName = po.Campaign.Name,
+            //        StartDate = po.DealInstance.StartDate.ToString("dd MMM yyyy"),
+            //        EndDate = po.DealInstance.EndDate.ToString("dd MMM yyyy")
+            //    }
+            //);
 
         CouponsGV.DataBind();
     }

@@ -70,23 +70,6 @@ public partial class Merchant_MyPartners_MyPartners : System.Web.UI.Page
             );
         NPOGV.DataBind();
         ErrorLabel.Text = "";
-
-        npos = NPOMerchants.ListEligiblePartnersByMerchant(User.Identity.Name);
-
-        NPOGV.DataSource =
-            (
-                from n
-                in npos
-                select new
-                {
-                    NPOID = n.NPOID,
-                    Name = n.Name,
-                    City = n.City.Name,
-                    Province = n.City.PoliticalDivision.Name,
-                    Campaigns = (from c in n.Campaigns where c.CampaignStatusID == 2 select c).Count()
-                }
-            );
-        NPOGV.DataBind();
     }
 
     private void BindData(string city, string province)

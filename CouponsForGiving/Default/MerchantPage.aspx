@@ -160,30 +160,30 @@
                     <div id="content" class="no-sidebar">
                         <div class="two-thirds">
                             <h1><%: merchant.Name %></h1>
-                            <img alt="Our Logo" class="merchant_logo" src="../<%: merchant.LargeLogo %>" />
+                            <img alt="Our Logo" class="merchant_logo" src="../../<%: merchant.LargeLogo %>" />
                             <h3 class="merchant-address"><%: merchant.cAddress + ", " + merchant.MerchantLocations.FirstOrDefault<CouponsForGiving.Data.MerchantLocation>().City.Name %></h3>
+                            <h4 class="merchant-website"><a href="<%: merchant.Website %>" target="_blank">Company Web Site</a><!-- This can be populated with the company url --></h4>
                             <p><%: merchant.cUser.MerchantInfoes.FirstOrDefault<CouponsForGiving.Data.MerchantInfo>().MerchantDescription %></p><!-- This Can be populated with the Merchant Profile -->
-                            <a href="<%: merchant.Website %>" target="_blank" class="btn-large" />Company Web Site</a><!-- This can be populated with the company url -->
                         </div>
                         <div class="thirds">
 	                        <div class="SocialSidebar">
        	                        <h3>Share this Merchant on social media!</h3>
 		                        <div class="SidebarShare">
 		                            <img src="../Images/c4g_action_link.png" class="left" />
-                                    <p>URL <%: URL %></p>
+                                    <p>Copy & Paste <%: URL %></p>
                                 </div>
 		                        <div class="SidebarShare" onclick="shareOnFB()">
-                                    <img src="../Images/c4g_action_facebook.png" class="left" />       
+                                    <img src="../../Images/c4g_action_facebook.png" class="left" />       
                                     <p class="btw" >Share on Facebook</p>
                                     <p id="FBMsg"></p>
                                 </div>
 		                        <div class="SidebarShare">
-		                            <img src="../Images/c4g_action_twitter.png" class="left" />
+		                            <img src="../../Images/c4g_action_twitter.png" class="left" />
                                     <p><a href="https://twitter.com/share" class="twitter-share-button" data-url="<%: URL %>"
                                         data-text="<%: Caption %>" data-hashtags="C4G, DealsThatMakeADifference">Tweet</a></p>
                                 </div>
 		                        <div class="SidebarShare">
-		                            <img src="../Images/c4g_action_linkedin.png" class="left" />
+		                            <img src="../../Images/c4g_action_linkedin.png" class="left" />
                                     <p onclick="shareOnLinkedIn()">Share on LinkedIn</p>
    		                        </div>
    		                    </div><!-- Close Social Sidebar -->    

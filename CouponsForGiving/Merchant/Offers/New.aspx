@@ -74,17 +74,17 @@
         <div class="FormRow">
             <asp:Label ID="Label2" runat="server" Text="Start Date" 
                 AssociatedControlID="StartDate"></asp:Label>
-            <UC:DateControl ID="StartDate" runat="server" />
+            <UC:DateControl ID="StartDate" runat="server" AcceptPastDates="false"/>
         </div>
         <div class="FormRow">
             <asp:Label ID="Label3" runat="server" Text="End Date" 
                 AssociatedControlID="EndDate"></asp:Label>
-            <UC:DateControl ID="EndDate" runat="server" />
+            <UC:DateControl ID="EndDate" runat="server" AcceptPastDates="false" />
         </div>
         <div class="FormRow">
             <asp:Label ID="Label7" runat="server" Text="Total Coupon Limit" 
                 AssociatedControlID="newDealAbsoluteCouponLimit"></asp:Label>
-            <asp:TextBox ID="newDealAbsoluteCouponLimit" runat="server" MaxLength="10" TextMode="Number">
+            <asp:TextBox ID="newDealAbsoluteCouponLimit" runat="server" MaxLength="10">
             </asp:TextBox>
             <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" TargetControlID="newDealAbsoluteCouponLimit" 
                 FilterType="Numbers" runat="server"></ajaxToolkit:FilteredTextBoxExtender>
@@ -92,7 +92,7 @@
         <div class="FormRow">
             <asp:Label ID="Label8" runat="server" Text="Coupon Limit Per Customer" 
                 AssociatedControlID="newDealLimitPerCustomer"></asp:Label>
-            <asp:TextBox ID="newDealLimitPerCustomer" runat="server" MaxLength="10" TextMode="Number">
+            <asp:TextBox ID="newDealLimitPerCustomer" runat="server" MaxLength="10">
             </asp:TextBox>
             <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" 
                 TargetControlID="newDealLimitPerCustomer" FilterType="Numbers" runat="server">
@@ -115,7 +115,7 @@
             </asp:RegularExpressionValidator>
         </div>
         <div class="FormRow">
-            <label>Gift Value<br /><small>The Sale price</small></label>
+            <label>Gift Value<br /><small>The Sale Price</small></label>
             <asp:TextBox ID="newDealGiftValue" runat="server" MaxLength="10"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
                 ControlToValidate="newDealGiftValue" ErrorMessage="The Gift Value of your offer is required. This is how much your offer will be sold for (service fee inclusive).">

@@ -147,7 +147,7 @@
                                 </AnonymousTemplate>
                                 <LoggedInTemplate>
                                     <asp:LoginStatus ID="signupButton" CssClass="HeaderButton" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
-                                    <a runat="server" ID="ProfileButton" class="HeaderButton">My Profile</a>
+                                    <a runat="server" href="~/redirect.aspx" class="HeaderButton">My Profile</a>
                                 </LoggedInTemplate>
                             </asp:LoginView>
                             <a href="~/ContactUs.aspx" class="HeaderButton" runat="server" id="contactUs">Contact Us</a>
@@ -161,14 +161,14 @@
                     <div id="content" class="no-sidebar">   
                         <div class="two-thirds">             
                             <article class="c4g-coupon">
-                                <img src="../Images/c4g_coupon_logo.png" class="coupon_c4g_logo" /> 
+                                <img src="../../Images/c4g_coupon_logo.png" class="coupon_c4g_logo" /> 
                                 <div class="coupon-title">
                                     <h2><%: deal.Name %></h2><!-- Merchant Offer -->
                                     <h3><%: deal.Merchant.Name %></h3><!-- Merchant Name -->
                                     <p><%: deal.DealDescription %></p><!-- Merchant Offer Description -->
                                 </div><!--Close Coupon Title -->
                                 <div class="coupon-image-block">
-                                    <img src="../<%: deal.ImageURL %>" /> <!-- Pulled From Merchant Profile -->
+                                    <img src="../../<%: deal.ImageURL %>" /> <!-- Pulled From Merchant Profile -->
                                 </div><!-- Close Image Block-->
                                 <div class="clear"></div>
                                 <div class="coupon-details">
@@ -208,30 +208,30 @@
                             <p><%: deal.RedeemDetails.FirstOrDefault<CouponsForGiving.Data.RedeemDetail>().AdditionalDetails %></p>
                             <hr>
                             <h1><%: deal.Merchant.Name %></h1>
-                            <img alt="Our Logo" class="merchant_logo" src="../<%: deal.Merchant.LargeLogo %>" />
+                            <img alt="Our Logo" class="merchant_logo" src="../../<%: deal.Merchant.LargeLogo %>" />
                             <h3 class="merchant-address"><%: deal.Merchant.cAddress + ", " + deal.Merchant.MerchantLocations.FirstOrDefault<CouponsForGiving.Data.MerchantLocation>().City.Name + ", " + deal.Merchant.MerchantLocations.FirstOrDefault<CouponsForGiving.Data.MerchantLocation>().City.PoliticalDivision.Name %></h3><!-- I figure we can populate this content with Merchant Address -->
+                            <h4 class="merchant-website"><a href="<%: deal.Merchant.Website %>" target="_blank"><%: merchant.Website %></a><!-- This can be populated with the company url --></h4>
                             <p><%: deal.Merchant.cUser.MerchantInfoes.FirstOrDefault<CouponsForGiving.Data.MerchantInfo>().MerchantDescription %></p><!-- This Can be populated with the Merchant Profile -->
-                            <a href="<%: deal.Merchant.Website %>" target="_blank" class="btn-large" />Company Web Site</a><!-- This can be populated with the company url -->
                     </div><!-- Close Two-Thirds Wrapper -->
                     <div class="thirds">
                         <div class="SocialSidebar">
                             <h3>Share this Deal on social media!</h3>
                             <div class="SidebarShare">
-                                <img src="../Images/c4g_action_link.png" class="left" />
-                                <p>URL <%: URL %></p>
+                                <img src="../../Images/c4g_action_link.png" class="left" />
+                                <p>Copy & Paste <%: URL %></p>
                             </div>
                             <div class="SidebarShare">
-                                <img src="../Images/c4g_action_facebook.png" class="left" />       
+                                <img src="../../Images/c4g_action_facebook.png" class="left" />       
                                 <p class="btw" onclick="shareOnFB()">Share on Facebook</p>
                                 <p id="FBMsg"></p>
                             </div>
                             <div class="SidebarShare">
-                                <img src="../Images/c4g_action_twitter.png" class="left" />
+                                <img src="../../Images/c4g_action_twitter.png" class="left" />
                                 <p><a href="https://twitter.com/share" class="twitter-share-button" data-url="<%: URL %>"
                                     data-text="<%: Caption %>" data-hashtags="C4G, DealsThatMakeADifference">Tweet</a></p>
                             </div>
                             <div class="SidebarShare">
-                                <img src="../Images/c4g_action_linkedin.png" class="left" />
+                                <img src="../../Images/c4g_action_linkedin.png" class="left" />
                                 <p onclick="shareOnLinkedIn()">Share on LinkedIn</p>
                             </div>
                         </div>    

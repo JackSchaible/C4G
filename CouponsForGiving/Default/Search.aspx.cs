@@ -12,5 +12,7 @@ public partial class Default_Search : System.Web.UI.Page
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.Supporter;
+
+        Response.Redirect("DealsInMyArea.aspx");
     }
 }

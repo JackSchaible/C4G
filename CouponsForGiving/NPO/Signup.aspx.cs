@@ -212,6 +212,7 @@ public partial class NPO_newNPO : System.Web.UI.Page
                                         }                                        
                                         SysDatamk.UpdateNPO(newNPOID, newName, newDescription, newAddress, dbCity.CityID, newPostalCode, newWebsite, newPhoneNumber, newEmail, newStatusID, virtualPath, newURL, useall);
                                         SysDatamk.NPOcUser_Insert(thisusername, newNPOID);
+                                        NPOSettings.Insert(newNPOID, true);
                                         ts.Complete();
 
                                         clearForm();

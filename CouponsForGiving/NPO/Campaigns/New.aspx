@@ -147,7 +147,7 @@
         <div class="FormRow">
             <asp:Label ID="Label11" runat="server" Text="Your Eligible Deals:"></asp:Label>
             <div id="Offers">
-                <p><%: CouponsForGiving.Data.Classes.NPOs.HasMerchantPartners(User.Identity.Name) ? "There are no deals from your merchant partners whose dates coincide with yours. Consider revising the End Date of your campaign." : "You have not yet added any Merchant partners! <a href='../Partners/Add.aspx'>Click here</a> to add some to see their great deals." %></p>
+                <% Response.Write(CouponsForGiving.Data.Classes.NPOs.HasMerchantPartners(User.Identity.Name) ? "<p>There are no deals from your merchant partners whose dates coincide with yours. Consider revising the End Date of your campaign.</p>" : "<p>You have not yet added any Merchant partners! <a href='../Partners/Add.aspx'>Click here</a> to add some to see their great deals.</p>"); %>
             </div>
             <div id="DealInstances"></div>
             <div class="ClearFix"></div>
@@ -155,11 +155,6 @@
         <div class="FormRow">
             <asp:Label ID="Label8" runat="server" Text="Make this my featured campaign"></asp:Label>
             <asp:CheckBox ID="newCampaignShowOnHome" ClientIDMode="Static" runat="server" Checked="false" />
-            <div class="ClearFix"></div>
-        </div>
-        <div class="FormRow">
-            <asp:Label ID="Label7" runat="server" Text="Link to Your Social Networks: "></asp:Label>
-            <p>Coming Soon!</p>
             <div class="ClearFix"></div>
         </div>
         <div class="FormRow">

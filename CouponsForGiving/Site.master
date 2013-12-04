@@ -109,6 +109,7 @@
             <div id="container" style="min-height: 430px;">
                 <UC:MenuBar ID="MenuBarControl" runat="server" />
                 <section id="MainContent">
+                    <asp:ContentPlaceHolder ID="BannerContent" runat="server" />
                     <div id="content">
                         <asp:ContentPlaceHolder runat="server" ID="Main_Content" />
                     </div>
@@ -119,13 +120,13 @@
                                 <asp:HyperLinkField DataNavigateUrlFields="Name" DataNavigateUrlFormatString="~/Default/MerchantPage.aspx?MerchantName={0}" DataTextField="Name" HeaderText="Our Featured Merchants" />
                             </Columns>
                         </asp:GridView>
-                        <a class="btn" href="~/Account/Register.aspx" runat="server">Become a Merchant</a>
+                        <a class="btn" href="~/Merchant/Signup.aspx" runat="server">Become a Merchant</a>
                         <asp:GridView ID="FeaturedNPOGV" runat="server" AutoGenerateColumns="False" DataSourceID="FNPOODS">
                             <Columns>
                                 <asp:HyperLinkField DataNavigateUrlFields="URL" DataNavigateUrlFormatString="~/Default/NPOPage.aspx?name={0}" DataTextField="Name" HeaderText="Our Featured NPOs" />
                             </Columns>
                         </asp:GridView>
-                        <a class="btn" href="~/Account/Register.aspx" runat="server">Sign up to Become an npo</a>
+                        <a class="btn" href="~/NPO/Signup.aspx" runat="server">Become an Not-For-Profit</a>
                         <asp:ObjectDataSource ID="FNPOODS" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="NPO_GetFeatured" TypeName="CouponsForGiving.Data.SysData"></asp:ObjectDataSource>
                         <asp:ObjectDataSource ID="FMerchantsODS" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="Merchant_GetFeatured" TypeName="CouponsForGiving.Data.SysData"></asp:ObjectDataSource>
                     </div>
@@ -142,14 +143,14 @@
 			    <li><a runat="server" href="~/AboutUs.aspx?c=WhoWeAre">Who We Are</a></li>
 			    <li><a runat="server" href="~/AboutUs.aspx?c=OurTeam">Our Team</a></li>
 			    <li><a runat="server" href="~/InTheCommunity.aspx">In The Community</a></li>
-			    <li><a runat="server" href="~/Default/Home.aspx">My Coupons</a></li>
-			    <li><a runat="server" href="~/NPO/Home.aspx">My Campaigns</a></li>
-			    <li><a runat="server" href="~/Merchant/Home.aspx">For Merchants</a></li>
+			    <li><a runat="server" href="~/Default/MyHome.aspx">My Coupons</a></li>
+			    <li><a runat="server" href="~/NPO/MyHome.aspx">My Campaigns</a></li>
+			    <li><a runat="server" href="~/Merchant/MyHome.aspx">For Merchants</a></li>
 			    <li><a runat="server" href="~/Blog.aspx">Blog</a></li>
 		    </ul>
             <ul>
                 <li><a runat="server" href="~/Content/Terms/PrivacyPolicy.pdf">Privacy Policy</a></li>
-                <li><a runat="server" href="~/Content/Terms/TermsOfUse.pdf">Terms of Use</a></li>
+                <li><a runat="server" href="~/LegalAgreements.aspx">Legal Agreements</a></li>
                 <li><a runat="server" href="~/FAQ.aspx">FAQs</a></li>
                 <li><a runat="server" href="~/Careers.aspx">Careers</a></li>
             </ul>

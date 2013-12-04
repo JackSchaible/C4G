@@ -3,6 +3,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
+<asp:Content ID="BannerStuff" ContentPlaceHolderID="BannerContent" runat="server">
+    <div class="homeBanners">
+        <h2>Retailers, Restaurants or Online Merchants:</h2>
+        <h3><a href="../Account/Register.aspx">Increase footfall into your business or traffic to your website</a></h3>
+        <img src="../images/c4g_merchant_home.png" class="right-merchant" />
+    </div>
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
     <div class="tipList">
         <ul>
@@ -27,7 +34,7 @@
             <li class="merchantstep3">Or have them visit our website at <a href="https://www.coupons4giving.ca">www.coupons4giving.ca</a>
         </ul>
     </div>
-    <a href='<%: (User.Identity.IsAuthenticated) ? "../redirect.aspx" : "../Account/Signup.aspx" %>' class="btn-center">Get Started!</a>
+    <a href='<%: (User.Identity.IsAuthenticated) ? "../redirect.aspx" : "../Account/Register.aspx" %>' class="btn-center">Get Started!</a>
     <hr>
     <h3>Take a Look Around</h3>
     <p>Browse our local deals as well as our <strong>Global Marketplace of E-tailers</strong> (online only merchants)</p>

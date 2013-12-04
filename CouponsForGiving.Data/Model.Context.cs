@@ -2343,5 +2343,101 @@ namespace CouponsForGiving.Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PurchaseOrder_Unredeem", purchaseOrderIDParameter);
         }
+    
+        public virtual ObjectResult<DealInstance> Deal_ListByCity(string city, string politicalDivision)
+        {
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var politicalDivisionParameter = politicalDivision != null ?
+                new ObjectParameter("PoliticalDivision", politicalDivision) :
+                new ObjectParameter("PoliticalDivision", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DealInstance>("Deal_ListByCity", cityParameter, politicalDivisionParameter);
+        }
+    
+        public virtual ObjectResult<DealInstance> Deal_ListByCity(string city, string politicalDivision, MergeOption mergeOption)
+        {
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var politicalDivisionParameter = politicalDivision != null ?
+                new ObjectParameter("PoliticalDivision", politicalDivision) :
+                new ObjectParameter("PoliticalDivision", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DealInstance>("Deal_ListByCity", mergeOption, cityParameter, politicalDivisionParameter);
+        }
+    
+        public virtual ObjectResult<string> CampaignDealInstance_Exists(Nullable<int> campaignID, Nullable<int> dealInstanceID)
+        {
+            var campaignIDParameter = campaignID.HasValue ?
+                new ObjectParameter("CampaignID", campaignID) :
+                new ObjectParameter("CampaignID", typeof(int));
+    
+            var dealInstanceIDParameter = dealInstanceID.HasValue ?
+                new ObjectParameter("DealInstanceID", dealInstanceID) :
+                new ObjectParameter("DealInstanceID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("CampaignDealInstance_Exists", campaignIDParameter, dealInstanceIDParameter);
+        }
+    
+        public virtual ObjectResult<Campaign> Campaign_List()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Campaign>("Campaign_List");
+        }
+    
+        public virtual ObjectResult<Campaign> Campaign_List(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Campaign>("Campaign_List", mergeOption);
+        }
+    
+        public virtual int NPOSettings_Update(string username, Nullable<bool> autoAcceptMerchantRequests)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var autoAcceptMerchantRequestsParameter = autoAcceptMerchantRequests.HasValue ?
+                new ObjectParameter("AutoAcceptMerchantRequests", autoAcceptMerchantRequests) :
+                new ObjectParameter("AutoAcceptMerchantRequests", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NPOSettings_Update", usernameParameter, autoAcceptMerchantRequestsParameter);
+        }
+    
+        public virtual ObjectResult<City> City_GetByNameWithProvinceAndCountry(string cityName, string provinceName, string countryName)
+        {
+            var cityNameParameter = cityName != null ?
+                new ObjectParameter("CityName", cityName) :
+                new ObjectParameter("CityName", typeof(string));
+    
+            var provinceNameParameter = provinceName != null ?
+                new ObjectParameter("ProvinceName", provinceName) :
+                new ObjectParameter("ProvinceName", typeof(string));
+    
+            var countryNameParameter = countryName != null ?
+                new ObjectParameter("CountryName", countryName) :
+                new ObjectParameter("CountryName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<City>("City_GetByNameWithProvinceAndCountry", cityNameParameter, provinceNameParameter, countryNameParameter);
+        }
+    
+        public virtual ObjectResult<City> City_GetByNameWithProvinceAndCountry(string cityName, string provinceName, string countryName, MergeOption mergeOption)
+        {
+            var cityNameParameter = cityName != null ?
+                new ObjectParameter("CityName", cityName) :
+                new ObjectParameter("CityName", typeof(string));
+    
+            var provinceNameParameter = provinceName != null ?
+                new ObjectParameter("ProvinceName", provinceName) :
+                new ObjectParameter("ProvinceName", typeof(string));
+    
+            var countryNameParameter = countryName != null ?
+                new ObjectParameter("CountryName", countryName) :
+                new ObjectParameter("CountryName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<City>("City_GetByNameWithProvinceAndCountry", mergeOption, cityNameParameter, provinceNameParameter, countryNameParameter);
+        }
     }
 }

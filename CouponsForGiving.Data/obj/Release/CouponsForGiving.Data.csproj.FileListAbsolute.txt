@@ -125,14 +125,6 @@ C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.21\CouponsForGi
 C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.21\CouponsForGiving.Data\obj\Release\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
 C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.21\CouponsForGiving.Data\obj\Release\CouponsForGiving.Data.dll
 C:\Users\Jack\SkyDrive\Documents\Work Stuff\Site\2.0\2.0.1\2.0.1.21\CouponsForGiving.Data\obj\Release\CouponsForGiving.Data.pdb
-C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\bin\Release\CouponsForGiving.Data.dll.config
-C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\bin\Release\CouponsForGiving.Data.dll
-C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\bin\Release\CouponsForGiving.Data.pdb
-C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\bin\Release\EntityFramework.dll
-C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\bin\Release\EntityFramework.xml
-C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\obj\Release\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
-C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\obj\Release\CouponsForGiving.Data.dll
-C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\obj\Release\CouponsForGiving.Data.pdb
 C:\Users\Jack\Documents\GitHub\C4G\C4G\CouponsForGiving.Data\bin\Release\CouponsForGiving.Data.dll.config
 C:\Users\Jack\Documents\GitHub\C4G\C4G\CouponsForGiving.Data\bin\Release\CouponsForGiving.Data.dll
 C:\Users\Jack\Documents\GitHub\C4G\C4G\CouponsForGiving.Data\bin\Release\CouponsForGiving.Data.pdb
@@ -141,3 +133,11 @@ C:\Users\Jack\Documents\GitHub\C4G\C4G\CouponsForGiving.Data\bin\Release\EntityF
 C:\Users\Jack\Documents\GitHub\C4G\C4G\CouponsForGiving.Data\obj\Release\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
 C:\Users\Jack\Documents\GitHub\C4G\C4G\CouponsForGiving.Data\obj\Release\CouponsForGiving.Data.dll
 C:\Users\Jack\Documents\GitHub\C4G\C4G\CouponsForGiving.Data\obj\Release\CouponsForGiving.Data.pdb
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\bin\Release\CouponsForGiving.Data.dll.config
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\bin\Release\CouponsForGiving.Data.dll
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\bin\Release\CouponsForGiving.Data.pdb
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\bin\Release\EntityFramework.dll
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\bin\Release\EntityFramework.xml
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\obj\Release\CouponsForGiving.Data.dll
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\obj\Release\CouponsForGiving.Data.pdb
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\obj\Release\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
