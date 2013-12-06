@@ -133,7 +133,7 @@
                             </ul>
                             <blockquote>Whether you are raising money, looking for a great restaurant or you are a merchant who wants to support local community groups, Coupons4Giving makes it easy!</blockquote>
                             <div class="clear"></div>
-                            <a href="../Account/Signup.aspx" class="btn-center">GET STARTED TODAY!</a>
+                            <a href="../Account/Register.aspx" class="btn-center">GET STARTED TODAY!</a>
                             <hr>
                             <h3>Take a Look Around</h3>
                             <p>Browse our local deals as well as our <strong>Global Marketplace of E-tailers</strong> (online only merchants)</p>
