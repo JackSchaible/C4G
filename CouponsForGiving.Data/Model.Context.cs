@@ -58,6 +58,7 @@ namespace CouponsForGiving.Data
         public DbSet<City> Cities { get; set; }
         public DbSet<FinePrint> FinePrints { get; set; }
         public DbSet<NPOSetting> NPOSettings { get; set; }
+        public DbSet<News> News { get; set; }
     
         public virtual ObjectResult<cStatus_ListAll_Result> cStatus_ListAll()
         {
@@ -2438,6 +2439,94 @@ namespace CouponsForGiving.Data
                 new ObjectParameter("CountryName", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<City>("City_GetByNameWithProvinceAndCountry", mergeOption, cityNameParameter, provinceNameParameter, countryNameParameter);
+        }
+    
+        public virtual int News_Delete(Nullable<int> newsID)
+        {
+            var newsIDParameter = newsID.HasValue ?
+                new ObjectParameter("NewsID", newsID) :
+                new ObjectParameter("NewsID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("News_Delete", newsIDParameter);
+        }
+    
+        public virtual int News_Edit(Nullable<int> newsID, string name, string content)
+        {
+            var newsIDParameter = newsID.HasValue ?
+                new ObjectParameter("NewsID", newsID) :
+                new ObjectParameter("NewsID", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var contentParameter = content != null ?
+                new ObjectParameter("Content", content) :
+                new ObjectParameter("Content", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("News_Edit", newsIDParameter, nameParameter, contentParameter);
+        }
+    
+        public virtual int News_Insert(string name, string content)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var contentParameter = content != null ?
+                new ObjectParameter("Content", content) :
+                new ObjectParameter("Content", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("News_Insert", nameParameter, contentParameter);
+        }
+    
+        public virtual ObjectResult<News> News_List()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<News>("News_List");
+        }
+    
+        public virtual ObjectResult<News> News_List(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<News>("News_List", mergeOption);
+        }
+    
+        public virtual ObjectResult<News> News_ListByMonth(Nullable<System.DateTime> month)
+        {
+            var monthParameter = month.HasValue ?
+                new ObjectParameter("Month", month) :
+                new ObjectParameter("Month", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<News>("News_ListByMonth", monthParameter);
+        }
+    
+        public virtual ObjectResult<News> News_ListByMonth(Nullable<System.DateTime> month, MergeOption mergeOption)
+        {
+            var monthParameter = month.HasValue ?
+                new ObjectParameter("Month", month) :
+                new ObjectParameter("Month", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<News>("News_ListByMonth", mergeOption, monthParameter);
+        }
+    
+        public virtual int OAuthToken_Insert(Nullable<int> oAuthProviderID, string username, string userID, string accessToken)
+        {
+            var oAuthProviderIDParameter = oAuthProviderID.HasValue ?
+                new ObjectParameter("OAuthProviderID", oAuthProviderID) :
+                new ObjectParameter("OAuthProviderID", typeof(int));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var userIDParameter = userID != null ?
+                new ObjectParameter("UserID", userID) :
+                new ObjectParameter("UserID", typeof(string));
+    
+            var accessTokenParameter = accessToken != null ?
+                new ObjectParameter("AccessToken", accessToken) :
+                new ObjectParameter("AccessToken", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("OAuthToken_Insert", oAuthProviderIDParameter, usernameParameter, userIDParameter, accessTokenParameter);
         }
     }
 }

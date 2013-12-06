@@ -764,5 +764,21 @@
     <FunctionImportMapping FunctionImportName="Campaign_List" FunctionName="C4GModel.Store.Campaign_List" />
     <FunctionImportMapping FunctionImportName="NPOSettings_Update" FunctionName="C4GModel.Store.NPOSettings_Update" />
     <FunctionImportMapping FunctionImportName="City_GetByNameWithProvinceAndCountry" FunctionName="C4GModel.Store.City_GetByNameWithProvinceAndCountry" />
+    <FunctionImportMapping FunctionImportName="News_Delete" FunctionName="C4GModel.Store.News_Delete" />
+    <FunctionImportMapping FunctionImportName="News_Edit" FunctionName="C4GModel.Store.News_Edit" />
+    <FunctionImportMapping FunctionImportName="News_Insert" FunctionName="C4GModel.Store.News_Insert" />
+    <FunctionImportMapping FunctionImportName="News_List" FunctionName="C4GModel.Store.News_List" />
+    <FunctionImportMapping FunctionImportName="News_ListByMonth" FunctionName="C4GModel.Store.News_ListByMonth" />
+    <FunctionImportMapping FunctionImportName="OAuthToken_Insert" FunctionName="C4GModel.Store.OAuthToken_Insert" />
+    <EntitySetMapping Name="News">
+      <EntityTypeMapping TypeName="C4GModel.News">
+        <MappingFragment StoreEntitySet="News">
+          <ScalarProperty Name="DatePosted" ColumnName="DatePosted" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="NewsID" ColumnName="NewsID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -74,6 +74,7 @@
         <AssociationConnector Association="C4GModel.Deal_FinePrint" />
         <EntityTypeShape EntityType="C4GModel.NPOSetting" Width="1.5" PointX="10.282081144993231" PointY="22.236858735902636" />
         <AssociationConnector Association="C4GModel.FK_NPOSetting_NPO" />
+        <EntityTypeShape EntityType="C4GModel.News" Width="1.5" PointX="3.1340910844197918" PointY="4.4885619303623967" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

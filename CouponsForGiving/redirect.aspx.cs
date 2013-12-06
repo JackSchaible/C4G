@@ -12,7 +12,7 @@ public partial class redirect : System.Web.UI.Page
         if (User.Identity.IsAuthenticated)
         {
             if (User.IsInRole("Admin"))
-                Response.Redirect("Admin/MyDashboard.aspx");
+                Response.Redirect("Admin/MyHome.aspx");
             else if (User.IsInRole("NPO"))
                 Response.Redirect("NPO/MyHome.aspx");
             else if (User.IsInRole("Merchant"))

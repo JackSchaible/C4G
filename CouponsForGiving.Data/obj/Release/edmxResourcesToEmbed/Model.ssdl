@@ -22,6 +22,7 @@
     <EntitySet Name="MerchantNPO" EntityType="C4GModel.Store.MerchantNPO" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="MerchantSetting" EntityType="C4GModel.Store.MerchantSetting" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="MerchantStripeInfo" EntityType="C4GModel.Store.MerchantStripeInfo" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="News" EntityType="C4GModel.Store.News" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="NewsletterUser" EntityType="C4GModel.Store.NewsletterUser" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="NPO" EntityType="C4GModel.Store.NPO" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="NPOcUser" EntityType="C4GModel.Store.NPOcUser" store:Type="Tables" Schema="Database_User" />
@@ -426,6 +427,15 @@
     <Property Name="MerchantStripeInfoID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="MerchantID" Type="int" Nullable="false" />
     <Property Name="ApiKey" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="NewsID" />
+    </Key>
+    <Property Name="NewsID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DatePosted" Type="datetime" Nullable="false" />
   </EntityType>
   <EntityType Name="NewsletterUser">
     <Key>
@@ -1498,6 +1508,22 @@
     <Parameter Name="MerchantID" Type="int" Mode="In" />
     <Parameter Name="ApiKey" Type="nvarchar(max)" Mode="In" />
   </Function>
+  <Function Name="News_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="NewsID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="News_Edit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="NewsID" Type="int" Mode="In" />
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="News_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Name" Type="nvarchar" Mode="In" />
+    <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="News_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="News_ListByMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Month" Type="datetime" Mode="In" />
+  </Function>
   <Function Name="NewsletterUser_Signup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="Email" Type="nvarchar" Mode="In" />
   </Function>
@@ -1595,6 +1621,12 @@
   <Function Name="NPOSettings_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="Username" Type="nvarchar" Mode="In" />
     <Parameter Name="AutoAcceptMerchantRequests" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="OAuthToken_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="OAuthProviderID" Type="int" Mode="In" />
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserID" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="AccessToken" Type="nvarchar(max)" Mode="In" />
   </Function>
   <Function Name="PaymentOption_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="PaymentOptionID" Type="int" Mode="In" />

@@ -684,4 +684,32 @@ namespace CouponsForGiving.Data.Classes
             new C4GEntities().PurchaseOrder_Unredeem(PurchaseOrderID);
         }
     }
+
+    public static class Story
+    {
+        public static List<News> List()
+        {
+            return new C4GEntities().News_List().ToList<News>();
+        }
+
+        public static List<News> List(DateTime Month)
+        {
+            return new C4GEntities().News_ListByMonth(Month).ToList<News>();
+        }
+
+        public static void Add(string name, string content)
+        {
+            new C4GEntities().News_Insert(name, content);
+        }
+
+        public static void Edit(int NewsID, string name, string content)
+        {
+            new C4GEntities().News_Edit(NewsID, name, content);
+        }
+
+        public static void Delete(int NewsID)
+        {
+            new C4GEntities().News_Delete(NewsID);
+        }
+    }
 }

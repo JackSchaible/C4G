@@ -27,6 +27,7 @@
           <EntitySet Name="MerchantNPO" EntityType="C4GModel.Store.MerchantNPO" store:Type="Tables" Schema="Database_User" />
           <EntitySet Name="MerchantSetting" EntityType="C4GModel.Store.MerchantSetting" store:Type="Tables" Schema="Database_User" />
           <EntitySet Name="MerchantStripeInfo" EntityType="C4GModel.Store.MerchantStripeInfo" store:Type="Tables" Schema="Database_User" />
+          <EntitySet Name="News" EntityType="C4GModel.Store.News" store:Type="Tables" Schema="Database_User" />
           <EntitySet Name="NewsletterUser" EntityType="C4GModel.Store.NewsletterUser" store:Type="Tables" Schema="Database_User" />
           <EntitySet Name="NPO" EntityType="C4GModel.Store.NPO" store:Type="Tables" Schema="Database_User" />
           <EntitySet Name="NPOcUser" EntityType="C4GModel.Store.NPOcUser" store:Type="Tables" Schema="Database_User" />
@@ -431,6 +432,15 @@
           <Property Name="MerchantStripeInfoID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="MerchantID" Type="int" Nullable="false" />
           <Property Name="ApiKey" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsID" />
+          </Key>
+          <Property Name="NewsID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="256" />
+          <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DatePosted" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="NewsletterUser">
           <Key>
@@ -1503,6 +1513,22 @@
           <Parameter Name="MerchantID" Type="int" Mode="In" />
           <Parameter Name="ApiKey" Type="nvarchar(max)" Mode="In" />
         </Function>
+        <Function Name="News_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+          <Parameter Name="NewsID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="News_Edit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+          <Parameter Name="NewsID" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="News_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="News_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+        <Function Name="News_ListByMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+          <Parameter Name="Month" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="NewsletterUser_Signup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
           <Parameter Name="Email" Type="nvarchar" Mode="In" />
         </Function>
@@ -1600,6 +1626,12 @@
         <Function Name="NPOSettings_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
           <Parameter Name="AutoAcceptMerchantRequests" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="OAuthToken_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+          <Parameter Name="OAuthProviderID" Type="int" Mode="In" />
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserID" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="AccessToken" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="PaymentOption_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
           <Parameter Name="PaymentOptionID" Type="int" Mode="In" />
@@ -2475,6 +2507,29 @@
             <Parameter Name="ProvinceName" Mode="In" Type="String" />
             <Parameter Name="CountryName" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="News_Delete">
+          <Parameter Name="NewsID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="News_Edit">
+            <Parameter Name="NewsID" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Content" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="News_Insert">
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Content" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="News_List" EntitySet="News" ReturnType="Collection(C4GModel.News)" />
+          <FunctionImport Name="News_ListByMonth" EntitySet="News" ReturnType="Collection(C4GModel.News)">
+          <Parameter Name="Month" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="OAuthToken_Insert">
+            <Parameter Name="OAuthProviderID" Mode="In" Type="Int32" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="UserID" Mode="In" Type="String" />
+            <Parameter Name="AccessToken" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="News" EntityType="C4GModel.News" />
           </EntityContainer>
         <EntityType Name="Campaign">
           <Key>
@@ -4183,6 +4238,27 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
           <Property Type="Int32" Name="CityID" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="News_List_Result">
+          <Property Type="Int32" Name="NewsID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="Content" Nullable="false" />
+          <Property Type="DateTime" Name="DatePosted" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="News_ListByMonth_Result">
+          <Property Type="Int32" Name="NewsID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="Content" Nullable="false" />
+          <Property Type="DateTime" Name="DatePosted" Nullable="false" Precision="23" />
+        </ComplexType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsID" />
+          </Key>
+          <Property Type="Int32" Name="NewsID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Content" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DatePosted" Nullable="false" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5002,6 +5078,24 @@
           <FunctionImportMapping FunctionImportName="NPOSettings_Update" FunctionName="C4GModel.Store.NPOSettings_Update" />
           <FunctionImportMapping FunctionImportName="City_GetByNameWithProvinceAndCountry" FunctionName="C4GModel.Store.City_GetByNameWithProvinceAndCountry">
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="News_Delete" FunctionName="C4GModel.Store.News_Delete" />
+          <FunctionImportMapping FunctionImportName="News_Edit" FunctionName="C4GModel.Store.News_Edit" />
+          <FunctionImportMapping FunctionImportName="News_Insert" FunctionName="C4GModel.Store.News_Insert" />
+          <FunctionImportMapping FunctionImportName="News_List" FunctionName="C4GModel.Store.News_List">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="News_ListByMonth" FunctionName="C4GModel.Store.News_ListByMonth">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="OAuthToken_Insert" FunctionName="C4GModel.Store.OAuthToken_Insert" />
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="C4GModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="DatePosted" ColumnName="DatePosted" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="NewsID" ColumnName="NewsID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

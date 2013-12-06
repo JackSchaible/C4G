@@ -143,13 +143,13 @@
                                     <li><img src="../Images/c4g_comingsoon_small.png" class="centered" /></li>
                                 </ul>
                             </div>
-                            <a href="../CausesInMyArea.aspx" class="btn">MORE MERCHANTS</a>
+                            <a href="DealsInMyArea.aspx" class="btn">MORE MERCHANTS</a>
                                 <h4 class="centered">OUR FEATURED CAUSES</h4>
                                 <div class="nposList">
                                     <ul>
                                         <li><img src="../Images/c4g_comingsoon_small.png" class="centered" /></li>
                                     </ul>
-                                    <a href="../CausesInMyArea.aspx" class="btn">MORE CAUSES</a>
+                                    <a href="CausesInMyArea.aspx" class="btn">MORE CAUSES</a>
                                 </div>
                             </div>
                     <div id="FeaturedMerchants" class="Sidebar">

@@ -756,6 +756,29 @@
       <Parameter Name="ProvinceName" Mode="In" Type="String" />
       <Parameter Name="CountryName" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="News_Delete">
+      <Parameter Name="NewsID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="News_Edit">
+      <Parameter Name="NewsID" Mode="In" Type="Int32" />
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Content" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="News_Insert">
+      <Parameter Name="Name" Mode="In" Type="String" />
+      <Parameter Name="Content" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="News_List" EntitySet="News" ReturnType="Collection(C4GModel.News)" />
+    <FunctionImport Name="News_ListByMonth" EntitySet="News" ReturnType="Collection(C4GModel.News)">
+      <Parameter Name="Month" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="OAuthToken_Insert">
+      <Parameter Name="OAuthProviderID" Mode="In" Type="Int32" />
+      <Parameter Name="Username" Mode="In" Type="String" />
+      <Parameter Name="UserID" Mode="In" Type="String" />
+      <Parameter Name="AccessToken" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="News" EntityType="C4GModel.News" />
   </EntityContainer>
   <EntityType Name="Campaign">
     <Key>
@@ -2464,4 +2487,25 @@
     <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
     <Property Type="Int32" Name="CityID" Nullable="false" />
   </ComplexType>
+  <ComplexType Name="News_List_Result">
+    <Property Type="Int32" Name="NewsID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="Content" Nullable="false" />
+    <Property Type="DateTime" Name="DatePosted" Nullable="false" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="News_ListByMonth_Result">
+    <Property Type="Int32" Name="NewsID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="Content" Nullable="false" />
+    <Property Type="DateTime" Name="DatePosted" Nullable="false" Precision="23" />
+  </ComplexType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="NewsID" />
+    </Key>
+    <Property Type="Int32" Name="NewsID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Content" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DatePosted" Nullable="false" Precision="3" />
+  </EntityType>
 </Schema>
