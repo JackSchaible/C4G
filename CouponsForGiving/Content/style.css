@@ -1058,9 +1058,22 @@ width: 150px;
 display: inline-block;
 }
 
-.profile-edit #profile-edit-address, .profile-edit #profile-edit-postal-code, .profile-edit #profile-edit-email, .profile-edit #profile-edit-phone-number, .profile-edit #profile-edit-city, .profile-edit #profile-edit-province, .profile-edit #profile-edit-country {
-
+.profile-edit #profile-edit-image img {
+width: 150px;
+margin-top: -50px;
 }
+
+.profile-edit input, .profile-edit textarea {
+font-size: 17px;
+border: 1px solid #ccc;
+margin: 10px;
+width: 60%;
+}
+
+#DescriptionTextBox {
+font-size: 17px;
+border: 1px solid #ccc;
+width: 60%;}
 
 .profile-edit #profile-edit-address p, .profile-edit #profile-edit-postal-code p, .profile-edit #profile-edit-email p, .profile-edit #profile-edit-phone-number p, .profile-edit #profile-edit-city p, .profile-edit #profile-edit-province p, .profile-edit #profile-edit-country p {
 width: 60%; display: inline-block;

@@ -48,6 +48,7 @@ public partial class _Default : System.Web.UI.Page
         //mm.To.Add(new MailAddress("jack@coupons4giving.ca"));
         mm.To.Add(new MailAddress("jack.schaible@hotmail.com"));
         mm.To.Add(new MailAddress("michelle.a.sklar@gmail.com"));
+        mm.To.Add(new MailAddress("thompson@vaangels.com"));
 
         mm.IsBodyHtml = true;
 

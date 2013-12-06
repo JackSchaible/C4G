@@ -86,19 +86,16 @@
                             <ul>
                                 <li class="coupons">
                                     <div class="content">
-                                        <div class="two-thirds">
-                                            <h2><strong>Coupons4Giving</strong> is a fundraising tool that allows you to support your favourite Not-For-Profit organization in just one click!</h2>
-                                            <a href="Account/Register.aspx" class="btn"><i class="fa fa-arrow-circle-o-right"></i> CREATE AN ACCOUNT</a>
+                                        <div class="two-thirds"><h2><strong>Coupons4Giving</strong> is an fundraising tool that allows you to support your favourite <strong>not-for-profit organization in just one click!</strong></h2>
+                                            <a href="Default/CausesInMyArea.aspx" class="btn"><i class="fa fa-arrow-circle-o-right"></i> SUPPORT A CAUSE</a>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="customers">
                                     <div class="content">
-                                        <div class="two-thirds"><h2><strong>Coupons4Giving</strong> is an fundraising tool 
-                                            that allows you to support 
-                                            your favourite <strong>not-for-profit organization 
-                                            in just one click!</strong></h2>
-                                            <a href="Default/CausesInMyArea.aspx" class="btn"><i class="fa fa-arrow-circle-o-right"></i> SUPPORT A CAUSE</a>
+                                        <div class="two-thirds">
+                                            <h2>It's free to sign up. Support great causes and share great deals!</h2>
+                                            <a href="Account/Register.aspx" class="btn"><i class="fa fa-arrow-circle-o-right"></i> CREATE AN ACCOUNT</a>
                                         </div>
                                     </div>
                                 </li>

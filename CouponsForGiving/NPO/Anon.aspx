@@ -1,11 +1,13 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Anon.aspx.cs" Inherits="NPO_Anon" MasterPageFile="~/Site.master" %>
 <%@ Reference Control="~/Controls/MenuBar.ascx" %>
 
-<asp:Content ContentPlaceHolderID="BannerContent" runat="server">
-
+<asp:Content ID="Content1" ContentPlaceHolderID="BannerContent" runat="server">
+    <div class="homeBanners">
+        <h2>Coupons4Giving is a fundraising tool that is easy to use! Share great deals to support your cause!</h2><h3>Register for a Coupons4Giving account and get started right away!</h3>
+        <img src="../Images/c4g_fundraising_home.png" class="right-fundraising" />
+    </div>
 </asp:Content>
-<asp:Content ContentPlaceHolderID="Main_Content" runat="server">
-    <p><strong>Coupons4Giving</strong> allows you to create and manage successful fundraising campaigns in just a few simple clicks. You do not need to be a registered charity but you do have to have a Not-For-Profit that is looking to raise money for a cause. </p>
+<asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" runat="server">
     <blockquote><img src="../Images/c4g_npos.png" class="bio_head">Remember those days of selling chocolate almonds door-to-door? Managing those volunteers, keeping track of all those quarters, dimes and nickels! Coupons4Giving makes fundraising easy and secure.</blockquote>
     <hr>
     <h3>It’s easy to build simple and effective campaigns.</h3>
@@ -31,7 +33,7 @@
         </ul>
     </div>
     <div class="clear"></div>
-    <a href="../Default/CausesInMyArea.aspx" class="btn-center">GET STARTED TODAY!</a>
+    <a href="../Account/Register.aspx" class="btn-center">GET STARTED TODAY!</a>
     <hr>
     <h3>Take a Look Around</h3>
     <p>Browse our local deals as well as our <strong>Global Marketplace of E-tailers</strong> (online only merchants)</p>
