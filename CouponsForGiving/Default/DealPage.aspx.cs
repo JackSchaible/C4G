@@ -1,10 +1,13 @@
 ﻿using CouponsForGiving;
 using CouponsForGiving.Data;
+using CouponsForGiving.Data.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -76,5 +79,51 @@ public partial class Default_DealPage : System.Web.UI.Page
         control.MenuBar = MenuBarType.Supporter;
 
         URL = WebServices.GetGoogleURL("https://www.coupons4giving.ca/Offers/" + merchant.Name + "/" + deal.Name);
+    }
+
+    [WebMethod]
+    [ScriptMethod]
+    public static void AddToCart(int dealInstanceID, int campaignID)
+    {
+        Campaign campaign = SysData.Campaign_Get(campaignID);
+        NPO npo = campaign.NPO;
+        DealInstance deal = (from d in campaign.DealInstances where d.DealInstanceID == dealInstanceID select d).FirstOrDefault<DealInstance>();
+        Merchant merchant = deal.Deal.Merchant;
+        ShoppingCart order = new ShoppingCart(npo.Name, campaign.CampaignID, campaign.Name, dealInstanceID, 
+            deal.Deal.Name, deal.Deal.MerchantID, deal.Deal.Merchant.Name, deal.Deal.Prices.FirstOrDefault<Price>().GiftValue, 
+            deal.Deal.Prices.FirstOrDefault<Price>().RetailValue);
+
+        if (HttpContext.Current.Session["Cart"] == null)
+        {
+            List<ShoppingCart> orders = new List<ShoppingCart>() { order };
+            HttpContext.Current.Session["Cart"] = orders;
+        }
+        else
+        {
+            List<ShoppingCart> orders = (List<ShoppingCart>)HttpContext.Current.Session["Cart"];
+            bool found = false;
+            int curQTY = 0;
+
+            foreach (ShoppingCart item in orders)
+            {
+                if (item.CampaignID == order.CampaignID && item.DealInstanceID == order.DealInstanceID)
+                {
+                    found = true;
+                    curQTY++;
+                }
+            }
+
+            if (found)
+                if (1 + curQTY > deal.Deal.LimitPerCustomer)
+                    throw new Exception(String.Format("You have exceeded the limit of coupons per customer ({0}).", deal.Deal.LimitPerCustomer));
+                else
+                {
+                    orders.Add(order);
+                }
+            else
+                orders.Add(order);
+
+            HttpContext.Current.Session["Cart"] = orders;
+        }
     }
 }

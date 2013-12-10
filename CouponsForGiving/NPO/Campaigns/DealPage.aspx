@@ -194,7 +194,7 @@
                             <%
                                 foreach (CouponsForGiving.Data.Campaign c in (from c in deal.DealInstances.FirstOrDefault<CouponsForGiving.Data.DealInstance>().Campaigns where c.CampaignStatusID == 2 && c.NPOID == CouponsForGiving.Data.Classes.NPOs.NPO_GetByUser(User.Identity.Name).NPOID select c))
                                 {
-                                    Response.Write(CouponsForGiving.HttpRendering.GetNPOCampaign(c, deal));
+                                    Response.Write(CouponsForGiving.HttpRendering.GetNPOCampaign(c, deal.DealInstances.FirstOrDefault<CouponsForGiving.Data.DealInstance>()));
                                 }
                             %>
                             <h2>Fine Print</h2> 

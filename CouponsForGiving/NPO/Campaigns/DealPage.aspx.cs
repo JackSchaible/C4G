@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
@@ -76,5 +78,62 @@ public partial class Default_DealPage : System.Web.UI.Page
         control.MenuBar = MenuBarType.Supporter;
 
         URL = WebServices.GetGoogleURL("https://www.coupons4giving.ca/Offers/" + merchant.Name + "/" + deal.Name);
+    }
+
+    [WebMethod]
+    [ScriptMethod]
+    public static void AddToCart(int dealInstanceID, int campaignID)
+    {
+        Deals_ListforSearchGrid_Result order = new Deals_ListforSearchGrid_Result();
+        Campaign campaign = SysData.Campaign_Get(campaignID);
+        NPO npo = campaign.NPO;
+        DealInstance deal = (from d in campaign.DealInstances where d.DealInstanceID == dealInstanceID select d).FirstOrDefault<DealInstance>();
+        Merchant merchant = deal.Deal.Merchant;
+
+        order.CampaignID = campaign.CampaignID;
+        order.CampaignName = campaign.Name;
+        order.DealInstanceID = deal.DealInstanceID;
+        order.DealName = deal.Deal.Name;
+        order.GiftValue = deal.Deal.Prices.FirstOrDefault<Price>().GiftValue;
+        order.Logo = campaign.CampaignImage;
+        order.MerchantName = merchant.Name;
+        order.NPOName = npo.Name;
+        order.NPOSplit = deal.Deal.Prices.FirstOrDefault<Price>().NPOSplit;
+        order.RetailValue = deal.Deal.Prices.FirstOrDefault<Price>().RetailValue;
+        order.MerchantSplit = deal.Deal.Prices.FirstOrDefault<Price>().MerchantSplit;
+        order.OurSplit = deal.Deal.Prices.FirstOrDefault<Price>().OurSplit;
+
+        if (HttpContext.Current.Session["Cart"] == null)
+        {
+            List<Deals_ListforSearchGrid_Result> orders = new List<Deals_ListforSearchGrid_Result>() { order };
+            HttpContext.Current.Session["Cart"] = orders;
+        }
+        else
+        {
+            List<Deals_ListforSearchGrid_Result> orders = (List<Deals_ListforSearchGrid_Result>)HttpContext.Current.Session["Cart"];
+            bool found = false;
+            int curQTY = 0;
+
+            foreach (Deals_ListforSearchGrid_Result item in orders)
+            {
+                if (item.CampaignID == order.CampaignID && item.DealInstanceID == order.DealInstanceID)
+                {
+                    found = true;
+                    curQTY++;
+                }
+            }
+
+            if (found)
+                if (1 + curQTY > deal.Deal.LimitPerCustomer)
+                    throw new Exception(String.Format("You have exceeded the limit of coupons per customer ({0}).", deal.Deal.LimitPerCustomer));
+                else
+                {
+                    orders.Add(order);
+                }
+            else
+                orders.Add(order);
+
+            HttpContext.Current.Session["Cart"] = orders;
+        }
     }
 }

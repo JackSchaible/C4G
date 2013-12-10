@@ -157,6 +157,17 @@
             </header>
             <div id="container" style="min-height: 430px;">
                 <UC:MenuBar ID="MenuBarControl" runat="server" />
+                <script type="text/javascript">
+                    function AddToCart(dealInstanceID, campaignID) {
+                        PageMethods.AddToCart(dealInstanceID, campaignID, onSuccess, onFail);
+                    }
+
+                    function onSuccess() {
+                    }
+
+                    function onFail() {
+                    }
+                </script>
                 <section id="MainContent">
                     <div id="content" class="no-sidebar">   
                         <div class="two-thirds">             
@@ -194,7 +205,7 @@
                             <%
                                 foreach (CouponsForGiving.Data.Campaign c in (from c in deal.DealInstances.FirstOrDefault<CouponsForGiving.Data.DealInstance>().Campaigns where c.CampaignStatusID == 2 select c))
                                 {
-                                    Response.Write(CouponsForGiving.HttpRendering.GetNPOCampaign(c, deal));
+                                    Response.Write(CouponsForGiving.HttpRendering.GetNPOCampaign(c, deal.DealInstances.FirstOrDefault<CouponsForGiving.Data.DealInstance>()));
                                 }
                             %>
                             <h2>Fine Print</h2> 

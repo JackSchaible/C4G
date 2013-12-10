@@ -1,6 +1,21 @@
 ﻿<%@ Page Title="Register" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="Account_Register" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="Main_Content">
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+        });
+
+        function change() {
+            if ($("#TermsCheckbox").is(':checked') == false) {
+                $("#SubmitButton").attr('disabled', 'disabled');
+            }
+            else {
+                $("#SubmitButton").removeAttr('disabled');
+            }
+        }
+    </script>
     <h1>Sign up for a Coupons4Giving account today!</h1>
     <p>It’s easy and you can get started with your <strong>fundraising campaign</strong>, <strong>buying coupons</strong> or <strong>set up your merchant/e-tailer</strong> offers right away! As a fundraising group or merchant/e-tailer, you are automatically signed up as a customer so you can also purchase great deals!</p>
     <asp:CreateUserWizard runat="server" ID="RegisterUser" ViewStateMode="Disabled" OnCreatedUser="RegisterUser_CreatedUser">
@@ -54,7 +69,13 @@
                             </asp:RadioButtonList>
                         </div>
                         <div class="FormRow">
-                            <asp:Button runat="server" CommandName="MoveNext" Text="Register" />
+                            <iframe src="../Content/Terms/PrivacyPolicy.txt"></iframe>
+                            <iframe src="../Content/Terms/TermsOfUse.txt"></iframe>
+                            <label>I have read and agree to the <a href="../Content/Terms/PrivacyPolicy.pdf">Privacy Policy</a> and the <a href="../Content/Terms/TermsOfUse.pdf">Terms of Use</a></label>
+                            <input type="checkbox" id="TermsCheckbox" onchange="change()" />
+                        </div>
+                        <div class="FormRow">
+                            <asp:Button runat="server" CommandName="MoveNext" Text="Register" ID="SubmitButton" ClientIDMode="Static" />
                         </div>
                     </fieldset>
                 </ContentTemplate>
