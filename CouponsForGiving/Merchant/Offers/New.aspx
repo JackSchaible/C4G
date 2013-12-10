@@ -5,6 +5,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
     <script type="text/javascript">
+        $(document).ready(function () {
+            calcSplit();
+        });
+
         function addLocation(locationID, name) {
             PageMethods.AddLocation(locationID, function () {
                 $("#SelectedItems").append("<button id='" + locationID + "Button' onClick='removeLocation(" + locationID + ")>" + name + "</button>)");
@@ -15,6 +19,19 @@
             PageMethods.RemoveLocation(locationID, function () {
                 $(locationID + "Button").remove();
             });
+        }
+
+        function calcSplit() {
+            var value = $("#newDealGiftValue").val();
+            var vat = value * 0.023;
+            var tax = (value * 0.2) * 0.05;
+            var split = value - (vat + tax);
+
+            $("#VAT").text("$" + vat.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+            $("#Tax").text("$" + tax.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+
+            //IMPORTANT: MUST BE THE SAME AS THE FORMULA IN ShoppingCart.cs
+            $("#SplitTotal").text("$" + split.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
         }
     </script>
     <h1>Offer Creation Page</h1>
@@ -116,9 +133,15 @@
         </div>
         <div class="FormRow">
             <label>Gift Value<br /><small>The Sale Price</small></label>
-            <asp:TextBox ID="newDealGiftValue" runat="server" MaxLength="10"></asp:TextBox>
+            <asp:TextBox ID="newDealGiftValue" runat="server" MaxLength="10" onkeyup="calcSplit()" ClientIDMode="Static"></asp:TextBox>
+            <br />
+            <p>2.3% VAT = <strong id="VAT">$0.00</strong></p>
+            <br />
+            <p>5% Tax on Coupons4Giving Fee = <strong id="Tax">$0.00</strong></p>
+            <br />
+            <p>Your Split on Each Purchase = <strong id="SplitTotal">$0.00</strong></p>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-                ControlToValidate="newDealGiftValue" ErrorMessage="The Gift Value of your offer is required. This is how much your offer will be sold for (service fee inclusive).">
+                ControlToValidate="newDealGiftValue" ErrorMessage="The Gift Value of your offer is required. This is how much your offer will be sold for.">
                 *
             </asp:RequiredFieldValidator>
             <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" 

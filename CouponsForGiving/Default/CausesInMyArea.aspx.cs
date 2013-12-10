@@ -11,6 +11,7 @@ using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -81,5 +82,26 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
         {
             objWebReq = null;
         }
+    }
+
+    /// <summary>
+    /// Returns the HTML for displaying a list of deals
+    /// </summary>
+    /// <param name="location">A string containing the location (must in the format "<City>, <Province/State>", for example, "Edmonton, Alberta")</param>
+    /// <returns>The HTML for displaying a list of deals</returns>
+    [WebMethod]
+    [ScriptMethod]
+    public static string ChangeCity(string location)
+    {
+        string result = "";
+
+        string city = location.Split(new char[] { ',' })[0].Trim();
+        string province = location.Split(new char[] { ',' })[1].Trim();
+
+        List<Campaign> deals = Campaigns.ListByCity(city, province);
+
+        result = HttpRendering.ListNPOCampaigns(deals);
+
+        return result;
     }
 }

@@ -345,12 +345,6 @@
     <FunctionImport Name="DealInstance_Get" ReturnType="Collection(C4GModel.DealInstance_Get_Result)">
       <Parameter Name="dealinstanceid" Mode="In" Type="Int32" />
     </FunctionImport>
-    <FunctionImport Name="PaymentOption_Insert">
-      <Parameter Name="Username" Mode="In" Type="String" />
-      <Parameter Name="CardTypeID" Mode="In" Type="Int32" />
-      <Parameter Name="Last4Digits" Mode="In" Type="String" />
-      <Parameter Name="StripeToken" Mode="In" Type="String" />
-    </FunctionImport>
     <FunctionImport Name="cUser_GetByUsername" ReturnType="Collection(C4GModel.cUser_GetByUsername_Result)">
       <Parameter Name="username" Mode="In" Type="String" />
     </FunctionImport>
@@ -779,6 +773,21 @@
       <Parameter Name="AccessToken" Mode="In" Type="String" />
     </FunctionImport>
     <EntitySet Name="News" EntityType="C4GModel.News" />
+    <FunctionImport Name="Cities_ListWhereActiveDeals" EntitySet="Cities" ReturnType="Collection(C4GModel.City)" />
+    <FunctionImport Name="PurchaseTransaction_Failed">
+      <Parameter Name="PurchaseTransactionID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PaymentOption_Insert">
+      <Parameter Name="Username" Mode="In" Type="String" />
+      <Parameter Name="CardTypeID" Mode="In" Type="Int32" />
+      <Parameter Name="Last4Digits" Mode="In" Type="String" />
+      <Parameter Name="StripeToken" Mode="In" Type="String" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="City" Mode="In" Type="String" />
+      <Parameter Name="Province" Mode="In" Type="String" />
+      <Parameter Name="Postal" Mode="In" Type="String" />
+      <Parameter Name="Country" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="Campaign">
     <Key>
@@ -2508,4 +2517,11 @@
     <Property Type="String" Name="Content" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Type="DateTime" Name="DatePosted" Nullable="false" Precision="3" />
   </EntityType>
+  <ComplexType Name="Cities_ListWhereActiveDeals_Result">
+    <Property Type="String" Name="CityCode" Nullable="false" MaxLength="3" />
+    <Property Type="Int32" Name="PoliticalDivisionID" Nullable="true" />
+    <Property Type="String" Name="CountryCode" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+    <Property Type="Int32" Name="CityID" Nullable="false" />
+  </ComplexType>
 </Schema>

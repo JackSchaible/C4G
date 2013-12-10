@@ -388,7 +388,7 @@ namespace CouponsForGiving
             return result;
         }
 
-        public static string GetNPOCampaign(Campaign campaign, Deal deal)
+        public static string GetNPOCampaign(Campaign campaign, DealInstance deal)
         {
             string result = "";
 
@@ -403,7 +403,8 @@ namespace CouponsForGiving
             result += "</div><!--Close Coupon Title -->";
             result += "<div class=\"clear\"></div>";
             result += "<div class=\"clear\"></div>";
-            result += "<a href=\"../../Default/CouponPage.aspx?merchant=" + deal.Merchant.Name + "&deal=" + deal.Name + "&npo=" + campaign.NPO.Name + "&campaign=" + campaign.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> Buy Now</a>";
+            result += "<a href=\"javascript:AddToCart(" + deal.DealInstanceID + ", " + campaign.CampaignID + ")\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> Buy Now</a>";
+            result += "<a href=\"../../Default/CampaignPage.aspx?nponame=" + campaign.NPO.Name + "&campaign=" + campaign.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> About This Campaign</a>";
             result += "</article>";
             result += "</div>";
 
@@ -429,6 +430,19 @@ namespace CouponsForGiving
             result += "<a href=\"CampaignPage.aspx?nponame=" + campaign.NPO.Name + "&campaign=" + campaign.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> Buy Now</a>";
             result += "</article>";
             result += "</div>";
+
+            return result;
+        }
+    }
+
+    public class JSONUtils
+    {
+        public static string ToJSON(object obj)
+        {
+            string result = "";
+
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            result = serializer.Serialize(obj);
 
             return result;
         }

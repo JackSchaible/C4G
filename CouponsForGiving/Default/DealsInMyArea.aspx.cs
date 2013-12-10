@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Configuration;
+using System.Web.Script.Services;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -36,6 +38,17 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
     private void BindData()
     {
         DIs = Deals.ListByCity(City, Province);
+        CitiesDDL.DataSource =
+            (
+                from c
+                in Cities.List()
+                orderby c.Country.Name, c.PoliticalDivision.Name, c.Name
+                select new
+                {
+                    City = c.Name + ", " + c.PoliticalDivision.Name
+                }
+            );
+        CitiesDDL.DataBind();
     }
 
     private void SetLocation(string IP)
@@ -74,5 +87,26 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
         {
             objWebReq = null;
         }
+    }
+
+    /// <summary>
+    /// Returns the HTML for displaying a list of deals
+    /// </summary>
+    /// <param name="location">A string containing the location (must in the format "<City>, <Province/State>", for example, "Edmonton, Alberta")</param>
+    /// <returns>The HTML for displaying a list of deals</returns>
+    [WebMethod]
+    [ScriptMethod]
+    public static string ChangeCity(string location)
+    {
+        string result = "";
+
+        string city = location.Split(new char[] { ',' })[0].Trim();
+        string province = location.Split(new char[] { ',' })[1].Trim();
+
+        List<DealInstance> deals = Deals.ListByCity(city, province);
+
+        result = HttpRendering.ListMerchantOffers(deals);
+
+        return result;
     }
 }

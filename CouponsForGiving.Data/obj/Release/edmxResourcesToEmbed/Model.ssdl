@@ -1247,6 +1247,7 @@
     <Parameter Name="DealInstanceID" Type="int" Mode="In" />
     <Parameter Name="CampaignID" Type="int" Mode="In" />
   </Function>
+  <Function Name="Cities_ListWhereActiveDeals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
   <Function Name="City_GetByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="CityName" Type="nvarchar" Mode="In" />
     <Parameter Name="ProvinceCode" Type="nchar" Mode="In" />
@@ -1639,6 +1640,11 @@
     <Parameter Name="CardTypeID" Type="int" Mode="In" />
     <Parameter Name="Last4Digits" Type="nchar" Mode="In" />
     <Parameter Name="StripeToken" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="Address" Type="nvarchar" Mode="In" />
+    <Parameter Name="City" Type="nvarchar" Mode="In" />
+    <Parameter Name="Province" Type="nvarchar" Mode="In" />
+    <Parameter Name="Postal" Type="nchar" Mode="In" />
+    <Parameter Name="Country" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="PaymentOption_ListByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="cUsername" Type="nvarchar" Mode="In" />
@@ -1690,6 +1696,9 @@
   </Function>
   <Function Name="PurchaseOrder_Unredeem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="PurchaseOrderID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PurchaseTransaction_Failed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="PurchaseTransactionID" Type="int" Mode="In" />
   </Function>
   <Function Name="PurchaseTransaction_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="cUser" Type="nvarchar" Mode="In" />

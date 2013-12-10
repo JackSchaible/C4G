@@ -2,8 +2,26 @@
 <%@ Reference Control="~/Controls/MenuBar.ascx" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
+    <script type="text/javascript">
+        $("#CitiesDDL").change(function () {
+
+            PageMethods.ChangeCity($("#CitiesDDL").val(), onSuccess, onFail);
+        });
+
+        function onSuccess(data) {
+            $("#Deals").html(data);
+            $("#Location").text($("#CitiesDDL").val());
+        }
+
+        function onFail(error) {
+            $("#ErrorMessage").text("We're sorry, but something's gone wrong. Please contact us using the button above, and retain the following error message: ") + error._message;
+        }
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server" EnableViewState="True" ViewStateMode="Inherit" ValidateRequestMode="Inherit">
-    <h1>Causes in <%:City %></h1>
+    <h1>Causes in <strong id="Location"><%: City %>, <%: Province %></strong></h1>
+    <p>Want to see great deals in another city? Pick one from the drop-down below!</p>
+    <asp:DropDownList ID="CitiesDDL" runat="server" ClientIDMode="Static" DataTextField="City" DataValueField="City"></asp:DropDownList>
+    <p id="ErrorMessage"></p>
     <% Response.Write(CouponsForGiving.HttpRendering.ListNPOCampaigns(LocalCampaigns)); %>
 </asp:Content>

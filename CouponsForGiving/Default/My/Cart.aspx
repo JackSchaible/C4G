@@ -12,13 +12,9 @@
             <ItemStyle CssClass="ButtonColumn" />
             </asp:CommandField>
             <asp:TemplateField HeaderText="Fundraiser" SortExpression="NPOName">
-                <EditItemTemplate>
-                    <asp:TextBox ID="TextBox1" runat="server" Text='<%# Bind("NPOName") %>'></asp:TextBox>
-                </EditItemTemplate>
                 <ItemTemplate>
                     <asp:Label ID="Label1" runat="server" Text='<%# Bind("NPOName") %>'></asp:Label>
                 </ItemTemplate>
-                <ItemStyle CssClass="NameColumn" />
             </asp:TemplateField>
             <asp:BoundField DataField="CampaignName" HeaderText="Campaign" SortExpression="CampaignName" />
             <asp:BoundField DataField="MerchantName" HeaderText="Merchant" SortExpression="Merchant_Name" />

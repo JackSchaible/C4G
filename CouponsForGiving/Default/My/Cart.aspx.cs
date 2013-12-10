@@ -21,7 +21,7 @@ public partial class Default_My_Cart : System.Web.UI.Page
 
     private void BindData()
     {
-        List<Deals_ListforSearchGrid_Result> cart = (List<Deals_ListforSearchGrid_Result>)Session["Cart"];
+        List<ShoppingCart> cart = (List<ShoppingCart>)Session["Cart"];
         CartGV.DataSource = cart;
         CartGV.DataBind();
 
@@ -48,7 +48,7 @@ public partial class Default_My_Cart : System.Web.UI.Page
 
     protected void Cart_RowDeleting(object sender, GridViewDeleteEventArgs e)
     {
-        List<Deals_ListforSearchGrid_Result> cart = (List<Deals_ListforSearchGrid_Result>)Session["Cart"];
+        List<ShoppingCart> cart = (List<ShoppingCart>)Session["Cart"];
         DataKey key = CartGV.DataKeys[e.RowIndex];
         int dealID = int.Parse(key.Values[0].ToString());
         int campaignID = int.Parse(key.Values[1].ToString());
@@ -69,7 +69,7 @@ public partial class Default_My_Cart : System.Web.UI.Page
     
     protected void CheckoutButton_Click(object sender, EventArgs e)
     {
-        List<Deals_ListforSearchGrid_Result> cart = (List<Deals_ListforSearchGrid_Result>)Session["Cart"];
+        List<ShoppingCart> cart = (List<ShoppingCart>)Session["Cart"];
 
         if (cart != null)
             if (cart.Count > 0)

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" AutoEventWireup="true" CodeFile="DealPage.aspx.cs" Inherits="Merchant_Offers_DealPage" %>
+﻿<%@ Page Title="Your Deal" Language="C#" AutoEventWireup="true" CodeFile="DealPage.aspx.cs" Inherits="Merchant_Offers_DealPage" %>
 <%@ Reference Control="~/Controls/MenuBar.ascx" %>
 
 <!DOCTYPE html>
@@ -194,7 +194,7 @@
                             <%
                                 foreach (CouponsForGiving.Data.Campaign c in (from c in deal.DealInstances.FirstOrDefault<CouponsForGiving.Data.DealInstance>().Campaigns where c.CampaignStatusID == 2 select c))
                                 {
-                                    Response.Write(CouponsForGiving.HttpRendering.GetNPOCampaign(c, deal));
+                                    Response.Write(CouponsForGiving.HttpRendering.GetNPOCampaign(c, deal.DealInstances.FirstOrDefault<CouponsForGiving.Data.DealInstance>()));
                                 }
                             %>
                             <h2>Fine Print</h2> 

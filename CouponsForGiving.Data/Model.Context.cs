@@ -996,27 +996,6 @@ namespace CouponsForGiving.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DealInstance_Get_Result>("DealInstance_Get", dealinstanceidParameter);
         }
     
-        public virtual int PaymentOption_Insert(string username, Nullable<int> cardTypeID, string last4Digits, string stripeToken)
-        {
-            var usernameParameter = username != null ?
-                new ObjectParameter("Username", username) :
-                new ObjectParameter("Username", typeof(string));
-    
-            var cardTypeIDParameter = cardTypeID.HasValue ?
-                new ObjectParameter("CardTypeID", cardTypeID) :
-                new ObjectParameter("CardTypeID", typeof(int));
-    
-            var last4DigitsParameter = last4Digits != null ?
-                new ObjectParameter("Last4Digits", last4Digits) :
-                new ObjectParameter("Last4Digits", typeof(string));
-    
-            var stripeTokenParameter = stripeToken != null ?
-                new ObjectParameter("StripeToken", stripeToken) :
-                new ObjectParameter("StripeToken", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaymentOption_Insert", usernameParameter, cardTypeIDParameter, last4DigitsParameter, stripeTokenParameter);
-        }
-    
         public virtual ObjectResult<cUser_GetByUsername_Result> cUser_GetByUsername(string username)
         {
             var usernameParameter = username != null ?
@@ -2527,6 +2506,66 @@ namespace CouponsForGiving.Data
                 new ObjectParameter("AccessToken", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("OAuthToken_Insert", oAuthProviderIDParameter, usernameParameter, userIDParameter, accessTokenParameter);
+        }
+    
+        public virtual ObjectResult<City> Cities_ListWhereActiveDeals()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<City>("Cities_ListWhereActiveDeals");
+        }
+    
+        public virtual ObjectResult<City> Cities_ListWhereActiveDeals(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<City>("Cities_ListWhereActiveDeals", mergeOption);
+        }
+    
+        public virtual int PurchaseTransaction_Failed(Nullable<int> purchaseTransactionID)
+        {
+            var purchaseTransactionIDParameter = purchaseTransactionID.HasValue ?
+                new ObjectParameter("PurchaseTransactionID", purchaseTransactionID) :
+                new ObjectParameter("PurchaseTransactionID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PurchaseTransaction_Failed", purchaseTransactionIDParameter);
+        }
+    
+        public virtual int PaymentOption_Insert(string username, Nullable<int> cardTypeID, string last4Digits, string stripeToken, string address, string city, string province, string postal, string country)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var cardTypeIDParameter = cardTypeID.HasValue ?
+                new ObjectParameter("CardTypeID", cardTypeID) :
+                new ObjectParameter("CardTypeID", typeof(int));
+    
+            var last4DigitsParameter = last4Digits != null ?
+                new ObjectParameter("Last4Digits", last4Digits) :
+                new ObjectParameter("Last4Digits", typeof(string));
+    
+            var stripeTokenParameter = stripeToken != null ?
+                new ObjectParameter("StripeToken", stripeToken) :
+                new ObjectParameter("StripeToken", typeof(string));
+    
+            var addressParameter = address != null ?
+                new ObjectParameter("Address", address) :
+                new ObjectParameter("Address", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var provinceParameter = province != null ?
+                new ObjectParameter("Province", province) :
+                new ObjectParameter("Province", typeof(string));
+    
+            var postalParameter = postal != null ?
+                new ObjectParameter("Postal", postal) :
+                new ObjectParameter("Postal", typeof(string));
+    
+            var countryParameter = country != null ?
+                new ObjectParameter("Country", country) :
+                new ObjectParameter("Country", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaymentOption_Insert", usernameParameter, cardTypeIDParameter, last4DigitsParameter, stripeTokenParameter, addressParameter, cityParameter, provinceParameter, postalParameter, countryParameter);
         }
     }
 }

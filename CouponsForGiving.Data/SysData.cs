@@ -251,9 +251,11 @@ namespace CouponsForGiving.Data
             return (new C4GEntities()).PaymentOption_ListByUser(username).ToList<PaymentOption_ListByUser_Result>();
         }
 
-        public static void PaymentOptions_Insert(string username, int cardTypeID, int last4Digits, string stripeToken)
+        public static void PaymentOptions_Insert(string username, int cardTypeID, int last4Digits, string stripeToken,
+            string address, string city, string province, string postal, string country)
         {
-            (new C4GEntities()).PaymentOption_Insert(username, cardTypeID, last4Digits.ToString(), stripeToken);
+            (new C4GEntities()).PaymentOption_Insert(username, cardTypeID, last4Digits.ToString(), stripeToken,
+                address, city, province, postal, country);
         }
 
         public static PaymentOption PaymentOption_Get(int PaymentOptionID)
@@ -279,7 +281,7 @@ namespace CouponsForGiving.Data
         }
         #endregion
         #region PurchaseOrders
-        public static void PurchaseOrder_Insert(List<Deals_ListforSearchGrid_Result> orders, string user)
+        public static void PurchaseOrder_Insert(List<ShoppingCart> orders, string user)
         {
             C4GEntities en = new C4GEntities();
             int transactionID = -1;
@@ -293,7 +295,7 @@ namespace CouponsForGiving.Data
                     if (transactionID == -1)
                         throw new Exception("Purchase Transaction failed to save.");
 
-                    foreach (Deals_ListforSearchGrid_Result item in orders)
+                    foreach (ShoppingCart item in orders)
                     {
                         en.PurchaseOrder_Insert(item.DealInstanceID, item.CampaignID, transactionID, item.GiftValue, item.NPOSplit, 
                             item.MerchantSplit, item.OurSplit);
@@ -387,6 +389,11 @@ namespace CouponsForGiving.Data.Classes
         public static City GetByNameWithProvinceAndCountry(string name, string province, string country)
         {
             return new C4GEntities().City_GetByNameWithProvinceAndCountry(name, province, country).FirstOrDefault<City>();
+        }
+
+        public static List<City> List()
+        {
+            return new C4GEntities().Cities_ListWhereActiveDeals().ToList<City>();
         }
     }
 

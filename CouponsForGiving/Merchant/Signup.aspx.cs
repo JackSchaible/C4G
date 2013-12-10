@@ -71,6 +71,7 @@ public partial class Merchant_Signup : System.Web.UI.Page
             DateTime birthdate = BirthDate.Date;
             email = YourEmailTextBox.Text.Trim();
             url = URLTextBox.Text.Trim();
+            url = (url.StartsWith("http") ? url : "http://" + url);
             yourPhoneNumber = YourPhoneNumberTextBox.Text.Trim();
 
             businessName = BusinessNameTextBox.Text.Trim();

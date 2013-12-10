@@ -96,6 +96,9 @@
     <Compile Include="CardType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Cities_ListWhereActiveDeals_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="City.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -409,6 +412,7 @@
     <Compile Include="RedeemDetail.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="ShoppingCart.cs" />
     <Compile Include="SysData.cs" />
     <Compile Include="SysDatamk.cs" />
     <Compile Include="sysdiagram.cs">

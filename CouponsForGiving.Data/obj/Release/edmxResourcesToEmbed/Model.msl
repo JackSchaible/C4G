@@ -417,7 +417,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="PaymentOption_Insert" FunctionName="C4GModel.Store.PaymentOption_Insert" />
     <FunctionImportMapping FunctionImportName="cUser_GetByUsername" FunctionName="C4GModel.Store.cUser_GetByUsername">
       <ResultMapping>
         <ComplexTypeMapping TypeName="C4GModel.cUser_GetByUsername_Result">
@@ -780,5 +779,8 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Cities_ListWhereActiveDeals" FunctionName="C4GModel.Store.Cities_ListWhereActiveDeals" />
+    <FunctionImportMapping FunctionImportName="PurchaseTransaction_Failed" FunctionName="C4GModel.Store.PurchaseTransaction_Failed" />
+    <FunctionImportMapping FunctionImportName="PaymentOption_Insert" FunctionName="C4GModel.Store.PaymentOption_Insert" />
   </EntityContainerMapping>
 </Mapping>

@@ -24,41 +24,42 @@ public partial class OpenAuth_Stripe : System.Web.UI.Page
         {
             try
             {
-                string postData = (String.Format("client_secret={0}&grant_type={1}&code={2}", WebConfigurationManager.AppSettings["StripeApiKey"], "authorization_code", Request.QueryString["Code"]));
-
-                // create the POST request
-                HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create("https://connect.stripe.com/oauth/token");
-                webRequest.Method = "POST";
-                webRequest.ContentType = "application/x-www-form-urlencoded";
-                webRequest.ContentLength = postData.Length;
-
-                // POST the data
-                using (StreamWriter requestWriter2 = new StreamWriter(webRequest.GetRequestStream()))
-                {
-                    requestWriter2.Write(postData);
-                }
-
-                //  This actually does the request and gets the response back
-                HttpWebResponse resp = (HttpWebResponse)webRequest.GetResponse();
-
-                string responseData = string.Empty;
-
-                using (StreamReader responseReader = new StreamReader(webRequest.GetResponse().GetResponseStream()))
-                {
-                    // dumps the HTML from the response into a string variable
-                    responseData = responseReader.ReadToEnd();
-                }
-
-                var jss = new JavaScriptSerializer();
-                dynamic data = jss.Deserialize<dynamic>(responseData);
-                string value = ((Dictionary<string, object>)data)["access_token"].ToString();
-
-                Merchant merch = SysDatamk.Merchant_GetByUsername(User.Identity.Name);
+                Merchant merch = SysDatamk.Merchant_GetByUsername(HttpContext.Current.User.Identity.Name);
 
                 if (merch == null)
-                    ErrorLabel.Text = "There was no merchant account found with your username: " + User.Identity.Name;
+                    ErrorLabel.Text = "There was no merchant account found with your username: " + HttpContext.Current.User.Identity.Name;
                 else
                 {
+                    string postData = (String.Format("client_secret={0}&grant_type={1}&code={2}", WebConfigurationManager.AppSettings["StripeApiKey"], "authorization_code", Request.QueryString["Code"]));
+
+                    // create the POST request
+                    HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create("https://connect.stripe.com/oauth/token");
+                    webRequest.Method = "POST";
+                    webRequest.ContentType = "application/x-www-form-urlencoded";
+                    webRequest.ContentLength = postData.Length;
+
+                    // POST the data
+                    using (StreamWriter requestWriter2 = new StreamWriter(webRequest.GetRequestStream()))
+                    {
+                        requestWriter2.Write(postData);
+                    }
+
+                    //  This actually does the request and gets the response back
+                    HttpWebResponse resp = (HttpWebResponse)webRequest.GetResponse();
+
+                    string responseData = string.Empty;
+
+                    using (StreamReader responseReader = new StreamReader(webRequest.GetResponse().GetResponseStream()))
+                    {
+                        // dumps the HTML from the response into a string variable
+                        responseData = responseReader.ReadToEnd();
+                    }
+
+                    var jss = new JavaScriptSerializer();
+                    dynamic data = jss.Deserialize<dynamic>(responseData);
+                    string value = ((Dictionary<string, object>)data)["access_token"].ToString();
+
+               
                     SysData.MerchantStripeInfo_Insert(merch.MerchantID, value);
                     Roles.AddUserToRole(HttpContext.Current.User.Identity.Name, "Merchant");
 

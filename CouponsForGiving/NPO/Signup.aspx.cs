@@ -85,6 +85,9 @@ public partial class NPO_newNPO : System.Web.UI.Page
                 newPostalCode = newPostalCode.Replace(" ", string.Empty);
                 string newPhoneNumber = newNPOPhoneNumber.Text.Trim();
                 string newWebsite = newNPOWebsite.Text.Trim();
+
+                newWebsite = (newWebsite.StartsWith("http") ? newWebsite : "http://" + newWebsite);
+
                 string newDescription = newNPODescription.Text.Trim();
                 string newEmail = newNPOEmail.Text.Trim();
 
