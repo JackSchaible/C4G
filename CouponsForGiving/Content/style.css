@@ -521,7 +521,7 @@ display: inline;
 .FormRow input, .FormRow select, .FormRow textarea, .TextAreaRow textarea {
 border: 2px solid #bdc3c7;
 float: none;
-font-size: 173px;
+font-size: 17px;
 color: #5e5e5e;
 min-width: 250px;
 width: 60%;
