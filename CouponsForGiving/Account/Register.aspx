@@ -71,7 +71,7 @@
                         <div class="FormRow">
                             <iframe src="../Content/Terms/PrivacyPolicy.txt"></iframe>
                             <iframe src="../Content/Terms/TermsOfUse.txt"></iframe>
-                            <label>I have read and agree to the <a href="../Content/Terms/PrivacyPolicy.pdf">Privacy Policy</a> and the <a href="../Content/Terms/TermsOfUse.pdf">Terms of Use</a></label>
+                            <label class="large">I have read and agree to the <a href="../Content/Terms/PrivacyPolicy.pdf">Privacy Policy</a> and the <a href="../Content/Terms/TermsOfUse.pdf">Terms of Use</a></label>
                             <input type="checkbox" id="TermsCheckbox" onchange="change()" />
                         </div>
                         <div class="FormRow">

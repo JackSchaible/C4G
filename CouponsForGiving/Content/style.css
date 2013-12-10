@@ -4,8 +4,8 @@
 Theme Name: Coupons4Giving
 Theme URI: Coupons4Giving - 
 Description: Coupons4Giving 
-Version: 0.9	
-Author: 
+Version: 0.9.1	
+Author: Connor Turner/Jack Schaible
 Tags: 
 
 header | wrapper | mainNav | mainContent | sidebar | footer
@@ -426,12 +426,20 @@ input, select, textarea {
 }
 
 label, #MainContent .FormRow label, #MainContent .Form label {
-font-size: 17px;
-width: 30%;
+font-size: 15px;
+width: 21%;
 display: inline-block;
 font-weight: 400;
 vertical-align: middle;
 line-height: 130%;
+}
+
+label a, #MainContent .FormRow label a, #MainContent .Form label a {
+font-weight: 400;
+}
+
+label .large {
+width: 63%;
 }
 
 .field-validation-error {
@@ -509,14 +517,14 @@ display: inline;
 }
 
 .FormRow input, .FormRow select, .FormRow textarea, .TextAreaRow textarea {
-border: 1px solid #BBB;
-border-radius: 0px;
+border: 2px solid #bdc3c7;
 float: none;
-font-size: 18px;
-color: #5f5f5f;
+font-size: 16px;
+color: #5e5e5e;
 min-width: 250px;
 width: 60%;
 margin: 10px 0px;
+border-radius: 7px;
 }
 
 .FormRow input[type=file] {
@@ -530,8 +538,6 @@ padding: 0px;
 float: ;
 position: absolute;
 }
-
-
 
 .FormRow input[type='file'] {
 display: inline-block;
