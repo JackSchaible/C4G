@@ -36,13 +36,13 @@
                     <fieldset>
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="UserName">User name</asp:Label>
-                            <asp:TextBox runat="server" ID="UserName" />
+                            <asp:TextBox runat="server" ID="UserName" placeholder="username" />
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName"
                                     CssClass="field-validation-error" ErrorMessage="The user name field is required." />
                         </div>
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="Email">Email address</asp:Label>
-                            <asp:TextBox runat="server" ID="Email" TextMode="Email" />
+                            <asp:TextBox runat="server" ID="Email" TextMode="Email" placeholder="joe@joesmith.com" />
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
                                 CssClass="field-validation-error" ErrorMessage="The email address field is required." />
                         </div>
@@ -63,9 +63,9 @@
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="RoleRBL">What are you looking to do? (Select one)</asp:Label>
                             <asp:RadioButtonList ID="RoleRBL" runat="server">
-                                <asp:ListItem Value="NPO">Fundraise for your organization</asp:ListItem>
-                                <asp:ListItem Value="Merchant">Set up Merchant or E-Tailer offers</asp:ListItem>
-                                <asp:ListItem Value="Customer" Selected="True">Purchase deals to support your favorite causes</asp:ListItem>
+                                <asp:ListItem Value="NPO" class="inline-radio">Fundraise for your organization</asp:ListItem>
+                                <asp:ListItem Value="Merchant" class="inline-radio">Set up Merchant or E-Tailer offers</asp:ListItem>
+                                <asp:ListItem Value="Customer" Selected="True" class="inline-radio">Purchase deals to support your favorite causes</asp:ListItem>
                             </asp:RadioButtonList>
                         </div>
                         <div class="FormRow">

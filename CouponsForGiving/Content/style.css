@@ -440,7 +440,7 @@ label a, #MainContent .FormRow label a, #MainContent .Form label a {
 font-weight: 400;
 }
 
-label.large {
+label.large, #MainContent .FormRow label.large {
 width: 63%;
 }
 
