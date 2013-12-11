@@ -105,8 +105,12 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
 
                 StripeChargeCreateOptions options;
                 StripeChargeService chargeService;
+                StripeCard card;
+                StripeCardService cardService;
                 StripeCharge charge = null;
-               
+                StripeCustomerService cService;
+                StripeCustomer customer;
+
                 using (TransactionScope ts = new TransactionScope())
                 {
                     try
@@ -127,6 +131,8 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
 
                             options.Description = "A new order from Coupons4Giving!";
 
+                            //Replace with token
+                            options.TokenId = new StripeTokenService().Get(
                             options.CustomerId = user.StripeKey;
 
                             options.Card = option.StripeToken;
