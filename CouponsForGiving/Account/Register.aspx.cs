@@ -36,7 +36,9 @@ public partial class Account_Register : Page
 
         string role = ((RadioButtonList)this.RegisterUser.CreateUserStep.ContentTemplateContainer.FindControl("RoleRBL")).SelectedValue;
         MailMessage mm = new MailMessage();
-        mm.To.Add((new MailAddress(RegisterUser.Email)));
+        //mm.To.Add((new MailAddress(RegisterUser.Email)));
+        mm.To.Add(new MailAddress("michelle.a.sklar@gmail.com"));
+        mm.To.Add(new MailAddress("thompson@vaangels.com"));
         mm.IsBodyHtml = true;
         mm.Subject = "Welcome to Coupons4Giving!";
         
@@ -44,17 +46,17 @@ public partial class Account_Register : Page
         {
             case "Customer":
                 Response.Redirect("../Default/MyHome.aspx", false);
-                mm.Body = "<h1>Welcome to Coupons4Giving!<h1><p>Thanks for registering with Coupons4Giving. Once you login to your account you can start supporting your favorite causes and purchasing great deals from a wide range of merchants and E-tailers (online only merchants).</p><p>Please contact us at <a href='mailto:teamc4g@coupons4giving.ca'>teamc4g@coupons4giving.ca</a> with any questions!</p><p>Click <a href='https://www.coupons4giving.ca/Default/CausesInMyArea.aspx'>here</a> to check out Coupons & Causes!</p><p>Cheers!</p><p>The Coupons4Giving Team</p>";
+                mm.Body = "<h1>Welcome to Coupons4Giving! - User<h1><p>Thanks for registering with Coupons4Giving. Once you login to your account you can start supporting your favorite causes and purchasing great deals from a wide range of merchants and E-tailers (online only merchants).</p><p>Please contact us at <a href='mailto:teamc4g@coupons4giving.ca'>teamc4g@coupons4giving.ca</a> with any questions!</p><p>Click <a href='https://www.coupons4giving.ca/Default/CausesInMyArea.aspx'>here</a> to check out Coupons & Causes!</p><p>Cheers!</p><p>The Coupons4Giving Team</p>";
                 break;
 
             case "NPO":
                 Response.Redirect("../NPO/Signup.aspx", false);
-                mm.Body = "<h1>Welcome to Coupons4Giving!</h1><p>Thanks for registering with Coupons4Giving. Once you login to your account you can get started. You can set up a campaign and start fundraising. You can support your favorite causes by purchasing great deals from a wide range of Merchants and E-Tailers (online-only merchants). You can set up merchant offers to support your favourite Not-For-Profits.</p><p><a href='https://www.coupons4giving.ca/Account/Login.aspx'>Click here</a> to go to your account.</p><p>Please contact us at <a href='mailto:teamc4g@coupons4giving.ca'>teamc4g@coupons4giving.ca</a> with any questions!</p><p>Cheers!</p><p>The Coupons4Giving Team</p>";
+                mm.Body = "<h1>Welcome to Coupons4Giving! - NPO</h1><p>Thanks for registering with Coupons4Giving. Once you login to your account you can get started. You can set up a campaign and start fundraising. You can support your favorite causes by purchasing great deals from a wide range of Merchants and E-Tailers (online-only merchants). You can set up merchant offers to support your favourite Not-For-Profits.</p><p><a href='https://www.coupons4giving.ca/Account/Login.aspx'>Click here</a> to go to your account.</p><p>Please contact us at <a href='mailto:teamc4g@coupons4giving.ca'>teamc4g@coupons4giving.ca</a> with any questions!</p><p>Cheers!</p><p>The Coupons4Giving Team</p>";
                 break;
 
             case "Merchant":
                 Response.Redirect("../Merchant/Signup.aspx", false);
-                mm.Body = "<h1>Welcome to Coupons4Giving!</h1><p>Thanks for registering with Coupons4Giving. Once you login to your account you can get started. You can set up a campaign and start fundraising. You can support your favorite causes by purchasing great deals from a wide range of Merchants and E-Tailers (online-only merchants). You can set up merchant offers to support your favourite Not-For-Profits.</p><p><a href='https://www.coupons4giving.ca/Account/Login.aspx'>Click here</a> to go to your account.</p><p>Please contact us at <a href='mailto:teamc4g@coupons4giving.ca'>teamc4g@coupons4giving.ca</a> with any questions!</p><p>Cheers!</p><p>The Coupons4Giving Team</p>";
+                mm.Body = "<h1>Welcome to Coupons4Giving! - Merchant</h1><p>Thanks for registering with Coupons4Giving. Once you login to your account you can get started. You can set up a campaign and start fundraising. You can support your favorite causes by purchasing great deals from a wide range of Merchants and E-Tailers (online-only merchants). You can set up merchant offers to support your favourite Not-For-Profits.</p><p><a href='https://www.coupons4giving.ca/Account/Login.aspx'>Click here</a> to go to your account.</p><p>Please contact us at <a href='mailto:teamc4g@coupons4giving.ca'>teamc4g@coupons4giving.ca</a> with any questions!</p><p>Cheers!</p><p>The Coupons4Giving Team</p>";
                 break;
         }       
 

@@ -29,6 +29,7 @@ public partial class ContactUs : System.Web.UI.Page
         //mm.To.Add(new MailAddress("support@coupons4giving.ca"));
         mm.To.Add(new MailAddress("michelle.a.sklar@gmail.com"));
         mm.To.Add(new MailAddress("jack.schaible@hotmail.com"));
+        mm.To.Add(new MailAddress("thompson@vaangels.com"));
         mm.Subject = String.Format("Coupons4Giving Help: {0}", name);
         mm.IsBodyHtml = true;
 
