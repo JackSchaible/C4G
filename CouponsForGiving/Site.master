@@ -115,18 +115,20 @@
                     </div>
                     <div id="FeaturedMerchants" class="Sidebar">
                         <h1>Discover Coupons & Causes</h1>
+                        <img src="~/images/c4g_side_coupon.png" class="sideMerchants" runat="server">
                         <asp:GridView ID="FeaturedMerchantGV" runat="server" AutoGenerateColumns="False" DataSourceID="FMerchantsODS">
                             <Columns>
                                 <asp:HyperLinkField DataNavigateUrlFields="Name" DataNavigateUrlFormatString="~/Default/MerchantPage.aspx?MerchantName={0}" DataTextField="Name" HeaderText="Our Featured Merchants" />
                             </Columns>
                         </asp:GridView>
+                        <img src="~/images/c4g_side_market.png" class="sideMerchants" runat="server">
                         <a class="btn" href="~/Merchant/Signup.aspx" runat="server">Become a Merchant</a>
                         <asp:GridView ID="FeaturedNPOGV" runat="server" AutoGenerateColumns="False" DataSourceID="FNPOODS">
                             <Columns>
                                 <asp:HyperLinkField DataNavigateUrlFields="URL" DataNavigateUrlFormatString="~/Default/NPOPage.aspx?name={0}" DataTextField="Name" HeaderText="Our Featured NPOs" />
                             </Columns>
                         </asp:GridView>
-                        <a class="btn" href="~/NPO/Signup.aspx" runat="server">Become an Not-For-Profit</a>
+                        <a class="btn" href="~/NPO/Signup.aspx" runat="server">Become a Not-For-Profit</a>
                         <asp:ObjectDataSource ID="FNPOODS" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="NPO_GetFeatured" TypeName="CouponsForGiving.Data.SysData"></asp:ObjectDataSource>
                         <asp:ObjectDataSource ID="FMerchantsODS" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="Merchant_GetFeatured" TypeName="CouponsForGiving.Data.SysData"></asp:ObjectDataSource>
                     </div>
