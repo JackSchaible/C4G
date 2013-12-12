@@ -35,6 +35,10 @@
                 <p>You currently have no stored payment options. Add one below.</p>
             </EmptyDataTemplate>
         </asp:GridView>
+        <div id="ProceedDiv">
+            <asp:Label ID="ProceedErrorLabel" runat="server" Text=""></asp:Label>
+            <asp:Button ID="Proceed" runat="server" Text="Proceed With Checkout" OnClick="Proceed_Click" CausesValidation="False" />
+        </div>
         <h1>Or Add a New One</h1>
         <p id="ShowControl">Show</p>
         <div id="newForm" runat="server">
@@ -390,9 +394,5 @@
                     <asp:Button ID="SubmitButton" runat="server" Text="Submit" OnClick="SubmitButton_Click" />
                 </div>
             </div>
-        </div>
-        <div id="ProceedDiv">
-            <asp:Label ID="ProceedErrorLabel" runat="server" Text=""></asp:Label>
-            <asp:Button ID="Proceed" runat="server" Text="Proceed With Checkout" OnClick="Proceed_Click" CausesValidation="False" />
         </div>
 </asp:Content>
