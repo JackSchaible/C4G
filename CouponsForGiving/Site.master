@@ -121,8 +121,8 @@
                                 <asp:HyperLinkField DataNavigateUrlFields="Name" DataNavigateUrlFormatString="~/Default/MerchantPage.aspx?MerchantName={0}" DataTextField="Name" HeaderText="Our Featured Merchants" />
                             </Columns>
                         </asp:GridView>
-                        <img src="~/images/c4g_side_market.png" class="sideMerchants" runat="server">
                         <a class="btn" href="~/Merchant/Signup.aspx" runat="server">Become a Merchant</a>
+                        <img src="~/images/c4g_side_market.png" class="sideMerchants" runat="server">
                         <asp:GridView ID="FeaturedNPOGV" runat="server" AutoGenerateColumns="False" DataSourceID="FNPOODS">
                             <Columns>
                                 <asp:HyperLinkField DataNavigateUrlFields="URL" DataNavigateUrlFormatString="~/Default/NPOPage.aspx?name={0}" DataTextField="Name" HeaderText="Our Featured NPOs" />
