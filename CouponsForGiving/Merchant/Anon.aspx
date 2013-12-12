@@ -10,9 +10,6 @@
         <img src="../images/c4g_merchant_home.png" class="right-merchant" />
     </div>
 </asp:Content>
-
-<div class="clear"></div>
-
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
     <div class="tipList">
         <ul>

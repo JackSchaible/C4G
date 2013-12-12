@@ -150,7 +150,14 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
                             myToken.CustomerId = user.StripeKey;
                             StripeToken stripeToken = new StripeTokenService(info.ApiKey).Create(myToken);
                             var stripeService = new StripeChargeService(info.ApiKey); //The token returned from the above method
-                            var stripeChargeOption = new StripeChargeCreateOptions() { AmountInCents = (int)(ds.Sum(x => x.MerchantSplit) * 100), Currency = "cad", CustomerId = stripeToken.Id, Description = "Coupons4Giving", ApplicationFeeInCents = (int)(ds.Sum(x => x.NPOSplit + x.OurSplit) * 100) };
+                            var stripeChargeOption = new StripeChargeCreateOptions()
+                            { 
+                                AmountInCents = (int)(ds.Sum(x => x.MerchantSplit) * 100), 
+                                Currency = "cad", 
+                                CustomerId = stripeToken.Id, 
+                                Description = "Coupons4Giving", 
+                                ApplicationFeeInCents = (int)(ds.Sum(x => x.NPOSplit + x.OurSplit) * 100)
+                            };
                             var response = stripeService.Create(stripeChargeOption);
                         }
 

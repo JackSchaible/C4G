@@ -37,7 +37,7 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
 
     private void BindData()
     {
-        DIs = Deals.ListByCity(City, Province);
+        DIs = Deals.ListByCity(City, Province).OrderByDescending(x => x.Deal.MerchantID).ToList<DealInstance>();
         CitiesDDL.DataSource =
             (
                 from c

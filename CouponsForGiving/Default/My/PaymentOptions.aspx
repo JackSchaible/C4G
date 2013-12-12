@@ -36,6 +36,7 @@
             </EmptyDataTemplate>
         </asp:GridView>
         <div id="ProceedDiv">
+            <asp:Label ID="ErrorLabel" runat="server"></asp:Label>
             <asp:Label ID="ProceedErrorLabel" runat="server" Text=""></asp:Label>
             <asp:Button ID="Proceed" runat="server" Text="Proceed With Checkout" OnClick="Proceed_Click" CausesValidation="False" />
         </div>
@@ -390,7 +391,6 @@
                     </asp:DropDownList>
                 </div>
                 <div class="FormRow SubmitRow">
-                    <asp:Label ID="ErrorLabel" runat="server"></asp:Label>
                     <asp:Button ID="SubmitButton" runat="server" Text="Submit" OnClick="SubmitButton_Click" />
                 </div>
             </div>
