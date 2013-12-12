@@ -103,10 +103,6 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
                 foreach (int item in merchantIDs)
                     deals.Add(cart.Where(x => x.MerchantID == item).ToList<ShoppingCart>());
 
-                StripeChargeCreateOptions options;
-                StripeChargeService chargeService;
-                StripeCard card;
-                StripeCardService cardService;
                 StripeCharge charge = null;
 
                 using (TransactionScope ts = new TransactionScope())
@@ -121,41 +117,18 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
                         {
                             info = SysData.MerchantStripeInfo_Get(ds[0].MerchantID);
 
-                            //options = new StripeChargeCreateOptions();
-
-                            //chargeService = new StripeChargeService(info.ApiKey);
-
-                            ////Get card
-                            //cardService = new StripeCardService();
-                            //card = cardService.Get(user.StripeKey, option.StripeToken);
-                            
-                            ////Get customer
-                            //StripeTokenCreateOptions userToken = new StripeTokenCreateOptions();
-                            //userToken.CustomerId = user.StripeKey;
-                            //userToken.TokenId = info.ApiKey;
-                            //StripeTokenService tokenService = new StripeTokenService();
-                            //StripeToken token = tokenService.Create(userToken);
-
-                            //options.AmountInCents = (int)(ds.Sum(x => x.MerchantSplit) * 100);
-                            //options.Currency = "CAD";
-                            //options.CustomerId = token.Id;
-                            //options.Description = "A new order from Coupons4Giving!";
-                            //options.ApplicationFeeInCents = (int)(ds.Sum(x => x.NPOSplit + x.OurSplit) * 100);
-                            //options.Capture = true;
-
-
-                            //charge = chargeService.Create(options);
-                            //Session["Cart"] = null;
                             var myToken = new StripeTokenCreateOptions();
                             myToken.CustomerId = user.StripeKey;
+
+
                             StripeToken stripeToken = new StripeTokenService(info.ApiKey).Create(myToken);
-                            var stripeService = new StripeChargeService(info.ApiKey); //The token returned from the above method
+                            var stripeService = new StripeChargeService(info.ApiKey);
                             var stripeChargeOption = new StripeChargeCreateOptions()
                             { 
                                 AmountInCents = (int)(ds.Sum(x => x.MerchantSplit) * 100), 
-                                Currency = "cad", 
-                                CustomerId = stripeToken.Id, 
-                                Description = "Coupons4Giving", 
+                                Currency = "cad",
+                                Card = stripeToken.Id,
+                                Description = "Your Purchase with Coupons4Giving - " + info.Merchant.Name, 
                                 ApplicationFeeInCents = (int)(ds.Sum(x => x.NPOSplit + x.OurSplit) * 100)
                             };
                             var response = stripeService.Create(stripeChargeOption);

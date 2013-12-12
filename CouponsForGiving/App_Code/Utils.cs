@@ -336,15 +336,15 @@ namespace CouponsForGiving
                         result += "<article class=\"c4g-campaign-tile\"><!-- New Class Campaign Title -->";
                         result += "<img src=\"../../Images/c4g_campaign_logo.png\" class=\"coupon_c4g_logo\" />";
                         result += "<div class=\"coupon-title-tile\">";
-                        result += "<h2>" + item.Deal.Name + "</h2><!-- Camapign Title -->";
+                        result += "<h2>" + (item.Deal.Name.Length > 15 ? item.Deal.Name.Substring(0, 12) + "..." : item.Deal.Name) + "</h2><!-- Camapign Title -->";
                         result += "<h3>" + (item.StartDate != null ? item.StartDate.ToString("MMMM dd, yyyy") : "") + " - " + (item.EndDate != null ? item.EndDate.ToString("MMMM dd, yyyy") : "") + "</h3><!-- Campaign Dates Format in anyway that works for you-->";
                         result += "</div><!--Close Coupon Title -->";
                         result += "<div class=\"clear\"></div>";
                         result += "<div class=\"campaign-details-tile\">";
-                        result += "<p>" + item.Deal.DealDescription + "</p><!-- Coupon Description (limited to 200 characters if possible -->";
+                        result += "<p>" + (item.Deal.DealDescription.Length > 30 ? item.Deal.DealDescription.Substring(0, 27) + "..." : item.Deal.DealDescription) + "</p><!-- Coupon Description (limited to 200 characters if possible -->";
                         result += "</div><!-- Close Details -->";
                         result += "<div class=\"clear\"></div>";
-                        result += "<a href=\"../../Offers/" + item.Deal.Merchant.Name + "/" + item.Deal.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> Offer Details</a><!-- Link To Campaign Page -->";
+                        result += "<a href=\"DealPage.aspx?merchantname=" + item.Deal.Merchant.Name + "&deal=" + item.Deal.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> Offer Details</a><!-- Link To Campaign Page -->";
                         result += "</article>";
                         result += "</div>";
                     }
