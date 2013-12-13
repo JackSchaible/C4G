@@ -425,7 +425,7 @@ input, select, textarea {
     font-family: 'Lato', sans-serif;
 }
 
-FormRow select {
+.FormRow select, select {
     padding:3px;
     margin: 0;
     -webkit-border-radius:4px;
