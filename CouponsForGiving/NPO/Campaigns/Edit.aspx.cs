@@ -30,8 +30,10 @@ public partial class NPO_Campaigns_Edit : System.Web.UI.Page
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.NPO;
-        //Page.Master = false;
         ((SiteMaster)Page.Master).SideBar = false;
+
+        if (Request.QueryString["cid"] == null)
+            Response.Redirect("../MyHome.aspx", true);
 
         campaign = SysData.Campaign_Get(int.Parse(Request["cid"]));
         npo = campaign.NPO;
@@ -82,25 +84,20 @@ public partial class NPO_Campaigns_Edit : System.Web.UI.Page
 
     [WebMethod]
     [ScriptMethod]
-    public static string AddDealInstance(string CampaignID, string DealInstanceID)
+    public static void AddDealInstance(string CampaignID, string DealInstanceID)
     {
-        string result = "Success!";
+        int cid, did;
 
-        try
-        {
-            int cid, did;
+        cid = int.Parse(CampaignID);
+        did = int.Parse(DealInstanceID);
 
-            cid = int.Parse(CampaignID);
-            did = int.Parse(DealInstanceID);
+        CampaignDealInstances.InsertIfNotExists(cid, did);
+    }
 
-            if (!CampaignDealInstances.InsertIfNotExists(cid, did))
-                result = "false";
-        }
-        catch (Exception ex)
-        {
-            result = ex.Message;
-        }
-
-        return result;
+    [WebMethod]
+    [ScriptMethod]
+    public static void RemoveDealInstance(string CampaignID, string DealInstanceID)
+    {
+        CampaignDealInstances.Remove(int.Parse(CampaignID), int.Parse(DealInstanceID));
     }
 }
