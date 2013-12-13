@@ -26,27 +26,56 @@
 
         function edit() {
             $("#ModeButton").text("Save");
-            $("#ModeButton").attr('href', 'javascript:Save()');
+            $("#ModeButton").attr('href', 'javascript:save()');
             $("#CancelButton").css("display", "inherit");
 
             $("#EditCampaignName").html('<input type="text" maxLength="256" id="NameTextBox" value="' + decodeURIComponent(campaignName) + '" />');
             $("#EditCampaignDescription").html('<textarea id="DescriptionTextBox">' + decodeURIComponent(description) + '</textarea>');
             $("#EditCampaignGoal").html('<textarea id="CampaignGoal" maxLength="256">' + decodeURIComponent(campaignGoal) + '</textarea>');
+            $("#EditFeaturedCampaign").css("display", "inherit");
         }
 
         function save() {
+            var name = $("#NamTextBox").val();
+            var description = $("#DescriptionTextBox").val();
+            var goal = $("#CampaignGoal").val();
+            var featured = $("#FeatureCheckBox").val();
+
+            PageMethods.SaveCampaign(encodeURIComponent(campaignID), encodeURIComponent(name), encodeURIComponent(description), encodeURIComponent(featured), encodeURIComponent(goal), success, fail);
         }
 
         function cancel() {
+            $("#ModeButton").text("Edit");
+            $("#ModeButton").attr('href', 'javascript:Edit()');
+            $("#CancelButton").css("display", "none");
+
+            $("#EditCampaignName").html('<h3 class="merchant-address">' + decodeURIComponent(campaignName) + '</h3>');
+            $("#EditCampaignDescription").html(decodeURIComponent(description));
+            $("#EditCampaignGoal").html('<p>' + decodeURIComponent(campaignGoal) + '</p>');
+            $("#EditFeaturedCampaign").css("display", "none");
+        }
+
+        function success(value) {
+            $("#ErrorMessages").text("Your campaign has been successfully updated.");
+            cancel();
+        }
+
+        function fail (value) {
+            $("#ErrorMessages").text(value._message);
         }
     </script>
-    <div class="two-thirds"> 
+    <div class="two-thirds">
+        <div class="clear"></div>
         <a href="javascript:edit()" class="btn-center" id="ModeButton">Edit</a>
         <a href="javascript:cancel()" class="btn-center" id="CancelButton" style="display: none;">Cancel</a>
         <span id="ErrorMessages"></span>
         <h1><%: npo.Name %></h1>
         <div id="EditCampaignName">
             <h3 class="merchant-address"><%: campaign.Name %></h3>
+        </div>
+        <div id="EditFeaturedCampaign" style="display: none;">
+            <label>Make this My Featured Campaign</label>
+            <input id="FeatureCheckBox" type="checkbox" checked="<%: campaign.ShowOnHome.Value ? "checked" : "" %>" />
         </div>
         <h2>About the Campaign</h2>
         <p>

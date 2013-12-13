@@ -97,25 +97,25 @@ public partial class Merchant_Home : System.Web.UI.Page
         if (description == null)
             throw new ArgumentNullException("description", "A description for your NPO is required.");
 
-        if (description == null)
+        if (address == null)
             throw new ArgumentNullException("address", "An adddress for your NPO is required.");
 
-        if (description == null)
+        if (city == null)
             throw new ArgumentNullException("city", "A city for your NPO is required.");
 
-        if (description == null)
+        if (province == null)
             throw new ArgumentNullException("province", "A province for your NPO is required.");
 
-        if (description == null)
+        if (country == null)
             throw new ArgumentNullException("country", "A country for your NPO is required.");
 
-        if (description == null)
+        if (postalcode == null)
             throw new ArgumentNullException("postalcode", "A postal code for your NPO is required.");
 
-        if (description == null)
+        if (phoneNumber == null)
             throw new ArgumentNullException("phoneNumber", "A phone number for your NPO is required.");
 
-        if (description == null)
+        if (email == null)
             throw new ArgumentNullException("email", "An email for your NPO is required.");
 
         try

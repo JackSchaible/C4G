@@ -43,44 +43,35 @@ public partial class NPO_Campaigns_Edit : System.Web.UI.Page
 
     [WebMethod]
     [ScriptMethod]
-    public static string SaveCampaign(string campaignID, string name, string startdate, string enddate, string description,
-            string goal, string image, string showonhome, string campaigngoal)
+    public static void SaveCampaign(string id, string name, string description,
+            string showonhome, string campaigngoal)
     {
-        string result = "OKAY";
-        try
-        {
-            bool featured = (showonhome == "true") ? true : false;
-            int cID = -1;
-            int? goalValue = null;
-            DateTime? sDate = null, eDate = null;
+        if (id == null)
+            throw new ArgumentNullException("Campaign ID is missing.");
 
-            string username = HttpContext.Current.User.Identity.Name;
-            name = HttpUtility.UrlDecode(name);
-            description = HttpUtility.UrlDecode(description);
-            campaigngoal = HttpUtility.UrlDecode(campaigngoal);
-            image = HttpUtility.UrlDecode(image);
+        if (name == null)
+            throw new ArgumentNullException("Your campaign needs a name.");
 
-            if (campaignID != "")
-                cID = int.Parse(HttpUtility.UrlDecode(campaignID));
+        if (description == null)
+            throw new ArgumentNullException("Your campaign needs to have a description.");
 
-            if (startdate != "")
-                sDate = DateTime.Parse(HttpUtility.UrlDecode(startdate));
+        if (showonhome == null)
+            throw new ArgumentNullException("Featured Campaign is missing.");
 
-            if (enddate != "")
-                eDate = DateTime.Parse(HttpUtility.UrlDecode(enddate));
+        if (campaigngoal == null)
+            throw new ArgumentNullException("Your campaign needs to have a goal.");
 
-            if (goal != "")
-                goalValue = int.Parse(HttpUtility.UrlDecode(goal));
+        string username = HttpContext.Current.User.Identity.Name;
+        string campaignName = HttpUtility.UrlDecode(name).Trim();
+        string campaignDescription = HttpUtility.UrlDecode(description).Trim();
+        int campaignGoal = int.Parse(HttpUtility.UrlDecode(campaigngoal).Trim());
+        int campaignID = int.Parse(HttpUtility.UrlDecode(id).Trim());
+        bool featured = (showonhome == "on") ? true : false;
 
-            Campaigns.Save(cID, username, name, sDate, eDate, description, goalValue,
-                image, featured, 1, campaigngoal);
-        }
-        catch (Exception ex)
-        {
-            return ex.Message;
-        }
-
-        return result;
+        Campaign campaign = SysData.Campaign_Get(campaignID);
+        
+        Campaigns.Save(campaignID, username, campaignName, campaign.StartDate, campaign.EndDate,
+            campaignDescription, campaignGoal, campaign.CampaignImage, featured, 1, campaigngoal);
     }
 
     [WebMethod]
