@@ -19,7 +19,7 @@
             your social network causes  you are supporting. 
         </p>
         <p>To ensure the best experience for all, <strong>the Coupons4Giving will review and approve all registrations</strong>.</p>
-        <p>When you register with Coupons4Giving, we automatically set you up with <a href="https://stripe.com/ca" target="_blank">Stripe</s>. Stripe is an easy and effective payment processor and will deposit directly into your bank account.</p>
+        <p>When you register with Coupons4Giving, we automatically set you up with <a href="https://stripe.com/ca" target="_blank">Stripe</a>. Stripe is an easy and effective payment processor and will deposit directly into your bank account.</p>
         <h2>Payment Terms:</h2>
         <p><strong>You must have a bank account and business number (GST or Tax ID number)</strong> in order to set up a Stripe account. Stripe directly deposits money into your account.</p>
         <p>Tell us about your organization:</p>
@@ -45,7 +45,7 @@
                     Text="*" ControlToValidate="YourPhoneNumberTextBox">
                 </asp:RequiredFieldValidator>
             </div>
-            <div class="FormRow">
+            <div class="FormRow TextAreaRow">
                 <asp:Label ID="Label4" runat="server" Text="Name of Your Business" AssociatedControlID="BusinessNameTextBox"></asp:Label>
                 <asp:TextBox ID="BusinessNameTextBox" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 

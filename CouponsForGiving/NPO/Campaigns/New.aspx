@@ -110,12 +110,12 @@
             <label>What is the name of your Campaign?</label>
             <asp:TextBox ID="newCampaignName" ClientIDMode="Static" runat="server" MaxLength="256"></asp:TextBox>
         </div>
-        <div class="FormRow">
+        <div class="FormRow TextAreaRow">
             <label>Tell us about your Campaign</label>
             <asp:TextBox ID="newCampaignDescription" ClientIDMode="Static" runat="server" TextMode="MultiLine" MaxLength="200"></asp:TextBox>
             <div class="ClearFix"></div>
         </div>
-        <div class="FormRow">
+        <div class="FormRow TextAreaRow">
             <label>What will the funds be used for?</label>
             <asp:TextBox ID="newCampaignGoal" runat="server" ClientIDMode="Static" TextMode="MultiLine"></asp:TextBox>
             <div class="ClearFix"></div>

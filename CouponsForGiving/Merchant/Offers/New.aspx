@@ -75,7 +75,7 @@
                 *
             </asp:RequiredFieldValidator>
         </div>
-        <div class="FormRow">
+        <div class="FormRow TextAreaRow">
             <asp:Label ID="Label4" runat="server" Text="Description" 
                 AssociatedControlID="newDealDescription"></asp:Label>
             <asp:TextBox ID="newDealDescription" runat="server" TextMode="MultiLine" MaxLength="200"></asp:TextBox>
@@ -167,7 +167,7 @@
                 EnableFlattening="False" EntitySetName="FinePrints">
             </asp:EntityDataSource>
         </div>
-        <div class="FormRow">
+        <div class="FormRow TextAreaRow">
             <asp:Label ID="Label5" runat="server" Text="Additional Redemption Details" AssociatedControlID="AdditionalDetailsTextBox"></asp:Label>
             <asp:TextBox ID="AdditionalDetailsTextBox" runat="server" TextMode="MultiLine"></asp:TextBox>
         </div>
