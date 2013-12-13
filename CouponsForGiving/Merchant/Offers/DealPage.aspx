@@ -190,28 +190,6 @@
                                 </div><!-- Close Coupon Info-->
                                 <div class="clear"></div>
                             </article><!-- Close Full Coupon Details Div -->
-                            <hr>
-                            <%
-                                foreach (CouponsForGiving.Data.Campaign c in (from c in deal.DealInstances.FirstOrDefault<CouponsForGiving.Data.DealInstance>().Campaigns where c.CampaignStatusID == 2 select c))
-                                {
-                                    Response.Write(CouponsForGiving.HttpRendering.GetNPOCampaign(c, deal.DealInstances.FirstOrDefault<CouponsForGiving.Data.DealInstance>()));
-                                }
-                            %>
-                            <h2>Fine Print</h2> 
-                            <ul>
-                                <%
-                                    foreach (CouponsForGiving.Data.FinePrint item in deal.FinePrints)
-                                        Response.Write("<li>" + item.Content + "</li>");
-                                %>
-                            </ul>
-                            <h4>Restrictions</h4>
-                            <p><%: deal.RedeemDetails.FirstOrDefault<CouponsForGiving.Data.RedeemDetail>().AdditionalDetails %></p>
-                            <hr>
-                            <h1><%: deal.Merchant.Name %></h1>
-                            <img alt="Our Logo" class="merchant_logo" src="../../<%: deal.Merchant.LargeLogo %>" />
-                            <h3 class="merchant-address"><%: deal.Merchant.cAddress + ", " + deal.Merchant.MerchantLocations.FirstOrDefault<CouponsForGiving.Data.MerchantLocation>().City.Name + ", " + deal.Merchant.MerchantLocations.FirstOrDefault<CouponsForGiving.Data.MerchantLocation>().City.PoliticalDivision.Name %></h3><!-- I figure we can populate this content with Merchant Address -->
-                            <h4 class="merchant-website"><a href="<%: deal.Merchant.Website %>" target="_blank"><%: merchant.Website %></a><!-- This can be populated with the company url --></h4>
-                            <p><%: deal.Merchant.cUser.MerchantInfoes.FirstOrDefault<CouponsForGiving.Data.MerchantInfo>().MerchantDescription %></p><!-- This Can be populated with the Merchant Profile -->
                     </div><!-- Close Two-Thirds Wrapper -->
                     <div class="thirds">
                         <div class="SocialSidebar">
@@ -235,7 +213,32 @@
                                 <p onclick="shareOnLinkedIn()">Share on LinkedIn</p>
                             </div>
                         </div>    
-                    </div>    
+                    </div> 
+                            <hr>
+                            <%
+                                foreach (CouponsForGiving.Data.Campaign c in (from c in deal.DealInstances.FirstOrDefault<CouponsForGiving.Data.DealInstance>().Campaigns where c.CampaignStatusID == 2 select c))
+                                {
+                                    Response.Write(CouponsForGiving.HttpRendering.GetNPOCampaign(c, deal.DealInstances.FirstOrDefault<CouponsForGiving.Data.DealInstance>()));
+                                }
+                            %>
+                            <hr>
+                         <div class="two-thirds">
+                            <h2>Fine Print</h2> 
+                            <ul>
+                                <%
+                                    foreach (CouponsForGiving.Data.FinePrint item in deal.FinePrints)
+                                        Response.Write("<li>" + item.Content + "</li>");
+                                %>
+                            </ul>
+                            <h4>Restrictions</h4>
+                            <p><%: deal.RedeemDetails.FirstOrDefault<CouponsForGiving.Data.RedeemDetail>().AdditionalDetails %></p>
+                            <hr>
+                            <h1><%: deal.Merchant.Name %></h1>
+                            <img alt="Our Logo" class="merchant_logo" src="../../<%: deal.Merchant.LargeLogo %>" />
+                            <h3 class="merchant-address"><%: deal.Merchant.cAddress + ", " + deal.Merchant.MerchantLocations.FirstOrDefault<CouponsForGiving.Data.MerchantLocation>().City.Name + ", " + deal.Merchant.MerchantLocations.FirstOrDefault<CouponsForGiving.Data.MerchantLocation>().City.PoliticalDivision.Name %></h3><!-- I figure we can populate this content with Merchant Address -->
+                            <h4 class="merchant-website"><a href="<%: deal.Merchant.Website %>" target="_blank"><%: merchant.Website %></a><!-- This can be populated with the company url --></h4>
+                            <p><%: deal.Merchant.cUser.MerchantInfoes.FirstOrDefault<CouponsForGiving.Data.MerchantInfo>().MerchantDescription %></p><!-- This Can be populated with the Merchant Profile -->
+   						</div>
                 </div><!-- Close Content-->         
                 </section>
             </div>
