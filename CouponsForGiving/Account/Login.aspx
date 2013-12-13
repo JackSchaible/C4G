@@ -24,8 +24,8 @@
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="field-validation-error" ErrorMessage="The password field is required." />
                         </div>
                         <div class="FormRow">
-                            <asp:CheckBox runat="server" ID="RememberMe" class="" />
-                            <asp:Label runat="server" AssociatedControlID="RememberMe" CssClass="checkbox">Remember Me?</asp:Label>
+                            <asp:CheckBox runat="server" ID="RememberMe" class="checkbox-singlerow" />
+                            <asp:Label runat="server" AssociatedControlID="RememberMe" CssClass="checkbox-singlerow">Remember Me?</asp:Label>
                         </div>
                         <div class="FormRow">
                             <asp:Button runat="server" CommandName="Login" Text="Login" />

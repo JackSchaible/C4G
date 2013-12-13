@@ -440,8 +440,23 @@ label a, #MainContent .FormRow label a, #MainContent .Form label a {
 font-weight: 400;
 }
 
-label.large, #MainContent .FormRow label.large {
+#MainContent .FormRow label.checkbox {
+padding-left: 30px;
+width: 50%;
+}
+
+label.checkbox-singlerow, #MainContent .FormRow label.checkbox-singlerow {
 width: 63%;
+text-align: left;
+padding-left: 30px;
+}
+
+.FormRow input[type='checkbox'].checkbox-singlerow {
+display: inline-block;
+margin: 8px 0px 0px 5px;
+padding: 0px;
+float: ;
+position: absolute;
 }
 
 .field-validation-error {
@@ -462,11 +477,6 @@ float: left;
 margin: 40px 0px;
 width: 100%;
 color: #fff;
-}
-
-#MainContent .FormRow label.checkbox {
-padding-left: 30px;
-width: 50%;
 }
 
 
