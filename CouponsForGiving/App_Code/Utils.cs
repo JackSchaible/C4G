@@ -324,6 +324,36 @@ namespace CouponsForGiving
             return result;
         }
 
+        public static string ListNPOCampaignsForNPO(List<Campaign> campaigns)
+        {
+            string result = "";
+
+            if (campaigns != null)
+                if (campaigns.Count > 0)
+                    foreach (Campaign item in campaigns)
+                    {
+                        result += "<div class=\"thirds\"><!-- Wrap with a third to control size/spacing of tiles -->";
+                        result += "<article class=\"c4g-campaign-tile\"><!-- New Class Campaign Title -->";
+                        result += "<img src=\"../../Images/c4g_campaign_logo.png\" class=\"coupon_c4g_logo\" />";
+                        result += "<div class=\"coupon-title-tile\">";
+                        result += "<h2>" + item.Name + "</h2><!-- Camapign Title -->";
+                        result += "<h3>" + (item.StartDate != null ? item.StartDate.Value.ToString("MMMM dd, yyyy") : "") + " - " + (item.EndDate != null ? item.EndDate.Value.ToString("MMMM dd, yyyy") : "") + "</h3><!-- Campaign Dates Format in anyway that works for you-->";
+                        result += "</div><!--Close Coupon Title -->";
+                        result += "<div class=\"clear\"></div>";
+                        result += "<div class=\"campaign-details-tile\">";
+                        result += "<p>" + item.CampaignDescription + "</p><!-- Coupon Description (limited to 200 characters if possible -->";
+                        result += "</div><!-- Close Details -->";
+                        result += "<div class=\"clear\"></div>";
+                        result += "<a href=\"Campaigns/Edit.aspx?cid=" + item.CampaignID + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> Edit</a><!-- Link To Campaign Page -->";
+                        result += "</article>";
+                        result += "</div>";
+                    }
+                else
+                    result = "<p>We currently aren't running any campaigns in your city. <strong>Please check back soon!</strong></p><br /><a href=\"AllCauses.aspx\" class=\"btn\">See all our Campaigns!</a>";
+
+            return result;
+        }
+
         public static string ListMerchantOffers(List<DealInstance> deals)
         {
             string result = "";

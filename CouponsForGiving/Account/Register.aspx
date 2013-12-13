@@ -69,8 +69,7 @@
                             </asp:RadioButtonList>
                         </div>
                         <div class="FormRow">
-                            <iframe src="../Content/Terms/PrivacyPolicy.txt"></iframe>
-                            <iframe src="../Content/Terms/TermsOfUse.txt"></iframe>
+                            <iframe src="../Content/Terms/pptou.txt"></iframe>
                             <label class="single-row">I have read and agree to the <a href="../Content/Terms/PrivacyPolicy.pdf">Privacy Policy</a> and the <a href="../Content/Terms/TermsOfUse.pdf">Terms of Use</a></label>
                             <input type="checkbox" id="TermsCheckbox" onchange="change()" class="single-row"/>
                         </div>
