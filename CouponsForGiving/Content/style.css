@@ -493,7 +493,8 @@ font-size: 13px;
 float: left;
 margin: 20px 0px;
 width: 90%;
-border: 1px solid #ff9900;}
+border: 1px solid #ff9900;
+visibility: hidden;}
 
 .validation-summary-errors {
 background: #f9d8a9;
@@ -502,7 +503,8 @@ font-size: 13px;
 float: left;
 margin: 20px 0px;
 width: 90%;
-border: 1px solid #ff9900;}
+border: 1px solid #ff9900;
+visibility: hidden;}
 
 
 #Main_Content_ErrorLabel {
@@ -513,6 +515,7 @@ float: left;
 margin: 40px 0px;
 width: 100%;
 color: #fff;
+visibility: hidden;
 }
 
 
