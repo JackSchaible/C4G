@@ -38,11 +38,12 @@ public partial class NPO_Campaigns_Edit : System.Web.UI.Page
         campaign = SysData.Campaign_Get(int.Parse(Request["cid"]));
         npo = campaign.NPO;
         Page.Title = String.Format("Editing Campaign \"{0}\" - {1}", campaign.Name, npo.Name);
+        deals = campaign.DealInstances.ToList<DealInstance>();
     }
 
     [WebMethod]
     [ScriptMethod]
-    public static string SaveCampaign(string campaignID, string username, string name, string startdate, string enddate, string description,
+    public static string SaveCampaign(string campaignID, string name, string startdate, string enddate, string description,
             string goal, string image, string showonhome, string campaigngoal)
     {
         string result = "OKAY";
@@ -53,7 +54,7 @@ public partial class NPO_Campaigns_Edit : System.Web.UI.Page
             int? goalValue = null;
             DateTime? sDate = null, eDate = null;
 
-            username = HttpUtility.UrlDecode(username);
+            string username = HttpContext.Current.User.Identity.Name;
             name = HttpUtility.UrlDecode(name);
             description = HttpUtility.UrlDecode(description);
             campaigngoal = HttpUtility.UrlDecode(campaigngoal);

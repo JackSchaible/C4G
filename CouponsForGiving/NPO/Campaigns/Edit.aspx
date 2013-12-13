@@ -2,21 +2,70 @@
 <%@ Reference Control="~/Controls/MenuBar.ascx" %>
 <%@ MasterType virtualPath="~/Site.master" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
-    
-</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
+    <script type="text/javascript">
+        var campaignID = <%: campaign.CampaignID%>;
+        var campaignName = "<%: Uri.EscapeDataString(campaign.Name) %>";
+        var startDate = "<%: campaign.StartDate %>";
+        var endDate = "<%: campaign.EndDate %>";
+        var description = "<%: Uri.EscapeDataString(campaign.CampaignDescription) %>";
+        var campaignImage = "<%: campaign.CampaignImage %>";
+        var goal = <%: campaign.FundraisingGoal %>;
+        var imageFile = "";
+        var imageType = "";
+        var featured = <%: campaign.ShowOnHome.Value ? "true" : "false" %>;
+        var campaignGoal = "<%: Uri.EscapeDataString(campaign.CampaignGoal) %>";
+
+        function imgUploadStarted() {
+            $("#LoadingImg").html('<img alt="Loading" src="../../Images/loading.gif" />');
+        }
+
+        function fileUploadComplete() {
+            $("#LoadingImg").html('');
+        }
+
+        function edit() {
+            $("#ModeButton").text("Save");
+            $("#ModeButton").attr('href', 'javascript:Save()');
+            $("#CancelButton").css("display", "inherit");
+
+            $("#EditCampaignName").html('<input type="text" maxLength="256" id="NameTextBox" value="' + decodeURIComponent(campaignName) + '" />');
+            $("#EditCampaignDescription").html('<textarea id="DescriptionTextBox">' + decodeURIComponent(description) + '</textarea>');
+            $("#EditCampaignGoal").html('<textarea id="CampaignGoal" maxLength="256">' + decodeURIComponent(campaignGoal) + '</textarea>');
+        }
+
+        function save() {
+        }
+
+        function cancel() {
+        }
+    </script>
     <div class="two-thirds"> 
+        <a href="javascript:edit()" class="btn-center" id="ModeButton">Edit</a>
+        <a href="javascript:cancel()" class="btn-center" id="CancelButton" style="display: none;">Cancel</a>
+        <span id="ErrorMessages"></span>
         <h1><%: npo.Name %></h1>
-        <h3 class="merchant-address"><%: campaign.Name %></h3>
+        <div id="EditCampaignName">
+            <h3 class="merchant-address"><%: campaign.Name %></h3>
+        </div>
         <h2>About the Campaign</h2>
-        <p><img alt="Our Logo" class="merchant_logo" src="../../<%: campaign.CampaignImage %>" /><%: campaign.CampaignDescription %></p> <!-- Campaing Description -->
+        <p>
+            <div id="EditImage">
+                <img alt="Our Logo" class="merchant_logo" src="../../<%: campaign.CampaignImage %>" />
+                <div id="LoadingImg"></div>
+            </div>
+            <div id="EditCampaignDescription">
+                <%: campaign.CampaignDescription %>
+            </div>
+        </p> <!-- Campaing Description -->
         <p><strong>Date Running</strong>: <%: campaign.StartDate.Value.ToString("MMMM dd, yyyy") %> - <%: campaign.EndDate.Value.ToString("MMMM dd, yyyy") %></p>
         <hr>
         <h2>Campaign Details</h2>
         <div class="three-quarters charity-info">
             <h4>The Funds Will Be Used For</h4>
-            <p><%: campaign.CampaignGoal %></p><!-- Fund Description -->
+            <div id="EditCampaignGoal">
+                <p><%: campaign.CampaignGoal %></p><!-- Fund Description -->
+            </div>
             <h4>Target Goal</h4> 
             <p class="campaign-goal"><%: ((decimal)(campaign.FundraisingGoal)).ToString("C") %></p> <!-- Fund Goal -->
         </div>
