@@ -929,15 +929,6 @@ namespace CouponsForGiving.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Campaign_ListActiveByNPO_Result>("Campaign_ListActiveByNPO", nPOIDParameter);
         }
     
-        public virtual ObjectResult<Campaign_ListByNPO_Result> Campaign_ListByNPO(Nullable<int> npoid)
-        {
-            var npoidParameter = npoid.HasValue ?
-                new ObjectParameter("npoid", npoid) :
-                new ObjectParameter("npoid", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Campaign_ListByNPO_Result>("Campaign_ListByNPO", npoidParameter);
-        }
-    
         public virtual int Campaign_Update(Nullable<int> campaignid, string name, Nullable<int> npoid, Nullable<System.DateTime> startdate, Nullable<System.DateTime> enddate, string campaigndescription, Nullable<int> fundraisinggoal, string campaignimage, Nullable<bool> showonhome, Nullable<int> displaypriority, string campaigngoal)
         {
             var campaignidParameter = campaignid.HasValue ?
@@ -2566,6 +2557,24 @@ namespace CouponsForGiving.Data
                 new ObjectParameter("Country", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaymentOption_Insert", usernameParameter, cardTypeIDParameter, last4DigitsParameter, stripeTokenParameter, addressParameter, cityParameter, provinceParameter, postalParameter, countryParameter);
+        }
+    
+        public virtual ObjectResult<Campaign> Campaign_ListByNPO(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Campaign>("Campaign_ListByNPO", usernameParameter);
+        }
+    
+        public virtual ObjectResult<Campaign> Campaign_ListByNPO(string username, MergeOption mergeOption)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Campaign>("Campaign_ListByNPO", mergeOption, usernameParameter);
         }
     }
 }

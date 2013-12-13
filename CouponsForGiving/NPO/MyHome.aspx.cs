@@ -16,7 +16,7 @@ using System.Web.UI.WebControls;
 public partial class Merchant_Home : System.Web.UI.Page
 {
     public NPO npo;
-    public List<DealInstance> deals;
+    public List<Campaign> campaigns;
     public string Caption
     {
         get
@@ -65,6 +65,7 @@ public partial class Merchant_Home : System.Web.UI.Page
 
     private void BindData()
     {
+        campaigns = Campaigns.ListAllByUsername(User.Identity.Name);
         DataBind();
     }
 

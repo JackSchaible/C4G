@@ -1193,7 +1193,7 @@
     <Parameter Name="CountryName" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="Campaign_ListByNPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
-    <Parameter Name="npoid" Type="int" Mode="In" />
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="Campaign_ListIncompleteByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="Username" Type="nvarchar" Mode="In" />

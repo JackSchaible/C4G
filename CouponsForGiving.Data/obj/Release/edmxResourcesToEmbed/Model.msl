@@ -386,23 +386,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="Campaign_ListByNPO" FunctionName="C4GModel.Store.Campaign_ListByNPO">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="C4GModel.Campaign_ListByNPO_Result">
-          <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="NPOID" ColumnName="NPOID" />
-          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-          <ScalarProperty Name="CampaignDescription" ColumnName="CampaignDescription" />
-          <ScalarProperty Name="FundraisingGoal" ColumnName="FundraisingGoal" />
-          <ScalarProperty Name="CampaignImage" ColumnName="CampaignImage" />
-          <ScalarProperty Name="ShowOnHome" ColumnName="ShowOnHome" />
-          <ScalarProperty Name="DisplayPriority" ColumnName="DisplayPriority" />
-          <ScalarProperty Name="CampaignGoal" ColumnName="CampaignGoal" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="Campaign_Update" FunctionName="C4GModel.Store.Campaign_Update" />
     <FunctionImportMapping FunctionImportName="DealInstance_Get" FunctionName="C4GModel.Store.DealInstance_Get">
       <ResultMapping>
@@ -782,5 +765,6 @@
     <FunctionImportMapping FunctionImportName="Cities_ListWhereActiveDeals" FunctionName="C4GModel.Store.Cities_ListWhereActiveDeals" />
     <FunctionImportMapping FunctionImportName="PurchaseTransaction_Failed" FunctionName="C4GModel.Store.PurchaseTransaction_Failed" />
     <FunctionImportMapping FunctionImportName="PaymentOption_Insert" FunctionName="C4GModel.Store.PaymentOption_Insert" />
+    <FunctionImportMapping FunctionImportName="Campaign_ListByNPO" FunctionName="C4GModel.Store.Campaign_ListByNPO" />
   </EntityContainerMapping>
 </Mapping>

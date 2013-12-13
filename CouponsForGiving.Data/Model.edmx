@@ -1198,7 +1198,7 @@
           <Parameter Name="CountryName" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="Campaign_ListByNPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
-          <Parameter Name="npoid" Type="int" Mode="In" />
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="Campaign_ListIncompleteByUsername" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
@@ -2086,9 +2086,6 @@
           <FunctionImport Name="Campaign_ListActiveByNPO" ReturnType="Collection(C4GModel.Campaign_ListActiveByNPO_Result)">
           <Parameter Name="NPOID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="Campaign_ListByNPO" ReturnType="Collection(C4GModel.Campaign_ListByNPO_Result)">
-          <Parameter Name="npoid" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="Campaign_Update">
             <Parameter Name="campaignid" Mode="In" Type="Int32" />
             <Parameter Name="name" Mode="In" Type="String" />
@@ -2547,6 +2544,9 @@
             <Parameter Name="Province" Mode="In" Type="String" />
             <Parameter Name="Postal" Mode="In" Type="String" />
             <Parameter Name="Country" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Campaign_ListByNPO" EntitySet="Campaigns" ReturnType="Collection(C4GModel.Campaign)">
+            <Parameter Name="Username" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="Campaign">
@@ -4284,6 +4284,21 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
           <Property Type="Int32" Name="CityID" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="Campaign_ListByNPO_Result1">
+          <Property Type="Int32" Name="CampaignID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="256" />
+          <Property Type="Int32" Name="NPOID" Nullable="false" />
+          <Property Type="DateTime" Name="StartDate" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="EndDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="CampaignDescription" Nullable="true" />
+          <Property Type="Int32" Name="FundraisingGoal" Nullable="true" />
+          <Property Type="String" Name="CampaignImage" Nullable="true" MaxLength="256" />
+          <Property Type="Boolean" Name="ShowOnHome" Nullable="true" />
+          <Property Type="Int32" Name="DisplayPriority" Nullable="true" />
+          <Property Type="String" Name="CampaignGoal" Nullable="true" />
+          <Property Type="Boolean" Name="HasAcceptedTerms" Nullable="false" />
+          <Property Type="Int32" Name="CampaignStatusID" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4673,23 +4688,6 @@
           <FunctionImportMapping FunctionImportName="Campaign_ListActiveByNPO" FunctionName="C4GModel.Store.Campaign_ListActiveByNPO">
             <ResultMapping>
               <ComplexTypeMapping TypeName="C4GModel.Campaign_ListActiveByNPO_Result">
-                <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="NPOID" ColumnName="NPOID" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="CampaignDescription" ColumnName="CampaignDescription" />
-                <ScalarProperty Name="FundraisingGoal" ColumnName="FundraisingGoal" />
-                <ScalarProperty Name="CampaignImage" ColumnName="CampaignImage" />
-                <ScalarProperty Name="ShowOnHome" ColumnName="ShowOnHome" />
-                <ScalarProperty Name="DisplayPriority" ColumnName="DisplayPriority" />
-                <ScalarProperty Name="CampaignGoal" ColumnName="CampaignGoal" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Campaign_ListByNPO" FunctionName="C4GModel.Store.Campaign_ListByNPO">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="C4GModel.Campaign_ListByNPO_Result">
                 <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="NPOID" ColumnName="NPOID" />
@@ -5124,6 +5122,8 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="PurchaseTransaction_Failed" FunctionName="C4GModel.Store.PurchaseTransaction_Failed" />
           <FunctionImportMapping FunctionImportName="PaymentOption_Insert" FunctionName="C4GModel.Store.PaymentOption_Insert" />
+          <FunctionImportMapping FunctionImportName="Campaign_ListByNPO" FunctionName="C4GModel.Store.Campaign_ListByNPO">
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -212,7 +212,14 @@
                                         <div class="ClearFix"></div>
                                     </div>
                                     <p id="DescriptionText"><%# npo.NPODescription %></p>
-                                </div>       
+                                </div>
+                                <div><%--Campaigns go here --%>
+                                    <div id="Campaigns">
+                                        <h2>Current Campaigns</h2>
+                                        <p>Want to support our cause, then have a look at the <strong>current campaigns</strong> that we are running.</p>
+                                        <% Response.Write(CouponsForGiving.HttpRendering.ListNPOCampaigns(campaigns));%>
+                                    </div>
+                                </div>   
                                 <div id="profile-edit-address">
                                     <label>Address</label>
                                     <p><%# npo.cAddress %></p>

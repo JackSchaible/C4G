@@ -641,6 +641,11 @@ namespace CouponsForGiving.Data.Classes
         {
             new C4GEntities().Campaign_UpdateImage(CampaignID, ImagePath);
         }
+
+        public static List<Campaign> ListAllByUsername(string username)
+        {
+            return new C4GEntities().Campaign_ListByNPO(username).ToList<Campaign>();
+        }
     }
 
     public static class CampaignDealInstances

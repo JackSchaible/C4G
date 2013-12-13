@@ -319,13 +319,6 @@ namespace CouponsForGiving.Data
             (new C4GEntities()).Campaign_Update(campaignid, name, npoid, startdate, enddate, campaigndescription, fundraisinggoal, campaignimage, showonhome, displaypriority, campaigngoal);
         }
 
-        // List All Campaigns for a given NPOID
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static List<Campaign_ListByNPO_Result> ListCampaignsByNPOID(int npoid)
-        {
-            return (new C4GEntities()).Campaign_ListByNPO(npoid).ToList<Campaign_ListByNPO_Result>();
-        }
-
         [DataObjectMethod(DataObjectMethodType.Insert, false)]
         public static void AddCampaignDealInstance(int campaignid,
                                                   int dealinstanceid)
