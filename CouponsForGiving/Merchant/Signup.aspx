@@ -45,7 +45,7 @@
                     Text="*" ControlToValidate="YourPhoneNumberTextBox">
                 </asp:RequiredFieldValidator>
             </div>
-            <div class="FormRow TextAreaRow">
+            <div class="FormRow">
                 <asp:Label ID="Label4" runat="server" Text="Name of Your Business" AssociatedControlID="BusinessNameTextBox"></asp:Label>
                 <asp:TextBox ID="BusinessNameTextBox" runat="server"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
@@ -53,7 +53,7 @@
                     *
                 </asp:RequiredFieldValidator>
             </div>
-            <div class="FormRow">
+            <div class="FormRow TextAreaRow">
                 <asp:Label AssociatedControlID="DescriptionTextBox" ID="DescLabel" runat="server" Text="Description"></asp:Label>
                 <asp:TextBox ID="DescriptionTextBox" runat="server" TextMode="MultiLine" MaxLength="200"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="DescriptionTextBoxRFV" runat="server"
