@@ -1528,23 +1528,21 @@ display: inline-table;
 }
 
 #MainContent .c4g-coupon-tile .coupon_c4g_logo, #MainContent .c4g-campaign-tile .coupon_c4g_logo {
-float: left;
-position: relative;
-top: -20px;
-left: -20px;
 width: 50px;
+margin: -19px auto -10px;
+border: 4px solid #e5e4e4;
+border-radius: 200px;
+float: none;
+position: static;
 }
 
 #MainContent .c4g-coupon-tile h2, #MainContent .c4g-campaign-tile h2 {
 font-family: 'Lato', sans-serif;
 font-weight: 700;
-margin: 25px 0px 0px 0px;
-padding: 0px 0px 0px 20px;
-font-size: 26px;
+margin: 15px 0px 0px 0px;
+padding: 0px 0px 0px 0px;
+font-size: 20px;
 text-align: center;
-float: none;
-position: relative;
-left: -20px;
 display: block;
 word-break: break-word;
 }
