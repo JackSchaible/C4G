@@ -9,8 +9,9 @@
     <h3>Are you looking to fundraise for your organization?</h3>
     <p><img src="../images/c4g_npos.png" class="circle_image_right" />Set up your profile with information about your organization. This page will now be your public page you can share with your network of donors and supporters. You can include images and your social media channels. You do not need to be a registered charity to sign up, but you do need to have a Not-For-Profit organization looking to raise money for a cause or campaign. As a Not-for-Profit with Coupons4Giving you will receive up to 25% from every offer purchased from the Coupons4Giving offers registered to your campaign.</p>
     <p>Your organization's profile page is what the public will see when you start promoting your campaigns. You will now have a Coupons4Giving URL for both your public profile page and each live campaign page.</p>
-    <p>To ensure the best experience for all, the Coupons4Giving team will review and approve all registrations.</p>
+    <p>To ensure the best experience for all, <strong>the Coupons4Giving team will review and approve all registrations</strong>.</p>
     <h3>Tell us about your organization:</h3>
+    <hr>
     <div class="Form">
         <div class="FormRow">
             <asp:Label ID="Label1" runat="server" Text="Name of Your Organization" AssociatedControlID="newNPOName"></asp:Label>

@@ -160,9 +160,9 @@
                 <UC:MenuBar ID="MenuBarControl" runat="server" />
                 <section id="MainContent">
                     <div id="content" class="no-sidebar">
-                        <div class="three-quarters"><!-- Removed the div #text and also the #NPO-->
-                            <h1><%: npo.Name %></h1> <!-- Campaing Name -->
-                            <h3 class="merchant-address"><%: campaign.Name %></h3><!-- This should be the Charity Name -->
+                        <div class="two-thirds"> 
+                            <h1><%: npo.Name %></h1>
+                            <h3 class="merchant-address"><%: campaign.Name %></h3>
                             <h2>About the Campaign</h2>
                             <p><img alt="Our Logo" class="merchant_logo" src="../../<%: campaign.CampaignImage %>" /><%: campaign.CampaignDescription %></p> <!-- Campaing Description -->
                             <p><strong>Date Running</strong>: <%: campaign.StartDate.Value.ToString("MMMM dd, yyyy") %> - <%: campaign.EndDate.Value.ToString("MMMM dd, yyyy") %></p>
@@ -178,7 +178,7 @@
                                 <span class="thermometer"></span><span class="thermometer-raised"><%: (from po in campaign.PurchaseOrders where po.OrderStatusID != 3 select po.NPOSplit).Sum().ToString("C") %></span>
                             </div><!-- Progress Meter --> 
                         </div>
-                        <div class="one-quarters">
+                       <div class="thirds">
                             <div class="SocialSidebar">
                                 <h3>Share this Campaign on social media!</h3>
                                 <div class="SidebarShare">

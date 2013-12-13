@@ -94,7 +94,7 @@
                                 <li class="customers">
                                     <div class="content">
                                         <div class="two-thirds">
-                                            <h2>It's free to sign up. Support great causes and share great deals!</h2>
+                                            <h2>It's free to sign up. <strong>Support great causes and share great deals!</strong></h2>
                                             <a href="Account/Register.aspx" class="btn"><i class="fa fa-arrow-circle-o-right"></i> CREATE AN ACCOUNT</a>
                                         </div>
                                     </div>

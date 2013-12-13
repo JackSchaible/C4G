@@ -69,9 +69,16 @@
                             </asp:RadioButtonList>
                         </div>
                         <div class="FormRow">
+<<<<<<< HEAD
                             <iframe src="../Content/Terms/pptou.txt"></iframe>
                             <label class="single-row">I have read and agree to the <a href="../Content/Terms/PrivacyPolicy.pdf">Privacy Policy</a> and the <a href="../Content/Terms/TermsOfUse.pdf">Terms of Use</a></label>
                             <input type="checkbox" id="TermsCheckbox" onchange="change()" class="single-row"/>
+=======
+                            <iframe src="../Content/Terms/PrivacyPolicy.txt"></iframe>
+                            <iframe src="../Content/Terms/TermsOfUse.txt"></iframe>
+                            <label class="checkbox-singlerow">I have read and agree to the <a href="../Content/Terms/PrivacyPolicy.pdf">Privacy Policy</a> and the <a href="../Content/Terms/TermsOfUse.pdf">Terms of Use</a></label>
+                            <input type="checkbox" id="TermsCheckbox" onchange="change()" class="checkbox-singlerow"/>
+>>>>>>> 10ee5db33649dd3c92175a2de34bd50b849c79a9
                         </div>
                         <div class="FormRow">
                             <asp:Button runat="server" CommandName="MoveNext" Text="Register" ID="SubmitButton" ClientIDMode="Static" />
