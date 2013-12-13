@@ -1542,10 +1542,11 @@ margin: 25px 0px 0px 0px;
 padding: 0px 0px 0px 20px;
 font-size: 26px;
 text-align: center;
-float: ;
+float: none;
 position: relative;
 left: -20px;
 display: block;
+word-break: break-word;
 }
 
 #MainContent .c4g-coupon-tile h3, #MainContent .c4g-campaign-tile h3 {
