@@ -47,7 +47,7 @@
             <div class="push"></div>
         </div>
         <div class="FormRow">
-            <asp:Label ID="ErrorLabel-contact" runat="server"></asp:Label>
+            <asp:Label ID="ErrorLabelcontact" runat="server"></asp:Label>
             <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
             <asp:Button ID="SubmitButton" runat="server" Text="Submit" OnClick="SubmitButton_Click" />
         </div>

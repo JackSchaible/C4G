@@ -110,10 +110,10 @@
                 <UC:MenuBar ID="MenuBarControl" runat="server" />
                 <section id="MainContent">
                     <asp:ContentPlaceHolder ID="BannerContent" runat="server" />
-                    <div id="content">
+                    <div id="content" class="<%: SideBar ? "" : "no-sidebar" %>">
                         <asp:ContentPlaceHolder runat="server" ID="Main_Content" />
                     </div>
-                    <div id="FeaturedMerchants" class="Sidebar">
+                    <div id="FeaturedMerchants" class="Sidebar" style="<%: SideBar ? "" : "display: none;" %>">
                         <h1>Discover Coupons & Causes</h1>
                         <img src="~/images/c4g_side_coupon.png" class="sideMerchants" runat="server">
                         <asp:GridView ID="FeaturedMerchantGV" runat="server" AutoGenerateColumns="False" DataSourceID="FMerchantsODS">

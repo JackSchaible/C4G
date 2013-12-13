@@ -45,11 +45,11 @@ public partial class ContactUs : System.Web.UI.Page
             SmtpClient client = new SmtpClient();
             client.Send(mm);
             Response.Redirect("ThankYou.aspx");
-            ErrorLabel.Text = "Thank you for your input. A representative will contact you shortly!";
+            ErrorLabelcontact.Text = "Thank you for your input. A representative will contact you shortly!";
         }
         catch (Exception ex)
         {
-            ErrorLabel.Text = ex.Message;
+            ErrorLabelcontact.Text = ex.Message;
         }
     }
 }

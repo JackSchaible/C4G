@@ -178,7 +178,7 @@
                                 <span class="thermometer"></span><span class="thermometer-raised"><%: (from po in campaign.PurchaseOrders where po.OrderStatusID != 3 select po.NPOSplit).Sum().ToString("C") %></span>
                             </div><!-- Progress Meter --> 
                         </div>
-                       <div class="thirds">
+                        <div class="thirds">
                             <div class="SocialSidebar">
                                 <h3>Share this Campaign on social media!</h3>
                                 <div class="SidebarShare">
