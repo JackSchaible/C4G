@@ -22,9 +22,9 @@ public class ShoppingCart
     public decimal OurSplit { get; set; }
 
     public const decimal NPOSplitPerc = 0.25M;
-    //Important: MerchantSplit = 55% - (2.3% VAT + 5% GST on GenerUS fee (20%))
-    public const decimal MerchantSplitPerc = 0.55M - (0.023M + 0.01M);
-    public const decimal OurSplitPerc = 1 - (NPOSplitPerc + MerchantSplitPerc);
+    //Important: MerchantSplit = 54% - (2.9% Processing Fee + $0.30 + 5% GST on GenerUS fee (21%))
+    public const decimal MerchantSplitPerc = 0.54M - (0.029M + 0.01M);
+    public const decimal OurSplitPerc = 0.21M;
 
     public ShoppingCart(string npo, int campaignid, string campaign, int dealinstanceid, string deal, 
         int merchantid, string merchant, decimal giftvalue, decimal retailvalue)
@@ -41,7 +41,7 @@ public class ShoppingCart
 
         //Calculate the proper splits
         NPOSplit = NPOSplitPerc * GiftValue;
-        MerchantSplit = MerchantSplitPerc * GiftValue;
+        MerchantSplit = (MerchantSplitPerc * GiftValue) + 0.3M;
         OurSplit = OurSplitPerc * GiftValue;
     }
 }

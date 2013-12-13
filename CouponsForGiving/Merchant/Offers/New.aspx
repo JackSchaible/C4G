@@ -23,9 +23,9 @@
 
         function calcSplit() {
             var value = $("#newDealGiftValue").val();
-            var vat = value * 0.023;
+            var vat = (value * 0.029) + 0.3;
             var tax = (value * 0.2) * 0.05;
-            var split = value - (vat + tax);
+            var split = (value * 0.54) - (vat + tax);
 
             $("#VAT").text("$" + vat.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
             $("#Tax").text("$" + tax.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
@@ -135,7 +135,7 @@
             <label>Gift Value<br /><small>The Sale Price</small></label>
             <asp:TextBox ID="newDealGiftValue" runat="server" MaxLength="10" onkeyup="calcSplit()" ClientIDMode="Static"></asp:TextBox>
             <br />
-            <p>2.3% VAT = <strong id="VAT">$0.00</strong></p>
+            <p>Processing Fee (2.9% + $0.30) = <strong id="VAT">$0.00</strong></p>
             <br />
             <p>5% Tax on Coupons4Giving Fee = <strong id="Tax">$0.00</strong></p>
             <br />
