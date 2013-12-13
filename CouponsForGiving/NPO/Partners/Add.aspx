@@ -19,7 +19,7 @@
     <asp:GridView ID="LocalMerchantsGV" runat="server" AutoGenerateColumns="False" DataKeyNames="MerchantID" OnSelectedIndexChanging="LocalMerchantsGV_SelectedIndexChanging">
         <Columns>
             <asp:CommandField ShowSelectButton="True" />
-            <asp:HyperLinkField DataNavigateUrlFields="MerchantID" Text="View" DataNavigateUrlFormatString="../../Default/MerchantPage.aspx?mid={0}" />
+            <asp:HyperLinkField DataNavigateUrlFields="Name" Text="View" DataNavigateUrlFormatString="../../Default/MerchantPage.aspx?MerchantName={0}" />
             <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
             <asp:ImageField DataImageUrlField="SmallLogo" DataImageUrlFormatString="../../{0}">
             </asp:ImageField>
