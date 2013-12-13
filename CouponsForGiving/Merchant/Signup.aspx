@@ -169,8 +169,8 @@
             </div>
             <div class="FormRow">
                 <iframe src="../Content/Terms/MerchantServicesAgreement.txt" style="width: 100%;"></iframe>
-                <label>I have read and agree to the Terms & Conditions.</label>
-                <asp:CheckBox ID="TermsCheckBox" runat="server" />
+                <label class="checkbox-singlerow">I have read and agree to the Terms & Conditions.</label>
+                <asp:CheckBox ID="TermsCheckBox" runat="server" class="checkbox-singlerow" />
             </div>
             <div class="FormRow">
                 <asp:Button ID="Button1" runat="server" Text="Connect to Stripe!" OnClick="SubmitButton_Click" />

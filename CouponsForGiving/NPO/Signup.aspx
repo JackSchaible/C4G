@@ -78,8 +78,8 @@
         </div>
         <div class="FormRow">
             <iframe name="termsAndConditions" style="width: 100%;" src="../Content/Terms/NPOServicesAgreement.txt"></iframe>
-            <p>I have read and undertand the <a target="_blank" href="../Content/Terms/NPOServiceAgreement.pdf">terms and conditions.</a></p>
-            <asp:CheckBox ID="TermsCheckbox" runat="server" />
+            <label class="checkbox-singlerow">I have read and understand the <a target="_blank" href="../Content/Terms/NPOServiceAgreement.pdf">terms and conditions.</a></label>
+            <asp:CheckBox ID="TermsCheckbox" runat="server" class="checkbox-singlerow"/>
         </div>
         <div class="FormRow">
             <asp:Button ID="newNPOSubmit" runat="server" Text="Submit" OnClick="newNPOSubmit_Click" />
