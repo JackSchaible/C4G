@@ -70,8 +70,8 @@
                         </div>
                         <div class="FormRow">
                             <iframe src="../Content/Terms/pptou.txt"></iframe>
-                            <label class="single-row">I have read and agree to the <a href="../Content/Terms/PrivacyPolicy.pdf">Privacy Policy</a> and the <a href="../Content/Terms/TermsOfUse.pdf">Terms of Use</a></label>
-                            <input type="checkbox" id="TermsCheckbox" onchange="change()" class="single-row"/>
+                            <label class="checkbox-singlerow ">I have read and agree to the <a href="../Content/Terms/PrivacyPolicy.pdf">Privacy Policy</a> and the <a href="../Content/Terms/TermsOfUse.pdf">Terms of Use</a></label>
+                            <input type="checkbox" id="TermsCheckbox" onchange="change()" class="checkbox-singlerow "/>
                         </div>
                         <div class="FormRow">
                             <asp:Button runat="server" CommandName="MoveNext" Text="Register" ID="SubmitButton" ClientIDMode="Static" />
