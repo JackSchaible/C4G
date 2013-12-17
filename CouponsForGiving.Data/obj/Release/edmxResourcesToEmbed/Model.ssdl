@@ -1751,4 +1751,5 @@
     <Parameter Name="Desc" Type="nvarchar(max)" Mode="In" />
     <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
   </Function>
+  <Function Name="Users_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
 </Schema>

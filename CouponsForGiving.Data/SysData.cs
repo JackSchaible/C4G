@@ -724,4 +724,12 @@ namespace CouponsForGiving.Data.Classes
             new C4GEntities().News_Delete(NewsID);
         }
     }
+
+    public static class cUsers
+    {
+        public static List<cUser> List()
+        {
+            return new C4GEntities().Users_List().ToList<cUser>();
+        }
+    }
 }

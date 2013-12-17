@@ -2576,5 +2576,15 @@ namespace CouponsForGiving.Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Campaign>("Campaign_ListByNPO", mergeOption, usernameParameter);
         }
+    
+        public virtual ObjectResult<cUser> Users_List()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<cUser>("Users_List");
+        }
+    
+        public virtual ObjectResult<cUser> Users_List(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<cUser>("Users_List", mergeOption);
+        }
     }
 }

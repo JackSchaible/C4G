@@ -788,6 +788,7 @@
     <FunctionImport Name="Campaign_ListByNPO" EntitySet="Campaigns" ReturnType="Collection(C4GModel.Campaign)">
       <Parameter Name="Username" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="Users_List" EntitySet="cUsers" ReturnType="Collection(C4GModel.cUser)" />
   </EntityContainer>
   <EntityType Name="Campaign">
     <Key>
@@ -2538,5 +2539,11 @@
     <Property Type="String" Name="CampaignGoal" Nullable="true" />
     <Property Type="Boolean" Name="HasAcceptedTerms" Nullable="false" />
     <Property Type="Int32" Name="CampaignStatusID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Users_List_Result">
+    <Property Type="Int32" Name="cUserID" Nullable="false" />
+    <Property Type="String" Name="Username" Nullable="false" MaxLength="256" />
+    <Property Type="Int32" Name="StatusID" Nullable="false" />
+    <Property Type="String" Name="StripeKey" Nullable="true" />
   </ComplexType>
 </Schema>

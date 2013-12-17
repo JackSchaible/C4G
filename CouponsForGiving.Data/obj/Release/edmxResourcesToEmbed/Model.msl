@@ -766,5 +766,6 @@
     <FunctionImportMapping FunctionImportName="PurchaseTransaction_Failed" FunctionName="C4GModel.Store.PurchaseTransaction_Failed" />
     <FunctionImportMapping FunctionImportName="PaymentOption_Insert" FunctionName="C4GModel.Store.PaymentOption_Insert" />
     <FunctionImportMapping FunctionImportName="Campaign_ListByNPO" FunctionName="C4GModel.Store.Campaign_ListByNPO" />
+    <FunctionImportMapping FunctionImportName="Users_List" FunctionName="C4GModel.Store.Users_List" />
   </EntityContainerMapping>
 </Mapping>
