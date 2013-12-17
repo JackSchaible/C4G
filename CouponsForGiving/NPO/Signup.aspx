@@ -73,7 +73,7 @@
                 ErrorMessage="Website is Required" ForeColor="Red">*</asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="newNPOWebsite"
                 ErrorMessage="Website invalid. (Ex. 'http://www.mywebsite.com')" ForeColor="Red" 
-                ValidationExpression="^((http:\/\/www\.)|(www\.)|(http:\/\/))[a-zA-Z0-9._-]+\.[a-zA-Z.]{2,5}$">
+                ValidationExpression="(https:[/][/]|http:[/][/]|www.)[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\-\._\?\,\'/\\\+&amp;%\$#\=~])*$">
                 *
             </asp:RegularExpressionValidator>
         </div>
