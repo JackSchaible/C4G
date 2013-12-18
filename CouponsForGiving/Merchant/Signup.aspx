@@ -148,7 +148,7 @@
                     ControlToValidate="URLTextBox" ErrorMessage="Website is required">*</asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
                     ControlToValidate="URLTextBox" ErrorMessage="Website is invalid (i.e., http://www.mywebsite.com/)"
-                    ValidationExpression="^((http:\/\/www\.)|(www\.)|(http:\/\/))[a-zA-Z0-9._-]+\.[a-zA-Z.]{2,5}$">
+                    ValidationExpression="(https:[/][/]|http:[/][/]|www.)[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\-\._\?\,\'/\\\+&amp;%\$#\=~])*$">
                     *
                 </asp:RegularExpressionValidator>
             </div>
