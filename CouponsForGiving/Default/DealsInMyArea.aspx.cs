@@ -31,13 +31,19 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.Supporter;
 
-        if (!IsPostBack)
-            BindData();
+        BindData();
     }
 
     private void BindData()
     {
-        DIs = Deals.ListByCity(City, Province).OrderByDescending(x => x.Deal.MerchantID).ToList<DealInstance>();
+        if (CitiesDDL.SelectedIndex == 0)
+            DIs = Deals.ListByCity(City, Province).OrderByDescending(x => x.Deal.MerchantID).ToList<DealInstance>();
+        else
+        {
+            string city = CitiesDDL.SelectedValue.Split(new char[] { ',' })[0], province = CitiesDDL.SelectedValue.Split(new char[] { ',' })[1];
+            DIs = Deals.ListByCity(city, province);
+        }
+
         CitiesDDL.DataSource =
             (
                 from c

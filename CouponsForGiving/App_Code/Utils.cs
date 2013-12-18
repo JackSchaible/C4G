@@ -215,7 +215,7 @@ namespace CouponsForGiving
                         result += "<img src=\"../../Images/c4g_coupon_logo.png\" class=\"coupon_c4g_logo\" />";
                         result += "<div class=\"coupon-title-tile\">";
                         result += "<h2>" + item.Deal.Name + "</h2><!-- Merchant Offer -->";
-                        result += "<h3>" + item.Deal.Merchant.Name + "</h3><!-- Merchant Name -->";
+                        result += "<h3><a href=\"MerchantPage.aspx?MerchantName=" + item.Deal.Merchant.Name + "\">" + item.Deal.Merchant.Name + "</a></h3><!-- Merchant Name -->";
                         result += "<p>" + item.Deal.DealDescription + "</p><!-- Merchant Offer Description -->";
                         result += "</div><!--Close Coupon Title -->";
                         result += "<div class=\"clear\"></div>";
@@ -259,7 +259,7 @@ namespace CouponsForGiving
                         result += "<img src=\"../../Images/c4g_coupon_logo.png\" class=\"coupon_c4g_logo\" />";
                         result += "<div class=\"coupon-title-tile\">";
                         result += "<h2>" + item.Deal.Name + "</h2><!-- Merchant Offer -->";
-                        result += "<h3>" + item.Deal.Merchant.Name + "</h3><!-- Merchant Name -->";
+                        result += "<h3><a href=\"MerchantPage.aspx?MerchantName=" + item.Deal.Merchant.Name + "\">" + item.Deal.Merchant.Name + "</a></h3><!-- Merchant Name -->";
                         result += "<p>" + item.Deal.DealDescription + "</p><!-- Merchant Offer Description -->";
                         result += "</div><!--Close Coupon Title -->";
                         result += "<div class=\"clear\"></div>";
@@ -426,7 +426,7 @@ namespace CouponsForGiving
             result += "<article class=\"c4g-coupon-tile\">";
             result += "<img src=\"../../Images/c4g_coupon_logo.png\" class=\"coupon_c4g_logo\" />";
             result += "<div class=\"coupon-title-tile\">";
-            result += "<h2>" + campaign.Name + "</h2><!-- Merchant Offer -->";
+            result += "<h2><a href=\"NPOPage.aspx?nponame=" + campaign.NPO.URL + "\"> " + campaign.Name + "</a></h2><!-- Merchant Offer -->";
             result += "<div class=\"campaign-details-tile\">";
             result += "<p>" + campaign.CampaignDescription + "</p><!-- Merchant Offer Description -->";
             result += "</div>";
