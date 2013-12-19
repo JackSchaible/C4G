@@ -279,7 +279,7 @@
                             </div>    
                         </div>
                         <hr>
-                        <a href="Campaigns/New.aspx" class="btn">New Campaign</a>
+                        <a href="Offers/New.aspx" class="btn">Create New Offer</a>
                     </div>
                 </section>
             </div>

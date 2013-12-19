@@ -2,17 +2,12 @@
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="Main_Content">
     <script type="text/javascript">
-
-        $(document).ready(function () {
-
-        });
-
         function change() {
             if ($("#TermsCheckbox").is(':checked') == false) {
-                $("#SubmitButton").attr('disabled', 'disabled');
+                $("#SubmitButton").disabled = true;
             }
             else {
-                $("#SubmitButton").removeAttr('disabled');
+                $("#SubmitButton").disabled = false;
             }
         }
     </script>
@@ -91,7 +86,8 @@
                         </tr>
                         <tr>
                             <td align="right" colspan="2">
-                                <asp:Button ID="ContinueButton" runat="server" CausesValidation="False" CommandName="Continue" Text="Continue" ValidationGroup="RegisterUser" />
+                                <asp:Button ID="ContinueButton" runat="server" CausesValidation="False" 
+                                    CommandName="Continue" Text="Continue" ValidationGroup="RegisterUser" />
                             </td>
                         </tr>
                     </table>

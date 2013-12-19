@@ -12,9 +12,9 @@ public partial class Account_Login : Page
     protected void Page_Load(object sender, EventArgs e)
     {
         RegisterHyperLink.NavigateUrl = "Register.aspx";
-        OpenAuthLogin.ReturnUrl = Request.QueryString["ReturnUrl"];
+        OpenAuthLogin.ReturnUrl = "../redirect.aspx";
 
-        request = Request.QueryString["ReturnUrl"];
+        request = "../redirect.aspx";
 
         RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + "redirect.aspx";
     }
