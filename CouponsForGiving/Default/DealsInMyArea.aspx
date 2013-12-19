@@ -21,7 +21,10 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
     <h1>Deals in <strong id="Location"><%: City %>, <%: Province %></strong></h1>
     <p>Want to see great deals in another city? Pick one from the drop-down below!</p>
-    <asp:DropDownList ID="CitiesDDL" runat="server" ClientIDMode="Static" DataTextField="City" DataValueField="City"></asp:DropDownList>
+    <asp:DropDownList ID="CitiesDDL" runat="server" ClientIDMode="Static" AutoPostBack="true">
+        <asp:ListItem Text="Select a City"></asp:ListItem>
+    </asp:DropDownList>
+    <asp:Label ID="NoCitiesLabel" runat="server"></asp:Label>
     <p id="ErrorMessage"></p>
     <div id="Deals">
         <% Response.Write(CouponsForGiving.HttpRendering.ListMerchantOffers(DIs)); %>

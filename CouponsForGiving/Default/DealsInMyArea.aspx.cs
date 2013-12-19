@@ -18,6 +18,12 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
     public string Country { get; set; }
     public List<DealInstance> DIs { get; set; }
 
+    private struct CityObj
+    {
+        public string City { get; set; }
+        public string Province { get; set; }
+    }
+
     protected override void OnPreInit(EventArgs e)
     {
         string ip = Request.ServerVariables["REMOTE_ADDR"];
@@ -31,23 +37,33 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.Supporter;
 
-        if (!IsPostBack)
-            BindData();
+        BindData();
     }
 
     private void BindData()
     {
-        DIs = Deals.ListByCity(City, Province).OrderByDescending(x => x.Deal.MerchantID).ToList<DealInstance>();
-        CitiesDDL.DataSource =
+        if (CitiesDDL.SelectedIndex == 0)
+            DIs = Deals.ListByCity(City, Province).OrderByDescending(x => x.Deal.MerchantID).ToList<DealInstance>();
+        else
+        {
+            string city = CitiesDDL.SelectedValue.Split(new char[] { ',' })[0].Trim(), province = CitiesDDL.SelectedValue.Split(new char[] { ',' })[1].Trim();
+            DIs = Deals.ListByCity(city, province);
+            City = city;
+            Province = province;
+        }
+
+        List<string> cities = 
             (
                 from c
                 in Cities.List()
                 orderby c.Country.Name, c.PoliticalDivision.Name, c.Name
-                select new
-                {
-                    City = c.Name + ", " + c.PoliticalDivision.Name
-                }
-            );
+                select c.Name + ", " + c.PoliticalDivision.Name
+            ).ToList<string>();
+
+        CityObj current = GetLocation(Request.ServerVariables["REMOTE_ADDR"]);
+        cities.Insert(0, current.City + ", " + current.Province);
+
+        CitiesDDL.DataSource = cities;
         CitiesDDL.DataBind();
     }
 
@@ -87,6 +103,53 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
         {
             objWebReq = null;
         }
+    }
+
+    private CityObj GetLocation(string IP)
+    {
+        CityObj result = new CityObj();
+        System.Uri objUrl = new System.Uri(String.Format("http://geoip.maxmind.com/e?l={0}&i={1}", WebConfigurationManager.AppSettings["GeoIPLicense"].ToString(), IP));
+        System.Net.WebRequest objWebReq;
+        System.Net.WebResponse objResp;
+        System.IO.StreamReader sReader;
+        string strReturn = string.Empty;
+
+        try
+        {
+            objWebReq = System.Net.WebRequest.Create(objUrl);
+            objResp = objWebReq.GetResponse();
+
+            sReader = new System.IO.StreamReader(objResp.GetResponseStream());
+            strReturn = sReader.ReadToEnd();
+
+            sReader.Close();
+            objResp.Close();
+
+            string[] returnedValues = strReturn.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            result = new CityObj()
+            {
+                City = returnedValues[4],
+                Province = returnedValues[3]
+            };
+
+            Country = returnedValues[1];
+        }
+        catch (Exception ex)
+        {
+            //Set to edmonton by default if lookup fails; replace with getting user's preferred location
+            result = new CityObj()
+            {
+                City = "Edmonton",
+                Province = "Alberta"
+            };
+            ex.ToString();
+        }
+        finally
+        {
+            objWebReq = null;
+        }
+
+        return result;
     }
 
     /// <summary>

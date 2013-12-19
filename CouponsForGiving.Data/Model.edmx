@@ -1756,6 +1756,7 @@
           <Parameter Name="Desc" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="Content" Type="nvarchar(max)" Mode="In" />
         </Function>
+        <Function Name="Users_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -2546,8 +2547,9 @@
             <Parameter Name="Country" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Campaign_ListByNPO" EntitySet="Campaigns" ReturnType="Collection(C4GModel.Campaign)">
-            <Parameter Name="Username" Mode="In" Type="String" />
+          <Parameter Name="Username" Mode="In" Type="String" />
           </FunctionImport>
+          <FunctionImport Name="Users_List" EntitySet="cUsers" ReturnType="Collection(C4GModel.cUser)" />
           </EntityContainer>
         <EntityType Name="Campaign">
           <Key>
@@ -4299,6 +4301,12 @@
           <Property Type="Boolean" Name="HasAcceptedTerms" Nullable="false" />
           <Property Type="Int32" Name="CampaignStatusID" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="Users_List_Result">
+          <Property Type="Int32" Name="cUserID" Nullable="false" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="256" />
+          <Property Type="Int32" Name="StatusID" Nullable="false" />
+          <Property Type="String" Name="StripeKey" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5123,6 +5131,8 @@
           <FunctionImportMapping FunctionImportName="PurchaseTransaction_Failed" FunctionName="C4GModel.Store.PurchaseTransaction_Failed" />
           <FunctionImportMapping FunctionImportName="PaymentOption_Insert" FunctionName="C4GModel.Store.PaymentOption_Insert" />
           <FunctionImportMapping FunctionImportName="Campaign_ListByNPO" FunctionName="C4GModel.Store.Campaign_ListByNPO">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Users_List" FunctionName="C4GModel.Store.Users_List">
           </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
