@@ -29,6 +29,10 @@
                     <p class="validation-summary-errors">
                         <asp:Literal runat="server" ID="ErrorMessage" />
                     </p>
+                    
+                    <div class="ErrorDiv" id="GeneralJQueryErrors">
+                    
+                    </div>
 
                     <fieldset>
                         <div class="FormRow">
@@ -61,8 +65,11 @@
                         </div>
                         <div class="FormRow">
                             <iframe src="../Content/Terms/pptou.txt"></iframe>
+                            
+                            <span class="checkbox-singlerow">
                             <label class="checkbox-singlerow ">I have read and agree to the <a href="../Content/Terms/PrivacyPolicy.pdf">Privacy Policy</a> and the <a href="../Content/Terms/TermsOfUse.pdf">Terms of Use</a></label>
                             <input type="checkbox" id="TermsCheckbox" onchange="change()" class="checkbox-singlerow "/>
+                            </span>
                             <div class="ErrorDiv" id="TermsErrors"></div>
                         </div>
                         <div class="FormRow">
