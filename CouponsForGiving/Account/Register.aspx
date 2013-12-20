@@ -2,6 +2,8 @@
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="Main_Content">
     <script type="text/javascript">
+        $(document).ready(change);
+
         function change() {
             if ($("#TermsCheckbox").is(':checked') == false) {
                 $("#SubmitButton").disabled = true;
@@ -32,28 +34,22 @@
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="UserName">User name</asp:Label>
                             <asp:TextBox runat="server" ID="UserName" placeholder="username" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName"
-                                    CssClass="field-validation-error" ErrorMessage="The user name field is required." />
+                            <div class="ErrorDiv" id="UsernameErrors"></div>
                         </div>
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="Email">Email address</asp:Label>
                             <asp:TextBox runat="server" ID="Email" TextMode="Email" placeholder="joe@joesmith.com" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
-                                CssClass="field-validation-error" ErrorMessage="The email address field is required." />
+                            <div class="ErrorDiv" id="EmailAddressErrors"></div>
                         </div>
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="Password">Password</asp:Label>
                             <asp:TextBox runat="server" ID="Password" TextMode="Password" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="Password"
-                                CssClass="field-validation-error" ErrorMessage="The password field is required." />
+                            <div class="ErrorDiv" id="PasswordErrors"></div>
                         </div>
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="ConfirmPassword">Confirm password</asp:Label>
                             <asp:TextBox runat="server" ID="ConfirmPassword" TextMode="Password" />
-                            <asp:RequiredFieldValidator runat="server" ControlToValidate="ConfirmPassword"
-                                    CssClass="field-validation-error" Display="Dynamic" ErrorMessage="The confirm password field is required." />
-                            <asp:CompareValidator runat="server" ControlToCompare="Password" ControlToValidate="ConfirmPassword"
-                                    CssClass="field-validation-error" Display="Dynamic" ErrorMessage="The password and confirmation password do not match." />
+                            <div class="ErrorDiv" id="ConfirmPasswordErrors"></div>
                         </div>
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="RoleRBL">What are you looking to do? (Select one)</asp:Label>
@@ -67,6 +63,7 @@
                             <iframe src="../Content/Terms/pptou.txt"></iframe>
                             <label class="checkbox-singlerow ">I have read and agree to the <a href="../Content/Terms/PrivacyPolicy.pdf">Privacy Policy</a> and the <a href="../Content/Terms/TermsOfUse.pdf">Terms of Use</a></label>
                             <input type="checkbox" id="TermsCheckbox" onchange="change()" class="checkbox-singlerow "/>
+                            <div class="ErrorDiv" id="TermsErrors"></div>
                         </div>
                         <div class="FormRow">
                             <asp:Button runat="server" CommandName="MoveNext" Text="Register" ID="SubmitButton" ClientIDMode="Static" />

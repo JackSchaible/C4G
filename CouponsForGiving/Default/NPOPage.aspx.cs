@@ -99,7 +99,8 @@ public partial class Default_NpoPage : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        Controls_MenuBar control = (Controls_MenuBar)FindControl("MenuBarControl");
+        Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.Supporter;
+        Master.SideBar = false;
     }
 }

@@ -47,5 +47,6 @@ public partial class Default_CouponPage : System.Web.UI.Page
     {
         URL = WebServices.GetGoogleURL("https://www.coupons4giving.ca/Default/CouponPage.aspx?merchant=" + merchant.Name + "&deal=" + deal.Deal.Name + "&npo=" + npo + "&campaign=" + campaign);
         Title = deal.Deal.Name + " : " + campaign.Name + " - Coupons4Giving";
+        Master.SideBar = false;
     }
 }

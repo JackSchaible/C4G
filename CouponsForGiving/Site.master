@@ -133,6 +133,7 @@
                         <asp:ObjectDataSource ID="FMerchantsODS" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="Merchant_GetFeatured" TypeName="CouponsForGiving.Data.SysData"></asp:ObjectDataSource>
                     </div>
                 </section>
+                <asp:ContentPlaceHolder runat="server" ID="PostContentContent"></asp:ContentPlaceHolder>
             </div>
             <div class="push"></div>
         </form>
