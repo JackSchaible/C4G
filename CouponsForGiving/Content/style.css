@@ -660,6 +660,12 @@ box-shadow: 0px 4px 0px #0099cc;
 -moz-box-shadow: 0px 4px 0px #0099cc;
 -webkit-box-shadow: 0px 4px 0px #0099cc;}
 
+input[type=submit]:disabled, .FormRow input[type="submit"]:disabled {
+background: #ddd;
+box-shadow: 0px 4px 0px #ccc;
+-moz-box-shadow: 0px 4px 0px #ccc;
+-webkit-box-shadow: 0px 4px 0px #ccc;}
+
 iframe {
 width: 100%;
 border: 1px solid #ccc;
