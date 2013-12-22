@@ -42,12 +42,12 @@
             <li><img src="../Images/c4g_comingsoon_small.png" class="centered" /></li>
         </ul>
     </div>
-    <a href="../Default/DealsInMyArea.aspx" class="btn">MORE MERCHANTS</a>
+    <a href="../Default/DealsInMyArea.aspx" class="btn-blue">MORE MERCHANTS</a>
     <h4 class="centered">OUR FEATURED CAUSES</h4>
     <div class="nposList">
         <ul>
             <li><img src="../Images/c4g_comingsoon_small.png" class="centered" /></li>
         </ul>
-        <a href="../Default/CausesInMyArea.aspx" class="btn">MORE CAUSES</a> 
+        <a href="../Default/CausesInMyArea.aspx" class="btn-blue">MORE CAUSES</a> 
     </div>
 </asp:Content>

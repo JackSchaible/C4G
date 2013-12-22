@@ -741,6 +741,11 @@ float: left;}
 background: #ecebe9;
 }
 
+#MainContent #loginForm h4, #MainContent #socialLoginForm h4 {
+margin-top: 10px;
+font-family: 'Lato', sans-serif;
+}
+
 .thirds {
 display: inline-table;
 width: 31%;

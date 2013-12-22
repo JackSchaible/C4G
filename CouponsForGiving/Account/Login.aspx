@@ -8,13 +8,13 @@
             <h4>Log in with your Coupons4Giving account.</h4>
             <asp:Login runat="server" ViewStateMode="Disabled" RenderOuterTable="false">
                 <LayoutTemplate>
-                    <p class="validation-summary-errors">
+                    <!--p class="validation-summary-errors">
                         <asp:Literal runat="server" ID="FailureText" />
-                    </p>
+                    </p-->
                     <fieldset>
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="UserName">Username</asp:Label>
-                            <asp:TextBox runat="server" ID="UserName" />
+                            <asp:TextBox runat="server" ID="UserName" placeholder="username" />
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName" 
                                 CssClass="field-validation-error" ErrorMessage="The user name field is required." />
                         </div>
@@ -33,7 +33,7 @@
                     </fieldset>
                 </LayoutTemplate>
             </asp:Login>
-            <p><asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register</asp:HyperLink> if you don't have an account.</p>
+            <p><asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled"><i class="fa fa-arrow-circle-o-right"></i> Register</asp:HyperLink> if you don't have an account.</p>
         </section>
     </div>
     <div class="half dark">
