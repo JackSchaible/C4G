@@ -1331,6 +1331,7 @@
   <Function Name="DealInstance_ListByMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="MerchantID" Type="int" Mode="In" />
   </Function>
+  <Function Name="DealInstance_ListForGlobalMarketplace" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
   <Function Name="DealInstance_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="dealinstanceid" Type="int" Mode="In" />
     <Parameter Name="dealid" Type="int" Mode="In" />

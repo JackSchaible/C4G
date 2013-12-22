@@ -789,6 +789,7 @@
       <Parameter Name="Username" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="Users_List" EntitySet="cUsers" ReturnType="Collection(C4GModel.cUser)" />
+    <FunctionImport Name="DealInstance_ListForGlobalMarketplace" EntitySet="DealInstances" ReturnType="Collection(C4GModel.DealInstance)" />
   </EntityContainer>
   <EntityType Name="Campaign">
     <Key>
@@ -2545,5 +2546,14 @@
     <Property Type="String" Name="Username" Nullable="false" MaxLength="256" />
     <Property Type="Int32" Name="StatusID" Nullable="false" />
     <Property Type="String" Name="StripeKey" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="DealInstance_ListForGlobalMarketplace_Result">
+    <Property Type="Int32" Name="DealInstanceID" Nullable="false" />
+    <Property Type="Int32" Name="DealID" Nullable="false" />
+    <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="EndDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="RedeemableAfter" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="ExpiryDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="DealStatusID" Nullable="false" />
   </ComplexType>
 </Schema>
