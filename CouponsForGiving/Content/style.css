@@ -966,7 +966,7 @@ margin: 75px 0px 0px;
 display: inline-block;
 float: left;
 font-size: 30px;
-font-weight: 300;
+font-weight: 400;
 letter-spacing: .25px;
 line-height: 150%;
 }
@@ -978,6 +978,10 @@ float: left;
 margin-top: 20px;
 font-weight: 400;
 line-height: 135%;
+}
+
+#MainContent .homeBanners h3 a {
+text-decoration: none;
 }
 
 #MainContent .homeBanners .right-heartinhand {
@@ -1209,9 +1213,8 @@ font-weight: 300;}
 #MainContent h1 {
 color: #18bee6;
 display: block;
-font-family: Ubuntu, Corbel, Arial, sans-serif;
 font-size: 30px;
-font-weight: 100;
+font-weight: 500;
 padding: 0px 0 0 0;
 margin: 20px 0px 20px;
 line-height: 155%;
@@ -1220,7 +1223,6 @@ line-height: 155%;
 #MainContent h2 {
 color: #535353;
 display: block;
-font-family: Ubuntu, Corbel, Arial, sans-serif;
 font-weight: 500;
 margin: 40px 0px 20px;
 letter-spacing: 0.5px;
@@ -1229,7 +1231,6 @@ font-size: 26px;
 
 #MainContent h3 {
 color: #18bee6;
-font-family: Ubuntu, Corbel, Arial, sans-serif;
 font-weight: 300;
 margin: 40px 0px 20px;
 letter-spacing: 0.5px;
@@ -1249,6 +1250,8 @@ font-size: 20px;
 font-weight: 500;
 text-decoration: none;}
 
+#MainContent h5, #MainContent h6 {
+font-family: Ubuntu, Corbel, Arial, sans-serif;}
 
 
 /* Buttons

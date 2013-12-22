@@ -3,7 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="BannerContent" runat="server">
     <div class="homeBanners">
-        <h2>Coupons4Giving is a fundraising tool that is easy to use! Share great deals to support your cause!</h2><h3>Register for a Coupons4Giving account and get started right away!</h3>
+        <h2>Coupons4Giving is a fundraising tool that is easy to use! Share great deals to support your cause!</h2><h3><i class="fa-arrow-circle-o-right"></i> <a href="../Account/Register.aspx" title="Register Today!">Register for a Coupons4Giving account and get started right away!</a></h3>
         <img src="../Images/c4g_fundraising_home.png" class="right-fundraising" />
     </div>
 </asp:Content>
