@@ -29,17 +29,17 @@
             <p><asp:Label ID="newMerchantMessage" runat="server"></asp:Label></p>
             <div class="FormRow">
                 <asp:Label ID="Label6" runat="server" Text="First Name" AssociatedControlID="FirstNameTextBox"></asp:Label>
-                <asp:TextBox ID="FirstNameTextBox" runat="server"></asp:TextBox>
+                <asp:TextBox ID="FirstNameTextBox" runat="server" placeholder="Joe"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="FirstNameTextBox" ErrorMessage="First Name is Required">*</asp:RequiredFieldValidator>
             </div>
             <div class="FormRow">
                 <asp:Label ID="Label7" runat="server" Text="Last Name" AssociatedControlID="LastNameTextBox"></asp:Label>
-                <asp:TextBox ID="LastNameTextBox" runat="server"></asp:TextBox>
+                <asp:TextBox ID="LastNameTextBox" runat="server" placeholder="Smith"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="LastNameTextBox" ErrorMessage="Last Name is Required">*</asp:RequiredFieldValidator>
             </div>
             <div class="FormRow">
                 <asp:Label ID="Label23" runat="server" Text="Phone Number" AssociatedControlID="YourPhoneNumberTextBox"></asp:Label>
-                <asp:TextBox ID="YourPhoneNumberTextBox" runat="server"></asp:TextBox>
+                <asp:TextBox ID="YourPhoneNumberTextBox" runat="server" placeholder="555-123-4567"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator6" 
                     runat="server" ErrorMessage="We need to know your phone number."
                     Text="*" ControlToValidate="YourPhoneNumberTextBox">
@@ -47,7 +47,7 @@
             </div>
             <div class="FormRow">
                 <asp:Label ID="Label4" runat="server" Text="Name of Your Business" AssociatedControlID="BusinessNameTextBox"></asp:Label>
-                <asp:TextBox ID="BusinessNameTextBox" runat="server"></asp:TextBox>
+                <asp:TextBox ID="BusinessNameTextBox" runat="server" placeholder="Business Name"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                     ControlToValidate="BusinessNameTextBox" ErrorMessage="Business Name is Required">
                     *
@@ -65,7 +65,7 @@
             <div class="FormRow">
                 <asp:Label ID="Label9" runat="server" Text="Street Address"
                    AssociatedControlID="AddressTextBox"></asp:Label>
-                <asp:TextBox ID="AddressTextBox" runat="server"></asp:TextBox>
+                <asp:TextBox ID="AddressTextBox" runat="server" placeholder="1234, 5th Street"></asp:TextBox>
             </div>
             <div class="FormRow">
                 <label>City <small>Please select from the dropdown.</small></label>
