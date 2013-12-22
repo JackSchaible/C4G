@@ -9,12 +9,20 @@ using Microsoft.AspNet.Membership.OpenAuth;
 using CouponsForGiving.Data;
 using Stripe;
 using System.Net.Mail;
+using System.Web.Services;
+using System.Web.Script.Services;
 
 public partial class Account_Register : Page
 {
+    static List<string> Users;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         RegisterUser.ContinueDestinationPageUrl = "../redirect.aspx";
+
+        Users = new List<string>();
+        foreach (MembershipUser item in Membership.GetAllUsers())
+            Users.Add(item.UserName);        
     }
 
     protected void RegisterUser_CreatedUser(object sender, EventArgs e)
@@ -51,12 +59,14 @@ public partial class Account_Register : Page
                 break;
 
             case "NPO":
+                Roles.AddUserToRole(RegisterUser.UserName, "IncompleteNPO");
                 Response.Redirect("../NPO/Signup.aspx", false);
                 //mm.Body = "<h1>Welcome to Coupons4Giving! - NPO</h1><p>Thanks for registering with Coupons4Giving. Once you login to your account you can get started. You can set up a campaign and start fundraising. You can support your favorite causes by purchasing great deals from a wide range of Merchants and E-Tailers (online-only merchants). You can set up merchant offers to support your favourite Not-For-Profits.</p><p><a href='https://www.coupons4giving.ca/Account/Login.aspx'>Click here</a> to go to your account.</p><p>Please contact us at <a href='mailto:teamc4g@coupons4giving.ca'>teamc4g@coupons4giving.ca</a> with any questions!</p><p>Cheers!</p><p>The Coupons4Giving Team</p>";
                 mm.Subject += "NPO";
                 break;
 
             case "Merchant":
+                Roles.AddUserToRole(RegisterUser.UserName, "IncompleteMerchant");
                 Response.Redirect("../Merchant/Signup.aspx", false);
                 //mm.Body = "<h1>Welcome to Coupons4Giving! - Merchant</h1><p>Thanks for registering with Coupons4Giving. Once you login to your account you can get started. You can set up a campaign and start fundraising. You can support your favorite causes by purchasing great deals from a wide range of Merchants and E-Tailers (online-only merchants). You can set up merchant offers to support your favourite Not-For-Profits.</p><p><a href='https://www.coupons4giving.ca/Account/Login.aspx'>Click here</a> to go to your account.</p><p>Please contact us at <a href='mailto:teamc4g@coupons4giving.ca'>teamc4g@coupons4giving.ca</a> with any questions!</p><p>Cheers!</p><p>The Coupons4Giving Team</p>";
                 mm.Subject += "Merchant";
@@ -64,5 +74,12 @@ public partial class Account_Register : Page
         }       
 
         new SmtpClient().Send(mm);
+    }
+
+    [WebMethod]
+    [ScriptMethod]
+    public static bool UsernameTaken(string username)
+    {
+        return Users.Contains(username);
     }
 }

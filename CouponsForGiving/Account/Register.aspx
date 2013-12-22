@@ -2,15 +2,96 @@
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="Main_Content">
     <script type="text/javascript">
-        $(document).ready(change);
+        $(document).ready(initForm);
 
-        function change() {
-            if ($("#TermsCheckbox").is(':checked') == false) {
-                $("#SubmitButton").disabled = true;
+        function initForm() {
+        }
+
+        function checkUsername() {
+            var name = $("#UserName").val();
+            var errors = new Array();
+
+            if (name.length < 4)
+                errors.push('Your username needs to be longer than 4 characters.');
+
+            var taken = false;
+
+            PageMethods.UsernameTaken(name, function (result) {
+                if (result)
+                    errors.push('Your username is taken.');
+
+                writeErrors("UsernameErrors", errors);
+
+                return errors;
+            });
+        }
+
+        function checkEmail() {
+            var email = $("#Email").val();
+            var errors = new Array();
+
+            var emailPattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+            if (!emailPattern.test(email))
+                errors.push('Your email address needs to match the pattern \"joe@joesmith.com\".');
+            
+            writeErrors("EmailErrors", errors);
+            return errors;
+        }
+
+        function checkPassword() {
+            var password = $("#Password").val();
+            var errors = new Array();
+
+            if (password.length < 6)
+                errors.push('Your password needs to be longer than 6 characters.');
+
+            writeErrors("PasswordErrors", errors);
+            return errors;
+        }
+
+        function checkConfirmPassword() {
+            var password = $("#Password");
+            var confirmPassword = $("#ConfirmPassword");
+            var errors = Array();
+
+            if (confirmPassword.trim().length == 0)
+                errors.push('You need to provide a confirmation password.');
+
+            if (password != confirmPassword)
+                errors.push('Your confirm password needs to match your regular password.');
+
+            writeErrors("ConfirmPasswordErrors", errors);
+            return errors;
+        }
+
+        function checkTermsCheckbox() {
+            var errors = Array();
+
+            if ($("#TermsCheckbox").is(':checked') == false)
+                errors.push('You need to agree to the terms and conditions and the privacy policy.');
+            
+            writeErrors('TermsErrors', errors);
+            return errors;
+        }
+
+        function checkForm() {
+            var errors = Array();
+
+            errors.push(checkUsername());
+            errors.push(checkEmail());
+            errors.push(checkPassword());
+            errors.push(checkConfirmPassword());
+            errors.push(checkTermsCheckbox());
+            console.log(errors);
+            if (errors.length > 0) {
+                $("#SubmitButton").attr('disabled', 'disabled');
             }
             else {
-                $("#SubmitButton").disabled = false;
+                $("#SubmitButton").removeAttr('disabled', '');
             }
+            
+            return errors;
         }
     </script>
     <h1>Sign up for a Coupons4Giving account today!</h1>
@@ -23,32 +104,29 @@
         <WizardSteps>
             <asp:CreateUserWizardStep runat="server" ID="RegisterUserWizardStep">
                 <ContentTemplate>
-                    <p class="message-info">
-                    </p>
-
-                    <p class="validation-summary-errors">
-                        <asp:Literal runat="server" ID="ErrorMessage" />
-                    </p>
-
                     <fieldset>
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="UserName">User name</asp:Label>
-                            <asp:TextBox runat="server" ID="UserName" placeholder="username" />
+                            <asp:TextBox runat="server" ID="UserName" ClientIDMode="Static" placeholder="username" onkeyup="checkUsername()" 
+                                onblur="checkUsername()" oninput="checkUsername()"/>
                             <div class="ErrorDiv" id="UsernameErrors"></div>
                         </div>
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="Email">Email address</asp:Label>
-                            <asp:TextBox runat="server" ID="Email" TextMode="Email" placeholder="joe@joesmith.com" />
-                            <div class="ErrorDiv" id="EmailAddressErrors"></div>
+                            <asp:TextBox runat="server" ID="Email" TextMode="Email" ClientIDMode="Static" placeholder="joe@joesmith.com" 
+                                onkeyup="checkEmail()" onblur="checkEmail()" oninput="checkEmail()" />
+                            <div class="ErrorDiv" id="EmailErrors"></div>
                         </div>
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="Password">Password</asp:Label>
-                            <asp:TextBox runat="server" ID="Password" TextMode="Password" />
+                            <asp:TextBox runat="server" ID="Password" TextMode="Password" ClientIDMode="Static"
+                                onkeyup="checkPassword()" onblur="checkPassword()" oninput="checkPassword()"/>
                             <div class="ErrorDiv" id="PasswordErrors"></div>
                         </div>
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="ConfirmPassword">Confirm password</asp:Label>
-                            <asp:TextBox runat="server" ID="ConfirmPassword" TextMode="Password" />
+                            <asp:TextBox runat="server" ID="ConfirmPassword" TextMode="Password" ClientIDMode="Static"
+                                onkeyup="checkConfirmPassword()" onblur="checkConfirmPassword()" oninput="checkConfirmPassword()" />
                             <div class="ErrorDiv" id="ConfirmPasswordErrors"></div>
                         </div>
                         <div class="FormRow">
@@ -66,7 +144,7 @@
                             <div class="ErrorDiv" id="TermsErrors"></div>
                         </div>
                         <div class="FormRow">
-                            <asp:Button runat="server" CommandName="MoveNext" Text="Register" ID="SubmitButton" ClientIDMode="Static" />
+                            <asp:Button runat="server" CommandName="MoveNext" Text="Register" ID="SubmitButton" ClientIDMode="Static" OnClientClick="checkForm()" />
                         </div>
                     </fieldset>
                 </ContentTemplate>
@@ -92,4 +170,7 @@
             </asp:CompleteWizardStep>
         </WizardSteps>
     </asp:CreateUserWizard>
+    <asp:Panel ID="ServerErrorDiv" runat="server" CssClass="ServerErrors" ClientIDMode="Static" >
+        <p>Please contact us at <a href="mailto:support@coupons4giving.com">support@coupons4giving.ca</a> and reference the error below. We'll get back to you as soon as possible.</p>
+    </asp:Panel>
 </asp:Content>

@@ -34,29 +34,6 @@
 <body>
     <script>!function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https'; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = p + '://platform.twitter.com/widgets.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'twitter-wjs');</script>
     <div id="fb-root"></div>
-    <script>
-        window.fbAsyncInit = function () {
-            // init the FB JS SDK
-            FB.init({
-                appId: '<%:System.Web.Configuration.WebConfigurationManager.AppSettings["FB_App_ID"]%>', // App ID from the app dashboard
-                status: true,                                 // Check Facebook Login status
-                xfbml: true                                  // Look for social plugins on the page
-            });
-
-            // Additional initialization code such as adding Event Listeners goes here
-        };
-
-        // Load the SDK asynchronously
-        (function (d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) { return; }
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/en_US/all.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
-        
-    </script>
     <div id="wrapper">
         <form runat="server">
             <ajaxToolkit:ToolkitScriptManager runat="server" EnablePageMethods="true">
@@ -77,6 +54,54 @@
                     <%--Site scripts--%>
                 </Scripts>
             </ajaxToolkit:ToolkitScriptManager>
+                    <script>
+                        window.fbAsyncInit = function () {
+                            // init the FB JS SDK
+                            FB.init({
+                                appId: '<%:System.Web.Configuration.WebConfigurationManager.AppSettings["FB_App_ID"]%>', // App ID from the app dashboard
+                        status: true,                                 // Check Facebook Login status
+                        xfbml: true                                  // Look for social plugins on the page
+                    });
+
+                    // Additional initialization code such as adding Event Listeners goes here
+                };
+
+                // Load the SDK asynchronously
+                (function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) { return; }
+                    js = d.createElement(s); js.id = id;
+                    js.src = "//connect.facebook.net/en_US/all.js";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));
+
+                //Forms validation
+                function writeErrors(errorDiv, errors) {
+
+                    if (errors.length > 0) {
+                        $("#" + errorDiv).css("display", "block");
+
+                        var html;
+
+                        if (errors.length > 1) {
+                            html = "<ul>";
+
+                            errors.forEach(function (item) {
+                                html += "<li>" + item + "</li>";
+                            });
+
+                            html += "</ul>";
+                        }
+                        else {
+                            html = "<p>" + errors[0] + "</p>";
+                        }
+
+                        $("#" + errorDiv).html(html);
+                    }
+                    else
+                        $("#" + errorDiv).css("display", "none");
+                }
+            </script>
             <header>
                 <div id="mainHeader">
                     <div class="headerWrap">
@@ -108,6 +133,7 @@
             </header>
             <div id="container" style="min-height: 430px;">
                 <UC:MenuBar ID="MenuBarControl" runat="server" />
+                <asp:ContentPlaceHolder ID="LandingBanner" runat="server" />
                 <section id="MainContent">
                     <asp:ContentPlaceHolder ID="BannerContent" runat="server" />
                     <div id="content" class="<%: SideBar ? "" : "no-sidebar" %>">

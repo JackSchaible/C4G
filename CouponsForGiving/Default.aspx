@@ -4,7 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="BannerContent" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="LandingBanner" Runat="Server">
     <section id="LandingCarousel">
         <div class="SlideBanners">
             <ul>
@@ -58,7 +58,8 @@
         <a class="btn-large" href="Default/CausesInMyArea.aspx">Discover Causes</a>
         <a class="btn-large" href="Default/GlobalMarketplace.aspx">OUR global MARKETPLACE</a>
         <img src="images/c4g_landing_logo.png" alt="Coupons4Giving" class="centered LandingLogo" />
-    </div>    
+    </div>
+    </section>
     <div class="HowItWorksBanner">
         <section id="MainContent">
             <div id="content" class="no-sidebar">
