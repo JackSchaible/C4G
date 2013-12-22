@@ -4,7 +4,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="BannerContent" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="LandingBanner" Runat="Server">
     <section id="LandingCarousel">
         <div class="SlideBanners">
             <ul>
@@ -37,7 +37,7 @@
                 <li class="fundraising">
                     <div class="content">
                         <div class="two-thirds"><h2>Be effective and target the right customers while supporting local charities and community groups.<br />
-                            <strong>Coupons4Giving makes fundraising easy and secure.</strong></h2>
+                            <strong>Coupons4Giving is a great marketing tool.</strong></h2>
                             <a href="Account/Register.aspx" class="btn"><i class="fa fa-arrow-circle-o-right"></i> BECOME A MERCHANT</a>
                         </div>
                     </div>
@@ -50,15 +50,16 @@
     <div class="two-thirds">
         <h1>What is Coupons4Giving?</h1>
         <p><strong>Coupons4Giving is a fundraising tool</strong> that allows you to support your favourite Not-For-Profit organization in just one click!</p>
-        <p>Choose your organization and support them by purchasing a coupon to your favourite restaurant, retailer or E-tailer. As a Not-For-Profit you can create and manage successful fundraising campaigns. As a merchant or online retailer you can support your favourite causes by offering great deals with coupons.</p>
-        <h4>It's <strong>Free</strong> to <a href="Account/Register.aspx">sign up with Coupons4Giving!</a></h4>
+        <p>Choose your organization and support them by purchasing a coupon to your favourite restaurant, retailer or online merchant. As a Not-For-Profit you can create and manage successful fundraising campaigns. As a merchant or online retailer you can support your favourite causes by offering great deals with coupons.</p>
+        <h4><i class="fa fa-arrow-circle-o-right"></i> It's <strong>Free</strong> to <a href="Account/Register.aspx">sign up with Coupons4Giving!</a></h4>
     </div>
     <div class="one-thirds LandingButtons">
-        <a class="btn-large" href="Default/DealsInMyArea.aspx">Buy Deals Now</a>
-        <a class="btn-large" href="Default/CausesInMyArea.aspx">Discover Causes</a>
-        <a class="btn-large" href="Default/GlobalMarketplace.aspx">OUR global MARKETPLACE</a>
+        <a class="btn-large" href="Default/DealsInMyArea.aspx"><i class="fa fa-credit-card"></i> Buy Deals Now</a>
+        <a class="btn-large" href="Default/CausesInMyArea.aspx"><i class="fa fa-search"></i> Discover Causes</a>
+        <a class="btn-large" href="Default/GlobalMarketplace.aspx"><i class="fa fa-globe"></i> OUR global MARKETPLACE</a>
         <img src="images/c4g_landing_logo.png" alt="Coupons4Giving" class="centered LandingLogo" />
-    </div>    
+    </div>
+    </section>
     <div class="HowItWorksBanner">
         <section id="MainContent">
             <div id="content" class="no-sidebar">
@@ -72,14 +73,13 @@
                 <div class="thirds">
                     <h4>CUSTOMERS</h4>
                     <img src="images/c4g_main_customers.png" alt="Coupons 4 Giving" />
-                    <p class="centered">If you want to <strong>support your favourite
-                        causes you can buy great deals!</strong></p>
+                    <p class="centered">Help support your favourite <strong>causes and buy great deals!</strong></p>
                     <a class="btn" href="Default/CausesInMyArea.aspx">SUPPORT A CAUSE</a> 
                 </div>
                 <div class="thirds">
                     <h4 class="centred">MERCHANTS</h4>
                     <img src="images/c4g_main_market.png" alt="Coupons 4 Giving" />
-                    <p class="centered">If you are a <strong>Merchant or E-tailer</strong>, set up your offers with Coupons4Giving</p>
+                    <p class="centered">If you are a Merchant or On-line retailer, <strong>set up your offers with Coupons4Giving!</strong></p>
                     <a class="btn" href="<%: (User.IsInRole("Merchant")) ? "Merchant/MyHome.aspx" : "Account/Register.aspx" %>">BECOME A MERCHANT</a>
                 </div>
             </div>
@@ -94,13 +94,13 @@
                     <li><img src="../images/c4g_comingsoon_small.png" class="centered" /></li>
                 </ul>
             </div>
-            <a href="Default/DealsInMyArea.aspx" class="btn">MORE MERCHANTS</a>
+            <a href="Default/DealsInMyArea.aspx" class="btn-blue">MORE MERCHANTS</a>
             <h4 class="centered">OUR FEATURED CAUSES</h4>
             <div class="nposList">
                 <ul>
                     <li><img src="../images/c4g_comingsoon_small.png" class="centered" /></li>
                 </ul>
-                <a href="CausesInMyArea.aspx" class="btn">MORE CAUSES</a>
+                <a href="CausesInMyArea.aspx" class="btn-blue">MORE CAUSES</a>
             </div>
         </div>
     </section>
