@@ -34,20 +34,4 @@
     </div>
     <div class="clear"></div>
     <a href="../Account/Register.aspx" class="btn-center">GET STARTED TODAY!</a>
-    <hr>
-    <h3>Take a Look Around</h3>
-    <p>Browse our local deals as well as our <strong>Global Marketplace of E-tailers</strong> (online only merchants)</p>
-    <div class="merchantsList">
-        <ul>
-            <li><img src="../Images/c4g_comingsoon_small.png" class="centered" /></li>
-        </ul>
-    </div>
-    <a href="../Default/DealsInMyArea.aspx" class="btn-blue">MORE MERCHANTS</a>
-    <h4 class="centered">OUR FEATURED CAUSES</h4>
-    <div class="nposList">
-        <ul>
-            <li><img src="../Images/c4g_comingsoon_small.png" class="centered" /></li>
-        </ul>
-        <a href="../Default/CausesInMyArea.aspx" class="btn-blue">MORE CAUSES</a> 
-    </div>
 </asp:Content>
