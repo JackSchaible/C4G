@@ -4,5 +4,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
-    <img alt="Coming Soon" src="../Images/c4g_comingsoon.png" />
+    <h1>Global Marketplace</h1>
+    <div id="Deals">
+        <% Response.Write(CouponsForGiving.HttpRendering.ListMerchantOffers(DIs)); %>
+    </div>
 </asp:Content>

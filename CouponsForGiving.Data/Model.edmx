@@ -1336,6 +1336,7 @@
         <Function Name="DealInstance_ListByMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
           <Parameter Name="MerchantID" Type="int" Mode="In" />
         </Function>
+        <Function Name="DealInstance_ListForGlobalMarketplace" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
         <Function Name="DealInstance_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
           <Parameter Name="dealinstanceid" Type="int" Mode="In" />
           <Parameter Name="dealid" Type="int" Mode="In" />
@@ -2550,6 +2551,7 @@
           <Parameter Name="Username" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Users_List" EntitySet="cUsers" ReturnType="Collection(C4GModel.cUser)" />
+          <FunctionImport Name="DealInstance_ListForGlobalMarketplace" EntitySet="DealInstances" ReturnType="Collection(C4GModel.DealInstance)" />
           </EntityContainer>
         <EntityType Name="Campaign">
           <Key>
@@ -4307,6 +4309,15 @@
           <Property Type="Int32" Name="StatusID" Nullable="false" />
           <Property Type="String" Name="StripeKey" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="DealInstance_ListForGlobalMarketplace_Result">
+          <Property Type="Int32" Name="DealInstanceID" Nullable="false" />
+          <Property Type="Int32" Name="DealID" Nullable="false" />
+          <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="EndDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="RedeemableAfter" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ExpiryDate" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="DealStatusID" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5133,6 +5144,8 @@
           <FunctionImportMapping FunctionImportName="Campaign_ListByNPO" FunctionName="C4GModel.Store.Campaign_ListByNPO">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Users_List" FunctionName="C4GModel.Store.Users_List">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="DealInstance_ListForGlobalMarketplace" FunctionName="C4GModel.Store.DealInstance_ListForGlobalMarketplace">
           </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>

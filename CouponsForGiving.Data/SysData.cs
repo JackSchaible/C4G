@@ -591,6 +591,14 @@ namespace CouponsForGiving.Data.Classes
         }
     }
 
+    public static class DealInstances
+    {
+        public static List<DealInstance> ListForGlobalMarketplace()
+        {
+            return new C4GEntities().DealInstance_ListForGlobalMarketplace().ToList<DealInstance>();
+        }
+    }
+
     public static class Campaigns
     {
         public static List<Campaign> List()

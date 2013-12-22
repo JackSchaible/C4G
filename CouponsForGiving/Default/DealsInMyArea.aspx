@@ -4,7 +4,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
     <script type="text/javascript">
         $("#CitiesDDL").change(function () {
-
             PageMethods.ChangeCity($("#CitiesDDL").val(), onSuccess, onFail);
         });
 
