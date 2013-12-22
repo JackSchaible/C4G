@@ -6,7 +6,7 @@
 <asp:Content ID="BannerStuff" ContentPlaceHolderID="BannerContent" runat="server">
     <div class="homeBanners">
         <h2>Retailers, Restaurants or Online Merchants:</h2>
-        <h3><i class="fa-arrow-circle-o-right"></i> <a href="../Account/Register.aspx" title="Register Today">Increase footfall into your business or traffic to your website!</a></h3>
+        <h3><i class="fa fa-arrow-circle-o-right"></i> <a href="../Account/Register.aspx" title="Register Today">Increase footfall into your business or traffic to your website!</a></h3>
         <img src="../images/c4g_merchant_home.png" class="right-merchant" />
     </div>
 </asp:Content>
