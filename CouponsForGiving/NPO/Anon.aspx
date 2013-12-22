@@ -3,7 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="BannerContent" runat="server">
     <div class="homeBanners">
-        <h2>Coupons4Giving is a fundraising tool that is easy to use! Share great deals to support your cause!</h2><h3>Register for a Coupons4Giving account and get started right away!</h3>
+        <h2>Coupons4Giving is a fundraising tool that is easy to use! Share great deals to support your cause!</h2><h3><i class="fa fa-arrow-circle-o-right"></i> <a href="../Account/Register.aspx" title="Register Today!">Register for a Coupons4Giving account and get started right away!</a></h3>
         <img src="../Images/c4g_fundraising_home.png" class="right-fundraising" />
     </div>
 </asp:Content>
@@ -34,20 +34,4 @@
     </div>
     <div class="clear"></div>
     <a href="../Account/Register.aspx" class="btn-center">GET STARTED TODAY!</a>
-    <hr>
-    <h3>Take a Look Around</h3>
-    <p>Browse our local deals as well as our <strong>Global Marketplace of E-tailers</strong> (online only merchants)</p>
-    <div class="merchantsList">
-        <ul>
-            <li><img src="../Images/c4g_comingsoon_small.png" class="centered" /></li>
-        </ul>
-    </div>
-    <a href="../Default/DealsInMyArea.aspx" class="btn">MORE MERCHANTS</a>
-    <h4 class="centered">OUR FEATURED CAUSES</h4>
-    <div class="nposList">
-        <ul>
-            <li><img src="../Images/c4g_comingsoon_small.png" class="centered" /></li>
-        </ul>
-        <a href="../Default/CausesInMyArea.aspx" class="btn">MORE CAUSES</a> 
-    </div>
 </asp:Content>

@@ -660,6 +660,13 @@ box-shadow: 0px 4px 0px #0099cc;
 -moz-box-shadow: 0px 4px 0px #0099cc;
 -webkit-box-shadow: 0px 4px 0px #0099cc;}
 
+input[type=submit]:disabled, .FormRow input[type="submit"]:disabled {
+background: #ddd;
+box-shadow: 0px 4px 0px #ccc;
+-moz-box-shadow: 0px 4px 0px #ccc;
+-webkit-box-shadow: 0px 4px 0px #ccc;
+cursor: default;}
+
 iframe {
 width: 100%;
 border: 1px solid #ccc;
@@ -732,6 +739,11 @@ float: left;}
 
 .half .dark {
 background: #ecebe9;
+}
+
+#MainContent #loginForm h4, #MainContent #socialLoginForm h4 {
+margin-top: 10px;
+font-family: 'Lato', sans-serif;
 }
 
 .thirds {
@@ -960,7 +972,7 @@ margin: 75px 0px 0px;
 display: inline-block;
 float: left;
 font-size: 30px;
-font-weight: 300;
+font-weight: 400;
 letter-spacing: .25px;
 line-height: 150%;
 }
@@ -972,6 +984,11 @@ float: left;
 margin-top: 20px;
 font-weight: 400;
 line-height: 135%;
+}
+
+#MainContent .homeBanners h3 a {
+text-decoration: none;
+font-weight: 400;
 }
 
 #MainContent .homeBanners .right-heartinhand {
@@ -1203,9 +1220,8 @@ font-weight: 300;}
 #MainContent h1 {
 color: #18bee6;
 display: block;
-font-family: Ubuntu, Corbel, Arial, sans-serif;
 font-size: 30px;
-font-weight: 100;
+font-weight: 500;
 padding: 0px 0 0 0;
 margin: 20px 0px 20px;
 line-height: 155%;
@@ -1214,7 +1230,6 @@ line-height: 155%;
 #MainContent h2 {
 color: #535353;
 display: block;
-font-family: Ubuntu, Corbel, Arial, sans-serif;
 font-weight: 500;
 margin: 40px 0px 20px;
 letter-spacing: 0.5px;
@@ -1223,7 +1238,6 @@ font-size: 26px;
 
 #MainContent h3 {
 color: #18bee6;
-font-family: Ubuntu, Corbel, Arial, sans-serif;
 font-weight: 300;
 margin: 40px 0px 20px;
 letter-spacing: 0.5px;
@@ -1243,6 +1257,8 @@ font-size: 20px;
 font-weight: 500;
 text-decoration: none;}
 
+#MainContent h5, #MainContent h6 {
+font-family: Ubuntu, Corbel, Arial, sans-serif;}
 
 
 /* Buttons
@@ -1648,7 +1664,8 @@ height: 100%;
 margin: 10px 10px 10px 0px; }
 
 #MainContent .tipList {}
-#MainContent .tipList h4 {margin: 30px 0px 0px;}
+#MainContent .tipList h4 {margin: 30px 0px -30px;
+padding: 10px 0px;}
 #MainContent .tipList li {list-style-type: none;
 margin-left: 0px;
 padding-left: 120px;

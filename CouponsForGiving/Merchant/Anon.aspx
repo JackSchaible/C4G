@@ -6,16 +6,16 @@
 <asp:Content ID="BannerStuff" ContentPlaceHolderID="BannerContent" runat="server">
     <div class="homeBanners">
         <h2>Retailers, Restaurants or Online Merchants:</h2>
-        <h3><a href="../Account/Register.aspx"><strong>Increase footfall into your business or traffic to your website</strong></a></h3>
+        <h3><i class="fa fa-arrow-circle-o-right"></i> <a href="../Account/Register.aspx" title="Register Today">Increase footfall into your business or traffic to your website!</a></h3>
         <img src="../images/c4g_merchant_home.png" class="right-merchant" />
     </div>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
     <div class="tipList">
         <ul>
-            <li class="merchantstep1"><h4>Step 1:</h4>Set up your Offer with Coupons4Giving</li>
-            <li class="merchanthomestep2"><h4>Step 2:</h4> Choose your favourite charity or community group, or select from a pre-approved list</li>
-            <li class="merchanthomestep3"><h4>Step 3:</h4> Redeem offers directly with the Coupons4Giving POS app or online through our e-commerce portal</li>
+            <li class="merchantstep1"><h4>Step 1:</h4><p>Set up your Offer with Coupons4Giving</p></li>
+            <li class="merchanthomestep2"><h4>Step 2:</h4><p>Choose your favourite charity or community group, or select from a pre-approved list</p></li>
+            <li class="merchanthomestep3"><h4>Step 3:</h4><p>Redeem offers directly with the Coupons4Giving POS app or online through our e-commerce portal</p></li>
         </ul>
     </div>
     <blockquote>Be effective and target the right customers while supporting local charities and community groups.</blockquote>
@@ -44,12 +44,12 @@
             <li><img src="../images/c4g_comingsoon_small.png" class="centered" /></li>
         </ul>
     </div>
-    <a href="../Default/CausesInMyArea.aspx" class="btn">MORE MERCHANTS</a>
+    <a href="../Default/CausesInMyArea.aspx" class="btn-blue">MORE MERCHANTS</a>
     <h4 class="centered">OUR FEATURED CAUSES</h4>
     <div class="nposList">
         <ul>
             <li><img src="../images/c4g_comingsoon_small.png" class="centered" /></li>
         </ul>
-        <a href="../Default/CausesInMyArea.aspx" class="btn">MORE CAUSES</a>
+        <a href="../Default/CausesInMyArea.aspx" class="btn-blue">MORE CAUSES</a>
     </div>
 </asp:Content>

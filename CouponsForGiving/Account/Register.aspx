@@ -104,6 +104,20 @@
         <WizardSteps>
             <asp:CreateUserWizardStep runat="server" ID="RegisterUserWizardStep">
                 <ContentTemplate>
+<<<<<<< HEAD
+=======
+                    <p class="message-info">
+                    </p>
+
+                    <p class="validation-summary-errors">
+                        <asp:Literal runat="server" ID="ErrorMessage" />
+                    </p>
+                    
+                    <div class="ErrorDiv" id="GeneralJQueryErrors">
+                    
+                    </div>
+
+>>>>>>> c7b8f291a4262abbdb8ef6e203967d55ba918c88
                     <fieldset>
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="UserName">User name</asp:Label>
@@ -139,8 +153,11 @@
                         </div>
                         <div class="FormRow">
                             <iframe src="../Content/Terms/pptou.txt"></iframe>
+                            
+                            <span class="checkbox-singlerow">
                             <label class="checkbox-singlerow ">I have read and agree to the <a href="../Content/Terms/PrivacyPolicy.pdf">Privacy Policy</a> and the <a href="../Content/Terms/TermsOfUse.pdf">Terms of Use</a></label>
                             <input type="checkbox" id="TermsCheckbox" onchange="change()" class="checkbox-singlerow "/>
+                            </span>
                             <div class="ErrorDiv" id="TermsErrors"></div>
                         </div>
                         <div class="FormRow">
