@@ -518,6 +518,21 @@ color: #fff;
 visibility: hidden;
 }
 
+#MainContent .ErrorDiv {
+padding: 10px 0px 10px 38px;
+background: #ecebe9;
+border: 1px solid #0abfeb;
+margin: 10px;
+display: none;
+background: #ddf2f7 url(../images/c4g-error-divs.png) no-repeat 10px 50%;
+font-weight: bold;
+}
+
+#MainContent .ErrorDiv#GeneralJQueryErrors {
+display: block;
+padding: 10px;
+}
+
 
 #MainContent .FormRow label p {
 line-height: 135%;
