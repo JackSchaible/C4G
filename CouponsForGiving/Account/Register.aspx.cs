@@ -22,7 +22,8 @@ public partial class Account_Register : Page
 
         Users = new List<string>();
         foreach (MembershipUser item in Membership.GetAllUsers())
-            Users.Add(item.UserName);        
+            Users.Add(item.UserName);
+        ServerErrorDiv.Visible = false;
     }
 
     protected void RegisterUser_CreatedUser(object sender, EventArgs e)
