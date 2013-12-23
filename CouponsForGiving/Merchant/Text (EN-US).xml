@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SiteText>
+  <Pages>
+    <Signup>
+      <ErrorMessages>
+        <NullFirstName>You need to enter a first name.</NullFirstName>
+        <FirstNameTooLong>Your first name needs to be less than 64 characters long.</FirstNameTooLong>
+        <FirstNameInvalidCharacters>Your first name contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, or ;.</FirstNameInvalidCharacters>
+        <NullLastName>You need to enter a last name.</NullLastName>
+        <LastNameTooLong>Your last name needs to be less than 64 characters long.</LastNameTooLong>
+        <LastNameInvalidCharacters>Your last name contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, or ;.</LastNameInvalidCharacters>
+        <NullPhoneNumber>You need to enter a phone number.</NullPhoneNumber>
+        <InvalidPhoneNumber>Your phone number is invalid. It needs to follow the format \"555 555-5555\".</InvalidPhoneNumber>
+        <PhoneNumberTooLong>Your phone number must contain less than 20 characters.</PhoneNumberTooLong>
+        <PhoneNumberInvalidCharacters>Your phone number contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, ;, or any alphabetic characters.</PhoneNumberInvalidCharacters>
+        <NullBusinessName>You need to enter a business name.</NullBusinessName>
+        <BusinessNameTooLong>Your business name needs to be less than 64 characters long.</BusinessNameTooLong>
+        <BusinessNameInvalidCharacters>Your business name contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, or ;.</BusinessNameInvalidCharacters>
+        <NullDescription>You need to enter a description for your business.</NullDescription>
+        <DescriptionTooLong>Your description needs to be under 200 characters long.</DescriptionTooLong>
+        <DescriptionTooShort>Your description needs to be at least 10 characters long.</DescriptionTooShort>
+        <DescriptionInvalidCharacters>Your description contains invalid characters. Please ensureit does not contain any of the following: &lt;, &gt;, {, }, or ;.</DescriptionInvalidCharacters>
+        <DescriptionOneWord>Your description needs to be more than one word.</DescriptionOneWord>
+      </ErrorMessages>
+    </Signup>
+  </Pages>
+</SiteText>

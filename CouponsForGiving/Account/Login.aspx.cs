@@ -7,14 +7,10 @@ using System.Web.UI.WebControls;
 
 public partial class Account_Login : Page
 {
-    string request;
-
     protected void Page_Load(object sender, EventArgs e)
     {
         RegisterHyperLink.NavigateUrl = "Register.aspx";
         OpenAuthLogin.ReturnUrl = "../redirect.aspx";
-
-        request = "../redirect.aspx";
 
         RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + "redirect.aspx";
     }

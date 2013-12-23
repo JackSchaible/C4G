@@ -11,10 +11,13 @@ using Stripe;
 using System.Net.Mail;
 using System.Web.Services;
 using System.Web.Script.Services;
+using System.Xml;
+using System.Web.Configuration;
 
 public partial class Account_Register : Page
 {
     static List<string> Users;
+    public XmlDocument strings;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -23,7 +26,13 @@ public partial class Account_Register : Page
         Users = new List<string>();
         foreach (MembershipUser item in Membership.GetAllUsers())
             Users.Add(item.UserName);
+
         ServerErrorDiv.Visible = false;
+        strings = new XmlDocument();
+        strings.Load(Server.MapPath(String.Format("Text ({0}).xml", WebConfigurationManager.AppSettings["Language"])));
+
+        if (IsPostBack)
+            ValidateData();
     }
 
     protected void RegisterUser_CreatedUser(object sender, EventArgs e)
@@ -77,10 +86,101 @@ public partial class Account_Register : Page
         new SmtpClient().Send(mm);
     }
 
+    private void ValidateData()
+    {
+        ServerErrorDiv.Visible = false;
+        string username = (RegisterUser.FindControl("RegisterUserWizardStep").Controls[0].FindControl("UserName") as TextBox).Text;
+        string email = (RegisterUser.FindControl("RegisterUserWizardStep").Controls[0].FindControl("Email") as TextBox).Text;
+        string password = (RegisterUser.FindControl("RegisterUserWizardStep").Controls[0].FindControl("Password") as TextBox).Text;
+        string confirmPassword = (RegisterUser.FindControl("RegisterUserWizardStep").Controls[0].FindControl("ConfirmPassword") as TextBox).Text;
+        bool terms = (RegisterUser.FindControl("RegisterUserWizardStep").Controls[0].FindControl("TermsCheckbox") as CheckBox).Checked;
+        List<string> errors = new List<string>();
+
+        Validation validation = null;
+
+        switch (WebConfigurationManager.AppSettings["Language"])
+        {
+            case "EN-US":
+                validation = new Validation_EN_US();
+                break;
+        }
+
+        if (validation.IsStringBlank(username))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/NullUsername").InnerText);
+
+        if (validation.IsStringTooShort(username, 6))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/ShortUsername").InnerText);
+
+        if (validation.IsStringTooLong(username, 32))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/LongUsername").InnerText);
+
+        if (validation.ContainsCode(username))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/UsernameInvalidCharacters").InnerText);
+
+        if (Users.Contains(username));
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/UsernameInvalidCharacters").InnerText);
+
+        if (validation.IsStringBlank(email))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/NullEmail").InnerText);
+
+        if (validation.IsStringTooLong(email, 64))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/EmailTooLong").InnerText);
+
+        if (validation.IsStringTooShort(email, 6))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/EmailTooShort").InnerText);
+
+        if (validation.ContainsCode(email))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/EmailInvalidCharacters").InnerText);
+
+        if (validation.IsValidEmail(email))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/InvalidEmail").InnerText);
+
+        if (validation.IsStringBlank(password))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/NullPassword").InnerText);
+
+        if (validation.IsStringTooShort(password, 6))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/PasswordLength").InnerText);
+
+        if (validation.IsStringTooLong(password, 32))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/PasswordTooLong").InnerText);
+
+        if (validation.ContainsCode(password))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/PasswordInvalidCharacters").InnerText);
+
+        if (validation.IsStringBlank(confirmPassword))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/NullConfirmPassword").InnerText);
+
+        if (validation.IsStringTooShort(confirmPassword, 6))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/ConfirmPasswordTooLong").InnerText);
+
+        if (validation.IsStringTooLong(confirmPassword, 32))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/ConfirmPasswordTooShort").InnerText);
+
+        if (validation.ContainsCode(confirmPassword))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/ConfirmPasswordInvalidCharacters").InnerText);
+
+        if (confirmPassword != password)
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/ConfirmPasswordMatch").InnerText);
+
+        if (!terms)
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/AgreeToTerms").InnerText);
+
+        if (errors.Count > 0)
+        {
+            ServerErrorDiv.Visible = true;
+            ServerErrorDiv.Controls.Add(validation.WriteErrorsList(errors));
+        }
+        else
+            ServerErrorDiv.Visible = false;
+    }
+
     [WebMethod]
     [ScriptMethod]
-    public static bool UsernameTaken(string username)
+    public static bool? UsernameTaken(string username)
     {
-        return Users.Contains(username);
+        if (Users != null)
+            return Users.Contains(username);
+        else
+            return null;
     }
 }

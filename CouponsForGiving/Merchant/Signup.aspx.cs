@@ -12,11 +12,14 @@ using System.Text;
 using System.Net.Mail;
 using System.IO;
 using CouponsForGiving.Data.Classes;
+using System.Xml;
+using System.Web.Configuration;
 
 public partial class Merchant_Signup : System.Web.UI.Page
 {
     public bool hasLargeLogo { get; set; }
     public bool hasSmallLogo { get; set; }
+    public XmlDocument strings;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -57,6 +60,9 @@ public partial class Merchant_Signup : System.Web.UI.Page
 
         if (Session["SmallLogoPath"] != null)
             hasSmallLogo = true;
+
+        strings = new XmlDocument();
+        strings.Load(Server.MapPath(String.Format("Text ({0}).xml", WebConfigurationManager.AppSettings["Language"])));
     }
 
     protected void SubmitButton_Click(object sender, EventArgs e)

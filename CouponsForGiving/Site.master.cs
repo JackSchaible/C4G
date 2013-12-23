@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
@@ -18,6 +19,9 @@ public partial class SiteMaster : MasterPage
     protected void Page_Init(object sender, EventArgs e)
     {
         SideBar = true;
+
+        ValidationScript.Text = String.Format("<script src=\"{0}\"></script>", VirtualPathUtility.ToAbsolute(String.Format("~/Scripts/Validation ({0}).js", WebConfigurationManager.AppSettings["Language"])));
+
         // The code below helps to protect against XSRF attacks
         var requestCookie = Request.Cookies[AntiXsrfTokenKey];
         Guid requestCookieGuidValue;

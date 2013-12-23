@@ -8,120 +8,142 @@
             checkForm();
         }
 
-        function checkUsername() {
+        function checkUsername(write) {
             var name = $("#UserName").val();
             var errors = new Array();
 
-            if (name.length < 4)
-                errors.push('Your username needs to be longer than 4 characters.');
+            if (IsStringBlank(name))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/NullUsername").InnerText %>');
+
+            if (IsStringTooShort(name, 6))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/ShortUsername").InnerText %>');
+
+            if (IsStringTooLong(name, 32))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/LongUsername").InnerText %>');
+
+            if (containsCode(name))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/UsernameInvalidCharacters").InnerText %>');
 
             var taken = false;
+            var args = arguments.length;
 
             PageMethods.UsernameTaken(name, function (result) {
-                if (result)
-                    errors.push('Your username is taken.');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/UsernameTaken").InnerText %>');
 
-                writeErrors("UsernameErrors", errors);
-                checkForm();
-
-                return errors;
+                if (args == 0) {
+                    writeErrors("UsernameErrors", errors);
+                    checkForm();
+                }
             });
+
+            return errors;
         }
 
-        function checkEmail() {
+        function checkEmail(write) {
             var email = $("#Email").val();
             var errors = new Array();
 
-            var emailPattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if (IsStringBlank(email))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/NullEmail").InnerText %>');
 
-            if (!emailPattern.test(email))
-                errors.push('Your email address needs to match the pattern \"joe@joesmith.com\".');
-            
-            writeErrors("EmailErrors", errors);
-            checkForm();
+            if (IsStringTooLong(email, 64))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/EmailTooLong").InnerText %>');
+
+            if (IsStringTooShort(email, 6))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/EmailTooShort").InnerText %>');
+
+            if (containsCode(email))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/EmailInvalidCharacters").InnerText %>');
+
+            if (!validEmail(email))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/InvalidEmail").InnerText %>');
+
+            if (arguments.length == 0) {
+                writeErrors("EmailErrors", errors);
+                checkForm();
+            }
 
             return errors;
         }
 
-        function checkPassword() {
+        function checkPassword(write) {
             var password = $("#Password").val();
             var errors = new Array();
 
-            if (password.length < 6)
-                errors.push('Your password needs to be longer than 6 characters long.');
+            if (IsStringBlank(password))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/NullPassword").InnerText %>');
 
-            writeErrors("PasswordErrors", errors);
-            checkForm();
+            if (IsStringTooShort(password, 6))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/PasswordLength").InnerText %>');
+
+            if (IsStringTooLong(password, 32))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/PasswordTooLong").InnerText %>');
+
+            if (containsCode(password))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/PasswordInvalidCharacters").InnerText %>');
+
+            if (arguments.length == 0) {
+                writeErrors("PasswordErrors", errors);
+                checkForm();
+            }
 
             return errors;
         }
 
-        function checkConfirmPassword() {
+        function checkConfirmPassword(write) {
             var password = $("#Password").val();
             var confirmPassword = $("#ConfirmPassword").val();
             var errors = Array();
 
-            if (confirmPassword.trim().length == 0)
-                errors.push('You need to provide a confirmation password.');
+            if (IsStringBlank(confirmPassword))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/NullConfirmPassword").InnerText %>');
 
             if (password != confirmPassword)
-                errors.push('Your confirm password needs to match your regular password.');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/ConfirmPasswordMatch").InnerText %>');
 
-            writeErrors("ConfirmPasswordErrors", errors);
-            checkForm();
+            if (IsStringTooLong(confirmPassword, 32))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/ConfirmPasswordTooLong").InnerText %>');
+
+            if (IsStringTooShort(confirmPassword, 6))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/ConfirmPasswordTooShort").InnerText %>');
+
+            if (containsCode(confirmPassword))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/ConfirmPasswordInvalidCharacters").InnerText %>');
+
+            if (arguments.length == 0) {
+                writeErrors("ConfirmPasswordErrors", errors);
+                checkForm();
+            }
 
             return errors;
         }
 
-        function checkTermsCheckbox() {
+        function checkTermsCheckbox(write) {
             var errors = Array();
 
             if ($("#TermsCheckbox").is(':checked') == false)
-                errors.push('You need to agree to the terms and conditions and the privacy policy.');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/AgreeToTerms").InnerText %>');
             
-            writeErrors('TermsErrors', errors);
-            checkForm();
+            if (arguments.length == 0) {
+                writeErrors('TermsErrors', errors);
+                checkForm();
+            }
 
             return errors;
         }
 
         function checkForm() {
             var errors = new Array();
-            var name = $("#UserName").val();
-            var email = $("#Email").val();
-            var password = $("#Password").val();
-            var confirmPassword = $("#ConfirmPassword").val();
+            errors.push.apply(errors, checkUsername(false));
+            errors.push.apply(errors, checkEmail(false));
+            errors.push.apply(errors, checkPassword(false));
+            errors.push.apply(errors, checkConfirmPassword(false));
+            errors.push.apply(errors, checkTermsCheckbox(false));
 
-            if ($("#TermsCheckbox").is(':checked') == false)
-                errors.push('You need to agree to the terms and conditions and the privacy policy.');
-
-            if (confirmPassword.trim().length == 0)
-                errors.push('You need to provide a confirmation password.');
-
-            if (password != confirmPassword)
-                errors.push('Your confirm password needs to match your regular password.');
-            if (password.length < 6)
-                errors.push('Your password needs to be longer than 6 characters long.');
-
-            if (name.length < 4)
-                errors.push('Your username needs to be longer than 4 characters.');            
-
-            var emailPattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-            if (!emailPattern.test(email))
-                errors.push('Your email address needs to match the pattern \"joe@joesmith.com\".');
-
-            var taken = false;
-
-            PageMethods.UsernameTaken(name, function (result) {
-                if (result)
-                    errors.push('Your username is taken.');
-                
-                if (errors.length > 0)
-                    $("#SubmitButton").attr('disabled', 'disabled');
-                else
-                    $("#SubmitButton").removeAttr('disabled');
-            });
+            if (errors.length > 0)
+                $("#SubmitButton").attr('disabled', 'disabled');
+            else
+                $("#SubmitButton").removeAttr('disabled');
         }
     </script>
     <h1>Sign up for a Coupons4Giving account today!</h1>
@@ -138,25 +160,27 @@
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="UserName">User name</asp:Label>
                             <asp:TextBox runat="server" ID="UserName" ClientIDMode="Static" placeholder="username" onkeyup="checkUsername()" 
-                                onblur="checkUsername()" oninput="checkUsername()"/>
+                                onblur="checkUsername()" oninput="checkUsername()" MaxLength="32"/>
                             <div class="ErrorDiv" id="UsernameErrors"></div>
                         </div>
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="Email">Email address</asp:Label>
                             <asp:TextBox runat="server" ID="Email" TextMode="Email" ClientIDMode="Static" placeholder="joe@joesmith.com" 
-                                onkeyup="checkEmail()" onblur="checkEmail()" oninput="checkEmail()" />
+                                onkeyup="checkEmail()" onblur="checkEmail()" oninput="checkEmail()" MaxLength="64"/>
                             <div class="ErrorDiv" id="EmailErrors"></div>
                         </div>
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="Password">Password</asp:Label>
                             <asp:TextBox runat="server" ID="Password" TextMode="Password" ClientIDMode="Static"
-                                onkeyup="checkPassword()" onblur="checkPassword()" oninput="checkPassword()"/>
+                                onkeyup="checkPassword()" onblur="checkPassword()" oninput="checkPassword()"
+                                MaxLength="32"/>
                             <div class="ErrorDiv" id="PasswordErrors"></div>
                         </div>
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="ConfirmPassword">Confirm password</asp:Label>
                             <asp:TextBox runat="server" ID="ConfirmPassword" TextMode="Password" ClientIDMode="Static"
-                                onkeyup="checkConfirmPassword()" onblur="checkConfirmPassword()" oninput="checkConfirmPassword()" />
+                                onkeyup="checkConfirmPassword()" onblur="checkConfirmPassword()" oninput="checkConfirmPassword()"
+                                MaxLength="32" />
                             <div class="ErrorDiv" id="ConfirmPasswordErrors"></div>
                         </div>
                         <div class="FormRow">
@@ -172,7 +196,7 @@
                             
                             <span class="checkbox-singlerow">
                             <label class="checkbox-singlerow ">I have read and agree to the <a href="../Content/Terms/PrivacyPolicy.pdf">Privacy Policy</a> and the <a href="../Content/Terms/TermsOfUse.pdf">Terms of Use</a></label>
-                            <input type="checkbox" id="TermsCheckbox" onchange="checkTermsCheckbox()" class="checkbox-singlerow "/>
+                            <asp:CheckBox id="TermsCheckbox" ClientIDMode="Static" runat="server" onchange="checkTermsCheckbox()" class="checkbox-singlerow "/>
                             </span>
                             <div class="ErrorDiv" id="TermsErrors"></div>
                         </div>

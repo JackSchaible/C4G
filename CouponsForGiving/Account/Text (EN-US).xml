@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SiteText>
+  <Pages>
+    <Register>
+      <ErrorMessages>
+        <ShortUsername>Your username needs to be longer than 6 characters.</ShortUsername>
+        <LongUsername>Your username needs to be less than 32 characters long.</LongUsername>
+        <UsernameInvalidCharacters>Your username contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, or ;.</UsernameInvalidCharacters>
+        <NullUsername>You need to enter a username.</NullUsername>
+        <UsernameTaken>That username is already in use. Please choose another.</UsernameTaken>
+        <InvalidEmail>Your email address needs to match the pattern \"joe@joesmith.com\".</InvalidEmail>
+        <EmailTooLong>Your email needs to be less than 64 characters long.</EmailTooLong>
+        <EmailTooShort>Your email needs to be longer than 6 characters.</EmailTooShort>
+        <NullEmail>You need to enter an email address.</NullEmail>
+        <EmailInvalidCharacters>Your email contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, or ;.</EmailInvalidCharacters>
+        <NullPassword>You need to enter a password.</NullPassword>
+        <PasswordLength>Your password needs to be longer than 6 characters long.</PasswordLength>
+        <PasswordTooLong>Your password needs to be less than 32 characters long.</PasswordTooLong>
+        <PasswordInvalidCharacters>Your password contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, or ;.</PasswordInvalidCharacters>
+        <NullConfirmPassword>You need to provide a confirmation password.</NullConfirmPassword>
+        <ConfirmPasswordMatch>Your confirm password needs to match your regular password.</ConfirmPasswordMatch>
+        <ConfirmPasswordTooShort>Your confirm password needs to be longer than 6 characters.</ConfirmPasswordTooShort>
+        <ConfirmPasswordTooLong>Your confirmation password needs to be less than 32 characters long.</ConfirmPasswordTooLong>
+        <ConfirmPasswordInvalidCharacters>Your confirmation password contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, or ;.</ConfirmPasswordInvalidCharacters>
+        <AgreeToTerms>You need to agree to the terms and conditions and the privacy policy.</AgreeToTerms>
+      </ErrorMessages>
+    </Register>
+  </Pages>
+</SiteText>

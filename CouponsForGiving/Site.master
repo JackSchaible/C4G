@@ -103,6 +103,7 @@
                 }
             </script>
             <header>
+                <asp:Literal ID="ValidationScript" runat="server"></asp:Literal>
                 <div id="mainHeader">
                     <div class="headerWrap">
                         <div class="header-logo">
