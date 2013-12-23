@@ -49,6 +49,6 @@
     </ul>
     <blockquote>Whether you are raising money, looking for a great restaurant or you are a merchant who wants to support local community groups, <strong>Coupons4Giving makes it easy!</strong></blockquote>
     <div class="clear"></div>
-    <a href="../Account/Register.aspx" class="btn-center">GET STARTED TODAY!</a>
+    <a href="../Account/Register.aspx" class="btn-center"><i class="fa fa-arrow-circle-o-right"></i> GET STARTED TODAY!</a>
 
 </asp:Content>

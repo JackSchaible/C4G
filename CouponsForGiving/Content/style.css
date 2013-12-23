@@ -472,7 +472,7 @@ text-align: left;
 padding-left: 10px;
 }
 
-label.checkbox-singlerow-remeberme, #MainContent .FormRow label.checkbox-singlerow-remeberme, label.checkbox-singlerow-termscheckbox, #MainContent .FormRow label.checkbox-singlerow-termscheckbox  {
+label.checkbox-singlerow-remeberme, #MainContent .FormRow label.checkbox-singlerow-remeberme, label.checkbox-singlerow-termscheckbox, #MainContent .FormRow label.checkbox-singlerow-termscheckbox {
 width: 80%;
 text-align: left;
 padding-left: 30px;
@@ -1700,6 +1700,7 @@ min-height: 100px;}
 #MainContent .tipList li.merchantstep4 {background-image: url('../images/c4g_tips_merchant_step4.png'); background-repeat: no-repeat;}
 #MainContent .tipList li.merchanthomestep2 {background-image: url('../images/c4g_home_npos_step2.png'); background-repeat: no-repeat;}
 #MainContent .tipList li.merchanthomestep3 {background-image: url('../images/c4g_home_step4.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.merchanthomestep4 {background-image: url('../images/c4g_home_step4_merch.png'); background-repeat: no-repeat;}
 #MainContent .tipList li.homestep1 {background-image: url('../images/c4g_home_step1.png'); background-repeat: no-repeat;}
 #MainContent .tipList li.homestep2 {background-image: url('../images/c4g_home_step2.png'); background-repeat: no-repeat;}
 #MainContent .tipList li.homestep3 {background-image: url('../images/c4g_home_step3.png'); background-repeat: no-repeat;}

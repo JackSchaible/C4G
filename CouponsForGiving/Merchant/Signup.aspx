@@ -78,7 +78,7 @@
             </div>
             <div class="FormRow">
                 <asp:Label ID="Label11" runat="server" Text="Postal/Zip Code" AssociatedControlID="ZipCodeTextBox"></asp:Label>
-                <asp:TextBox ID="ZipCodeTextBox" runat="server" MaxLength="16" placeholder="90210, 90210-1234 or T6L2M9"></asp:TextBox>
+                <asp:TextBox ID="ZipCodeTextBox" runat="server" MaxLength="16" placeholder="T6L2M9, 90210, or 90210-1234"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="postalCodeRequired" runat="server" ControlToValidate="ZipCodeTextBox" 
                     ErrorMessage="Postal / Zip Code is Required">*</asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" 
@@ -102,7 +102,7 @@
             </div>
             <div class="FormRow">
                 <label>Email<small>(if different from the one you used to register)</small></label>
-                <asp:TextBox ID="YourEmailTextBox" runat="server" TextMode="Email"></asp:TextBox>
+                <asp:TextBox ID="YourEmailTextBox" runat="server" TextMode="Email" placeholder="yourname@yourorganization.com"></asp:TextBox>
             </div>
             <div class="FormRow">
                 <asp:Label ID="Label5" runat="server" Text="Business Type" AssociatedControlID="BusinessTypeDDL"></asp:Label>

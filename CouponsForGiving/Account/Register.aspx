@@ -143,7 +143,7 @@
                         </div>
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="Email">Email address</asp:Label>
-                            <asp:TextBox runat="server" ID="Email" TextMode="Email" ClientIDMode="Static" placeholder="joe@joesmith.com" 
+                            <asp:TextBox runat="server" ID="Email" TextMode="Email" ClientIDMode="Static" placeholder="yourname@yourwebsite.com" 
                                 onkeyup="checkEmail()" onblur="checkEmail()" oninput="checkEmail()" />
                             <div class="ErrorDiv" id="EmailErrors"></div>
                         </div>
