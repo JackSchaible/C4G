@@ -104,16 +104,6 @@
         <WizardSteps>
             <asp:CreateUserWizardStep runat="server" ID="RegisterUserWizardStep">
                 <ContentTemplate>
-                    <p class="message-info">
-                    </p>
-
-                    <p class="validation-summary-errors">
-                        <asp:Literal runat="server" ID="ErrorMessage" />
-                    </p>
-                    
-                    <div class="ErrorDiv" id="GeneralJQueryErrors">
-                    
-                    </div>
                     <fieldset>
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="UserName">User name</asp:Label>
