@@ -467,9 +467,9 @@ width: 50%;
 }
 
 label.checkbox-singlerow, #MainContent .FormRow label.checkbox-singlerow {
-width: 63%;
+width: 80%;
 text-align: left;
-padding-left: 30px;
+padding-left: 10px;
 }
 
 #Main_Content_TermsCheckbox, .checkbox-singlerow #Main_Content_TermsCheckBox input[type='checkbox'] {
@@ -477,12 +477,17 @@ float: left;
 width: 20px;
 position: relative;}
 
+#Main_Content_ctl00_RememberMe {
+width: 20px;
+}
 
 .FormRow input[type='checkbox'].checkbox-singlerow {
 display: inline-block;
 margin: 8px 0px 0px 5px;
 padding: 0px;
-position: absolute;
+position: static;
+width: 20px;
+float: left;
 }
 
 .field-validation-error {
@@ -549,8 +554,6 @@ label#Main_Content_DescLabel {
 vertical-align: top;
 padding-top: 16px;
 }
-
-
 
 .Form {
 margin: 0 auto;
