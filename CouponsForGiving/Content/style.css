@@ -467,7 +467,13 @@ width: 50%;
 }
 
 label.checkbox-singlerow, #MainContent .FormRow label.checkbox-singlerow {
-width: 63%;
+width: 80%;
+text-align: left;
+padding-left: 10px;
+}
+
+label.checkbox-singlerow-remeberme, #MainContent .FormRow label.checkbox-singlerow-remeberme, label.checkbox-singlerow-termscheckbox, #MainContent .FormRow label.checkbox-singlerow-termscheckbox {
+width: 80%;
 text-align: left;
 padding-left: 30px;
 }
@@ -477,12 +483,17 @@ float: left;
 width: 20px;
 position: relative;}
 
+#Main_Content_ctl00_RememberMe {
+width: 20px;
+}
 
 .FormRow input[type='checkbox'].checkbox-singlerow {
 display: inline-block;
 margin: 8px 0px 0px 5px;
 padding: 0px;
-position: absolute;
+position: static;
+width: 20px;
+float: left;
 }
 
 .field-validation-error {
@@ -549,8 +560,6 @@ label#Main_Content_DescLabel {
 vertical-align: top;
 padding-top: 16px;
 }
-
-
 
 .Form {
 margin: 0 auto;
@@ -1691,6 +1700,7 @@ min-height: 100px;}
 #MainContent .tipList li.merchantstep4 {background-image: url('../images/c4g_tips_merchant_step4.png'); background-repeat: no-repeat;}
 #MainContent .tipList li.merchanthomestep2 {background-image: url('../images/c4g_home_npos_step2.png'); background-repeat: no-repeat;}
 #MainContent .tipList li.merchanthomestep3 {background-image: url('../images/c4g_home_step4.png'); background-repeat: no-repeat;}
+#MainContent .tipList li.merchanthomestep4 {background-image: url('../images/c4g_home_step4_merch.png'); background-repeat: no-repeat;}
 #MainContent .tipList li.homestep1 {background-image: url('../images/c4g_home_step1.png'); background-repeat: no-repeat;}
 #MainContent .tipList li.homestep2 {background-image: url('../images/c4g_home_step2.png'); background-repeat: no-repeat;}
 #MainContent .tipList li.homestep3 {background-image: url('../images/c4g_home_step3.png'); background-repeat: no-repeat;}

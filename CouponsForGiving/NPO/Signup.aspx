@@ -15,13 +15,13 @@
     <div class="Form">
         <div class="FormRow">
             <asp:Label ID="Label1" runat="server" Text="Name of Your Organization" AssociatedControlID="newNPOName"></asp:Label>
-            <asp:TextBox ID="newNPOName" runat="server" MaxLength="256"></asp:TextBox>
+            <asp:TextBox ID="newNPOName" runat="server" MaxLength="256" placeholder="Organization Name"></asp:TextBox>
             <asp:RequiredFieldValidator ID="nameRequired" runat="server" ControlToValidate="newNPOName" 
                 ErrorMessage="Name is Required" ForeColor="Red">*</asp:RequiredFieldValidator>
         </div>
         <div class="FormRow">
             <asp:Label ID="Label4" runat="server" Text="Your Organization's Address" AssociatedControlID="newNPOAddress"></asp:Label>
-            <asp:TextBox ID="newNPOAddress" runat="server" MaxLength="256"></asp:TextBox>
+            <asp:TextBox ID="newNPOAddress" runat="server" MaxLength="256" placeholder="1234, 5th Street"></asp:TextBox>
             <asp:RequiredFieldValidator ID="addressRequired" runat="server" ControlToValidate="newNPOAddress" 
                 ErrorMessage="Address is Required" ForeColor="Red">*</asp:RequiredFieldValidator>
         </div>
@@ -35,13 +35,13 @@
         </div>
         <div class="FormRow">
             <asp:Label ID="Label6" runat="server" Text="Postal/Zip Code" AssociatedControlID="newNPOPostalCode"></asp:Label>
-            <asp:TextBox ID="newNPOPostalCode" runat="server" MaxLength="16"></asp:TextBox>
+            <asp:TextBox ID="newNPOPostalCode" runat="server" MaxLength="16" placeholder="T6L2M9, 90210, or 90210-1234"></asp:TextBox>
             <asp:RequiredFieldValidator ID="postalCodeRequired" runat="server" ControlToValidate="newNPOPostalCode" ErrorMessage="Postal / Zip Code is Required" ForeColor="Red">*</asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ControlToValidate="newNPOPostalCode" ErrorMessage="Postal / Zip Code invalid. (Ex. '90210', '90210-1234' or 'T6L2M9')" ForeColor="Red" ValidationExpression="(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXYabceghjklmnprstvxy]{1}\d{1}[A-Za-z]{1} *\d{1}[A-Za-z]{1}\d{1}$)">*</asp:RegularExpressionValidator>
         </div>
         <div class="FormRow">
             <asp:Label ID="Label7" runat="server" Text="Phone Number" AssociatedControlID="newNPOPhoneNumber"></asp:Label>
-            <asp:TextBox ID="newNPOPhoneNumber" runat="server" MaxLength="11"></asp:TextBox>
+            <asp:TextBox ID="newNPOPhoneNumber" runat="server" MaxLength="11" placeholder="555-123-4567"></asp:TextBox>
             <asp:RequiredFieldValidator ID="phoneNumberRequired" runat="server" ControlToValidate="newNPOPhoneNumber"
                     ErrorMessage="Phone Number is Required" ForeColor="Red">*</asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
@@ -53,7 +53,7 @@
         </div>
         <div class="FormRow">
             <label>Email<br /><small>(if different from the one you used to register)</small></label>
-            <asp:TextBox ID="newNPOEmail" runat="server" MaxLength="256"></asp:TextBox>
+            <asp:TextBox ID="newNPOEmail" runat="server" MaxLength="256" placeholder="yourname@yourorganization.com"></asp:TextBox>
         </div>
         <div class="FormRow TextAreaRow">
             <asp:Label ID="Label3" runat="server" Text="Describe Your Organization" AssociatedControlID="newNPODescription"></asp:Label>
@@ -68,7 +68,7 @@
         </div>
         <div class="FormRow">
             <label>Organization Website</label>
-            <asp:TextBox ID="newNPOWebsite" runat="server" MaxLength="256"></asp:TextBox>
+            <asp:TextBox ID="newNPOWebsite" runat="server" MaxLength="256" placeholder="http://www.yourorganization.com"></asp:TextBox>
             <asp:RequiredFieldValidator ID="websiteRequired" runat="server" ControlToValidate="newNPOWebsite" 
                 ErrorMessage="Website is Required" ForeColor="Red">*</asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ControlToValidate="newNPOWebsite"
