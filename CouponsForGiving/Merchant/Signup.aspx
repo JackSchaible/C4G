@@ -200,7 +200,19 @@
             </div>
             <div class="FormRow">
                 <asp:Label ID="Label11" runat="server" Text="Postal/Zip Code" AssociatedControlID="ZipCodeTextBox"></asp:Label>
+<<<<<<< HEAD
                 <asp:TextBox ID="ZipCodeTextBox" runat="server" MaxLength="16"></asp:TextBox>
+=======
+                <asp:TextBox ID="ZipCodeTextBox" runat="server" MaxLength="16" placeholder="T6L2M9, 90210, or 90210-1234"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="postalCodeRequired" runat="server" ControlToValidate="ZipCodeTextBox" 
+                    ErrorMessage="Postal / Zip Code is Required">*</asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" 
+                    ControlToValidate="ZipCodeTextBox" ErrorMessage="Postal / Zip Code invalid. (Ex. '90210', '90210-1234' or 'T6L2M9')" 
+                    ForeColor="Black" 
+                    ValidationExpression="(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXYabceghjklmnprstvxy]{1}\d{1}[A-Za-z]{1} *\d{1}[A-Za-z]{1}\d{1}$)">
+                    *
+                </asp:RegularExpressionValidator>
+>>>>>>> eac7824f91db02d5b20f96c87e399cdc26008452
             </div>
             <div class="FormRow">
                 <label>Phone Number<br /><small>(if different from above)</small></label>
@@ -214,7 +226,7 @@
             </div>
             <div class="FormRow">
                 <label>Email<small>(if different from the one you used to register)</small></label>
-                <asp:TextBox ID="YourEmailTextBox" runat="server" TextMode="Email"></asp:TextBox>
+                <asp:TextBox ID="YourEmailTextBox" runat="server" TextMode="Email" placeholder="yourname@yourorganization.com"></asp:TextBox>
             </div>
             <div class="FormRow">
                 <asp:Label ID="Label5" runat="server" Text="Business Type" AssociatedControlID="BusinessTypeDDL"></asp:Label>
@@ -255,7 +267,18 @@
             </div>
             <div class="FormRow">
                 <label>Website</label>
+<<<<<<< HEAD
                 <asp:TextBox ID="URLTextBox" runat="server"></asp:TextBox>
+=======
+                <asp:TextBox ID="URLTextBox" runat="server" placeholder="http://www.mycompanywebsite.com"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+                    ControlToValidate="URLTextBox" ErrorMessage="Website is required">*</asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
+                    ControlToValidate="URLTextBox" ErrorMessage="Website is invalid (i.e., http://www.mywebsite.com/)"
+                    ValidationExpression="(https:[/][/]|http:[/][/]|www.)[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\-\._\?\,\'/\\\+&amp;%\$#\=~])*$">
+                    *
+                </asp:RegularExpressionValidator>
+>>>>>>> eac7824f91db02d5b20f96c87e399cdc26008452
             </div>
             <div class="FormRow">
                 <label>Logo<br /><small>This will be the large logo on your Coupons4Giving Profile page.</small></label>
@@ -275,8 +298,10 @@
             </div>
             <div class="FormRow">
                 <iframe src="../Content/Terms/MerchantServicesAgreement.txt" style="width: 100%;"></iframe>
-                <label class="checkbox-singlerow">I have read and agree to the Terms & Conditions.</label>
+                <span class="checkbox-singlerow">
                 <asp:CheckBox ID="TermsCheckBox" runat="server" class="checkbox-singlerow" />
+                <label class="checkbox-singlerow-termscheckbox">I have read and agree to the Terms & Conditions.</label>
+                </span>
             </div>
             <div class="FormRow">
                 <asp:Button ID="SubmitButton" ClientIDMode="Static" runat="server" Text="Connect to Stripe!" OnClick="SubmitButton_Click" />
