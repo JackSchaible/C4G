@@ -26,7 +26,7 @@
                         <div class="FormRow">
                         	<span class="checkbox-singlerow">
                             <asp:CheckBox runat="server" ID="RememberMe" class="checkbox-singlerow" />
-                            <asp:Label runat="server" AssociatedControlID="RememberMe" CssClass="checkbox-singlerow">Remember Me?</asp:Label>
+                            <asp:Label runat="server" AssociatedControlID="RememberMe" CssClass="checkbox-singlerow-remeberme">Remember Me?</asp:Label>
                             </span>
                         </div>
                         <div class="FormRow">

@@ -78,7 +78,7 @@
             </div>
             <div class="FormRow">
                 <asp:Label ID="Label11" runat="server" Text="Postal/Zip Code" AssociatedControlID="ZipCodeTextBox"></asp:Label>
-                <asp:TextBox ID="ZipCodeTextBox" runat="server" MaxLength="16"></asp:TextBox>
+                <asp:TextBox ID="ZipCodeTextBox" runat="server" MaxLength="16" placeholder="90210, 90210-1234 or T6L2M9"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="postalCodeRequired" runat="server" ControlToValidate="ZipCodeTextBox" 
                     ErrorMessage="Postal / Zip Code is Required">*</asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" 
@@ -143,7 +143,7 @@
             </div>
             <div class="FormRow">
                 <label>Website</label>
-                <asp:TextBox ID="URLTextBox" runat="server"></asp:TextBox>
+                <asp:TextBox ID="URLTextBox" runat="server" placeholder="http://www.mycompanywebsite.com"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
                     ControlToValidate="URLTextBox" ErrorMessage="Website is required">*</asp:RequiredFieldValidator>
                 <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
@@ -170,8 +170,10 @@
             </div>
             <div class="FormRow">
                 <iframe src="../Content/Terms/MerchantServicesAgreement.txt" style="width: 100%;"></iframe>
-                <label class="checkbox-singlerow">I have read and agree to the Terms & Conditions.</label>
+                <span class="checkbox-singlerow">
                 <asp:CheckBox ID="TermsCheckBox" runat="server" class="checkbox-singlerow" />
+                <label class="checkbox-singlerow-termscheckbox">I have read and agree to the Terms & Conditions.</label>
+                </span>
             </div>
             <div class="FormRow">
                 <asp:Button ID="Button1" runat="server" Text="Connect to Stripe!" OnClick="SubmitButton_Click" />
