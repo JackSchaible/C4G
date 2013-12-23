@@ -33,5 +33,5 @@
         </ul>
     </div>
     <div class="clear"></div>
-    <a href="../Account/Register.aspx" class="btn-center">GET STARTED TODAY!</a>
+    <a href="../Account/Register.aspx" class="btn-center"><i class="fa fa-arrow-circle-o-right"></i> GET STARTED TODAY!</a>
 </asp:Content>
