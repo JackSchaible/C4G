@@ -44,7 +44,7 @@
             var errors = new Array();
 
             if (password.length < 6)
-                errors.push('Your password needs to be longer than 6 characters.');
+                errors.push('Your password needs to be longer than 6 characters long.');
 
             writeErrors("PasswordErrors", errors);
             return errors;
