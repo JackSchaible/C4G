@@ -2596,5 +2596,15 @@ namespace CouponsForGiving.Data
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DealInstance>("DealInstance_ListForGlobalMarketplace", mergeOption);
         }
+    
+        public virtual ObjectResult<City> Cities_List()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<City>("Cities_List");
+        }
+    
+        public virtual ObjectResult<City> Cities_List(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<City>("Cities_List", mergeOption);
+        }
     }
 }

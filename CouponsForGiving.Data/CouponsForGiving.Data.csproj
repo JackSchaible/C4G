@@ -102,6 +102,9 @@
     <Compile Include="Cities_ListWhereActiveDeals_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Cities_List_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="City.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

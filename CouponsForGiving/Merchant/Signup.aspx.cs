@@ -14,12 +14,15 @@ using System.IO;
 using CouponsForGiving.Data.Classes;
 using System.Xml;
 using System.Web.Configuration;
+using System.Web.Services;
+using System.Web.Script.Services;
 
 public partial class Merchant_Signup : System.Web.UI.Page
 {
     public bool hasLargeLogo { get; set; }
     public bool hasSmallLogo { get; set; }
     public XmlDocument strings;
+    public static List<City> CitiesList;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -33,6 +36,8 @@ public partial class Merchant_Signup : System.Web.UI.Page
             {
                 Response.Redirect("../Account/Login.aspx", true);
             }
+
+            CitiesList = Cities.ListAll();
         }
         catch (Exception ex)
         {
@@ -271,14 +276,14 @@ public partial class Merchant_Signup : System.Web.UI.Page
             newMerchantMessage.Text = "You must read and agree to the Terms & Conditions.";
     }
 
-    [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
-    public static string[] GetCompletionList(string prefixText, int count, string contextKey)
+    [WebMethod]
+    [ScriptMethod]
+    public static string GetCities(string text)
     {
-        string[] result;
+        string result;
 
-        result = (from c in SysDatamk.ListCitiesWithDivisionCode() where c.Name.ToLower().Contains(prefixText.ToLower()) orderby c.Name select c.Name).ToArray<string>();
+        result = String.Join("; ", (from c in CitiesList where c.Name.ToLower().Contains(text.ToLower()) orderby c.Name select c.Name + ", " + c.PoliticalDivision.Name));
 
         return result;
     }
-
 }

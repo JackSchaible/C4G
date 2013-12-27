@@ -84,7 +84,7 @@
             var name = $("#BusinessNameTextBox").val();
             var errors = new Array();
 
-            if (name.trim().length == 0)
+            if (IsStringBlank(name))
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullBusinessName").InnerText %>');
 
             if (arguments.length == 0) {
@@ -99,23 +99,38 @@
             var description = $("#DescriptionTextBox").val();
             var errors = new Array();
 
-            if (description.trim().length == 0)
+            if (IsStringBlank(description))
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullDescription").InnerText %>');
 
-            if (description.trim().length > 200)
+            if (IsStringTooLong(description, 160))
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/DescriptionTooLong").InnerText %>');
 
-            if (description.trim().length < 10)
+            if (IsStringTooShort(description, 10))
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/DescriptionTooShort").InnerText %>');
 
             if (containsCode(description))
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/DescriptionInvalidCharacters").InnerText %>');
 
-            if (description.trim().indexOf(" ") == -1)
+            if (!ContainsSpaces(description))
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/DescriptionOneWord").InnerText %>');
 
             if (arguments.length == 0) {
                 writeErrors("DescriptionTextBoxErrors", errors);
+                checkForm();
+            }
+
+            return errors;
+        }
+
+        function checkAddress() {
+            var address = $("#AddressTextBox").val();
+            var errors = new Array();
+
+            if (IsStringBlank(address))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullAddress").InnerText %>');
+
+            if (arguments.length == 0) {
+                writeErrors("AddressTextBoxErrors", errors);
                 checkForm();
             }
 
@@ -136,6 +151,14 @@
                 $("#SubmitButton").removeAttr('disabled');
         }
     </script>
+    <%--Supporting form functions--%>
+    <script>
+        function getCities() {
+            PageMethods.GetCities(function () {
+
+            });
+        }
+    </script>
         <h1>Profile Page Setup</h1>
         <p> 
             Set up your profile with information about your business. 
@@ -154,65 +177,55 @@
             <h3>Tell Us About Yourself and Your Business:</h3>
             <p><asp:Label ID="newMerchantMessage" runat="server"></asp:Label></p>
             <div class="FormRow">
-                <asp:Label ID="Label6" runat="server" Text="First Name" AssociatedControlID="FirstNameTextBox"></asp:Label>
+                <label>First Name</label>
                 <asp:TextBox ID="FirstNameTextBox" ClientIDMode="Static" runat="server" placeholder="Joe" onkeyup="checkFirstName()"
                     onblur="checkFirstName()" oninput="checkFirstName()" MaxLength="64"></asp:TextBox>
                 <div class="ErrorDiv" id="FirstNameTextBoxErrors"></div>
             </div>
             <div class="FormRow">
-                <asp:Label ID="Label7" runat="server" Text="Last Name" AssociatedControlID="LastNameTextBox"></asp:Label>
+                <label>Last Name</label>
                 <asp:TextBox ID="LastNameTextBox" ClientIDMode="Static" runat="server" placeholder="Smith"
                     onkeyup="checkLastName()" onblur="checkLastName()" oninput="checkLastName()" MaxLength="64"></asp:TextBox>
                 <div class="ErrorDiv" id="LastNameTextBoxErrors"></div>
             </div>
             <div class="FormRow">
-                <asp:Label ID="Label23" runat="server" Text="Phone Number" AssociatedControlID="YourPhoneNumberTextBox"></asp:Label>
+                <label>Phone Number</label>
                 <asp:TextBox ID="YourPhoneNumberTextBox" ClientIDMode="Static" runat="server" placeholder="555-123-4567" onkeyup="checkYourPhoneNumber()"
                     onblur="checkYourPhoneNumber()" oninput="checkYourPhoneNumber()" MaxLength="20"></asp:TextBox>
                 <div class="ErrorDiv" id="YourPhoneNumberTextBoxErrors"></div>
             </div>
             <div class="FormRow">
-                <asp:Label ID="Label4" runat="server" Text="Name of Your Business" AssociatedControlID="BusinessNameTextBox"></asp:Label>
+                <label>Name of Your Business</label>
                 <asp:TextBox ID="BusinessNameTextBox" ClientIDMode="Static" runat="server" placeholder="Business Name"
                     onkeyup="checkBusinessName()" onblur="checkBusinessName()" oninput="checkBusinessName()" MaxLength="64"></asp:TextBox>
                 <div class="ErrorDiv" id="BusinessNameTextBoxErrors"></div>
             </div>
             <div class="FormRow TextAreaRow">
-                <asp:Label AssociatedControlID="DescriptionTextBox" ID="DescLabel" runat="server" Text="Description"></asp:Label>
+                <label>Description</label>
                 <asp:TextBox ID="DescriptionTextBox" ClientIDMode="Static" runat="server" TextMode="MultiLine" MaxLength="200"
                     onkeyup="checkDescription()" onblur="checkDescription()" oninput="checkDescription()"></asp:TextBox>
                 <div class="ErrorDiv" id="DescriptionTextBoxErrors"></div>
             </div>
             <h4>Contact Information:</h4>
             <div class="FormRow">
-                <asp:Label ID="Label9" runat="server" Text="Street Address"
-                   AssociatedControlID="AddressTextBox"></asp:Label>
-                <asp:TextBox ID="AddressTextBox" runat="server" placeholder="1234, 5th Street"></asp:TextBox>
+                <label>Street Address</label>
+                <asp:TextBox ID="AddressTextBox" ClientIDMode="Static" runat="server" placeholder="1234, 5th Street" onkeyup="checkAddress()"
+                    onblur="checkAddress()" oninput="checkAddress()"></asp:TextBox>
+                <div class="ErrorDiv" id="AddressTextBoxErrors"></div>
             </div>
             <div class="FormRow">
                 <label>City <small>Please select from the dropdown.</small></label>
-                <asp:TextBox ID="CityTextBox" runat="server"></asp:TextBox>
-                <ajaxToolkit:AutoCompleteExtender ID="CityACE" runat="server" 
-                    CompletionInterval="0" MinimumPrefixLength="1" UseContextKey="True" 
-                    TargetControlID="CityTextBox" ServiceMethod="GetCompletionList">
-                </ajaxToolkit:AutoCompleteExtender>
+                <asp:TextBox ID="CityTextBox" runat="server" ClientIDMode="Static" onkeyp="getCities()"></asp:TextBox>
+                <div class="SelectedCity"></div>
+                <div id="CityID" class="hide"></div>
+                <div id="CitiesAutoCompleteBox" class="AutoCompleteBox"></div>
+                <div class="ErrorDiv" id="CityError"></div>
                 <div class="ClearFix"></div>
             </div>
             <div class="FormRow">
-                <asp:Label ID="Label11" runat="server" Text="Postal/Zip Code" AssociatedControlID="ZipCodeTextBox"></asp:Label>
-<<<<<<< HEAD
-                <asp:TextBox ID="ZipCodeTextBox" runat="server" MaxLength="16"></asp:TextBox>
-=======
+                <label>Postal/Zip Code</label>
                 <asp:TextBox ID="ZipCodeTextBox" runat="server" MaxLength="16" placeholder="T6L2M9, 90210, or 90210-1234"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="postalCodeRequired" runat="server" ControlToValidate="ZipCodeTextBox" 
-                    ErrorMessage="Postal / Zip Code is Required">*</asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" 
-                    ControlToValidate="ZipCodeTextBox" ErrorMessage="Postal / Zip Code invalid. (Ex. '90210', '90210-1234' or 'T6L2M9')" 
-                    ForeColor="Black" 
-                    ValidationExpression="(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXYabceghjklmnprstvxy]{1}\d{1}[A-Za-z]{1} *\d{1}[A-Za-z]{1}\d{1}$)">
-                    *
-                </asp:RegularExpressionValidator>
->>>>>>> eac7824f91db02d5b20f96c87e399cdc26008452
+                <div class="ErrorDiv" id="ZipCodeTextBoxErrors"></div>
             </div>
             <div class="FormRow">
                 <label>Phone Number<br /><small>(if different from above)</small></label>
@@ -267,9 +280,6 @@
             </div>
             <div class="FormRow">
                 <label>Website</label>
-<<<<<<< HEAD
-                <asp:TextBox ID="URLTextBox" runat="server"></asp:TextBox>
-=======
                 <asp:TextBox ID="URLTextBox" runat="server" placeholder="http://www.mycompanywebsite.com"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
                     ControlToValidate="URLTextBox" ErrorMessage="Website is required">*</asp:RequiredFieldValidator>
@@ -278,7 +288,6 @@
                     ValidationExpression="(https:[/][/]|http:[/][/]|www.)[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\-\._\?\,\'/\\\+&amp;%\$#\=~])*$">
                     *
                 </asp:RegularExpressionValidator>
->>>>>>> eac7824f91db02d5b20f96c87e399cdc26008452
             </div>
             <div class="FormRow">
                 <label>Logo<br /><small>This will be the large logo on your Coupons4Giving Profile page.</small></label>

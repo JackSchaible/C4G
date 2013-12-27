@@ -395,6 +395,11 @@ namespace CouponsForGiving.Data.Classes
         {
             return new C4GEntities().Cities_ListWhereActiveDeals().ToList<City>();
         }
+
+        public static List<City> ListAll()
+        {
+            return new C4GEntities().Cities_List().ToList<City>();
+        }
     }
 
     public static class FinePrints

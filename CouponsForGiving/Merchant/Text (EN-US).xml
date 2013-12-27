@@ -21,6 +21,7 @@
         <DescriptionTooShort>Your description needs to be at least 10 characters long.</DescriptionTooShort>
         <DescriptionInvalidCharacters>Your description contains invalid characters. Please ensureit does not contain any of the following: &lt;, &gt;, {, }, or ;.</DescriptionInvalidCharacters>
         <DescriptionOneWord>Your description needs to be more than one word.</DescriptionOneWord>
+        <NullAddress>You need to enter an address for your business.</NullAddress>
       </ErrorMessages>
     </Signup>
   </Pages>

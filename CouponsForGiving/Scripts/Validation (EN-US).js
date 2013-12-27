@@ -65,3 +65,28 @@ function IsStringTooShort(textToEvaluate, length) {
 
     return result;
 }
+
+
+//Tests to see if the text contains a space
+function ContainsSpaces(textToEvaluate) {
+    var result;
+
+    if (textToEvaluate.indexOf(" ") == -1)
+        result = false;
+    else
+        result = true;
+
+    return result;
+}
+
+//Should match A1A 1A1, A1A1A1, 11111-1111, or 11111
+function ValidPostalCode(textToEvaluate) {
+    var result;
+
+    if (/(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/.test(textToEvaluate) == false)
+        result = false;
+    else
+        result = true;
+
+    return result;
+}
