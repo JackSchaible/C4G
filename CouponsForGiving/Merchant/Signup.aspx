@@ -178,13 +178,13 @@
             <p><asp:Label ID="newMerchantMessage" runat="server"></asp:Label></p>
             <div class="FormRow">
                 <label>First Name</label>
-                <asp:TextBox ID="FirstNameTextBox" ClientIDMode="Static" runat="server" placeholder="Joe" onkeyup="checkFirstName()"
+                <asp:TextBox ID="FirstNameTextBox" ClientIDMode="Static" runat="server" placeholder="First Name" onkeyup="checkFirstName()"
                     onblur="checkFirstName()" oninput="checkFirstName()" MaxLength="64"></asp:TextBox>
                 <div class="ErrorDiv" id="FirstNameTextBoxErrors"></div>
             </div>
             <div class="FormRow">
                 <label>Last Name</label>
-                <asp:TextBox ID="LastNameTextBox" ClientIDMode="Static" runat="server" placeholder="Smith"
+                <asp:TextBox ID="LastNameTextBox" ClientIDMode="Static" runat="server" placeholder="Last Name"
                     onkeyup="checkLastName()" onblur="checkLastName()" oninput="checkLastName()" MaxLength="64"></asp:TextBox>
                 <div class="ErrorDiv" id="LastNameTextBoxErrors"></div>
             </div>

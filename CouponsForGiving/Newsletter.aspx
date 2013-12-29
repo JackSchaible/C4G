@@ -8,7 +8,7 @@
         <div class="Form">
             <div class="FormRow">
                 <asp:Label ID="Label1" runat="server" Text="Email"></asp:Label>
-                <asp:TextBox ID="EmailTextbox" runat="server" TextMode="Email"></asp:TextBox>
+                <asp:TextBox ID="EmailTextbox" runat="server" TextMode="Email" placeholder="yourname@yourorganization.com"></asp:TextBox>
             </div>
             <div class="FormRow">
                 <asp:Label ID="ErrorLabel" runat="server"></asp:Label>

@@ -11,7 +11,7 @@
     <div class="Form">
         <div class="FormRow">
             <asp:Label ID="Label1" runat="server" Text="Name" AssociatedControlID="NameTextBox"></asp:Label>
-            <asp:TextBox ID="NameTextBox" runat="server" placeholder="Joe Smith"></asp:TextBox>
+            <asp:TextBox ID="NameTextBox" runat="server" placeholder="Your Name"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ForeColor="Red" 
                 ErrorMessage="Name is required." ControlToValidate="NameTextBox" Text="*">
             </asp:RequiredFieldValidator>
@@ -22,7 +22,7 @@
         </div>
         <div class="FormRow">
             <asp:Label ID="Label3" runat="server" Text="Email" AssociatedControlID="EmailTextBox"></asp:Label>
-            <asp:TextBox ID="EmailTextBox" runat="server" placeholder="joe@joesmith.com"></asp:TextBox>
+            <asp:TextBox ID="EmailTextBox" runat="server" placeholder="yourname@yourorganization.com"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ForeColor="Red"
                 ErrorMessage="Email is required." ControlToValidate="EmailTextBox" Text="*">
             </asp:RequiredFieldValidator>

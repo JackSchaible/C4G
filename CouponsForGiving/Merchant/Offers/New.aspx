@@ -69,7 +69,7 @@
         </asp:Panel>
         <div class="FormRow">
             <asp:Label ID="Label1" runat="server" Text="Name" AssociatedControlID="newDealName"></asp:Label>
-            <asp:TextBox ID="newDealName" runat="server" MaxLength="256"></asp:TextBox>
+            <asp:TextBox ID="newDealName" runat="server" MaxLength="256" placeholder="Offer Name"></asp:TextBox>
             <asp:RequiredFieldValidator ID="nameRequired" runat="server" ControlToValidate="newDealName"
                 ErrorMessage="Name of offer is required.">
                 *
@@ -78,7 +78,7 @@
         <div class="FormRow TextAreaRow">
             <asp:Label ID="Label4" runat="server" Text="Description" 
                 AssociatedControlID="newDealDescription"></asp:Label>
-            <asp:TextBox ID="newDealDescription" runat="server" TextMode="MultiLine" MaxLength="200"></asp:TextBox>
+            <asp:TextBox ID="newDealDescription" runat="server" TextMode="MultiLine" MaxLength="200" placeholder="Offer Description"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
                 ControlToValidate="newDealDescription" ErrorMessage="A description of your offer is required.">
                 *
@@ -101,7 +101,7 @@
         <div class="FormRow">
             <asp:Label ID="Label7" runat="server" Text="Total Coupon Limit" 
                 AssociatedControlID="newDealAbsoluteCouponLimit"></asp:Label>
-            <asp:TextBox ID="newDealAbsoluteCouponLimit" runat="server" MaxLength="10">
+            <asp:TextBox ID="newDealAbsoluteCouponLimit" runat="server" MaxLength="10" placeholder="25">
             </asp:TextBox>
             <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" TargetControlID="newDealAbsoluteCouponLimit" 
                 FilterType="Numbers" runat="server"></ajaxToolkit:FilteredTextBoxExtender>
@@ -109,7 +109,7 @@
         <div class="FormRow">
             <asp:Label ID="Label8" runat="server" Text="Coupon Limit Per Customer" 
                 AssociatedControlID="newDealLimitPerCustomer"></asp:Label>
-            <asp:TextBox ID="newDealLimitPerCustomer" runat="server" MaxLength="10">
+            <asp:TextBox ID="newDealLimitPerCustomer" runat="server" MaxLength="10" placeholder="5">
             </asp:TextBox>
             <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" 
                 TargetControlID="newDealLimitPerCustomer" FilterType="Numbers" runat="server">
