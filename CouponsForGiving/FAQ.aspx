@@ -8,14 +8,14 @@
     <ol>
         <li>
             <strong>Is it free to sign up?</strong>
-            <p>Yes, Coupons4Giving is a free service for Not-For-Profits, Merchants and Customers. There is no fee to sign up and use the system.</p>
+            <p>Yes, Coupons4Giving is a <a href="https://www.coupons4giving.ca/Account/Register.aspx" target="_blank">free service for Not-For-Profits, Merchants and Customers</a>. There is <strong>no fee to sign up and use the system</strong>.</p>
         </li>
         <li>
             <strong>How do I get started?</strong>
             <ul>
-                <li>As an NPO - you can sign up to use Coupons4Giving by going to the registration page and filling out: the user registration form, followed by the Set up a Profile and then Create a Campaign.</li>
-                <li>As a Merchant or E-tailer - you can sign up to use Coupons4Giving by going to the registration page and filling out: the user registration form, followed by the Set up a Profile and then Create an Offer.</li>
-                <li>As a Customer - you can sign up to purchase coupons by going to the registration page and filling out the registration form. All you need is your email address.</li>
+                <li>As an NPO - you can sign up to use Coupons4Giving by going to the registration page and filling out: the <a href="https://www.coupons4giving.ca/Account/Register.aspx" >user registration form</a>, followed by the Set up a Profile and then Create a Campaign.</li>
+                <li>As a Merchant or E-tailer - you can sign up to use Coupons4Giving by going to the registration page and filling out: the <a href="https://www.coupons4giving.ca/Account/Register.aspx">user registration form</a>, followed by the Set up a Profile and then Create an Offer.</li>
+                <li>As a Customer - you can sign up to purchase coupons by going to the <a href="https://www.coupons4giving.ca/Account/Register.aspx">registration page</a> and filling out the registration form. All you need is your email address.</li>
             </ul>
         </li>
         <li>
