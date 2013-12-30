@@ -170,7 +170,7 @@
     	    <img src="~/images/logo_footer.png" alt="Coupons4Giving" runat="server"/>
 		    <ul class="footer-nav">
 			    <li><a runat="server" href="~/">Home</a></li>
-			    <li><a runat="server" href="~/AboutUs.aspx?c=WhoWeAre">Who We Are</a></li>
+			    <li><a runat="server" href="~/AboutUs.aspx?c=WhoWeAre">About Us</a></li>
 			    <li><a runat="server" href="~/AboutUs.aspx?c=OurTeam">Our Team</a></li>
 			    <li><a runat="server" href="~/AboutUs.aspx?c=Community">In The Community</a></li>
 			    <li><a runat="server" href="~/Default/MyHome.aspx">My Coupons</a></li>
