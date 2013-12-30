@@ -29,7 +29,7 @@
                             door-to-door? Managing those volunteers, 
                             keeping track of all those quarters, dimes and nickels, 
                             checks are a pain! <br />
-                            <strong>Coupons4Giving is a great marketing tool</strong></h2>
+                            <strong>Coupons4Giving makes fundraising easy and secure.</strong></h2>
                             <a href="<%: User.Identity.IsAuthenticated ? "NPO/Campaigns/New.aspx" : "Account/Register.aspx" %>" class="btn"><i class="fa fa-arrow-circle-o-right"></i> START A CAMPAIGN</a>
                         </div>
                     </div>
