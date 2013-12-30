@@ -112,9 +112,9 @@
                             </a>
                         </div>
                         <div class="header-social">
-                            <a href="http://www.facebook.com/Coupons4Giving"><i class="fa fa-facebook"></i></a>
-                            <a href="https://twitter.com/Coupons4Giving"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                            <a href="http://www.facebook.com/Coupons4Giving" target="_blank" title="Follow Us On Facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="https://twitter.com/Coupons4Giving" target="_blank" title="Follow Us On Twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="http://www.linkedin.com/company/coupons4giving" target="_blank" title="Follow Us on Linkedin"><i class="fa fa-linkedin"></i></a>
                         </div>
                         <div class="header-login">
                             <asp:LoginView ID="LoginView1" runat="server" ViewStateMode="Disabled">
