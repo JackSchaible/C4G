@@ -28,6 +28,9 @@
     <p>When a Not-For-Profit registers with Coupons4Giving they have the ability to invite their preferred merchant partners to also register with Coupons4Giving. You may receive an invitation to connect, if you are already registered, great! If not, you will be directed to a sign up page. Once you are set up in the system you can make offers available
 according to your seasonal, product or service needs. You can decide how many offers you want to make available and for how long. When a Not-For-Profit selects a merchant to support their campaign, their campaign dates and location need to match available offers. If it’s a match, your offers are automatically included and you will receive your portion of the proceeds according to the Coupons4Giving <a href="https://www.coupons4giving.ca/Content/Terms/MerchantServicesAgreement.pdf" target="_blank">Merchant Service Agreement</a>.</p>
     <p>You can review each request, or you can automatically accept requests that match your offer availability.</p>
+    
+    <p>Coupons4Giving empowers not-for-profits to market their causes through our <a href="https://www.coupons4giving.ca/NPO/SocialMediaToolkit.aspx" target="_blank">Social Media Toolkit</a>. You can even share your offer and the cause you are supporting through Facebook and Twitter.</p>
+    <hr>
     <h4>Make it easy on yourself and direct your favourite Not-For-Profits to Coupons4Giving.</h4>
     <div class="actionList">
         <ul>
