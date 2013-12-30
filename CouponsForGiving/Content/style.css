@@ -1786,14 +1786,16 @@ width: 135px;
 }
 
 #MainContent .merchant_logo, #MainContent .npo_logo{
-border-radius: 200px;
+border-radius: 9px;
 float: right;
 display: block;
-margin: 0px 0px 40px 30px;
-width: 150px;
+margin: 0px 30px 40px 30px;
+width: 130px;
 border: 10px solid #ecebe9;
-padding: 0px;
-height: 150px;
+padding: 5px;
+max-height: 150px;
+box-shadow: 0px 4px 0px #ccc;
+height: 100%;
 }
 
 #MainContent .campaign_logo {
