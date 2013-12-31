@@ -40,21 +40,4 @@ according to your seasonal, product or service needs. You can decide how many of
         </ul>
     </div>
     <a href='<%: (User.Identity.IsAuthenticated) ? "../redirect.aspx" : "../Account/Register.aspx" %>' class="btn-center"><i class="fa fa-arrow-circle-o-right"></i> Get Started!</a>
-    <hr>
-    <h3>Take a Look Around</h3>
-    <p>Browse our local deals as well as our <strong>Global Marketplace of E-tailers</strong> (online only merchants)</p>
-    <h4 class="centered">OUR FEATURED DEALS</h4>
-    <div class="merchantsList">
-        <ul>
-            <li><img src="../images/c4g_comingsoon_small.png" class="centered" /></li>
-        </ul>
-    </div>
-    <a href="../Default/CausesInMyArea.aspx" class="btn-blue">MORE MERCHANTS</a>
-    <h4 class="centered">OUR FEATURED CAUSES</h4>
-    <div class="nposList">
-        <ul>
-            <li><img src="../images/c4g_comingsoon_small.png" class="centered" /></li>
-        </ul>
-        <a href="../Default/CausesInMyArea.aspx" class="btn-blue">MORE CAUSES</a>
-    </div>
 </asp:Content>
