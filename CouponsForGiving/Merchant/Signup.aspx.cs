@@ -282,7 +282,7 @@ public partial class Merchant_Signup : System.Web.UI.Page
     {
         string result;
 
-        result = String.Join("; ", (from c in CitiesList where c.Name.ToLower().Contains(text.ToLower()) orderby c.Name select c.Name + ", " + c.PoliticalDivision.Name));
+        result = String.Join(";", (from c in CitiesList where c.Name.ToLower().Contains(text.ToLower()) orderby c.Name select c.Name + ", " + c.PoliticalDivision.Name));
 
         return result;
     }

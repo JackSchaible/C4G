@@ -768,5 +768,6 @@
     <FunctionImportMapping FunctionImportName="Campaign_ListByNPO" FunctionName="C4GModel.Store.Campaign_ListByNPO" />
     <FunctionImportMapping FunctionImportName="Users_List" FunctionName="C4GModel.Store.Users_List" />
     <FunctionImportMapping FunctionImportName="DealInstance_ListForGlobalMarketplace" FunctionName="C4GModel.Store.DealInstance_ListForGlobalMarketplace" />
+    <FunctionImportMapping FunctionImportName="Cities_List" FunctionName="C4GModel.Store.Cities_List" />
   </EntityContainerMapping>
 </Mapping>

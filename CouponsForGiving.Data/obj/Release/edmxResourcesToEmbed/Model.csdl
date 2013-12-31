@@ -790,6 +790,7 @@
     </FunctionImport>
     <FunctionImport Name="Users_List" EntitySet="cUsers" ReturnType="Collection(C4GModel.cUser)" />
     <FunctionImport Name="DealInstance_ListForGlobalMarketplace" EntitySet="DealInstances" ReturnType="Collection(C4GModel.DealInstance)" />
+    <FunctionImport Name="Cities_List" EntitySet="Cities" ReturnType="Collection(C4GModel.City)" />
   </EntityContainer>
   <EntityType Name="Campaign">
     <Key>
@@ -2555,5 +2556,12 @@
     <Property Type="DateTime" Name="RedeemableAfter" Nullable="false" Precision="23" />
     <Property Type="DateTime" Name="ExpiryDate" Nullable="true" Precision="23" />
     <Property Type="Int32" Name="DealStatusID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Cities_List_Result">
+    <Property Type="String" Name="CityCode" Nullable="false" MaxLength="3" />
+    <Property Type="Int32" Name="PoliticalDivisionID" Nullable="true" />
+    <Property Type="String" Name="CountryCode" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+    <Property Type="Int32" Name="CityID" Nullable="false" />
   </ComplexType>
 </Schema>

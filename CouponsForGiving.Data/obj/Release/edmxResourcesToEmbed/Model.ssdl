@@ -1247,6 +1247,7 @@
     <Parameter Name="DealInstanceID" Type="int" Mode="In" />
     <Parameter Name="CampaignID" Type="int" Mode="In" />
   </Function>
+  <Function Name="Cities_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
   <Function Name="Cities_ListWhereActiveDeals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
   <Function Name="City_GetByName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="CityName" Type="nvarchar" Mode="In" />

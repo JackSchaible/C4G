@@ -22,6 +22,7 @@
         <DescriptionInvalidCharacters>Your description contains invalid characters. Please ensureit does not contain any of the following: &lt;, &gt;, {, }, or ;.</DescriptionInvalidCharacters>
         <DescriptionOneWord>Your description needs to be more than one word.</DescriptionOneWord>
         <NullAddress>You need to enter an address for your business.</NullAddress>
+        <NoCity>We couldn't find a city with the text you entered. Please try again.</NoCity>
       </ErrorMessages>
     </Signup>
   </Pages>

@@ -153,9 +153,49 @@
     </script>
     <%--Supporting form functions--%>
     <script>
-        function getCities() {
-            PageMethods.GetCities(function () {
+        $(document).ready(function () {
+            PageMethods.GetCities('', function (data) {
+                window.cities = data.split(';');
+                console.log(data.split(';'));
+            });
+        });
 
+        function getCities() {
+            console.log(window.cities);
+            var text = $("#CityTextBox").val();
+
+            if (text.length > 2) {
+                var cities = new Array();
+                var output = "";
+
+                for (var i = 0; i < window.cities.length; i++)
+                    if (window.cities[i].toLowerCase().indexOf(text.toLowerCase()) != -1)
+                        cities.push(window.cities[i]);
+
+                output += "<ul>";
+
+                if (cities.length < 1)
+                    output += "<li><%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NoCity").InnerText %></li>";
+                else
+                    for (var i2 = 0; i2 < cities.length; i2++)
+                        output += "<li onclick='setCity(\"" + cities[i2] + "\")'>" + cities[i2] + "</li>";
+
+                output += "</ul>";
+
+                $("#CitiesAutoCompleteBox").html(output);
+            }
+        }
+
+        function setCity(city) {
+            $("#SelectedCity").html('<p>' + city + '</p>');
+            $("#SelectedCity").css('display', 'block');
+            $("#CityID").html(city);
+
+            $("#SelectedCity").click(function () {
+                $("#SelectedCity").html('');
+                $("#SelectedCity").css('display', 'none');
+
+                $("#CityID").html('');
             });
         }
     </script>
@@ -215,10 +255,10 @@
             </div>
             <div class="FormRow">
                 <label>City <small>Please select from the dropdown.</small></label>
-                <asp:TextBox ID="CityTextBox" runat="server" ClientIDMode="Static" onkeyp="getCities()"></asp:TextBox>
-                <div class="SelectedCity"></div>
-                <div id="CityID" class="hide"></div>
+                <asp:TextBox ID="CityTextBox" runat="server" ClientIDMode="Static" onkeyup="getCities()"></asp:TextBox>
                 <div id="CitiesAutoCompleteBox" class="AutoCompleteBox"></div>
+                <div id="SelectedCity" class="hide"></div>
+                <div id="CityID" class="hide"></div>
                 <div class="ErrorDiv" id="CityError"></div>
                 <div class="ClearFix"></div>
             </div>
