@@ -11,6 +11,7 @@
         <!-- Removed the div #text and also the #NPO-->
         <h1><%: npo.Name %></h1> <!-- Charity/NPO Name --> 
         <p><img alt="Our Logo" class="npo_logo" src="../../<%: npo.Logo %>" /><%: npo.NPODescription %></p><!-- This should be the NPO Profile -->
+        <div class="clear"></div>
         <div class="half charity-info">
             <h4>Address</h4>
             <p><%: npo.cAddress %></p> <!-- Pulls The NPO Address -->

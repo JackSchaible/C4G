@@ -7,14 +7,14 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BannerContent" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Main_Content" Runat="Server">
-    <div class="two-thirds">
+    <div class="three-quarters">
         <h1><%: merchant.Name %></h1>
         <img alt="Our Logo" class="merchant_logo" src="../../<%: merchant.LargeLogo %>" />
         <h3 class="merchant-address"><%: merchant.cAddress + ", " + merchant.MerchantLocations.FirstOrDefault<CouponsForGiving.Data.MerchantLocation>().City.Name %></h3>
         <h4 class="merchant-website"><a href="<%: merchant.Website %>" target="_blank">Company Web Site</a><!-- This can be populated with the company url --></h4>
         <p><%: merchant.cUser.MerchantInfoes.FirstOrDefault<CouponsForGiving.Data.MerchantInfo>().MerchantDescription %></p><!-- This Can be populated with the Merchant Profile -->
     </div>
-    <div class="thirds">
+    <div class="one-quarters">
 	    <div class="SocialSidebar">
        	    <h3>Share this Merchant on social media!</h3>
 		    <div class="SidebarShare">
