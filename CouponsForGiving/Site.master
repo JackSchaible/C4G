@@ -78,28 +78,30 @@
                 //Forms validation
                 function writeErrors(errorDiv, errors) {
 
-                    if (errors.length > 0) {
-                        $("#" + errorDiv).css("display", "block");
+                    $("#" + errorDiv).html(html);
 
-                        var html;
+                //    if (errors.length > 0) {
+                //        $("#" + errorDiv).css("display", "block");
 
-                        if (errors.length > 1) {
-                            html = "<ul>";
+                //        var html;
 
-                            errors.forEach(function (item) {
-                                html += "<li>" + item + "</li>";
-                            });
+                //        if (errors.length > 1) {
+                //            html = "<ul>";
 
-                            html += "</ul>";
-                        }
-                        else {
-                            html = "<p>" + errors[0] + "</p>";
-                        }
+                //            errors.forEach(function (item) {
+                //                html += "<li>" + item + "</li>";
+                //            });
 
-                        $("#" + errorDiv).html(html);
-                    }
-                    else
-                        $("#" + errorDiv).css("display", "none");
+                //            html += "</ul>";
+                //        }
+                //        else {
+                //            html = "<p>" + errors[0] + "</p>";
+                //        }
+
+                //        $("#" + errorDiv).html(html);
+                //    }
+                //    else
+                //        $("#" + errorDiv).css("display", "none");
                 }
             </script>
             <header>

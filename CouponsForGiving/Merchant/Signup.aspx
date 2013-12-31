@@ -122,7 +122,7 @@
             return errors;
         }
 
-        function checkAddress() {
+        function checkAddress(write) {
             var address = $("#AddressTextBox").val();
             var errors = new Array();
 
@@ -137,6 +137,70 @@
             return errors;
         }
 
+        function goPostal(write) {
+            var postal = $("#ZipCodeTextBox").val();
+            var errors = new Array();
+
+            if (isStringBlank(postal))
+                errors.push('');
+
+            if (isStringTooShort(postal, 5))
+                errors.push('');
+
+            if (arguments.length == 0) {
+                writeErrors("ZipCodeTextBoxErrors", errors);
+                checkForm();
+            }
+
+            return errors;
+        }
+
+        function checkBusinessPhone(write) {
+            var phoneNumber = $("#PhoneNumberTextBox").val();
+            var errors = new Array();
+
+            if (!IsStringBlank(phoneNumber)) {
+                if (IsStringBlank(phoneNumber))
+                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullPhoneNumber").InnerText %>');
+
+                if (!validPhoneNumber(phoneNumber))
+                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/InvalidPhoneNumber").InnerText %>');
+
+                if (IsStringTooLong(phoneNumber, 20))
+                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/PhoneNumberTooLong").InnerText %>');
+
+                if (containsCode(phoneNumber)) {
+                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/PhoneNumberInvalidCharacters").InnerText %>');
+                }
+
+                if (arguments.length == 0) {
+                    writeErrors("PhoneNumberTextBoxErrors", errors);
+                    checkForm();
+                }
+            }
+
+            return errors;
+        }
+
+        function checkYourEmail(write) {
+            var email = $("#YourEmailTextBox").val();
+            var errors = new Array();
+
+            if (!IsStringBlank(email)) {
+
+                if (IsStringTooShort(email, 6)) {
+
+                }
+
+                if (arguments.length == 0) {
+                    writeErrors('YourEmailTextBoxErrors', errors);
+                    checkForm();
+                }
+            }
+
+            return errors;
+        }
+
         function checkForm() {
             var errors = new Array();
             errors.push.apply(errors, checkFirstName(false));
@@ -144,6 +208,9 @@
             errors.push.apply(errors, checkYourPhoneNumber(false));
             errors.push.apply(errors, checkBusinessName(false));
             errors.push.apply(errors, checkDescription(false));
+            errors.push.apply(errors, goPostal(false));
+            errors.push.apply(errors, checkBusinessPhone(false));
+
 
             if (errors.length > 0)
                 $("#SubmitButton").attr('disabled', 'disabled');
@@ -190,6 +257,7 @@
             $("#SelectedCity").html('<p>' + city + '</p>');
             $("#SelectedCity").css('display', 'block');
             $("#CityID").html(city);
+            $("#CitiesAutoCompleteBox").html('');
 
             $("#SelectedCity").click(function () {
                 $("#SelectedCity").html('');
@@ -197,6 +265,13 @@
 
                 $("#CityID").html('');
             });
+        }
+
+        function notify() {
+            if ($("#AutoAcceptRequestsCheckBox").is(':checked'))
+                $("#AARErrors").html('<ul><li><%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/AARNotification").InnerText %></li></ul>');
+            else
+                $("#AARErrors").html('');
         }
     </script>
         <h1>Profile Page Setup</h1>
@@ -264,23 +339,30 @@
             </div>
             <div class="FormRow">
                 <label>Postal/Zip Code</label>
-                <asp:TextBox ID="ZipCodeTextBox" runat="server" MaxLength="16" placeholder="T6L2M9, 90210, or 90210-1234"></asp:TextBox>
+                <asp:TextBox ID="ZipCodeTextBox" runat="server" MaxLength="16" placeholder="T6L2M9, 90210, or 90210-1234"
+                    onkeyup="goPostal()" onblur="goPostal()" oninput="goPostal()"></asp:TextBox>
                 <div class="ErrorDiv" id="ZipCodeTextBoxErrors"></div>
             </div>
             <div class="FormRow">
                 <label>Phone Number<br /><small>(if different from above)</small></label>
-                <asp:TextBox ID="PhoneNumberTextBox" runat="server" MaxLength="11"></asp:TextBox>
+                <asp:TextBox ID="PhoneNumberTextBox" runat="server" onkeyup="checkBusinessPhone()" onblur="checkBusinessPhone()" 
+                    oninput="checkBusinessPhone()" ClientIDMode="Static"></asp:TextBox>
+                <div id="PhoneNumberTextBoxErrors" class="ErrorDiv"></div>
             </div>
             <div class="FormRow">
                 <asp:Label ID="AARLabel" runat="server" Text="Accept All Not-For-Profit Partner Requests" 
                     AssociatedControlID="AutoAcceptRequestsCheckBox"></asp:Label>
                 <asp:CheckBox ID="AutoAcceptRequestsCheckBox" runat="server" Checked="true" 
                     onClick="notify()" ClientIDMode="Static"/>
+                <div id="AARErrors" class="ErrorDiv"></div>
             </div>
             <div class="FormRow">
                 <label>Email<small>(if different from the one you used to register)</small></label>
-                <asp:TextBox ID="YourEmailTextBox" runat="server" TextMode="Email" placeholder="yourname@yourorganization.com"></asp:TextBox>
+                <asp:TextBox ID="YourEmailTextBox" runat="server" TextMode="Email" placeholder="yourname@yourorganization.com"
+                    ClientIDMode="Static" onkeyup="checkYourEmail()" onblur="checkYourEmail()" oninput="checkYourEmail()"></asp:TextBox>
+                <div id="YourEmailTextBoxErrors" class="ErrorDiv"></div>
             </div>
+            <h4>Additional Information (For Stripe)</h4>
             <div class="FormRow">
                 <asp:Label ID="Label5" runat="server" Text="Business Type" AssociatedControlID="BusinessTypeDDL"></asp:Label>
                 <asp:DropDownList ID="BusinessTypeDDL" runat="server">
@@ -291,8 +373,7 @@
                 </asp:DropDownList>
             </div>
             <div class="FormRow">
-                <asp:Label ID="Label13" runat="server" Text="Physical Product" 
-                    AssociatedControlID="PhysicalProductRBL"></asp:Label>
+                <label>Do you sell a physical product?</label>
                 <asp:RadioButtonList ID="PhysicalProductRBL" runat="server">
                     <asp:ListItem Value="true">Yes</asp:ListItem>
                     <asp:ListItem Value="false">No</asp:ListItem>
@@ -320,21 +401,16 @@
             </div>
             <div class="FormRow">
                 <label>Website</label>
-                <asp:TextBox ID="URLTextBox" runat="server" placeholder="http://www.mycompanywebsite.com"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-                    ControlToValidate="URLTextBox" ErrorMessage="Website is required">*</asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
-                    ControlToValidate="URLTextBox" ErrorMessage="Website is invalid (i.e., http://www.mywebsite.com/)"
-                    ValidationExpression="(https:[/][/]|http:[/][/]|www.)[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(:[a-zA-Z0-9]*)?/?([a-zA-Z0-9\-\._\?\,\'/\\\+&amp;%\$#\=~])*$">
-                    *
-                </asp:RegularExpressionValidator>
+                <asp:TextBox ID="URLTextBox" ClientIDMode="Static" runat="server" 
+                    placeholder="http://www.mycompanywebsite.com" onkeyup="checkWebsite()" onblur="checkWebsite()"
+                    oninput="checkWebsite()"></asp:TextBox>
+                <div id="URLTextBoxErrors" class="ErrorDiv"></div>
             </div>
             <div class="FormRow">
                 <label>Logo<br /><small>This will be the large logo on your Coupons4Giving Profile page.</small></label>
                 <asp:FileUpload ID="newMerchantLargeLogo" runat="server" />
                 <p><%: (hasLargeLogo) ? "You have already uploaded a large logo." : "" %></p>
             </div>
-            <h4>Additional Information (For Stripe)</h4>
             <div class="FormRow">
                 <asp:Label ID="Label8" runat="server" Text="Birth Date" AssociatedControlID="BirthDate"></asp:Label>
                 <UC:DateControl ID="BirthDate" runat="server" />

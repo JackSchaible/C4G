@@ -32,6 +32,18 @@ function validEmail(textToEvaluate) {
     return result;
 }
 
+//Matches a website
+function validWebsite(textToEvaluate) {
+    var result;
+
+    if (/(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/.test(textToEvaluate) == false)
+        result = false;
+    else
+        result = true;
+
+    return result;
+}
+
 //Tests to see if the string is empty or contains only whitespace characters
 function IsStringBlank(textToEvaluate) {
     var result;

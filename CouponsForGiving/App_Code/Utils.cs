@@ -463,6 +463,22 @@ namespace CouponsForGiving
 
             return result;
         }
+
+        public static string WriteErrorList(List<string> Errors) {
+            string result = "";
+
+            if (Errors.Count < 1)
+                throw new ArgumentException("Errors must have more than one string.");
+            else
+            {
+                result += "<ul>";
+                foreach (string item in Errors)
+                    result += String.Format("<li>{0}</li>", item);
+                result += "</ul>";
+            }
+
+            return result;
+        }
     }
 
     public class JSONUtils

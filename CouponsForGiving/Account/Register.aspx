@@ -8,120 +8,141 @@
             checkForm();
         }
 
-        function checkUsername() {
+        function checkUsername(write) {
             var name = $("#UserName").val();
             var errors = new Array();
+            var length = arguments.length;
 
-            if (name.length < 4)
-                errors.push('Your username needs to be longer than 4 characters.');
+            if (IsStringBlank(name))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullUsername").InnerText %>');
+
+            if (IsStringTooShort(name, 4))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/UsernameTooShort").InnerText %>');
+
+            if (IsStringTooLong(name, 32))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/UsernameTooLong").InnerText %>');
+
+            if (containsCode(name))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/UsernameInvalidCharacters").InnerText %>');
 
             var taken = false;
 
             PageMethods.UsernameTaken(name, function (result) {
                 if (result)
-                    errors.push('Your username is taken.');
+                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/UsernameTaken").InnerText %>');
 
-                writeErrors("UsernameErrors", errors);
-                checkForm();
+                if (length == 0) {
+                    writeErrors("UsernameErrors", errors);
+                    checkForm();
+                }
 
                 return errors;
             });
         }
 
-        function checkEmail() {
+        function checkEmail(write) {
             var email = $("#Email").val();
             var errors = new Array();
 
-            var emailPattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-            if (!emailPattern.test(email))
-                errors.push('Your email address needs to match the pattern \"joe@joesmith.com\".');
+            if (IsStringBlank(email))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullEmail").InnerText %>');
             
-            writeErrors("EmailErrors", errors);
-            checkForm();
+            if (IsStringTooShort(email, 6))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/EmailTooShort").InnerText %>');
+
+            if (IsStringTooLong(email, 64))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/EmailTooLong").InnerText %>');
+
+            if (containsCode(email))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/EmailInvalidCharacters").InnerText %>');
+
+            if (arguments.length == 0) {
+                writeErrors("EmailErrors", errors);
+                checkForm();
+            }
 
             return errors;
         }
 
-        function checkPassword() {
+        function checkPassword(write) {
             var password = $("#Password").val();
             var errors = new Array();
 
-            if (password.length < 6)
-                errors.push('Your password needs to be longer than 6 characters long.');
+            if (IsStringBlank(password))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullPassword").InnerText %>');
 
-            writeErrors("PasswordErrors", errors);
-            checkForm();
+            if (IsStringTooShort(password, 6))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/PasswordTooShort").InnerText %>');
+
+            if (IsStringTooLong(password, 32))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/PasswordTooLong").InnerText %>');
+
+            if (containsCode(password))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/PasswordInvalidCharacters").InnerText %>');
+
+            if (arguments.length == 0) {
+                writeErrors("PasswordErrors", errors);
+                checkForm();
+            }
 
             return errors;
         }
 
-        function checkConfirmPassword() {
+        function checkConfirmPassword(write) {
             var password = $("#Password").val();
             var confirmPassword = $("#ConfirmPassword").val();
             var errors = Array();
 
-            if (confirmPassword.trim().length == 0)
-                errors.push('You need to provide a confirmation password.');
+            if (IsStringBlank(confirmPassword))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullConfirmPassword").InnerText %>');
 
-            if (password != confirmPassword)
-                errors.push('Your confirm password needs to match your regular password.');
+            if (IsStringTooShort(confirmPassword, 6))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/ConfirmPasswordTooShort").InnerText %>');
 
-            writeErrors("ConfirmPasswordErrors", errors);
-            checkForm();
+            if (IsStringTooLong(confirmPassword, 32))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/ConfirmPasswordTooLong").InnerText %>');
+
+            if (containsCode(confirmPassword))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/ConfirmPasswordInvalidCharacters").InnerText %>'); 
+
+            if (confirmPassword != password)
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/ConfirmPasswordMatch").InnerText %>'); 
+
+
+            if (arguments.length == 0) {
+                writeErrors("ConfirmPasswordErrors", errors);
+                checkForm();
+            }
 
             return errors;
         }
 
-        function checkTermsCheckbox() {
+        function checkTermsCheckbox(write) {
             var errors = Array();
 
             if ($("#TermsCheckbox").is(':checked') == false)
                 errors.push('You need to agree to the terms and conditions and the privacy policy.');
             
-            writeErrors('TermsErrors', errors);
-            checkForm();
+            if (arguments.length == 0) {
+                writeErrors('TermsErrors', errors);
+                checkForm();
+            }
 
             return errors;
         }
 
         function checkForm() {
             var errors = new Array();
-            var name = $("#UserName").val();
-            var email = $("#Email").val();
-            var password = $("#Password").val();
-            var confirmPassword = $("#ConfirmPassword").val();
 
-            if ($("#TermsCheckbox").is(':checked') == false)
-                errors.push('You need to agree to the terms and conditions and the privacy policy.');
+            errors.push.apply(errors, checkUsername(false));
+            errors.push.apply(errors, checkEmail(false));
+            errors.push.apply(errors, checkPassword(false));
+            errors.push.apply(errors, checkConfirmPassword(false));
 
-            if (confirmPassword.trim().length == 0)
-                errors.push('You need to provide a confirmation password.');
-
-            if (password != confirmPassword)
-                errors.push('Your confirm password needs to match your regular password.');
-            if (password.length < 6)
-                errors.push('Your password needs to be longer than 6 characters long.');
-
-            if (name.length < 4)
-                errors.push('Your username needs to be longer than 4 characters.');            
-
-            var emailPattern = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-            if (!emailPattern.test(email))
-                errors.push('Your email address needs to match the pattern \"joe@joesmith.com\".');
-
-            var taken = false;
-
-            PageMethods.UsernameTaken(name, function (result) {
-                if (result)
-                    errors.push('Your username is taken.');
-                
-                if (errors.length > 0)
-                    $("#SubmitButton").attr('disabled', 'disabled');
-                else
-                    $("#SubmitButton").removeAttr('disabled');
-            });
+            if (errors.length > 0)
+                $("#SubmitButton").attr('disabled', 'disabled');
+            else
+                $("#SubmitButton").removeAttr('disabled');
         }
     </script>
     <h1>Sign up for a Coupons4Giving account today!</h1>

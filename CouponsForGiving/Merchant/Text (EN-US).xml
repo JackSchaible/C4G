@@ -23,6 +23,9 @@
         <DescriptionOneWord>Your description needs to be more than one word.</DescriptionOneWord>
         <NullAddress>You need to enter an address for your business.</NullAddress>
         <NoCity>We couldn't find a city with the text you entered. Please try again.</NoCity>
+        <NullPostal>You need to enter a postal/zip code.</NullPostal>
+        <PostalTooShort>Your postal/zip code needs to be at least 5 characters long.</PostalTooShort>
+        <AARNotification>You will be notified of every Not-For-Profit request to partner.</AARNotification>
       </ErrorMessages>
     </Signup>
   </Pages>

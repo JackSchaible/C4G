@@ -14,7 +14,7 @@
         <NullEmail>You need to enter an email address.</NullEmail>
         <EmailInvalidCharacters>Your email contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, or ;.</EmailInvalidCharacters>
         <NullPassword>You need to enter a password.</NullPassword>
-        <PasswordLength>Your password needs to be longer than 6 characters long.</PasswordLength>
+        <PasswordTooShort>Your password needs to be longer than 6 characters long.</PasswordTooShort>
         <PasswordTooLong>Your password needs to be less than 32 characters long.</PasswordTooLong>
         <PasswordInvalidCharacters>Your password contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, or ;.</PasswordInvalidCharacters>
         <NullConfirmPassword>You need to provide a confirmation password.</NullConfirmPassword>
