@@ -133,29 +133,68 @@ height: 100%;
 }
 
 .header-login, .header-logo, .header-social {
-margin-right: 3%;
+margin-right: 1%;
 display: inline-block;
 }
 
 .header-logo {
-max-width: 300px;
-min-width: 30%;
+width: 300px;
+min-width: 25%;
 }
 
 .header-social {
 max-width: 200px;
-min-width: 22%;
+min-width: 12%;
 }
 
 .header-login {
-max-width: 400px;
+width: 520px;
 min-width: 40%;
-margin-right: 0%
+margin-left: 4%;
+position: relative;
+top: -25px;
+font-size: 14px;
+color: #dedede;
+font-weight: 300;
+letter-spacing: .25px;
 }
 
 .header-login {
 text-align: right;
 }
+
+.header-login a {color: #fff;
+text-decoration: none;}
+
+.header-login a:hover {color: #22bfe8;}
+
+.header-login a.loggedout {margin-right: 5px;}
+
+.header-login a.header-shoppingcart {
+padding: 7px 11px;
+background: #22bfe8;
+border-radius: 200px;
+margin: 5px 4px;
+font-size: 15px;
+font-weight: 400;
+box-shadow: 0px 4px 0px #0099cc;
+-moz-box-shadow: 0px 4px 0px #0099cc;
+-webkit-box-shadow: 0px 4px 0px #0099cc;
+}
+
+.header-login .fa.fa-shopping-cart {
+font-size: 21px;
+top: 2px;
+position: relative;
+color: #fff;
+}
+
+.header-login a.header-shoppingcart:hover {
+color: #fff;
+background: #fbad3e;
+box-shadow: 0px 4px 0px #ff9900;
+-moz-box-shadow: 0px 4px 0px #ff9900;
+-webkit-box-shadow: 0px 4px 0px #ff9900;}
 
 .header-social {
 text-align: right;}
@@ -250,29 +289,28 @@ a[id$=loginButton] {
     text-transform: capitalize;
 }
 
-.HeaderButton {
+.header-login a.HeaderButton {
 background: #fbad3e;
 color: #FFF;
 font-family: Ubuntu, Corbel, Arial, sans-serif;
 font-weight: bold;
 text-decoration: none;
-text-transform: uppercase;
+text-transform: capitalize;
 padding: 5px 12px;
 margin: 0px 2px 0px 0px;
 display: inline-block;
 position: relative;
-top: -25px;
 font-size: 14px;
 text-align: right;
 border: none;
 font-weight: 400;
 border-radius: 2px;
 box-shadow: 0px 4px 0px #ff9900;
--moz-box-shadow: 0px 4px 0px #ff9900;;
--webkit-box-shadow: 0px 4px 0px #ff9900;;
+-moz-box-shadow: 0px 4px 0px #ff9900;
+-webkit-box-shadow: 0px 4px 0px #ff9900;
 }
 
-.HeaderButton:hover {background: #22bfe8;
+.header-login a.HeaderButton:hover {background: #22bfe8;
 box-shadow: 0px 4px 0px #0099cc;
 -moz-box-shadow: 0px 4px 0px #0099cc;
 -webkit-box-shadow: 0px 4px 0px #0099cc;}
