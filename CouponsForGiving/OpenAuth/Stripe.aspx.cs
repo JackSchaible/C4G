@@ -70,7 +70,7 @@ public partial class OpenAuth_Stripe : System.Web.UI.Page
                
                     SysData.MerchantStripeInfo_Insert(merch.MerchantID, value);
                     Roles.AddUserToRole(HttpContext.Current.User.Identity.Name, "Merchant");
-
+                    Roles.RemoveUserFromRole(User.Identity.Name, "IncompleteMerchant");
                     MailMessage mm = new MailMessage();
                     mm.To.Add(new MailAddress(Membership.GetUser().Email));
 
