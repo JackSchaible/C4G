@@ -22,6 +22,7 @@ namespace CouponsForGiving.Data
             this.MerchantInfoes = new HashSet<MerchantInfo>();
             this.Merchants = new HashSet<Merchant>();
             this.Cities = new HashSet<City>();
+            this.Notifications = new HashSet<Notification>();
         }
     
         public int cUserID { get; set; }
@@ -36,5 +37,6 @@ namespace CouponsForGiving.Data
         public virtual ICollection<MerchantInfo> MerchantInfoes { get; set; }
         public virtual ICollection<Merchant> Merchants { get; set; }
         public virtual ICollection<City> Cities { get; set; }
+        public virtual ICollection<Notification> Notifications { get; set; }
     }
 }

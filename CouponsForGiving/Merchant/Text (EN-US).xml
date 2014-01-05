@@ -16,13 +16,16 @@
         <NullBusinessName>You need to enter a business name.</NullBusinessName>
         <BusinessNameTooLong>Your business name needs to be less than 64 characters long.</BusinessNameTooLong>
         <BusinessNameInvalidCharacters>Your business name contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, or ;.</BusinessNameInvalidCharacters>
+        <BusinessNameTaken>We&#39;re sorry, but the business name you&#39;ve chosen is already taken. Please try again with another name.</BusinessNameTaken>
         <NullDescription>You need to enter a description for your business.</NullDescription>
         <DescriptionTooLong>Your description needs to be under 200 characters long.</DescriptionTooLong>
         <DescriptionTooShort>Your description needs to be at least 10 characters long.</DescriptionTooShort>
         <DescriptionInvalidCharacters>Your description contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, or ;.</DescriptionInvalidCharacters>
         <DescriptionOneWord>Your description needs to be more than one word.</DescriptionOneWord>
         <NullAddress>You need to enter an address for your business.</NullAddress>
-        <NoCity>We couldn't find a city with the text you entered. Please try again.</NoCity>
+        <NoCity>We couldn&#39;t find a city with the text you entered. Please try again.</NoCity>
+        <NullCity>You need to enter a city.</NullCity>
+        <CityError>There was a problem with your selected city. Please select one from the drop down, and try again.</CityError>
         <NullPostal>You need to enter a postal/zip code.</NullPostal>
         <PostalTooShort>Your postal/zip code needs to be at least 5 characters long.</PostalTooShort>
         <AARNotification>You will be notified of every Not-For-Profit request to partner.</AARNotification>
@@ -38,6 +41,7 @@
         <ImageTypeInvalid>The file you uploaded is an incorrect file type. Supported types include: GIF, JPEG, Progressive JPEG, PNG, and SVG. Please select another file.</ImageTypeInvalid>
         <ImageSizeInvalid>The image you uploaded appears to be too large. We require images to be x pixels wide by y pixels high in order to display properly. Please select another image.</ImageSizeInvalid>
         <UploadError>There was a problem uploading your image. Please try again.</UploadError>
+        <ServerError>Something went wrong with your form submission. Please try again.</ServerError>
       </ErrorMessages>
     </Signup>
   </Pages>

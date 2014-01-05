@@ -39,6 +39,11 @@ public abstract class Validation
         return result;
     }
 
+    public bool ContainsSpaces(string textToEvaluate)
+    {
+        return textToEvaluate.Contains(' ');
+    }
+
     public bool IsValidEmail(string strIn)
     {
         bool invalid = false;
@@ -70,7 +75,7 @@ public abstract class Validation
         }
     }
 
-   private string DomainMapper(Match match)
+    private string DomainMapper(Match match)
    {
        // IdnMapping class with default property values.
        IdnMapping idn = new IdnMapping();
@@ -129,6 +134,23 @@ public abstract class Validation
             li.TagName = "li";
             li.InnerText = item;
             result.Controls.Add(li);
+        }
+
+        return result;
+    }
+
+    public string WriteClientErrorsList(List<string> errors)
+    {
+        string result = "";
+
+        if (errors.Count > 0)
+        {
+            result = "<ul>";
+
+            foreach (string item in errors)
+                result += String.Format("<li>{0}</li>", item);
+
+            result += "</ul>";
         }
 
         return result;

@@ -59,6 +59,7 @@ namespace CouponsForGiving.Data
         public DbSet<FinePrint> FinePrints { get; set; }
         public DbSet<NPOSetting> NPOSettings { get; set; }
         public DbSet<News> News { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
     
         public virtual ObjectResult<cStatus_ListAll_Result> cStatus_ListAll()
         {
@@ -2605,6 +2606,55 @@ namespace CouponsForGiving.Data
         public virtual ObjectResult<City> Cities_List(MergeOption mergeOption)
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<City>("Cities_List", mergeOption);
+        }
+    
+        public virtual ObjectResult<string> Merchant_ListNames()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Merchant_ListNames");
+        }
+    
+        public virtual int NotificationcUser_Delete(string username, string notificationCode)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var notificationCodeParameter = notificationCode != null ?
+                new ObjectParameter("NotificationCode", notificationCode) :
+                new ObjectParameter("NotificationCode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NotificationcUser_Delete", usernameParameter, notificationCodeParameter);
+        }
+    
+        public virtual int NotificationcUser_Insert(string username, string notificationCode)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var notificationCodeParameter = notificationCode != null ?
+                new ObjectParameter("NotificationCode", notificationCode) :
+                new ObjectParameter("NotificationCode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("NotificationcUser_Insert", usernameParameter, notificationCodeParameter);
+        }
+    
+        public virtual ObjectResult<Notification> NotificationcUser_List(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Notification>("NotificationcUser_List", usernameParameter);
+        }
+    
+        public virtual ObjectResult<Notification> NotificationcUser_List(string username, MergeOption mergeOption)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Notification>("NotificationcUser_List", mergeOption, usernameParameter);
         }
     }
 }

@@ -769,5 +769,25 @@
     <FunctionImportMapping FunctionImportName="Users_List" FunctionName="C4GModel.Store.Users_List" />
     <FunctionImportMapping FunctionImportName="DealInstance_ListForGlobalMarketplace" FunctionName="C4GModel.Store.DealInstance_ListForGlobalMarketplace" />
     <FunctionImportMapping FunctionImportName="Cities_List" FunctionName="C4GModel.Store.Cities_List" />
+    <FunctionImportMapping FunctionImportName="Merchant_ListNames" FunctionName="C4GModel.Store.Merchant_ListNames" />
+    <EntitySetMapping Name="Notifications">
+      <EntityTypeMapping TypeName="C4GModel.Notification">
+        <MappingFragment StoreEntitySet="Notifications">
+          <ScalarProperty Name="NotificationCode" ColumnName="NotificationCode" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="NotificationcUser" TypeName="C4GModel.NotificationcUser" StoreEntitySet="NotificationcUser">
+      <EndProperty Name="Notification">
+        <ScalarProperty Name="NotificationCode" ColumnName="NotificationCode" />
+      </EndProperty>
+      <EndProperty Name="cUser">
+        <ScalarProperty Name="cUserID" ColumnName="cUserID" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="NotificationcUser_Delete" FunctionName="C4GModel.Store.NotificationcUser_Delete" />
+    <FunctionImportMapping FunctionImportName="NotificationcUser_Insert" FunctionName="C4GModel.Store.NotificationcUser_Insert" />
+    <FunctionImportMapping FunctionImportName="NotificationcUser_List" FunctionName="C4GModel.Store.NotificationcUser_List" />
   </EntityContainerMapping>
 </Mapping>

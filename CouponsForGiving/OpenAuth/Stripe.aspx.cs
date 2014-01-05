@@ -1,4 +1,5 @@
 ﻿using CouponsForGiving.Data;
+using CouponsForGiving.Data.Classes;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -18,7 +19,14 @@ public partial class OpenAuth_Stripe : System.Web.UI.Page
     {
         if (Request.QueryString["code"] == null)
         {
-            ErrorLabel.Text = "Something's gone wrong in on Stripe's end. We're sorry, but we have to ask you to try again!";
+            try
+            {
+                NotificationcUsers.Insert(String.Format("StripeNotConnected({0})", WebConfigurationManager.AppSettings["Language"]), User.Identity.Name);
+            }
+            catch (Exception ex)
+            {
+                ex.ToString();
+            }
         }
         else
         {
@@ -88,7 +96,8 @@ public partial class OpenAuth_Stripe : System.Web.UI.Page
             }
             catch (Exception ex)
             {
-                ErrorLabel.Text = "Oops. Something's gone wrong. Please send us a message using the contact us button above, and include this error message: " + ex.Message + " || Stack Trace: " + ex.StackTrace + " || Method: " + ex.TargetSite.Name.ToString();
+                NotificationcUsers.Insert(String.Format("StripeNotConnected({0})", WebConfigurationManager.AppSettings["Language"]), User.Identity.Name);
+                ex.ToString();
             }
         }
     }

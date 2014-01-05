@@ -24,6 +24,8 @@
     <EntitySet Name="MerchantStripeInfo" EntityType="C4GModel.Store.MerchantStripeInfo" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="News" EntityType="C4GModel.Store.News" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="NewsletterUser" EntityType="C4GModel.Store.NewsletterUser" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="NotificationcUser" EntityType="C4GModel.Store.NotificationcUser" store:Type="Tables" Schema="Database_User" />
+    <EntitySet Name="Notifications" EntityType="C4GModel.Store.Notifications" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="NPO" EntityType="C4GModel.Store.NPO" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="NPOcUser" EntityType="C4GModel.Store.NPOcUser" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="NPOMailingList" EntityType="C4GModel.Store.NPOMailingList" store:Type="Tables" Schema="Database_User" />
@@ -139,6 +141,14 @@
     <AssociationSet Name="FK_MerchantStripeInfo_Merchant" Association="C4GModel.Store.FK_MerchantStripeInfo_Merchant">
       <End Role="Merchant" EntitySet="Merchant" />
       <End Role="MerchantStripeInfo" EntitySet="MerchantStripeInfo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NotificationcUsercUser" Association="C4GModel.Store.FK_NotificationcUsercUser">
+      <End Role="cUser" EntitySet="cUser" />
+      <End Role="NotificationcUser" EntitySet="NotificationcUser" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NotificationcUserNotification" Association="C4GModel.Store.FK_NotificationcUserNotification">
+      <End Role="Notifications" EntitySet="Notifications" />
+      <End Role="NotificationcUser" EntitySet="NotificationcUser" />
     </AssociationSet>
     <AssociationSet Name="FK_NPO_City" Association="C4GModel.Store.FK_NPO_City">
       <End Role="City" EntitySet="City" />
@@ -442,6 +452,21 @@
       <PropertyRef Name="Email" />
     </Key>
     <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="NotificationcUser">
+    <Key>
+      <PropertyRef Name="NotificationCode" />
+      <PropertyRef Name="cUserID" />
+    </Key>
+    <Property Name="NotificationCode" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="cUserID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Notifications">
+    <Key>
+      <PropertyRef Name="NotificationCode" />
+    </Key>
+    <Property Name="Value" Type="nvarchar" Nullable="false" MaxLength="256" />
+    <Property Name="NotificationCode" Type="nvarchar" Nullable="false" MaxLength="50" />
   </EntityType>
   <EntityType Name="NPO">
     <Key>
@@ -884,6 +909,30 @@
       </Principal>
       <Dependent Role="MerchantStripeInfo">
         <PropertyRef Name="MerchantID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NotificationcUsercUser">
+    <End Role="cUser" Type="C4GModel.Store.cUser" Multiplicity="1" />
+    <End Role="NotificationcUser" Type="C4GModel.Store.NotificationcUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cUser">
+        <PropertyRef Name="cUserID" />
+      </Principal>
+      <Dependent Role="NotificationcUser">
+        <PropertyRef Name="cUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NotificationcUserNotification">
+    <End Role="Notifications" Type="C4GModel.Store.Notifications" Multiplicity="1" />
+    <End Role="NotificationcUser" Type="C4GModel.Store.NotificationcUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Notifications">
+        <PropertyRef Name="NotificationCode" />
+      </Principal>
+      <Dependent Role="NotificationcUser">
+        <PropertyRef Name="NotificationCode" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1438,6 +1487,7 @@
   <Function Name="Merchant_ListLocalPartnersByNPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="Username" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="Merchant_ListNames" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
   <Function Name="Merchant_ListNPORequests" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="Username" Type="nvarchar" Mode="In" />
   </Function>
@@ -1529,6 +1579,17 @@
   </Function>
   <Function Name="NewsletterUser_Signup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="Email" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="NotificationcUser_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="NotificationCode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="NotificationcUser_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+    <Parameter Name="NotificationCode" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="NotificationcUser_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="NPO_AddMerchantPartner" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="MerchantID" Type="int" Mode="In" />

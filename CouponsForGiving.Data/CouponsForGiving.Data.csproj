@@ -339,6 +339,12 @@
     <Compile Include="News_List_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Notification.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationcUser_List_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="NPO.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

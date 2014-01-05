@@ -24,6 +24,7 @@ public partial class Merchant_Signup : System.Web.UI.Page
     public bool hasSmallLogo { get; set; }
     public static XmlDocument strings;
     public static List<City> CitiesList;
+    public static List<string> BusinessNames;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -33,6 +34,7 @@ public partial class Merchant_Signup : System.Web.UI.Page
         try
         {
             CitiesList = Cities.ListAll();
+            BusinessNames = Merchants.ListNames();
         }
         catch (Exception ex)
         {
@@ -43,142 +45,65 @@ public partial class Merchant_Signup : System.Web.UI.Page
         strings.Load(Server.MapPath(String.Format("Text ({0}).xml", WebConfigurationManager.AppSettings["Language"])));
     }
 
-    protected void SubmitButton_Click(object sender, EventArgs e)
-    {
-        if (TermsCheckBox.Checked)
-        {
-            string email = "", url = "", yourPhoneNumber = "", businessName = "", businessType = "", firstName = "",
-                lastName = "", address = "", city = "",
-                state = "", zipCode = "", physicalProduct = "", productType = "",
-                country = "", currency = "", largeLogo = "", businessPhoneNumber = "";
-
-            DateTime birthdate = BirthDate.Date;
-            email = YourEmailTextBox.Text.Trim();
-            url = URLTextBox.Text.Trim();
-            url = (url.StartsWith("http") ? url : "http://" + url);
-            yourPhoneNumber = YourPhoneNumberTextBox.Text.Trim();
-
-            businessName = BusinessNameTextBox.Text.Trim();
-
-            businessType = BusinessTypeDDL.SelectedValue;
-            firstName = FirstNameTextBox.Text.Trim();
-            lastName = LastNameTextBox.Text.Trim();
-            address = AddressTextBox.Text.Trim();
-
-            int cityID = -1;
-            string cityValue = CityTextBox.Text;
-            City dbCity = null;
-
-            try
-            {
-                city = cityValue.Split(new char[] { ',' })[0].Trim();
-                state = cityValue.Split(new char[] { ',' })[1].Trim();
-                country = cityValue.Split(new char[] { ',' })[2].Trim();
-                dbCity = Cities.GetByName(city, state, country);
-                city = dbCity.Name;
-                state = dbCity.PoliticalDivision.Name;
-                country = dbCity.Country.Name;
-                cityID = dbCity.CityID;
-
-            }
-            catch (Exception ex)
-            {
-                newMerchantMessage.Text = "There was a problem retrieving your selected city. Please choose one from the autocomplete list.";
-                ex.ToString();
-            }
-
-            zipCode = ZipCodeTextBox.Text.Trim().ToUpper();
-            zipCode = zipCode.Replace(" ", string.Empty);
-            physicalProduct = PhysicalProductRBL.SelectedValue;
-            productType = ProductTypesDDL.SelectedValue;
-            currency = CurrencyRBL.SelectedValue;
-            businessPhoneNumber = PhoneNumberTextBox.Text.Trim();
-
-            string vars = String.Format("stripe_user[email]={0}&stripe_user[url]={1}&stripe_user[phone_number]={2}&stripe_user[business_name]={3}&stripe_user[business_type]={4}&stripe_user[first_name]={5}&stripe_user[last_name]={6}&stripe_user[dob_day]={7}&stripe_user[dob_month]={8}&stripe_user[dob_year]={9}&stripe_user[street_address]={10}&stripe_user[city]={11}&stripe_user[state]={12}&stripe_user[zip]={13}&stripe_user[physical_product]={14}&stripe_user[product_category]={15}&stripe_user[country]={16}&stripe_user[currency]={17}", Server.UrlEncode(email), Server.UrlEncode(url), Server.UrlEncode(businessPhoneNumber), Server.UrlEncode(businessName), Server.UrlEncode(businessType), Server.UrlEncode(firstName), Server.UrlEncode(lastName), Server.UrlEncode(birthdate.ToString("dd")), Server.UrlEncode(birthdate.ToString("MM")), Server.UrlEncode(birthdate.ToString("yyyy")), Server.UrlEncode(address), Server.UrlEncode(city), Server.UrlEncode(state), Server.UrlEncode(zipCode), Server.UrlEncode(physicalProduct), Server.UrlEncode(productType), Server.UrlEncode(country), Server.UrlEncode(currency));
-            string queryString = String.Format("https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_2dcruIQ1MEWM9BfJot2jJUPvKqJGofMU&scope=read_write&{0}", vars);
-
-            bool valid = true;
-
-
-            if (businessPhoneNumber == "")
-                businessPhoneNumber = yourPhoneNumber;
-
-            try
-            {
-                if ((businessName == "") || (address == "") || (zipCode == "") || (businessPhoneNumber == "") || (url == ""))
-                {
-                    valid = false;
-                    newMerchantMessage.Text = "All fields are required.";
-                }
-
-                int urlunique = SysDatamk.IsURLUnique(businessName);
-
-                if (urlunique != 1)
-                {
-                    valid = false;
-                    newMerchantMessage.Text = "We're sorry, but somebody else is using that name. Please select another (this is used for your unique Coupons4Giving URL).";
-                }
-
-                if (!(Utilsmk.ValidUrl(url)))
-                {
-                    valid = false;
-                    newMerchantMessage.Text = "Website invalid. (Ex. 'http://www.website.com')";
-
-                }
-
-                if (!(Utilsmk.ValidPostal(zipCode)))
-                {
-                    valid = false;
-                    newMerchantMessage.Text = "Postal / Zip Code invalid. (Ex. '90210', '90210-1234' or 'T6L2M9')";
-
-                }
-
-                if (!(Utilsmk.ValidPhone(yourPhoneNumber)))
-                {
-                    valid = false;
-                    newMerchantMessage.Text = "Please enter a valid, 10-digit phone number. (ex. 7809980120)";
-
-                }
-
-                if (!Utilsmk.ValidPhone(businessPhoneNumber))
-                {
-                    valid = false;
-                    newMerchantMessage.Text = "Your phone number is not valid. (ex. 7805556677)";
-                }
-
-               
-
-                if (email == "")
-                    email = Membership.GetUser().Email;
-
-                
-            }
-            catch (Exception ex)
-            {
-                newMerchantMessage.Text = "Something went wrong. Please send a report to our help team, and include this message: " + ex.ToString();
-            }
-        }
-        else
-            newMerchantMessage.Text = "You must read and agree to the Terms & Conditions.";
-    }
-
     [WebMethod]
     [ScriptMethod]
     public static string GetCities(string text)
     {
         string result;
 
-        result = String.Join(";", (from c in CitiesList where c.Name.ToLower().Contains(text.ToLower()) orderby c.Name select c.Name + ", " + c.PoliticalDivision.Name));
+        result = String.Join(";", (from c in CitiesList where c.Name.ToLower().Contains(text.ToLower()) orderby c.Name select c.Name + ", " + c.PoliticalDivision.Name + ", " + c.Country.Name));
 
         return result;
     }
 
     [WebMethod]
     [ScriptMethod]
-    public static string Submit(string BusinessName, string Address, string City, string ZipCode, string BusinessPhoneNumber, string URL, string Email, string LogoPath)
+    public static string IsNameTaken(string BusinessName)
     {
+        string result = "false";
+
+        BusinessNames = Merchants.ListNames();
+
+        foreach (string item in BusinessNames)
+            if (item.ToLower() == BusinessName.ToLower())
+                result = "true";
+
+        return result;
+    }
+
+    [WebMethod]
+    [ScriptMethod]
+    public static string ConnectToStripe(string FirstName, string LastName, string PhoneNumber, string BusinessName, string Description,
+        string Address, string City, string Postal, string ContactPhoneNumber, string ContactEmail, string Website, string GlobalMerchant,
+        string AutoAcceptRequests, string BusinessType, string BirthDate, string PhysicalProduct, string ProductType, string Currency)
+    {
+        string result = "";
+        strings = new XmlDocument();
+        strings.Load(HttpContext.Current.Server.MapPath(String.Format("Text ({0}).xml", WebConfigurationManager.AppSettings["Language"])));
         List<string> errors = new List<string>();
         Validation validation = null;
+        int CityID = -1;
+        DateTime birthDate = DateTime.Parse(BirthDate);
+
+        //Convert to useful variables
+        bool globalMerchant = GlobalMerchant.ToLower() == "true" ? true : false;
+        bool autoAcceptRequests = AutoAcceptRequests.ToLower() == "true" ? true : false;
+        string[] location = null;
+        string[] seperator = {","};
+
+        try
+        {
+            location = City.Replace("<p>", "").Replace("</p>", "").Split(seperator, StringSplitOptions.RemoveEmptyEntries);
+        }
+        catch (Exception ex)
+        {
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/CityError").InnerText);
+        }
+
+        string city = location[0].Trim();
+        string province = location[1].Trim();
+        string country = location[2].Trim();
+        bool physicalProduct = PhysicalProduct.ToLower() == "true" ? true : false;
 
         switch (WebConfigurationManager.AppSettings["Language"])
         {
@@ -186,78 +111,216 @@ public partial class Merchant_Signup : System.Web.UI.Page
                 validation = new Validation_EN_US();
                 break;
         }
-        //do validation here
-        if (validation.IsStringBlank(BusinessName))
-            errors.Add(strings.Sel
 
-        if (valid)
+        //Validation functions
+        if (validation.IsStringBlank(FirstName))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullFirstName").InnerText);
+
+        if (validation.IsStringTooLong(FirstName, 64))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/FirstNameTooLong").InnerText);
+
+        if (validation.ContainsCode(FirstName))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/FirstNameInvalidCharacters").InnerText);
+
+        if (validation.IsStringBlank(LastName))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullLastName").InnerText);
+
+        if (validation.IsStringTooLong(LastName, 64))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/LastNameTooLong").InnerText);
+
+        if (validation.ContainsCode(LastName))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/LastNameInvalidCharacters").InnerText);
+
+        if (validation.IsStringBlank(PhoneNumber))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullPhoneNumber").InnerText);
+
+        if (!validation.ValidPhoneNumber(PhoneNumber))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/InvalidPhoneNumber").InnerText);
+
+        if (validation.IsStringTooLong(PhoneNumber, 20))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/PhoneNumberTooLong").InnerText);
+
+        if (validation.ContainsCode(PhoneNumber))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/PhoneNumberInvalidCharacters").InnerText);
+
+        if (validation.IsStringBlank(BusinessName))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullBusinessName").InnerText);
+
+        if (validation.IsStringTooLong(BusinessName, 64))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/BusinessNameTooLong").InnerText);
+
+        if (validation.ContainsCode(BusinessName))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/BusinessNameInvalidCharacters").InnerText);
+
+        if (bool.Parse(IsNameTaken(BusinessName)))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/BusinessNameTaken").InnerText);
+
+        if (validation.IsStringBlank(Description))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullDescription").InnerText);
+
+        if (validation.IsStringTooLong(Description, 160))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/DescriptionTooLong").InnerText);
+
+        if (validation.IsStringTooShort(Description, 10))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/DescriptionTooShort").InnerText);
+
+        if (validation.ContainsCode(Description))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/DescriptionInvalidCharacters").InnerText);
+
+        if (!validation.ContainsSpaces(Description))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/DescriptionOneWord").InnerText);
+
+        if (validation.IsStringBlank(Address))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullAddress").InnerText);
+
+        if (validation.IsStringBlank(City))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullCity").InnerText);
+        else
         {
             try
             {
-                string tempLogo = "temp";
-                int newStatusID = 2;
-                int newMerchantID = -1;
-                string thisusername = HttpContext.Current.User.Identity.Name;
+                CityID = Cities.GetByNameWithProvinceAndCountry(city, province, country).CityID;
+            }
+            catch (Exception ex)
+            {
+                errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/CityError").InnerText);
+            }
+        }
+
+        if (validation.IsStringBlank(Postal))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullPostal").InnerText);
+
+        if (validation.IsStringTooShort(Postal, 5))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/PostalTooShort").InnerText);
+
+        if (!validation.IsStringBlank(ContactPhoneNumber))
+        {
+            if (validation.IsStringBlank(ContactPhoneNumber))
+                errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullPhoneNumber").InnerText);
+
+            if (!validation.ValidPhoneNumber(ContactPhoneNumber))
+                errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/InvalidPhoneNumber").InnerText);
+
+            if (validation.IsStringTooLong(ContactPhoneNumber, 20))
+                errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/PhoneNumberTooLong").InnerText);
+
+            if (validation.ContainsCode(ContactPhoneNumber))
+                errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/PhoneNumberInvalidCharacters").InnerText);
+        }
+        else
+            ContactPhoneNumber = PhoneNumber;
+
+        if (!validation.IsStringBlank(ContactEmail))
+        {
+            if (validation.IsStringBlank(ContactEmail))
+                errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullEmail").InnerText);
+
+            if (validation.IsStringTooShort(ContactEmail, 6))
+                errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/EmailTooShort").InnerText);
+
+            if (validation.IsStringTooLong(ContactEmail, 64))
+                errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/EmailTooLong").InnerText);
+
+            if (validation.ContainsCode(ContactEmail))
+                errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/EmailInvalidCharacters").InnerText);
+        }
+        else
+            ContactEmail = Membership.GetUser().Email;
+
+        //Ensure website starts with 'http://'
+        Website = (Website.StartsWith("http") ? Website : "http://" + Website);
+
+        if (validation.IsStringBlank(Website))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullWebsite").InnerText);
+
+        if (validation.IsStringTooShort(Website, 8))
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/WebsiteTooShort").InnerText);
+
+        if (errors.Count == 0)
+        {
+            try
+            {
+                int defaultStatusID = 2;
+                int merchantID = -1;
+                string username = HttpContext.Current.User.Identity.Name;
+                string logoPath = "";
+
+                //Check to see if there's a temp image, assign default if not
+                DirectoryInfo root = new DirectoryInfo(HttpContext.Current.Server.MapPath("~/tmp/Images/Signup"));
+                FileInfo[] listFiles = root.GetFiles(HttpContext.Current.User.Identity.Name + "logo.*");
+
+                if (listFiles.Length > 0)
+                {
+                    logoPath = HttpContext.Current.Server.MapPath("..\\Images\\Merchant\\" + BusinessName);
+                    logoPath = Utilsmk.GetOrCreateFolder(logoPath) + listFiles[0].Name;
+                    listFiles[0].MoveTo(logoPath);
+                }
+                else
+                {
+                    logoPath = HttpContext.Current.Server.MapPath("~/Images/c4g_home_npos_step4.png");
+
+                    try
+                    {
+                        NotificationcUsers.Insert(String.Format("NoProfileImage({0})", WebConfigurationManager.AppSettings["Language"]), username);
+                    }
+                    catch (Exception ex)
+                    {
+                        ex.ToString();
+                    }
+                }
 
                 using (TransactionScope ts = new TransactionScope())
                 {
                     try
                     {
-                        newMerchantID = SysDatamk.AddMerchant(businessName, tempLogo, tempLogo, address, cityID, zipCode, businessPhoneNumber, url, newStatusID, thisusername, email);
+                        merchantID = SysDatamk.AddMerchant(BusinessName, logoPath, logoPath, Address,
+                            CityID, Postal, PhoneNumber, Website, defaultStatusID, username, ContactEmail);
 
-                        if (newMerchantID > -1)
+                        if (merchantID > -1)
                         {
-                            string virtualPathL = "";
-                            string virtualPathS = "";
+                            if (!globalMerchant)
+                                SysDatamk.AddMerchantLocation(merchantID, Address, CityID, PhoneNumber);
 
-                            if (HttpContext.Current.Session["LargeLogoPath"] != null)
-                            {
-                                string newPath = HttpContext.Current.Server.MapPath("..\\Images\\NPO\\" + newMerchantID);
-                                newPath = Utilsmk.GetOrCreateFolder(newPath) + HttpContext.Current.Session["LargeLogoFileName"].ToString();
+                            SysData.MerchantInfo_Insert(username, FirstName + LastName, ContactPhoneNumber, Description);
+                            MerchantSettings.Insert(merchantID, autoAcceptRequests);
 
-                                string oldPath = ;
+                            string vars = String.Format("stripe_user[email]={0}&stripe_user[url]={1}&stripe_user[phone_number]={2}&stripe_user[business_name]={3}&stripe_user[business_type]={4}&stripe_user[first_name]={5}&stripe_user[last_name]={6}&stripe_user[dob_day]={7}&stripe_user[dob_month]={8}&stripe_user[dob_year]={9}&stripe_user[street_address]={10}&stripe_user[city]={11}&stripe_user[state]={12}&stripe_user[zip]={13}&stripe_user[physical_product]={14}&stripe_user[product_category]={15}&stripe_user[country]={16}&stripe_user[currency]={17}", 
+                                HttpContext.Current.Server.UrlEncode(ContactEmail), HttpContext.Current.Server.UrlEncode(Website), HttpContext.Current.Server.UrlEncode(PhoneNumber), 
+                                HttpContext.Current.Server.UrlEncode(BusinessName), HttpContext.Current.Server.UrlEncode(BusinessType), HttpContext.Current.Server.UrlEncode(FirstName),
+                                HttpContext.Current.Server.UrlEncode(LastName), HttpContext.Current.Server.UrlEncode(birthDate.ToString("dd")),
+                                HttpContext.Current.Server.UrlEncode(birthDate.ToString("MM")), HttpContext.Current.Server.UrlEncode(birthDate.ToString("yyyy")), 
+                                HttpContext.Current.Server.UrlEncode(Address), HttpContext.Current.Server.UrlEncode(city), HttpContext.Current.Server.UrlEncode(province), 
+                                HttpContext.Current.Server.UrlEncode(Postal), HttpContext.Current.Server.UrlEncode(physicalProduct.ToString()), HttpContext.Current.Server.UrlEncode(ProductType), 
+                                HttpContext.Current.Server.UrlEncode(country), HttpContext.Current.Server.UrlEncode(Currency));
 
-                                File.Move(oldPath, newPath);
-
-                                virtualPathL = Utilsmk.ResolveVirtualPath(newPath);
-                            }
-                            else
-                            {
-                                if (newMerchantLargeLogo.HasFile)
-                                {
-                                    largeLogo = Utilsmk.SaveNewLogo(newMerchantLargeLogo.PostedFile, newMerchantID, Server, "Merchant");
-                                    virtualPathL = largeLogo.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
-                                    virtualPathS = virtualPathL;
-                                }
-                                else
-                                    virtualPathL = "Images/c4g_logo_temporary_profile.png";
-                            }
-
-                            SysDatamk.UpdateMerchant(newMerchantID, businessName, virtualPathL, virtualPathS, address, cityID, zipCode, businessPhoneNumber, url, newStatusID);
-                            SysDatamk.AddMerchantLocation(newMerchantID, address, cityID, businessPhoneNumber);
-                            SysData.MerchantInfo_Insert(User.Identity.Name, FirstNameTextBox.Text.Trim() + LastNameTextBox.Text.Trim(), yourPhoneNumber, DescriptionTextBox.Text.Trim());
-                            MerchantSettings.Insert(newMerchantID, AutoAcceptRequestsCheckBox.Checked);
-
+                            result = String.Format("https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_2dcruIQ1MEWM9BfJot2jJUPvKqJGofMU&scope=read_write&{0}", vars);
+                            
                             ts.Complete();
-                            Response.Redirect(queryString, false);
                         }
                         else
                         {
-                            newMerchantMessage.Text = "Oops! Something went wrong with the submission...";
+                            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/ServerError").InnerText);
                             ts.Dispose();
                         }
                     }
                     catch (Exception ex)
                     {
-                        newMerchantMessage.Text = ex.ToString();
+                        errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/ServerError").InnerText);
                         ts.Dispose();
+                        ex.ToString();
                     }
                 }
             }
             catch (Exception ex)
             {
-                newMerchantMessage.Text = ex.ToString();
+                errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/ServerError").InnerText);
+                ex.ToString();
             }
         }
+
+        if (errors.Count > 0)
+            throw new Exception(validation.WriteClientErrorsList(errors));
+
+        return result;
     }
 }

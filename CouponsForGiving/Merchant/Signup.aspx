@@ -87,7 +87,28 @@
             if (IsStringBlank(name))
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullBusinessName").InnerText %>');
 
+            if (IsStringTooLong(name, 64))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/BusinessNameTooLong").InnerText %>');
+
+            if (containsCode(name))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/BusinessNameInvalidCharacters").InnerText %>');
+
             if (arguments.length == 0) {
+
+                PageMethods.IsNameTaken(name, function (message) {
+                    if (message == "true") {
+                        $("#BusinessNameTextBoxErrors").css('display', 'block');
+                        $("#BusinessNameTextBoxErrors").html('<ul><li><%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/BusinessNameTaken").InnerText %></li></ul>');
+                        $("#SubmitButton").attr('disabled', 'disabled');
+                        checkForm();
+                    }
+                    else {
+                        $("#BusinessNameTextBoxErrors").css('display', 'none');
+                        $("#SubmitButton").removeAttr('disabled');
+                        checkForm();
+                    }
+                });
+
                 writeErrors("BusinessNameTextBoxErrors", errors);
                 checkForm();
             }
@@ -131,6 +152,21 @@
 
             if (arguments.length == 0) {
                 writeErrors("AddressTextBoxErrors", errors);
+                checkForm();
+            }
+
+            return errors;
+        }
+
+        function checkCity(write) {
+            var city = $("#SelectedCity").html();
+            var errors = new Array();
+            console.log(city);
+            if (IsStringBlank(city))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullCity").InnerText %>');
+
+            if (arguments.length == 0) {
+                writeErrors('CityError', errors);
                 checkForm();
             }
 
@@ -250,8 +286,56 @@
                 writeErrors('FormErrors', errors);
             }
             else {
-                var 
-                //Submit the form
+                var firstName = $("#FirstNameTextBox").val();
+                var lastName = $("#LastNameTextBox").val();
+                var phone = $("#YourPhoneNumberTextBox").val();
+                var businessName = $("#BusinessNameTextBox").val();
+                var description = $("#DescriptionTextBox").val();
+                var address = $("#AddressTextBox").val();
+                var city = $("#SelectedCity").html();
+                var postal = $("#ZipCodeTextBox").val();
+                var contactPhone = $("#PhoneNumberTextBox").val();
+                var contactEmail = $("#YourEmailTextBox").val();
+                var website = $("#URLTextBox").val();
+                var globalMerchant = $("#GlobalMarketplaceCheckBox").is(":checked");
+                var autoAccept = $("#AutoAcceptRequestsCheckBox").is(":checked");
+                var businessType = $("#BusinessTypeDDL option:selected").text();
+                var birthDate = $("#DayDDL").val() + "/" + $("#MonthDDL").val() + "/" + $("#YearDDL").val();
+                var physicalProduct = $('input:radio[name$="PhysicalProductRBL"]:checked').val();
+                var productType = $("#ProductTypesDDL option:selected").text();
+                var currency = $('input:radio[name$="CurrencyRBL"]:checked').val();
+
+                console.log($("#FirstNameTextBox").val());
+                console.log($("#LastNameTextBox").val());
+                console.log($("#YourPhoneNumberTextBox").val());
+                console.log($("#BusinessNameTextBox").val());
+                console.log($("#DescriptionTextBox").val());
+                console.log($("#AddressTextBox").val());
+                console.log($("#SelectedCity").html());
+                console.log($("#ZipCodeTextBox").val());
+                console.log($("#PhoneNumberTextBox").val());
+                console.log($("#YourEmailTextBox").val());
+                console.log($("#URLTextBox").val());
+                console.log($("#GlobalMarketplaceCheckBox").is(":checked"));
+                console.log($("#AutoAcceptRequestsCheckBox").is(":checked"));
+                console.log($("#BusinessTypeDDL option:selected").text());
+                console.log($("#DayDDL").val() + "/" + $("#MonthDDL").val() + "/" + $("#YearDDL").val());
+                console.log($('input:radio[name$="PhysicalProductRBL"]:checked').val());
+                console.log($("#ProductTypesDDL option:selected").text());
+                console.log($('input:radio[name$="CurrencyRBL"]:checked').val());
+
+                PageMethods.ConnectToStripe(firstName, lastName, phone, businessName, description,
+                    address, city, postal, contactPhone, contactEmail, website, globalMerchant,
+                    autoAccept, businessType, birthDate, physicalProduct, productType, currency,
+                    function (message) {
+                        console.log(message);
+                        window.location.replace(message);
+                    },
+                    function (message) {
+                        console.log(message);
+                        $("#FormErrors").css('display', 'block');
+                        $("#FormErrors").html('' + message._message + '');
+                    });
             }
         }
 
@@ -262,6 +346,8 @@
             errors.push.apply(errors, checkYourPhoneNumber(false));
             errors.push.apply(errors, checkBusinessName(false));
             errors.push.apply(errors, checkDescription(false));
+            errors.push.apply(errors, checkAddress(false));
+            errors.push.apply(errors, checkCity(false));
             errors.push.apply(errors, goPostal(false));
             errors.push.apply(errors, checkBusinessPhone(false));
             errors.push.apply(errors, checkYourEmail(false));
@@ -321,6 +407,7 @@
             $("#SelectedCity").css('display', 'block');
             $("#CityID").html(city);
             $("#CitiesAutoCompleteBox").html('');
+            $("#CityTextBox").val('');
 
             $("#SelectedCity").click(function () {
                 $("#SelectedCity").html('');
@@ -445,6 +532,7 @@
         <p>Tell us about your organization:</p>
         <hr>
         <div class="Form">
+            <%--Basic Information --%>
             <h3>Tell Us About Yourself and Your Business:</h3>
             <p><asp:Label ID="newMerchantMessage" runat="server"></asp:Label></p>
             <div class="FormRow">
@@ -476,7 +564,17 @@
                 <asp:TextBox ID="DescriptionTextBox" ClientIDMode="Static" runat="server" TextMode="MultiLine" MaxLength="200"
                     onkeyup="checkDescription()" onblur="checkDescription()" oninput="checkDescription()"></asp:TextBox>
                 <div class="ErrorDiv" id="DescriptionTextBoxErrors"></div>
+                <div class="ClearFix"></div>
             </div>
+            <div class="FormRow">
+                <label>Logo<br /><small>This will be your logo on Coupons4Giving.</small></label>
+                <input id="Image" name="files[]" type="file" />
+                <input id="UploadButton" type="button" onclick="uploadImage()" value="Upload" disabled="disabled" />
+                <div id="ImageErrors" class="ErrorDiv"></div>
+                <div id="Loading" class="hide"><img src="../Images/loading.gif" alt="Loading"/><p>Loading...</p></div>
+                <div id="UploadedImage"><img src="../Images/c4g_home_step4.png" alt="DefaultProfilePic" /></div>
+            </div>
+            <%--Contact Information --%>
             <h4>Contact Information:</h4>
             <div class="FormRow">
                 <label>Street Address</label>
@@ -485,7 +583,7 @@
                 <div class="ErrorDiv" id="AddressTextBoxErrors"></div>
             </div>
             <div class="FormRow">
-                <label>City <small>Please select from the dropdown.</small></label>
+                <label>City<br /><small>Please select from the dropdown.</small></label>
                 <asp:TextBox ID="CityTextBox" runat="server" ClientIDMode="Static" onkeyup="getCities()"></asp:TextBox>
                 <div id="CitiesAutoCompleteBox" class="AutoCompleteBox"></div>
                 <div id="SelectedCity" class="hide"></div>
@@ -495,7 +593,7 @@
             </div>
             <div class="FormRow">
                 <label>Postal/Zip Code</label>
-                <asp:TextBox ID="ZipCodeTextBox" runat="server" MaxLength="16" placeholder="T6L2M9, 90210, or 90210-1234"
+                <asp:TextBox ID="ZipCodeTextBox" runat="server" ClientIDMode="Static" MaxLength="16" placeholder="T6L2M9, 90210, or 90210-1234"
                     onkeyup="goPostal()" onblur="goPostal()" oninput="goPostal()"></asp:TextBox>
                 <div class="ErrorDiv" id="ZipCodeTextBoxErrors"></div>
             </div>
@@ -504,13 +602,6 @@
                 <asp:TextBox ID="PhoneNumberTextBox" runat="server" onkeyup="checkBusinessPhone()" onblur="checkBusinessPhone()" 
                     oninput="checkBusinessPhone()" ClientIDMode="Static"></asp:TextBox>
                 <div id="PhoneNumberTextBoxErrors" class="ErrorDiv"></div>
-            </div>
-            <div class="FormRow">
-                <asp:Label ID="AARLabel" runat="server" Text="Accept All Not-For-Profit Partner Requests" 
-                    AssociatedControlID="AutoAcceptRequestsCheckBox"></asp:Label>
-                <asp:CheckBox ID="AutoAcceptRequestsCheckBox" runat="server" Checked="true" 
-                    onClick="notify()" ClientIDMode="Static"/>
-                <div id="AARErrors" class="ErrorDiv"></div>
             </div>
             <div class="FormRow">
                 <label>Email<small>(if different from the one you used to register)</small></label>
@@ -525,10 +616,24 @@
                     oninput="checkWebsite()"></asp:TextBox>
                 <div id="URLTextBoxErrors" class="ErrorDiv"></div>
             </div>
+            <%-- Additional Settings --%>
+            <h4>Additional Settings</h4>
+            <div class="FormRow">
+                <asp:Label ID="AARLabel" runat="server" Text="Accept All Not-For-Profit Partner Requests" 
+                    AssociatedControlID="AutoAcceptRequestsCheckBox"></asp:Label>
+                <asp:CheckBox ID="AutoAcceptRequestsCheckBox" runat="server" Checked="true" 
+                    onClick="notify()" ClientIDMode="Static"/>
+                <div id="AARErrors" class="ErrorDiv"></div>
+            </div>
+            <div class="FormRow">
+                <label>Are you an online-only merchant or e-Tailer?</label>
+                <input id="GlobalMarketplaceCheckBox" type="checkbox" />
+            </div>
+            <%--Additional Information --%>
             <h4>Additional Information (For Stripe)</h4>
             <div class="FormRow">
                 <asp:Label ID="Label5" runat="server" Text="Business Type" AssociatedControlID="BusinessTypeDDL"></asp:Label>
-                <asp:DropDownList ID="BusinessTypeDDL" runat="server">
+                <asp:DropDownList ID="BusinessTypeDDL" runat="server" ClientIDMode="Static">
                     <asp:ListItem Value="corporation">Corporation</asp:ListItem>
                     <asp:ListItem Value="sole_prop">Sole Proprietorship</asp:ListItem>
                     <asp:ListItem Value="partnership">Partnership</asp:ListItem>
@@ -537,7 +642,7 @@
             </div>
             <div class="FormRow">
                 <label>Do you sell a physical product?</label>
-                <asp:RadioButtonList ID="PhysicalProductRBL" runat="server">
+                <asp:RadioButtonList ID="PhysicalProductRBL" runat="server" ClientIDMode="Static">
                     <asp:ListItem Value="true">Yes</asp:ListItem>
                     <asp:ListItem Value="false">No</asp:ListItem>
                 </asp:RadioButtonList>
@@ -546,7 +651,7 @@
             <div class="FormRow">
                 <asp:Label ID="Label15" runat="server" Text="What type of product do you deal with?" 
                     AssociatedControlID="ProductTypesDDL"></asp:Label>
-                <asp:DropDownList ID="ProductTypesDDL" runat="server">
+                <asp:DropDownList ID="ProductTypesDDL" runat="server" ClientIDMode="Static">
                     <asp:ListItem Value="art_and_graphic_design">Arts &amp; Graphic Design</asp:ListItem>
                     <asp:ListItem Value="advertising">Advertising</asp:ListItem>
                     <asp:ListItem Value="clothing_and_accessories">Clothing &amp; Accessories</asp:ListItem>
@@ -563,21 +668,13 @@
                 </asp:DropDownList>
             </div>
             <div class="FormRow">
-                <%-- Image Upload Control --%>
-                <label>Logo<br /><small>This will be your logo on Coupons4Giving.</small></label>
-                <input id="Image" name="files[]" type="file" />
-                <input id="UploadButton" type="button" onclick="uploadImage()" value="Upload" disabled="disabled" />
-                <div id="ImageErrors" class="ErrorDiv"></div>
-                <div id="Loading" class="hide"><img src="../Images/loading.gif" alt="Loading"/><p>Loading...</p></div>
-                <div id="UploadedImage"><img src="../Images/c4g_home_step4.png" alt="DefaultProfilePic" /></div>
-            </div>
-            <div class="FormRow">
                 <asp:Label ID="Label8" runat="server" Text="Birth Date" AssociatedControlID="BirthDate"></asp:Label>
                 <UC:DateControl ID="BirthDate" runat="server" />
             </div>
             <div class="FormRow">
                 <asp:Label ID="Label19" runat="server" Text="Currency" AssociatedControlID="CurrencyRBL"></asp:Label>
-                <asp:RadioButtonList ID="CurrencyRBL" runat="server" DataSourceID="CurrenciesXDS" DataTextField="name" DataValueField="code"></asp:RadioButtonList>
+                <asp:RadioButtonList ID="CurrencyRBL" runat="server" DataSourceID="CurrenciesXDS" DataTextField="name" DataValueField="code"
+                    ClientIDMode="Static" CssClass="Currencies"></asp:RadioButtonList>
                 <asp:XmlDataSource ID="CurrenciesXDS" runat="server" DataFile="~/SupportedCurrencies.xml"></asp:XmlDataSource>
                 <div class="ClearFix"></div>
             </div>

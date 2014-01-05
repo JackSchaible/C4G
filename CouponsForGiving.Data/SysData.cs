@@ -427,6 +427,11 @@ namespace CouponsForGiving.Data.Classes
 
     public static class Merchants
     {
+        public static List<string> ListNames()
+        {
+            return new C4GEntities().Merchant_ListNames().ToList<string>();
+        }
+
         public static List<Merchant> ListPartnersByNPO(string username)
         {
             return new C4GEntities().Merchant_ListPartnersByNPO(username).ToList<Merchant>();
@@ -536,6 +541,24 @@ namespace CouponsForGiving.Data.Classes
         public static List<Merchant> ListForNPO(string username, int cityCode)
         {
             return new C4GEntities().Merchant_ListForNPO(username, cityCode).ToList<Merchant>();
+        }
+    }
+
+    public static class NotificationcUsers
+    {
+        public static List<Notification> ListByUser(string Username)
+        {
+            return new C4GEntities().NotificationcUser_List(Username).ToList<Notification>();
+        }
+
+        public static void Insert(string NotificationCode, string Username)
+        {
+            new C4GEntities().NotificationcUser_Insert(Username, NotificationCode);
+        }
+
+        public static void Delete(string NotificationCode, string Username)
+        {
+            new C4GEntities().NotificationcUser_Delete(NotificationCode, Username);
         }
     }
 
