@@ -70,6 +70,50 @@ public partial class Default_DealPage : System.Web.UI.Page
 
     [WebMethod]
     [ScriptMethod]
+    public static void AddToCart(int dealInstanceID)
+    {
+        DealInstance deal = SysData.DealInstance_GetByID(dealInstanceID); ;
+        Merchant merchant = deal.Deal.Merchant;
+        ShoppingCart order = new ShoppingCart("", -1, "", dealInstanceID,
+            deal.Deal.Name, deal.Deal.MerchantID, deal.Deal.Merchant.Name, deal.Deal.Prices.FirstOrDefault<Price>().GiftValue,
+            deal.Deal.Prices.FirstOrDefault<Price>().RetailValue);
+
+        if (HttpContext.Current.Session["Cart"] == null)
+        {
+            List<ShoppingCart> orders = new List<ShoppingCart>() { order };
+            HttpContext.Current.Session["Cart"] = orders;
+        }
+        else
+        {
+            List<ShoppingCart> orders = (List<ShoppingCart>)HttpContext.Current.Session["Cart"];
+            bool found = false;
+            int curQTY = 0;
+
+            foreach (ShoppingCart item in orders)
+            {
+                if (item.CampaignID == order.CampaignID && item.DealInstanceID == order.DealInstanceID)
+                {
+                    found = true;
+                    curQTY++;
+                }
+            }
+
+            if (found)
+                if (1 + curQTY > deal.Deal.LimitPerCustomer)
+                    throw new Exception(String.Format("You have exceeded the limit of coupons per customer ({0}).", deal.Deal.LimitPerCustomer));
+                else
+                {
+                    orders.Add(order);
+                }
+            else
+                orders.Add(order);
+
+            HttpContext.Current.Session["Cart"] = orders;
+        }
+    }
+
+    [WebMethod]
+    [ScriptMethod]
     public static void AddToCart(int dealInstanceID, int campaignID)
     {
         Campaign campaign = SysData.Campaign_Get(campaignID);

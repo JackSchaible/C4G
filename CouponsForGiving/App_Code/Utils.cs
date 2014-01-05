@@ -195,7 +195,6 @@ namespace CouponsForGiving
 
     public class HttpRendering
     {
-        //28
         /// <summary>
         /// Outputs a string for user on the NPO Campaign Page.
         /// </summary>

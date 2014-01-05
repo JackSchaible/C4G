@@ -227,5 +227,4 @@
     <asp:Panel ID="ServerErrorDiv" runat="server" CssClass="ServerErrors" ClientIDMode="Static" >
         <p>Please contact us at <a href="mailto:support@coupons4giving.com">support@coupons4giving.ca</a> and reference the error below. We'll get back to you as soon as possible.</p>
     </asp:Panel>
->>>>>>> eac7824f91db02d5b20f96c87e399cdc26008452
 </asp:Content>
