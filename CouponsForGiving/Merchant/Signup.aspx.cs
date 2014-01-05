@@ -16,12 +16,13 @@ using System.Xml;
 using System.Web.Configuration;
 using System.Web.Services;
 using System.Web.Script.Services;
+using System.Collections.Specialized;
 
 public partial class Merchant_Signup : System.Web.UI.Page
 {
     public bool hasLargeLogo { get; set; }
     public bool hasSmallLogo { get; set; }
-    public XmlDocument strings;
+    public static XmlDocument strings;
     public static List<City> CitiesList;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -31,40 +32,12 @@ public partial class Merchant_Signup : System.Web.UI.Page
 
         try
         {
-            string thisUser = User.Identity.Name;
-            if (thisUser == "")
-            {
-                Response.Redirect("../Account/Login.aspx", true);
-            }
-
             CitiesList = Cities.ListAll();
         }
         catch (Exception ex)
         {
             newMerchantMessage.Text = ex.ToString();
         }
-
-        hasLargeLogo = false;
-        hasSmallLogo = false;
-
-        if (newMerchantLargeLogo.HasFile)
-        {
-            HttpPostedFile file = newMerchantLargeLogo.PostedFile;
-            string folderPath = Server.MapPath("..\\tmp\\Images\\Signup\\");
-            string fileName = User.Identity.Name + "--" + file.FileName;
-
-            string physPath = folderPath + @"\" + fileName;
-
-            file.SaveAs(physPath);
-            Session["LargeLogoPath"] = folderPath;
-            Session["LargeLogoFileName"] = fileName;
-        }
-
-        if (Session["LargeLogoPath"] != null)
-            hasLargeLogo = true;
-
-        if (Session["SmallLogoPath"] != null)
-            hasSmallLogo = true;
 
         strings = new XmlDocument();
         strings.Load(Server.MapPath(String.Format("Text ({0}).xml", WebConfigurationManager.AppSettings["Language"])));
@@ -119,7 +92,6 @@ public partial class Merchant_Signup : System.Web.UI.Page
             physicalProduct = PhysicalProductRBL.SelectedValue;
             productType = ProductTypesDDL.SelectedValue;
             currency = CurrencyRBL.SelectedValue;
-            largeLogo = newMerchantLargeLogo.FileName;
             businessPhoneNumber = PhoneNumberTextBox.Text.Trim();
 
             string vars = String.Format("stripe_user[email]={0}&stripe_user[url]={1}&stripe_user[phone_number]={2}&stripe_user[business_name]={3}&stripe_user[business_type]={4}&stripe_user[first_name]={5}&stripe_user[last_name]={6}&stripe_user[dob_day]={7}&stripe_user[dob_month]={8}&stripe_user[dob_year]={9}&stripe_user[street_address]={10}&stripe_user[city]={11}&stripe_user[state]={12}&stripe_user[zip]={13}&stripe_user[physical_product]={14}&stripe_user[product_category]={15}&stripe_user[country]={16}&stripe_user[currency]={17}", Server.UrlEncode(email), Server.UrlEncode(url), Server.UrlEncode(businessPhoneNumber), Server.UrlEncode(businessName), Server.UrlEncode(businessType), Server.UrlEncode(firstName), Server.UrlEncode(lastName), Server.UrlEncode(birthdate.ToString("dd")), Server.UrlEncode(birthdate.ToString("MM")), Server.UrlEncode(birthdate.ToString("yyyy")), Server.UrlEncode(address), Server.UrlEncode(city), Server.UrlEncode(state), Server.UrlEncode(zipCode), Server.UrlEncode(physicalProduct), Server.UrlEncode(productType), Server.UrlEncode(country), Server.UrlEncode(currency));
@@ -174,98 +146,12 @@ public partial class Merchant_Signup : System.Web.UI.Page
                     newMerchantMessage.Text = "Your phone number is not valid. (ex. 7805556677)";
                 }
 
-                if (newMerchantLargeLogo.HasFile)
-                {
-                    if (!(Utilsmk.ValidImage(newMerchantLargeLogo.PostedFile.InputStream)))
-                    {
-                        valid = false;
-                        newMerchantMessage.Text = "Large Logo is not a valid image file type. (Ex. .png, .jpeg, .png, .gif)";
-
-                    }
-                }
-
-                if ((newMerchantLargeLogo.HasFile) && valid)
-                {
-                    if (!(Utilsmk.ValidLogoSize(newMerchantLargeLogo.PostedFile.ContentLength)))
-                    {
-                        valid = false;
-                        newMerchantMessage.Text = "Large Logo file size must be less than 4MB.";
-
-                    }
-                }
+               
 
                 if (email == "")
                     email = Membership.GetUser().Email;
 
-                if (valid)
-                {
-                    try
-                    {
-                        string tempLogo = "temp";
-                        int newStatusID = 2;
-                        int newMerchantID = -1;
-                        string thisusername = User.Identity.Name;
-
-                        using (TransactionScope ts = new TransactionScope())
-                        {
-                            try
-                            {
-                                newMerchantID = SysDatamk.AddMerchant(businessName, tempLogo, tempLogo, address, cityID, zipCode, businessPhoneNumber, url, newStatusID, thisusername, email);
-
-                                if (newMerchantID > -1)
-                                {
-                                    string virtualPathL = "";
-                                    string virtualPathS = "";
-
-                                    if (Session["LargeLogoPath"] != null)
-                                    {
-                                        string newPath = Server.MapPath("..\\Images\\NPO\\" + newMerchantID);
-                                        newPath = Utilsmk.GetOrCreateFolder(newPath) + Session["LargeLogoFileName"].ToString();
-
-                                        string oldPath = Session["LargeLogoPath"].ToString() + Session["LargeLogoFileName"].ToString();
-
-                                        File.Move(oldPath, newPath);
-
-                                        virtualPathL = Utilsmk.ResolveVirtualPath(newPath);
-                                    }
-                                    else
-                                    {
-                                        if (newMerchantLargeLogo.HasFile)
-                                        { 
-                                            largeLogo = Utilsmk.SaveNewLogo(newMerchantLargeLogo.PostedFile, newMerchantID, Server, "Merchant");
-                                            virtualPathL = largeLogo.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
-                                            virtualPathS = virtualPathL;
-                                        }
-                                        else
-                                            virtualPathL = "Images/c4g_logo_temporary_profile.png";
-                                    }
-
-                                    SysDatamk.UpdateMerchant(newMerchantID, businessName, virtualPathL, virtualPathS, address, cityID, zipCode, businessPhoneNumber, url, newStatusID);
-                                    SysDatamk.AddMerchantLocation(newMerchantID, address, cityID, businessPhoneNumber);
-                                    SysData.MerchantInfo_Insert(User.Identity.Name, FirstNameTextBox.Text.Trim() + LastNameTextBox.Text.Trim(), yourPhoneNumber, DescriptionTextBox.Text.Trim());
-                                    MerchantSettings.Insert(newMerchantID, AutoAcceptRequestsCheckBox.Checked);
-
-                                    ts.Complete();
-                                    Response.Redirect(queryString, false);
-                                }
-                                else
-                                {
-                                    newMerchantMessage.Text = "Oops! Something went wrong with the submission...";
-                                    ts.Dispose();
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                newMerchantMessage.Text = ex.ToString();
-                                ts.Dispose();
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        newMerchantMessage.Text = ex.ToString();
-                    }
-                }
+                
             }
             catch (Exception ex)
             {
@@ -285,5 +171,93 @@ public partial class Merchant_Signup : System.Web.UI.Page
         result = String.Join(";", (from c in CitiesList where c.Name.ToLower().Contains(text.ToLower()) orderby c.Name select c.Name + ", " + c.PoliticalDivision.Name));
 
         return result;
+    }
+
+    [WebMethod]
+    [ScriptMethod]
+    public static string Submit(string BusinessName, string Address, string City, string ZipCode, string BusinessPhoneNumber, string URL, string Email, string LogoPath)
+    {
+        List<string> errors = new List<string>();
+        Validation validation = null;
+
+        switch (WebConfigurationManager.AppSettings["Language"])
+        {
+            case "EN-US":
+                validation = new Validation_EN_US();
+                break;
+        }
+        //do validation here
+        if (validation.IsStringBlank(BusinessName))
+            errors.Add(strings.Sel
+
+        if (valid)
+        {
+            try
+            {
+                string tempLogo = "temp";
+                int newStatusID = 2;
+                int newMerchantID = -1;
+                string thisusername = HttpContext.Current.User.Identity.Name;
+
+                using (TransactionScope ts = new TransactionScope())
+                {
+                    try
+                    {
+                        newMerchantID = SysDatamk.AddMerchant(businessName, tempLogo, tempLogo, address, cityID, zipCode, businessPhoneNumber, url, newStatusID, thisusername, email);
+
+                        if (newMerchantID > -1)
+                        {
+                            string virtualPathL = "";
+                            string virtualPathS = "";
+
+                            if (HttpContext.Current.Session["LargeLogoPath"] != null)
+                            {
+                                string newPath = HttpContext.Current.Server.MapPath("..\\Images\\NPO\\" + newMerchantID);
+                                newPath = Utilsmk.GetOrCreateFolder(newPath) + HttpContext.Current.Session["LargeLogoFileName"].ToString();
+
+                                string oldPath = ;
+
+                                File.Move(oldPath, newPath);
+
+                                virtualPathL = Utilsmk.ResolveVirtualPath(newPath);
+                            }
+                            else
+                            {
+                                if (newMerchantLargeLogo.HasFile)
+                                {
+                                    largeLogo = Utilsmk.SaveNewLogo(newMerchantLargeLogo.PostedFile, newMerchantID, Server, "Merchant");
+                                    virtualPathL = largeLogo.Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
+                                    virtualPathS = virtualPathL;
+                                }
+                                else
+                                    virtualPathL = "Images/c4g_logo_temporary_profile.png";
+                            }
+
+                            SysDatamk.UpdateMerchant(newMerchantID, businessName, virtualPathL, virtualPathS, address, cityID, zipCode, businessPhoneNumber, url, newStatusID);
+                            SysDatamk.AddMerchantLocation(newMerchantID, address, cityID, businessPhoneNumber);
+                            SysData.MerchantInfo_Insert(User.Identity.Name, FirstNameTextBox.Text.Trim() + LastNameTextBox.Text.Trim(), yourPhoneNumber, DescriptionTextBox.Text.Trim());
+                            MerchantSettings.Insert(newMerchantID, AutoAcceptRequestsCheckBox.Checked);
+
+                            ts.Complete();
+                            Response.Redirect(queryString, false);
+                        }
+                        else
+                        {
+                            newMerchantMessage.Text = "Oops! Something went wrong with the submission...";
+                            ts.Dispose();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        newMerchantMessage.Text = ex.ToString();
+                        ts.Dispose();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                newMerchantMessage.Text = ex.ToString();
+            }
+        }
     }
 }

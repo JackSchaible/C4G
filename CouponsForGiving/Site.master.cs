@@ -20,7 +20,7 @@ public partial class SiteMaster : MasterPage
     {
         SideBar = true;
 
-        ValidationScript.Text = String.Format("<script src=\"{0}\"></script>", VirtualPathUtility.ToAbsolute(String.Format("~/Scripts/Validation ({0}).js", WebConfigurationManager.AppSettings["Language"])));
+        Page.ClientScript.RegisterClientScriptInclude("ValidationScript", Page.ResolveClientUrl(String.Format("~/Scripts/Validation ({0}).js", WebConfigurationManager.AppSettings["Language"])));
 
         // The code below helps to protect against XSRF attacks
         var requestCookie = Request.Cookies[AntiXsrfTokenKey];

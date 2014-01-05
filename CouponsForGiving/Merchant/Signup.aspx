@@ -141,11 +141,11 @@
             var postal = $("#ZipCodeTextBox").val();
             var errors = new Array();
 
-            if (isStringBlank(postal))
-                errors.push('');
+            if (IsStringBlank(postal))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullPostal").InnerText %>');
 
-            if (isStringTooShort(postal, 5))
-                errors.push('');
+            if (IsStringTooShort(postal, 5))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/PostalTooShort").InnerText %>');
 
             if (arguments.length == 0) {
                 writeErrors("ZipCodeTextBoxErrors", errors);
@@ -188,9 +188,17 @@
 
             if (!IsStringBlank(email)) {
 
-                if (IsStringTooShort(email, 6)) {
+                if (IsStringBlank(email))
+                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullEmail").InnerText %>');
 
-                }
+                if (IsStringTooShort(email, 6))
+                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/EmailTooShort").InnerText %>');
+
+                if (IsStringTooLong(email, 64))
+                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/EmailTooLong").InnerText %>');
+
+                if (containsCode(email))
+                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/EmailInvalidCharacters").InnerText %>');
 
                 if (arguments.length == 0) {
                     writeErrors('YourEmailTextBoxErrors', errors);
@@ -201,7 +209,53 @@
             return errors;
         }
 
-        function checkForm() {
+        function checkWebsite(write) {
+            var website = $("#URLTextBox").val();
+            var errors = new Array();
+
+            if (IsStringBlank(website))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullWebsite").InnerText %>');
+
+            if (IsStringTooShort(website, 8))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/WebsiteTooShort").InnerText %>');
+
+            if (arguments.length == 0) {
+                writeErrors('URLTextBoxErrors', errors);
+                checkForm(); 
+            }
+
+            return errors;
+        }
+
+        function checkTermsCheckBox(write) {
+            var checked = $("#TermsCheckBox").is(":checked");
+            var errors = new Array();
+
+            if (!checked)
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/AgreeToTerms").InnerText %>');
+
+            if (arguments.length == 0) {
+                writeErrors('TermsCheckBoxErrors', errors);
+                checkForm();
+            }
+
+            return errors;
+        }
+
+        function submitForm() {
+            var errors = checkForm(false);
+
+            if (errors.length > 0) {
+                errors.splice(0, 0, '<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/FormErrors").InnerText %>');
+                writeErrors('FormErrors', errors);
+            }
+            else {
+                var 
+                //Submit the form
+            }
+        }
+
+        function checkForm(disableButton) {
             var errors = new Array();
             errors.push.apply(errors, checkFirstName(false));
             errors.push.apply(errors, checkLastName(false));
@@ -210,25 +264,34 @@
             errors.push.apply(errors, checkDescription(false));
             errors.push.apply(errors, goPostal(false));
             errors.push.apply(errors, checkBusinessPhone(false));
+            errors.push.apply(errors, checkYourEmail(false));
+            errors.push.apply(errors, checkWebsite(false));
+            errors.push.apply(errors, checkTermsCheckBox(false));
 
+            if (arguments.length == 0) {
+                if (errors.length > 0)
+                    $("#SubmitButton").attr('disabled', 'disabled');
+                else
+                    $("#SubmitButton").removeAttr('disabled');
+            }
 
-            if (errors.length > 0)
-                $("#SubmitButton").attr('disabled', 'disabled');
-            else
-                $("#SubmitButton").removeAttr('disabled');
+            return errors;
         }
     </script>
     <%--Supporting form functions--%>
     <script>
+        var reader;
+        var progress = document.querySelector('.percent');
+
         $(document).ready(function () {
             PageMethods.GetCities('', function (data) {
                 window.cities = data.split(';');
-                console.log(data.split(';'));
             });
+            window.imagePath = '../Images/c4g_home_step4.png';
+            document.getElementById("Image").addEventListener('change', checkImage, false);
         });
 
         function getCities() {
-            console.log(window.cities);
             var text = $("#CityTextBox").val();
 
             if (text.length > 2) {
@@ -272,6 +335,99 @@
                 $("#AARErrors").html('<ul><li><%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/AARNotification").InnerText %></li></ul>');
             else
                 $("#AARErrors").html('');
+        }
+
+        function checkImage(evt) {
+            var file = evt.target.files[0];
+            var errors = new Array();
+
+            if (!IsImage(file))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/ImageTypeInvalid").InnerText %>');
+
+            if (!IsImageProfileSized(file))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/ImageSizeInvalid").InnerText %>');
+
+            writeErrors('ImageErrors', errors);
+
+            if (errors.length == 0)
+                $("#UploadButton").removeAttr('disabled');
+            else
+                $("#UploadButton").attr('disabled', 'disabled');
+        }
+
+        function uploadImage() {
+            var file = $("#Image")[0].files[0];
+
+            $.ajax({
+                url: '../ImageUploader.ashx',
+                type: 'POST',
+                xhr: function () {
+                    var myxhr = $.ajaxSettings.xhr();
+
+                    if (myxhr.upload)
+                        myxhr.upload.addEventListener('progress', 'progressHandler', false);
+
+                    return myxhr;
+                },
+                beforeSend: function () {
+                    $("#Loading").css('display', 'block');
+                },
+                success: function () {
+                    $("#Loading").css('display', 'none');
+                    var folderPath = '../tmp/Images/Signup';
+                    var fileName = '<%: HttpContext.Current.User.Identity.Name + "logo" %>';
+                    var ext = '';
+                    var contentType = file.type;
+
+                    switch (contentType)
+                    {
+                        case "image/gif":
+                            ext = ".gif";
+                            break;
+                
+                        case "image/jpeg":
+                            ext = ".jpg";
+                            break;
+                
+                        case "image/png":
+                            ext = ".png";
+                            break;
+                
+                        case "image/pjpeg":
+                            ext = ".jpg";
+                            break;
+                
+                        case "image/svg+xml":
+                            ext = ".svg";
+                            break;
+                
+                        default:
+                            ext = ".jpg";
+                            break;
+                    }
+
+                    var filePath = folderPath + "/" + fileName + ext;
+                    $("#UploadedImage").html('<img onclick="removeImage()" alt="Your profile image" src="' + filePath + '" />');
+                    window.imagePath = filePath;
+                },
+                error: uploadError,
+                data: file,
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+
+        }
+
+        function removeImage() {
+            $("#UploadedImage").html('<img src="../Images/c4g_home_step4.png" alt="DefaultProfilePic" />');
+            window.imagePath = '../Images/c4g_home_step4.png';
+        }
+
+        function uploadError() {
+            var errors = new Array();
+            errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/UploadError").InnerText %>');
+            writeErrors('ImageErrors', errors);
         }
     </script>
         <h1>Profile Page Setup</h1>
@@ -362,6 +518,13 @@
                     ClientIDMode="Static" onkeyup="checkYourEmail()" onblur="checkYourEmail()" oninput="checkYourEmail()"></asp:TextBox>
                 <div id="YourEmailTextBoxErrors" class="ErrorDiv"></div>
             </div>
+            <div class="FormRow">
+                <label>Website</label>
+                <asp:TextBox ID="URLTextBox" ClientIDMode="Static" runat="server" 
+                    placeholder="http://www.mycompanywebsite.com" onkeyup="checkWebsite()" onblur="checkWebsite()"
+                    oninput="checkWebsite()"></asp:TextBox>
+                <div id="URLTextBoxErrors" class="ErrorDiv"></div>
+            </div>
             <h4>Additional Information (For Stripe)</h4>
             <div class="FormRow">
                 <asp:Label ID="Label5" runat="server" Text="Business Type" AssociatedControlID="BusinessTypeDDL"></asp:Label>
@@ -400,16 +563,13 @@
                 </asp:DropDownList>
             </div>
             <div class="FormRow">
-                <label>Website</label>
-                <asp:TextBox ID="URLTextBox" ClientIDMode="Static" runat="server" 
-                    placeholder="http://www.mycompanywebsite.com" onkeyup="checkWebsite()" onblur="checkWebsite()"
-                    oninput="checkWebsite()"></asp:TextBox>
-                <div id="URLTextBoxErrors" class="ErrorDiv"></div>
-            </div>
-            <div class="FormRow">
-                <label>Logo<br /><small>This will be the large logo on your Coupons4Giving Profile page.</small></label>
-                <asp:FileUpload ID="newMerchantLargeLogo" runat="server" />
-                <p><%: (hasLargeLogo) ? "You have already uploaded a large logo." : "" %></p>
+                <%-- Image Upload Control --%>
+                <label>Logo<br /><small>This will be your logo on Coupons4Giving.</small></label>
+                <input id="Image" name="files[]" type="file" />
+                <input id="UploadButton" type="button" onclick="uploadImage()" value="Upload" disabled="disabled" />
+                <div id="ImageErrors" class="ErrorDiv"></div>
+                <div id="Loading" class="hide"><img src="../Images/loading.gif" alt="Loading"/><p>Loading...</p></div>
+                <div id="UploadedImage"><img src="../Images/c4g_home_step4.png" alt="DefaultProfilePic" /></div>
             </div>
             <div class="FormRow">
                 <asp:Label ID="Label8" runat="server" Text="Birth Date" AssociatedControlID="BirthDate"></asp:Label>
@@ -424,13 +584,14 @@
             <div class="FormRow">
                 <iframe src="../Content/Terms/MerchantServicesAgreement.txt" style="width: 100%;"></iframe>
                 <span class="checkbox-singlerow">
-                <asp:CheckBox ID="TermsCheckBox" runat="server" class="checkbox-singlerow" />
+                <asp:CheckBox ID="TermsCheckBox" ClientIDMode="Static" runat="server" class="checkbox-singlerow" onchange="checkTermsCheckBox()"/>
                 <label class="checkbox-singlerow-termscheckbox">I have read and agree to the Terms & Conditions.</label>
                 </span>
+                <div id="TermsCheckBoxErrors" class="ErrorDiv"></div>
             </div>
             <div class="FormRow">
-                <asp:Button ID="SubmitButton" ClientIDMode="Static" runat="server" Text="Connect to Stripe!" OnClick="SubmitButton_Click" />
+                <input type="button" id="SubmitButton" runat="server" value="Connect To Stripe!" onclick="submitForm()">
+                <div id="FormErrors" class="ErrorDiv"></div>
             </div>
-            <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
         </div>
 </asp:Content>

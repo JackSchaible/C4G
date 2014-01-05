@@ -1,10 +1,45 @@
-﻿//Checks to see if the provided string contains angle brackets, squigly brackets, or semicolons
+﻿//Checks a file's MIME Type
+function IsImage(file) {
+    var fType = file.type;
+    var result = false;
+
+    if (fType.toLowerCase() == "image/gif".toLowerCase())
+        result = true;
+
+    if (fType.toLowerCase() == "image/jpeg".toLowerCase())
+        result = true;
+
+    if (fType.toLowerCase() == "image/png".toLowerCase())
+        result = true;
+
+    if (fType.toLowerCase() == "image/pjpeg".toLowerCase())
+        result = true;
+
+    if (fType.toLowerCase() == "image/svg+xml".toLowerCase())
+        result = true;
+
+    return result;
+}
+
+//Checks to make sure the image is roughly sized for the profile page
+function IsImageProfileSized(file) {
+    var result = true;
+
+    //Add logic here
+
+    return result;
+}
+
+//Checks to see if the provided string contains angle brackets, squigly brackets, or semicolons
 function containsCode(textToEvaluate) {
     var result = false;
 
-    if (textToEvaluate.trim().indexOf("<") != -1 || textToEvaluate.trim().indexOf(">") != -1 || textToEvaluate.trim().indexOf("{") != -1 || textToEvaluate.trim().indexOf("}") != -1 || textToEvaluate.trim().indexOf(";") != -1)
-        result = true;
-
+    if (!textToEvaluate)
+        result = false;
+    else {
+        if (textToEvaluate.trim().indexOf("<") != -1 || textToEvaluate.trim().indexOf(">") != -1 || textToEvaluate.trim().indexOf("{") != -1 || textToEvaluate.trim().indexOf("}") != -1 || textToEvaluate.trim().indexOf(";") != -1)
+            result = true;
+    }
     return result;
 }
 
@@ -12,10 +47,14 @@ function containsCode(textToEvaluate) {
 function validPhoneNumber(textToEvaluate) {
     var result = true;
 
-    if (/(\W|^)[(]{0,1}\d{3}[)]{0,1}[\s-]{0,1}\d{3}[\s-]{0,1}\d{4}(\W|$)/.test(textToEvaluate) == false)
+    if (!textToEvaluate)
         result = false;
-    else
-        result = true;
+    else {
+        if (/(\W|^)[(]{0,1}\d{3}[)]{0,1}[\s-]{0,1}\d{3}[\s-]{0,1}\d{4}(\W|$)/.test(textToEvaluate) == false)
+            result = false;
+        else
+            result = true;
+    }
 
     return result;
 }
@@ -24,10 +63,14 @@ function validPhoneNumber(textToEvaluate) {
 function validEmail(textToEvaluate) {
     var result;
 
-    if (/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(textToEvaluate) == false)
+    if (!textToEvaluate)
         result = false;
-    else
-        result = true;
+    else {
+        if (/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(textToEvaluate) == false)
+            result = false;
+        else
+            result = true;
+    }
 
     return result;
 }
@@ -36,10 +79,14 @@ function validEmail(textToEvaluate) {
 function validWebsite(textToEvaluate) {
     var result;
 
-    if (/(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/.test(textToEvaluate) == false)
+    if (!textToEvaluate)
         result = false;
-    else
-        result = true;
+    else {
+        if (/(http|ftp|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])?/.test(textToEvaluate) == false)
+            result = false;
+        else
+            result = true;
+    }
 
     return result;
 }
@@ -48,11 +95,14 @@ function validWebsite(textToEvaluate) {
 function IsStringBlank(textToEvaluate) {
     var result;
 
-    if (textToEvaluate.trim().length == 0)
-        result = true;
-    else
+    if (!textToEvaluate)
         result = false;
-
+    else {
+        if (textToEvaluate.trim().length == 0)
+            result = true;
+        else
+            result = false;
+    }
     return result;
 }
 
@@ -60,20 +110,30 @@ function IsStringBlank(textToEvaluate) {
 function IsStringTooLong(textToEvaluate, length) {
     var result;
 
-    if (textToEvaluate.trim().length > length)
-        result = true;
-    else
+    if (!textToEvaluate)
         result = false;
+    else {
+        if (textToEvaluate.trim().length > length)
+            result = true;
+        else
+            result = false;
+    }
+
+    return result;
 }
 
 //Tests to see if the string is shorter than the provided length, excluding whitespace characters
 function IsStringTooShort(textToEvaluate, length) {
     var result;
 
-    if (textToEvaluate.trim().length < length)
-        result = true;
-    else
+    if (!textToEvaluate)
         result = false;
+    else {
+        if (textToEvaluate.trim().length < length)
+            result = true;
+        else
+            result = false;
+    }
 
     return result;
 }
@@ -83,10 +143,14 @@ function IsStringTooShort(textToEvaluate, length) {
 function ContainsSpaces(textToEvaluate) {
     var result;
 
-    if (textToEvaluate.indexOf(" ") == -1)
+    if (!textToEvaluate)
         result = false;
-    else
-        result = true;
+    else {
+        if (textToEvaluate.indexOf(" ") == -1)
+            result = false;
+        else
+            result = true;
+    }
 
     return result;
 }
@@ -95,10 +159,14 @@ function ContainsSpaces(textToEvaluate) {
 function ValidPostalCode(textToEvaluate) {
     var result;
 
-    if (/(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/.test(textToEvaluate) == false)
+    if (!textToEvaluate)
         result = false;
-    else
-        result = true;
+    else {
+        if (/(^\d{5}(-\d{4})?$)|(^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$)/.test(textToEvaluate) == false)
+            result = false;
+        else
+            result = true;
+    }
 
     return result;
 }

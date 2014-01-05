@@ -3,8 +3,8 @@
   <Pages>
     <Register>
       <ErrorMessages>
-        <ShortUsername>Your username needs to be longer than 6 characters.</ShortUsername>
-        <LongUsername>Your username needs to be less than 32 characters long.</LongUsername>
+        <UsernameTooShort>Your username needs to be longer than 6 characters.</UsernameTooShort>
+        <UsernameTooLong>Your username needs to be less than 32 characters long.</UsernameTooLong>
         <UsernameInvalidCharacters>Your username contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, or ;.</UsernameInvalidCharacters>
         <NullUsername>You need to enter a username.</NullUsername>
         <UsernameTaken>That username is already in use. Please choose another.</UsernameTaken>
@@ -22,7 +22,7 @@
         <ConfirmPasswordTooShort>Your confirm password needs to be longer than 6 characters.</ConfirmPasswordTooShort>
         <ConfirmPasswordTooLong>Your confirmation password needs to be less than 32 characters long.</ConfirmPasswordTooLong>
         <ConfirmPasswordInvalidCharacters>Your confirmation password contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, or ;.</ConfirmPasswordInvalidCharacters>
-        <AgreeToTerms>You need to agree to the terms and conditions and the privacy policy.</AgreeToTerms>
+        <AgreeToTerms>You need to agree to the terms and conditions and the privacy policy.</AgreeToTerms>        
       </ErrorMessages>
     </Register>
   </Pages>

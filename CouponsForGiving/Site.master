@@ -80,28 +80,28 @@
 
                     $("#" + errorDiv).html(html);
 
-                //    if (errors.length > 0) {
-                //        $("#" + errorDiv).css("display", "block");
+                    if (errors.length > 0) {
+                        $("#" + errorDiv).css("display", "block");
 
-                //        var html;
+                        var html;
 
-                //        if (errors.length > 1) {
-                //            html = "<ul>";
+                        if (errors.length > 1) {
+                            html = "<ul>";
 
-                //            errors.forEach(function (item) {
-                //                html += "<li>" + item + "</li>";
-                //            });
+                            errors.forEach(function (item) {
+                                html += "<li>" + item + "</li>";
+                            });
 
-                //            html += "</ul>";
-                //        }
-                //        else {
-                //            html = "<p>" + errors[0] + "</p>";
-                //        }
+                            html += "</ul>";
+                        }
+                        else {
+                            html = "<p>" + errors[0] + "</p>";
+                        }
 
-                //        $("#" + errorDiv).html(html);
-                //    }
-                //    else
-                //        $("#" + errorDiv).css("display", "none");
+                        $("#" + errorDiv).html(html);
+                    }
+                    else
+                        $("#" + errorDiv).css("display", "none");
                 }
             </script>
             <header>

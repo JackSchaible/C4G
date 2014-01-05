@@ -14,22 +14,22 @@
             var length = arguments.length;
 
             if (IsStringBlank(name))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullUsername").InnerText %>');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/NullUsername").InnerText %>');
 
             if (IsStringTooShort(name, 4))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/UsernameTooShort").InnerText %>');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/UsernameTooShort").InnerText %>');
 
             if (IsStringTooLong(name, 32))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/UsernameTooLong").InnerText %>');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/UsernameTooLong").InnerText %>');
 
             if (containsCode(name))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/UsernameInvalidCharacters").InnerText %>');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/UsernameInvalidCharacters").InnerText %>');
 
             var taken = false;
 
             PageMethods.UsernameTaken(name, function (result) {
                 if (result)
-                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/UsernameTaken").InnerText %>');
+                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/UsernameTaken").InnerText %>');
 
                 if (length == 0) {
                     writeErrors("UsernameErrors", errors);
@@ -45,16 +45,16 @@
             var errors = new Array();
 
             if (IsStringBlank(email))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullEmail").InnerText %>');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/NullEmail").InnerText %>');
             
             if (IsStringTooShort(email, 6))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/EmailTooShort").InnerText %>');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/EmailTooShort").InnerText %>');
 
             if (IsStringTooLong(email, 64))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/EmailTooLong").InnerText %>');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/EmailTooLong").InnerText %>');
 
             if (containsCode(email))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/EmailInvalidCharacters").InnerText %>');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/EmailInvalidCharacters").InnerText %>');
 
             if (arguments.length == 0) {
                 writeErrors("EmailErrors", errors);
@@ -69,16 +69,16 @@
             var errors = new Array();
 
             if (IsStringBlank(password))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullPassword").InnerText %>');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/NullPassword").InnerText %>');
 
             if (IsStringTooShort(password, 6))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/PasswordTooShort").InnerText %>');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/PasswordTooShort").InnerText %>');
 
             if (IsStringTooLong(password, 32))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/PasswordTooLong").InnerText %>');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/PasswordTooLong").InnerText %>');
 
             if (containsCode(password))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/PasswordInvalidCharacters").InnerText %>');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/PasswordInvalidCharacters").InnerText %>');
 
             if (arguments.length == 0) {
                 writeErrors("PasswordErrors", errors);
@@ -94,19 +94,19 @@
             var errors = Array();
 
             if (IsStringBlank(confirmPassword))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullConfirmPassword").InnerText %>');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/NullConfirmPassword").InnerText %>');
 
             if (IsStringTooShort(confirmPassword, 6))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/ConfirmPasswordTooShort").InnerText %>');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/ConfirmPasswordTooShort").InnerText %>');
 
             if (IsStringTooLong(confirmPassword, 32))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/ConfirmPasswordTooLong").InnerText %>');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/ConfirmPasswordTooLong").InnerText %>');
 
             if (containsCode(confirmPassword))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/ConfirmPasswordInvalidCharacters").InnerText %>'); 
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/ConfirmPasswordInvalidCharacters").InnerText %>'); 
 
             if (confirmPassword != password)
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/ConfirmPasswordMatch").InnerText %>'); 
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/ConfirmPasswordMatch").InnerText %>'); 
 
 
             if (arguments.length == 0) {
