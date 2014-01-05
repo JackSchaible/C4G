@@ -16,7 +16,7 @@ using System.Web.Configuration;
 
 public partial class Account_Register : Page
 {
-    static List<string> Users;
+    public static List<string> Users;
     public XmlDocument strings;
 
     protected void Page_Load(object sender, EventArgs e)
