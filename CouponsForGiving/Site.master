@@ -134,7 +134,6 @@
                                 	<asp:LoginStatus ID="signupButton" CssClass="HeaderButton" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
                                 </LoggedInTemplate>
                             </asp:LoginView>
-                            <a href="~/ContactUs.aspx" class="HeaderButton" runat="server" id="contactUs">Contact Us</a>
                         </div>
                     </div>
                 </div>
