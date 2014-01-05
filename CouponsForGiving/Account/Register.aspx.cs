@@ -117,7 +117,7 @@ public partial class Account_Register : Page
         if (validation.ContainsCode(username))
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/UsernameInvalidCharacters").InnerText);
 
-        if (Users.Contains(username));
+        if (Users.Contains(username))
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/UsernameInvalidCharacters").InnerText);
 
         if (validation.IsStringBlank(email))
