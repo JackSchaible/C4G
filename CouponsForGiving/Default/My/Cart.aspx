@@ -5,7 +5,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
     <script type="text/javascript">
-        function changeNPO() {
+        function changeNPO(dealInstanceID) {
+            var value = $("#" + dealInstanceID + "DDL option:selected").val();
+
+            PageMethods.ChangeCampaign(dealInstanceID, value);
         }
     </script>
     <h1>My Shopping Cart</h1>
@@ -20,30 +23,37 @@
                 <th scope="col">Gift Value</th>
 		    </tr>
             <%
-                foreach (ShoppingCart item in (List<ShoppingCart>)Session["Cart"])
+                if (Session["Cart"] != null)
                 {
-                    List<CouponsForGiving.Data.Campaign> campaigns = CouponsForGiving.Data.Classes.Campaigns.ListByDeal(item.DealInstanceID);
-                    string button = String.Format("<a href=\"../DealPage.aspx?MerchantName={0}&OfferName={1}\">View Deal</a>", item.MerchantName, item.DealName);
-                    string deleteButton = String.Format("<a href=\"javascript:deleteDeal({0}, {1})>Delete</a>", item.DealInstanceID, item.CampaignID);
-                    string campaignList = "<select onchange=\"changeNPO()\">";
-
-                    foreach (CouponsForGiving.Data.Campaign c in campaigns)
+                    foreach (ShoppingCart item in (List<ShoppingCart>)Session["Cart"])
                     {
-                        if (c.CampaignID == item.CampaignID)
-                            campaignList += String.Format("<option selected=\"selected\">{0}</option>", c.NPO.Name + "-" + c.Name);
-                        else
-                            campaignList += String.Format("<option>{0}</option>", c.NPO.Name + "-" + c.Name);
-                    }
-                                        
-                    campaignList += "</select>";
+                        List<CouponsForGiving.Data.Campaign> campaigns = CouponsForGiving.Data.Classes.Campaigns.ListByDeal(item.DealInstanceID);
+                        string button = String.Format("<a href=\"../DealPage.aspx?MerchantName={0}&OfferName={1}\">View Deal</a>", item.MerchantName, item.DealName);
+                        string deleteButton = String.Format("<a href=\"javascript:deleteDeal({0}, {1})\">Delete</a>", item.DealInstanceID, item.CampaignID);
+                        string campaignList = "<select id=\"" + item.DealInstanceID + "DDL\" onchange=\"changeNPO(" + item.DealInstanceID + ")\">";
 
-                    string merchant = item.MerchantName;
-                    string deal = item.DealName;
-                    string price = item.GiftValue.ToString("0:c");
-                    string row = String.Format("<td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td>",
-                        button, deleteButton, campaignList, merchant, deal, price);
-                    
-                    Response.Write(row);
+                        foreach (CouponsForGiving.Data.Campaign c in campaigns)
+                        {
+                            if (c.CampaignID == item.CampaignID)
+                                campaignList += String.Format("<option value=\"{1}\" selected=\"selected\">{0}</option>", c.NPO.Name + "-" + c.Name, c.CampaignID);
+                            else
+                                campaignList += String.Format("<option value=\"{1}\">{0}</option>", c.NPO.Name + "-" + c.Name, c.CampaignID);
+                        }
+
+                        campaignList += "</select>";
+
+                        string merchant = item.MerchantName;
+                        string deal = item.DealName;
+                        string price = item.GiftValue.ToString("C");
+                        string row = String.Format("<td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td>",
+                            button, deleteButton, campaignList, merchant, deal, price);
+
+                        Response.Write(row);
+                    }
+                }
+                else
+                {
+                    Response.Write("<p>" + strings.SelectSingleNode("/SiteText/Pages/Cart/ErrorMessages/EmptyCartPrefix").InnerText + "<a href=\"../DealsInMyArea.aspx\">" + strings.SelectSingleNode("/SiteText/Pages/Cart/ErrorMessages/EmptyCartLink").InnerText + "</a>" + strings.SelectSingleNode("/SiteText/Pages/Cart/ErrorMessages/EmptyCartSuffix").InnerText + "</p>");
                 }
             %>
 	</tbody>

@@ -10,13 +10,17 @@
     <script type="text/javascript">
         function addToCart(dealID, campaignID) {
             if (arguments.length == 1) {
-                PageMethods.AddToCart(dealID, function () {
-                    window.location.repalce("My/Cart.aspx");
+                PageMethods.AddDealToCart(dealID, function () {
+                    window.location.replace("My/Cart.aspx");
+                }, function () {
+                    window.location.replace("My/Cart.aspx");
                 });
             }
             else if (arguments.length == 2) {
                 PageMethods.AddToCart(dealID, campaignID, function () {
-                    window.location.repalce("My/Cart.aspx");
+                    window.location.replace("My/Cart.aspx");
+                }, function () {
+                    window.location.replace("My/Cart.aspx");
                 });
             }
         }
@@ -46,7 +50,7 @@
                 	</div> <!-- Close Coupon Giving Amount-->
                 	<div class="coupon-left">
                          <h4>Coupons Left</h4>
-                         <p><span>#</span></p>
+                         <p><span><%: deal.AbsoluteCouponLimit - dealInstance.PurchaseOrders.Count %></span></p>
                     </div>
                    </div>
              
@@ -74,7 +78,7 @@
             
            	<div class="coupon-image-block">
                 <img src="../../<%: deal.ImageURL %>" /> <!-- Pulled From Merchant Profile -->
-	            <a href="javascript:addToCart(<%:deal.DealID%>%>)" class="btn-buy-now"><i class="fa fa-shopping-cart"></i> BUY NOW!</a>
+	            <a href="javascript:addToCart(<%:dealInstance.DealInstanceID%>)" class="btn-buy-now"><i class="fa fa-shopping-cart"></i> BUY NOW!</a>
             
         	    <div class="coupon-info">
     	        	<p class="coupon-date"><span>Dates:</span> <%: deal.DealInstances.FirstOrDefault<CouponsForGiving.Data.DealInstance>().StartDate.ToString("MMMM dd, yyyy") %> - <%: deal.DealInstances.FirstOrDefault < CouponsForGiving.Data.DealInstance>().EndDate.ToString("MMMM dd, yyyy") %> </p> <!-- Dates of Campaign/Offer -->

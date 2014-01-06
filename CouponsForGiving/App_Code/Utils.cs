@@ -441,7 +441,7 @@ namespace CouponsForGiving
             result += "</div><!--Close Coupon Title -->";
             result += "<div class=\"clear\"></div>";
             result += "<div class=\"clear\"></div>";
-            result += "<a href=\"javascript:AddToCart(" + deal.DealInstanceID + ", " + campaign.CampaignID + ")\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> Buy Now</a>";
+            result += "<a href=\"javascript:addToCart(" + deal.DealInstanceID + ", " + campaign.CampaignID + ")\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> Buy Now</a>";
             result += "<a href=\"../../Default/CampaignPage.aspx?nponame=" + campaign.NPO.Name + "&campaign=" + campaign.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> About This Campaign</a>";
             result += "</article>";
             result += "</div>";

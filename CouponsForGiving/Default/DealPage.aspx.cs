@@ -70,9 +70,9 @@ public partial class Default_DealPage : System.Web.UI.Page
 
     [WebMethod]
     [ScriptMethod]
-    public static void AddToCart(int dealInstanceID)
+    public static string AddDealToCart(int dealInstanceID)
     {
-        DealInstance deal = SysData.DealInstance_GetByID(dealInstanceID); ;
+        DealInstance deal = SysData.DealInstance_GetByID(dealInstanceID);
         Merchant merchant = deal.Deal.Merchant;
         ShoppingCart order = new ShoppingCart("", -1, "", dealInstanceID,
             deal.Deal.Name, deal.Deal.MerchantID, deal.Deal.Merchant.Name, deal.Deal.Prices.FirstOrDefault<Price>().GiftValue,
@@ -110,11 +110,13 @@ public partial class Default_DealPage : System.Web.UI.Page
 
             HttpContext.Current.Session["Cart"] = orders;
         }
+
+        return ((List<ShoppingCart>)HttpContext.Current.Session["Cart"]).Count.ToString();
     }
 
     [WebMethod]
     [ScriptMethod]
-    public static void AddToCart(int dealInstanceID, int campaignID)
+    public static string AddToCart(int dealInstanceID, int campaignID)
     {
         Campaign campaign = SysData.Campaign_Get(campaignID);
         NPO npo = campaign.NPO;
@@ -156,5 +158,7 @@ public partial class Default_DealPage : System.Web.UI.Page
 
             HttpContext.Current.Session["Cart"] = orders;
         }
+
+        return ((List<ShoppingCart>)HttpContext.Current.Session["Cart"]).Count.ToString();
     }
 }

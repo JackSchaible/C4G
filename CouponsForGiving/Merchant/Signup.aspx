@@ -305,34 +305,13 @@
                 var productType = $("#ProductTypesDDL option:selected").text();
                 var currency = $('input:radio[name$="CurrencyRBL"]:checked').val();
 
-                console.log($("#FirstNameTextBox").val());
-                console.log($("#LastNameTextBox").val());
-                console.log($("#YourPhoneNumberTextBox").val());
-                console.log($("#BusinessNameTextBox").val());
-                console.log($("#DescriptionTextBox").val());
-                console.log($("#AddressTextBox").val());
-                console.log($("#SelectedCity").html());
-                console.log($("#ZipCodeTextBox").val());
-                console.log($("#PhoneNumberTextBox").val());
-                console.log($("#YourEmailTextBox").val());
-                console.log($("#URLTextBox").val());
-                console.log($("#GlobalMarketplaceCheckBox").is(":checked"));
-                console.log($("#AutoAcceptRequestsCheckBox").is(":checked"));
-                console.log($("#BusinessTypeDDL option:selected").text());
-                console.log($("#DayDDL").val() + "/" + $("#MonthDDL").val() + "/" + $("#YearDDL").val());
-                console.log($('input:radio[name$="PhysicalProductRBL"]:checked').val());
-                console.log($("#ProductTypesDDL option:selected").text());
-                console.log($('input:radio[name$="CurrencyRBL"]:checked').val());
-
                 PageMethods.ConnectToStripe(firstName, lastName, phone, businessName, description,
                     address, city, postal, contactPhone, contactEmail, website, globalMerchant,
                     autoAccept, businessType, birthDate, physicalProduct, productType, currency,
                     function (message) {
-                        console.log(message);
                         window.location.replace(message);
                     },
                     function (message) {
-                        console.log(message);
                         $("#FormErrors").css('display', 'block');
                         $("#FormErrors").html('' + message._message + '');
                     });

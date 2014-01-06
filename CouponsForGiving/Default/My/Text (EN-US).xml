@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SiteText>
+  <Pages>
+    <Cart>
+      <ErrorMessages>
+        <EmptyCartPrefix>Your cart is currently empty. </EmptyCartPrefix>
+        <EmptyCartLink>Click here</EmptyCartLink>
+        <EmptyCartSuffix> to view some great deals!</EmptyCartSuffix>
+      </ErrorMessages>
+    </Cart>
+  </Pages>
+</SiteText>

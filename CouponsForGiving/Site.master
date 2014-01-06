@@ -103,6 +103,10 @@
                     else
                         $("#" + errorDiv).css("display", "none");
                 }
+
+                function updateCart(number) {
+                    $("#ShoppingCart").val(number);
+                }
             </script>
             <header>
                 <asp:Literal ID="ValidationScript" runat="server"></asp:Literal>
@@ -123,12 +127,12 @@
                                 <AnonymousTemplate>
                                 	<a href="ContactUs.aspx" id="contactUs" class="loggedout"><i class="fa fa-comment"></i> Contact Us</a>
                                 	<a id="signupButton" runat="server" class="HeaderButton" href="~/Account/Register.aspx"><i class="fa fa-user"></i> Register</a>
-                                    <i class="fa fa-shopping-cart"></i> <a id="A1" runat="server" href="~/Default/My/Cart.aspx" class="header-shoppingcart"><%: ((List<object>)Session["Cart"]) == null ? 0 : ((List<object>)Session["Cart"]).Count %></a>
+                                    <i class="fa fa-shopping-cart"></i> <a id="ShoppingCart" runat="server" href="~/Default/My/Cart.aspx" class="header-shoppingcart"><%: ((List<ShoppingCart>)Session["Cart"]) == null ? 0 : ((List<ShoppingCart>)Session["Cart"]).Count %></a>
                                     <a id="lbutton" runat="server" class="HeaderButton" href="~/Account/Login.aspx"><i class="fa fa-sign-in"></i> Log in</a>
                                 </AnonymousTemplate>
                                 <LoggedInTemplate>
                                 	Hello <a runat="server" href="~/redirect.aspx"><%: HttpContext.Current.User.Identity.Name %></a> <!-- User first name based on log-in information--> |
-                                	<i class="fa fa-shopping-cart"></i> <a runat="server" href="~/Default/My/Cart.aspx" class="header-shoppingcart"><%: ((List<object>)Session["Cart"]) == null ? 0 : ((List<object>)Session["Cart"]).Count %></a>
+                                	<i class="fa fa-shopping-cart"></i> <a id="ShoppingCart" runat="server" href="~/Default/My/Cart.aspx" class="header-shoppingcart"><%: ((List<ShoppingCart>)Session["Cart"]) == null ? 0 : ((List<ShoppingCart>)Session["Cart"]).Count %></a>
                                 	<a href="ContactUs.aspx" id="contactUs" class="loggedout"><i class="fa fa-comment"></i> Contact Us</a>
                                     <a runat="server" ID="ProfileButton" class="HeaderButton"><i class="fa fa-user"></i> My Profile</a>                                
                                 	<asp:LoginStatus ID="signupButton" CssClass="HeaderButton" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
