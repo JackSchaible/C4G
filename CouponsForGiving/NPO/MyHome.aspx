@@ -60,9 +60,8 @@
 
         //Switches the form to edit mode
         function edit() {
-            $("#modeButton").text("Save");
-            $("#modeButton").attr('href', 'javascript:save()');
-            $("#cancelButton").css("display", "inherit");
+            $("#Mode").html('<a id="modeButton" href="javascript:save()" class="btn-profile"><i class="fa fa-pencil-square-o"></i> Save</a><a id="cancelButton" href="javascript:cancel()" class="btn-profile"><i class="fa fa-pencil-square-o"></i> Cancel</a>');
+            $("#cancelButton").css("display", "block");
 
             $("#profile-edit-name").html("<input type=\"text\" id=\"NameTextBox\" value=\"" + decodeURIComponent(name) + "\"/>");
             $("#profile-edit-description").html('<div id="profile-edit-image" class="right"><!-- Added a Right Image class--><img src="../<%# npo.Logo %>" /><div id="LoadImg"></div><div class="ClearFix"></div></div><textarea id="DescriptionTextBox">' + decodeURIComponent(description) + '</textarea>');
@@ -77,25 +76,21 @@
                                 
         //Switched the form to view mode without saving
         function cancel() {
-                $("#modeButton").text("Edit");
-                $("#modeButton").attr('href', 'javascript:edit()');
-                $("#cancelButton").css("display", "none");
+            $("#Mode").html('<a id="modeButton" href="javascript:edit()" class="btn-profile"><i class="fa fa-pencil-square-o"></i> Edit</a>');
 
-                $("#profile-edit-name").html("<h1>" + decodeURIComponent(name) + "</h1>");
-                $("#profile-edit-description").html('<div id="profile-edit-image" class="right"><!-- Added a Right Image class--><img src="../<%# npo.Logo %>" /><div id="LoadImg"></div><div class="ClearFix"></div></div><p id="DescriptionText">' + decodeURIComponent(description) + '</p>');
-                $("#profile-edit-address").html('<label>Address</label><p>' + address + '</p>');
-                $("#profile-edit-postal-code").html('<label>Postal Code</label><p>' + postalcode + '</p>');
-                $("#profile-edit-email").html('<label>Email</label><p>' + email + '</p>');
-                $("#profile-edit-phone-number").html('<label>Phone</label><p>' + phoneNumber + '</p>');
-                $("#profile-edit-city").html('<label>City</label><p>' + city + '</p>');
-                $("#profile-edit-province").html('<label>Province</label><p>' + province + '</p>');
-                $("#profile-edit-country").html('<label>Country</label><p>' + country + '</p>');
+            $("#profile-edit-name").html("<h1>" + decodeURIComponent(name) + "</h1>");
+            $("#profile-edit-description").html('<div id="profile-edit-image" class="right"><!-- Added a Right Image class--><img src="../<%# npo.Logo %>" /><div id="LoadImg"></div><div class="ClearFix"></div></div><p id="DescriptionText">' + decodeURIComponent(description) + '</p>');
+            $("#profile-edit-address").html('<label>Address</label><p>' + address + '</p>');
+            $("#profile-edit-postal-code").html('<label>Postal Code</label><p>' + postalcode + '</p>');
+            $("#profile-edit-email").html('<label>Email</label><p>' + email + '</p>');
+            $("#profile-edit-phone-number").html('<label>Phone</label><p>' + phoneNumber + '</p>');
+            $("#profile-edit-city").html('<label>City</label><p>' + city + '</p>');
+            $("#profile-edit-province").html('<label>Province</label><p>' + province + '</p>');
+            $("#profile-edit-country").html('<label>Country</label><p>' + country + '</p>');
         }
     </script>
     <style type="text/css">
-
         /*Controls*/
-
         .ImgEdit {
             margin: 30px 10% 0 0;
         }
@@ -109,9 +104,10 @@
     </style>
     <div class="">
 		<div class="profile-edit">
-      	    <div id="Div1">
-                <a id="modeButton" href="javascript:edit()" class="btn-profile"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                <a style="display: none;" id="cancelButton" href="javascript:cancel()" class="btn-profile"><i class="fa fa-pencil-square-o"></i> Cancel</a>
+      	    <div id="profile-edit-names">
+                <div id="Mode">
+                    <a id="modeButton" href="javascript:edit()" class="btn-profile"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                </div>
                 <h1>My Profile</h1>
             </div>
             <span id="ErrorMessages"></span>
@@ -172,7 +168,7 @@
                     <asp:RadioButtonList ID="RecieveEmails" runat="server">
                         <asp:ListItem Text="Yes" Value="Yes"></asp:ListItem>
                         <asp:ListItem Text="No" Value="No"></asp:ListItem>
-                    </asp:RadioButtonList>=
+                    </asp:RadioButtonList>
                 </div>
             </div>
        	</div>
@@ -206,14 +202,14 @@
        	<div class="clear"></div>
         <h2 class="my-profile">Notifications</h2>
         <h3 class="profile-icon"><i class="fa fa-envelope"></i></h3>
-            <%
-                string notifications = "<ul>";
-                foreach (CouponsForGiving.Data.Notification item in CouponsForGiving.Data.Classes.NotificationcUsers.ListByUser(HttpContext.Current.User.Identity.Name))
-                    notifications += String.Format("<li>{0}</li>", item.Value);
-                notifications += "</ul>";
+        <%
+            string notifications = "<ul>";
+            foreach (CouponsForGiving.Data.Notification item in CouponsForGiving.Data.Classes.NotificationcUsers.ListByUser(HttpContext.Current.User.Identity.Name))
+                notifications += String.Format("<li>{0}</li>", item.Value);
+            notifications += "</ul>";
 
-                Response.Write(notifications);
-            %>
+            Response.Write(notifications);
+        %>
         <div class="clear"></div>
         <div class="half">
        	    <h2 class="my-profile">Reports</h2>
