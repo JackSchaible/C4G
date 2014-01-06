@@ -656,6 +656,7 @@ margin: 8px 0px 0px 5px;
 padding: 0px;
 float: ;
 position: absolute;
+min-width: 20px;
 }
 
 .FormRow input[type='file'] {
@@ -697,6 +698,7 @@ margin-right: 1px;
 padding-left: 10px;
 margin-left: 18px;
 margin-top: 15px;
+min-width: 20px;
 }
 
 
