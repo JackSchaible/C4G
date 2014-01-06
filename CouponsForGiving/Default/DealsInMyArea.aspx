@@ -25,7 +25,5 @@
     </asp:DropDownList>
     <asp:Label ID="NoCitiesLabel" runat="server"></asp:Label>
     <p id="ErrorMessage"></p>
-    <div id="Deals">
-        <% Response.Write(CouponsForGiving.HttpRendering.ListMerchantOffers(DIs)); %>
-    </div>
+    <% Response.Write(CouponsForGiving.HttpRendering.ListMerchantOffers(DIs)); %>
 </asp:Content>

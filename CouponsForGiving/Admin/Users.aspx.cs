@@ -34,7 +34,7 @@ public partial class Admin_Users : System.Web.UI.Page
                 select new
                 {
                     Username = c.Username,
-                    Email = Membership.GetUser(c.Username).Email,
+                    Email = Membership.GetUser(c.Username).Email == null ? "" : Membership.GetUser(c.Username).Email,
                     UserRoles = String.Join(", ", Roles.GetRolesForUser(c.Username))
                 }
             );

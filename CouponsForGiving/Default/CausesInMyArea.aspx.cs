@@ -24,10 +24,17 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
     public string Country { get; set; }
     public List<Campaign> LocalCampaigns { get; set; }
 
+    private struct CityObj
+    {
+        public string City { get; set; }
+        public string Province { get; set; }
+    }
+
     protected override void OnPreInit(EventArgs e)
     {
         string ip = Request.ServerVariables["REMOTE_ADDR"];
         SetLocation(ip);
+
         base.OnPreInit(e);
     }
 
@@ -36,13 +43,34 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.Supporter;
 
-        if (!IsPostBack)
-            BindData();
+        BindData();
     }
 
     private void BindData()
     {
-        LocalCampaigns = Campaigns.ListByCity(City, Country);
+        if (CitiesDDL.SelectedIndex == 0)
+            LocalCampaigns = Campaigns.ListByCity(City, Province).OrderByDescending(x => x.NPOID).ToList<Campaign>();
+        else
+        {
+            string city = CitiesDDL.SelectedValue.Split(new char[] { ',' })[0].Trim(), province = CitiesDDL.SelectedValue.Split(new char[] { ',' })[1].Trim();
+            LocalCampaigns = Campaigns.ListByCity(city, province).OrderByDescending(x => x.NPOID).ToList<Campaign>();
+            City = city;
+            Province = province;
+        }
+
+        List<string> cities =
+            (
+                from c
+                in Cities.List()
+                orderby c.Country.Name, c.PoliticalDivision.Name, c.Name
+                select c.Name + ", " + c.PoliticalDivision.Name
+            ).ToList<string>();
+
+        CityObj current = GetLocation(Request.ServerVariables["REMOTE_ADDR"]);
+        cities.Insert(0, current.City + ", " + current.Province);
+
+        CitiesDDL.DataSource = cities;
+        CitiesDDL.DataBind();
     }
 
 
@@ -75,13 +103,59 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
             //Set to edmonton by default if lookup fails; replace with getting user's preferred location
             City = "Edmonton";
             Province = "Alberta";
-            Country = "Canada";
             ex.ToString();
         }
         finally
         {
             objWebReq = null;
         }
+    }
+
+    private CityObj GetLocation(string IP)
+    {
+        CityObj result = new CityObj();
+        System.Uri objUrl = new System.Uri(String.Format("http://geoip.maxmind.com/e?l={0}&i={1}", WebConfigurationManager.AppSettings["GeoIPLicense"].ToString(), IP));
+        System.Net.WebRequest objWebReq;
+        System.Net.WebResponse objResp;
+        System.IO.StreamReader sReader;
+        string strReturn = string.Empty;
+
+        try
+        {
+            objWebReq = System.Net.WebRequest.Create(objUrl);
+            objResp = objWebReq.GetResponse();
+
+            sReader = new System.IO.StreamReader(objResp.GetResponseStream());
+            strReturn = sReader.ReadToEnd();
+
+            sReader.Close();
+            objResp.Close();
+
+            string[] returnedValues = strReturn.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            result = new CityObj()
+            {
+                City = returnedValues[4],
+                Province = returnedValues[3]
+            };
+
+            Country = returnedValues[1];
+        }
+        catch (Exception ex)
+        {
+            //Set to edmonton by default if lookup fails; replace with getting user's preferred location
+            result = new CityObj()
+            {
+                City = "Edmonton",
+                Province = "Alberta"
+            };
+            ex.ToString();
+        }
+        finally
+        {
+            objWebReq = null;
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -98,9 +172,9 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
         string city = location.Split(new char[] { ',' })[0].Trim();
         string province = location.Split(new char[] { ',' })[1].Trim();
 
-        List<Campaign> deals = Campaigns.ListByCity(city, province);
+        List<Campaign> campaigns = Campaigns.ListByCity(city, province);
 
-        result = HttpRendering.ListNPOCampaigns(deals);
+        result = HttpRendering.ListNPOCampaigns(campaigns);
 
         return result;
     }

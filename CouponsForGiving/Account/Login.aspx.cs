@@ -14,25 +14,4 @@ public partial class Account_Login : Page
 
         RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + "redirect.aspx";
     }
-
-    protected override void OnUnload(EventArgs e)
-    {
-        base.OnUnload(e);
-
-        if (User.Identity.IsAuthenticated)
-        {
-            if (User.IsInRole("Admin"))
-                HttpContext.Current.Response.Redirect("../Admin/MyHome.aspx", true);
-            else
-            {
-                if (User.IsInRole("NPO"))
-                    HttpContext.Current.Response.Redirect("../NPO/MyHome.aspx", true);
-
-                if (User.IsInRole("Merchant"))
-                    HttpContext.Current.Response.Redirect("../Merchant/MyHome.aspx", true);
-
-                HttpContext.Current.Response.Redirect("../Default/MyHome.aspx", true);
-            }
-        }
-    }
 }

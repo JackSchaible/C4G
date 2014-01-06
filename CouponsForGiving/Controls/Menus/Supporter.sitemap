@@ -5,7 +5,7 @@
       <siteMapNode title="Causes in My Area" url="~/Default/CausesInMyArea.aspx" />
       <siteMapNode title="Search for a Deal" url="~/Default/Search.aspx">
         <siteMapNode title="Local Deals" url="~/Default/DealsInMyArea.aspx"/>
-        <siteMapNode title="Global Marketplace" />
+        <siteMapNode title="Global Marketplace" url="~/Default/GlobalMarketplace.aspx" />
       </siteMapNode>
       <siteMapNode title="Manage My Deals">
         <siteMapNode url="~/Default/My/Cart.aspx" title="My Shopping Cart" />

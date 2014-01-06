@@ -737,7 +737,6 @@
     <FunctionImportMapping FunctionImportName="NPO_ListEligiblePartnersByMerchant" FunctionName="C4GModel.Store.NPO_ListEligiblePartnersByMerchant" />
     <FunctionImportMapping FunctionImportName="NPO_ListMerchantRequests" FunctionName="C4GModel.Store.NPO_ListMerchantRequests" />
     <FunctionImportMapping FunctionImportName="NPO_ApproveMerchantRequest" FunctionName="C4GModel.Store.NPO_ApproveMerchantRequest" />
-    <FunctionImportMapping FunctionImportName="Campaign_ListByCity" FunctionName="C4GModel.Store.Campaign_ListByCity" />
     <FunctionImportMapping FunctionImportName="PurchaseOrder_ListUnredeemedByMerchant" FunctionName="C4GModel.Store.PurchaseOrder_ListUnredeemedByMerchant" />
     <FunctionImportMapping FunctionImportName="PurchaseOrder_Redeem" FunctionName="C4GModel.Store.PurchaseOrder_Redeem" />
     <FunctionImportMapping FunctionImportName="PurchaseOrder_Unredeem" FunctionName="C4GModel.Store.PurchaseOrder_Unredeem" />
@@ -789,5 +788,7 @@
     <FunctionImportMapping FunctionImportName="NotificationcUser_Delete" FunctionName="C4GModel.Store.NotificationcUser_Delete" />
     <FunctionImportMapping FunctionImportName="NotificationcUser_Insert" FunctionName="C4GModel.Store.NotificationcUser_Insert" />
     <FunctionImportMapping FunctionImportName="NotificationcUser_List" FunctionName="C4GModel.Store.NotificationcUser_List" />
+    <FunctionImportMapping FunctionImportName="Campaign_ListByDeal" FunctionName="C4GModel.Store.Campaign_ListByDeal" />
+    <FunctionImportMapping FunctionImportName="Campaign_ListByCity" FunctionName="C4GModel.Store.Campaign_ListByCity" />
   </EntityContainerMapping>
 </Mapping>

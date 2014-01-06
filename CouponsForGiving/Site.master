@@ -185,7 +185,6 @@
 			    <li><a runat="server" href="~/Blog.aspx">Blog</a></li>
 		    </ul>
             <ul>
-                <li><a runat="server" href="~/Content/Terms/PrivacyPolicy.pdf">Privacy Policy</a></li>
                 <li><a runat="server" href="~/LegalAgreements.aspx">Legal Agreements</a></li>
                 <li><a runat="server" href="~/FAQ.aspx">FAQs</a></li>
                 <li><a runat="server" href="~/Careers.aspx">Careers</a></li>

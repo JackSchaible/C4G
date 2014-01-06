@@ -11,6 +11,6 @@ public partial class Merchant_Anon : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
-        control.MenuBar = MenuBarType.Anonymous;
+        control.MenuBar = MenuBarType.Merchant;
     }
 }

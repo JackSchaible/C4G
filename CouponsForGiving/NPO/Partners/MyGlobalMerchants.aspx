@@ -11,7 +11,7 @@
             </asp:ImageField>
             <asp:BoundField DataField="Name" />
             <asp:BoundField DataFormatString="Global E-Tailer" />
-            <asp:HyperLinkField DataTextField="Name" DataTextFormatString="../../Default/MerchantPage.aspx?MerchantName={0}" Text="Click to View Offers" />
+            <asp:HyperLinkField Text="Click to View Offers" DataNavigateUrlFields="Name" DataNavigateUrlFormatString="../../Default/MerchantPage.aspx?MerchantName={0}" />
             <asp:BoundField DataField="Offers" DataFormatString="{0} Offers Available" />
             <asp:CommandField DeleteText="Remove" ShowDeleteButton="True" />
         </Columns>

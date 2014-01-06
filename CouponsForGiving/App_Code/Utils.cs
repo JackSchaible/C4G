@@ -6,6 +6,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -14,6 +15,7 @@ using System.Web.Configuration;
 using System.Web.Script.Serialization;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml;
 
 namespace CouponsForGiving
 {
@@ -30,6 +32,13 @@ namespace CouponsForGiving
     public enum CampaignType
     {
         Campaign, Offer
+    }
+
+    public enum RegisterEmailType
+    {
+        User,
+        Merchant,
+        NPO
     }
 
     public class StringUtils
@@ -490,6 +499,169 @@ namespace CouponsForGiving
             result = serializer.Serialize(obj);
 
             return result;
+        }
+    }
+
+    public class EmailUtils
+    {
+        /// <summary>
+        /// Writes a generic Email.
+        /// </summary>
+        /// <param name="To">A list of emails to send the message to.</param>
+        /// <param name="type">The type of new user registration email to send. Permitted values: User, NPO, and Merchant.</param>
+        /// <returns>An xml string to send via email</returns>
+        public static void SendUserRegistrationEmail(List<string> To, RegisterEmailType type)
+        {
+            MailMessage mm = new MailMessage();
+
+            foreach (string item in To)
+                mm.To.Add(item);
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load(String.Format("EmailText ({0}).xml", WebConfigurationManager.AppSettings["Language"]));
+            string Title = doc.SelectSingleNode("/EmailText/UserSignup/Title").InnerText;
+            string EmailContent = "";
+
+            switch (type)
+            {
+                case RegisterEmailType.User:
+                    EmailContent = doc.SelectSingleNode("/EmailText/UserSignup/UserContent").InnerText;
+                    break;
+
+                case RegisterEmailType.NPO:
+                    EmailContent = doc.SelectSingleNode("/EmailText/UserSignup/NPOContent").InnerText;
+                    break;
+
+                case RegisterEmailType.Merchant:
+                    EmailContent = doc.SelectSingleNode("/EmailText/UserSignup/MerchantContent").InnerText;
+                    break;
+
+                default:
+                    throw new ArgumentException("RegisterEmailType is invalid. RegisterEmailType must be one of the following: User, NPO, or Merchant.");
+            }
+            
+            string LinkURL = doc.SelectSingleNode("/EmailText/UserSignup/LinkURL").InnerText;
+            string LinkContent = doc.SelectSingleNode("/EmailText/UserSignup/LinkContent").InnerText;
+            string LinkSuffix = doc.SelectSingleNode("/EmailText/UserSignup/LinkSuffix").InnerText;
+            string ContactTextPrefix = doc.SelectSingleNode("/EmailText/ContactTextPrefix").InnerText;
+            string ContactEmail = doc.SelectSingleNode("/EmailText/ContactEmail").InnerText;
+            string ContactTextSuffix = doc.SelectSingleNode("/EmailText/ContactTextSuffix").InnerText;
+            string Subject = doc.SelectSingleNode("/EmailText/UserSignup/Subject").InnerText;
+
+            mm.Subject = Subject;
+            mm.IsBodyHtml = true;
+            
+            string message = "";
+
+            message += "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">";
+            message += "<html>";
+            message += "<head>";
+            message += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">";
+            message += String.Format("<meta property=\"og:title\" content=\"{0}\">", Title);
+            message += String.Format("<title>[0]</title>", Title);
+            message += "</head>";
+            message += "<body leftmargin=\"0\" marginwidth=\"0\" topmargin=\"0\" marginheight=\"0\" offset=\"0\" style=\"-webkit-text-size-adjust: none;margin: 0;padding: 0;background-color: #FAFAFA;width: 100%;\">";
+            message += "<center>";
+            message += "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" height=\"100%\" width=\"100%\" id=\"backgroundTable\" style=\"margin: 0;padding: 0;background-color: #FAFAFA;height: 100%;width: 100%;\">";
+            message += "<tr>";
+            message += "<td align=\"center\" valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" width=\"600\" id=\"templatePreheader\" style=\"background-color: #FAFAFA;\">";
+            message += "<tr>";
+            message += "<td valign=\"top\" class=\"preheaderContent\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" width=\"100%\">";
+            message += "<tr>";
+            message += "<td valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<div style=\"color: #505050;font-family: Arial;font-size: 10px;line-height: 100%;text-align: center;\">Thank you for registering with Coupons4Giving.ca. Click on the link below to access your new account.";
+            message += "</div>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\" id=\"templateContainer\" style=\"border: 1px solid #DDD;background-color: #FFFFFF;\">";
+            message += "<tr>";
+            message += "<td align=\"center\" valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\" id=\"templateHeader\" style=\"background-color: #FFFFFF;border-bottom: 0;\">";
+            message += "<tr>";
+            message += "<td class=\"headerContent\" style=\"border-collapse: collapse;color: #202020;font-family: Arial;font-size: 34px;font-weight: bold;line-height: 100%;padding: 0;text-align: center;vertical-align: middle;\">";
+            message += "<img src=\"http://www.coupons4giving.ca/Images/c4g_email_header.png\" style=\"max-width: 600px;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none; padding-top: 20px;\" id=\"headerImage campaign-icon\">";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "<tr>";
+            message += "<td align=\"center\" valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\" id=\"templateBody\">";
+            message += "<tr>";
+            message += "<td valign=\"top\" class=\"bodyContent\" style=\"border-collapse: collapse;background-color: #FFFFFF;\">";
+            message += "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">";
+            message += "<tr>";
+            message += "<td valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"20\" cellspacing=\"0\" width=\"100%\">";
+            message += "<tr>";
+            message += "<td valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\"><h1 class=\"h1\" style=\"color: #22bfe8;display: block;font-family: Arial;font-size: 28px;font-weight: bold;line-height: 100%;margin-top: 0;margin-right: 0;margin-bottom: 10px;margin-left: 0;text-align: center;\">Welcome To Coupons4Giving</h1>";
+            message += "</div>";
+            message += "<img src=\"http://www.coupons4giving.ca/Images/c4g_email_template_header1.png\" style=\"max-width: 560px;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;display: inline; padding-bottom: 30px;\">";
+            message += String.Format("<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\">{0}", EmailContent);
+            message += "<h4 class=\"null tpl-content-highlight\" style=\"text-align: center;color: #5e5e5e;display: block;font-family: Arial;font-size: 22px;font-weight: bold;line-height: 100%;margin-top: 0;margin-right: 0;margin-bottom: 10px;margin-left: 0;\"><br>";
+            message += String.Format("<strong><a href=\"{1}\" target=\"_blank\" style=\"color: #22bfe8;font-weight: normal;text-decoration: underline;\">{0}</a>&nbsp;{1}</strong></h4>", LinkContent, LinkURL, LinkSuffix);
+            message += String.Format("<p style=\"text-align: center;\"><strong>{0}&nbsp;<a href=\"mailto:{1}\" target=\"_blank\" style=\"color: #22bfe8;font-weight: normal;text-decoration: underline;\">{1}</a>&nbsp;{2}</strong></p>", ContactTextPrefix, ContactEmail, ContactTextSuffix);
+            message += "<p style=\"text-align: center;\">Cheers!</p>";
+            message += "</div>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "<tr>";
+            message += "<td align=\"center\" valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" width=\"600\" id=\"templateFooter\" style=\"background-color: #FFFFFF;border-top: 0;\">";
+            message += "<tr>";
+            message += "<td valign=\"top\" class=\"footerContent\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" width=\"100%\">";
+            message += "<tr>";
+            message += "<td colspan=\"2\" valign=\"middle\" id=\"social\" style=\"border-collapse: collapse;background-color: #ecebe9;border: 0;\">";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 12px;line-height: 125%;text-align: center;\"><h3 class=\"null\" style=\"text-align: center;color: #202020;display: block;font-family: Arial;font-size: 26px;font-weight: bold;line-height: 100%;margin-top: 0;margin-right: 0;margin-bottom: 10px;margin-left: 0;\"><span style=\"font-size:18px;\"><span style=\"color:#ff9900;\">Connect with us on Social Media</span></span></h3>";
+            message += "&nbsp;<a href=\"https://twitter.com/Coupons4Giving\" target=\"_blank\" style=\"color: #22bfe8;font-weight: normal;text-decoration: underline;\"><img align=\"none\" height=\"84\" src=\"http://www.coupons4giving.ca/Images/c4g_email_twitter.png\" style=\"width: 84px;height: 84px;border: 0;line-height: 100%;outline: none;text-decoration: none;display: inline;\" width=\"84\"></a><a href=\"http://www.facebook.com/Coupons4Giving\" target=\"_blank\" style=\"color: #22bfe8;font-weight: normal;text-decoration: underline;\"><img align=\"none\" height=\"84\" src=\"http://www.coupons4giving.ca/Images/c4g_email_facebook.png\" style=\"width: 84px;height: 84px;border: 0;line-height: 100%;outline: none;text-decoration: none;display: inline;\" width=\"84\"></a><a href=\"https://www.coupons4giving.ca/Home.aspx#\" target=\"_blank\" style=\"color: #22bfe8;font-weight: normal;text-decoration: underline;\"><img align=\"none\" height=\"84\" src=\"http://www.coupons4giving.ca/Images/c4g_email_linkedin.png\" style=\"width: 84px;height: 84px;border: 0;line-height: 100%;outline: none;text-decoration: none;display: inline;\" width=\"84\"></a></div>";
+            message += "</td>";
+            message += "</tr>";
+            message += "<tr>";
+            message += "<td valign=\"top\" width=\"550\" style=\"border-collapse: collapse;\">";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 12px;line-height: 125%;text-align: center;\">&copy; 2013 - GenerUS Marketing Solutions | Edmonton, Alberta, Canada</div>";
+            message += "</td>";
+            message += "</tr>";
+            message += "<tr>";
+            message += "<td colspan=\"2\" valign=\"middle\" id=\"utility\" style=\"border-collapse: collapse;background-color: #FFFFFF;border: 0;\">";
+            //Replace with link to settings page to disable email notifications
+            message += String.Format("<div style=\"color: #5e5e5e;font-family: Arial;font-size: 12px;line-height: 125%;text-align: center;\">To unsubscribe please contact us at&nbsp;<a href=\"mailto:{0}\" target=\"_blank\" style=\"color: #22bfe8;font-weight: normal;text-decoration: underline;\">{0}</a>.</div>", ContactEmail);
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";           
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "<br>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</center>";
+            message += "</body>";
+            message += "</html>";
+
+            mm.Body = message;
+            new SmtpClient().Send(mm);
         }
     }
 }

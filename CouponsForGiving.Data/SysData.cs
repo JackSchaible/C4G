@@ -634,9 +634,9 @@ namespace CouponsForGiving.Data.Classes
             return new C4GEntities().Campaign_List().ToList<Campaign>();
         }
 
-        public static List<Campaign> ListByCity(string city, string country)
+        public static List<Campaign> ListByCity(string city, string province)
         {
-            return new C4GEntities().Campaign_ListByCity(city, country).ToList<Campaign>();
+            return new C4GEntities().Campaign_ListByCity(city, province).ToList<Campaign>();
         }
 
         public static void MarkAsActive(int CampaignID)
@@ -681,6 +681,11 @@ namespace CouponsForGiving.Data.Classes
         public static List<Campaign> ListAllByUsername(string username)
         {
             return new C4GEntities().Campaign_ListByNPO(username).ToList<Campaign>();
+        }
+
+        public static List<Campaign> ListByDeal(int DealID)
+        {
+            return new C4GEntities().Campaign_ListByDeal(DealID).ToList<Campaign>();
         }
     }
 

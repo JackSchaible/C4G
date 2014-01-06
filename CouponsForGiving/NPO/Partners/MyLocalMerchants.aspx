@@ -7,7 +7,7 @@
     <h1>My Local Merchants List</h1>
     <asp:GridView ID="LocalMerchantsGV" runat="server" AutoGenerateColumns="False" DataKeyNames="MerchantID" OnRowDeleting="LocalMerchantsGV_RowDeleting">
         <Columns>
-            <asp:ImageField DataImageUrlField="SmallLogo" DataImageUrlFormatString="../../{0}">
+            <asp:ImageField DataImageUrlField="LargeLogo" DataImageUrlFormatString="../../{0}">
             </asp:ImageField>
             <asp:BoundField DataField="Name" />
             <asp:BoundField DataField="City" />

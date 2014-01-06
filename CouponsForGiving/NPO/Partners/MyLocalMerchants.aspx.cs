@@ -25,9 +25,9 @@ public partial class NPO_Partners_MyLocalMerchants : System.Web.UI.Page
             (
                 from m
                 in SysData.ListLocalPartnersByNPO(User.Identity.Name) 
-                select new 
+                select new
                 { 
-                    m.MerchantID, m.SmallLogo, m.Name, 
+                    m.MerchantID, m.LargeLogo, m.Name, 
                     City = m.MerchantLocations.FirstOrDefault<MerchantLocation>().City.Name,
                     Province = (m.MerchantLocations.FirstOrDefault<MerchantLocation>().City.PoliticalDivision == null) ? "" : m.MerchantLocations.FirstOrDefault<MerchantLocation>().City.PoliticalDivision.Name,
                     Offers = m.Deals.Count

@@ -3,13 +3,19 @@ using CouponsForGiving.Data;
 using CouponsForGiving.Data.Classes;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 public partial class Default_DealsInMyArea : System.Web.UI.Page
 {
