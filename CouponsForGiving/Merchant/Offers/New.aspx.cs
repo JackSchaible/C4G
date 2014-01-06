@@ -16,15 +16,20 @@ using CouponsForGiving.Data.Classes;
 using System.Net.Mail;
 using System.Web.Security;
 using System.Web.Configuration;
+using System.Xml;
 
 public partial class Merchant_Deals_New : System.Web.UI.Page
 {
     public Merchant merch;
+    public XmlDocument strings;
 
     protected void Page_Load(object sender, EventArgs e)
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.Merchant;
+
+        strings = new XmlDocument();
+        strings.Load(Server.MapPath(String.Format("Text ({0}).xml", WebConfigurationManager.AppSettings["Language"])));
 
         try
         {
@@ -50,6 +55,7 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
                 {
                     LocationID = m.MerchantLocationID,
                     Address = m.cAddress,
+                    LocationCity = m.City.Name,
                     Province = m.City.PoliticalDivision.Name,
                     Country = m.City.Country.Name,
                     Phone = Convert.ToInt64(m.PhoneNumber).ToString("(###) ###-####"),
@@ -58,7 +64,7 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
                 }
             ).ToList<object>();
 
-        if (locations.Count < 2)
+        if (locations.Count == 0)
         {
             LocationsPanel.Visible = false;
             LocationsPanel.Enabled = false;
@@ -328,6 +334,13 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
             newDealMessage.Text = ex.ToString();
             newDealMessage.ForeColor = Color.Red;
         }
+    }
+
+    [WebMethod]
+    [ScriptMethod]
+    public static string CheckOfferName(string name)
+    {
+        return Deals.ListNamesByMerchant(HttpContext.Current.User.Identity.Name).Contains(name).ToString();
     }
 
     [ScriptMethod]

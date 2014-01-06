@@ -594,6 +594,11 @@ namespace CouponsForGiving.Data.Classes
 
     public static class Deals
     {
+        public static List<string> ListNamesByMerchant(string Username)
+        {
+            return new C4GEntities().Deal_ListNamesByMerchant(Username).ToList<string>();
+        }
+
         public static List<Deal_GetEligibleByUsername_Result> GetEligibleByUsername(string username, DateTime endDate)
         {
             return new C4GEntities().Deal_GetEligibleByUsername(username, endDate).ToList<Deal_GetEligibleByUsername_Result>();

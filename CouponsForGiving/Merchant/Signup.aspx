@@ -8,7 +8,7 @@
         $(document).ready(initForm);
 
         function initForm() {
-            checkForm();
+            checkForm(true);
         }
 
         function checkFirstName(write) {

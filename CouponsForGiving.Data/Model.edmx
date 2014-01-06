@@ -1361,6 +1361,9 @@
           <Parameter Name="City" Type="nvarchar" Mode="In" />
           <Parameter Name="PoliticalDivision" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="Deal_ListNamesByMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="Deal_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
           <Parameter Name="dealid" Type="int" Mode="In" />
           <Parameter Name="merchantid" Type="int" Mode="In" />
@@ -2637,6 +2640,9 @@
           <FunctionImport Name="Campaign_ListByCity" EntitySet="Campaigns" ReturnType="Collection(C4GModel.Campaign)">
             <Parameter Name="CityName" Mode="In" Type="String" />
             <Parameter Name="ProvinceName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Deal_ListNamesByMerchant" ReturnType="Collection(String)">
+            <Parameter Name="Username" Mode="In" Type="String" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="Campaign">
@@ -5312,6 +5318,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Campaign_ListByCity" FunctionName="C4GModel.Store.Campaign_ListByCity">
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Deal_ListNamesByMerchant" FunctionName="C4GModel.Store.Deal_ListNamesByMerchant" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

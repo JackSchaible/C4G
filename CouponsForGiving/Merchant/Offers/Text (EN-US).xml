@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<SiteText>
+  <Pages>
+    <New>
+      <ErrorMessages>
+        <NullOfferName>You need to enter a name for your offer.</NullOfferName>
+        <OfferNameTooLong>Your offer name is too long. Offer names need to be less than 50 characters long.</OfferNameTooLong>
+        <OfferNameInvalidCharacters></OfferNameInvalidCharacters>
+        <OfferNameTaken>Sorry, but you already have an offer with that name. Please enter a different name.</OfferNameTaken>
+      </ErrorMessages>
+    </New>
+  </Pages>
+</SiteText>

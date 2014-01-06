@@ -7,6 +7,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
             calcSplit();
+            checkForm();
         });
 
         function addLocation(locationID, name) {
@@ -33,6 +34,151 @@
             //IMPORTANT: MUST BE THE SAME AS THE FORMULA IN ShoppingCart.cs
             $("#SplitTotal").text("$" + split.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
         }
+
+        function checkName(write) {
+            var name = $("#OfferNameTextBox").val();
+            var errors = new Array();
+
+            if (IsStringBlank(name))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullOfferName").InnerText %>');
+            
+            if (IsStringTooLong(name, 50))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/OfferNameTooLong").InnerText %>');
+
+            if (containsCode(name))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/OfferNameInvalidCharacters").InnerText %>');
+
+            PageMethods.CheckName(name, function (message) {
+                if (message == "true") {
+                    $("#OfferNameTextBoxErrors").css('display', 'block');
+                    $("#OfferNameTextBoxErrors").append('<ul><li><%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/OfferNameTaken").InnerText %></li></ul>');
+                    $("#SubmitButton").attr('disabled', 'disabled');
+                    checkForm();
+                }
+                else {
+                    $("#BusinessNameTextBoxErrors").css('display', 'none');
+                    $("#SubmitButton").removeAttr('disabled');
+                    checkForm();
+                }
+            });
+
+            if (arguments.length == 0) {
+                writeErrors('OfferNameTextBoxErrors', errors);
+                checkForm();
+            }
+        }
+
+        function checkDescription(write) {
+            var description = $("#DescriptionTextBox").val();
+            var errors = new Array();
+
+            if (IsStringBlank(description))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullDescription").InnerText %>');
+
+            if (ContainsSpaces(description))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/DescriptionOneWord").InnerText %>');
+
+            if (IsStringTooLong(description, 200))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/DescriptionTooLong").InnerText %>');
+
+            if (IsStringTooShort(description, 10))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/DescriptionTooShort").InnerText %>');
+
+            if (constainsCode(description))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/DescriptionInvalidCharacters").InnerText %>');
+
+            if (arguments.length == 0) {
+                writeErrors('DescriptionTextBox', errors);
+                checkForm();
+            }
+        }
+
+        function checkStartDate() {
+
+        }
+
+        function checkEndDate() {
+        }
+
+        function checkForm() {
+            var errors = new Array();
+
+            errors.push.apply(errors, checkName(false));
+            errors.push.apply(errors, checkDescription(false));
+
+            if (errors.length > 0) {
+                $("#SubmitButton").attr("disabled", "disabled");
+            }
+            else {
+                $("#SubmitButton").removeAttr("disabled");
+            }
+
+            return errors;
+        }
+
+        //Supporting form functions
+        function uploadImage() {
+            var file = $("#Image")[0].files[0];
+
+            $.ajax({
+                url: 'OfferImageUploader.ashx',
+                type: 'POST',
+                xhr: function () {
+                    var myxhr = $.ajaxSettings.xhr();
+
+                    if (myxhr.upload)
+                        myxhr.upload.addEventListener('progress', 'progressHandler', false);
+
+                    return myxhr;
+                },
+                beforeSend: function () {
+                    $("#Loading").css('display', 'block');
+                },
+                success: function () {
+                    $("#Loading").css('display', 'none');
+                    var folderPath = '../tmp/Images/Offers';
+                    var fileName = '<%: HttpContext.Current.User.Identity.Name + "OfferLogo" %>';
+                    var ext = '';
+                    var contentType = file.type;
+
+                    switch (contentType) {
+                        case "image/gif":
+                            ext = ".gif";
+                            break;
+
+                        case "image/jpeg":
+                            ext = ".jpg";
+                            break;
+
+                        case "image/png":
+                            ext = ".png";
+                            break;
+
+                        case "image/pjpeg":
+                            ext = ".jpg";
+                            break;
+
+                        case "image/svg+xml":
+                            ext = ".svg";
+                            break;
+
+                        default:
+                            ext = ".jpg";
+                            break;
+                    }
+
+                    var filePath = folderPath + "/" + fileName + ext;
+                    $("#UploadedImage").html('<img onclick="removeImage()" alt="Your profile image" src="' + filePath + '" />');
+                    window.imagePath = filePath;
+                },
+                error: uploadError,
+                data: file,
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+
+        }
     </script>
     <h1>Offer Creation Page</h1>
     <p>To set up an offer you will need to have the following information:</p>
@@ -45,7 +191,7 @@
         <li>Your offer as well as your profile page will now be available for not-for-profits to add to their campaign pages.</li>
     </ul>
     <h1>New <%: merch.Name %> Offer</h1>
-    <div id="Form">
+    <div class="Form">
         <asp:Panel CssClass="FormRow" ID="LocationsPanel" runat="server">
             <div id="FormRow">
                 <p>Your Merchant Locations</p>
@@ -53,11 +199,11 @@
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <button onclick='addLocation(<%# Eval("LocationID") %>, \"<%# Eval("Address") %> <%# Eval("City") %>, <%# Eval("ShortProvince") %>, <%# Eval("ShortCountry") %>\"')>Add Location</button>
+                                <button onclick='addLocation(<%# Eval("LocationID") %>, \"<%# Eval("Address") %> <%# Eval("LocationCity") %>, <%# Eval("ShortProvince") %>, <%# Eval("ShortCountry") %>\"')>Add Location</button>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="Address" HeaderText="Address"></asp:BoundField>
-                        <asp:BoundField DataField="City" HeaderText="City"></asp:BoundField>
+                        <asp:BoundField DataField="LocationCity" HeaderText="City"></asp:BoundField>
                         <asp:BoundField DataField="Province" HeaderText="Province/State"></asp:BoundField>
                         <asp:BoundField DataField="Country" HeaderText="Country"></asp:BoundField>
                         <asp:BoundField DataField="Phone" HeaderText="Phone Number"></asp:BoundField>
@@ -68,91 +214,67 @@
             </div>
         </asp:Panel>
         <div class="FormRow">
-            <asp:Label ID="Label1" runat="server" Text="Name" AssociatedControlID="newDealName"></asp:Label>
-            <asp:TextBox ID="newDealName" runat="server" MaxLength="256" placeholder="Offer Name"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="nameRequired" runat="server" ControlToValidate="newDealName"
-                ErrorMessage="Name of offer is required.">
-                *
-            </asp:RequiredFieldValidator>
+            <label>Name</label>
+            <input id="OfferNameTextBox" type="text" maxlength="50" placeholder="Offer Name" onkeyup="checkName()"
+                onblur="checkName()" oninput="checkName()"/>
+            <div id="OfferNameTextBoxErrors" class="ErrorDiv"></div>
         </div>
         <div class="FormRow TextAreaRow">
-            <asp:Label ID="Label4" runat="server" Text="Description" 
-                AssociatedControlID="newDealDescription"></asp:Label>
-            <asp:TextBox ID="newDealDescription" runat="server" TextMode="MultiLine" MaxLength="200" placeholder="Offer Description"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
-                ControlToValidate="newDealDescription" ErrorMessage="A description of your offer is required.">
-                *
-            </asp:RequiredFieldValidator>
+            <label>Description</label>
+            <textarea ID="DescriptionTextBox" maxlength="200" placeholder="Offer Description" onkeyup="checkDescription()"
+                onblur="checkDescription()" oninput="checkDescription()">
+            </textarea>
+            <div id="DescriptionTextBoxErrors" class="ErrorDiv"></div>
         </div>
         <div class="FormRow">
-            <label>Offer Image<br /><small>Image must be under 4 MB.</small></label>
-            <asp:FileUpload ID="dealImage" runat="server" />
+            <label>Offer Image<br /><small>This will be the image associated with your deal. It should represent the product or service.</small></label>
+            <input id="Image" name="files[]" type="file" />
+            <input id="UploadButton" type="button" onclick="uploadImage()" value="Upload" disabled="disabled" />
+            <div id="ImageErrors" class="ErrorDiv"></div>
+            <div id="Loading" class="hide"><img src="../Images/loading.gif" alt="Loading"/><p>Loading...</p></div>
+            <div id="UploadedImage"><img src="../../Images/c4g_home_step4.png" alt="DefaultProfilePic" /></div>
         </div>
         <div class="FormRow">
-            <asp:Label ID="Label2" runat="server" Text="Start Date" 
-                AssociatedControlID="StartDate"></asp:Label>
-            <UC:DateControl ID="StartDate" runat="server" AcceptPastDates="false"/>
+            <label>Start Date</label>
+            <div id="StartDateDiv">
+                <UC:DateControl ID="StartDate" runat="server" AcceptPastDates="false"/>
+            </div>
         </div>
         <div class="FormRow">
-            <asp:Label ID="Label3" runat="server" Text="End Date" 
-                AssociatedControlID="EndDate"></asp:Label>
-            <UC:DateControl ID="EndDate" runat="server" AcceptPastDates="false" />
+            <label>End Date</label>
+            <div id="EndDateDiv">
+                <UC:DateControl ID="EndDate" runat="server" AcceptPastDates="false" />
+            </div>
         </div>
         <div class="FormRow">
-            <asp:Label ID="Label7" runat="server" Text="Total Coupon Limit" 
-                AssociatedControlID="newDealAbsoluteCouponLimit"></asp:Label>
-            <asp:TextBox ID="newDealAbsoluteCouponLimit" runat="server" MaxLength="10" placeholder="25">
-            </asp:TextBox>
-            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender2" TargetControlID="newDealAbsoluteCouponLimit" 
-                FilterType="Numbers" runat="server"></ajaxToolkit:FilteredTextBoxExtender>
+            <label>Total Coupon Limit</label>
+            <input type="text" ID="AbsoluteCouponLimitTextBox" maxlength="10" placeholder="25" onkeyup="checkAbsCouponLimit()"
+                onblur="checkAbsCouponLimit()" oninput="checkAbsCouponLimit()"/>
+            <div id="AbsoluteCouponLimitTextBoxErrors" class="ErrorDiv"></div>
         </div>
         <div class="FormRow">
-            <asp:Label ID="Label8" runat="server" Text="Coupon Limit Per Customer" 
-                AssociatedControlID="newDealLimitPerCustomer"></asp:Label>
-            <asp:TextBox ID="newDealLimitPerCustomer" runat="server" MaxLength="10" placeholder="5">
-            </asp:TextBox>
-            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender1" 
-                TargetControlID="newDealLimitPerCustomer" FilterType="Numbers" runat="server">
-            </ajaxToolkit:FilteredTextBoxExtender>
+            <label>Coupon Limit Per Customer</label>
+            <input type="text" ID="LimitPerCustomerTextBox" maxlength="10" placeholder="5" onkeyup="checkPCCouponLimit()"
+                onblur="checkPCCouponLimit()" oninput="checkPCCouponLimit()"/>
+            <div id="LimitPerCustomerTextBoxErrors" class="ErrorDiv"></div>
         </div>
         <div class="FormRow">
             <label>Retail Value<br /><small>The regular price of the product/service.</small></label>
-            <asp:TextBox ID="newDealRetailValue" runat="server" MaxLength="10"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
-                ControlToValidate="newDealRetailValue" ErrorMessage="The regular Retail Value of your offer is required.">
-                *
-            </asp:RequiredFieldValidator>
-            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender3" TargetControlID="newDealRetailValue" 
-                FilterType="Custom, Numbers" ValidChars="." runat="server">
-            </ajaxToolkit:FilteredTextBoxExtender>
-            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server"
-                ControlToValidate="newDealRetailValue" ErrorMessage="The regular Retail Value of your offer is invalid. (ex. 15.00)" 
-                ValidationExpression="^\$?\d{1,3}(,?\d{3})*(\.\d{1,2})?$">
-                *
-            </asp:RegularExpressionValidator>
+            $<input type="text" ID="RetailValueTextBox" maxlength="10" placeholder="10.00" onkeyup="checkRetailValue()"
+                onblur="checkRetailValue()" oninput="checkRetailValue()"/>
+            <div id="RetailValueTextBoxErrors" class="ErrorDiv"></div>
         </div>
         <div class="FormRow">
             <label>Gift Value<br /><small>The Sale Price</small></label>
-            <asp:TextBox ID="newDealGiftValue" runat="server" MaxLength="10" onkeyup="calcSplit()" ClientIDMode="Static"></asp:TextBox>
+            <input type="text" ID="GiftValueTextBox" maxlength="10" onkeyup="checkGiftValue()"
+                onblur="checkGiftValue()" oninput="checkGiftValue()"/>
+            <div id="GiftValueTextBoxErrors" class="ErrorDiv"></div>
             <br />
             <p>Processing Fee (2.9% + $0.30) = <strong id="VAT">$0.00</strong></p>
             <br />
             <p>5% Tax on Coupons4Giving Fee = <strong id="Tax">$0.00</strong></p>
             <br />
             <p>Your Split on Each Purchase = <strong id="SplitTotal">$0.00</strong></p>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
-                ControlToValidate="newDealGiftValue" ErrorMessage="The Gift Value of your offer is required. This is how much your offer will be sold for.">
-                *
-            </asp:RequiredFieldValidator>
-            <ajaxToolkit:FilteredTextBoxExtender ID="FilteredTextBoxExtender4" 
-                TargetControlID="newDealGiftValue" FilterType="Custom, Numbers" 
-                ValidChars="." runat="server"></ajaxToolkit:FilteredTextBoxExtender>
-            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
-                ControlToValidate="newDealGiftValue" ErrorMessage="The Gift Value of your offer is invalid. (i.e., 15.00)" 
-                ValidationExpression="^\$?\d{1,3}(,?\d{3})*(\.\d{1,2})?$">*</asp:RegularExpressionValidator>
-            <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="newDealRetailValue" 
-                ControlToValidate="newDealGiftValue" ErrorMessage="Gift Value must be less than Retail Value" 
-                Operator="LessThan" Type="Currency">*</asp:CompareValidator>
         </div>
         <div class="FormRow">
             <h4>Redemption Details</h4>
@@ -161,20 +283,20 @@
                 explain restrictions, and tell them anything else they should know about your deal. This will 
                 show up as fine print on the bottom of your offer page.
             </p>
-            <asp:CheckBoxList ID="FinePrintList" runat="server" DataSourceID="FinePrintEDS" DataTextField="Content" DataValueField="FinePrintID">
+            <asp:CheckBoxList ID="FinePrintList" ClientIDMode="Static" runat="server" DataSourceID="FinePrintEDS" DataTextField="Content" DataValueField="FinePrintID">
             </asp:CheckBoxList>
             <asp:EntityDataSource ID="FinePrintEDS" runat="server" ConnectionString="name=C4GEntities" DefaultContainerName="C4GEntities" 
                 EnableFlattening="False" EntitySetName="FinePrints">
             </asp:EntityDataSource>
         </div>
         <div class="FormRow TextAreaRow">
-            <asp:Label ID="Label5" runat="server" Text="Additional Redemption Details" AssociatedControlID="AdditionalDetailsTextBox"></asp:Label>
-            <asp:TextBox ID="AdditionalDetailsTextBox" runat="server" TextMode="MultiLine"></asp:TextBox>
+            <label>Additional Redemption Details</label>
+            <textarea id="AdditionalRedemptionDetailsTextBox" maxlength="500" onkeyup="checkRedemptionDetails()"
+                onblur="checkRedemptionDetails()" oninput="checkRedemptionDetails()"></textarea>
         </div>
         <div class="FormRow">
-            <asp:Label ID="newDealMessage" runat="server" AssociatedControlID="newDealSubmit"></asp:Label>
-            <asp:Button ID="newDealSubmit" runat="server" Text="Submit" OnClick="newDealSubmit_Click" />
+            <input type="button" id="SubmitButton" value="Submit" onclick="submitForm()" />
+            <div id="FormErrors" class="ErrorDiv"></div>
         </div>
     </div>
-    <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
 </asp:Content>

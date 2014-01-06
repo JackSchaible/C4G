@@ -2674,5 +2674,14 @@ namespace CouponsForGiving.Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Campaign>("Campaign_ListByCity", mergeOption, cityNameParameter, provinceNameParameter);
         }
+    
+        public virtual ObjectResult<string> Deal_ListNamesByMerchant(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Deal_ListNamesByMerchant", usernameParameter);
+        }
     }
 }
