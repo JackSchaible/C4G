@@ -25,16 +25,16 @@
         <ul>
             <li class="merchantstep1">
             <h4>Tip 1:</h4>
-            Check back frequently for updates to our local and Global Marketplace of E-tailers</li>
+            <p>Check back frequently for updates to our local and Global Marketplace of E-tailers</p></li>
             <li class="merchantstep2">
             <h4>Tip 2:</h4>
-            Inviting your preferred merchants to sign up for Coupons4Giving enables you to keep connected to merchants who want to support your causes</li>
+            <p>Inviting your preferred merchants to sign up for Coupons4Giving enables you to keep connected to merchants who want to support your causes</p></li>
             <li class="merchantstep3">
             <h4>Tip 3:</h4>
-            When you set up your campaigns, you will only see merchant offers that are available for the duration of your campaign. The offers that match are based on when a merchant offer ends. Remember if you are selecting from the list of Local Merchants, to ensure they are servicing your region/city.</li>
+            <p>When you set up your campaigns, you will only see merchant offers that are available for the duration of your campaign. The offers that match are based on when a merchant offer ends. Remember if you are selecting from the list of Local Merchants, to ensure they are servicing your region/city.</p></li>
             <li class="merchantstep4">
             <h4>Tip 4:</h4>
-            You can have as many merchant offers as you want to help you reach your goals. The more the merrier, right? To start with, we recommend about 3-5 merchants per campaign. This way you are giving your supporters choices of coupons to purchase to support your cause.</li>
+            <p>You can have as many merchant offers as you want to help you reach your goals. The more the merrier, right? To start with, we recommend about 3-5 merchants per campaign. This way you are giving your supporters choices of coupons to purchase to support your cause.</p></li>
         </ul>
     </div>
 </asp:Content>

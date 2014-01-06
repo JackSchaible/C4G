@@ -1192,6 +1192,25 @@ margin: 5px 0px;
 }
 #MainContent .profile-edit h2.my-profile, #MainContent h2.my-profile {border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 10px;}
 
+#MainContent h3.profile-icon {
+width: 44px;
+float: right;
+font-size: 24px;
+margin: 0px;
+min-height: 30px;
+padding: 7px 0px;
+border-radius: 200px;
+background: #22bfe8;
+margin-left: 10px;
+color: #fff;
+}
+
+#MainContent h3.profile-icon .fa {
+text-align: center;
+margin: 4px auto 0px;
+display: block;
+}
+
 .profile-edit .edit {cursor: pointer;
 position: relative;
 left: 0px;
@@ -1236,7 +1255,7 @@ font-size: 17px;
 border: 1px solid #ccc;
 width: 60%;}
 
-.profile-edit #profile-edit-address p, .profile-edit #profile-edit-postal-code p, .profile-edit #profile-edit-email p, .profile-edit #profile-edit-phone-number p, .profile-edit #profile-edit-city p, .profile-edit #profile-edit-province p, .profile-edit #profile-edit-country p {
+.profile-edit #profile-edit-address p, .profile-edit #profile-edit-postal-code p, .profile-edit #profile-edit-email p, .profile-edit #profile-edit-phone-number p, .profile-edit #profile-edit-city p, .profile-edit #profile-edit-province p, .profile-edit #profile-edit-country p, #profile-edit-birthday p {
 width: 60%;
 display: inline-block;
 margin: 10px 0px;
