@@ -421,7 +421,7 @@ namespace CouponsForGiving
             result += "<div class=\"thirds\">";
             result += "<article class=\"c4g-coupon-tile\">";
             result += "<img src=\"../../Images/c4g_coupon_logo.png\" class=\"coupon_c4g_logo\" />";
-            result += "<a href=\"CampaignPage.aspx?nponame=" + campaign.NPO.Name + "&campaign=" + campaign.Name + "><h2>" + campaign.Name + "</h2></a><!-- Merchant Offer -->";
+            result += "<a href=\"CampaignPage.aspx?nponame=" + campaign.NPO.Name + "&campaign=" + campaign.Name + "\"><h2>" + campaign.Name + "</h2></a><!-- Merchant Offer -->";
             result += "<a href=\"NPOPage.aspx?name=" + campaign.NPO.Name + "\"><h3>" + campaign.NPO.Name + "</h3></a>";
             result += "<span class=\"campaign-frame\">";
             result += "<img src=\"../" + campaign.CampaignImage + "\">";
@@ -429,13 +429,14 @@ namespace CouponsForGiving
             result += "<div class=\"campaign-details-tile\">";
             result += "<p>" + campaign.CampaignDescription + "</p>";
             result += "<p>";
-            result += "<strong>Number of Offers:</span>";
+            result += "<strong>Number of Offers:</strong>";
             result += "<span>" + campaign.DealInstances.Count + "</span>";
             result += "<br><strong>Campaign Goal:</strong>";
             result += "<span>$" + campaign.FundraisingGoal + "</span><br>";
             result += "<strong>Campaign Dates:</strong>";
             result += "<em>" + campaign.StartDate.Value.ToString("MMMM dd yyyy") + "-" + campaign.EndDate.Value.ToString("MMMM dd yyyy") + "</em>";
-            result += "</p>";
+            result += "</p>";            
+            result += "</div>";
             result += "<a href=\"javascript:addToCart(" + deal.DealInstanceID + ", " + campaign.CampaignID + ")\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> Buy Now</a>";
             result += "<a href=\"../../Default/CampaignPage.aspx?nponame=" + campaign.NPO.Name + "&campaign=" + campaign.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> About This Campaign</a>";
             result += "</article>";
