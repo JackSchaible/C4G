@@ -1807,6 +1807,11 @@ text-align: center;
 left: 0px;
 }
 
+#MainContent .c4g-campaign-tile h3 a, #MainContent .c4g-campaign-tile h2 a, #MainContent .c4g-coupon-tile h3 a, #MainContent .c4g-coupon-tile h2 a, #MainContent .c4g-coupon-tile a h2, #MainContent .c4g-coupon-tile a h3 {
+font-weight: 700;
+text-decoration: none;
+}
+
 #MainContent .c4g-coupon-tile .campaign-frame, #MainContent .c4g-coupon-tile .company-frame {width: 91%;
 width: 91%;
 height: 155px;
@@ -1817,6 +1822,18 @@ text-align: center;
 display: block;
 margin: 8px auto 0px;
 max-width: 275px;}
+
+#MainContent .coupon-title-tile .campaign-frame, #MainContent .coupon-title-tile .company-frame {width: 91%;
+width: 91%;
+height: 155px;
+border: 2px solid #ccc;
+background: #fff;
+overflow: hidden;
+text-align: center;
+display: block;
+margin: 8px auto 0px;
+max-width: 275px;}
+
 
 #MainContent .coupon-details-tile, #MainContent .campaign-details-tile {
 height: 100%;
