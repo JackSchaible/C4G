@@ -119,6 +119,46 @@ public abstract class Validation
         return result;
     }
 
+    public bool IsNumberLarger(int number, int toCompare)
+    {
+        return number > toCompare;
+    }
+
+    public bool IsNumberLarger(decimal number, decimal toCompare)
+    {
+        return number > toCompare;
+    }
+
+    public bool IsNumberLargerOrEqual(int number, int toCompare)
+    {
+        return number >= toCompare;
+    }
+
+    public bool IsNumberLargerOrEqual(decimal number, decimal toCompare)
+    {
+        return number >= toCompare;
+    }
+
+    public bool IsNumberSmaller(int number, int toCompare)
+    {
+        return number < toCompare;
+    }
+
+    public bool IsNumberSmaller(decimal number, decimal toCompare)
+    {
+        return number < toCompare;
+    }
+
+    public bool IsNumberSmallerOrEqual(int number, int toCompare)
+    {
+        return number <= toCompare;
+    }
+
+    public bool IsNumberSmallerOrEqual(decimal number, decimal toCompare)
+    {
+        return number <= toCompare;
+    }
+
     public HtmlGenericControl WriteErrorsList(List<string> errors)
     {
         HtmlGenericControl result = new HtmlGenericControl();

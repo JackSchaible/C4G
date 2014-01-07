@@ -13,6 +13,32 @@
         <DescriptionTooLong>Your offer description is too long. Offer descriptions need to be less than 200 characters long.</DescriptionTooLong>
         <DescriptionTooShort>Your offer description is too short. Offers descriptions need to be at least 10 characters long.</DescriptionTooShort>
         <DescriptionInvalidCharacters>Your offer description contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, or ;.</DescriptionInvalidCharacters>
+        <StartDateLaterThanEndDate>The start date of your offer needs to be before its end date.</StartDateLaterThanEndDate>
+        <EndDateEarlierThanStartDate>The end date of your offer needs to be after its start date.</EndDateEarlierThanStartDate>
+        <EndDateBeforeToday>The end date of your offer needs to be later than today&apos;s date.</EndDateBeforeToday>
+        <NullAbsoluteCouponLimit>You need to enter an absolute limit for your offer. This is how many coupons you wish to sell overall.</NullAbsoluteCouponLimit>
+        <CouponLimitNAN>Your absolute coupon limit needs to be a number. For example, 2500.</CouponLimitNAN>
+        <CouponLimitLT0>Your absolute coupon limit needs to be greater than 0.</CouponLimitLT0>
+        <CouponLimitLessThanCustomerLimit>The absolute limit of coupons to sell must be greater than or equal to the limit per customer.</CouponLimitLessThanCustomerLimit>
+        <NullPCCouponLimit>You need to enter a limit per customer for your offer. This is how many coupons each individual customer is allowed to buy.</NullPCCouponLimit>
+        <PCCouponLimitNAN>Your coupon limit per customer needs to be a number. For example, 2500.</PCCouponLimitNAN>
+        <PCCouponLimitLT0>Your coupon limit per customer needs to be greater than 0.</PCCouponLimitLT0>
+        <PCCouponLimitGreaterThanAbsoluteLimit>The limit of coupons per customer must be less than than or equal to the absolute limit of coupons to sell.</PCCouponLimitGreaterThanAbsoluteLimit>
+        <NullRetailValue>You need to enter a retail value for your offer. This is how much your product or service typically costs.</NullRetailValue>
+        <RetailValueNAN>Your retail value needs to be a number. For example, 25.00.</RetailValueNAN>
+        <RetailValueLT1>Your retail value needs to be greater than $1.00.</RetailValueLT1>
+        <RetailValueLessThanGiftValue>The retail value of your offer must be greater than than its gift value.</RetailValueLessThanGiftValue>
+        <NullGiftValue>You need to enter a gift value for your offer. This is how much you this coupon will cost to purchase.</NullGiftValue>
+        <GiftValueNAN>Your gift value needs to be a number. For example, 25.00.</GiftValueNAN>
+        <GiftValueLT1>Your gift value needs to be greater than $1.00.</GiftValueLT1>
+        <GiftValueGreaterThanRetailValue>The gift value of your offer must be less than than its retail value.</GiftValueGreaterThanRetailValue>
+        <RedeemDetailsTooLong>Your additional redeem details need to be less than 500 characters long.</RedeemDetailsTooLong>
+        <RedeemDetailsInvalidCharacters>Your additional redeem details contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, or ;.</RedeemDetailsInvalidCharacters>
+        <ImageTypeInvalid>The file you uploaded is an incorrect file type. Supported types include: GIF, JPEG, Progressive JPEG, PNG, and SVG. Please select another file.</ImageTypeInvalid>
+        <ImageSizeInvalid>The image you uploaded appears to be too large. We require images to be x pixels wide by y pixels high in order to display properly. Please select another image.</ImageSizeInvalid>
+        <UploadError>There was a problem uploading your image. Please try again.</UploadError>
+        <ServerError>Something went wrong with your form submission. Please try again.</ServerError>
+        <FormErrors>There were some errors with your form submission. Please review the following errors and try again.</FormErrors>
       </ErrorMessages>
     </New>
   </Pages>

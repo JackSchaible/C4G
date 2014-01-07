@@ -13,4 +13,11 @@
     <LinkURL>https://www.coupons4giving.ca/Account/Login.aspx\</LinkURL>
     <LinkSuffix>to go to your account.</LinkSuffix>
   </UserSignup>
+  <OfferCreation>
+    <TitlePrefix>Your New Offer on Coupons4Giving</TitlePrefix>
+    <ContentPrefix>Your new offer, </ContentPrefix>
+    <ContentSuffix>has been set up.</ContentSuffix>
+    <LinkContent>Click here</LinkContent>
+    <LinkSuffix>to view your deal.</LinkSuffix>
+  </OfferCreation>
 </EmailText>

@@ -10,7 +10,7 @@ public class ImageUploader : IHttpHandler
     public void ProcessRequest (HttpContext context) 
     {
 
-        string folderPath = HttpContext.Current.Server.MapPath("tmp\\Images\\Offers\\");
+        string folderPath = HttpContext.Current.Server.MapPath("..\\..\\tmp\\Images\\Offers\\");
         string fileName = HttpContext.Current.User.Identity.Name + "OfferLogo";
 
         string ext = "";

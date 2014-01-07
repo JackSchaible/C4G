@@ -432,6 +432,11 @@ namespace CouponsForGiving.Data.Classes
 
     public static class Merchants
     {
+        public static Merchant GetByUsername(string Username)
+        {
+            return new C4GEntities().Merchant_GetByUsername(Username).FirstOrDefault<Merchant>();
+        }
+        
         public static List<string> ListNames()
         {
             return new C4GEntities().Merchant_ListNames().ToList<string>();

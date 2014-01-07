@@ -8,6 +8,15 @@
         $(document).ready(function () {
             calcSplit();
             checkForm();
+
+            //Bind events
+            document.getElementById("Image").addEventListener('change', checkImage, false);
+            var startDay = $("#StartDate select[id$='DayDDL']").change(checkStartDate());
+            var startMonth = $("#StartDate select[id$='MonthDDL']").change(checkStartDate());
+            var startYear = $("#StartDate select[id$='YearDDL']").change(checkStartDate());
+            var endDay = $("#EndDate select[id$='DayDDL']").change(checkEndDate());
+            var endMonth = $("#EndDate select[id$='MonthDDL']").change(checkEndDate());
+            var endYear = $("#EndDate select[id$='YearDDL']").change(checkEndDate());
         });
 
         function addLocation(locationID, name) {
@@ -39,10 +48,7 @@
             var name = $("#OfferNameTextBox").val();
             var errors = new Array();
 
-            console.log(name);
-
             if (IsStringBlank(name)) {
-                console.log('String is blank');
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullOfferName").InnerText %>');
             }
             
@@ -57,7 +63,6 @@
 
             if (arguments.length == 0) {
                 PageMethods.CheckName(name, function (message) {
-                    console.log(message);
                     if (message == "true") {
                         $("#OfferTaken").css('display', 'block');
                         $("#OfferTaken").html('<ul><li><%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/OfferNameTaken").InnerText %></li></ul>');
@@ -84,7 +89,7 @@
             if (IsStringBlank(description))
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullDescription").InnerText %>');
 
-            if (ContainsSpaces(description))
+            if (!ContainsSpaces(description))
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/DescriptionOneWord").InnerText %>');
 
             if (IsStringTooLong(description, 200))
@@ -102,30 +107,263 @@
             }
         }
 
-        function checkStartDate() {
+        function checkStartDate(write) {
+            var startDay = $("#StartDate select[id$='DayDDL'] option:selected").text();
+            var startMonth = $("#StartDate select[id$='MonthDDL'] option:selected").text();
+            var startYear = $("#StartDate select[id$='YearDDL'] option:selected").text();
 
+            var endDay = $("#EndDate select[id$='DayDDL'] option:selected").text();
+            var endMonth = $("#EndDate select[id$='MonthDDL'] option:selected").text();
+            var endYear = $("#EndDate select[id$='YearDDL'] option:selected").text();
+
+            var startDate = new Date(startYear, startMonth, startDay);
+            var endDate = new Date(endYear, endMonth, endDay);
+            var errors = new Array();
+
+            if (startDate >= endDate)
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/StartDateLaterThanEndDate").InnerText %>');
+
+            if (arguments.length == 0) {
+                writeErrors('StartDateErrors', errors);
+                checkForm();
+            }
+
+            return errors;
         }
 
-        function checkEndDate() {
+        function checkEndDate(write) {
+            var startDay = $("#StartDate select[id$='DayDDL'] option:selected").text();
+            var startMonth = $("#StartDate select[id$='MonthDDL'] option:selected").text();
+            var startYear = $("#StartDate select[id$='YearDDL'] option:selected").text();
+
+            var endDay = $("#EndDate select[id$='DayDDL'] option:selected").text();
+            var endMonth = $("#EndDate select[id$='MonthDDL'] option:selected").text();
+            var endYear = $("#EndDate select[id$='YearDDL'] option:selected").text();
+
+            var startDate = new Date(startYear, startMonth, startDay);
+            var endDate = new Date(endYear, endMonth, endDay);
+            var errors = new Array();
+
+            if (startDate >= endDate)
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/EndDateEarlierThanStartDate").InnerText %>');
+
+            if (endDate < new Date())
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/EndDateBeforeToday").InnerText %>');
+
+            if (arguments.length == 0) {
+                writeErrors('EndDateErrors', errors);
+                checkForm();
+            }
+
+            return errors;
         }
 
-        function checkForm() {
+        function checkAbsCouponLimit(write) {
+            var limit = $("#AbsoluteCouponLimitTextBox").val();
+            var limitPerCustomer = $("#LimitPerCustomerTextBox").val();
+            var errors = new Array();
+
+            if (IsStringBlank(limit))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullAbsoluteCouponLimit").InnerText %>');
+
+            if (!IsNumber(limit))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/CouponLimitNAN").InnerText %>');
+
+            if (IsNumberLargerOrEqual(limit, 0))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/CouponLimitLT0").InnerText %>');
+
+            if (IsNumberLarger(limitPerCustomer, limit))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/CouponLimitLessThanCustomerLimit").InnerText %>');
+
+            console.log(errors);
+
+            if (arguments.length == 0) {
+                writeErrors('AbsoluteCouponLimitTextBoxErrors', errors);
+                checkForm();
+            }
+
+            return errors;
+        }
+
+        function checkPCCouponLimit(write) {
+            var limit = $("#AbsoluteCouponLimitTextBox").val();
+            var limitPerCustomer = $("#LimitPerCustomerTextBox").val();
+            var errors = new Array();
+
+            if (IsStringBlank(limitPerCustomer))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullPCCouponLimit").InnerText %>');
+
+            if (!IsNumber(limitPerCustomer))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/PCCouponLimitNAN").InnerText %>');
+
+            if (IsNumberLarger(limitPerCustomer, 0))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/PCCouponLimitLT0").InnerText %>');
+
+            if (IsNumberLarger(limitPerCustomer, limit))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/PCCouponLimitGreaterThanAbsoluteLimit").InnerText %>');
+
+            if (arguments.length == 0) {
+                writeErrors('LimitPerCustomerTextBoxErrors', errors);
+                checkForm();
+            }
+
+            return errors;
+        }
+
+        function checkRetailValue(write) {
+            var retailValue = $("#RetailValueTextBox").val();
+            var giftValue = $("#GiftValueTextBox").val();
+            var errors = new Array();
+
+            if (IsStringBlank(retailValue))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullRetailValue").InnerText %>');
+
+            if (!IsNumber(retailValue))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/RetailValueNAN").InnerText %>');
+
+            if (IsNumberLarger(retailValue, 1))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/RetailValueLT1").InnerText %>');
+
+            if (IsNumber(giftValue))
+                if (!IsNumberLargerOrEqual(retailValue, giftValue))
+                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/RetailValueLessThanGiftValue").InnerText %>');
+
+            if (arguments.length == 0) {
+                writeErrors('RetailValueTextBoxErrors', errors);
+                checkForm();
+            }
+
+            return errors;
+        }
+
+        function checkGiftValue(write) {
+            var retailValue = $("#RetailValueTextBox").val();
+            var giftValue = $("#GiftValueTextBox").val();
+            var errors = new Array();
+
+            if (IsStringBlank(giftValue))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullGiftValue").InnerText %>');
+
+            if (!IsNumber(giftValue))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueNAN").InnerText %>');
+
+            if (IsNumberLarger(giftValue, 1))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueLT1").InnerText %>');
+
+            if (IsNumber(retailValue))
+                if (!IsNumberLargerOrEqual(giftValue, retailValue))
+                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueGreaterThanRetailValue").InnerText %>');
+
+            if (arguments.length == 0) {
+                writeErrors('GiftValueTextBoxErrors', errors);
+                checkForm();
+            }
+
+            return errors;
+        }
+
+        function checkRedemptionDetails(write) {
+            var redeemDetails = $("#AdditionalRedemptionDetailsTextBox").val();
+            var errors = new Array();
+
+            if (IsStringTooLong(redeemDetails, 500))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueGreaterThanRetailValue").InnerText %>');
+
+            if (containsCode(redeemDetails))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueGreaterThanRetailValue").InnerText %>');
+
+            if (arguments.length == 0) {
+                writeErrors('AdditionalRedemptionDetailsTextBoxErrors', errors);
+                checkForm();
+            }
+
+            return errors;
+        }
+
+        function submitForm() {
+            var errors = checkForm(false);
+
+            if (errors.length > 0) {
+                errors.splice(0, 0, '<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/FormErrors").InnerText %>');
+                writeErrors('FormErrors', errors);
+            }
+            else {
+                var name = $("#OfferNameTextBox").val();
+                var description = $("#DescriptionTextBox").val();
+                var startDay = $("#StartDate select[id$='DayDDL'] option:selected").text();
+                var startMonth = $("#StartDate select[id$='MonthDDL'] option:selected").text();
+                var startYear = $("#StartDate select[id$='YearDDL'] option:selected").text();
+
+                var endDay = $("#EndDate select[id$='DayDDL'] option:selected").text();
+                var endMonth = $("#EndDate select[id$='MonthDDL'] option:selected").text();
+                var endYear = $("#EndDate select[id$='YearDDL'] option:selected").text();
+
+                var startDate = new Date(startYear, startMonth, startDay);
+                var endDate = new Date(endYear, endMonth, endDay);
+                var limit = $("#AbsoluteCouponLimitTextBox").val();
+                var limitPerCustomer = $("#LimitPerCustomerTextBox").val();
+                var redeemDetails = new Array();
+                $("#FinePrintList input:checked").each(function () {
+                    redeemDetails.push(this.value);
+                });
+                var additionalRedeemDetails = $("#AdditionalRedemptionDetailsTextBox").val();
+
+                PageMethods.ConnectToStripe(firstName, lastName, phone, businessName, description,
+                    address, city, postal, contactPhone, contactEmail, website, globalMerchant,
+                    autoAccept, businessType, birthDate, physicalProduct, productType, currency,
+                    function (message) {
+                        window.location.replace(message);
+                    },
+                    function (message) {
+                        $("#FormErrors").css('display', 'block');
+                        $("#FormErrors").html('' + message._message + '');
+                    });
+            }
+        }
+
+        function checkForm(disableButton) {
             var errors = new Array();
 
             errors.push.apply(errors, checkName(false));
             errors.push.apply(errors, checkDescription(false));
+            errors.push.apply(errors, checkStartDate(false));
+            errors.push.apply(errors, checkEndDate(false));
+            errors.push.apply(errors, checkAbsCouponLimit(false));
+            errors.push.apply(errors, checkPCCouponLimit(false));
+            errors.push.apply(errors, checkRetailValue(false));
+            errors.push.apply(errors, checkGiftValue(false));
 
-            if (errors.length > 0) {
-                $("#SubmitButton").attr("disabled", "disabled");
-            }
-            else {
-                $("#SubmitButton").removeAttr("disabled");
+            if (arguments.length == 0) {
+                if (errors.length > 0) {
+                    $("#SubmitButton").attr("disabled", "disabled");
+                }
+                else {
+                    $("#SubmitButton").removeAttr("disabled");
+                }
             }
 
             return errors;
         }
 
         //Supporting form functions
+        function checkImage(evt) {
+            var file = evt.target.files[0];
+            var errors = new Array();
+
+            if (!IsImage(file))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/ImageTypeInvalid").InnerText %>');
+
+            if (!IsImageProfileSized(file))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/ImageSizeInvalid").InnerText %>');
+
+            writeErrors('ImageErrors', errors);
+
+            if (errors.length == 0)
+                $("#UploadButton").removeAttr('disabled');
+            else
+                $("#UploadButton").attr('disabled', 'disabled');
+        }
+
         function uploadImage() {
             var file = $("#Image")[0].files[0];
 
@@ -145,7 +383,7 @@
                 },
                 success: function () {
                     $("#Loading").css('display', 'none');
-                    var folderPath = '../tmp/Images/Offers';
+                    var folderPath = '../../tmp/Images/Offers';
                     var fileName = '<%: HttpContext.Current.User.Identity.Name + "OfferLogo" %>';
                     var ext = '';
                     var contentType = file.type;
@@ -187,6 +425,17 @@
                 processData: false
             });
 
+        }
+
+        function removeImage() {
+            $("#UploadedImage").html('<img src="../../Images/c4g_home_step4.png" alt="DefaultProfilePic" />');
+            window.imagePath = '../../Images/c4g_home_step4.png';
+        }
+
+        function uploadError() {
+            var errors = new Array();
+            errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/UploadError").InnerText %>');
+            writeErrors('ImageErrors', errors);
         }
     </script>
     <h1>Offer Creation Page</h1>
@@ -248,12 +497,14 @@
             <div id="StartDateDiv">
                 <UC:DateControl ID="StartDate" runat="server" AcceptPastDates="false"/>
             </div>
+            <div id="StartDateErrors" class="ErrorDiv"></div>
         </div>
         <div class="FormRow">
             <label>End Date</label>
             <div id="EndDateDiv">
                 <UC:DateControl ID="EndDate" runat="server" AcceptPastDates="false" />
             </div>
+            <div id="EndDateErrors" class="ErrorDiv"></div>
         </div>
         <div class="FormRow">
             <label>Total Coupon Limit</label>
@@ -275,8 +526,8 @@
         </div>
         <div class="FormRow">
             <label>Gift Value<br /><small>The Sale Price</small></label>
-            <input type="text" ID="GiftValueTextBox" maxlength="10" onkeyup="checkGiftValue()"
-                onblur="checkGiftValue()" oninput="checkGiftValue()"/>
+            $<input type="text" ID="GiftValueTextBox" maxlength="10" onkeyup="checkGiftValue()"
+                onblur="checkGiftValue()" oninput="checkGiftValue()" placeholder="10.00"/>
             <div id="GiftValueTextBoxErrors" class="ErrorDiv"></div>
             <br />
             <p>Processing Fee (2.9% + $0.30) = <strong id="VAT">$0.00</strong></p>
@@ -302,6 +553,7 @@
             <label>Additional Redemption Details</label>
             <textarea id="AdditionalRedemptionDetailsTextBox" maxlength="500" onkeyup="checkRedemptionDetails()"
                 onblur="checkRedemptionDetails()" oninput="checkRedemptionDetails()"></textarea>
+            <div id="AdditionalRedemptionDetailsTextBoxErrors" class="ErrorDiv"></div>
         </div>
         <div class="FormRow">
             <input type="button" id="SubmitButton" value="Submit" onclick="submitForm()" />

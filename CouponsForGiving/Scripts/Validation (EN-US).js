@@ -1,4 +1,49 @@
-﻿//Checks a file's MIME Type
+﻿//Checks to see if string is a number
+function IsNumber(textToEvaluate) {
+    return !isNaN(textToEvaluate.trim());
+}
+
+//Checks to see if number is greater than the specified number
+function IsNumberLarger(textToEvaluate, number) {
+    var result = false;
+
+    if (textToEvaluate.trim() < number)
+        result = true;
+    
+    return result;
+}
+
+//Checks to see if number is greater than or equal to the specified number
+function IsNumberLargerOrEqual(textToEvaluate, number) {
+    var result = false;
+
+    if (textToEvaluate.trim() <= number)
+        result = true;
+
+    return result;
+}
+
+//Checks to see if number is smaller than the specified number
+function IsNumberSmaller(textToEvaluate, number) {
+    var result = false;
+
+    if (textToEvaluate.trim() < number)
+        result = true;
+
+    return result;
+}
+
+//Checks to see if number is smaller than or equal to the specified number
+function IsNumberSmallerOrEqual(textToEvaluate, number) {
+    var result = false;
+
+    if (textToEvaluate.trim() <= number)
+        result = true;
+
+    return result;
+}
+
+//Checks a file's MIME Type
 function IsImage(file) {
     var fType = file.type;
     var result = false;

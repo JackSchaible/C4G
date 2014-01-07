@@ -10,7 +10,7 @@
         <LastNameTooLong>Your last name needs to be less than 64 characters long.</LastNameTooLong>
         <LastNameInvalidCharacters>Your last name contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, or ;.</LastNameInvalidCharacters>
         <NullPhoneNumber>You need to enter a phone number.</NullPhoneNumber>
-        <InvalidPhoneNumber>Your phone number is invalid. It needs to follow the format \"555 555-5555\".</InvalidPhoneNumber>
+        <InvalidPhoneNumber>Your phone number is invalid. It needs to follow the format &quot;555 555-5555&quot;.</InvalidPhoneNumber>
         <PhoneNumberTooLong>Your phone number must contain less than 20 characters.</PhoneNumberTooLong>
         <PhoneNumberInvalidCharacters>Your phone number contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, ;, or any alphabetic characters.</PhoneNumberInvalidCharacters>
         <NullBusinessName>You need to enter a business name.</NullBusinessName>
@@ -29,7 +29,7 @@
         <NullPostal>You need to enter a postal/zip code.</NullPostal>
         <PostalTooShort>Your postal/zip code needs to be at least 5 characters long.</PostalTooShort>
         <AARNotification>You will be notified of every Not-For-Profit request to partner.</AARNotification>
-        <InvalidEmail>Your email address needs to match the pattern \"joe@joesmith.com\".</InvalidEmail>
+        <InvalidEmail>Your email address needs to match the pattern &quot;joe@joesmith.com&quot;.</InvalidEmail>
         <EmailTooLong>Your email needs to be less than 64 characters long.</EmailTooLong>
         <EmailTooShort>Your email needs to be longer than 6 characters.</EmailTooShort>
         <NullEmail>You need to enter an email address.</NullEmail>

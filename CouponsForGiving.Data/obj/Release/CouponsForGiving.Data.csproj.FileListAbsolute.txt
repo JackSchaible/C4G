@@ -140,4 +140,3 @@ C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\bin\Release\EntityFrame
 C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\bin\Release\EntityFramework.xml
 C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\obj\Release\CouponsForGiving.Data.dll
 C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\obj\Release\CouponsForGiving.Data.pdb
-C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving.Data\obj\Release\CouponsForGiving.Data.csprojResolveAssemblyReference.cache
