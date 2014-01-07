@@ -126,7 +126,7 @@
                             <asp:LoginView ID="LoginView1" runat="server" ViewStateMode="Disabled">
                                 <AnonymousTemplate>
                                 	<a href="ContactUs.aspx" id="contactUs" class="loggedout"><i class="fa fa-comment"></i> Contact Us</a> |
-                                    <i class="fa fa-shopping-cart"></i> <a id="ShoppingCart" runat="server" href="~/Default/My/Cart.aspx" class="header-shoppingcart"><%: ((List<ShoppingCart>)Session["Cart"]) == null ? 0 : ((List<ShoppingCart>)Session["Cart"]).Count %></a> |
+                                    <i class="fa fa-shopping-cart"></i> <a id="ShoppingCart" runat="server" href="~/Default/My/Cart.aspx" class="header-shoppingcart"><%: ((List<ShoppingCart>)Session["Cart"]) == null ? 0 : ((List<ShoppingCart>)Session["Cart"]).Count %></a>
                                 	<a id="signupButton" runat="server" class="HeaderButton" href="~/Account/Register.aspx"><i class="fa fa-user"></i> Register</a>
                                     <a id="lbutton" runat="server" class="HeaderButton" href="~/Account/Login.aspx"><i class="fa fa-sign-in"></i> Log in</a>
                                 </AnonymousTemplate>
