@@ -620,8 +620,9 @@ margin: 0px;
 }
 
 .TextAreaRow {
-    height: 230px;
-    margin-top: 10px;
+min-height: 230px;
+margin-top: 10px;
+height: 100%;
 }
 
  textarea {
