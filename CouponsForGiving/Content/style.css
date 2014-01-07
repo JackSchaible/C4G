@@ -703,7 +703,7 @@ min-width: 20px;
 }
 
 
-input[type=submit], .FormRow input[type="submit"] {
+input[type=submit], .FormRow input[type="submit"], input[type="button"]#UploadButton {
 background-color: #fbad3e;
 color: #FFF;
 font-family: Ubuntu, Corbel, Arial, sans-serif;
@@ -714,6 +714,8 @@ border: none;
 font-size: 18px;
 font-weight: 400;
 box-shadow: 0px 4px 0px #ff9900;
+-moz-box-shadow: 0px 4px 0px #ff9900;
+-webkit-box-shadow: 0px 4px 0px #ff9900;
 text-transform: uppercase;
 width: 200px;
 float: right;
