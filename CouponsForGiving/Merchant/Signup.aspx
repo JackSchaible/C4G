@@ -552,6 +552,7 @@
                 	<input id="UploadButton" type="button" onclick="uploadImage()" value="Upload" disabled="disabled" />
                 	<div id="ImageErrors" class="ErrorDiv"></div>
                 	<div id="Loading" class="hide"><img src="../Images/loading.gif" alt="Loading"/><p>Loading...</p></div>
+                	<div class="clear"></div>
                 	<div id="UploadedImage"><img src="../Images/c4g_home_step4.png" alt="DefaultProfilePic" /></div>
                 </div>
             </div>
