@@ -666,7 +666,7 @@
                 <div id="TermsCheckBoxErrors" class="ErrorDiv"></div>
             </div>
             <div class="FormRow">
-                <input type="button" id="SubmitButton" runat="server" value="Connect To Stripe!" onclick="submitForm()">
+                <input type="button" id="SubmitButton" value="Connect To Stripe!" onclick="submitForm()">
                 <div id="FormErrors" class="ErrorDiv"></div>
             </div>
         </div>

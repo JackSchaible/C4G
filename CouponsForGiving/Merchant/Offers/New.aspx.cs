@@ -37,8 +37,8 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            newDealMessage.Text = ex.ToString();
-            newDealMessage.ForeColor = Color.Red;
+            //newDealMessage.Text = ex.ToString();
+            //newDealMessage.ForeColor = Color.Red;
         }
 
         if (!IsPostBack)
@@ -78,7 +78,7 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
             LocationsGV.DataBind();
         }
     }
-
+    /*
     protected void newDealSubmit_Click(object sender, EventArgs e)
     {
         try
@@ -335,7 +335,7 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
             newDealMessage.ForeColor = Color.Red;
         }
     }
-
+    */
     [WebMethod]
     [ScriptMethod]
     public static string CheckOfferName(string name)

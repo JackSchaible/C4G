@@ -1356,6 +1356,9 @@
     <Parameter Name="City" Type="nvarchar" Mode="In" />
     <Parameter Name="PoliticalDivision" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="Deal_ListNamesByMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="Deal_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="dealid" Type="int" Mode="In" />
     <Parameter Name="merchantid" Type="int" Mode="In" />

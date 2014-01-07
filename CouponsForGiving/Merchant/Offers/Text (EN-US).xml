@@ -5,8 +5,13 @@
       <ErrorMessages>
         <NullOfferName>You need to enter a name for your offer.</NullOfferName>
         <OfferNameTooLong>Your offer name is too long. Offer names need to be less than 50 characters long.</OfferNameTooLong>
-        <OfferNameInvalidCharacters></OfferNameInvalidCharacters>
+        <OfferNameInvalidCharacters>Your offer name contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, or ;.</OfferNameInvalidCharacters>
         <OfferNameTaken>Sorry, but you already have an offer with that name. Please enter a different name.</OfferNameTaken>
+        <NullDescription>You need to enter a description for your offer.</NullDescription>
+        <DescriptionOneWord>Your offer description needs to be more than one word.</DescriptionOneWord>
+        <DescriptionTooLong>Your offer description is too long. Offer descriptions need to be less than 200 characters long.</DescriptionTooLong>
+        <DescriptionTooShort>Your offer description is too short. Offers descriptions need to be at least 10 characters long.</DescriptionTooShort>
+        <DescriptionInvalidCharacters>Your offer description contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, or ;.</DescriptionInvalidCharacters>
       </ErrorMessages>
     </New>
   </Pages>

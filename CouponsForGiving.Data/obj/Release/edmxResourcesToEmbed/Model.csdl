@@ -811,6 +811,9 @@
       <Parameter Name="CityName" Mode="In" Type="String" />
       <Parameter Name="ProvinceName" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="Deal_ListNamesByMerchant" ReturnType="Collection(String)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="Campaign">
     <Key>
