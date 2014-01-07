@@ -791,5 +791,6 @@
     <FunctionImportMapping FunctionImportName="Campaign_ListByDeal" FunctionName="C4GModel.Store.Campaign_ListByDeal" />
     <FunctionImportMapping FunctionImportName="Campaign_ListByCity" FunctionName="C4GModel.Store.Campaign_ListByCity" />
     <FunctionImportMapping FunctionImportName="Deal_ListNamesByMerchant" FunctionName="C4GModel.Store.Deal_ListNamesByMerchant" />
+    <FunctionImportMapping FunctionImportName="City_Get" FunctionName="C4GModel.Store.City_Get" />
   </EntityContainerMapping>
 </Mapping>

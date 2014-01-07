@@ -120,6 +120,9 @@
     <Compile Include="City_GetByName_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="City_Get_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="City_ListAllWithDivisionCode_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

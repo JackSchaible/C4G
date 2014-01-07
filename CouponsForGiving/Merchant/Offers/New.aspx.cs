@@ -37,8 +37,8 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            //newDealMessage.Text = ex.ToString();
-            //newDealMessage.ForeColor = Color.Red;
+            ex.ToString();
+            Response.Redirect("../Signup.aspx");
         }
 
         if (!IsPostBack)
@@ -47,36 +47,36 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
 
     private void BindData()
     {
-        List<object> locations =
-            (
-                from m
-                in merch.MerchantLocations
-                select new
-                {
-                    LocationID = m.MerchantLocationID,
-                    Address = m.cAddress,
-                    LocationCity = m.City.Name,
-                    Province = m.City.PoliticalDivision.Name,
-                    Country = m.City.Country.Name,
-                    Phone = Convert.ToInt64(m.PhoneNumber).ToString("(###) ###-####"),
-                    ShortProvince = m.City.PoliticalDivision.DivisionCode,
-                    ShortCountry = m.City.Country.CountryCode
-                }
-            ).ToList<object>();
+        //List<object> locations =
+        //    (
+        //        from m
+        //        in merch.MerchantLocations
+        //        select new
+        //        {
+        //            LocationID = m.MerchantLocationID,
+        //            Address = m.cAddress,
+        //            LocationCity = m.City.Name,
+        //            Province = m.City.PoliticalDivision.Name,
+        //            Country = m.City.Country.Name,
+        //            Phone = Convert.ToInt64(m.PhoneNumber).ToString("(###) ###-####"),
+        //            ShortProvince = m.City.PoliticalDivision.DivisionCode,
+        //            ShortCountry = m.City.Country.CountryCode
+        //        }
+        //    ).ToList<object>();
 
-        if (locations.Count == 0)
-        {
-            LocationsPanel.Visible = false;
-            LocationsPanel.Enabled = false;
-        }
-        else
-        {
-            LocationsPanel.Visible = false;
-            LocationsPanel.Enabled = false;
+        //if (locations.Count == 0)
+        //{
+        //    LocationsPanel.Visible = false;
+        //    LocationsPanel.Enabled = false;
+        //}
+        //else
+        //{
+        //    LocationsPanel.Visible = true;
+        //    LocationsPanel.Enabled = true;
 
-            LocationsGV.DataSource = locations;
-            LocationsGV.DataBind();
-        }
+        //    LocationsGV.DataSource = locations;
+        //    LocationsGV.DataBind();
+        //}
     }
     /*
     protected void newDealSubmit_Click(object sender, EventArgs e)
@@ -336,38 +336,43 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
         }
     }
     */
+
+
     [WebMethod]
     [ScriptMethod]
-    public static string CheckOfferName(string name)
+    public static string CheckName(string name)
     {
         return Deals.ListNamesByMerchant(HttpContext.Current.User.Identity.Name).Contains(name).ToString();
     }
 
-    [ScriptMethod]
-    [WebMethod]
-    public static string AddLocation(string locationID)
-    {
-        string result = "OK";
+    //[ScriptMethod]
+    //[WebMethod]
+    //public static string AddLocation(string locationID)
+    //{
+    //    string result = "OK";
 
-        int location = int.Parse(locationID);
+    //    int location = int.Parse(locationID);
+    //    List<int> locations = new List<int>();
 
-        List<int> locations = (List<int>)HttpContext.Current.Session["Locations"];
-        locations.Add(location);
-        HttpContext.Current.Session["Locations"] = locations;
+    //    if (HttpContext.Current.Session["Locations"] != null)
+    //        locations = (List<int>)HttpContext.Current.Session["Locations"];
+
+    //    locations.Add(location);
+    //    HttpContext.Current.Session["Locations"] = locations;
         
-        return result;
-    }
+    //    return result;
+    //}
 
-    [ScriptMethod]
-    [WebMethod]
-    public static string RemoveLocation(string locationID)
-    {
-        string result = "OK";
+    //[ScriptMethod]
+    //[WebMethod]
+    //public static string RemoveLocation(string locationID)
+    //{
+    //    string result = "OK";
 
-        List<int> locations = (List<int>)HttpContext.Current.Session["Locations"];
-        locations.Remove(int.Parse(locationID));
-        HttpContext.Current.Session["Locations"] = locations;
+    //    List<int> locations = (List<int>)HttpContext.Current.Session["Locations"];
+    //    locations.Remove(int.Parse(locationID));
+    //    HttpContext.Current.Session["Locations"] = locations;
 
-        return result;
-    }
+    //    return result;
+    //}
 }

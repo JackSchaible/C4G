@@ -2683,5 +2683,23 @@ namespace CouponsForGiving.Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Deal_ListNamesByMerchant", usernameParameter);
         }
+    
+        public virtual ObjectResult<City> City_Get(Nullable<int> cityID)
+        {
+            var cityIDParameter = cityID.HasValue ?
+                new ObjectParameter("CityID", cityID) :
+                new ObjectParameter("CityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<City>("City_Get", cityIDParameter);
+        }
+    
+        public virtual ObjectResult<City> City_Get(Nullable<int> cityID, MergeOption mergeOption)
+        {
+            var cityIDParameter = cityID.HasValue ?
+                new ObjectParameter("CityID", cityID) :
+                new ObjectParameter("CityID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<City>("City_Get", mergeOption, cityIDParameter);
+        }
     }
 }

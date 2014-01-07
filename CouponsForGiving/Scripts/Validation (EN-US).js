@@ -95,14 +95,11 @@ function validWebsite(textToEvaluate) {
 function IsStringBlank(textToEvaluate) {
     var result;
 
-    if (!textToEvaluate)
+    if (textToEvaluate.trim().length == 0)
+        result = true;
+    else
         result = false;
-    else {
-        if (textToEvaluate.trim().length == 0)
-            result = true;
-        else
-            result = false;
-    }
+
     return result;
 }
 

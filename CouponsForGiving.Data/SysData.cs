@@ -381,6 +381,11 @@ namespace CouponsForGiving.Data.Classes
 
     public static class Cities
     {
+        public static City Get(int CityID)
+        {
+            return new C4GEntities().City_Get(CityID).FirstOrDefault<City>();
+        }
+
         public static City GetByName(string name, string provinceCode, string countryCode)
         {
             return new C4GEntities().City_GetByName(name, provinceCode, countryCode).FirstOrDefault<City>();

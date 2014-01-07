@@ -39,33 +39,42 @@
             var name = $("#OfferNameTextBox").val();
             var errors = new Array();
 
-            if (IsStringBlank(name))
+            console.log(name);
+
+            if (IsStringBlank(name)) {
+                console.log('String is blank');
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullOfferName").InnerText %>');
+            }
             
+            if (IsStringTooShort(name, 5))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/OfferNameTooShort").InnerText %>');
+
             if (IsStringTooLong(name, 50))
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/OfferNameTooLong").InnerText %>');
 
             if (containsCode(name))
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/OfferNameInvalidCharacters").InnerText %>');
 
-            PageMethods.CheckName(name, function (message) {
-                if (message == "true") {
-                    $("#OfferNameTextBoxErrors").css('display', 'block');
-                    $("#OfferNameTextBoxErrors").append('<ul><li><%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/OfferNameTaken").InnerText %></li></ul>');
-                    $("#SubmitButton").attr('disabled', 'disabled');
-                    checkForm();
-                }
-                else {
-                    $("#BusinessNameTextBoxErrors").css('display', 'none');
-                    $("#SubmitButton").removeAttr('disabled');
-                    checkForm();
-                }
-            });
-
             if (arguments.length == 0) {
+                PageMethods.CheckName(name, function (message) {
+                    console.log(message);
+                    if (message == "true") {
+                        $("#OfferTaken").css('display', 'block');
+                        $("#OfferTaken").html('<ul><li><%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/OfferNameTaken").InnerText %></li></ul>');
+                        $("#SubmitButton").attr('disabled', 'disabled');
+                        checkForm();
+                    }
+                    else {
+                        $("#OfferTaken").css('display', 'none');
+                        $("#SubmitButton").removeAttr('disabled');
+                        checkForm();
+                    }
+                });
+
                 writeErrors('OfferNameTextBoxErrors', errors);
                 checkForm();
             }
+            return errors;
         }
 
         function checkDescription(write) {
@@ -84,11 +93,11 @@
             if (IsStringTooShort(description, 10))
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/DescriptionTooShort").InnerText %>');
 
-            if (constainsCode(description))
+            if (containsCode(description))
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/DescriptionInvalidCharacters").InnerText %>');
 
             if (arguments.length == 0) {
-                writeErrors('DescriptionTextBox', errors);
+                writeErrors('DescriptionTextBoxErrors', errors);
                 checkForm();
             }
         }
@@ -192,14 +201,14 @@
     </ul>
     <h1>New <%: merch.Name %> Offer</h1>
     <div class="Form">
-        <asp:Panel CssClass="FormRow" ID="LocationsPanel" runat="server">
+        <%--<asp:Panel CssClass="FormRow" ID="LocationsPanel" runat="server">
             <div id="FormRow">
                 <p>Your Merchant Locations</p>
-                <asp:GridView ID="LocationsGV" runat="server" DataKeyNames="LocationID">
+                <asp:GridView ID="LocationsGV" runat="server" DataKeyNames="LocationID" AutoGenerateColumns="false">
                     <Columns>
                         <asp:TemplateField>
                             <ItemTemplate>
-                                <button onclick='addLocation(<%# Eval("LocationID") %>, \"<%# Eval("Address") %> <%# Eval("LocationCity") %>, <%# Eval("ShortProvince") %>, <%# Eval("ShortCountry") %>\"')>Add Location</button>
+                                <button onclick="addLocation(<%# Eval("LocationID") %>, '<%# Eval("Address") %> <%# Eval("LocationCity") %>, <%# Eval("ShortProvince") %>, <%# Eval("ShortCountry") %>')">Add Location</button>
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:BoundField DataField="Address" HeaderText="Address"></asp:BoundField>
@@ -212,18 +221,18 @@
                 <div id="SelectedItems">
                 </div>
             </div>
-        </asp:Panel>
+        </asp:Panel>--%>
         <div class="FormRow">
             <label>Name</label>
             <input id="OfferNameTextBox" type="text" maxlength="50" placeholder="Offer Name" onkeyup="checkName()"
                 onblur="checkName()" oninput="checkName()"/>
+            <div id="OfferTaken" class="ErrorDiv"></div>
             <div id="OfferNameTextBoxErrors" class="ErrorDiv"></div>
         </div>
         <div class="FormRow TextAreaRow">
             <label>Description</label>
             <textarea ID="DescriptionTextBox" maxlength="200" placeholder="Offer Description" onkeyup="checkDescription()"
-                onblur="checkDescription()" oninput="checkDescription()">
-            </textarea>
+                onblur="checkDescription()" oninput="checkDescription()"></textarea>
             <div id="DescriptionTextBoxErrors" class="ErrorDiv"></div>
         </div>
         <div class="FormRow">
@@ -231,7 +240,7 @@
             <input id="Image" name="files[]" type="file" />
             <input id="UploadButton" type="button" onclick="uploadImage()" value="Upload" disabled="disabled" />
             <div id="ImageErrors" class="ErrorDiv"></div>
-            <div id="Loading" class="hide"><img src="../Images/loading.gif" alt="Loading"/><p>Loading...</p></div>
+            <div id="Loading" class="hide"><img src="../../Images/loading.gif" alt="Loading"/><p>Loading...</p></div>
             <div id="UploadedImage"><img src="../../Images/c4g_home_step4.png" alt="DefaultProfilePic" /></div>
         </div>
         <div class="FormRow">
