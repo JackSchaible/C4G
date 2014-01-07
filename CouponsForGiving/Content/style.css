@@ -1808,13 +1808,15 @@ left: 0px;
 }
 
 #MainContent .c4g-coupon-tile .campaign-frame, #MainContent .c4g-coupon-tile .company-frame {width: 91%;
+width: 91%;
 height: 155px;
 border: 2px solid #ccc;
 background: #fff;
 overflow: hidden;
 text-align: center;
 display: block;
-margin: 8px auto 0px;}
+margin: 8px auto 0px;
+max-width: 275px;}
 
 #MainContent .coupon-details-tile, #MainContent .campaign-details-tile {
 height: 100%;
