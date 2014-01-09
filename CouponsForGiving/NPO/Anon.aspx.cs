@@ -12,5 +12,8 @@ public partial class NPO_Anon : System.Web.UI.Page
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.NPO;
+
+        if (User.IsInRole("NPO") || User.IsInRole("IncompleteNPO"))
+            Response.Redirect("MyHome.aspx");
     }
 }

@@ -12,5 +12,8 @@ public partial class Merchant_Anon : System.Web.UI.Page
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.Merchant;
+
+        if (User.IsInRole("Merchant") || User.IsInRole("IncompleteMerchant"))
+            Response.Redirect("MyHome.aspx");
     }
 }

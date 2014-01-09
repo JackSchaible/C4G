@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode>
+    <siteMapNode url="~/" title="Home"></siteMapNode>
     <siteMapNode url="~/NPO/MyHome.aspx" title="My Profile"></siteMapNode>
     <siteMapNode url="~/NPO/Campaigns/New.aspx" title="Set Up A Campaign"></siteMapNode>
     <siteMapNode url="~/NPO/Partners/MyPartners.aspx" title="Merchant Partners">
