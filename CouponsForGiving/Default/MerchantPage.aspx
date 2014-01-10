@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BannerContent" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Main_Content" Runat="Server">
-    <%--<div class="three-quarters">--%>
+    <div class="three-quarters">
         <h1><%: merchant.Name %></h1>
         <img alt="Our Logo" class="merchant_logo" src="../../<%: merchant.LargeLogo %>" />
         <h3 class="merchant-address"><%: merchant.cAddress + ", " + CouponsForGiving.Data.Classes.Cities.Get(merchant.CityID).Name %></h3>

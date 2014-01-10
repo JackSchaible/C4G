@@ -9,9 +9,9 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="Main_Content" Runat="Server">
     <div class="two-thirds"> 
         <h1><%: npo.Name %></h1>
-        <h3 class="merchant-address"><%: campaign.Name %></h3>
+        <h3 class="merchant-address"><%: campaign.Name %><img alt="Our Logo" class="npo_logo" src="../../<%: campaign.CampaignImage %>" /></h3>
         <h2>About the Campaign</h2>
-        <p><img alt="Our Logo" class="merchant_logo" src="../../<%: campaign.CampaignImage %>" /><%: campaign.CampaignDescription %></p> <!-- Campaing Description -->
+        <p><%: campaign.CampaignDescription %></p> <!-- Campaing Description -->
         <p><strong>Date Running</strong>: <%: campaign.StartDate.Value.ToString("MMMM dd, yyyy") %> - <%: campaign.EndDate.Value.ToString("MMMM dd, yyyy") %></p>
         <hr>
         <h2>Campaign Details</h2>

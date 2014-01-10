@@ -7,11 +7,11 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BannerContent" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Main_Content" Runat="Server">
-    <div class="two-thirds"><!-- Removed the div #text and also the #NPO-->
+    <div class="three-quarters"><!-- Removed the div #text and also the #NPO-->
         <h1><%: campaign.Name %></h1> <!-- Campaing Name -->
-        <h3 class="npo-name"><%: npo.Name %></h3><!-- This should be the Charity Name -->
+        <h3 class="npo-name"><%: npo.Name %><img alt="Our Logo" class="campaign_logo" src="../../<%: npo.Logo %>" /></h3>
         <h2>About the Campaign</h2>
-        <p><img alt="Our Logo" class="campaign_logo" src="../../<%: npo.Logo %>" /><%: campaign.CampaignDescription %></p> <!-- Campaing Description -->
+        <p><%: campaign.CampaignDescription %></p> <!-- Campaing Description -->
         <p><strong>Date Running</strong>: <%: campaign.StartDate.Value.ToString("MMMM dd, yyyy") %> - <%: campaign.EndDate.Value.ToString("MMMM dd, yyyy") %></p>
         <hr>
         <h2>Campaign Details</h2>
@@ -25,9 +25,9 @@
             <span class="thermometer"></span><span class="thermometer-raised"><%: (from po in campaign.PurchaseOrders where po.OrderStatusID != 3 select po.NPOSplit).Sum().ToString("C") %></span>
         </div><!-- Progress Meter --> 
     </div>
-    <div class="thirds">
+    <div class="one-quarters">
         <div class="SocialSidebar">
-            <h3>Share this NPO on social media!</h3>
+            <h3>Share this Campaign on social media!</h3>
             <div class="SidebarShare">
                 <img src="../../images/c4g_action_link.png" class="left" />
                 <p>Copy & Paste <%: URL %></p>

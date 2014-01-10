@@ -2009,7 +2009,7 @@ margin: 0px 30px 40px 0px;
 width: 135px;
 }
 
-#MainContent .merchant_logo, #MainContent .npo_logo{
+#MainContent .merchant_logo, #MainContent .npo_logo, #MainContent .campaign_logo {
 border-radius: 9px;
 float: right;
 display: block;
@@ -2023,12 +2023,14 @@ box-shadow: 0px 4px 0px #ccc;
 }
 
 #MainContent .campaign_logo {
+border-radius: 9px;
 float: right;
 display: block;
-margin: 0px 0px 40px 30px;
+margin: 0px 30px 40px 30px;
+width: 130px;
+border: 10px solid #ecebe9;
+padding: 5px;
 width: 200px;
-border: none;
-padding: 0px;
 }
 
 
