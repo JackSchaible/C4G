@@ -18,6 +18,7 @@ using CouponsForGiving;
 public partial class Account_Register : Page
 {
     public static List<string> Users;
+    public static List<string> Emails;
     public XmlDocument strings;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -25,8 +26,13 @@ public partial class Account_Register : Page
         RegisterUser.ContinueDestinationPageUrl = "../redirect.aspx";
 
         Users = new List<string>();
+        Emails = new List<string>();
+
         foreach (MembershipUser item in Membership.GetAllUsers())
+        {
             Users.Add(item.UserName);
+            Emails.Add(item.Email);
+        }
 
         ServerErrorDiv.Visible = false;
         strings = new XmlDocument();
@@ -103,10 +109,10 @@ public partial class Account_Register : Page
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/NullUsername").InnerText);
 
         if (validation.IsStringTooShort(username, 6))
-            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/ShortUsername").InnerText);
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/UsernameTooShort").InnerText);
 
         if (validation.IsStringTooLong(username, 32))
-            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/LongUsername").InnerText);
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/UsernameTooLong").InnerText);
 
         if (validation.ContainsCode(username))
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/UsernameInvalidCharacters").InnerText);
@@ -176,5 +182,17 @@ public partial class Account_Register : Page
             return Users.Contains(username);
         else
             return null;
+    }
+
+    [WebMethod]
+    [ScriptMethod]
+    public static bool? EmailTaken(string email)
+    {
+        bool result = false;
+
+        if (email != null)
+            result = Emails.Contains(email);
+
+        return result;
     }
 }

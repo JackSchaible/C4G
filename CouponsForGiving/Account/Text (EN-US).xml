@@ -11,6 +11,7 @@
         <InvalidEmail>Your email address needs to match the pattern \"joe@joesmith.com\".</InvalidEmail>
         <EmailTooLong>Your email needs to be less than 64 characters long.</EmailTooLong>
         <EmailTooShort>Your email needs to be longer than 6 characters.</EmailTooShort>
+        <EmailTaken>That email is already in use. Please choose another.</EmailTaken>
         <NullEmail>You need to enter an email address.</NullEmail>
         <EmailInvalidCharacters>Your email contains invalid characters. Please ensure it does not contain any of the following: &lt;, &gt;, {, }, or ;.</EmailInvalidCharacters>
         <NullPassword>You need to enter a password.</NullPassword>

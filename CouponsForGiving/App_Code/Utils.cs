@@ -514,7 +514,7 @@ namespace CouponsForGiving
                 mm.To.Add(item);
 
             XmlDocument doc = new XmlDocument();
-            doc.Load(String.Format("EmailText ({0}).xml", WebConfigurationManager.AppSettings["Language"]));
+            doc.Load(HttpContext.Current.Server.MapPath(String.Format("~/App_Code/EmailText ({0}).xml", WebConfigurationManager.AppSettings["Language"])));
             string Title = doc.SelectSingleNode("/EmailText/UserSignup/Title").InnerText;
             string EmailContent = "";
 

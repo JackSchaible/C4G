@@ -1,13 +1,21 @@
-﻿//Checks to see if string is a number
+﻿function Is0(textToEvaluate) {
+    return textToEvaluate == 0;
+}
+
+//Checks to see if string is a number
 function IsNumber(textToEvaluate) {
-    return !isNaN(textToEvaluate.trim());
+    return !isNaN(textToEvaluate);
 }
 
 //Checks to see if number is greater than the specified number
 function IsNumberLarger(textToEvaluate, number) {
     var result = false;
+    console.log("Abs: " + textToEvaluate + ", LPC: " + number);
 
-    if (textToEvaluate.trim() < number)
+    if (textToEvaluate == "" || number == "")
+        throw "Arguments blank";
+
+    if (textToEvaluate < number)
         result = true;
     
     return result;
@@ -17,7 +25,7 @@ function IsNumberLarger(textToEvaluate, number) {
 function IsNumberLargerOrEqual(textToEvaluate, number) {
     var result = false;
 
-    if (textToEvaluate.trim() <= number)
+    if (textToEvaluate <= number)
         result = true;
 
     return result;
@@ -27,7 +35,7 @@ function IsNumberLargerOrEqual(textToEvaluate, number) {
 function IsNumberSmaller(textToEvaluate, number) {
     var result = false;
 
-    if (textToEvaluate.trim() < number)
+    if (textToEvaluate < number)
         result = true;
 
     return result;
@@ -37,7 +45,7 @@ function IsNumberSmaller(textToEvaluate, number) {
 function IsNumberSmallerOrEqual(textToEvaluate, number) {
     var result = false;
 
-    if (textToEvaluate.trim() <= number)
+    if (textToEvaluate <= number)
         result = true;
 
     return result;

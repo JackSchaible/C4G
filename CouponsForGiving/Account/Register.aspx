@@ -16,7 +16,7 @@
             if (IsStringBlank(name))
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/NullUsername").InnerText %>');
 
-            if (IsStringTooShort(name, 4))
+            if (IsStringTooShort(name, 6))
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/UsernameTooShort").InnerText %>');
 
             if (IsStringTooLong(name, 32))
@@ -43,6 +43,7 @@
         function checkEmail(write) {
             var email = $("#Email").val();
             var errors = new Array();
+            var length = arguments.length;
 
             if (IsStringBlank(email))
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/NullEmail").InnerText %>');
@@ -56,12 +57,17 @@
             if (containsCode(email))
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/EmailInvalidCharacters").InnerText %>');
 
-            if (arguments.length == 0) {
-                writeErrors("EmailErrors", errors);
-                checkForm();
-            }
+            PageMethods.EmailTaken(email, function (result) {
+                if (result)
+                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/EmailTaken").InnerText %>');
 
-            return errors;
+                if (length == 0) {
+                    writeErrors("EmailErrors", errors);
+                    checkForm();
+                }
+
+                return errors;
+            });
         }
 
         function checkPassword(write) {
@@ -119,7 +125,7 @@
 
         function checkTermsCheckbox(write) {
             var errors = Array();
-
+            console.log($("#TermsCheckbox").is(':checked'));
             if ($("#TermsCheckbox").is(':checked') == false)
                 errors.push('You need to agree to the terms and conditions and the privacy policy.');
             
@@ -193,7 +199,7 @@
                             
                             <span class="checkbox-singlerow">
                             <label class="checkbox-singlerow ">I have read and agree to the <a href="../Content/Terms/PrivacyPolicy.pdf">Privacy Policy</a> and the <a href="../Content/Terms/TermsOfUse.pdf">Terms of Use</a></label>
-                            <input type="checkbox" id="TermsCheckbox" onchange="checkTermsCheckbox()" class="checkbox-singlerow "/>
+                            <asp:CheckBox id="TermsCheckbox" ClientIDMode="Static" runat="server" onclick="checkTermsCheckbox()" class="checkbox-singlerow "/>
                             </span>
                             <div class="ErrorDiv" id="TermsErrors"></div>
                         </div>

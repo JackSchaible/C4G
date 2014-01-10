@@ -63,22 +63,22 @@ public partial class Controls_DateControl : System.Web.UI.UserControl
 
     private void BindData()
     {
-        List<string> Months = new List<string>();
+        Dictionary<int, string> Months = new Dictionary<int, string>();
         List<string> Days = new List<string>();
         List<string> Years = new List<string>();
 
-        Months.Add("January");
-        Months.Add("February");
-        Months.Add("March");
-        Months.Add("April");
-        Months.Add("May");
-        Months.Add("June");
-        Months.Add("July");
-        Months.Add("August");
-        Months.Add("September");
-        Months.Add("October");
-        Months.Add("November");
-        Months.Add("December");
+        Months.Add(1, "January");
+        Months.Add(2, "February");
+        Months.Add(3, "March");
+        Months.Add(4, "April");
+        Months.Add(5, "May");
+        Months.Add(6, "June");
+        Months.Add(7, "July");
+        Months.Add(8, "August");
+        Months.Add(9, "September");
+        Months.Add(10, "October");
+        Months.Add(11, "November");
+        Months.Add(12, "December");
         
         for (int i = 1; i <= DateTime.DaysInMonth(MinDate.Year, MinDate.Month); i++)
             Days.Add(i.ToString());
@@ -86,6 +86,8 @@ public partial class Controls_DateControl : System.Web.UI.UserControl
         for (int i = MinDate.Year; i <= MaxDate.Year; i++)
             Years.Add(i.ToString());
 
+        MonthDDL.DataValueField = "Key";
+        MonthDDL.DataTextField = "Value";
         MonthDDL.DataSource = Months;
         DayDDL.DataSource = Days;
         YearDDL.DataSource = Years;
