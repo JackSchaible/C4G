@@ -7,6 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BannerContent" Runat="Server">
     <div class="homeBanners">
         <h2>Whether you search by deals or Not-For-Profits you can support great causes in just one click.</h2>
+            <h3>Take a Look Around<br /><small>Browse our local deals as well as our Global Marketplace of Online Merchants </small></h3>
         <img src="../Images/c4g_heartinhand_home.png" class="right-heartinhand" /> 
     </div>
 </asp:Content>
@@ -31,8 +32,6 @@
         </li>
     </ul>
     <hr>
-    <h3>Take a Look Around</h3>
-    <p>Browse our local deals as well as our Global Marketplace of Online Merchants </p>
     <h4 class="centered">OUR FEATURED DEALS</h4>
     <div class="merchantsList">
                 <ul>

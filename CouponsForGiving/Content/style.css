@@ -1052,7 +1052,7 @@ height: 300px;
 
 #MainContent .homeBanners h2 {
 width: 64%;
-margin: 75px 0px 0px;
+margin: 55px 0px 0px;
 display: inline-block;
 float: left;
 font-size: 30px;
@@ -1078,7 +1078,7 @@ font-weight: 400;
 #MainContent .homeBanners .right-heartinhand {
 float: right;
 display: inline-block;
-margin: -10px 0px;
+margin: -155px 0 0px;
 }
 
 #MainContent .homeBanners .right-fundraising {
