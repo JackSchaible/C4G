@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BannerContent" Runat="Server">
     <div class="homeBanners">
         <h2>Whether you search by deals or Not-For-Profits you can support great causes in just one click.</h2>
-            <h3>Take a Look Around<br /><small>Browse our local deals as well as our Global Marketplace of Online Merchants </small></h3>
+            <h3>Take a Look Around<br /><span style="font-size: 65%; line-height: 125%;">Browse our local deals as well as our Global Marketplace of Online Merchants </span></h3>
         <img src="../Images/c4g_heartinhand_home.png" class="right-heartinhand" /> 
     </div>
 </asp:Content>
@@ -31,6 +31,9 @@
             <p><strong>Redeem</strong> the offer in-store on your next visit or directly online from our Global Marketplace.</p>
         </li>
     </ul>
+    
+    <a href="../Account/Register.aspx" class="btn-center"><i class="fa fa-arrow-circle-o-right"></i> GET STARTED</a>
+
     <hr>
     <h4 class="centered">OUR FEATURED DEALS</h4>
     <div class="merchantsList">
