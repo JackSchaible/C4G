@@ -222,10 +222,10 @@ namespace CouponsForGiving
                         result += "<article class=\"c4g-coupon-tile\">";
                         result += "<img src=\"../../Images/c4g_coupon_logo.png\" class=\"coupon_c4g_logo\" />";
                         result += "<div class=\"coupon-title-tile\">";
-                        result += "<h2>" + item.Deal.Name + "</h2><!-- Merchant Offer -->";
+                        result += "<h2><a href=\"\">" + item.Deal.Name + "</a></h2><!-- Merchant Offer -->";
                         result += "<h3><a href=\"MerchantPage.aspx?MerchantName=" + item.Deal.Merchant.Name + "\">" + item.Deal.Merchant.Name + "</a></h3><!-- Merchant Name -->";
                         result += "<span class=\"campaign-frame\">";
-                        result += "<img src=\"../../" + item.Deal.ImageURL + "\" />";
+                        result += "<a href=\"\"><img src=\"../../" + item.Deal.ImageURL + "\" /></a>";
                         result += "</span>";
                         result +="<div class=\"campaign-details-tile\">";
                         result += "<p>" + item.Deal.DealDescription + "</p><!-- Merchant Offer Description -->";
@@ -258,10 +258,10 @@ namespace CouponsForGiving
                         result += "<article class=\"c4g-coupon-tile\">";
                         result += "<img src=\"../../Images/c4g_coupon_logo.png\" class=\"coupon_c4g_logo\" />";
                         result += "<div class=\"coupon-title-tile\">";
-                        result += "<h2>" + item.Deal.Name + "</h2><!-- Merchant Offer -->";
+                        result += "<h2><a href=\"DealPage.aspx?merchantname=" + item.Deal.Merchant.Name + "&deal=" + item.Deal.Name + "\">" + item.Deal.Name + "</a></h2><!-- Merchant Offer -->";
                         result += "<h3><a href=\"MerchantPage.aspx?MerchantName=" + item.Deal.Merchant.Name + "\">" + item.Deal.Merchant.Name + "</a></h3><!-- Merchant Name -->";
                         result += "<span class=\"campaign-frame\">";
-                        result += "<img src=\"../../" + item.Deal.ImageURL + "\" />";
+                        result += "<a href=\"DealPage.aspx?merchantname=" + item.Deal.Merchant.Name + "&deal=" + item.Deal.Name + "\" class=\"btn-coupon\"><img src=\"../../" + item.Deal.ImageURL + "\" /></a>";
                         result += "</span>";
                         result +="<div class=\"campaign-details-tile\">";
                         result += "<p>" + item.Deal.DealDescription + "</p><!-- Merchant Offer Description -->";
@@ -299,9 +299,9 @@ namespace CouponsForGiving
                         result += "<img src=\"../../Images/c4g_campaign_logo.png\" class=\"coupon_c4g_logo\" />";
                         result += "<div class=\"coupon-title-tile\">";
                         result += "<h2>" + item.Name + "</h2><!-- Campaign Title -->";
-                        result += "<h3><a href=\" \"></a></h3><!-- NPO Name -->";
+                        result += "<h3><a href=\" \"> </a></h3><!-- NPO Name -->";
                         result += "<span class=\"campaign-frame\">";
-                        result += "<img src=\"../" + item.CampaignImage + "\" />";
+                        result += "<a href=\" \"><img src=\"../" + item.CampaignImage + "\" /></a>";
                         result += "</span>"; 
                         result += "<div class=\"campaign-details-tile\">";
                         result += "<p>" + item.CampaignDescription + "</p><!-- Coupon Description (limited to 200 characters if possible -->"; 
@@ -314,7 +314,7 @@ namespace CouponsForGiving
                         result += "</div>";
                     }
                 else
-                    result = "<p>We currently aren't running any campaigns in your city. <strong>Please check back soon!</strong></p><br /><a href=\"AllCauses.aspx\" class=\"btn\">See all our Campaigns!</a>";
+                    result = "<p>We currently aren't running any campaigns in your city. <strong>Please check back soon!</strong></p><br /><a href=\"AllCauses.aspx\" class=\"btn-large\">See all our Campaigns!</a>";
 
             return result;
         }
@@ -331,10 +331,10 @@ namespace CouponsForGiving
                         result += "<article class=\"c4g-campaign-tile\"><!-- New Class Campaign Title -->";
                         result += "<img src=\"../../Images/c4g_campaign_logo.png\" class=\"coupon_c4g_logo\" />";
                         result += "<div class=\"coupon-title-tile\">";
-                        result += "<h2>" + item.Name + "</h2><!-- Camapign Title -->";
+                        result += "<h2><a href=\" \">" + item.Name + "</a></h2><!-- Camapign Title -->";
                         result += "<h3><a href=\" \"></a></h3><!-- NPO Name -->";
                         result += "<span class=\"campaign-frame\">";
-                        result += "<img src=\" \" />";
+                        result += "<a href=\" \"><img src=\" \" /></a>";
                         result += "</span>"; 
                         result += "<div class=\"campaign-details-tile\">";
                      	result += "<p></p><!-- Merchant Offer Description -->";
@@ -346,7 +346,7 @@ namespace CouponsForGiving
                         result += "</div>";
                     }
                 else
-                    result = "<p>We currently aren't running any campaigns in your city. <strong>Please check back soon!</strong></p><br /><a href=\"AllCauses.aspx\" class=\"btn\">See all our Campaigns!</a>";
+                    result = "<p>We currently aren't running any campaigns in your city. <strong>Please check back soon!</strong></p><br /><a href=\"AllCauses.aspx\" class=\"btn-large\">See all our Campaigns!</a>";
 
             return result;
         }
@@ -363,10 +363,10 @@ namespace CouponsForGiving
                         result += "<article class=\"c4g-campaign-tile\"><!-- New Class Campaign Title -->";
                         result += "<img src=\"../../Images/c4g_campaign_logo.png\" class=\"coupon_c4g_logo\" />";
                         result += "<div class=\"coupon-title-tile\">";
-                        result += "<h2>" + (item.Deal.Name.Length > 15 ? item.Deal.Name.Substring(0, 12) + "..." : item.Deal.Name) + "</h2><!-- Offer Title -->";
-                        result += "<h3><a href=\"MerchantPage.aspx?Name=" + item.Deal.Merchant.Name + "\">" + item.Deal.Merchant.Name + "</a></h3><!-- NPO Name -->";
+                        result += "<h2><a href=\"DealPage.aspx?merchantname=" + item.Deal.Merchant.Name + "&deal=" + item.Deal.Name + "\">" + (item.Deal.Name.Length > 15 ? item.Deal.Name.Substring(0, 12) + "..." : item.Deal.Name) + "</a></h2><!-- Offer Title -->";
+                        result += "<h3><a href=\"MerchantPage.aspx?Name=" + item.Deal.Merchant.Name + "\">" + item.Deal.Merchant.Name + "</a></h3><!-- Merchant Name -->";
                         result += "<span class=\"company-frame\">";
-                        result += "<img src=\"../" + item.Deal.ImageURL + "\" />";
+                        result += "<a href=\"DealPage.aspx?merchantname=" + item.Deal.Merchant.Name + "&deal=" + item.Deal.Name + "\"><img src=\"../" + item.Deal.ImageURL + "\" /></a>";
                         result += "</span>"; 
                         result += "<div class=\"campaign-details-tile\">";
                         result += "<p>" + item.Deal.DealDescription + "</p><!-- Coupon Description (limited to 200 characters if possible -->"; 
@@ -395,10 +395,10 @@ namespace CouponsForGiving
             result += "<article class=\"c4g-coupon-tile\">";
             result += "<img src=\"../Images/c4g_coupon_logo.png\" class=\"coupon_c4g_logo\" />";
             result += "<div class=\"coupon-title-tile\">";
-            result += "<h2>" + deal.Name + "</h2><!-- Merchant Offer -->";
+            result += "<h2><a href=\"DealPage.aspx?merchantname=" + deal.Merchant.Name + "&deal=" + deal.Name + "\">" + deal.Name + "</a></h2><!-- Merchant Offer -->";
             result += "<h3><a href=\"MerchantPage.aspx?Name=" + deal.Merchant.Name + "\"></a></h3><!-- Merchant Name -->";
             result += "<span class=\"campaign-frame\">";
-            result += "<img src=\"../../" + deal.ImageURL + "\" />";
+            result += "<a href=\"DealPage.aspx?merchantname=" + deal.Merchant.Name + "&deal=" + deal.Name + "\" ><img src=\"../../" + deal.ImageURL + "\" /></a>";
             result += "</span>";
             result +="<div class=\"campaign-details-tile\">";
                         result += "<p></p><!-- Merchant Offer Description -->";
@@ -421,10 +421,10 @@ namespace CouponsForGiving
             result += "<div class=\"thirds\">";
             result += "<article class=\"c4g-coupon-tile\">";
             result += "<img src=\"../../Images/c4g_coupon_logo.png\" class=\"coupon_c4g_logo\" />";
-            result += "<a href=\"CampaignPage.aspx?nponame=" + campaign.NPO.Name + "&campaign=" + campaign.Name + "\"><h2>" + campaign.Name + "</h2></a><!-- Merchant Offer -->";
-            result += "<a href=\"NPOPage.aspx?name=" + campaign.NPO.Name + "\"><h3>" + campaign.NPO.Name + "</h3></a>";
+            result += "<h2><a href=\"CampaignPage.aspx?nponame=" + campaign.NPO.Name + "&campaign=" + campaign.Name + "\">" + campaign.Name + "</a></h2><!-- Merchant Offer -->";
+            result += "<h3><a href=\"NPOPage.aspx?name=" + campaign.NPO.Name + "\">" + campaign.NPO.Name + "</a></h3>";
             result += "<span class=\"campaign-frame\">";
-            result += "<img src=\"../" + campaign.CampaignImage + "\">";
+            result += "<a href=\"CampaignPage.aspx?nponame=" + campaign.NPO.Name + "&campaign=" + campaign.Name + "\"><img src=\"../" + campaign.CampaignImage + "\"></a>";
             result += "</span>";
             result += "<div class=\"campaign-details-tile\">";
             result += "<p>" + campaign.CampaignDescription + "</p>";
@@ -454,9 +454,10 @@ namespace CouponsForGiving
             result += "<article class=\"c4g-coupon-tile\">";
             result += "<img src=\"../../Images/c4g_coupon_logo.png\" class=\"coupon_c4g_logo\" />";
             result += "<div class=\"coupon-title-tile\">";
-            result += "<h2>" + campaign.Name + "</h2><!-- Merchant Offer -->";
+            result += "<h2><a href=\"CampaignPage.aspx?nponame=" + campaign.NPO.Name + "&campaign=" + campaign.Name + "\">" + campaign.Name + "</a></h2><!-- Campaign -->";
+            result += "<h3><a href=\"\"></a>";
             result += "<div class=\"campaign-details-tile\">";
-            result += "<p>" + campaign.CampaignDescription + "</p><!-- Merchant Offer Description -->";
+            result += "<p>" + campaign.CampaignDescription + "</p><!-- Campaign Offer Description -->";
             result += "</div>";
             result += "</div><!--Close Coupon Title -->";
             result += "<div class=\"clear\"></div>";
