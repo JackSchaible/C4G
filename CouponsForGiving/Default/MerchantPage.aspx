@@ -9,9 +9,9 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="Main_Content" Runat="Server">
     <div class="three-quarters">
         <h1><%: merchant.Name %></h1>
-        <img alt="Our Logo" class="merchant_logo" src="../../<%: merchant.LargeLogo %>" />
+        <a href="<%: merchant.Website %>" target="_blank"><img alt="Our Logo" class="merchant_logo" src="../../<%: merchant.LargeLogo %>" /></a>
         <h3 class="merchant-address"><%: merchant.cAddress + ", " + CouponsForGiving.Data.Classes.Cities.Get(merchant.CityID).Name %></h3>
-        <h4 class="merchant-website"><a href="<%: merchant.Website %>" target="_blank">Company Web Site</a><!-- This can be populated with the company url --></h4>
+        <h4 class="merchant-website"><a href="<%: merchant.Website %>" target="_blank"><%: merchant.Website %></a><!-- This can be populated with the company url --></h4>
         <p><%: merchant.cUser.MerchantInfoes.FirstOrDefault<CouponsForGiving.Data.MerchantInfo>().MerchantDescription %></p><!-- This Can be populated with the Merchant Profile -->
     </div>
     <div class="one-quarters">
