@@ -249,28 +249,38 @@
         }
 
         function checkRetailValue(write) {
-            var retailValue = $("#RetailValueTextBox").val();
-            var giftValue = $("#GiftValueTextBox").val();
+            var retailValue = Number($("#RetailValueTextBox").val());
+            var giftValue = Number($("#GiftValueTextBox").val());
             var errors = new Array();
             var errors2 = new Array();
 
-            if (IsStringBlank(retailValue))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullRetailValue").InnerText %>');
+            if (!IsNumber(retailValue))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/RetailValueNAN").InnerText %>');
             else {
-                if (!IsNumber(retailValue))
-                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/RetailValueNAN").InnerText %>');
+                if (Is0(retailValue))
+                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullRetailValue").InnerText %>');
                 else {
-                    if (IsNumberLarger(retailValue, 1))
+                    if (IsNumberLargerOrEqual(retailValue, 0))
                         errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/RetailValueLT1").InnerText %>');
-
-                    if (!IsStringBlank(giftValue))
-                        if (IsNumber(giftValue))
-                            if (!IsNumberLargerOrEqual(retailValue, giftValue))
-                                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/RetailValueLessThanGiftValue").InnerText %>');
+                    else {
+                        if (IsNumber(giftValue)) {
+                            if (!Is0(giftValue)) {
+                                if (giftValue < retailValue) {
+                                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/RetailValueLessThanGiftValue").InnerText %>');
+                                    errors2.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/CouponLimitLessThanCustomerLimit").InnerText %>');
+                                }
+                            }
+                        }
+                        else {
+                            errors2.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueNAN").InnerText %>');
+                        }
+                    }
                 }
             }
+
             if (arguments.length == 0) {
                 writeErrors('RetailValueTextBoxErrors', errors);
+                writeErrors('GiftValueTextBoxErrors', errors2);
                 checkForm();
             }
 
@@ -278,28 +288,38 @@
         }
 
         function checkGiftValue(write) {
-            var retailValue = $("#RetailValueTextBox").val();
-            var giftValue = $("#GiftValueTextBox").val();
+            var retailValue = Number($("#RetailValueTextBox").val());
+            var giftValue = ($("#GiftValueTextBox").val());
             var errors = new Array();
+            var errors2 = new Array();
 
-            if (IsStringBlank(giftValue))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullGiftValue").InnerText %>');
+            if (!IsNumber(giftValue))
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueNAN").InnerText %>');
             else {
-                if (!IsNumber(giftValue))
-                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueNAN").InnerText %>');
+                if (Is0(giftValue))
+                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullGiftValue").InnerText %>');
                 else {
-                    if (IsNumberLarger(giftValue, 1))
+                    if (IsNumberLargerOrEqual(giftValue, 0))
                         errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueLT1").InnerText %>');
-
-                    if (!IsStringBlank(retailValue))
-                        if (IsNumber(retailValue))
-                            if (!IsNumberLargerOrEqual(giftValue, retailValue))
-                                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueGreaterThanRetailValue").InnerText %>');
+                    else {
+                        if (IsNumber(retailValue)) {
+                            if (!Is0(retailValue)) {
+                                if (retailValue < giftValue) {
+                                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/RetailValueLessThanGiftValue").InnerText %>');
+                                    errors2.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/CouponLimitLessThanCustomerLimit").InnerText %>');
+                                }
+                            }
+                        }
+                        else {
+                            errors2.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/RetailValueNAN").InnerText %>');
+                        }
+                    }
                 }
             }
 
             if (arguments.length == 0) {
-                writeErrors('GiftValueTextBoxErrors', errors);
+                writeErrors('RetailValueTextBoxErrors', errors);
+                writeErrors('GiftValueTextBoxErrors', errors2);
                 checkForm();
             }
 

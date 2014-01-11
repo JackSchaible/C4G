@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" MasterPageFile="~/Site.master" Language="C#" AutoEventWireup="true" CodeFile="DealPage.aspx.cs" Inherits="Default_DealPage" %>
+﻿<%@ Page MasterPageFile="~/Site.master" Language="C#" AutoEventWireup="true" CodeFile="DealPage.aspx.cs" Inherits="Default_DealPage" %>
 <%@ Reference Control="~/Controls/MenuBar.ascx" %>
 <%@ MasterType VirtualPath="~/Site.master" %>
 

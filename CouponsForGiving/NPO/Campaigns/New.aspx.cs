@@ -86,7 +86,7 @@ public partial class NPO_newCampaign : System.Web.UI.Page
             string image = newCampaignImage.FileName.ToString();
             bool showOnHome = newCampaignShowOnHome.Checked;
 
-            DateTime? startDate = StartDate.Date, endDate = null;
+            DateTime? startDate = StartDate.Date, endDate = EndDate.Date;
             int? fundraisingGoal = null;
             int campaignID = -1;
 

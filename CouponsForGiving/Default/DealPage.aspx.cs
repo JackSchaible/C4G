@@ -54,7 +54,7 @@ public partial class Default_DealPage : System.Web.UI.Page
             Response.Redirect("~/Default/MyHome.aspx" + merchantName);
 
         merchant = deal.Merchant;
-        Title = String.Format("{1} - {0}", deal.Name, merchant.Name);
+        Title = deal.Name;
 
         base.OnPreInit(e);
     }
