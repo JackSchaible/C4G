@@ -29,7 +29,7 @@
             <img src="../../Images/c4g_coupon_logo.png" class="coupon_c4g_logo" /> 
             <div class="coupon-title">
                 <h2><%: deal.Name %></h2><!-- Merchant Offer -->
-                <h3><%: deal.Merchant.Name %></h3><!-- Merchant Name -->
+                <h3><a href="" target="_blank"><%: deal.Merchant.Name %></a></h3><!-- Merchant Name -->
                 <span class="coupon-description">
                 <p><%: deal.DealDescription %></p><!-- Merchant Offer Description -->
                 </span>
@@ -104,11 +104,11 @@
             
             if (deal.MerchantLocations.Count > 0)
             {
-                Response.Write("<h2>Participating Merchant Locations</h2>");
+                Response.Write("<h2>Fine Print</h2><h4>Participating Merchant Locations</h4>");
                 Response.Write("<ul>");
                 foreach (CouponsForGiving.Data.MerchantLocation ml in deal.MerchantLocations)
                 {
-                    Response.Write(String.Format("<div><p class=\"Location-Address\">{0}</p><p class=\"Location-City\">{1}, {2}</p></div>", ml.cAddress, ml.City.Name, ml.City.PoliticalDivision.Name));
+                    Response.Write(String.Format("<div><li class=\"Location-Address\">{0}<br />{1}, {2}</li></div>", ml.cAddress, ml.City.Name, ml.City.PoliticalDivision.Name));
                 }
                 Response.Write("</ul>");
             }

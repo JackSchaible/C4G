@@ -1548,6 +1548,11 @@ width: 100%;
     font-size: 19px;
 }
 
+#MainContent .c4g-coupon h3 a {
+font-weight: 700;
+text-decoration: none;
+}
+
 #MainContent .c4g-coupon h5 {
 	font-size: 16px;
 	font-weight: 500;
@@ -1797,6 +1802,12 @@ display: block;
 word-break: break-word;
 }
 
+#MainContent .c4g-campaign-tile h2 a, #MainContent .c4g-coupon-tile h2 a {
+color: #535353;
+font-weight: 700;
+text-decoration: none;
+}
+
 #MainContent .c4g-coupon-tile h3, #MainContent .c4g-campaign-tile h3 {
 font-family: 'Lato', sans-serif;
 font-weight: 700;
@@ -1807,12 +1818,17 @@ text-align: center;
 left: 0px;
 }
 
+#MainContent .c4g-campaign-tile h3 a, #MainContent .c4g-coupon-tile h3 a {
+font-weight: 700;
+text-decoration: none;
+}
+
 #MainContent .c4g-campaign-tile h3 a, #MainContent .c4g-campaign-tile h2 a, #MainContent .c4g-coupon-tile h3 a, #MainContent .c4g-coupon-tile h2 a, #MainContent .c4g-coupon-tile a h2, #MainContent .c4g-coupon-tile a h3 {
 font-weight: 700;
 text-decoration: none;
 }
 
-#MainContent .c4g-coupon-tile .campaign-frame, #MainContent .c4g-coupon-tile .company-frame {width: 91%;
+#MainContent .c4g-coupon-tile .campaign-frame, #MainContent .c4g-coupon-tile .company-frame {
 width: 91%;
 height: 155px;
 border: 2px solid #ccc;
@@ -1823,7 +1839,7 @@ display: block;
 margin: 8px auto 0px;
 max-width: 275px;}
 
-#MainContent .coupon-title-tile .campaign-frame, #MainContent .coupon-title-tile .company-frame {width: 91%;
+#MainContent .coupon-title-tile .campaign-frame, #MainContent .coupon-title-tile .company-frame {
 width: 91%;
 height: 155px;
 border: 2px solid #ccc;
@@ -1833,6 +1849,12 @@ text-align: center;
 display: block;
 margin: 8px auto 0px;
 max-width: 275px;}
+
+.campaign-frame a, .company-frame a {
+display: block;
+width: 100%;
+height: 100%;
+}
 
 
 #MainContent .coupon-details-tile, #MainContent .campaign-details-tile {
