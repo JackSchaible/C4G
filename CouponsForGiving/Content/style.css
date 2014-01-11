@@ -1808,6 +1808,10 @@ font-weight: 700;
 text-decoration: none;
 }
 
+#MainContent .c4g-campaign-tile h2 a:hover, #MainContent .c4g-coupon-tile h2 a:hover {
+color: #fbad3e;
+}
+
 #MainContent .c4g-coupon-tile h3, #MainContent .c4g-campaign-tile h3 {
 font-family: 'Lato', sans-serif;
 font-weight: 700;

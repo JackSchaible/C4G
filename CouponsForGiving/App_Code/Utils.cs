@@ -298,8 +298,8 @@ namespace CouponsForGiving
                         result += "<article class=\"c4g-campaign-tile\"><!-- New Class Campaign Title -->";
                         result += "<img src=\"../../Images/c4g_campaign_logo.png\" class=\"coupon_c4g_logo\" />";
                         result += "<div class=\"coupon-title-tile\">";
-                        result += "<h2>" + item.Name + "</h2><!-- Campaign Title -->";
-                        result += "<h3><a href=\" \"> </a></h3><!-- NPO Name -->";
+                        result += "<h2><a href=\"../../Causes/" + item.NPO.Name + "/" + item.Name + "\">" + item.Name + "</a></h2><!-- Campaign Title -->";
+                        result += "<h3><a href=\" \">NPO Name</a></h3><!-- NPO Name -->";
                         result += "<span class=\"campaign-frame\">";
                         result += "<a href=\" \"><img src=\"../" + item.CampaignImage + "\" /></a>";
                         result += "</span>"; 
@@ -331,8 +331,8 @@ namespace CouponsForGiving
                         result += "<article class=\"c4g-campaign-tile\"><!-- New Class Campaign Title -->";
                         result += "<img src=\"../../Images/c4g_campaign_logo.png\" class=\"coupon_c4g_logo\" />";
                         result += "<div class=\"coupon-title-tile\">";
-                        result += "<h2><a href=\" \">" + item.Name + "</a></h2><!-- Camapign Title -->";
-                        result += "<h3><a href=\" \"></a></h3><!-- NPO Name -->";
+                        result += "<h2><a href=\" \">" + item.Name + "</a></h2><!-- Campaign Title -->";
+                        result += "<h3><a href=\" \">NPO Name</a></h3><!-- NPO Name -->";
                         result += "<span class=\"campaign-frame\">";
                         result += "<a href=\" \"><img src=\" \" /></a>";
                         result += "</span>"; 
@@ -455,7 +455,7 @@ namespace CouponsForGiving
             result += "<img src=\"../../Images/c4g_coupon_logo.png\" class=\"coupon_c4g_logo\" />";
             result += "<div class=\"coupon-title-tile\">";
             result += "<h2><a href=\"CampaignPage.aspx?nponame=" + campaign.NPO.Name + "&campaign=" + campaign.Name + "\">" + campaign.Name + "</a></h2><!-- Campaign -->";
-            result += "<h3><a href=\"\"></a>";
+            result += "<h3><a href=\"\">NPO Name</a>";
             result += "<div class=\"campaign-details-tile\">";
             result += "<p>" + campaign.CampaignDescription + "</p><!-- Campaign Offer Description -->";
             result += "</div>";
