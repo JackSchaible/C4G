@@ -29,7 +29,7 @@
             <img src="../../Images/c4g_coupon_logo.png" class="coupon_c4g_logo" /> 
             <div class="coupon-title">
                 <h2><%: deal.Name %></h2><!-- Merchant Offer -->
-                <h3><a href="" target="_blank"><%: deal.Merchant.Name %></a></h3><!-- Merchant Name -->
+                <h3><a href="MerchantPage.aspx?MerchantName=<%: deal.Merchant.Name %>" target="_blank"><%: deal.Merchant.Name %></a></h3><!-- Merchant Name -->
                 <span class="coupon-description">
                 <p><%: deal.DealDescription %></p><!-- Merchant Offer Description -->
                 </span>
@@ -93,18 +93,24 @@
             {
                 Response.Write(CouponsForGiving.HttpRendering.GetNPOCampaign(c, deal.DealInstances.FirstOrDefault<CouponsForGiving.Data.DealInstance>()));
             }
-            
+        %>
+        <h2>Fine Print</h2>
+        <%
             if (deal.FinePrints.Count > 0)
             {
-                Response.Write("<h2>Fine Print</h2><ul>");
+                Response.Write("<ul>");
                 foreach (CouponsForGiving.Data.FinePrint item in deal.FinePrints)
                     Response.Write("<li>" + item.Content + "</li>");
                 Response.Write("</ul>");
-            }       
-            
+            }
+            else
+                Response.Write("<p>There are no restrictions associated with this deal.</p>");
+
+            if (deal.Merchant.MerchantLocations.Count > 0)
+                Response.Write("<h4>Participating Merchant Locations</h4>");
+
             if (deal.MerchantLocations.Count > 0)
             {
-                Response.Write("<h2>Fine Print</h2><h4>Participating Merchant Locations</h4>");
                 Response.Write("<ul>");
                 foreach (CouponsForGiving.Data.MerchantLocation ml in deal.MerchantLocations)
                 {
@@ -112,6 +118,8 @@
                 }
                 Response.Write("</ul>");
             }
+            else
+                Response.Write("<p>There are no locations participating in this merchant offer.</p>");
         %>
         <h4>Restrictions</h4>
         <p><%: deal.RedeemDetails.FirstOrDefault<CouponsForGiving.Data.RedeemDetail>().AdditionalDetails %></p>

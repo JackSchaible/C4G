@@ -20,6 +20,7 @@
         <CouponLimitNAN>Your absolute coupon limit needs to be a number. For example, 2500.</CouponLimitNAN>
         <CouponLimitLT0>Your absolute coupon limit needs to be greater than 0.</CouponLimitLT0>
         <CouponLimitLessThanCustomerLimit>The absolute limit of coupons to sell must be greater than or equal to the limit per customer.</CouponLimitLessThanCustomerLimit>
+        <CouponLimitGT9999>The absolute limit of coupons to sell needs to be less than 10, 000.</CouponLimitGT9999>
         <NullPCCouponLimit>You need to enter a limit per customer for your offer. This is how many coupons each individual customer is allowed to buy.</NullPCCouponLimit>
         <PCCouponLimitNAN>Your coupon limit per customer needs to be a number. For example, 2500.</PCCouponLimitNAN>
         <PCCouponLimitLT0>Your coupon limit per customer needs to be greater than 0.</PCCouponLimitLT0>

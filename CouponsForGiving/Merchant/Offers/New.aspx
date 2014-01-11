@@ -180,21 +180,24 @@
                 if (Is0(limit))
                     errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullAbsoluteCouponLimit").InnerText %>');
                 else {
-                    if (IsNumberLargerOrEqual(limit, 0))
-                        errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/CouponLimitLT0").InnerText %>');
-                    else {
-                        if (IsNumber(limitPerCustomer)) {
-                            if (!Is0(limitPerCustomer)) {
-                                if (limit < limitPerCustomer) {
-                                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/CouponLimitLessThanCustomerLimit").InnerText %>');
-                                    errors2.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/PCCouponLimitGreaterThanAbsoluteLimit").InnerText %>');
+                    if (IsNumberLarger(limit, 9999))
+                        errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/CouponLimitGT9999").InnerText %>');
+                    else
+                        if (IsNumberLargerOrEqual(limit, 0))
+                            errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/CouponLimitLT0").InnerText %>');
+                        else {
+                            if (IsNumber(limitPerCustomer)) {
+                                if (!Is0(limitPerCustomer)) {
+                                    if (limit < limitPerCustomer) {
+                                        errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/CouponLimitLessThanCustomerLimit").InnerText %>');
+                                        errors2.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/PCCouponLimitGreaterThanAbsoluteLimit").InnerText %>');
+                                    }
                                 }
                             }
+                            else {
+                                errors2.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/PCCouponLimitNAN").InnerText %>');
+                            }
                         }
-                        else {
-                            errors2.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/PCCouponLimitNAN").InnerText %>');
-                        }
-                    }
                 }
             }
 
@@ -572,7 +575,7 @@
         </div>
         <div class="FormRow">
             <label>Total Coupon Limit</label>
-            <input type="text" ID="AbsoluteCouponLimitTextBox" maxlength="10" placeholder="25" onkeyup="checkAbsCouponLimit()"
+            <input type="text" ID="AbsoluteCouponLimitTextBox" maxlength="4" placeholder="25" onkeyup="checkAbsCouponLimit()"
                 onblur="checkAbsCouponLimit()" oninput="checkAbsCouponLimit()"/>
             <div id="AbsoluteCouponLimitTextBoxErrors" class="ErrorDiv"></div>
         </div>
