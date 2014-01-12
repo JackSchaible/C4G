@@ -31,17 +31,27 @@
             });
         }
 
-        function calcSplit() {
-            var value = $("#newDealGiftValue").val();
-            var vat = (value * 0.029) + 0.3;
-            var tax = (value * 0.2) * 0.05;
-            var split = (value * 0.54) - (vat + tax);
+        function calcSplit(value) {
+            if (!isNaN(value)) {
+                var vat = (value * 0.029) + 0.3;
+                var tax = (value * 0.2) * 0.05;
+                var split = (value * 0.54) - (vat + tax);
 
-            $("#VAT").text("$" + vat.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
-            $("#Tax").text("$" + tax.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+                if ((isNaN(vat) || isNaN(tax) || isNaN(split)) || (vat == 0) || (tax == 0) || (split == 0) || value == undefined) {
+                    $("#SplitOutput").hide();
+                }
+                else {
+                    $("#SplitOutput").show();
+                    $("#VAT").text("$" + vat.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+                    $("#Tax").text("$" + tax.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
 
-            //IMPORTANT: MUST BE THE SAME AS THE FORMULA IN ShoppingCart.cs
-            $("#SplitTotal").text("$" + split.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+                    //IMPORTANT: MUST BE THE SAME AS THE FORMULA IN ShoppingCart.cs
+                    $("#SplitTotal").text("$" + split.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+                }
+            }
+            else {
+                $("#SplitOutput").hide();
+            }
         }
 
         function checkName(write) {
@@ -180,11 +190,14 @@
                 if (Is0(limit))
                     errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullAbsoluteCouponLimit").InnerText %>');
                 else {
-                    if (IsNumberLarger(limit, 9999))
+                    console.log(limit);
+                    if (limit > 9999) {
                         errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/CouponLimitGT9999").InnerText %>');
-                    else
-                        if (IsNumberLargerOrEqual(limit, 0))
+                    }
+                    else {
+                        if (IsNumberLargerOrEqual(limit, 0)) {
                             errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/CouponLimitLT0").InnerText %>');
+                        }
                         else {
                             if (IsNumber(limitPerCustomer)) {
                                 if (!Is0(limitPerCustomer)) {
@@ -198,6 +211,7 @@
                                 errors2.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/PCCouponLimitNAN").InnerText %>');
                             }
                         }
+                    }
                 }
             }
 
@@ -227,8 +241,6 @@
                     else {
                         if (IsNumber(absLimit)) {
                             if (!Is0(absLimit)) {
-                                console.log("Abs Limit: " + absLimit);
-                                console.log("PCC Limit: " + limitPerCustomer);
                                 if (absLimit < limitPerCustomer) {
                                     errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/PCCouponLimitGreaterThanAbsoluteLimit").InnerText %>');
                                     errors2.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/CouponLimitLessThanCustomerLimit").InnerText %>');
@@ -263,12 +275,12 @@
                 if (Is0(retailValue))
                     errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullRetailValue").InnerText %>');
                 else {
-                    if (IsNumberLargerOrEqual(retailValue, 0))
+                    if (retailValue <= 1)
                         errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/RetailValueLT1").InnerText %>');
                     else {
                         if (IsNumber(giftValue)) {
                             if (!Is0(giftValue)) {
-                                if (giftValue < retailValue) {
+                                if (retailValue < giftValue) {
                                     errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/RetailValueLessThanGiftValue").InnerText %>');
                                     errors2.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/CouponLimitLessThanCustomerLimit").InnerText %>');
                                 }
@@ -296,6 +308,8 @@
             var errors = new Array();
             var errors2 = new Array();
 
+            calcSplit(giftValue);
+
             if (!IsNumber(giftValue))
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueNAN").InnerText %>');
             else {
@@ -321,8 +335,8 @@
             }
 
             if (arguments.length == 0) {
-                writeErrors('RetailValueTextBoxErrors', errors);
-                writeErrors('GiftValueTextBoxErrors', errors2);
+                writeErrors('RetailValueTextBoxErrors', errors2);
+                writeErrors('GiftValueTextBoxErrors', errors);
                 checkForm();
             }
 
@@ -357,27 +371,34 @@
             else {
                 var name = $("#OfferNameTextBox").val();
                 var description = $("#DescriptionTextBox").val();
-                var startDay = $("#StartDate select[id$='DayDDL'] option:selected").text();
-                var startMonth = $("#StartDate select[id$='MonthDDL'] option:selected").val();
-                var startYear = $("#StartDate select[id$='YearDDL'] option:selected").text();
+                var startDay = Number($("#StartDate select[id$='DayDDL'] option:selected").text());
+                var startMonth = Number($("#StartDate select[id$='MonthDDL'] option:selected").val()) - 1;
+                var startYear = Number($("#StartDate select[id$='YearDDL'] option:selected").text());
 
-                var endDay = $("#EndDate select[id$='DayDDL'] option:selected").text();
-                var endMonth = $("#EndDate select[id$='MonthDDL'] option:selected").val();
-                var endYear = $("#EndDate select[id$='YearDDL'] option:selected").text();
+                var endDay = Number($("#EndDate select[id$='DayDDL'] option:selected").text());
+                var endMonth = Number($("#EndDate select[id$='MonthDDL'] option:selected").val()) - 1;
+                var endYear = Number($("#EndDate select[id$='YearDDL'] option:selected").text());
 
                 var startDate = new Date(startYear, startMonth, startDay);
                 var endDate = new Date(endYear, endMonth, endDay);
+
+                console.log(endDay);
+                console.log(endMonth);
+                console.log(endYear);
+                console.log(endDate);
+
                 var limit = $("#AbsoluteCouponLimitTextBox").val();
                 var limitPerCustomer = $("#LimitPerCustomerTextBox").val();
+                var giftValue = $("#GiftValueTextBox").val();
+                var retailValue = $("#RetailValueTextBox").val();
                 var redeemDetails = new Array();
                 $("#FinePrintList input:checked").each(function () {
                     redeemDetails.push(this.value);
                 });
                 var additionalRedeemDetails = $("#AdditionalRedemptionDetailsTextBox").val();
-
-                PageMethods.ConnectToStripe(firstName, lastName, phone, businessName, description,
-                    address, city, postal, contactPhone, contactEmail, website, globalMerchant,
-                    autoAccept, businessType, birthDate, physicalProduct, productType, currency,
+                
+                PageMethods.CreateOffer(name, description, startDate, endDate,
+                    limit, limitPerCustomer, retailValue, giftValue, redeemDetails, additionalRedeemDetails,
                     function (message) {
                         window.location.replace(message);
                     },
@@ -596,6 +617,8 @@
             $<input type="text" ID="GiftValueTextBox" maxlength="10" onkeyup="checkGiftValue()"
                 onblur="checkGiftValue()" oninput="checkGiftValue()" placeholder="10.00"/>
             <div id="GiftValueTextBoxErrors" class="ErrorDiv"></div>
+        </div>
+        <div id="SplitOutput" class="FormRow">
             <br />
             <p>Processing Fee (2.9% + $0.30) = <strong id="VAT">$0.00</strong></p>
             <br />

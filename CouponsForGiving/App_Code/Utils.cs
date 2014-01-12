@@ -669,9 +669,9 @@ namespace CouponsForGiving
                 mm.To.Add(item);
 
             XmlDocument doc = new XmlDocument();
-            doc.Load(String.Format("EmailText ({0}).xml", WebConfigurationManager.AppSettings["Language"]));
+            doc.Load(HttpContext.Current.Server.MapPath(String.Format("~/App_Code/EmailText ({0}).xml", WebConfigurationManager.AppSettings["Language"])));
 
-            string Title = doc.SelectSingleNode("/EmailText/OfferCreation/Title").InnerText;
+            string Title = doc.SelectSingleNode("/EmailText/OfferCreation/TitlePrefix").InnerText;
             string ContentPrefix = doc.SelectSingleNode("/EmailText/OfferCreation/ContentPrefix").InnerText;
             string ContentSuffix = doc.SelectSingleNode("/EmailText/OfferCreation/ContentSuffix").InnerText;
             string LinkURL = String.Format("http://www.coupons4giving.ca/Offers/{0}/{1}", Name, OfferName);
@@ -705,7 +705,6 @@ namespace CouponsForGiving
             message += "<table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" width=\"100%\">";
             message += "<tr>";
             message += "<td valign=\"top\" style=\"border-collapse: collapse;\">";
-            message += "<div style=\"color: #505050;font-family: Arial;font-size: 10px;line-height: 100%;text-align: center;\">Thank you for registering with Coupons4Giving.ca. Click on the link below to access your new account.";
             message += "</div>";
             message += "</td>";
             message += "</tr>";
@@ -741,7 +740,7 @@ namespace CouponsForGiving
             message += "<img src=\"http://www.coupons4giving.ca/Images/c4g_email_template_header1.png\" style=\"max-width: 560px;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;display: inline; padding-bottom: 30px;\">";
             message += String.Format("<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\">{0}", ContentPrefix + Name + ContentSuffix);
             message += "<h4 class=\"null tpl-content-highlight\" style=\"text-align: center;color: #5e5e5e;display: block;font-family: Arial;font-size: 22px;font-weight: bold;line-height: 100%;margin-top: 0;margin-right: 0;margin-bottom: 10px;margin-left: 0;\"><br>";
-            message += String.Format("<strong><a href=\"{1}\" target=\"_blank\" style=\"color: #22bfe8;font-weight: normal;text-decoration: underline;\">{0}</a>&nbsp;{1}</strong></h4>", LinkContent, LinkURL, LinkSuffix);
+            message += String.Format("<strong><a href=\"{1}\" target=\"_blank\" style=\"color: #22bfe8;font-weight: normal;text-decoration: underline;\">{0}</a>&nbsp;{2}</strong></h4>", LinkContent, LinkURL, LinkSuffix);
             message += String.Format("<p style=\"text-align: center;\"><strong>{0}&nbsp;<a href=\"mailto:{1}\" target=\"_blank\" style=\"color: #22bfe8;font-weight: normal;text-decoration: underline;\">{1}</a>&nbsp;{2}</strong></p>", ContactTextPrefix, ContactEmail, ContactTextSuffix);
             message += "<p style=\"text-align: center;\">Cheers!</p>";
             message += "</div>";

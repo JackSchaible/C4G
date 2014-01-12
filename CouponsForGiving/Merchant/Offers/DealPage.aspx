@@ -32,7 +32,7 @@
                 	</div> <!-- Close Coupon Giving Amount-->
                 	<div class="coupon-left">
                          <h4>Coupons Left</h4>
-                         <p><span>#</span></p>
+                         <p><span><%: ((int)(deal.AbsoluteCouponLimit) - (dealInstance.PurchaseOrders.Count)) %></span></p>
                     </div>
                    </div>
              

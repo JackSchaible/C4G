@@ -346,7 +346,7 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
     [WebMethod]
     [ScriptMethod]
     public static string CreateOffer(string Name, string Description, string sDate, string eDate, string AbsCouponLimit, string PCLimit,
-        string rValue, string gValue, string rDetails, string AdditionalRedeemDetails, string OfferImage)
+        string rValue, string gValue, string[] rDetails, string AdditionalRedeemDetails)
     {
         string result = "";
         List<string> errors = new List<string>();
@@ -366,7 +366,7 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
         decimal RetailValue = -1M;
         decimal GiftValue = -1M;
         string logoPath = "";
-        List<string> RedeemDetails = rDetails.Split(new string[] {";"}, StringSplitOptions.RemoveEmptyEntries).ToList<string>();
+        List<string> RedeemDetails = rDetails.ToList<string>();
 
         for (int i = 0; i < RedeemDetails.Count; i++)
             RedeemDetails[i] = RedeemDetails[i].Trim();
@@ -437,7 +437,7 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
         if (validation.IsStringBlank(Description))
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullDescription").InnerText);
 
-        if (validation.ContainsSpaces(Description))
+        if (!validation.ContainsSpaces(Description))
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/DescriptionOneWord").InnerText);
 
         if (validation.IsStringTooLong(Description, 200))
@@ -461,7 +461,7 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
         if (validation.IsStringBlank(AbsCouponLimit))
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullAbsoluteCouponLimit").InnerText);
 
-        if (validation.IsNumberLarger(AbsoluteCouponLimit, 0))
+        if (!validation.IsNumberLarger(AbsoluteCouponLimit, 0))
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/CouponLimitLT0").InnerText);
 
         if (LimitPerCustomer != -1)
@@ -471,17 +471,17 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
         if (validation.IsStringBlank(PCLimit))
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullPCCouponLimit").InnerText);
 
-        if (validation.IsNumberLarger(LimitPerCustomer, 0))
+        if (!validation.IsNumberLarger(LimitPerCustomer, 0))
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/PCCouponLimitLT0").InnerText);
 
         if (AbsoluteCouponLimit != -1)
-            if (!validation.IsNumberLargerOrEqual(LimitPerCustomer, AbsoluteCouponLimit))
+            if (!validation.IsNumberLargerOrEqual(AbsoluteCouponLimit, LimitPerCustomer))
                 errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/PCCouponLimitGreaterThanAbsoluteLimit").InnerText);
 
         if (validation.IsStringBlank(rValue))
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullRetailValue").InnerText);
 
-        if (validation.IsNumberLarger(RetailValue, 1))
+        if (!validation.IsNumberLarger(RetailValue, 1))
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/RetailValueLT1").InnerText);
 
         if (GiftValue != -1)
@@ -491,11 +491,11 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
         if (validation.IsStringBlank(gValue))
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/NullGiftValue").InnerText);
 
-        if (validation.IsNumberLarger(GiftValue, 1))
+        if (!validation.IsNumberLarger(GiftValue, 1))
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueLT1").InnerText);
 
         if (RetailValue != -1)
-            if (!validation.IsNumberLargerOrEqual(GiftValue, RetailValue))
+            if (validation.IsNumberLargerOrEqual(GiftValue, RetailValue))
                 errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueGreaterThanRetailValue").InnerText);
 
         if (validation.IsStringTooLong(AdditionalRedeemDetails, 500))
@@ -504,13 +504,14 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
         if (validation.ContainsCode(AdditionalRedeemDetails))
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueGreaterThanRetailValue").InnerText);
 
+        Merchant merchant = Merchants.GetByUsername(HttpContext.Current.User.Identity.Name);
+        string username = HttpContext.Current.User.Identity.Name;
+
         //If there're no errors, commit to db
         if (errors.Count == 0)
         {
             int dealID = -1;
             int dealInstanceID = -1;
-
-            Merchant merchant = Merchants.GetByUsername(HttpContext.Current.User.Identity.Name);
 
             //Save image
             //Check to see if there's a temp image, assign default if not
