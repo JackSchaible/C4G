@@ -42,5 +42,12 @@
         <FormErrors>There were some errors with your form submission. Please review the following errors and try again.</FormErrors>
       </ErrorMessages>
     </New>
+    <Edit>
+      <ErrorMessages>
+        <DealLocked>There are existing campaigns or purchase orders associated with this deal. Some details may not be editable.</DealLocked>
+        <NewAbsLimitLowerThanOld>There are existing campaigns or purchase orders associated with this deal. You may only increase the Absolute Coupon Limit.</NewAbsLimitLowerThanOld>
+        <NewPCCouponLimitLowerThanOld>There are existing campaigns or purchase orders associated with this deal. You may only increase the coupon Limit Per Customer.</NewPCCouponLimitLowerThanOld>
+      </ErrorMessages>
+    </Edit>
   </Pages>
 </SiteText>

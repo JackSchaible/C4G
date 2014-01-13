@@ -282,7 +282,7 @@
                             if (!Is0(giftValue)) {
                                 if (retailValue < giftValue) {
                                     errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/RetailValueLessThanGiftValue").InnerText %>');
-                                    errors2.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/CouponLimitLessThanCustomerLimit").InnerText %>');
+                                    errors2.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueGreaterThanRetailValue").InnerText %>');
                                 }
                             }
                         }
@@ -323,7 +323,7 @@
                             if (!Is0(retailValue)) {
                                 if (retailValue < giftValue) {
                                     errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/RetailValueLessThanGiftValue").InnerText %>');
-                                    errors2.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/CouponLimitLessThanCustomerLimit").InnerText %>');
+                                    errors2.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueGreaterThanRetailValue").InnerText %>');
                                 }
                             }
                         }
@@ -348,10 +348,10 @@
             var errors = new Array();
 
             if (IsStringTooLong(redeemDetails, 500))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueGreaterThanRetailValue").InnerText %>');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/RedeemDetailsTooLong").InnerText %>');
 
             if (containsCode(redeemDetails))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueGreaterThanRetailValue").InnerText %>');
+                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/RedeemDetailsInvalidCharacters").InnerText %>');
 
             if (arguments.length == 0) {
                 writeErrors('AdditionalRedemptionDetailsTextBoxErrors', errors);

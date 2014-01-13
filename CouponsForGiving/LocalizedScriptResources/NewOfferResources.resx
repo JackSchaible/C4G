@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CouponLimitGT9999" xml:space="preserve">
+    <value>The absolute limit of coupons to sell needs to be less than 10, 000.</value>
+  </data>
+  <data name="CouponLimitLessThanCustomerLimit" xml:space="preserve">
+    <value>The absolute limit of coupons to sell must be greater than or equal to the limit per customer.</value>
+  </data>
+  <data name="CouponLimitLT0" xml:space="preserve">
+    <value>Your absolute coupon limit needs to be greater than 0.</value>
+  </data>
+  <data name="CouponLimitNAN" xml:space="preserve">
+    <value>Your absolute coupon limit needs to be a number. For example, 2500.</value>
+  </data>
+  <data name="DescriptionInvalidCharacters" xml:space="preserve">
+    <value>Your offer description contains invalid characters. Please ensure it does not contain any of the following: &amp;lt;, &amp;gt;, {, }, or ;.</value>
+  </data>
+  <data name="DescriptionOneWord" xml:space="preserve">
+    <value>Your offer description needs to be more than one word.</value>
+  </data>
+  <data name="DescriptionTooLong" xml:space="preserve">
+    <value>Your offer description is too long. Offer descriptions need to be less than 200 characters long.</value>
+  </data>
+  <data name="DescriptionTooShort" xml:space="preserve">
+    <value>Your offer description is too short. Offers descriptions need to be at least 10 characters long.</value>
+  </data>
+  <data name="EndDateBeforeToday" xml:space="preserve">
+    <value>The end date of your offer needs to be later than today&amp;apos;s date.</value>
+  </data>
+  <data name="EndDateEarlierThanStartDate" xml:space="preserve">
+    <value>The end date of your offer needs to be after its start date.</value>
+  </data>
+  <data name="FormErrors" xml:space="preserve">
+    <value>There were some errors with your form submission. Please review the following errors and try again.</value>
+  </data>
+  <data name="GiftValueGreaterThanRetailValue" xml:space="preserve">
+    <value>The gift value of your offer must be less than than its retail value.</value>
+  </data>
+  <data name="GiftValueLT1" xml:space="preserve">
+    <value>Your gift value needs to be greater than $1.00.</value>
+  </data>
+  <data name="GiftValueNAN" xml:space="preserve">
+    <value>Your gift value needs to be a number. For example, 25.00.</value>
+  </data>
+  <data name="ImageSizeInvalid" xml:space="preserve">
+    <value>The image you uploaded appears to be too large. We require images to be x pixels wide by y pixels high in order to display properly. Please select another image.</value>
+  </data>
+  <data name="ImageTypeInvalid" xml:space="preserve">
+    <value>The file you uploaded is an incorrect file type. Supported types include: GIF, JPEG, Progressive JPEG, PNG, and SVG. Please select another file.</value>
+  </data>
+  <data name="NullAbsoluteCouponLimit" xml:space="preserve">
+    <value>You need to enter an absolute limit for your offer. This is how many coupons you wish to sell overall.</value>
+  </data>
+  <data name="NullDescription" xml:space="preserve">
+    <value>You need to enter a description for your offer.</value>
+  </data>
+  <data name="NullGiftValue" xml:space="preserve">
+    <value>You need to enter a gift value for your offer. This is how much you this coupon will cost to purchase.</value>
+  </data>
+  <data name="NullOfferName" xml:space="preserve">
+    <value>You need to enter a name for your offer.</value>
+  </data>
+  <data name="NullPCCouponLimit" xml:space="preserve">
+    <value>You need to enter a limit per customer for your offer. This is how many coupons each individual customer is allowed to buy.</value>
+  </data>
+  <data name="NullRetailValue" xml:space="preserve">
+    <value>You need to enter a retail value for your offer. This is how much your product or service typically costs.</value>
+  </data>
+  <data name="OfferNameInvalidCharacters" xml:space="preserve">
+    <value>Your offer name contains invalid characters. Please ensure it does not contain any of the following: &amp;lt;, &amp;gt;, {, }, or ;.</value>
+  </data>
+  <data name="OfferNameTaken" xml:space="preserve">
+    <value>Sorry, but you already have an offer with that name. Offer names need to be unique. Please enter a different name.</value>
+  </data>
+  <data name="OfferNameTooLong" xml:space="preserve">
+    <value>Your offer name is too long. Offer names need to be less than 50 characters long.</value>
+  </data>
+  <data name="OfferNameTooShort" xml:space="preserve">
+    <value>Your offer name is too short. Offer names need to be at least 5 characters long.</value>
+  </data>
+  <data name="PCCouponLimitGreaterThanAbsoluteLimit" xml:space="preserve">
+    <value>The limit of coupons per customer must be less than than or equal to the absolute limit of coupons to sell.</value>
+  </data>
+  <data name="PCCouponLimitLT0" xml:space="preserve">
+    <value>Your coupon limit per customer needs to be greater than 0.</value>
+  </data>
+  <data name="PCCouponLimitNAN" xml:space="preserve">
+    <value>Your coupon limit per customer needs to be a number. For example, 2500.</value>
+  </data>
+  <data name="RedeemDetailsInvalidCharacters" xml:space="preserve">
+    <value>Your additional redeem details contains invalid characters. Please ensure it does not contain any of the following: &amp;lt;, &amp;gt;, {, }, or ;.</value>
+  </data>
+  <data name="RedeemDetailsTooLong" xml:space="preserve">
+    <value>Your additional redeem details need to be less than 500 characters long.</value>
+  </data>
+  <data name="RetailValueLessThanGiftValue" xml:space="preserve">
+    <value>The retail value of your offer must be greater than than its gift value.</value>
+  </data>
+  <data name="RetailValueLT1" xml:space="preserve">
+    <value>Your retail value needs to be greater than $1.00.</value>
+  </data>
+  <data name="RetailValueNAN" xml:space="preserve">
+    <value>Your retail value needs to be a number. For example, 25.00.</value>
+  </data>
+  <data name="ServerError" xml:space="preserve">
+    <value>Something went wrong with your form submission. Please try again.</value>
+  </data>
+  <data name="StartDateLaterThanEndDate" xml:space="preserve">
+    <value>The start date of your offer needs to be before its end date.</value>
+  </data>
+  <data name="UploadError" xml:space="preserve">
+    <value>There was a problem uploading your image. Please try again.</value>
+  </data>
+</root>

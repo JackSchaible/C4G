@@ -1,0 +1,7 @@
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving\LocalizedScriptResources\obj\Release\LocalizedScriptResources.csprojResolveAssemblyReference.cache
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving\LocalizedScriptResources\obj\Release\LocalizedScriptResources.NewOfferResources.resources
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving\LocalizedScriptResources\obj\Release\LocalizedScriptResources.csproj.GenerateResource.Cache
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving\LocalizedScriptResources\bin\Release\LocalizedScriptResources.dll
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving\LocalizedScriptResources\bin\Release\LocalizedScriptResources.pdb
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving\LocalizedScriptResources\obj\Release\LocalizedScriptResources.dll
+C:\Users\Jack\Documents\GitHub\C4G\CouponsForGiving\LocalizedScriptResources\obj\Release\LocalizedScriptResources.pdb

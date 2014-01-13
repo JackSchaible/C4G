@@ -19,10 +19,13 @@ using System.Web.Configuration;
 using System.Xml;
 using System.IO;
 
-public partial class Merchant_Deals_New : System.Web.UI.Page
+public partial class Merchant_Offers_Edit : System.Web.UI.Page
 {
     public Merchant merch;
     public XmlDocument strings;
+    public static bool locked;
+    public static DealInstance di;
+    public List<string> checkBoxes;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -32,14 +35,70 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
         strings = new XmlDocument();
         strings.Load(Server.MapPath(String.Format("Text ({0}).xml", WebConfigurationManager.AppSettings["Language"])));
 
+        int id = -1;
+
+        if (Request.QueryString["diid"] != null)
+            id = int.Parse(Request.QueryString["diid"]);
+        else
+            Response.Redirect("MyOffers.aspx");
+
         try
         {
             merch = SysDatamk.Merchant_GetByUsername(User.Identity.Name);
+            di = SysData.DealInstance_GetByID(id);
+
+            List<int> dealIDs = (from d in merch.Deals select d.DealID).ToList<int>();
+
+            if (!dealIDs.Contains(di.Deal.DealID))
+                Response.Redirect("MyOffers.aspx");
+
+            if (di.PurchaseOrders.Count > 0 || di.Campaigns.Count > 0)
+                locked = true;
+            else
+                locked = false;
+
+            if (locked)
+            {
+                StartDateRow.Enabled = false;
+                StartDateRow.Visible = false;
+                EndDateRow.Enabled = false;
+                EndDateRow.Visible = false;
+                RedeemDetailsRow.Enabled = false;
+                RedeemDetailsRow.Visible = false;
+
+            }
+            else
+            {
+                StartDateRow.Enabled = true;
+                StartDateRow.Visible = true;
+                //Set start date
+                EndDateRow.Enabled = true;
+                EndDateRow.Visible = true;
+                //Set end date
+                RedeemDetailsRow.Enabled = true;
+                RedeemDetailsRow.Visible = true;
+                //Check the applicable redeem details
+
+                List<FinePrint> finePrints = FinePrints.List();
+                List<int> finePrintIDs = (from f in finePrints select f.FinePrintID).ToList<int>();
+                List<int> dealPrints = (from f in di.Deal.FinePrints select f.FinePrintID).ToList<int>();
+
+                checkBoxes = new List<string>();
+
+                for (int i = 0; i < finePrintIDs.Count; i++)
+                {
+                    //If, add a checked box, else don't
+                    if (dealPrints.Contains(finePrintIDs[i]))
+                        checkBoxes.Add("<tr><td><input checked=\"checked\" id=\"FinePrintList_" + i + "\" type=\"checkbox\" name=\"ct100$Main_Content$FinePrintList$FinePrintList_" + i + "\" value=\"" + finePrints[i].FinePrintID + "\"><label for=\"FinePrintList_" + i + "\">" + finePrints[i].Content + "</label></td></tr>");
+                    else
+                        checkBoxes.Add("<tr><td><input id=\"FinePrintList_" + i + "\" type=\"checkbox\" name=\"ct100$Main_Content$FinePrintList$FinePrintList_" + i + "\" value=\"" + finePrints[i].FinePrintID + "\"><label for=\"FinePrintList_" + i + "\">" + finePrints[i].Content + "</label></td></tr>");
+                }
+            }
         }
         catch (Exception ex)
         {
             ex.ToString();
-            Response.Redirect("../Signup.aspx");
+            Response.Redirect("MyOffers.aspx");
         }
     }
 
@@ -47,12 +106,15 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
     [ScriptMethod]
     public static string CheckName(string name)
     {
-        return Deals.ListNamesByMerchant(HttpContext.Current.User.Identity.Name).Contains(name).ToString();
+        List<string> deals = Deals.ListNamesByMerchant(HttpContext.Current.User.Identity.Name);
+        deals.Remove(di.Deal.Name);
+
+        return deals.Contains(name).ToString();
     }
 
     [WebMethod]
     [ScriptMethod]
-    public static string CreateOffer(string Name, string Description, string sDate, string eDate, string AbsCouponLimit, string PCLimit,
+    public static string SaveOffer(int diID, string Name, string Description, string sDate, string eDate, string AbsCouponLimit, string PCLimit,
         string rValue, string gValue, string[] rDetails, string AdditionalRedeemDetails)
     {
         string result = "";
@@ -82,7 +144,7 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
         {
             AbsoluteCouponLimit = int.Parse(AbsCouponLimit);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             ex.ToString();
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/CouponLimitNAN").InnerText);
@@ -102,7 +164,7 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
         {
             RetailValue = decimal.Parse(rValue);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             ex.ToString();
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/RetailValueNAN").InnerText);
@@ -112,7 +174,7 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
         {
             GiftValue = decimal.Parse(gValue);
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             ex.ToString();
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueNAN").InnerText);
@@ -213,13 +275,23 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
 
         Merchant merchant = Merchants.GetByUsername(HttpContext.Current.User.Identity.Name);
         string username = HttpContext.Current.User.Identity.Name;
+        DealInstance di = SysData.DealInstance_GetByID(diID);
+
+        if (di.PurchaseOrders.Count > 0 || di.Campaigns.Count > 0)
+            locked = true;
+
+        if (locked)
+        {
+            if (AbsoluteCouponLimit < di.Deal.AbsoluteCouponLimit)
+                errors.Add(strings.SelectSingleNode("/SiteText/Pages/Edit/ErrorMessages/NewAbsLimitLowerThanOld").InnerText);
+
+            if (LimitPerCustomer < di.Deal.LimitPerCustomer)
+                errors.Add(strings.SelectSingleNode("/SiteText/Pages/Edit/ErrorMessages/NewPCCouponLimitLowerThanOld").InnerText);
+        }
 
         //If there're no errors, commit to db
         if (errors.Count == 0)
         {
-            int dealID = -1;
-            int dealInstanceID = -1;
-
             //Save image
             //Check to see if there's a temp image, assign default if not
             DirectoryInfo root = new DirectoryInfo(HttpContext.Current.Server.MapPath("~/tmp/Images/Offers"));
@@ -232,31 +304,39 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
                 listFiles[0].MoveTo(logoPath);
             }
             else
-                logoPath = HttpContext.Current.Server.MapPath("~/Images/c4g_home_npos_step4.png").Replace(HttpContext.Current.Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
+                logoPath = HttpContext.Current.Server.MapPath("~/Images/c4g_home_npos_step4.png");
 
             using (TransactionScope ts = new TransactionScope())
             {
                 try
                 {
-                    //Create deal
-                    dealID = Deals.Insert(merchant.MerchantID, Name, Description, AbsoluteCouponLimit, LimitPerCustomer, logoPath);
+                    //If deal is locked, then only update the coupon limit, and only if those are increases
+                    if (!locked)
+                        Deals.Update(di.DealID, merchant.MerchantID, Name, Description, AbsoluteCouponLimit, LimitPerCustomer, logoPath);
+                    else
+                        Deals.Update(di.DealID, merchant.MerchantID, di.Deal.Name, di.Deal.DealDescription, AbsoluteCouponLimit, LimitPerCustomer, logoPath);
 
                     //Add extra deal stuff
-                    //Add deal instance
-                    dealInstanceID = SysDatamk.AddDealInstance(dealID, StartDate, EndDate, DateTime.Now, DateTime.Now, 2);
-
+                    
                     //Add pricing
-                    int newPriceID = SysDatamk.AddPrice(dealID, RetailValue, GiftValue, MerchantSplit, NPOSplit, OurSplit);
+                    if (!locked)
+                        SysDatamk.UpdatePrice(di.Deal.Prices.FirstOrDefault<Price>().PriceID, di.Deal.DealID, RetailValue, GiftValue, MerchantSplit, NPOSplit, OurSplit);
 
-                    //Add deal locations
-                    if (merchant.MerchantLocations.Count > 0)
-                        SysDatamk.AddDealMerchantLocation(dealID, merchant.MerchantLocations.FirstOrDefault<MerchantLocation>().MerchantLocationID);
+                    //Don't touch deal locations
+                    //if (merchant.MerchantLocations.Count > 0)
+                      //  SysDatamk.AddDealMerchantLocation(dealID, merchant.MerchantLocations.FirstOrDefault<MerchantLocation>().MerchantLocationID);
 
-                    //Add redeem details
-                    foreach (string item in RedeemDetails)
-                            FinePrints.Add(dealID, int.Parse(item));
+                    if (!locked)
+                    {
+                        foreach (FinePrint fp in di.Deal.FinePrints)
+                            FinePrints.Remove(di.Deal.DealID, fp.FinePrintID);
 
-                    SysDatamk.AddRedeemDetails(dealID, AdditionalRedeemDetails, "", "", "");
+                        //Add redeem details
+                        foreach (string item in RedeemDetails)
+                            FinePrints.Add(di.Deal.DealID, int.Parse(item));
+
+                        SysDatamk.UpdateRedeemDetails(di.Deal.RedeemDetails.FirstOrDefault<RedeemDetail>().RedeemDetailsID, di.DealID, AdditionalRedeemDetails, "", "", "");
+                    }
 
                     ts.Complete();
                 }
@@ -278,10 +358,6 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
                 }
             }
 
-            //Send email
-            List<string> to = new List<string>();
-            to.Add(Membership.GetUser(HttpContext.Current.User.Identity.Name).Email);
-            EmailUtils.SendOfferCreationEmail(to, merchant.Name, Name);
             result = "DealPage.aspx?deal=" + Name + "&merchantname=" + merchant.Name;
         }
 
@@ -291,34 +367,4 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
         return result;
     }
 
-    //[ScriptMethod]
-    //[WebMethod]
-    //public static string AddLocation(string locationID)
-    //{
-    //    string result = "OK";
-
-    //    int location = int.Parse(locationID);
-    //    List<int> locations = new List<int>();
-
-    //    if (HttpContext.Current.Session["Locations"] != null)
-    //        locations = (List<int>)HttpContext.Current.Session["Locations"];
-
-    //    locations.Add(location);
-    //    HttpContext.Current.Session["Locations"] = locations;
-        
-    //    return result;
-    //}
-
-    //[ScriptMethod]
-    //[WebMethod]
-    //public static string RemoveLocation(string locationID)
-    //{
-    //    string result = "OK";
-
-    //    List<int> locations = (List<int>)HttpContext.Current.Session["Locations"];
-    //    locations.Remove(int.Parse(locationID));
-    //    HttpContext.Current.Session["Locations"] = locations;
-
-    //    return result;
-    //}
 }

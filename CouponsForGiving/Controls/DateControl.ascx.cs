@@ -33,6 +33,15 @@ public partial class Controls_DateControl : System.Web.UI.UserControl
 
             return result;
         }
+
+        set
+        {
+            int Day = value.Day;
+            string Month = value.Month.ToString("MMMM");
+            int Year = value.Year;
+
+
+        }
     }
 
     public Controls_DateControl()
