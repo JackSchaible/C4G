@@ -27,15 +27,16 @@ public partial class Default_My_Cart : System.Web.UI.Page
 
         
         //Process cart and make sure a campaign is attached to each deal
-        foreach (ShoppingCart item in (List<ShoppingCart>)Session["Cart"])
-        {
-            if (item.CampaignID == -1)
+        if (Session["Cart"] != null)
+            foreach (ShoppingCart item in (List<ShoppingCart>)Session["Cart"])
             {
-                Campaign defaultCampaign = SysData.DealInstance_GetByID(item.DealInstanceID).Campaigns.FirstOrDefault<Campaign>();
-                item.CampaignID = defaultCampaign.CampaignID;
-                item.NPOName = defaultCampaign.NPO.Name;
+                if (item.CampaignID == -1)
+                {
+                    Campaign defaultCampaign = SysData.DealInstance_GetByID(item.DealInstanceID).Campaigns.FirstOrDefault<Campaign>();
+                    item.CampaignID = defaultCampaign.CampaignID;
+                    item.NPOName = defaultCampaign.NPO.Name;
+                }
             }
-        }
     }
 
     protected void ClearButton_Click(object sender, EventArgs e)
@@ -85,5 +86,25 @@ public partial class Default_My_Cart : System.Web.UI.Page
         }
 
         HttpContext.Current.Session["Cart"] = cart;
+    }
+
+    [WebMethod]
+    [ScriptMethod]
+    public static void DeleteDeal(int DealInstanceID, int CampaignID)
+    {
+        List<ShoppingCart> cart = null;
+
+        if (HttpContext.Current.Session["Cart"] != null)
+            cart = (List<ShoppingCart>)HttpContext.Current.Session["Cart"];
+
+        ShoppingCart item = (from c in cart where c.DealInstanceID == DealInstanceID && c.CampaignID == CampaignID select c).FirstOrDefault<ShoppingCart>();
+
+        if (item == null)
+            throw new Exception("Item could not be found");
+        else
+        {
+            cart.Remove(item);
+            HttpContext.Current.Session["Cart"] = cart;
+        }
     }
 }

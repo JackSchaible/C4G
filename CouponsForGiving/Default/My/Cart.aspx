@@ -10,54 +10,53 @@
 
             PageMethods.ChangeCampaign(dealInstanceID, value);
         }
+
+        function deleteDeal(dealInstanceID, campaignID) {
+            PageMethods.DeleteDeal(dealInstanceID, campaignID, function () {
+                location.reload();
+            });
+        }
     </script>
     <h1>My Shopping Cart</h1>
-    <table cellspacing="0" rules="all" border="1" id="FeaturedMerchantGV" style="border-collapse:collapse;">
-		<tbody>
-            <tr>
-                <th scope="col"><%--View deal--%></th>
-                <th scope="col"><%--Delete item--%></th>
-                <th scope="col">Campaign</th>
-                <th scope="col">Merchant</th>
-                <th scope="col">Deal</th>
-                <th scope="col">Gift Value</th>
-		    </tr>
             <%
                 if (Session["Cart"] != null)
-                {
-                    foreach (ShoppingCart item in (List<ShoppingCart>)Session["Cart"])
+                    if (((List<ShoppingCart>)Session["Cart"]).Count > 0)
                     {
-                        List<CouponsForGiving.Data.Campaign> campaigns = CouponsForGiving.Data.Classes.Campaigns.ListByDeal(item.DealInstanceID);
-                        string button = String.Format("<a href=\"../DealPage.aspx?MerchantName={0}&OfferName={1}\">View Deal</a>", item.MerchantName, item.DealName);
-                        string deleteButton = String.Format("<a href=\"javascript:deleteDeal({0}, {1})\">Delete</a>", item.DealInstanceID, item.CampaignID);
-                        string campaignList = "<select id=\"" + item.DealInstanceID + "DDL\" onchange=\"changeNPO(" + item.DealInstanceID + ")\">";
-
-                        foreach (CouponsForGiving.Data.Campaign c in campaigns)
+                        Response.Write("<table cellspacing=\"0\" rules=\"all\" border=\"1\" id=\"FeaturedMerchantGV\" style=\"border-collapse:collapse;\"><tbody><tr><th scope=\"col\"></th><th scope=\"col\"></th><th scope=\"col\">Campaign</th><th scope=\"col\">Merchant</th><th scope=\"col\">Deal</th><th scope=\"col\">Gift Value</th></tr>");
+                    
+                        foreach (ShoppingCart item in (List<ShoppingCart>)Session["Cart"])
                         {
-                            if (c.CampaignID == item.CampaignID)
-                                campaignList += String.Format("<option value=\"{1}\" selected=\"selected\">{0}</option>", c.NPO.Name + "-" + c.Name, c.CampaignID);
-                            else
-                                campaignList += String.Format("<option value=\"{1}\">{0}</option>", c.NPO.Name + "-" + c.Name, c.CampaignID);
+                            List<CouponsForGiving.Data.Campaign> campaigns = CouponsForGiving.Data.Classes.Campaigns.ListByDeal(item.DealInstanceID);
+                            string button = String.Format("<a href=\"../DealPage.aspx?MerchantName={0}&deal={1}\">View Deal</a>", item.MerchantName, item.DealName);
+                            string deleteButton = String.Format("<a href=\"javascript:deleteDeal({0}, {1})\">Delete</a>", item.DealInstanceID, item.CampaignID);
+                            string campaignList = "<select id=\"" + item.DealInstanceID + "DDL\" onchange=\"changeNPO(" + item.DealInstanceID + ")\">";
+
+                            foreach (CouponsForGiving.Data.Campaign c in campaigns)
+                            {
+                                if (c.CampaignID == item.CampaignID)
+                                    campaignList += String.Format("<option value=\"{1}\" selected=\"selected\">{0}</option>", c.NPO.Name + " - " + c.Name, c.CampaignID);
+                                else
+                                    campaignList += String.Format("<option value=\"{1}\">{0}</option>", c.NPO.Name + "-" + c.Name, c.CampaignID);
+                            }
+
+                            campaignList += "</select>";
+
+                            string merchant = item.MerchantName;
+                            string deal = item.DealName;
+                            string price = item.GiftValue.ToString("C");
+                            string row = String.Format("<td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td>",
+                                button, deleteButton, campaignList, merchant, deal, price);
+
+                            Response.Write(row);
                         }
-
-                        campaignList += "</select>";
-
-                        string merchant = item.MerchantName;
-                        string deal = item.DealName;
-                        string price = item.GiftValue.ToString("C");
-                        string row = String.Format("<td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td>",
-                            button, deleteButton, campaignList, merchant, deal, price);
-
-                        Response.Write(row);
+                    
+                        Response.Write("</tbody></table>");
                     }
-                }
-                else
-                {
-                    Response.Write("<p>" + strings.SelectSingleNode("/SiteText/Pages/Cart/ErrorMessages/EmptyCartPrefix").InnerText + "<a href=\"../DealsInMyArea.aspx\">" + strings.SelectSingleNode("/SiteText/Pages/Cart/ErrorMessages/EmptyCartLink").InnerText + "</a>" + strings.SelectSingleNode("/SiteText/Pages/Cart/ErrorMessages/EmptyCartSuffix").InnerText + "</p>");
-                }
+                    else
+                    {
+                        Response.Write("<p>" + strings.SelectSingleNode("/SiteText/Pages/Cart/ErrorMessages/EmptyCartPrefix").InnerText + "<a href=\"../DealsInMyArea.aspx\">" + strings.SelectSingleNode("/SiteText/Pages/Cart/ErrorMessages/EmptyCartLink").InnerText + "</a>" + strings.SelectSingleNode("/SiteText/Pages/Cart/ErrorMessages/EmptyCartSuffix").InnerText + "</p>");
+                    }
             %>
-	</tbody>
-    </table>
     <div id="Totals">
         <p><strong>Subtotal:</strong> <asp:Label ID="SubtotalLabel" runat="server"></asp:Label></p>
         <p><strong>Total:</strong> <asp:Label ID="TotalLabel" runat="server"></asp:Label></p>
