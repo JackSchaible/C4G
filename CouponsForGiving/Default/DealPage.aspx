@@ -94,7 +94,7 @@
                 Response.Write(CouponsForGiving.HttpRendering.GetNPOCampaign(c, deal.DealInstances.FirstOrDefault<CouponsForGiving.Data.DealInstance>()));
             }
         %>
-        <h2>Fine Print</h2>
+        <h2>The Fine Print</h2>
         <%
             if (deal.FinePrints.Count > 0)
             {
@@ -121,14 +121,14 @@
             else
                 Response.Write("<p>There are no locations participating in this merchant offer.</p>");
         %>
-        <h4>Restrictions</h4>
+        <h4>Additional Redemption Details</h4>
         <p><%: deal.RedeemDetails.FirstOrDefault<CouponsForGiving.Data.RedeemDetail>().AdditionalDetails %></p>
         <hr>
-        <h1><%: deal.Merchant.Name %></h1>
-        <img alt="Our Logo" class="merchant_logo" src="../../<%: deal.Merchant.LargeLogo %>" />
-        <h3 class="merchant-address"><%: deal.Merchant.cAddress + ", " + CouponsForGiving.Data.Classes.Cities.Get(deal.Merchant.CityID).Name + ", " +  CouponsForGiving.Data.Classes.Cities.Get(deal.Merchant.CityID).PoliticalDivision.Name %></h3><!-- I figure we can populate this content with Merchant Address -->
+        <h1><%: merchant.Name %></h1>
+        <a href="<%:merchant.Website %>"><img alt="Our Logo" class="merchant_logo" src="../../<%: deal.Merchant.LargeLogo %>" /></a>
+        <h3 class="merchant-address"><%: merchant.cAddress + ", " + CouponsForGiving.Data.Classes.Cities.Get(merchant.CityID).Name + ", " +  CouponsForGiving.Data.Classes.Cities.Get(merchant.CityID).PoliticalDivision.Name %></h3><!-- I figure we can populate this content with Merchant Address -->
         <h4 class="merchant-website"><a href="<%: deal.Merchant.Website %>" target="_blank"><%: merchant.Website %></a><!-- This can be populated with the company url --></h4>
-        <p><%: deal.Merchant.cUser.MerchantInfoes.FirstOrDefault<CouponsForGiving.Data.MerchantInfo>().MerchantDescription %></p><!-- This Can be populated with the Merchant Profile -->
+        <p><%: merchant.cUser.MerchantInfoes.FirstOrDefault<CouponsForGiving.Data.MerchantInfo>().MerchantDescription %></p><!-- This Can be populated with the Merchant Profile -->
     </div><!-- Close Two-Thirds Wrapper -->
 
 </asp:Content>
