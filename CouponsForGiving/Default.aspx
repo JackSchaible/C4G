@@ -106,7 +106,7 @@
                     <li><a href="https://www.coupons4giving.ca/Default/NPOPage.aspx?name=Need2"><img src="../images/c4g_need2.png" alt="Need2"/></a></li>
                     <li><a href="https://www.coupons4giving.ca/Default/NPOPage.aspx?name=AcceleratorYYC"><img src="../images/c4g_accelerator.png" alt="Accelerator YYC"/></a></li>
                 </ul>
-                <a href="CausesInMyArea.aspx" class="btn-blue"><i class="fa fa-search"></i> MORE CAUSES</a>
+                <a href="Default/CausesInMyArea.aspx" class="btn-blue"><i class="fa fa-search"></i> MORE CAUSES</a>
             </div>
         </div>
     </section>
