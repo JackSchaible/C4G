@@ -7,7 +7,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BannerContent" Runat="Server">
     <div class="homeBanners">
         <h2>Whether you search by deals or Not-For-Profits you can support great causes in just one click.</h2>
-            <h3><a href="DealsInMyArea.aspx" class="btn-get-started" title="Get Started"><i class="fa fa-arrow-circle-o-right"></i>START HERE</a>Take a Look Around<br /><span style="font-size: 65%; line-height: 125%;">Browse our local deals as well as our Global Marketplace of Online Merchants </span></h3>
+            <h3 style="line-height: 100%;"><a href="DealsInMyArea.aspx" class="btn-get-started" title="Start Here"><i class="fa fa-arrow-circle-o-right"></i>START HERE</a>Take a Look Around<br /><span style="font-size: 65%;">Browse our local deals as well as our Global Marketplace of Online Merchants </span></h3>
         <img src="../Images/c4g_heartinhand_home.png" class="right-heartinhand" /> 
     </div>
 </asp:Content>
