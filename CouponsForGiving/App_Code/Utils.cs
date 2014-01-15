@@ -604,7 +604,7 @@ namespace CouponsForGiving
             message += "<img src=\"http://www.coupons4giving.ca/Images/c4g_email_template_header1.png\" style=\"max-width: 560px;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;display: inline; padding-bottom: 30px;\">";
             message += String.Format("<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\">{0}", EmailContent);
             message += "<h4 class=\"null tpl-content-highlight\" style=\"text-align: center;color: #5e5e5e;display: block;font-family: Arial;font-size: 22px;font-weight: bold;line-height: 100%;margin-top: 0;margin-right: 0;margin-bottom: 10px;margin-left: 0;\"><br>";
-            message += String.Format("<strong><a href=\"{1}\" target=\"_blank\" style=\"color: #22bfe8;font-weight: normal;text-decoration: underline;\">{0}</a>&nbsp;{1}</strong></h4>", LinkContent, LinkURL, LinkSuffix);
+            message += String.Format("<strong><a href=\"{1}\" target=\"_blank\" style=\"color: #22bfe8;font-weight: normal;text-decoration: underline;\">{0}</a>&nbsp;{2}</strong></h4>", LinkContent, LinkURL, LinkSuffix);
             message += String.Format("<p style=\"text-align: center;\"><strong>{0}&nbsp;<a href=\"mailto:{1}\" target=\"_blank\" style=\"color: #22bfe8;font-weight: normal;text-decoration: underline;\">{1}</a>&nbsp;{2}</strong></p>", ContactTextPrefix, ContactEmail, ContactTextSuffix);
             message += "<p style=\"text-align: center;\">Cheers!</p>";
             message += "</div>";
