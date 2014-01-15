@@ -1041,6 +1041,46 @@ line-height: 175%;
 margin-top: 20px;
 margin-bottom: 0px;}
 
+#MainContent .homeBanners h3 a.btn-get-started {
+width: 80px;
+text-align: center;
+padding: 21px 1px 10px;
+vertical-align: middle;
+color: #fff;
+border-radius: 200px;
+display: block;
+font-size: 14px;
+font-weight: 700;
+-webkit-transform: rotate(-3deg);
+-moz-transform: rotate(-3deg);
+-ms-transform: rotate(-3deg);
+background: #fbad3e;
+box-shadow: 0px 4px 0px #ff9900;
+-moz-box-shadow: 0px 4px 0px #ff9900;
+-webkit-box-shadow: 0px 4px 0px #ff9900;
+float: left;
+text-decoration: none;
+display: inline;
+margin-left: 0px;
+margin-top: -5px;
+margin-right: 10px;
+line-height: 100%;}
+
+#MainContent .homeBanners h3 a.btn-get-started:hover {
+color: #fff;
+background: #22bfe8;
+-webkit-box-shadow: 0px 4px 0px #0099cc;
+-moz-box-shadow: 0px 4px 0px #0099cc;
+box-shadow: 0px 4px 0px #0099cc;
+}
+
+#MainContent .homeBanners h3 a.btn-get-started i {
+font-size: 36px;
+display: block;
+margin-top: -13px;
+margin-bottom: 0px;
+}
+
 /* Home Page Banners 
 ---------------------------------------------------------------- */
 
@@ -1084,13 +1124,13 @@ margin: -155px 0 0px;
 #MainContent .homeBanners .right-fundraising {
 float: right;
 display: inline-block;
-margin: -170px 0px;
+margin: -150px 0px;
 }
 
 #MainContent .homeBanners .right-merchant {
 float: right;
 display: inline-block;
-margin: -130px 0px;
+margin: -110px 0px;
 }
 
 .HowItWorksBanner #MainContent .quarter h4 {
