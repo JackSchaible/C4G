@@ -51,7 +51,7 @@
         <h1>What is Coupons4Giving?</h1>
         <p><strong>Coupons4Giving is a fundraising tool</strong> that allows you to support your favourite Not-For-Profit organization in just one click!</p>
         <p>Choose your organization and support them by purchasing a coupon to your favourite restaurant, retailer or online merchant. As a Not-For-Profit you can create and manage successful fundraising campaigns. As a merchant or online retailer you can support your favourite causes by offering great deals with coupons.</p>
-        <h4><i class="fa fa-arrow-circle-o-right"></i> It's <strong>Free</strong> to <a href="Account/Register.aspx">sign up with Coupons4Giving!</a></h4>
+        <h4><a href="Account/Register.aspx" class="btn-get-started" title="Start Here"><i class="fa fa-arrow-circle-o-right"></i>START HERE</a></i> It's <strong>Free</strong> to <a href="Account/Register.aspx">sign up with Coupons4Giving!</a></h4>
     </div>
     <div class="one-thirds LandingButtons">
         <a class="btn-large" href="Default/DealsInMyArea.aspx"><i class="fa fa-credit-card"></i> Buy Deals Now</a>

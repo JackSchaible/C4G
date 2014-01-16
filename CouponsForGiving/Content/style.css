@@ -516,7 +516,7 @@ text-align: left;
 padding-left: 30px;
 }
 
-#Main_Content_TermsCheckbox, .checkbox-singlerow #Main_Content_TermsCheckBox input[type='checkbox'] {
+#Main_Content_TermsCheckbox, .checkbox-singlerow #Main_Content_TermsCheckBox input[type='checkbox'], .checkbox-singlerow input[type='checkbox']#TermsCheckbox {
 float: left;
 width: 20px;
 position: relative;}
@@ -1041,7 +1041,7 @@ line-height: 175%;
 margin-top: 20px;
 margin-bottom: 0px;}
 
-#MainContent .homeBanners h3 a.btn-get-started {
+#MainContent .homeBanners h3 a.btn-get-started, #MainContent h4 a.btn-get-started  {
 width: 80px;
 text-align: center;
 padding: 21px 1px 10px;
@@ -1066,7 +1066,9 @@ margin-top: -5px;
 margin-right: 10px;
 line-height: 100%;}
 
-#MainContent .homeBanners h3 a.btn-get-started:hover {
+#MainContent h4 a.btn-get-started {margin-top: -10px;}
+
+#MainContent .homeBanners h3 a.btn-get-started:hover, #MainContent h4 a.btn-get-started:hover {
 color: #fff;
 background: #22bfe8;
 -webkit-box-shadow: 0px 4px 0px #0099cc;
@@ -1074,7 +1076,7 @@ background: #22bfe8;
 box-shadow: 0px 4px 0px #0099cc;
 }
 
-#MainContent .homeBanners h3 a.btn-get-started i {
+#MainContent .homeBanners h3 a.btn-get-started i, #MainContent h4 a.btn-get-started i {
 font-size: 36px;
 display: block;
 margin-top: -13px;
