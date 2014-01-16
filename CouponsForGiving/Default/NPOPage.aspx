@@ -10,7 +10,7 @@
     <div class="three-quarters">             
         <!-- Removed the div #text and also the #NPO-->
         <h1><%: npo.Name %></h1> <!-- Charity/NPO Name --> 
-        <p><img alt="Our Logo" class="npo_logo" src="../../<%: npo.Logo %>" /><%: npo.NPODescription %></p><!-- This should be the NPO Profile -->
+        <p><a href="<%: npo.Website %>" target="_blank"><img alt="Our Logo" class="npo_logo" src="../../<%: npo.Logo %>" /></a><%: npo.NPODescription %></p><!-- This should be the NPO Profile -->
         <div class="clear"></div>
         <div class="half charity-info">
             <h4>Address</h4>
@@ -20,7 +20,7 @@
         <div class="half charity-info">
             <h4>Contact Info</h4>
             <p><strong>Phone</strong>: <%: CouponsForGiving.StringUtils.FormatPhoneNumber(npo.PhoneNumber) %></p> <!-- Pulls The NPO Phone Number -->
-            <p><strong>Website</strong>: <a href="<%: npo.Website %>"><%: npo.Website %></a></p> <!-- Pulls The NPO Web Site Address -->
+            <p><strong>Website</strong>: <a href="<%: npo.Website %>" target="_blank"><%: npo.Website %></a></p> <!-- Pulls The NPO Web Site Address -->
         </div>
     </div>
     <div class="one-quarters">
