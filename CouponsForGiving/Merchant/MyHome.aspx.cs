@@ -24,6 +24,7 @@ public partial class Merchant_Home : System.Web.UI.Page
         }
     }
     public string URL { get; set; }
+    public City city;
 
     protected override void OnInit(EventArgs e)
     {
@@ -40,6 +41,7 @@ public partial class Merchant_Home : System.Web.UI.Page
         Master.SideBar = false;
 
         merchant = SysDatamk.Merchant_GetByUsername(User.Identity.Name);
+        city = Cities.Get(merchant.CityID);
 
         URL = WebServices.GetGoogleURL("https://www.coupons4giving.ca/Causes/" + merchant.Name);
 

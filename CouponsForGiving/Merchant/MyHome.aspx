@@ -18,9 +18,9 @@
         var url = '<%# (merchant == null) ? "0" : merchant.Name%>';
         var imageFile = "";
         var imageType = "";
-        var city = '<%# merchant.MerchantLocations.FirstOrDefault<CouponsForGiving.Data.MerchantLocation>().City.Name %>';
-        var province = '<%# merchant.MerchantLocations.FirstOrDefault<CouponsForGiving.Data.MerchantLocation>().City.PoliticalDivision.Name %>';
-        var country = '<%# merchant.MerchantLocations.FirstOrDefault<CouponsForGiving.Data.MerchantLocation>().City.Country.Name %>';
+        var city = '<%# city.Name %>';
+        var province = '<%# city.PoliticalDivision.Name %>';
+        var country = '<%# city.Country.Name %>';
         var autoAcceptMerchantRequests = '<%# merchant.MerchantSettings.FirstOrDefault<CouponsForGiving.Data.MerchantSetting>().AutoAcceptRequests.Value ? "true": "false" %>';
 
         function imgUploadStarted() {
