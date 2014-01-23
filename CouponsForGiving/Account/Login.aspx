@@ -8,9 +8,9 @@
             <h4>Log in with your Coupons4Giving account.</h4>
             <asp:Login runat="server" ViewStateMode="Disabled" RenderOuterTable="false">
                 <LayoutTemplate>
-                    <!--p class="validation-summary-errors">
+                    <p class="validation-summary-errors">
                         <asp:Literal runat="server" ID="FailureText" />
-                    </p-->
+                    </p>
                     <fieldset>
                         <div class="FormRow">
                             <asp:Label runat="server" AssociatedControlID="UserName">Username</asp:Label>

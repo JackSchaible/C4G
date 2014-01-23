@@ -154,15 +154,15 @@
                 <div class="half">
                     <div id="profile-edit-city">
                         <label>City</label>
-                        <p><%# merchant.MerchantLocations.FirstOrDefault<CouponsForGiving.Data.MerchantLocation>().City.Name %></p>
+                        <p><%# CouponsForGiving.Data.Classes.Cities.Get(merchant.CityID).Name %></p>
                     </div>
                     <div id="profile-edit-province">
                         <label>Province</label>
-                        <p><%# merchant.MerchantLocations.FirstOrDefault<CouponsForGiving.Data.MerchantLocation>().City.PoliticalDivision.Name %></p>
+                        <p><%# CouponsForGiving.Data.Classes.Cities.Get(merchant.CityID).PoliticalDivision.Name %></p>
                     </div>
                     <div id="profile-edit-country">
                         <label>Country</label>
-                        <p><%# merchant.MerchantLocations.FirstOrDefault<CouponsForGiving.Data.MerchantLocation>().City.Country.Name %></p>
+                        <p><%# CouponsForGiving.Data.Classes.Cities.Get(merchant.CityID).Country.Name %></p>
                     </div>
                     <label>Receive E-Mail Notifications</label>
                     <asp:RadioButtonList ID="RecieveEmails" runat="server">

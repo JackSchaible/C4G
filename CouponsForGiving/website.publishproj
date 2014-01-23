@@ -47,6 +47,10 @@ Copyright (C) Microsoft Corporation. All rights reserved.
       <Project>{AE4453FB-7D51-4604-A589-BA58EC94B2AF}</Project>
       <Name>CouponsForGiving.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="LocalizedScriptResources\LocalizedScriptResources.csproj">
+      <Project>{A4ED530F-D313-433C-9D7F-6459405F2310}</Project>
+      <Name>LocalizedScriptResources</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(_WebPublishTargetsPath)\Web\Microsoft.WebSite.Publishing.targets" />
 </Project>
