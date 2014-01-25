@@ -153,6 +153,9 @@
     </script>
     <h1>Sign up for a Coupons4Giving account today!</h1>
     <p>It’s easy and you can get started with your <strong>fundraising campaign</strong>, <strong>buying coupons</strong> or <strong>set up your merchant/e-tailer</strong> offers right away! As a fundraising group or merchant/e-tailer, you are automatically signed up as a customer so you can also purchase great deals!</p>
+    <asp:Panel ID="ServerErrorDiv" runat="server" CssClass="ServerErrors" ClientIDMode="Static" >
+        <p>Please contact us at <a href="mailto:support@coupons4giving.com">support@coupons4giving.ca</a> and reference the error below. We'll get back to you as soon as possible.</p>
+    </asp:Panel>
     <asp:CreateUserWizard runat="server" ID="RegisterUser" ViewStateMode="Disabled" OnCreatedUser="RegisterUser_CreatedUser">
         <LayoutTemplate>
             <asp:PlaceHolder runat="server" ID="wizardStepPlaceholder" />
@@ -230,7 +233,4 @@
             </asp:CompleteWizardStep>
         </WizardSteps>
     </asp:CreateUserWizard>
-    <asp:Panel ID="ServerErrorDiv" runat="server" CssClass="ServerErrors" ClientIDMode="Static" >
-        <p>Please contact us at <a href="mailto:support@coupons4giving.com">support@coupons4giving.ca</a> and reference the error below. We'll get back to you as soon as possible.</p>
-    </asp:Panel>
 </asp:Content>

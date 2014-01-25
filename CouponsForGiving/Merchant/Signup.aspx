@@ -161,7 +161,7 @@
         function checkCity(write) {
             var city = $("#SelectedCity").html();
             var errors = new Array();
-            console.log(city);
+
             if (IsStringBlank(city))
                 errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullCity").InnerText %>');
 
@@ -407,82 +407,84 @@
             var file = evt.target.files[0];
             var errors = new Array();
 
-            if (!IsImage(file))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/ImageTypeInvalid").InnerText %>');
+            if (file != undefined) {
+                if (!IsImage(file))
+                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/ImageTypeInvalid").InnerText %>');
 
-            if (!IsImageProfileSized(file))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/ImageSizeInvalid").InnerText %>');
+                if (!IsImageProfileSized(file))
+                    errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/ImageSizeInvalid").InnerText %>');
 
-            writeErrors('ImageErrors', errors);
+                writeErrors('ImageErrors', errors);
 
-            if (errors.length == 0)
-                $("#UploadButton").removeAttr('disabled');
-            else
-                $("#UploadButton").attr('disabled', 'disabled');
+                if (errors.length == 0)
+                    $("#UploadButton").removeAttr('disabled');
+                else
+                    $("#UploadButton").attr('disabled', 'disabled');
+            }
         }
 
         function uploadImage() {
             var file = $("#Image")[0].files[0];
 
-            $.ajax({
-                url: '../ImageUploader.ashx',
-                type: 'POST',
-                xhr: function () {
-                    var myxhr = $.ajaxSettings.xhr();
+            if (file != undefined) {
+                $.ajax({
+                    url: '../ImageUploader.ashx',
+                    type: 'POST',
+                    xhr: function () {
+                        var myxhr = $.ajaxSettings.xhr();
 
-                    if (myxhr.upload)
-                        myxhr.upload.addEventListener('progress', 'progressHandler', false);
+                        if (myxhr.upload)
+                            myxhr.upload.addEventListener('progress', 'progressHandler', false);
 
-                    return myxhr;
-                },
-                beforeSend: function () {
-                    $("#Loading").css('display', 'block');
-                },
-                success: function () {
-                    $("#Loading").css('display', 'none');
-                    var folderPath = '../tmp/Images/Signup';
-                    var fileName = '<%: HttpContext.Current.User.Identity.Name + "logo" %>';
-                    var ext = '';
-                    var contentType = file.type;
+                        return myxhr;
+                    },
+                    beforeSend: function () {
+                        $("#Loading").css('display', 'block');
+                    },
+                    success: function () {
+                        $("#Loading").css('display', 'none');
+                        var folderPath = '../tmp/Images/Signup';
+                        var fileName = '<%: HttpContext.Current.User.Identity.Name + "logo" %>';
+                        var ext = '';
+                        var contentType = file.type;
 
-                    switch (contentType)
-                    {
-                        case "image/gif":
-                            ext = ".gif";
-                            break;
-                
-                        case "image/jpeg":
-                            ext = ".jpg";
-                            break;
-                
-                        case "image/png":
-                            ext = ".png";
-                            break;
-                
-                        case "image/pjpeg":
-                            ext = ".jpg";
-                            break;
-                
-                        case "image/svg+xml":
-                            ext = ".svg";
-                            break;
-                
-                        default:
-                            ext = ".jpg";
-                            break;
-                    }
+                        switch (contentType) {
+                            case "image/gif":
+                                ext = ".gif";
+                                break;
 
-                    var filePath = folderPath + "/" + fileName + ext;
-                    $("#UploadedImage").html('<img onclick="removeImage()" alt="Your profile image" src="' + filePath + '" />');
-                    window.imagePath = filePath;
-                },
-                error: uploadError,
-                data: file,
-                cache: false,
-                contentType: false,
-                processData: false
-            });
+                            case "image/jpeg":
+                                ext = ".jpg";
+                                break;
 
+                            case "image/png":
+                                ext = ".png";
+                                break;
+
+                            case "image/pjpeg":
+                                ext = ".jpg";
+                                break;
+
+                            case "image/svg+xml":
+                                ext = ".svg";
+                                break;
+
+                            default:
+                                ext = ".jpg";
+                                break;
+                        }
+
+                        var filePath = folderPath + "/" + fileName + ext;
+                        $("#UploadedImage").html('<img onclick="removeImage()" alt="Your profile image" src="' + filePath + '" />');
+                        window.imagePath = filePath;
+                    },
+                    error: uploadError,
+                    data: file,
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            }
         }
 
         function removeImage() {
@@ -565,7 +567,7 @@
                 <div class="ErrorDiv" id="AddressTextBoxErrors"></div>
             </div>
             <div class="FormRow">
-                <label>City<br /><small>Please select from the dropdown.</small></label>
+                <label>City<br /><small>Please select from the list below.</small></label>
                 <asp:TextBox ID="CityTextBox" runat="server" ClientIDMode="Static" onkeyup="getCities()"></asp:TextBox>
                 <div id="CitiesAutoCompleteBox" class="AutoCompleteBox"></div>
                 <div id="SelectedCity" class="hide"></div>

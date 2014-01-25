@@ -30,19 +30,20 @@ public partial class Merchant_Signup : System.Web.UI.Page
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.Anonymous;
+        strings = new XmlDocument();
 
         try
         {
             CitiesList = Cities.ListAll();
             BusinessNames = Merchants.ListNames();
+            string lang = WebConfigurationManager.AppSettings["Language"];
+            strings.Load(Server.MapPath(String.Format("Text ({0}).xml", lang)));
+            NotificationcUsers.Insert(String.Format("ProfileNotComplete({0})", lang), User.Identity.Name);
         }
         catch (Exception ex)
         {
             newMerchantMessage.Text = ex.ToString();
         }
-
-        strings = new XmlDocument();
-        strings.Load(Server.MapPath(String.Format("Text ({0}).xml", WebConfigurationManager.AppSettings["Language"])));
     }
 
     [WebMethod]
@@ -104,8 +105,9 @@ public partial class Merchant_Signup : System.Web.UI.Page
         string province = location[1].Trim();
         string country = location[2].Trim();
         bool physicalProduct = PhysicalProduct.ToLower() == "true" ? true : false;
+        string lang = WebConfigurationManager.AppSettings["Language"];
 
-        switch (WebConfigurationManager.AppSettings["Language"])
+        switch (lang)
         {
             case "EN-US":
                 validation = new Validation_EN_US();
@@ -254,6 +256,7 @@ public partial class Merchant_Signup : System.Web.UI.Page
                     logoPath = HttpContext.Current.Server.MapPath("..\\Images\\Merchant\\" + BusinessName);
                     logoPath = Utilsmk.GetOrCreateFolder(logoPath) + listFiles[0].Name;
                     listFiles[0].MoveTo(logoPath);
+                    NotificationcUsers.Delete(String.Format("NoProfileImage({0})", WebConfigurationManager.AppSettings["Language"]), username);
                 }
                 else
                 {
@@ -294,7 +297,9 @@ public partial class Merchant_Signup : System.Web.UI.Page
                                 HttpContext.Current.Server.UrlEncode(country), HttpContext.Current.Server.UrlEncode(Currency));
 
                             result = String.Format("https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_2dcruIQ1MEWM9BfJot2jJUPvKqJGofMU&scope=read_write&{0}", vars);
-                            
+
+                            NotificationcUsers.Delete(String.Format("ProfileNotComplete({0})", lang), HttpContext.Current.User.Identity.Name);
+                            NotificationcUsers.Insert(String.Format("StripeNotConnected({0})", lang), HttpContext.Current.User.Identity.Name);
                             ts.Complete();
                         }
                         else

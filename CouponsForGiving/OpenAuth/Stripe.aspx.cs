@@ -79,6 +79,7 @@ public partial class OpenAuth_Stripe : System.Web.UI.Page
                     string Name = User.Identity.Name;
 
                     EmailUtils.SendMerchantSignupEmail(To, Name, merch.Name);
+                    NotificationcUsers.Delete(String.Format("StripeNotConnected({0})", WebConfigurationManager.AppSettings["Language"]), User.Identity.Name);
                     Response.Redirect("../Merchant/Confirmation.aspx", false);
                 }
             }

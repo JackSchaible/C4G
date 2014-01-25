@@ -29,7 +29,8 @@ public partial class Merchant_Home : System.Web.UI.Page
     protected override void OnInit(EventArgs e)
     {
         if (!User.IsInRole("Merchant"))
-            Response.Redirect("Anon.aspx", true);
+            if (!User.IsInRole("IncompleteMerchant"))
+                Response.Redirect("Anon.aspx", true);
 
         base.OnInit(e);
     }
