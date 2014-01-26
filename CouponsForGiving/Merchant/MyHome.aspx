@@ -6,6 +6,10 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Main_Content" Runat="Server">
     <script type="text/javascript">
+        $(document).ready(function () {
+            $("#SaveMode").hide();
+        });
+
         var name = '<%# (merchant == null) ? "0" : merchant.Name %>';
         var description = '<%# (merchant == null) ? "0" : Uri.EscapeDataString(merchant.cUser.MerchantInfoes.FirstOrDefault<CouponsForGiving.Data.MerchantInfo>().MerchantDescription)%>';
         var address = '<%# (merchant == null) ? "0" : merchant.cAddress%>';
@@ -60,9 +64,7 @@
 
         //Switches the form to edit mode
         function edit() {
-            $("#Mode").html('<a id="modeButton" href="javascript:save()" class="btn-profile"><i class="fa fa-pencil-square-o"></i> Save</a><a id="A2" href="javascript:cancel()" class="btn-profile"><i class="fa fa-pencil-square-o"></i> Cancel</a>');
-
-            $("#profile-edit-name").html("<input type=\"text\" id=\"NameTextBox\" value=\"" + decodeURIComponent(name) + "\"/>");
+            $("#profile-edit-name").html("<input type=\"text\" id=\"NameTextBox\" value=\"" + decodeURIComponent(name) + "\"/><a href=\"javascript:save()\" class=\"btn-profile\"><i class=\"fa fa-pencil-square-o\"></i> Save</a><a href=\"javascript:cancel()\" class=\"btn-profile\"><i class=\"fa fa-pencil-square-o\"></i> Cancel</a>");
             $("#profile-edit-description").html('<div id="profile-edit-image" class="right"><!-- Added a Right Image class--><img src="../<%# merchant.LargeLogo %>" /><div id="LoadImg"></div><div class="ClearFix"></div></div><textarea id="DescriptionTextBox">' + decodeURIComponent(description) + '</textarea>');
             $("#profile-edit-address").html('<label>Address</label><input type="text" id="AddressTextBox" value="' + address + '" />');
             $("#profile-edit-postal-code").html('<label>Postal Code</label><input type="text" id="PostalCodeTextBox" value="' + postalcode + '" />');
@@ -71,14 +73,11 @@
             $("#profile-edit-city").html('<label>City</label><input type="text" id="CityTextBox" value="' + city + '" />');
             $("#profile-edit-province").html('<label>Province</label><input type="text" id="ProvinceTextBox" value="' + province + '" />');
             $("#profile-edit-country").html('<label>Country</label><input type="text" id="CountryTextBox" value="' + country + '" />');
-
         }
 
         //Switched the form to view mode without saving
         function cancel() {
-            $("#Mode").html('<a id="modeButton" href="javascript:edit()" class="btn-profile"><i class="fa fa-pencil-square-o"></i> Edit</a>');
-
-            $("#profile-edit-name").html("<h1>" + decodeURIComponent(name) + "</h1>");
+            $("#profile-edit-name").html("<h1>" + decodeURIComponent(name) + "</h1><a id=\"modeButton\" href=\"javascript:edit()\" class=\"btn-profile\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a>");
             $("#profile-edit-description").html('<div id="profile-edit-image" class="right"><!-- Added a Right Image class--><img src="../<%# merchant.LargeLogo %>" /><div id="LoadImg"></div><div class="ClearFix"></div></div><p id="DescriptionText">' + decodeURIComponent(description) + '</p>');
                 $("#profile-edit-address").html('<label>Address</label><p>' + address + '</p>');
                 $("#profile-edit-postal-code").html('<label>Postal Code</label><p>' + postalcode + '</p>');
@@ -105,7 +104,7 @@
     <div class="">
 	    <div class="profile-edit">
             <div id="profile-edit-name">
-                <div id="Mode">
+                <div id="EditMode">
                     <a id="modeButton" href="javascript:edit()" class="btn-profile"><i class="fa fa-pencil-square-o"></i> Edit</a>
                 </div>
                 <h1>My Profile</h1>

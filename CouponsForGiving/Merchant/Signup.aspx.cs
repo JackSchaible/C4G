@@ -38,7 +38,20 @@ public partial class Merchant_Signup : System.Web.UI.Page
             BusinessNames = Merchants.ListNames();
             string lang = WebConfigurationManager.AppSettings["Language"];
             strings.Load(Server.MapPath(String.Format("Text ({0}).xml", lang)));
-            NotificationcUsers.Insert(String.Format("ProfileNotComplete({0})", lang), User.Identity.Name);
+
+            try
+            {
+                NotificationcUsers.Insert(String.Format("ProfileNotComplete({0})", lang), User.Identity.Name);
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException == null)
+                    throw ex;
+                else
+                    if (ex.InnerException.Message != "Violation of PRIMARY KEY constraint 'PK_NotificationcUser'. Cannot insert duplicate key in object 'Database_User.NotificationcUser'. The duplicate key value is (ProfileNotComplete(EN-US), 4174).\r\nThe statement has been terminated.")
+                        throw ex;
+                        
+            }
         }
         catch (Exception ex)
         {
