@@ -270,10 +270,11 @@ public partial class Merchant_Signup : System.Web.UI.Page
                     logoPath = Utilsmk.GetOrCreateFolder(logoPath) + listFiles[0].Name;
                     listFiles[0].MoveTo(logoPath);
                     NotificationcUsers.Delete(String.Format("NoProfileImage({0})", WebConfigurationManager.AppSettings["Language"]), username);
+                    logoPath = logoPath.Replace(HttpContext.Current.Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
                 }
                 else
                 {
-                    logoPath = HttpContext.Current.Server.MapPath("~/Images/c4g_home_npos_step4.png");
+                    logoPath = "Images/c4g_home_npos_step4.png";
 
                     try
                     {

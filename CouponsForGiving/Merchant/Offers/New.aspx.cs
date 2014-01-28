@@ -230,9 +230,10 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
                 logoPath = HttpContext.Current.Server.MapPath("..\\Images\\Merchant\\" + merchant.Name + "\\Offers");
                 logoPath = Utilsmk.GetOrCreateFolder(logoPath) + listFiles[0].Name;
                 listFiles[0].MoveTo(logoPath);
+                logoPath = logoPath.Replace(HttpContext.Current.Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
             }
             else
-                logoPath = HttpContext.Current.Server.MapPath("~/Images/c4g_home_npos_step4.png").Replace(HttpContext.Current.Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
+                logoPath = "Images/c4g_home_npos_step4.png";
 
             using (TransactionScope ts = new TransactionScope())
             {

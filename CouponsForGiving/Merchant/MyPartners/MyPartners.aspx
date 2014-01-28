@@ -45,27 +45,27 @@
     </asp:GridView>
     <asp:Label ID="ErrorLabel" runat="server"></asp:Label>
     
-    <h1>Search for a Not-For-Profit</h1>
-    <div class="FormRow">
+    <%--<h1>Search for a Not-For-Profit</h1>--%>
+    <%--<div class="FormRow">
         <label>Search by City</label>
         <asp:TextBox ID="CityTextBox" runat="server"></asp:TextBox>
         <ajaxToolkit:AutoCompleteExtender ID="CityACE" runat="server" 
             UseContextKey="True" ServiceMethod="GetCompletionList" 
             TargetControlID="CityTextBox">
         </ajaxToolkit:AutoCompleteExtender>
-    </div>
-    <div class="FormRow">
+    </div>--%>
+    <%--<div class="FormRow">
         <label>Search by Name</label>
         <asp:TextBox ID="NameTextBox" runat="server"></asp:TextBox>
         <ajaxToolkit:AutoCompleteExtender ID="NameACE" runat="server" 
             UseContextKey="True" ServiceMethod="GetCompletionList2"
             TargetControlID="NameTextBox">
         </ajaxToolkit:AutoCompleteExtender>
-    </div>
-    <div class="FormRow">
+    </div>--%>
+    <%--<div class="FormRow">
         <asp:Label ID="Label2" runat="server"></asp:Label>
         <asp:Button ID="SearchButton" runat="server" Text="Search" OnClick="SearchButton_Click" />
-    </div>
+    </div>--%>
     <asp:GridView ID="GridView1" runat="server" OnSelectedIndexChanging="NPOGV_SelectedIndexChanging">
         <Columns>
             <asp:ImageField DataImageUrlField="SmallLogo" DataImageUrlFormatString="../../{0}">

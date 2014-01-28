@@ -57,42 +57,49 @@ public partial class Merchant_Offers_Edit : System.Web.UI.Page
             else
                 locked = false;
 
+            //DirectoryInfo root = new DirectoryInfo(HttpContext.Current.Server.MapPath("~/tmp/Images/Offers"));
+            //FileInfo[] listFiles = root.GetFiles(HttpContext.Current.User.Identity.Name + "logo.*");
+
+            //if (di.Deal.ImageURL != "Images\c4g_home_npos_step4.png")
+            //    if (File.Exists(Server.MapPath("../../" + di.Deal.ImageURL)))
+            //        File.Move(Server.MapPath("../../" + di.Deal.ImageURL), Server.MapPath("../../tmp/Images/Offers/" + merch.Name + "/Offers/" + di.Deal.ImageURL);
+
             if (locked)
             {
-                StartDateRow.Enabled = false;
-                StartDateRow.Visible = false;
-                EndDateRow.Enabled = false;
-                EndDateRow.Visible = false;
-                RedeemDetailsRow.Enabled = false;
-                RedeemDetailsRow.Visible = false;
+                //StartDateRow.Enabled = false;
+                //StartDateRow.Visible = false;
+                //EndDateRow.Enabled = false;
+                //EndDateRow.Visible = false;
+                //RedeemDetailsRow.Enabled = false;
+                //RedeemDetailsRow.Visible = false;
 
             }
             else
             {
-                StartDateRow.Enabled = true;
-                StartDateRow.Visible = true;
-                //Set start date
-                EndDateRow.Enabled = true;
-                EndDateRow.Visible = true;
+                //StartDateRow.Enabled = true;
+                //StartDateRow.Visible = true;
+                ////Set start date
+                //EndDateRow.Enabled = true;
+                //EndDateRow.Visible = true;
                 //Set end date
-                RedeemDetailsRow.Enabled = true;
-                RedeemDetailsRow.Visible = true;
+                //RedeemDetailsRow.Enabled = true;
+                //RedeemDetailsRow.Visible = true;
                 //Check the applicable redeem details
 
-                List<FinePrint> finePrints = FinePrints.List();
-                List<int> finePrintIDs = (from f in finePrints select f.FinePrintID).ToList<int>();
-                List<int> dealPrints = (from f in di.Deal.FinePrints select f.FinePrintID).ToList<int>();
+                //List<FinePrint> finePrints = FinePrints.List();
+                //List<int> finePrintIDs = (from f in finePrints select f.FinePrintID).ToList<int>();
+                //List<int> dealPrints = (from f in di.Deal.FinePrints select f.FinePrintID).ToList<int>();
 
-                checkBoxes = new List<string>();
+                //checkBoxes = new List<string>();
 
-                for (int i = 0; i < finePrintIDs.Count; i++)
-                {
-                    //If, add a checked box, else don't
-                    if (dealPrints.Contains(finePrintIDs[i]))
-                        checkBoxes.Add("<tr><td><input checked=\"checked\" id=\"FinePrintList_" + i + "\" type=\"checkbox\" name=\"ct100$Main_Content$FinePrintList$FinePrintList_" + i + "\" value=\"" + finePrints[i].FinePrintID + "\"><label for=\"FinePrintList_" + i + "\">" + finePrints[i].Content + "</label></td></tr>");
-                    else
-                        checkBoxes.Add("<tr><td><input id=\"FinePrintList_" + i + "\" type=\"checkbox\" name=\"ct100$Main_Content$FinePrintList$FinePrintList_" + i + "\" value=\"" + finePrints[i].FinePrintID + "\"><label for=\"FinePrintList_" + i + "\">" + finePrints[i].Content + "</label></td></tr>");
-                }
+                //for (int i = 0; i < finePrintIDs.Count; i++)
+                //{
+                //    //If, add a checked box, else don't
+                //    if (dealPrints.Contains(finePrintIDs[i]))
+                //        checkBoxes.Add("<tr><td><input checked=\"checked\" id=\"FinePrintList_" + i + "\" type=\"checkbox\" name=\"ct100$Main_Content$FinePrintList$FinePrintList_" + i + "\" value=\"" + finePrints[i].FinePrintID + "\"><label for=\"FinePrintList_" + i + "\">" + finePrints[i].Content + "</label></td></tr>");
+                //    else
+                //        checkBoxes.Add("<tr><td><input id=\"FinePrintList_" + i + "\" type=\"checkbox\" name=\"ct100$Main_Content$FinePrintList$FinePrintList_" + i + "\" value=\"" + finePrints[i].FinePrintID + "\"><label for=\"FinePrintList_" + i + "\">" + finePrints[i].Content + "</label></td></tr>");
+                //}
             }
         }
         catch (Exception ex)
@@ -112,11 +119,15 @@ public partial class Merchant_Offers_Edit : System.Web.UI.Page
         return deals.Contains(name).ToString();
     }
 
+    //[WebMethod]
+    //[ScriptMethod]
+    //public static string SaveOffer(int diID, string Name, string Description, string sDate, string eDate, string AbsCouponLimit, string PCLimit,
+    //    string rValue, string gValue, string[] rDetails, string AdditionalRedeemDetails)
     [WebMethod]
     [ScriptMethod]
-    public static string SaveOffer(int diID, string Name, string Description, string sDate, string eDate, string AbsCouponLimit, string PCLimit,
-        string rValue, string gValue, string[] rDetails, string AdditionalRedeemDetails)
+    public static string SaveOffer(int diID, string Name, string Description, string AbsCouponLimit, string PCLimit, string rValue, string gValue)
     {
+        DealInstance dealInstance = SysData.DealInstance_GetByID(diID);
         string result = "";
         List<string> errors = new List<string>();
         XmlDocument strings = new XmlDocument();
@@ -128,17 +139,20 @@ public partial class Merchant_Offers_Edit : System.Web.UI.Page
                 validation = new Validation_EN_US();
                 break;
         }
-        DateTime StartDate = DateTime.Parse(sDate);
-        DateTime EndDate = DateTime.Parse(eDate);
+
+        //DateTime StartDate = DateTime.Parse(sDate);
+        DateTime StartDate = dealInstance.StartDate;
+        //DateTime EndDate = DateTime.Parse(eDate);
+        DateTime EndDate = dealInstance.EndDate;
         int AbsoluteCouponLimit = -1;
         int LimitPerCustomer = -1;
         decimal RetailValue = -1M;
         decimal GiftValue = -1M;
         string logoPath = "";
-        List<string> RedeemDetails = rDetails.ToList<string>();
-
-        for (int i = 0; i < RedeemDetails.Count; i++)
-            RedeemDetails[i] = RedeemDetails[i].Trim();
+        //List<string> RedeemDetails = rDetails.ToList<string>();
+        
+        //for (int i = 0; i < RedeemDetails.Count; i++)
+        //    RedeemDetails[i] = RedeemDetails[i].Trim();
 
         try
         {
@@ -267,25 +281,24 @@ public partial class Merchant_Offers_Edit : System.Web.UI.Page
             if (validation.IsNumberLargerOrEqual(GiftValue, RetailValue))
                 errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueGreaterThanRetailValue").InnerText);
 
-        if (validation.IsStringTooLong(AdditionalRedeemDetails, 500))
-            errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueGreaterThanRetailValue").InnerText);
+        //if (validation.IsStringTooLong(AdditionalRedeemDetails, 500))
+        //    errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueGreaterThanRetailValue").InnerText);
 
-        if (validation.ContainsCode(AdditionalRedeemDetails))
-            errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueGreaterThanRetailValue").InnerText);
+        //if (validation.ContainsCode(AdditionalRedeemDetails))
+        //    errors.Add(strings.SelectSingleNode("/SiteText/Pages/New/ErrorMessages/GiftValueGreaterThanRetailValue").InnerText);
 
         Merchant merchant = Merchants.GetByUsername(HttpContext.Current.User.Identity.Name);
         string username = HttpContext.Current.User.Identity.Name;
-        DealInstance di = SysData.DealInstance_GetByID(diID);
 
-        if (di.PurchaseOrders.Count > 0 || di.Campaigns.Count > 0)
+        if (dealInstance.PurchaseOrders.Count > 0 || dealInstance.Campaigns.Count > 0)
             locked = true;
 
         if (locked)
         {
-            if (AbsoluteCouponLimit < di.Deal.AbsoluteCouponLimit)
+            if (AbsoluteCouponLimit < dealInstance.Deal.AbsoluteCouponLimit)
                 errors.Add(strings.SelectSingleNode("/SiteText/Pages/Edit/ErrorMessages/NewAbsLimitLowerThanOld").InnerText);
 
-            if (LimitPerCustomer < di.Deal.LimitPerCustomer)
+            if (LimitPerCustomer < dealInstance.Deal.LimitPerCustomer)
                 errors.Add(strings.SelectSingleNode("/SiteText/Pages/Edit/ErrorMessages/NewPCCouponLimitLowerThanOld").InnerText);
         }
 
@@ -294,17 +307,18 @@ public partial class Merchant_Offers_Edit : System.Web.UI.Page
         {
             //Save image
             //Check to see if there's a temp image, assign default if not
-            DirectoryInfo root = new DirectoryInfo(HttpContext.Current.Server.MapPath("~/tmp/Images/Offers"));
-            FileInfo[] listFiles = root.GetFiles(HttpContext.Current.User.Identity.Name + "logo.*");
+            //DirectoryInfo root = new DirectoryInfo(HttpContext.Current.Server.MapPath("~/tmp/Images/Offers"));
+            //FileInfo[] listFiles = root.GetFiles(HttpContext.Current.User.Identity.Name + "DealImage.*");
 
-            if (listFiles.Length > 0)
-            {
-                logoPath = HttpContext.Current.Server.MapPath("..\\Images\\Merchant\\" + merchant.Name + "\\Offers");
-                logoPath = Utilsmk.GetOrCreateFolder(logoPath) + listFiles[0].Name;
-                listFiles[0].MoveTo(logoPath);
-            }
-            else
-                logoPath = HttpContext.Current.Server.MapPath("~/Images/c4g_home_npos_step4.png");
+            //if (listFiles.Length > 0)
+            //{
+            //    logoPath = HttpContext.Current.Server.MapPath("..\\Images\\Merchant\\" + merchant.Name + "\\Offers");
+            //    logoPath = Utilsmk.GetOrCreateFolder(logoPath) + listFiles[0].Name;
+            //    listFiles[0].MoveTo(logoPath);
+            //    logoPath = logoPath.Replace(HttpContext.Current.Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
+            //}
+            //else
+            //    logoPath = "Images/c4g_home_npos_step4.png";
 
             using (TransactionScope ts = new TransactionScope())
             {
@@ -312,9 +326,9 @@ public partial class Merchant_Offers_Edit : System.Web.UI.Page
                 {
                     //If deal is locked, then only update the coupon limit, and only if those are increases
                     if (!locked)
-                        Deals.Update(di.DealID, merchant.MerchantID, Name, Description, AbsoluteCouponLimit, LimitPerCustomer, logoPath);
+                        Deals.Update(dealInstance.DealID, merchant.MerchantID, Name, Description, AbsoluteCouponLimit, LimitPerCustomer, dealInstance.Deal.ImageURL);
                     else
-                        Deals.Update(di.DealID, merchant.MerchantID, di.Deal.Name, di.Deal.DealDescription, AbsoluteCouponLimit, LimitPerCustomer, logoPath);
+                        Deals.Update(dealInstance.DealID, merchant.MerchantID, di.Deal.Name, di.Deal.DealDescription, AbsoluteCouponLimit, LimitPerCustomer, dealInstance.Deal.ImageURL);
 
                     //Add extra deal stuff
                     
@@ -328,14 +342,14 @@ public partial class Merchant_Offers_Edit : System.Web.UI.Page
 
                     if (!locked)
                     {
-                        foreach (FinePrint fp in di.Deal.FinePrints)
-                            FinePrints.Remove(di.Deal.DealID, fp.FinePrintID);
+                        //foreach (FinePrint fp in di.Deal.FinePrints)
+                        //    FinePrints.Remove(di.Deal.DealID, fp.FinePrintID);
 
-                        //Add redeem details
-                        foreach (string item in RedeemDetails)
-                            FinePrints.Add(di.Deal.DealID, int.Parse(item));
+                        ////Add redeem details
+                        //foreach (string item in RedeemDetails)
+                        //    FinePrints.Add(di.Deal.DealID, int.Parse(item));
 
-                        SysDatamk.UpdateRedeemDetails(di.Deal.RedeemDetails.FirstOrDefault<RedeemDetail>().RedeemDetailsID, di.DealID, AdditionalRedeemDetails, "", "", "");
+                        //SysDatamk.UpdateRedeemDetails(di.Deal.RedeemDetails.FirstOrDefault<RedeemDetail>().RedeemDetailsID, di.DealID, AdditionalRedeemDetails, "", "", "");
                     }
 
                     ts.Complete();

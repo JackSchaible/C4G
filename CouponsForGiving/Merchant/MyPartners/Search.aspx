@@ -4,14 +4,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
-    <div class="FormRow">
+    <%--<div class="FormRow">
         <label>Search by City</label>
         <asp:TextBox ID="CityTextBox" runat="server"></asp:TextBox>
         <ajaxToolkit:AutoCompleteExtender ID="CityACE" runat="server" 
             UseContextKey="True" ServiceMethod="GetCompletionList" 
             TargetControlID="CityTextBox">
         </ajaxToolkit:AutoCompleteExtender>
-    </div>
+    </div>--%>
     <div class="FormRow">
         <label>Search by Name</label>
         <asp:TextBox ID="NameTextBox" runat="server"></asp:TextBox>
@@ -24,7 +24,7 @@
         <asp:Label ID="ErrorLabel" runat="server"></asp:Label>
         <asp:Button ID="SearchButton" runat="server" Text="Search" OnClick="SearchButton_Click" />
     </div>
-    <asp:GridView ID="NPOGV" runat="server" OnSelectedIndexChanging="NPOGV_SelectedIndexChanging" AutoGenerateColumns="false">
+    <asp:GridView ID="NPOGV" DataKeyNames="NPOID" runat="server" OnSelectedIndexChanging="NPOGV_SelectedIndexChanging" AutoGenerateColumns="false">
         <Columns>
             <asp:ImageField DataImageUrlField="Logo" DataImageUrlFormatString="../../{0}">
             </asp:ImageField>
@@ -35,7 +35,7 @@
                 DataNavigateUrlFormatString="../../Default/NPOPage.aspx?name={0}" 
                 Text="Click to View Profile" />
             <asp:BoundField DataField="Offers" DataFormatString="{0} Campaigns" />
-            <asp:CommandField SelectText="Remove" ShowSelectButton="True" />
+            <asp:CommandField SelectText="Add" ShowSelectButton="True" />
         </Columns>
         <EmptyDataTemplate>
             <p>There are no Not-For-Profits to display. Try broadening your search criteria!</p>

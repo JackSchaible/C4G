@@ -72,26 +72,26 @@ public partial class Merchant_MyPartners_MyPartners : System.Web.UI.Page
         ErrorLabel.Text = "";
     }
 
-    private void BindData(string city, string province)
-    {
-        List<NPO> npos = NPOMerchants.ListEligiblePartnersByMerchant(User.Identity.Name);
+    //private void BindData(string city, string province)
+    //{
+    //    List<NPO> npos = NPOMerchants.ListEligiblePartnersByMerchant(User.Identity.Name);
 
-        NPOGV.DataSource =
-            (
-                from n
-                in npos
-                where n.City.Name == city
-                && n.City.PoliticalDivision.Name == province
-                select new
-                {
-                    Name = n.Name,
-                    City = n.City.Name,
-                    Province = n.City.PoliticalDivision.Name,
-                    NoOfCampaigns = (from c in n.Campaigns where c.CampaignStatusID == 2 select c).Count()
-                }
-            );
-        NPOGV.DataBind();
-    }
+    //    NPOGV.DataSource =
+    //        (
+    //            from n
+    //            in npos
+    //            where n.City.Name == city
+    //            && n.City.PoliticalDivision.Name == province
+    //            select new
+    //            {
+    //                Name = n.Name,
+    //                City = n.City.Name,
+    //                Province = n.City.PoliticalDivision.Name,
+    //                NoOfCampaigns = (from c in n.Campaigns where c.CampaignStatusID == 2 select c).Count()
+    //            }
+    //        );
+    //    NPOGV.DataBind();
+    //}
 
     private void BindData(string Name)
     {
@@ -104,6 +104,7 @@ public partial class Merchant_MyPartners_MyPartners : System.Web.UI.Page
                 where n.Name.Contains(Name)
                 select new
                 {
+                    NPOID = n.NPOID,
                     Name = n.Name,
                     City = n.City.Name,
                     Province = n.City.PoliticalDivision.Name,
@@ -113,27 +114,27 @@ public partial class Merchant_MyPartners_MyPartners : System.Web.UI.Page
         NPOGV.DataBind();
     }
 
-    private void BindData(string city, string province, string Name)
-    {
-        List<NPO> npos = NPOMerchants.ListEligiblePartnersByMerchant(User.Identity.Name);
+    //private void BindData(string city, string province, string Name)
+    //{
+    //    List<NPO> npos = NPOMerchants.ListEligiblePartnersByMerchant(User.Identity.Name);
 
-        NPOGV.DataSource =
-            (
-                from n
-                in npos
-                where n.City.Name == city
-                && n.City.PoliticalDivision.Name == province
-                && n.Name.Contains(Name)
-                select new
-                {
-                    Name = n.Name,
-                    City = n.City.Name,
-                    Province = n.City.PoliticalDivision.Name,
-                    NoOfCampaigns = (from c in n.Campaigns where c.CampaignStatusID == 2 select c).Count()
-                }
-            );
-        NPOGV.DataBind();
-    }
+    //    NPOGV.DataSource =
+    //        (
+    //            from n
+    //            in npos
+    //            where n.City.Name == city
+    //            && n.City.PoliticalDivision.Name == province
+    //            && n.Name.Contains(Name)
+    //            select new
+    //            {
+    //                Name = n.Name,
+    //                City = n.City.Name,
+    //                Province = n.City.PoliticalDivision.Name,
+    //                NoOfCampaigns = (from c in n.Campaigns where c.CampaignStatusID == 2 select c).Count()
+    //            }
+    //        );
+    //    NPOGV.DataBind();
+    //}
 
 
     protected void NPOGV_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -195,32 +196,32 @@ public partial class Merchant_MyPartners_MyPartners : System.Web.UI.Page
 
     protected void SearchButton_Click(object sender, EventArgs e)
     {
-        string city = "", province = "", name = "";
-        name = NameTextBox.Text.Trim();
+        //string city = "", province = "", name = "";
+        //name = NameTextBox.Text.Trim();
 
-        string cityValue = CityTextBox.Text.Trim();
+        //string cityValue = CityTextBox.Text.Trim();
 
-        try
-        {
-            city = cityValue.Split(new char[] { ',' })[0].Trim();
-            province = cityValue.Split(new char[] { ',' })[1].Trim();
-        }
-        catch (Exception ex)
-        {
-            ErrorLabel.Text = "There was a problem retrieving your selected city. Please choose one from the autocomplete list.";
-            ex.ToString();
-        }
+        //try
+        //{
+        //    city = cityValue.Split(new char[] { ',' })[0].Trim();
+        //    province = cityValue.Split(new char[] { ',' })[1].Trim();
+        //}
+        //catch (Exception ex)
+        //{
+        //    ErrorLabel.Text = "There was a problem retrieving your selected city. Please choose one from the autocomplete list.";
+        //    ex.ToString();
+        //}
 
-        if (city == "")
-            if (name == "")
-                BindData();
-            else
-                BindData(name);
-        else
-            if (name == "")
-                BindData(city, province);
-            else
-                BindData(city, province, name);
+        //if (city == "")
+        //    if (name == "")
+        //        BindData();
+        //    else
+        //        BindData(name);
+        //else
+        //    if (name == "")
+        //        BindData(city, province);
+        //    else
+        //        BindData(city, province, name);
     }
 
     protected void NPOGV_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)

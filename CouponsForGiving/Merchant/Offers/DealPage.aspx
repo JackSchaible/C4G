@@ -7,6 +7,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BannerContent" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Main_Content" Runat="Server">  
+    <h1>Coupon Preview</h1>
+    <p>This is an example of how your coupon will look to users on our site.</p>
         <article class="c4g-coupon">
             <img src="../../Images/c4g_coupon_logo.png" class="coupon_c4g_logo" /> 
             <div class="coupon-title">

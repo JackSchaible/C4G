@@ -14,7 +14,7 @@ public partial class Merchant_MyPartners_Search : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
-        control.MenuBar = MenuBarType.NPO;
+        control.MenuBar = MenuBarType.Merchant;
 
         if (!IsPostBack)
             BindData();
@@ -30,6 +30,7 @@ public partial class Merchant_MyPartners_Search : System.Web.UI.Page
                 in npos
                 select new
                 {
+                    NPOID = n.NPOID,
                     Name = n.Name,
                     City = n.City.Name,
                     Province = n.City.PoliticalDivision.Name,
@@ -52,6 +53,7 @@ public partial class Merchant_MyPartners_Search : System.Web.UI.Page
                 && n.City.PoliticalDivision.Name == province
                 select new
                 {
+                    NPOID = n.NPOID,
                     Name = n.Name,
                     City = n.City.Name,
                     Province = n.City.PoliticalDivision.Name,
@@ -73,6 +75,7 @@ public partial class Merchant_MyPartners_Search : System.Web.UI.Page
                 where n.Name.ToLower().Contains(Name.ToLower())
                 select new
                 {
+                    NPOID = n.NPOID,
                     Name = n.Name,
                     City = n.City.Name,
                     Province = n.City.PoliticalDivision.Name,
@@ -108,32 +111,34 @@ public partial class Merchant_MyPartners_Search : System.Web.UI.Page
 
     protected void SearchButton_Click(object sender, EventArgs e)
     {
-        string city = "", province = "", name = "";
+        //string city = "", province = "", 
+        string name = "";
         name = NameTextBox.Text.Trim();
 
-        string cityValue = CityTextBox.Text.Trim();
+        //string cityValue = CityTextBox.Text.Trim();
 
-        try
-        {
-            city = cityValue.Split(new char[] { ',' })[0].Trim();
-            province = cityValue.Split(new char[] { ',' })[1].Trim();
-        }
-        catch (Exception ex)
-        {
-            ErrorLabel.Text = "There was a problem retrieving your selected city. Please choose one from the autocomplete list.";
-            ex.ToString();
-        }
+        //try
+        //{
+        //    city = cityValue.Split(new char[] { ',' })[0].Trim();
+        //    province = cityValue.Split(new char[] { ',' })[1].Trim();
+        //}
+        //catch (Exception ex)
+        //{
+        //    ErrorLabel.Text = "There was a problem retrieving your selected city. Please choose one from the autocomplete list.";
+        //    ex.ToString();
+        //}
 
-        if (city == "")
-            if (name == "")
-                BindData();
-            else
-                BindData(name);
-        else
-            if (name == "")
-                BindData(city, province);
-            else
-                BindData(city, province, name);
+        //if (city == "")
+        //    if (name == "")
+        //        BindData();
+        //    else
+        //        BindData(name);
+        //else
+        //    if (name == "")
+        //        BindData(city, province);
+        //    else
+        //        BindData(city, province, name);
+        BindData(name);
     }
 
     protected void NPOGV_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)

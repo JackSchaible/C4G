@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Edit.aspx.cs" Inherits="Merchant_Offers_Edit" %>
+﻿<%@ Page Title="Edit Offer" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Edit.aspx.cs" Inherits="Merchant_Offers_Edit" %>
 <%@ Reference Control="~/Controls/MenuBar.ascx" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
@@ -377,8 +377,8 @@
                     <%= locked ? "var redeemDetails = new Array();" : "var redeemDetails = new Array(); $(\"#FinePrintList input:checked\").each(function () { redeemDetails.push(this.value); });" %>
                     <%= locked ? "var additionalRedeemDetails = '';" : "var additionalRedeemDetails = $(\"#AdditionalRedemptionDetailsTextBox\").val();" %>
 
-                    PageMethods.SaveOffer( '<%: di.DealInstanceID %>', name, description, startDate, endDate,
-                        limit, limitPerCustomer, retailValue, giftValue, redeemDetails, additionalRedeemDetails,
+                    PageMethods.SaveOffer( '<%: di.DealInstanceID %>', name, description,
+                        limit, limitPerCustomer, retailValue, giftValue,
                         function (message) {
                             window.location.replace(message);
                         },
@@ -392,7 +392,8 @@
             function checkForm(disableButton) {
                 var errors = new Array();
 
-                <%: locked ? "" : "errors.push.apply(errors, checkName(false)); errors.push.apply(errors, checkDescription(false)); errors.push.apply(errors, checkStartDate(false)); errors.push.apply(errors, checkEndDate(false));" %>
+                <%--: locked ? "" : "errors.push.apply(errors, checkName(false)); errors.push.apply(errors, checkDescription(false)); errors.push.apply(errors, checkStartDate(false)); errors.push.apply(errors, checkEndDate(false));" --%>
+                <%: locked ? "" : "errors.push.apply(errors, checkName(false)); errors.push.apply(errors, checkDescription(false));" %>
 
                 errors.push.apply(errors, checkAbsCouponLimit(false));
                 errors.push.apply(errors, checkPCCouponLimit(false));
@@ -544,15 +545,15 @@
         <%--Output the description textbox if not locked--%>
         <%= locked ? "" : "<div class=\"FormRow TextAreaRow\"><label>Description</label><textarea ID=\"DescriptionTextBox\" maxlength=\"200\" placeholder=\"Offer Description\" onkeyup=\"checkDescription()\" onblur=\"checkDescription()\" oninput=\"checkDescription()\">" + di.Deal.DealDescription + "</textarea><div id=\"DescriptionTextBoxErrors\" class=\"ErrorDiv\"></div></div>" %>
         
-        <div class="FormRow">
+        <%--<div class="FormRow">
             <label>Offer Image<br /><small>This will be the image associated with your deal. It should represent the product or service.</small></label>
             <input id="Image" name="files[]" type="file" />
             <input id="UploadButton" type="button" onclick="uploadImage()" value="Upload" disabled="disabled" />
             <div id="ImageErrors" class="ErrorDiv"></div>
             <div id="Loading" class="hide"><img src="../../Images/loading.gif" alt="Loading"/><p>Loading...</p></div>
             <div id="UploadedImage"><img onclick="removeImage()" alt="Your profile image" src="../../<%: di.Deal.ImageURL %>" /></div>
-        </div>
-        <asp:Panel CssClass="FormRow" ID="StartDateRow" runat="server" ClientIDMode="Static">
+        </div>--%>
+        <%--<asp:Panel CssClass="FormRow" ID="StartDateRow" runat="server" ClientIDMode="Static">
             <label>Start Date</label>
             <div id="StartDateDiv">
                 <UC:DateControl ID="StartDate" runat="server" AcceptPastDates="false" />
@@ -565,7 +566,7 @@
                 <UC:DateControl ID="EndDate" runat="server" AcceptPastDates="false" />
             </div>
             <div id="EndDateErrors" class="ErrorDiv"></div>
-        </asp:Panel>
+        </asp:Panel>--%>
         <div class="FormRow">
             <label>Total Coupon Limit</label>
             <input type="text" ID="AbsoluteCouponLimitTextBox" maxlength="4" placeholder="25" onkeyup="checkAbsCouponLimit()"
@@ -586,7 +587,7 @@
         <%= locked ? "" : "<div class=\"FormRow\"><label>Gift Value<br /><small>The Sale Price</small></label> $<input type=\"text\" ID=\"GiftValueTextBox\" maxlength=\"10\" onkeyup=\"checkGiftValue()\" onblur=\"checkGiftValue()\" oninput=\"checkGiftValue()\" placeholder=\"10.00\" value=\"" + Math.Round(di.Deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().GiftValue, 2) + "\" /><div id=\"GiftValueTextBoxErrors\" class=\"ErrorDiv\"></div></div><div id=\"SplitOutput\" class=\"FormRow\"><br /><p>Processing Fee (2.9% + $0.30) = <strong id=\"VAT\">$0.00</strong></p><br /><p>5% Tax on Coupons4Giving Fee = <strong id=\"Tax\">$0.00</strong></p><br /><p>Your Split on Each Purchase = <strong id=\"SplitTotal\">$0.00</strong></p></div>" %>
         
         <%--Output the redeem details checkbox list if not locked--%>
-        <asp:Panel CssClass="FormRow" ID="OldRedeemDetailsRow" runat="server">
+        <%--<asp:Panel CssClass="FormRow" ID="OldRedeemDetailsRow" runat="server">
 
         </asp:Panel>
         <asp:Panel CssClass="FormRow" ID="RedeemDetailsRow" runat="server">
@@ -604,9 +605,9 @@
                     %>
                 </tbody>
             </table>
-        </asp:Panel>
+        </asp:Panel>--%>
         <%--Output the additional redeem details textbox if not locked--%>
-        <%= locked ? "" : "<div class=\"FormRow TextAreaRow\"><label>Additional Redemption Details</label><textarea id=\"AdditionalRedemptionDetailsTextBox\" maxlength=\"500\" onkeyup=\"checkRedemptionDetails()\" onblur=\"checkRedemptionDetails()\" oninput=\"checkRedemptionDetails()\">" + di.Deal.RedeemDetails.FirstOrDefault<CouponsForGiving.Data.RedeemDetail>().AdditionalDetails + "</textarea><div id=\"AdditionalRedemptionDetailsTextBoxErrors\" class=\"ErrorDiv\"></div></div>" %>
+        <%--<%= locked ? "" : "<div class=\"FormRow TextAreaRow\"><label>Additional Redemption Details</label><textarea id=\"AdditionalRedemptionDetailsTextBox\" maxlength=\"500\" onkeyup=\"checkRedemptionDetails()\" onblur=\"checkRedemptionDetails()\" oninput=\"checkRedemptionDetails()\">" + di.Deal.RedeemDetails.FirstOrDefault<CouponsForGiving.Data.RedeemDetail>().AdditionalDetails + "</textarea><div id=\"AdditionalRedemptionDetailsTextBoxErrors\" class=\"ErrorDiv\"></div></div>" %>--%>
 
         <div class="FormRow">
             <input type="button" id="SubmitButton" value="Submit" onclick="submitForm()" />
