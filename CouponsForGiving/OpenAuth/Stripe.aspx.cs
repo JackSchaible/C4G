@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Mail;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Script.Serialization;
@@ -22,7 +21,8 @@ public partial class OpenAuth_Stripe : System.Web.UI.Page
         {
             try
             {
-                NotificationcUsers.Insert(String.Format("StripeNotConnected({0})", WebConfigurationManager.AppSettings["Language"]), User.Identity.Name);
+                NotificationcUsers.Insert(String.Format("StripeNotConnected({0})",
+                    WebConfigurationManager.AppSettings["Language"]), Request["state"]);
             }
             catch (Exception ex)
             {
@@ -33,13 +33,20 @@ public partial class OpenAuth_Stripe : System.Web.UI.Page
         {
             try
             {
-                Merchant merch = SysDatamk.Merchant_GetByUsername(HttpContext.Current.User.Identity.Name);
+                Merchant merch = null;
+
+                if (User.Identity.IsAuthenticated)
+                    merch = SysDatamk.Merchant_GetByUsername(User.Identity.Name);
+                else
+                    ErrorLabel.Text = "User is not logged in.";
 
                 if (merch == null)
-                    ErrorLabel.Text = "There was no merchant account found with your username: " + HttpContext.Current.User.Identity.Name;
+                    ErrorLabel.Text = "There was no merchant account found with your username: " + User.Identity.Name;
                 else
                 {
-                    string postData = (String.Format("client_secret={0}&grant_type={1}&code={2}", WebConfigurationManager.AppSettings["StripeApiKey"], "authorization_code", Request.QueryString["Code"]));
+                    string postData = (String.Format("client_secret={0}&grant_type={1}&code={2}", 
+                        WebConfigurationManager.AppSettings["StripeApiKey"], 
+                        "authorization_code", Request.QueryString["Code"]));
 
                     // create the POST request
                     HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create("https://connect.stripe.com/oauth/token");
@@ -68,26 +75,29 @@ public partial class OpenAuth_Stripe : System.Web.UI.Page
                     dynamic data = jss.Deserialize<dynamic>(responseData);
                     string value = ((Dictionary<string, object>)data)["access_token"].ToString();
 
-               
+                    string Name = User.Identity.Name;
                     SysData.MerchantStripeInfo_Insert(merch.MerchantID, value);
-                    Roles.AddUserToRole(HttpContext.Current.User.Identity.Name, "Merchant");
-                    Roles.RemoveUserFromRole(User.Identity.Name, "IncompleteMerchant");
+
+                    if (!Roles.IsUserInRole(Name, "Merchant"))
+                        Roles.AddUserToRole(Name, "Merchant");
+
+                    if (Roles.IsUserInRole(Name, "IncompleteMerchant"))
+                        Roles.RemoveUserFromRole(Name, "IncompleteMerchant");
 
                     List<string> To = new List<string>();
-                    To.Add(Membership.GetUser().Email);
+                    To.Add(Membership.GetUser(Name).Email);
 
-                    string Name = User.Identity.Name;
-
+                    NotificationcUsers.Delete(String.Format("StripeNotConnected({0})", WebConfigurationManager.AppSettings["Language"]), Name);
                     EmailUtils.SendMerchantSignupEmail(To, Name, merch.Name);
 
-                    NotificationcUsers.Delete(String.Format("StripeNotConnected({0})", WebConfigurationManager.AppSettings["Language"]), User.Identity.Name);
-                    Response.Redirect("../Merchant/Confirmation.aspx", false);
+                    Response.Redirect("../Merchant/MyHome.aspx");
                 }
             }
             catch (Exception ex)
             {
                 try
                 {
+                    Response.Write(ex.Message);
                     NotificationcUsers.Insert(String.Format("StripeNotConnected({0})", WebConfigurationManager.AppSettings["Language"]), User.Identity.Name);
                 }
                 catch (Exception ex2)

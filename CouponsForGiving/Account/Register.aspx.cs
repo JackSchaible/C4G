@@ -139,7 +139,7 @@ public partial class Account_Register : Page
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/NullPassword").InnerText);
 
         if (validation.IsStringTooShort(password, 6))
-            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/PasswordLength").InnerText);
+            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/PasswordTooShort").InnerText);
 
         if (validation.IsStringTooLong(password, 32))
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/PasswordTooLong").InnerText);

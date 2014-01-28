@@ -805,10 +805,10 @@ namespace CouponsForGiving
                 mm.To.Add(item);
 
             XmlDocument doc = new XmlDocument();
-            doc.Load(String.Format("EmailText ({0}).xml", WebConfigurationManager.AppSettings["Language"]));
+            doc.Load(HttpContext.Current.Server.MapPath(String.Format("~/App_Code/EmailText ({0}).xml", WebConfigurationManager.AppSettings["Language"])));
 
             string Title = doc.SelectSingleNode("/EmailText/MerchantSignup/Title").InnerText;
-            string Content = doc.SelectSingleNode("/EmailText/MerchantSignup/ContentPrefix").InnerText;
+            string Content = doc.SelectSingleNode("/EmailText/MerchantSignup/Content").InnerText;
             string LinkURL = "<a href=\"" + String.Format("http://www.coupons4giving.ca/Offers/{0}", Name) + "\">" + String.Format("http://www.coupons4giving.ca/Offers/{0}", Name) + "</a>";
             string Content2 = doc.SelectSingleNode("/EmailText/MerchantSignup/Content2").InnerText;
             string ContactTextPrefix = doc.SelectSingleNode("/EmailText/ContactTextPrefix").InnerText;

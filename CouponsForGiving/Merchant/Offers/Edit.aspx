@@ -504,7 +504,7 @@
                 writeErrors('ImageErrors', errors);
             }
     </script>
-    <h1>Offer Creation Page</h1>
+    <h1>Edit Offer Page</h1>
     <p>To set up an offer you will need to have the following information:</p>
     <ul>
         <li>What product or service are you offering at a discounted or special rate?</li>

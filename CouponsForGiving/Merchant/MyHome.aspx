@@ -6,10 +6,6 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Main_Content" Runat="Server">
     <script type="text/javascript">
-        $(document).ready(function () {
-            $("#SaveMode").hide();
-        });
-
         var name = '<%# (merchant == null) ? "0" : merchant.Name %>';
         var description = '<%# (merchant == null) ? "0" : Uri.EscapeDataString(merchant.cUser.MerchantInfoes.FirstOrDefault<CouponsForGiving.Data.MerchantInfo>().MerchantDescription)%>';
         var address = '<%# (merchant == null) ? "0" : merchant.cAddress%>';
@@ -104,10 +100,10 @@
     <div class="">
 	    <div class="profile-edit">
             <div id="profile-edit-name">
-                <div id="EditMode">
+                <%--<div id="EditMode">
                     <a id="modeButton" href="javascript:edit()" class="btn-profile"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                </div>
-                <h1>My Profile</h1>
+                </div>--%>
+                <h1>My <%: merchant.Name %> Dashboard</h1>
             </div>
             <span id="ErrorMessages"></span>
             <h2 class="my-profile">Merchant Information</h2>
@@ -116,6 +112,7 @@
                 <div class="two-thirds">
         	        <div id="profile-edit-name">
                         <h3><%# merchant.Name %></h3>
+                        <a id="modeButton" href="" class="btn-profile"><i class="fa fa-pencil-square-o"></i> Edit My Profile</a>
                     </div>
                     <div id="profile-edit-description">
                         <p id="DescriptionText"><%# merchant.cUser.MerchantInfoes.FirstOrDefault<CouponsForGiving.Data.MerchantInfo>().MerchantDescription %></p>
@@ -128,7 +125,7 @@
                         <div class="ClearFix"></div>
                     </div>
                 </div>
-                <div class="half">     
+                <%--<div class="half">     
                     <div id="profile-edit-address">
                         <label>Address</label>
                         <p><%# merchant.cAddress %></p>
@@ -168,7 +165,7 @@
                         <asp:ListItem Text="Yes" Value="Yes"></asp:ListItem>
                         <asp:ListItem Text="No" Value="No"></asp:ListItem>
                     </asp:RadioButtonList>
-                </div>
+                </div>--%>
             </div>
        	</div>
        	<div class="clear"></div>
@@ -182,7 +179,7 @@
        	    <h2 class="my-profile">Manage My Offers</h2>
        	    <h3 class="profile-icon"><i class="fa fa-cog"></i></h3>
        	    <p>Manage and Edit your current Coupons4Giving offers. See reports of your previous and current offers.</p>
-       	    <a href="Offers/MyOffers.aspx" class="btn-small"><i class="fa fa-pencil-square-o"></i> Edit Offers</a> <a href="Reports.aspx" class="btn-small"><i class="fa fa-file-text-o"></i> Offer Reports</a>
+       	    <a href="Offers/MyOffers.aspx" class="btn-small"><i class="fa fa-pencil-square-o"></i> Edit Offers</a> <a href="MyReports.aspx" class="btn-small"><i class="fa fa-file-text-o"></i> Offer Reports</a>
 		</div>
        	<div class="clear"></div>
         <div class="half">
@@ -214,7 +211,7 @@
        	    <h2 class="my-profile">Reports</h2>
        	    <h3 class="profile-icon"><i class="fa fa-file-text"></i></h3>
        	    <p><strong>View</strong> current Campaign Reports</p>
-       	    <a href="Reports.aspx" class="btn-small"><i class="fa fa-file-text-o"></i> View Reports</a>
+       	    <a href="My Reports.aspx" class="btn-small"><i class="fa fa-file-text-o"></i> View Reports</a>
        	</div>
         <div class="half">
        	    <h2 class="my-profile">Support Causes</h2>

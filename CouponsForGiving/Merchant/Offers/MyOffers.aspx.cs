@@ -57,7 +57,7 @@ public partial class Merchant_Offers_MyOffers : System.Web.UI.Page
                 && d.EndDate > DateTime.Now
             select new
             {
-                DealID = d.DealID,
+                DealID = d.DealInstanceID,
                 Name = d.Deal.Name,
                 Purchases = d.PurchaseOrders.Count,
                 Revenue = d.PurchaseOrders.Count * d.Deal.Prices.FirstOrDefault<Price>().MerchantSplit
@@ -74,7 +74,7 @@ public partial class Merchant_Offers_MyOffers : System.Web.UI.Page
                 d.EndDate < DateTime.Now
             select new
             {
-                DealID = d.DealID,
+                DealID = d.DealInstanceID,
                 Name = d.Deal.Name,
                 Purchases = d.PurchaseOrders.Count,
                 Revenue = d.PurchaseOrders.Count * d.Deal.Prices.FirstOrDefault<Price>().MerchantSplit,

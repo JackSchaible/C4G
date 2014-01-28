@@ -300,14 +300,14 @@ public partial class Merchant_Signup : System.Web.UI.Page
                             SysData.MerchantInfo_Insert(username, FirstName + LastName, ContactPhoneNumber, Description);
                             MerchantSettings.Insert(merchantID, autoAcceptRequests);
 
-                            string vars = String.Format("stripe_user[email]={0}&stripe_user[url]={1}&stripe_user[phone_number]={2}&stripe_user[business_name]={3}&stripe_user[business_type]={4}&stripe_user[first_name]={5}&stripe_user[last_name]={6}&stripe_user[dob_day]={7}&stripe_user[dob_month]={8}&stripe_user[dob_year]={9}&stripe_user[street_address]={10}&stripe_user[city]={11}&stripe_user[state]={12}&stripe_user[zip]={13}&stripe_user[physical_product]={14}&stripe_user[product_category]={15}&stripe_user[country]={16}&stripe_user[currency]={17}", 
+                            string vars = String.Format("stripe_user[email]={0}&stripe_user[url]={1}&stripe_user[phone_number]={2}&stripe_user[business_name]={3}&stripe_user[business_type]={4}&stripe_user[first_name]={5}&stripe_user[last_name]={6}&stripe_user[dob_day]={7}&stripe_user[dob_month]={8}&stripe_user[dob_year]={9}&stripe_user[street_address]={10}&stripe_user[city]={11}&stripe_user[state]={12}&stripe_user[zip]={13}&stripe_user[physical_product]={14}&stripe_user[product_category]={15}&stripe_user[country]={16}&stripe_user[currency]={17}&state={18}", 
                                 HttpContext.Current.Server.UrlEncode(ContactEmail), HttpContext.Current.Server.UrlEncode(Website), HttpContext.Current.Server.UrlEncode(PhoneNumber), 
                                 HttpContext.Current.Server.UrlEncode(BusinessName), HttpContext.Current.Server.UrlEncode(BusinessType), HttpContext.Current.Server.UrlEncode(FirstName),
                                 HttpContext.Current.Server.UrlEncode(LastName), HttpContext.Current.Server.UrlEncode(birthDate.ToString("dd")),
                                 HttpContext.Current.Server.UrlEncode(birthDate.ToString("MM")), HttpContext.Current.Server.UrlEncode(birthDate.ToString("yyyy")), 
                                 HttpContext.Current.Server.UrlEncode(Address), HttpContext.Current.Server.UrlEncode(city), HttpContext.Current.Server.UrlEncode(province), 
                                 HttpContext.Current.Server.UrlEncode(Postal), HttpContext.Current.Server.UrlEncode(physicalProduct.ToString()), HttpContext.Current.Server.UrlEncode(ProductType), 
-                                HttpContext.Current.Server.UrlEncode(country), HttpContext.Current.Server.UrlEncode(Currency));
+                                HttpContext.Current.Server.UrlEncode(country), HttpContext.Current.Server.UrlEncode(Currency), HttpContext.Current.User.Identity.Name);
 
                             result = String.Format("https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_2dcruIQ1MEWM9BfJot2jJUPvKqJGofMU&scope=read_write&{0}", vars);
 
