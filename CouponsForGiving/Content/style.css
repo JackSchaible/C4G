@@ -545,14 +545,13 @@ width: 90%;
 border: 1px solid #ff9900;
 visibility: hidden;}
 
-.validation-summary-errors {
-background: #f9d8a9;
+#MainContent p.validation-summary-errors {
 padding: 10px;
 font-size: 13px;
 float: left;
-margin: 20px 0px;
+margin: 0px 0px;
 width: 90%;
-border: 1px solid #ff9900;}
+font-weight: bold;}
 
 
 #Main_Content_ErrorLabel {
