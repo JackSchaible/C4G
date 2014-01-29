@@ -30,6 +30,7 @@
             <div class="coupon-title">
                 <h2><%: deal.Name %></h2><!-- Merchant Offer -->
                 <h3><a href="MerchantPage.aspx?MerchantName=<%: deal.Merchant.Name %>" target="_blank"><%: deal.Merchant.Name %></a></h3><!-- Merchant Name -->
+                <h3 class="coupon-cost">$ </h3>
                 <span class="coupon-description">
                 <p><%: deal.DealDescription %></p><!-- Merchant Offer Description -->
                 </span>

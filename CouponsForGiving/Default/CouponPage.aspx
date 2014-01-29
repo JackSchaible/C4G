@@ -13,6 +13,7 @@
             <div class="coupon-title">
                 <h2><%: deal.Deal.Name %></h2><!-- Merchant Offer -->
                 <h3><%: deal.Deal.Merchant %></h3><!-- Merchant Name -->
+                <h3 class="coupon-cost">$ </h3>
                 <span class="coupon-description">
                 <p><%: deal.Deal.DealDescription %></p><!-- Merchant Offer Description -->
                 </span>
