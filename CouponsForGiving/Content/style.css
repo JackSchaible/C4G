@@ -1898,6 +1898,11 @@ display: block;
 margin: 8px auto 0px;
 max-width: 275px;}
 
+#MainContent .coupon-title-tile .company-frame img {
+max-width: 275px;
+width: 100%;
+}
+
 .campaign-frame a, .company-frame a {
 display: block;
 width: 100%;
