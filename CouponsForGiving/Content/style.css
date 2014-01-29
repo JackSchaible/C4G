@@ -133,7 +133,7 @@ height: 100%;
 }
 
 .header-login, .header-logo, .header-social {
-margin-right: 1%;
+margin-right: 0%;
 display: inline-block;
 }
 
@@ -143,8 +143,9 @@ min-width: 25%;
 }
 
 .header-social {
-max-width: 200px;
+max-width: 155px;
 min-width: 12%;
+width: 150px;
 }
 
 .header-login {
@@ -256,6 +257,11 @@ color: #fff;
 background: #0f76a8;
 color: #fff;
 } 
+
+.header-social a:hover i.fa-google-plus {
+background: #990000;
+color: #fff;
+}
 
 #rightContent {
     float: right;
