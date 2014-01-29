@@ -587,6 +587,7 @@
           <Property Name="NPOSplit" Type="money" Nullable="false" />
           <Property Name="MerchantSplit" Type="money" Nullable="false" />
           <Property Name="OurSplit" Type="money" Nullable="false" />
+          <Property Name="CouponCode" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="PurchaseTransaction">
           <Key>
@@ -1726,6 +1727,14 @@
         <Function Name="PaymentOption_ListByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
           <Parameter Name="cUsername" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="PaymentOptionInfo_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+          <Parameter Name="PaymentOptionID" Type="int" Mode="In" />
+          <Parameter Name="Address" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="Province" Type="nvarchar" Mode="In" />
+          <Parameter Name="Country" Type="nvarchar" Mode="In" />
+          <Parameter Name="PostalCode" Type="nchar" Mode="In" />
+        </Function>
         <Function Name="PreferredCity_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
         </Function>
@@ -1765,7 +1774,13 @@
           <Parameter Name="MerchantSplit" Type="money" Mode="In" />
           <Parameter Name="OurSplit" Type="money" Mode="In" />
         </Function>
+        <Function Name="PurchaseOrder_ListRedeemedByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="PurchaseOrder_ListUnredeemedByMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="PurchaseOrder_ListUnredeemedByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="PurchaseOrder_Redeem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
@@ -2112,15 +2127,6 @@
             <End Role="PurchaseTransaction" EntitySet="PurchaseTransactions" />
             <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
           </AssociationSet>
-          <FunctionImport Name="PurchaseOrder_Insert">
-            <Parameter Name="DealID" Mode="In" Type="Int32" />
-            <Parameter Name="CampaignID" Mode="In" Type="Int32" />
-            <Parameter Name="TransactionID" Mode="In" Type="Int32" />
-            <Parameter Name="PurchaseAmount" Mode="In" Type="Decimal" />
-            <Parameter Name="NPOSplit" Mode="In" Type="Decimal" />
-            <Parameter Name="MerchantSplit" Mode="In" Type="Decimal" />
-            <Parameter Name="OurSplit" Mode="In" Type="Decimal" />
-          </FunctionImport>
           <FunctionImport Name="DealInstance_List" EntitySet="DealInstances" ReturnType="Collection(C4GModel.DealInstance)" />
           <FunctionImport Name="Price_GetByDealInstance" EntitySet="Prices" ReturnType="Collection(C4GModel.Price)">
           <Parameter Name="DealInstanceID" Mode="In" Type="Int32" />
@@ -2648,7 +2654,30 @@
           <Parameter Name="Username" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="City_Get" EntitySet="Cities" ReturnType="Collection(C4GModel.City)">
-            <Parameter Name="CityID" Mode="In" Type="Int32" />
+          <Parameter Name="CityID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PurchaseOrder_ListRedeemedByUser" EntitySet="PurchaseOrders" ReturnType="Collection(C4GModel.PurchaseOrder)">
+          <Parameter Name="Username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PurchaseOrder_ListUnredeemedByUser" EntitySet="PurchaseOrders" ReturnType="Collection(C4GModel.PurchaseOrder)">
+          <Parameter Name="Username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PaymentOptionInfo_Insert">
+            <Parameter Name="PaymentOptionID" Mode="In" Type="Int32" />
+            <Parameter Name="Address" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="Province" Mode="In" Type="String" />
+            <Parameter Name="Country" Mode="In" Type="String" />
+            <Parameter Name="PostalCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="PurchaseOrder_Insert">
+            <Parameter Name="DealID" Mode="In" Type="Int32" />
+            <Parameter Name="CampaignID" Mode="In" Type="Int32" />
+            <Parameter Name="TransactionID" Mode="In" Type="Int32" />
+            <Parameter Name="PurchaseAmount" Mode="In" Type="Decimal" />
+            <Parameter Name="NPOSplit" Mode="In" Type="Decimal" />
+            <Parameter Name="MerchantSplit" Mode="In" Type="Decimal" />
+            <Parameter Name="OurSplit" Mode="In" Type="Decimal" />
           </FunctionImport>
           </EntityContainer>
         <EntityType Name="Campaign">
@@ -3174,6 +3203,7 @@
           <NavigationProperty Name="DealInstance" Relationship="C4GModel.FK_PurchaseOrder_DealInstance" FromRole="PurchaseOrder" ToRole="DealInstance" />
           <NavigationProperty Name="OrderStatu" Relationship="C4GModel.FK_PurchaseOrder_OrderStatus" FromRole="PurchaseOrder" ToRole="OrderStatu" />
           <NavigationProperty Name="PurchaseTransaction" Relationship="C4GModel.FK_PurchaseOrder_PurchaseTransaction" FromRole="PurchaseOrder" ToRole="PurchaseTransaction" />
+          <Property Type="Guid" Name="CouponCode" Nullable="false" />
         </EntityType>
         <Association Name="FK_PurchaseOrder_Campaign">
           <End Type="C4GModel.Campaign" Role="Campaign" Multiplicity="1" />
@@ -4477,6 +4507,30 @@
           <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
           <Property Type="Int32" Name="CityID" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="PurchaseOrder_ListRedeemedByUser_Result">
+          <Property Type="Int32" Name="PurchaseOrderID" Nullable="false" />
+          <Property Type="Int32" Name="CampaignID" Nullable="false" />
+          <Property Type="Int32" Name="OrderStatusID" Nullable="false" />
+          <Property Type="Int32" Name="TransactionID" Nullable="false" />
+          <Property Type="DateTime" Name="PurchaseDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="DealInstanceID" Nullable="false" />
+          <Property Type="Decimal" Name="PurchaseAmount" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="NPOSplit" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="MerchantSplit" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="OurSplit" Nullable="false" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="PurchaseOrder_ListUnredeemedByUser_Result">
+          <Property Type="Int32" Name="PurchaseOrderID" Nullable="false" />
+          <Property Type="Int32" Name="CampaignID" Nullable="false" />
+          <Property Type="Int32" Name="OrderStatusID" Nullable="false" />
+          <Property Type="Int32" Name="TransactionID" Nullable="false" />
+          <Property Type="DateTime" Name="PurchaseDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="DealInstanceID" Nullable="false" />
+          <Property Type="Decimal" Name="PurchaseAmount" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="NPOSplit" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="MerchantSplit" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="OurSplit" Nullable="false" Precision="19" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4810,6 +4864,7 @@
           <EntitySetMapping Name="PurchaseOrders">
             <EntityTypeMapping TypeName="C4GModel.PurchaseOrder">
               <MappingFragment StoreEntitySet="PurchaseOrder">
+                <ScalarProperty Name="CouponCode" ColumnName="CouponCode" />
                 <ScalarProperty Name="OurSplit" ColumnName="OurSplit" />
                 <ScalarProperty Name="MerchantSplit" ColumnName="MerchantSplit" />
                 <ScalarProperty Name="NPOSplit" ColumnName="NPOSplit" />
@@ -4823,7 +4878,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="PurchaseOrder_Insert" FunctionName="C4GModel.Store.PurchaseOrder_Insert" />
           <FunctionImportMapping FunctionImportName="DealInstance_List" FunctionName="C4GModel.Store.DealInstance_List">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Price_GetByDealInstance" FunctionName="C4GModel.Store.Price_GetByDealInstance">
@@ -5334,6 +5388,12 @@
           <FunctionImportMapping FunctionImportName="Deal_ListNamesByMerchant" FunctionName="C4GModel.Store.Deal_ListNamesByMerchant" />
           <FunctionImportMapping FunctionImportName="City_Get" FunctionName="C4GModel.Store.City_Get">
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PurchaseOrder_ListRedeemedByUser" FunctionName="C4GModel.Store.PurchaseOrder_ListRedeemedByUser">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PurchaseOrder_ListUnredeemedByUser" FunctionName="C4GModel.Store.PurchaseOrder_ListUnredeemedByUser">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PaymentOptionInfo_Insert" FunctionName="C4GModel.Store.PaymentOptionInfo_Insert" />
+          <FunctionImportMapping FunctionImportName="PurchaseOrder_Insert" FunctionName="C4GModel.Store.PurchaseOrder_Insert" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

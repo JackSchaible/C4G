@@ -373,7 +373,7 @@
                     output += "<li><%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NoCity").InnerText %></li>";
                 else
                     for (var i2 = 0; i2 < cities.length; i2++)
-                        output += "<li onclick='setCity(\"" + cities[i2] + "\")'>" + cities[i2] + "</li>";
+                        output += "<li><a onclick='setCity(\"" + cities[i2] + "\")'>" + cities[i2] + "</a></li>";
 
                 output += "</ul>";
 

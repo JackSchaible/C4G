@@ -42,7 +42,7 @@
                             
         foreach (CouponsForGiving.Data.DealInstance item in deals)
         {
-            Response.Write(CouponsForGiving.HttpRendering.GetMerchantOffer(item.Deal));
+            Response.Write(CouponsForGiving.HttpRendering.GetMerchantOffer(item));
         }
                                     
     %>

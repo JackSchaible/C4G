@@ -233,7 +233,7 @@ namespace CouponsForGiving
                         result += "<strong>Value of Deal:</strong> <em>$" + ((int)(item.Deal.Prices.FirstOrDefault<Price>().RetailValue)).ToString("D") + "</em><!-- Offer Value --> <br />";
                         result += "<strong>You're Giving:</strong> <span>$" + ((int)(item.Deal.Prices.FirstOrDefault<Price>().NPOSplit)).ToString("D") + "</span><!-- Donation Value --> <br />";
                         result += "<strong>Discount:</strong> <span>$" + (1 - (item.Deal.Prices.FirstOrDefault<Price>().GiftValue / item.Deal.Prices.FirstOrDefault<Price>().RetailValue)).ToString("0%") + "</span><!-- Discount Value --> <br />";
-                        result += "<strong>Coupons Left :</strong> <span></span></p>";
+                        result += "<strong>Coupons Left :</strong>" + (item.Deal.AbsoluteCouponLimit - item.PurchaseOrders.Count()) + "<span></span></p>";
                         result += "</div><!--Close Coupon Details Title -->";
                         result += "<a href=\"../../Offers/" + item.Deal.Merchant.Name + "/" + item.Deal.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-shopping-cart\"></i> BUY NOW</a>";
                         result += "</article>";
@@ -270,7 +270,7 @@ namespace CouponsForGiving
                         result += "<strong>Value of Deal:</strong> <em>$" + ((int)(item.Deal.Prices.FirstOrDefault<Price>().RetailValue)).ToString("D") + "</em><!-- Offer Value --> <br />";
                         result += "<strong>You're Giving:</strong> <span>$" + ((int)(item.Deal.Prices.FirstOrDefault<Price>().NPOSplit)).ToString("D") + "</span><!-- Donation Value --> <br />";
                         result += "<strong>Discount:</strong> <span>$" + (1 - (item.Deal.Prices.FirstOrDefault<Price>().GiftValue / item.Deal.Prices.FirstOrDefault<Price>().RetailValue)).ToString("0%") + "</span><!-- Discount Value --> <br />";
-                        result += "<strong>Coupons Left :</strong> <span></span></p>";
+                        result += "<strong>Coupons Left :</strong>" + (item.Deal.AbsoluteCouponLimit - item.PurchaseOrders.Count()) + "<span></span></p>";
                         result += "</div><!--Close Coupon Details Title -->";
                         result += "<a href=\"DealPage.aspx?merchantname=" + item.Deal.Merchant.Name + "&deal=" + item.Deal.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> More Details</a>";
                         result += "</article>";
@@ -376,7 +376,7 @@ namespace CouponsForGiving
                         result += "<strong>Discount:</strong> <em>" + (int)((1M - (item.Deal.Prices.FirstOrDefault<Price>().GiftValue / item.Deal.Prices.FirstOrDefault<Price>().RetailValue)) * 100) + "%</em><!-- Campaign Dates --> </p>";
                         result += "<p><strong>Value of Deal:</strong> <span>" + item.Deal.Prices.FirstOrDefault<Price>().RetailValue.ToString("C") + "</span><!-- Number of Merchant Offers in Camapign--> <br />";
                         result += "<p><strong>You're Giving:</strong> <span>" + item.Deal.Prices.FirstOrDefault<Price>().NPOSplit.ToString("C") + "</span><!-- Number of Merchant Offers in Camapign--><br />";
-                        result += "<strong>Coupons Left :</strong> <span></span></p>";
+                        result += "<strong>Coupons Left :</strong>" + (item.Deal.AbsoluteCouponLimit - item.PurchaseOrders.Count()) + "<span></span></p>";
                         result += "</div><!--Close Coupon Title -->";
                         result += "</div><!-- Close Details -->";
                         result += "<a href=\"DealPage.aspx?merchantname=" + item.Deal.Merchant.Name + "&deal=" + item.Deal.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> Offer Details</a><!-- Link To Campaign Page -->";
@@ -390,7 +390,7 @@ namespace CouponsForGiving
             return result;
         }
 
-        public static string GetMerchantOffer(Deal deal)
+        public static string GetMerchantOffer(DealInstance deal)
         {
             string result = "";
 
@@ -398,21 +398,21 @@ namespace CouponsForGiving
             result += "<article class=\"c4g-coupon-tile\">";
             result += "<img src=\"../Images/c4g_coupon_logo.png\" class=\"coupon_c4g_logo\" />";
             result += "<div class=\"coupon-title-tile\">";
-            result += "<h2><a href=\"DealPage.aspx?merchantname=" + deal.Merchant.Name + "&deal=" + deal.Name + "\">" + deal.Name + "</a></h2><!-- Merchant Offer -->";
-            result += "<h3><a href=\"MerchantPage.aspx?Name=" + deal.Merchant.Name + "\"></a></h3><!-- Merchant Name -->";
+            result += "<h2><a href=\"DealPage.aspx?merchantname=" + deal.Deal.Merchant.Name + "&deal=" + deal.Deal.Name + "\">" + deal.Deal.Name + "</a></h2><!-- Merchant Offer -->";
+            result += "<h3><a href=\"MerchantPage.aspx?Name=" + deal.Deal.Merchant.Name + "\"></a></h3><!-- Merchant Name -->";
             result += "<span class=\"campaign-frame\">";
-            result += "<a href=\"DealPage.aspx?merchantname=" + deal.Merchant.Name + "&deal=" + deal.Name + "\" ><img src=\"../../" + deal.ImageURL + "\" /></a>";
+            result += "<a href=\"DealPage.aspx?merchantname=" + deal.Deal.Merchant.Name + "&deal=" + deal.Deal.Name + "\" ><img src=\"../../" + deal.Deal.ImageURL + "\" /></a>";
             result += "</span>";
-            result +="<div class=\"campaign-details-tile\">";
-                        result += "<p></p><!-- Merchant Offer Description -->";
-                        result += "<p><strong>Price You Pay:</strong> <span>" + deal.Prices.FirstOrDefault<Price>().GiftValue.ToString("C") + "</span><br /> <!-- Offer Price -->";
-                        result += "<strong>Value of Deal:</strong> <em>" + deal.Prices.FirstOrDefault<Price>().RetailValue.ToString("C") + "</em><!-- Offer Value --> <br />";
-                        result += "<strong>You're Giving:</strong> <span>" + deal.Prices.FirstOrDefault<Price>().NPOSplit.ToString("C") + "</span><!-- Donation Value --> <br />";
-                        result += "<strong>Discount:</strong> <span>" + (int)((1M - (deal.Prices.FirstOrDefault<Price>().GiftValue / deal.Prices.FirstOrDefault<Price>().RetailValue)) * 100) + "%</span><!-- Discount Value --> <br />";
-                        result += "<strong>Coupons Left :</strong> <span></span></p>";                        
-                        
-                        result += "</div><!--Close Coupon Details Title -->";
-            result += "<a href=\"DealPage.aspx?merchantname=" + deal.Merchant.Name + "&deal=" + deal.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> More Details</a>";
+            result += "<div class=\"campaign-details-tile\">";
+            result += "<p></p><!-- Merchant Offer Description -->";
+            result += "<p><strong>Price You Pay:</strong> <span>" + deal.Deal.Prices.FirstOrDefault<Price>().GiftValue.ToString("C") + "</span><br /> <!-- Offer Price -->";
+            result += "<strong>Value of Deal:</strong> <em>" + deal.Deal.Prices.FirstOrDefault<Price>().RetailValue.ToString("C") + "</em><!-- Offer Value --> <br />";
+            result += "<strong>You're Giving:</strong> <span>" + deal.Deal.Prices.FirstOrDefault<Price>().NPOSplit.ToString("C") + "</span><!-- Donation Value --> <br />";
+            result += "<strong>Discount:</strong> <span>" + (int)((1M - (deal.Deal.Prices.FirstOrDefault<Price>().GiftValue / deal.Deal.Prices.FirstOrDefault<Price>().RetailValue)) * 100) + "%</span><!-- Discount Value --> <br />";
+            result += "<strong>Coupons Left :</strong>" + (deal.Deal.AbsoluteCouponLimit - deal.PurchaseOrders.Count()) + "<span></span></p>";
+
+            result += "</div><!--Close Coupon Details Title -->";
+            result += "<a href=\"DealPage.aspx?merchantname=" + deal.Deal.Merchant.Name + "&deal=" + deal.Deal.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> More Details</a>";
             result += "</article>";
             result += "</div>";
 

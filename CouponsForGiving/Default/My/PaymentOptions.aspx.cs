@@ -22,6 +22,14 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
 
         if (!IsPostBack)
             BindData();
+
+        if (Session["Cart"] != null)
+        {
+            if (((List<ShoppingCart>)Session["Cart"]).Count() < 1)
+                Response.Redirect("../DealsInMyArea.aspx");
+        }
+        else
+            Response.Redirect("../DealsInMyArea.aspx");
     }
 
     private void BindData()
@@ -70,7 +78,7 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
             
             string cardID = (new StripeCardService()).Create(SysData.cUser_GetByName(User.Identity.Name).StripeKey, options).Id;
 
-            SysData.PaymentOptions_Insert(User.Identity.Name, cardTypeID, int.Parse(cardNumber.ToString().Substring(11)), cardID,
+            SysData.PaymentOptions_Insert(User.Identity.Name, cardTypeID, cardNumber.ToString().Substring(12), cardID,
                 address, city, province, postal, country);
 
             BindData();
@@ -133,7 +141,7 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
                             };
                             var response = stripeService.Create(stripeChargeOption);
                         }
-
+                        Session["Cart"] = new List<ShoppingCart>();
                         ts.Complete();
                         Response.Redirect("ThankYou.aspx");
 

@@ -770,39 +770,6 @@ namespace CouponsForGiving.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("PurchaseTransaction_Insert", cUserParameter);
         }
     
-        public virtual int PurchaseOrder_Insert(Nullable<int> dealID, Nullable<int> campaignID, Nullable<int> transactionID, Nullable<decimal> purchaseAmount, Nullable<decimal> nPOSplit, Nullable<decimal> merchantSplit, Nullable<decimal> ourSplit)
-        {
-            var dealIDParameter = dealID.HasValue ?
-                new ObjectParameter("DealID", dealID) :
-                new ObjectParameter("DealID", typeof(int));
-    
-            var campaignIDParameter = campaignID.HasValue ?
-                new ObjectParameter("CampaignID", campaignID) :
-                new ObjectParameter("CampaignID", typeof(int));
-    
-            var transactionIDParameter = transactionID.HasValue ?
-                new ObjectParameter("TransactionID", transactionID) :
-                new ObjectParameter("TransactionID", typeof(int));
-    
-            var purchaseAmountParameter = purchaseAmount.HasValue ?
-                new ObjectParameter("PurchaseAmount", purchaseAmount) :
-                new ObjectParameter("PurchaseAmount", typeof(decimal));
-    
-            var nPOSplitParameter = nPOSplit.HasValue ?
-                new ObjectParameter("NPOSplit", nPOSplit) :
-                new ObjectParameter("NPOSplit", typeof(decimal));
-    
-            var merchantSplitParameter = merchantSplit.HasValue ?
-                new ObjectParameter("MerchantSplit", merchantSplit) :
-                new ObjectParameter("MerchantSplit", typeof(decimal));
-    
-            var ourSplitParameter = ourSplit.HasValue ?
-                new ObjectParameter("OurSplit", ourSplit) :
-                new ObjectParameter("OurSplit", typeof(decimal));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PurchaseOrder_Insert", dealIDParameter, campaignIDParameter, transactionIDParameter, purchaseAmountParameter, nPOSplitParameter, merchantSplitParameter, ourSplitParameter);
-        }
-    
         public virtual ObjectResult<DealInstance> DealInstance_List()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DealInstance>("DealInstance_List");
@@ -2700,6 +2667,104 @@ namespace CouponsForGiving.Data
                 new ObjectParameter("CityID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<City>("City_Get", mergeOption, cityIDParameter);
+        }
+    
+        public virtual ObjectResult<PurchaseOrder> PurchaseOrder_ListRedeemedByUser(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PurchaseOrder>("PurchaseOrder_ListRedeemedByUser", usernameParameter);
+        }
+    
+        public virtual ObjectResult<PurchaseOrder> PurchaseOrder_ListRedeemedByUser(string username, MergeOption mergeOption)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PurchaseOrder>("PurchaseOrder_ListRedeemedByUser", mergeOption, usernameParameter);
+        }
+    
+        public virtual ObjectResult<PurchaseOrder> PurchaseOrder_ListUnredeemedByUser(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PurchaseOrder>("PurchaseOrder_ListUnredeemedByUser", usernameParameter);
+        }
+    
+        public virtual ObjectResult<PurchaseOrder> PurchaseOrder_ListUnredeemedByUser(string username, MergeOption mergeOption)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PurchaseOrder>("PurchaseOrder_ListUnredeemedByUser", mergeOption, usernameParameter);
+        }
+    
+        public virtual int PaymentOptionInfo_Insert(Nullable<int> paymentOptionID, string address, string city, string province, string country, string postalCode)
+        {
+            var paymentOptionIDParameter = paymentOptionID.HasValue ?
+                new ObjectParameter("PaymentOptionID", paymentOptionID) :
+                new ObjectParameter("PaymentOptionID", typeof(int));
+    
+            var addressParameter = address != null ?
+                new ObjectParameter("Address", address) :
+                new ObjectParameter("Address", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var provinceParameter = province != null ?
+                new ObjectParameter("Province", province) :
+                new ObjectParameter("Province", typeof(string));
+    
+            var countryParameter = country != null ?
+                new ObjectParameter("Country", country) :
+                new ObjectParameter("Country", typeof(string));
+    
+            var postalCodeParameter = postalCode != null ?
+                new ObjectParameter("PostalCode", postalCode) :
+                new ObjectParameter("PostalCode", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaymentOptionInfo_Insert", paymentOptionIDParameter, addressParameter, cityParameter, provinceParameter, countryParameter, postalCodeParameter);
+        }
+    
+        public virtual int PurchaseOrder_Insert(Nullable<int> dealID, Nullable<int> campaignID, Nullable<int> transactionID, Nullable<decimal> purchaseAmount, Nullable<decimal> nPOSplit, Nullable<decimal> merchantSplit, Nullable<decimal> ourSplit)
+        {
+            var dealIDParameter = dealID.HasValue ?
+                new ObjectParameter("DealID", dealID) :
+                new ObjectParameter("DealID", typeof(int));
+    
+            var campaignIDParameter = campaignID.HasValue ?
+                new ObjectParameter("CampaignID", campaignID) :
+                new ObjectParameter("CampaignID", typeof(int));
+    
+            var transactionIDParameter = transactionID.HasValue ?
+                new ObjectParameter("TransactionID", transactionID) :
+                new ObjectParameter("TransactionID", typeof(int));
+    
+            var purchaseAmountParameter = purchaseAmount.HasValue ?
+                new ObjectParameter("PurchaseAmount", purchaseAmount) :
+                new ObjectParameter("PurchaseAmount", typeof(decimal));
+    
+            var nPOSplitParameter = nPOSplit.HasValue ?
+                new ObjectParameter("NPOSplit", nPOSplit) :
+                new ObjectParameter("NPOSplit", typeof(decimal));
+    
+            var merchantSplitParameter = merchantSplit.HasValue ?
+                new ObjectParameter("MerchantSplit", merchantSplit) :
+                new ObjectParameter("MerchantSplit", typeof(decimal));
+    
+            var ourSplitParameter = ourSplit.HasValue ?
+                new ObjectParameter("OurSplit", ourSplit) :
+                new ObjectParameter("OurSplit", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PurchaseOrder_Insert", dealIDParameter, campaignIDParameter, transactionIDParameter, purchaseAmountParameter, nPOSplitParameter, merchantSplitParameter, ourSplitParameter);
         }
     }
 }

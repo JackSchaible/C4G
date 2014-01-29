@@ -251,7 +251,7 @@ namespace CouponsForGiving.Data
             return (new C4GEntities()).PaymentOption_ListByUser(username).ToList<PaymentOption_ListByUser_Result>();
         }
 
-        public static void PaymentOptions_Insert(string username, int cardTypeID, int last4Digits, string stripeToken,
+        public static void PaymentOptions_Insert(string username, int cardTypeID, string last4Digits, string stripeToken,
             string address, string city, string province, string postal, string country)
         {
             (new C4GEntities()).PaymentOption_Insert(username, cardTypeID, last4Digits.ToString(), stripeToken,
@@ -750,6 +750,16 @@ namespace CouponsForGiving.Data.Classes
         public static void Unredeem(int PurchaseOrderID)
         {
             new C4GEntities().PurchaseOrder_Unredeem(PurchaseOrderID);
+        }
+
+        public static List<PurchaseOrder> ListUnredeemedByUser(string Username)
+        {
+            return new C4GEntities().PurchaseOrder_ListUnredeemedByUser(Username).ToList<PurchaseOrder>();
+        }
+
+        public static List<PurchaseOrder> ListRedeemedByUser(string Username)
+        {
+            return new C4GEntities().PurchaseOrder_ListRedeemedByUser(Username).ToList<PurchaseOrder>();
         }
     }
 

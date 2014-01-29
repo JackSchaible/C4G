@@ -10,9 +10,8 @@
 namespace CouponsForGiving.Data
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class PurchaseOrder
+    public partial class PurchaseOrder_ListUnredeemedByUser_Result
     {
         public int PurchaseOrderID { get; set; }
         public int CampaignID { get; set; }
@@ -24,11 +23,5 @@ namespace CouponsForGiving.Data
         public decimal NPOSplit { get; set; }
         public decimal MerchantSplit { get; set; }
         public decimal OurSplit { get; set; }
-        public System.Guid CouponCode { get; set; }
-    
-        public virtual Campaign Campaign { get; set; }
-        public virtual DealInstance DealInstance { get; set; }
-        public virtual OrderStatu OrderStatu { get; set; }
-        public virtual PurchaseTransaction PurchaseTransaction { get; set; }
     }
 }
