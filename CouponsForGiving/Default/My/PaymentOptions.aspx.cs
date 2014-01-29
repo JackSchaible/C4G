@@ -70,7 +70,7 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
             
             string cardID = (new StripeCardService()).Create(SysData.cUser_GetByName(User.Identity.Name).StripeKey, options).Id;
 
-            SysData.PaymentOptions_Insert(User.Identity.Name, cardTypeID, int.Parse(cardNumber.ToString().Substring(12)), cardID,
+            SysData.PaymentOptions_Insert(User.Identity.Name, cardTypeID, int.Parse(cardNumber.ToString().Substring(11)), cardID,
                 address, city, province, postal, country);
 
             BindData();
@@ -150,7 +150,7 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
                             ex2.ToString();
                         }
 
-                        ErrorLabel.Text = ex.Message;
+                        ErrorLabel.Text = ex.Message + " Stack Trace: " + ex.StackTrace;
                     }
                 }
 
@@ -158,14 +158,14 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
                 {
                     if (charge.FailureCode != null)
                     {
-                        ErrorLabel.Text = charge.FailureMessage;
+                        ErrorLabel.Text = "Carge Failure! : " + charge.FailureMessage;
                     }
                 }
             }
         }
         catch (Exception ex)
         {
-            ProceedErrorLabel.Text = ex.Message;
+            ProceedErrorLabel.Text = ex.Message + " Stack Trace: " + ex.StackTrace;
             ProceedErrorLabel.ForeColor = Color.Red;
         }
     }
@@ -179,7 +179,7 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            ProceedErrorLabel.Text = ex.Message;
+            ProceedErrorLabel.Text = ex.Message + " Inner Exception: " + ex.InnerException + " Payment Option ID: " + PaymentOptionsGV.DataKeys[e.RowIndex].Value.ToString();
             ProceedErrorLabel.ForeColor = Color.Red;
         }
     }

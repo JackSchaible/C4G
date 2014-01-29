@@ -6,9 +6,9 @@
         $(document).ready(function () {
             calcSplit();
             checkForm();
-
             //Bind events to date dropdowns if not locked
             <%= locked ? "" : "document.getElementById(\"Image\").addEventListener('change', checkImage, false); var startDay = $(\"#StartDate select[id$='DayDDL']\").change(checkStartDate); var startMonth = $(\"#StartDate select[id$='MonthDDL']\").change(checkStartDate); var startYear = $(\"#StartDate select[id$='YearDDL']\").change(checkStartDate); var endDay = $(\"#EndDate select[id$='DayDDL']\").change(checkEndDate); var endMonth = $(\"#EndDate select[id$='MonthDDL']\").change(checkEndDate); var endYear = $(\"#EndDate select[id$='YearDDL']\").change(checkEndDate); });" %>
+        });
 
             function addLocation(locationID, name) {
                 PageMethods.AddLocation(locationID, function () {
@@ -506,7 +506,7 @@
             }
     </script>
     <h1>Edit Offer Page</h1>
-    <p>To set up an offer you will need to have the following information:</p>
+    <p>To edit your offer you will need to have the following information:</p>
     <ul>
         <li>What product or service are you offering at a discounted or special rate?</li>
         <li>How long you want to make your offer available for?</li>
@@ -515,6 +515,7 @@
         <li>Images of the product or service your are promoting</li>
         <li>Your offer as well as your profile page will now be available for not-for-profits to add to their campaign pages.</li>
     </ul>
+    <p>Note: You will only be able to increase the per customer and absolute coupon limits if a not for profit has already added your deal to their campaign, or if someone has purchased one of your deals.</p>
     <h1>New <%: merch.Name %> Offer</h1>
     <%= locked ? "<div class=\"ErrorDiv\"><ul><li>" + strings.SelectSingleNode("/SiteText/Pages/Edit/ErrorMessages/DealLocked").InnerText + "</li></ul></div>" : "" %>
     <div class="Form">

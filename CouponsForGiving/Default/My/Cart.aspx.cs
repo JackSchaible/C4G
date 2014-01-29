@@ -28,7 +28,9 @@ public partial class Default_My_Cart : System.Web.UI.Page
         
         //Process cart and make sure a campaign is attached to each deal
         if (Session["Cart"] != null)
-            foreach (ShoppingCart item in (List<ShoppingCart>)Session["Cart"])
+        {
+            List<ShoppingCart> cart = (List<ShoppingCart>)Session["Cart"];
+            foreach (ShoppingCart item in cart)
             {
                 if (item.CampaignID == -1)
                 {
@@ -37,6 +39,8 @@ public partial class Default_My_Cart : System.Web.UI.Page
                     item.NPOName = defaultCampaign.NPO.Name;
                 }
             }
+            TotalLabel.Text = cart.Sum(x => x.GiftValue).ToString("C");
+        }
     }
 
     protected void ClearButton_Click(object sender, EventArgs e)

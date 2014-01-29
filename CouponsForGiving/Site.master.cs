@@ -73,20 +73,6 @@ public partial class SiteMaster : MasterPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Page.User.Identity.IsAuthenticated)
-        {
-            HtmlAnchor button = (HtmlAnchor)LoginView1.FindControl("manageButton");
-            HtmlAnchor profileButton = (HtmlAnchor)LoginView1.FindControl("ProfileButton");
-            string path = "";
 
-            if (Page.User.IsInRole("NPO"))
-                path = Server.MapPath("~/NPO/MyHome.aspx").Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty).Replace("~", String.Empty);
-            else if (Page.User.IsInRole("Merchant"))
-                path = Server.MapPath("~/Merchant/MyHome.aspx").Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty).Replace("~", String.Empty);
-            else if (Page.User.IsInRole("User"))
-                path = Server.MapPath("~/Default/MyHome.aspx").Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty).Replace("~", String.Empty);
-
-            profileButton.HRef = path;
-        }
     }
 }

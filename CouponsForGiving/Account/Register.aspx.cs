@@ -132,8 +132,8 @@ public partial class Account_Register : Page
         if (validation.ContainsCode(email))
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/EmailInvalidCharacters").InnerText);
 
-        if (validation.IsValidEmail(email))
-            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/InvalidEmail").InnerText);
+        //if (validation.IsValidEmail(email))
+        //    errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/InvalidEmail").InnerText);
 
         if (validation.IsStringBlank(password))
             errors.Add(strings.SelectSingleNode("/SiteText/Pages/Register/ErrorMessages/NullPassword").InnerText);

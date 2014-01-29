@@ -5,85 +5,6 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Main_Content" Runat="Server">
-    <script type="text/javascript">
-        var name = '<%# (merchant == null) ? "0" : merchant.Name %>';
-        var description = '<%# (merchant == null) ? "0" : Uri.EscapeDataString(merchant.cUser.MerchantInfoes.FirstOrDefault<CouponsForGiving.Data.MerchantInfo>().MerchantDescription)%>';
-        var address = '<%# (merchant == null) ? "0" : merchant.cAddress%>';
-        var postalcode = '<%# (merchant == null) ? "0" : merchant.PostalCode%>';
-        var website = '<%# (merchant == null) ? "0" : merchant.Website%>';
-        var phoneNumber = '<%# (merchant == null) ? "0" : merchant.PhoneNumber%>';
-        var email = '<%# (merchant == null) ? "0" : merchant.Email%>';
-        var statusid = '<%# (merchant == null) ? 0 : merchant.StatusID%>';
-        var logo = '<%# (merchant == null) ? "0" : merchant.LargeLogo%>';
-        var url = '<%# (merchant == null) ? "0" : merchant.Name%>';
-        var imageFile = "";
-        var imageType = "";
-        var city = '<%# city.Name %>';
-        var province = '<%# city.PoliticalDivision.Name %>';
-        var country = '<%# city.Country.Name %>';
-        var autoAcceptMerchantRequests = '<%# merchant.MerchantSettings.FirstOrDefault<CouponsForGiving.Data.MerchantSetting>().AutoAcceptRequests.Value ? "true": "false" %>';
-
-        function imgUploadStarted() {
-            $("#LoadImg").html('<img alt="Loading" src="../Images/loading.gif" />');
-        }
-
-        function fileUploadComplete() {
-            $("#LoadImg").html('');
-        }
-
-        //Switches the form to view mode and saves
-        function save() {
-            name = $("#NameTextBox").val();
-            description = $("#DescriptionTextBox").val();
-            address = $("#AddressTextBox").val();
-            postalcode = $("#PostalCodeTextBox").val();
-            phoneNumber = $("#PhoneTextBox").val();
-            city = $("#CityTextBox").val();
-            province = $("#ProvinceTextBox").val();
-            country = $("#CountryTextBox").val();
-            email = $("#EmailTextBox").val();
-
-
-
-            PageMethods.Save(encodeURIComponent(name), encodeURIComponent(description), encodeURIComponent(address), encodeURIComponent(city), encodeURIComponent(province), encodeURIComponent(country), encodeURIComponent(postalcode), encodeURIComponent(website), encodeURIComponent(phoneNumber), encodeURIComponent(email), encodeURIComponent(statusid), encodeURIComponent(logo), encodeURIComponent(autoAcceptMerchantRequests), onSuccess, onError);
-
-            function onError(errors) {
-                console.log(errors._message);
-                $("#ErrorMessages").text(errors._message);
-            }
-
-            function onSuccess(response) {
-                $("#ErrorMessages").text("Your profile has been updated.");
-                cancel();
-            }
-        };
-
-        //Switches the form to edit mode
-        function edit() {
-            $("#profile-edit-name").html("<input type=\"text\" id=\"NameTextBox\" value=\"" + decodeURIComponent(name) + "\"/><a href=\"javascript:save()\" class=\"btn-profile\"><i class=\"fa fa-pencil-square-o\"></i> Save</a><a href=\"javascript:cancel()\" class=\"btn-profile\"><i class=\"fa fa-pencil-square-o\"></i> Cancel</a>");
-            $("#profile-edit-description").html('<div id="profile-edit-image" class="right"><!-- Added a Right Image class--><img src="../<%# merchant.LargeLogo %>" /><div id="LoadImg"></div><div class="ClearFix"></div></div><textarea id="DescriptionTextBox">' + decodeURIComponent(description) + '</textarea>');
-            $("#profile-edit-address").html('<label>Address</label><input type="text" id="AddressTextBox" value="' + address + '" />');
-            $("#profile-edit-postal-code").html('<label>Postal Code</label><input type="text" id="PostalCodeTextBox" value="' + postalcode + '" />');
-            $("#profile-edit-email").html('<label>Email</label><input type="text" id="EmailTextBox" value="' + email + '" />');
-            $("#profile-edit-phone-number").html('<label>Phone</label><input type="text" id="PhoneTextBox" value="' + phoneNumber + '" />');
-            $("#profile-edit-city").html('<label>City</label><input type="text" id="CityTextBox" value="' + city + '" />');
-            $("#profile-edit-province").html('<label>Province</label><input type="text" id="ProvinceTextBox" value="' + province + '" />');
-            $("#profile-edit-country").html('<label>Country</label><input type="text" id="CountryTextBox" value="' + country + '" />');
-        }
-
-        //Switched the form to view mode without saving
-        function cancel() {
-            $("#profile-edit-name").html("<h1>" + decodeURIComponent(name) + "</h1><a id=\"modeButton\" href=\"javascript:edit()\" class=\"btn-profile\"><i class=\"fa fa-pencil-square-o\"></i> Edit</a>");
-            $("#profile-edit-description").html('<div id="profile-edit-image" class="right"><!-- Added a Right Image class--><img src="../<%# merchant.LargeLogo %>" /><div id="LoadImg"></div><div class="ClearFix"></div></div><p id="DescriptionText">' + decodeURIComponent(description) + '</p>');
-                $("#profile-edit-address").html('<label>Address</label><p>' + address + '</p>');
-                $("#profile-edit-postal-code").html('<label>Postal Code</label><p>' + postalcode + '</p>');
-                $("#profile-edit-email").html('<label>Email</label><p>' + email + '</p>');
-                $("#profile-edit-phone-number").html('<label>Phone</label><p>' + phoneNumber + '</p>');
-                $("#profile-edit-city").html('<label>City</label><p>' + city + '</p>');
-                $("#profile-edit-province").html('<label>Province</label><p>' + province + '</p>');
-                $("#profile-edit-country").html('<label>Country</label><p>' + country + '</p>');
-            }
-    </script>
     <style type="text/css">
         /*Controls*/
         .ImgEdit {
@@ -103,7 +24,7 @@
                 <%--<div id="EditMode">
                     <a id="modeButton" href="javascript:edit()" class="btn-profile"><i class="fa fa-pencil-square-o"></i> Edit</a>
                 </div>--%>
-                <h1>My <%: merchant.Name %> Dashboard</h1>
+                <h1>My <%: merchant == null ? "" : merchant.Name %> Dashboard</h1>
             </div>
             <span id="ErrorMessages"></span>
             <h2 class="my-profile">Merchant Information</h2>
@@ -111,16 +32,16 @@
             <div class="profile-edit">
                 <div class="two-thirds">
         	        <div id="profile-edit-name">
-                        <h3><%# merchant.Name %></h3>
-                        <a id="modeButton" href="" class="btn-profile"><i class="fa fa-pencil-square-o"></i> Edit My Profile</a>
+                        <h3><%# merchant == null ? "" : merchant.Name %></h3>
+                        <a id="modeButton" href="Edit.aspx" class="btn-profile"><i class="fa fa-pencil-square-o"></i> Edit My Profile</a>
                     </div>
                     <div id="profile-edit-description">
-                        <p id="DescriptionText"><%# merchant.cUser.MerchantInfoes.FirstOrDefault<CouponsForGiving.Data.MerchantInfo>().MerchantDescription %></p>
+                        <p id="DescriptionText"><%# merchant == null ? "" : merchant.cUser.MerchantInfoes.FirstOrDefault<CouponsForGiving.Data.MerchantInfo>().MerchantDescription %></p>
                     </div>  
                 </div>
                 <div class="thirds">
                     <div id="profile-edit-image">
-                        <img src="../<%# merchant.LargeLogo %>" class="npo_logo" />
+                        <img src="../<%# merchant == null ? "Images/c4g_home_npos_step4.png" : merchant.LargeLogo %>" class="npo_logo" />
                         <div id="LoadImg"></div>
                         <div class="ClearFix"></div>
                     </div>
@@ -200,10 +121,14 @@
         <h3 class="profile-icon"><i class="fa fa-envelope"></i></h3>
         <%
             string notifications = "<ul>";
+            notifications += User.IsInRole("IncompleteMerchant") ? "Your profile has not been completed! <a href=\"Signup.aspx\">Click here</a> to complete your profile." : "";
+            notifications += merchant == null ? "" : (merchant.MerchantStripeInfoes.Count == 0 ? "Something went wrong when connecting to Stripe. Until you do, you won't be able to accept payments, set up offers, or partner with not-for-profits, <a href=\"ConnectToStripe.aspx\">Click here</a> to set up your Stripe account!" : "");
+            /*
             foreach (CouponsForGiving.Data.Notification item in CouponsForGiving.Data.Classes.NotificationcUsers.ListByUser(HttpContext.Current.User.Identity.Name))
                 notifications += String.Format("<li>{0}</li>", item.Value);
             notifications += "</ul>";
-
+            */
+            
             Response.Write(notifications);
         %>
         <div class="clear"></div>

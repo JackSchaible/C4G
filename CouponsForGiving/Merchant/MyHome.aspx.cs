@@ -42,9 +42,18 @@ public partial class Merchant_Home : System.Web.UI.Page
         Master.SideBar = false;
 
         merchant = SysDatamk.Merchant_GetByUsername(User.Identity.Name);
-        city = Cities.Get(merchant.CityID);
 
-        URL = WebServices.GetGoogleURL("https://www.coupons4giving.ca/Causes/" + merchant.Name);
+        try
+        {
+            city = Cities.Get(merchant.CityID);
+        }
+        catch (NullReferenceException ex)
+        {
+            ex.ToString();
+        }
+
+        if (merchant != null)
+            URL = WebServices.GetGoogleURL("https://www.coupons4giving.ca/Causes/" + merchant.Name);
 
         if (!IsPostBack)
             BindData();

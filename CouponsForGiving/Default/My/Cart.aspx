@@ -58,7 +58,6 @@
                     }
             %>
     <div id="Totals">
-        <p><strong>Subtotal:</strong> <asp:Label ID="SubtotalLabel" runat="server"></asp:Label></p>
         <p><strong>Total:</strong> <asp:Label ID="TotalLabel" runat="server"></asp:Label></p>
     </div>
     <div class="clear"></div>

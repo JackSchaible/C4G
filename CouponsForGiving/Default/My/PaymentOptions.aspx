@@ -6,14 +6,17 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
     <script type="text/javascript">
         $(document).ready(function () {
+            $("#newForm").hide();
+
             $("#ShowControl").click(function () {
-                if ($("#ShowControl").text() == "Show") {
-                    $("#newForm").slideDown(400);
-                    $("#ShowControl").text("Hide");
+                console.log($("#ShowControl").text());
+                if ($("#ShowControl").text() == "Hide") {
+                    $("#newForm").hide(400);
+                    $("#ShowControl").text("Show");
                 }
                 else {
-                    $("#newForm").slideUp(400);
-                    $("#ShowControl").text("Show");
+                    $("#newForm").show(400);
+                    $("#ShowControl").text("Hide");
                 }
             });
         });
@@ -27,7 +30,7 @@
                         <input name="PaymentTypeButton" type="radio" value='<%# Eval("PaymentOptionID") %>' />
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:BoundField DataField="Name" HeaderText="Type Name" SortExpression="Name" />
+                <asp:BoundField DataField="Name" HeaderText="Type" SortExpression="Name" />
                 <asp:BoundField DataField="Last4Digits" HeaderText="Last 4 Digits" SortExpression="Last4Digits" />
                 <asp:BoundField DataField="StripeToken" HeaderText="StripeToken" SortExpression="StripeToken" Visible="False" />
             </Columns>
@@ -42,7 +45,7 @@
         </div>
         <h1>Or Add a New One</h1>
         <p id="ShowControl">Show</p>
-        <div id="newForm" runat="server">
+        <div id="newForm" runat="server" ClientIDMode="Static">
             <p>Note: We don't store your credit card information.</p>
             <div class="Form">
                 <div class="FormRow">
@@ -124,13 +127,13 @@
                         ErrorMessage="City is required." Text="*"></asp:RequiredFieldValidator>
                 </div>
                 <div class="FormRow">
-                    <label>Province/State</label>
+                    <label for="ProvinceTextBox">Province/State</label>
                     <asp:TextBox ID="ProvinceTextBox" runat="server"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ProvinceTextBox"
                         ErrorMessage="Province/State is required." Text="*"></asp:RequiredFieldValidator>
                 </div>
                 <div class="FormRow">
-                    <label>Postal Code</label>
+                    <label for="PostalTextBox">Postal Code</label>
                     <asp:TextBox ID="PostalTextBox" runat="server"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="PostalTextBox"
                         ErrorMessage="Postal Code is required." Text="*"></asp:RequiredFieldValidator>
@@ -140,6 +143,7 @@
                     </asp:RegularExpressionValidator>
                 </div>
                 <div class="FormRow">
+                    <label for="CountryDDL">Country</label>
                     <asp:DropDownList ID="CountryDDL" runat="server">
                         <asp:ListItem Text="Afghanistan">Afghanistan</asp:ListItem>
                         <asp:ListItem Text="Albania">Albania</asp:ListItem>

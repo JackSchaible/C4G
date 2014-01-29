@@ -29,7 +29,7 @@ public partial class Merchant_Signup : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
-        control.MenuBar = MenuBarType.Anonymous;
+        control.MenuBar = MenuBarType.Merchant;
         strings = new XmlDocument();
 
         try
@@ -38,20 +38,6 @@ public partial class Merchant_Signup : System.Web.UI.Page
             BusinessNames = Merchants.ListNames();
             string lang = WebConfigurationManager.AppSettings["Language"];
             strings.Load(Server.MapPath(String.Format("Text ({0}).xml", lang)));
-
-            try
-            {
-                NotificationcUsers.Insert(String.Format("ProfileNotComplete({0})", lang), User.Identity.Name);
-            }
-            catch (Exception ex)
-            {
-                if (ex.InnerException == null)
-                    throw ex;
-                else
-                    if (ex.InnerException.Message != "Violation of PRIMARY KEY constraint 'PK_NotificationcUser'. Cannot insert duplicate key in object 'Database_User.NotificationcUser'. The duplicate key value is (ProfileNotComplete(EN-US), 4174).\r\nThe statement has been terminated.")
-                        throw ex;
-                        
-            }
         }
         catch (Exception ex)
         {
@@ -97,7 +83,7 @@ public partial class Merchant_Signup : System.Web.UI.Page
         List<string> errors = new List<string>();
         Validation validation = null;
         int CityID = -1;
-        DateTime birthDate = DateTime.Parse(BirthDate);
+        DateTime birthDate = DateTime.ParseExact(BirthDate, "dd/MM/yyyy", null);
 
         //Convert to useful variables
         bool globalMerchant = GlobalMerchant.ToLower() == "true" ? true : false;
@@ -301,19 +287,16 @@ public partial class Merchant_Signup : System.Web.UI.Page
                             SysData.MerchantInfo_Insert(username, FirstName + LastName, ContactPhoneNumber, Description);
                             MerchantSettings.Insert(merchantID, autoAcceptRequests);
 
-                            string vars = String.Format("stripe_user[email]={0}&stripe_user[url]={1}&stripe_user[phone_number]={2}&stripe_user[business_name]={3}&stripe_user[business_type]={4}&stripe_user[first_name]={5}&stripe_user[last_name]={6}&stripe_user[dob_day]={7}&stripe_user[dob_month]={8}&stripe_user[dob_year]={9}&stripe_user[street_address]={10}&stripe_user[city]={11}&stripe_user[state]={12}&stripe_user[zip]={13}&stripe_user[physical_product]={14}&stripe_user[product_category]={15}&stripe_user[country]={16}&stripe_user[currency]={17}&state={18}", 
+                            string vars = String.Format("stripe_user[email]={0}&stripe_user[url]={1}&stripe_user[phone_number]={2}&stripe_user[business_name]={3}&stripe_user[business_type]={4}&stripe_user[first_name]={5}&stripe_user[last_name]={6}&stripe_user[dob_day]={7}&stripe_user[dob_month]={8}&stripe_user[dob_year]={9}&stripe_user[street_address]={10}&stripe_user[city]={11}&stripe_user[state]={12}&stripe_user[zip]={13}&stripe_user[physical_product]={14}&stripe_user[product_category]={15}&stripe_user[country]={16}&stripe_user[currency]={17}", 
                                 HttpContext.Current.Server.UrlEncode(ContactEmail), HttpContext.Current.Server.UrlEncode(Website), HttpContext.Current.Server.UrlEncode(PhoneNumber), 
                                 HttpContext.Current.Server.UrlEncode(BusinessName), HttpContext.Current.Server.UrlEncode(BusinessType), HttpContext.Current.Server.UrlEncode(FirstName),
                                 HttpContext.Current.Server.UrlEncode(LastName), HttpContext.Current.Server.UrlEncode(birthDate.ToString("dd")),
                                 HttpContext.Current.Server.UrlEncode(birthDate.ToString("MM")), HttpContext.Current.Server.UrlEncode(birthDate.ToString("yyyy")), 
                                 HttpContext.Current.Server.UrlEncode(Address), HttpContext.Current.Server.UrlEncode(city), HttpContext.Current.Server.UrlEncode(province), 
                                 HttpContext.Current.Server.UrlEncode(Postal), HttpContext.Current.Server.UrlEncode(physicalProduct.ToString()), HttpContext.Current.Server.UrlEncode(ProductType), 
-                                HttpContext.Current.Server.UrlEncode(country), HttpContext.Current.Server.UrlEncode(Currency), HttpContext.Current.User.Identity.Name);
+                                HttpContext.Current.Server.UrlEncode(country), HttpContext.Current.Server.UrlEncode(Currency));
 
                             result = String.Format("https://connect.stripe.com/oauth/authorize?response_type=code&client_id=ca_2dcruIQ1MEWM9BfJot2jJUPvKqJGofMU&scope=read_write&{0}", vars);
-
-                            NotificationcUsers.Delete(String.Format("ProfileNotComplete({0})", lang), HttpContext.Current.User.Identity.Name);
-                            NotificationcUsers.Insert(String.Format("StripeNotConnected({0})", lang), HttpContext.Current.User.Identity.Name);
                             ts.Complete();
                         }
                         else
