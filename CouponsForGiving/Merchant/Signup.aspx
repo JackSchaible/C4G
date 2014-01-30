@@ -383,14 +383,12 @@
 
         function setCity(city) {
             $("#SelectedCity").html('<p>' + city + '</p>');
-            $("#SelectedCity").css('display', 'block');
             $("#CityID").html(city);
+            $("#CityTextBox").val(city);
             $("#CitiesAutoCompleteBox").html('');
-            $("#CityTextBox").val('');
 
             $("#SelectedCity").click(function () {
                 $("#SelectedCity").html('');
-                $("#SelectedCity").css('display', 'none');
 
                 $("#CityID").html('');
             });
