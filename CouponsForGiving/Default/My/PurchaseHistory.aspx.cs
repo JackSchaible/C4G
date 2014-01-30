@@ -30,10 +30,35 @@ public partial class Default_My_PurchaseHistory : System.Web.UI.Page
             }
         );
         UnredeemedGV.DataBind();
+
+       RedeemedGV.DataSource =
+       (
+           from po
+           in PurchaseOrders.ListRedeemedByUser(User.Identity.Name)
+           select new
+           {
+               POID = po.PurchaseOrderID,
+               Deal = po.DealInstance.Deal.Name,
+               Merchant = po.DealInstance.Deal.Merchant.Name,
+               Campaign = po.Campaign.Name,
+               NPO = po.Campaign.NPO.Name,
+               Price = po.DealInstance.Deal.Prices.FirstOrDefault<Price>().GiftValue
+           }
+       );
+       RedeemedGV.DataBind();
     }
 
     protected void UnredeemedGV_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
     {
         //Magic?
+        PurchaseOrder item = (
+            from po
+            in PurchaseOrders.ListUnredeemedByUser(User.Identity.Name)
+            where po.PurchaseOrderID == int.Parse(UnredeemedGV.DataKeys[e.NewSelectedIndex].Value.ToString())
+            select po
+        ).FirstOrDefault<PurchaseOrder>();
+
+        string url = "~\\" + PDFUtils.CreateCouponPDF(item);
+        Response.Redirect(url);
     }
 }

@@ -582,6 +582,7 @@
     <Property Name="NPOSplit" Type="money" Nullable="false" />
     <Property Name="MerchantSplit" Type="money" Nullable="false" />
     <Property Name="OurSplit" Type="money" Nullable="false" />
+    <Property Name="CouponCode" Type="uniqueidentifier" Nullable="false" />
   </EntityType>
   <EntityType Name="PurchaseTransaction">
     <Key>
@@ -1721,6 +1722,14 @@
   <Function Name="PaymentOption_ListByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="cUsername" Type="nvarchar" Mode="In" />
   </Function>
+  <Function Name="PaymentOptionInfo_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="PaymentOptionID" Type="int" Mode="In" />
+    <Parameter Name="Address" Type="nvarchar" Mode="In" />
+    <Parameter Name="City" Type="nvarchar" Mode="In" />
+    <Parameter Name="Province" Type="nvarchar" Mode="In" />
+    <Parameter Name="Country" Type="nvarchar" Mode="In" />
+    <Parameter Name="PostalCode" Type="nchar" Mode="In" />
+  </Function>
   <Function Name="PreferredCity_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="Username" Type="nvarchar" Mode="In" />
   </Function>
@@ -1751,6 +1760,12 @@
   <Function Name="Provinces_ListByCountry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="CountryCode" Type="nchar" Mode="In" />
   </Function>
+  <Function Name="PurchaseOrder_GetByCouponCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="CouponCode" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="PurchaseOrder_GetByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="CouponCode" Type="int" Mode="In" />
+  </Function>
   <Function Name="PurchaseOrder_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="DealID" Type="int" Mode="In" />
     <Parameter Name="CampaignID" Type="int" Mode="In" />
@@ -1760,11 +1775,20 @@
     <Parameter Name="MerchantSplit" Type="money" Mode="In" />
     <Parameter Name="OurSplit" Type="money" Mode="In" />
   </Function>
+  <Function Name="PurchaseOrder_ListRedeemedByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
   <Function Name="PurchaseOrder_ListUnredeemedByMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="PurchaseOrder_ListUnredeemedByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="Username" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="PurchaseOrder_Redeem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="PurchaseOrderID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="PurchaseOrder_RedeemByCouponCode" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="CouponCode" Type="uniqueidentifier" Mode="In" />
   </Function>
   <Function Name="PurchaseOrder_Unredeem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="PurchaseOrderID" Type="int" Mode="In" />

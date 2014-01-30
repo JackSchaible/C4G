@@ -112,12 +112,16 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
                     deals.Add(cart.Where(x => x.MerchantID == item).ToList<ShoppingCart>());
 
                 StripeCharge charge = null;
+                int id = -1;
+
+                List<PurchaseOrder> orders = new List<PurchaseOrder>();
 
                 using (TransactionScope ts = new TransactionScope())
                 {
                     try
                     {
-                        SysData.PurchaseOrder_Insert(cart, User.Identity.Name);
+                        orders = SysData.PurchaseOrder_Insert(cart, User.Identity.Name);
+
                         cUser user = SysData.cUser_GetByName(User.Identity.Name);
                         MerchantStripeInfo info;
 
@@ -132,19 +136,17 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
                             StripeToken stripeToken = new StripeTokenService(info.ApiKey).Create(myToken);
                             var stripeService = new StripeChargeService(info.ApiKey);
                             var stripeChargeOption = new StripeChargeCreateOptions()
-                            { 
-                                AmountInCents = (int)(ds.Sum(x => x.MerchantSplit) * 100), 
+                            {
+                                AmountInCents = (int)(ds.Sum(x => x.MerchantSplit) * 100),
                                 Currency = "cad",
                                 Card = stripeToken.Id,
-                                Description = "Your Purchase with Coupons4Giving - " + info.Merchant.Name, 
+                                Description = "Your Purchase with Coupons4Giving - " + info.Merchant.Name,
                                 ApplicationFeeInCents = (int)(ds.Sum(x => x.NPOSplit + x.OurSplit) * 100)
                             };
                             var response = stripeService.Create(stripeChargeOption);
                         }
                         Session["Cart"] = new List<ShoppingCart>();
                         ts.Complete();
-                        Response.Redirect("ThankYou.aspx");
-
                     }
                     catch (Exception ex)
                     {
@@ -166,8 +168,15 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
                 {
                     if (charge.FailureCode != null)
                     {
-                        ErrorLabel.Text = "Carge Failure! : " + charge.FailureMessage;
+                        ErrorLabel.Text = "Charge Failure! : " + charge.FailureMessage;
                     }
+                }
+                else
+                {
+                    foreach (PurchaseOrder item in orders)
+                        EmailUtils.SendPurchaseEmail(item);
+
+                    Response.Redirect("ThankYou.aspx");
                 }
             }
         }

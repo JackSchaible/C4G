@@ -279,15 +279,6 @@
       <End Role="PurchaseTransaction" EntitySet="PurchaseTransactions" />
       <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
     </AssociationSet>
-    <FunctionImport Name="PurchaseOrder_Insert">
-      <Parameter Name="DealID" Mode="In" Type="Int32" />
-      <Parameter Name="CampaignID" Mode="In" Type="Int32" />
-      <Parameter Name="TransactionID" Mode="In" Type="Int32" />
-      <Parameter Name="PurchaseAmount" Mode="In" Type="Decimal" />
-      <Parameter Name="NPOSplit" Mode="In" Type="Decimal" />
-      <Parameter Name="MerchantSplit" Mode="In" Type="Decimal" />
-      <Parameter Name="OurSplit" Mode="In" Type="Decimal" />
-    </FunctionImport>
     <FunctionImport Name="DealInstance_List" EntitySet="DealInstances" ReturnType="Collection(C4GModel.DealInstance)" />
     <FunctionImport Name="Price_GetByDealInstance" EntitySet="Prices" ReturnType="Collection(C4GModel.Price)">
       <Parameter Name="DealInstanceID" Mode="In" Type="Int32" />
@@ -817,6 +808,38 @@
     <FunctionImport Name="City_Get" EntitySet="Cities" ReturnType="Collection(C4GModel.City)">
       <Parameter Name="CityID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="PurchaseOrder_ListRedeemedByUser" EntitySet="PurchaseOrders" ReturnType="Collection(C4GModel.PurchaseOrder)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PurchaseOrder_ListUnredeemedByUser" EntitySet="PurchaseOrders" ReturnType="Collection(C4GModel.PurchaseOrder)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PaymentOptionInfo_Insert">
+      <Parameter Name="PaymentOptionID" Mode="In" Type="Int32" />
+      <Parameter Name="Address" Mode="In" Type="String" />
+      <Parameter Name="City" Mode="In" Type="String" />
+      <Parameter Name="Province" Mode="In" Type="String" />
+      <Parameter Name="Country" Mode="In" Type="String" />
+      <Parameter Name="PostalCode" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="PurchaseOrder_Insert" EntitySet="PurchaseOrders" ReturnType="Collection(C4GModel.PurchaseOrder)">
+      <Parameter Name="DealID" Mode="In" Type="Int32" />
+      <Parameter Name="CampaignID" Mode="In" Type="Int32" />
+      <Parameter Name="TransactionID" Mode="In" Type="Int32" />
+      <Parameter Name="PurchaseAmount" Mode="In" Type="Decimal" />
+      <Parameter Name="NPOSplit" Mode="In" Type="Decimal" />
+      <Parameter Name="MerchantSplit" Mode="In" Type="Decimal" />
+      <Parameter Name="OurSplit" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="PurchaseOrder_RedeemByCouponCode">
+      <Parameter Name="CouponCode" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="PurchaseOrder_GetByCouponCode" EntitySet="PurchaseOrders" ReturnType="Collection(C4GModel.PurchaseOrder)">
+      <Parameter Name="CouponCode" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="PurchaseOrder_GetByID" EntitySet="PurchaseOrders" ReturnType="Collection(C4GModel.PurchaseOrder)">
+      <Parameter Name="CouponCode" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="Campaign">
     <Key>
@@ -1341,6 +1364,7 @@
     <NavigationProperty Name="DealInstance" Relationship="C4GModel.FK_PurchaseOrder_DealInstance" FromRole="PurchaseOrder" ToRole="DealInstance" />
     <NavigationProperty Name="OrderStatu" Relationship="C4GModel.FK_PurchaseOrder_OrderStatus" FromRole="PurchaseOrder" ToRole="OrderStatu" />
     <NavigationProperty Name="PurchaseTransaction" Relationship="C4GModel.FK_PurchaseOrder_PurchaseTransaction" FromRole="PurchaseOrder" ToRole="PurchaseTransaction" />
+    <Property Type="Guid" Name="CouponCode" Nullable="false" />
   </EntityType>
   <Association Name="FK_PurchaseOrder_Campaign">
     <End Type="C4GModel.Campaign" Role="Campaign" Multiplicity="1" />
@@ -2643,5 +2667,55 @@
     <Property Type="String" Name="CountryCode" Nullable="true" MaxLength="2" />
     <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
     <Property Type="Int32" Name="CityID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PurchaseOrder_ListRedeemedByUser_Result">
+    <Property Type="Int32" Name="PurchaseOrderID" Nullable="false" />
+    <Property Type="Int32" Name="CampaignID" Nullable="false" />
+    <Property Type="Int32" Name="OrderStatusID" Nullable="false" />
+    <Property Type="Int32" Name="TransactionID" Nullable="false" />
+    <Property Type="DateTime" Name="PurchaseDate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="DealInstanceID" Nullable="false" />
+    <Property Type="Decimal" Name="PurchaseAmount" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="NPOSplit" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="MerchantSplit" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="OurSplit" Nullable="false" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="PurchaseOrder_ListUnredeemedByUser_Result">
+    <Property Type="Int32" Name="PurchaseOrderID" Nullable="false" />
+    <Property Type="Int32" Name="CampaignID" Nullable="false" />
+    <Property Type="Int32" Name="OrderStatusID" Nullable="false" />
+    <Property Type="Int32" Name="TransactionID" Nullable="false" />
+    <Property Type="DateTime" Name="PurchaseDate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="DealInstanceID" Nullable="false" />
+    <Property Type="Decimal" Name="PurchaseAmount" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="NPOSplit" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="MerchantSplit" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="OurSplit" Nullable="false" Precision="19" />
+  </ComplexType>
+  <ComplexType Name="PurchaseOrder_GetByCouponCode_Result">
+    <Property Type="Int32" Name="PurchaseOrderID" Nullable="false" />
+    <Property Type="Int32" Name="CampaignID" Nullable="false" />
+    <Property Type="Int32" Name="OrderStatusID" Nullable="false" />
+    <Property Type="Int32" Name="TransactionID" Nullable="false" />
+    <Property Type="DateTime" Name="PurchaseDate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="DealInstanceID" Nullable="false" />
+    <Property Type="Decimal" Name="PurchaseAmount" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="NPOSplit" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="MerchantSplit" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="OurSplit" Nullable="false" Precision="19" />
+    <Property Type="Guid" Name="CouponCode" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PurchaseOrder_GetByID_Result">
+    <Property Type="Int32" Name="PurchaseOrderID" Nullable="false" />
+    <Property Type="Int32" Name="CampaignID" Nullable="false" />
+    <Property Type="Int32" Name="OrderStatusID" Nullable="false" />
+    <Property Type="Int32" Name="TransactionID" Nullable="false" />
+    <Property Type="DateTime" Name="PurchaseDate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="DealInstanceID" Nullable="false" />
+    <Property Type="Decimal" Name="PurchaseAmount" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="NPOSplit" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="MerchantSplit" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="OurSplit" Nullable="false" Precision="19" />
+    <Property Type="Guid" Name="CouponCode" Nullable="false" />
   </ComplexType>
 </Schema>

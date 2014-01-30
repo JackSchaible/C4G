@@ -1,4 +1,9 @@
 ﻿using CouponsForGiving.Data;
+using GoogleQRGenerator;
+using iTextSharp.text;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
+//using iTextSharp.text;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -13,6 +18,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Configuration;
 using System.Web.Script.Serialization;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
@@ -1074,6 +1080,342 @@ namespace CouponsForGiving
 
             mm.Body = message;
             new SmtpClient().Send(mm);
+        }
+
+        public static void SendPurchaseEmail(PurchaseOrder item)
+        {
+            MailMessage mm = new MailMessage();
+
+            mm.To.Add(Membership.GetUser().Email);
+
+            mm.Subject = "Your Recent Coupons4Giving Purchase";
+            mm.IsBodyHtml = true;
+            Attachment pdf = new Attachment(PDFUtils.CreateCouponPDF(item));
+            mm.Attachments.Add(pdf);
+
+            string message = "";
+
+            message += "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">";
+            message += "<html>";
+            message += "<head>";
+            message += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">";
+            message += String.Format("<meta property=\"og:title\" content=\"{0}\">", "New Purchase");
+            message += String.Format("<title>[0]</title>", "New Purchase");
+            message += "</head>";
+            message += "<body leftmargin=\"0\" marginwidth=\"0\" topmargin=\"0\" marginheight=\"0\" offset=\"0\" style=\"-webkit-text-size-adjust: none;margin: 0;padding: 0;background-color: #FAFAFA;width: 100%;\">";
+            message += "<center>";
+            message += "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" height=\"100%\" width=\"100%\" id=\"backgroundTable\" style=\"margin: 0;padding: 0;background-color: #FAFAFA;height: 100%;width: 100%;\">";
+            message += "<tr>";
+            message += "<td align=\"center\" valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" width=\"600\" id=\"templatePreheader\" style=\"background-color: #FAFAFA;\">";
+            message += "<tr>";
+            message += "<td valign=\"top\" class=\"preheaderContent\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" width=\"100%\">";
+            message += "<tr>";
+            message += "<td valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<div style=\"color: #505050;font-family: Arial;font-size: 10px;line-height: 100%;text-align: center;\">Thank you for registering with Coupons4Giving.ca. Click on the link below to access your new account.";
+            message += "</div>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\" id=\"templateContainer\" style=\"border: 1px solid #DDD;background-color: #FFFFFF;\">";
+            message += "<tr>";
+            message += "<td align=\"center\" valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\" id=\"templateHeader\" style=\"background-color: #FFFFFF;border-bottom: 0;\">";
+            message += "<tr>";
+            message += "<td class=\"headerContent\" style=\"border-collapse: collapse;color: #202020;font-family: Arial;font-size: 34px;font-weight: bold;line-height: 100%;padding: 0;text-align: center;vertical-align: middle;\">";
+            message += "<img src=\"http://www.coupons4giving.ca/Images/c4g_email_header.png\" style=\"max-width: 600px;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none; padding-top: 20px;\" id=\"headerImage campaign-icon\">";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "<tr>";
+            message += "<td align=\"center\" valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\" id=\"templateBody\">";
+            message += "<tr>";
+            message += "<td valign=\"top\" class=\"bodyContent\" style=\"border-collapse: collapse;background-color: #FFFFFF;\">";
+            message += "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">";
+            message += "<tr>";
+            message += "<td valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"20\" cellspacing=\"0\" width=\"100%\">";
+            message += "<tr>";
+            message += "<td valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\"><h1 class=\"h1\" style=\"color: #22bfe8;display: block;font-family: Arial;font-size: 28px;font-weight: bold;line-height: 100%;margin-top: 0;margin-right: 0;margin-bottom: 10px;margin-left: 0;text-align: center;\">Your Coupons4Giving Purchase</h1>";
+            message += "</div>";
+            message += "<img src=\"http://www.coupons4giving.ca/Images/c4g_email_template_header1.png\" style=\"max-width: 560px;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;display: inline; padding-bottom: 30px;\">";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\"><p>Dear " + item.PurchaseTransaction.cUser.Username + "</p><p>Thanks for purchasing a coupon for " + item.DealInstance.Deal.Name + ". Attached is a pdf of your coupon with the details of your purchase and cause you supported. We have notified the merchant of your coupon purchase and they are standing by waiting to process your order. <a href='mailto:" + item.DealInstance.Deal.Merchant.Email + "'>Click here</a> to be connected to them directly.</p></div>";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\"><p>Please note that taxes and shipping may be extra.</div>";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\"><p>Thanks for using Coupons4Giving and supporting great causes!</div>";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\"><p>Cheers,</div>";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\"><p>The Coupons4Giving Team</div>";
+            message += "<h4 class=\"null tpl-content-highlight\" style=\"text-align: center;color: #5e5e5e;display: block;font-family: Arial;font-size: 22px;font-weight: bold;line-height: 100%;margin-top: 0;margin-right: 0;margin-bottom: 10px;margin-left: 0;\"><br>";
+            message += "</div>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "<tr>";
+            message += "<td align=\"center\" valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" width=\"600\" id=\"templateFooter\" style=\"background-color: #FFFFFF;border-top: 0;\">";
+            message += "<tr>";
+            message += "<td valign=\"top\" class=\"footerContent\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" width=\"100%\">";
+            message += "<tr>";
+            message += "<td colspan=\"2\" valign=\"middle\" id=\"social\" style=\"border-collapse: collapse;background-color: #ecebe9;border: 0;\">";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 12px;line-height: 125%;text-align: center;\"><h3 class=\"null\" style=\"text-align: center;color: #202020;display: block;font-family: Arial;font-size: 26px;font-weight: bold;line-height: 100%;margin-top: 0;margin-right: 0;margin-bottom: 10px;margin-left: 0;\"><span style=\"font-size:18px;\"><span style=\"color:#ff9900;\">Connect with us on Social Media</span></span></h3>";
+            message += "&nbsp;<a href=\"https://twitter.com/Coupons4Giving\" target=\"_blank\" style=\"color: #22bfe8;font-weight: normal;text-decoration: underline;\"><img align=\"none\" height=\"84\" src=\"http://www.coupons4giving.ca/Images/c4g_email_twitter.png\" style=\"width: 84px;height: 84px;border: 0;line-height: 100%;outline: none;text-decoration: none;display: inline;\" width=\"84\"></a><a href=\"http://www.facebook.com/Coupons4Giving\" target=\"_blank\" style=\"color: #22bfe8;font-weight: normal;text-decoration: underline;\"><img align=\"none\" height=\"84\" src=\"http://www.coupons4giving.ca/Images/c4g_email_facebook.png\" style=\"width: 84px;height: 84px;border: 0;line-height: 100%;outline: none;text-decoration: none;display: inline;\" width=\"84\"></a><a href=\"https://www.coupons4giving.ca/Home.aspx#\" target=\"_blank\" style=\"color: #22bfe8;font-weight: normal;text-decoration: underline;\"><img align=\"none\" height=\"84\" src=\"http://www.coupons4giving.ca/Images/c4g_email_linkedin.png\" style=\"width: 84px;height: 84px;border: 0;line-height: 100%;outline: none;text-decoration: none;display: inline;\" width=\"84\"></a></div>";
+            message += "</td>";
+            message += "</tr>";
+            message += "<tr>";
+            message += "<td valign=\"top\" width=\"550\" style=\"border-collapse: collapse;\">";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 12px;line-height: 125%;text-align: center;\">&copy; 2013 - GenerUS Marketing Solutions | Edmonton, Alberta, Canada</div>";
+            message += "</td>";
+            message += "</tr>";
+            message += "<tr>";
+            message += "<td colspan=\"2\" valign=\"middle\" id=\"utility\" style=\"border-collapse: collapse;background-color: #FFFFFF;border: 0;\">";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "<br>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</center>";
+            message += "</body>";
+            message += "</html>";
+
+            mm.Body = message;
+            new SmtpClient().Send(mm);
+
+            MailMessage merchantMessage = new MailMessage();
+            merchantMessage.To.Add(item.DealInstance.Deal.Merchant.Email);
+
+            merchantMessage.Subject = "A New Coupons4Giving Purchase";
+            merchantMessage.IsBodyHtml = true;
+            merchantMessage.Attachments.Add(pdf);
+
+            message = "";
+
+            message += "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">";
+            message += "<html>";
+            message += "<head>";
+            message += "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">";
+            message += String.Format("<meta property=\"og:title\" content=\"{0}\">", "New Purchase");
+            message += String.Format("<title>[0]</title>", "New Purchase");
+            message += "</head>";
+            message += "<body leftmargin=\"0\" marginwidth=\"0\" topmargin=\"0\" marginheight=\"0\" offset=\"0\" style=\"-webkit-text-size-adjust: none;margin: 0;padding: 0;background-color: #FAFAFA;width: 100%;\">";
+            message += "<center>";
+            message += "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" height=\"100%\" width=\"100%\" id=\"backgroundTable\" style=\"margin: 0;padding: 0;background-color: #FAFAFA;height: 100%;width: 100%;\">";
+            message += "<tr>";
+            message += "<td align=\"center\" valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" width=\"600\" id=\"templatePreheader\" style=\"background-color: #FAFAFA;\">";
+            message += "<tr>";
+            message += "<td valign=\"top\" class=\"preheaderContent\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" width=\"100%\">";
+            message += "<tr>";
+            message += "<td valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<div style=\"color: #505050;font-family: Arial;font-size: 10px;line-height: 100%;text-align: center;\">Thank you for registering with Coupons4Giving.ca. Click on the link below to access your new account.";
+            message += "</div>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\" id=\"templateContainer\" style=\"border: 1px solid #DDD;background-color: #FFFFFF;\">";
+            message += "<tr>";
+            message += "<td align=\"center\" valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\" id=\"templateHeader\" style=\"background-color: #FFFFFF;border-bottom: 0;\">";
+            message += "<tr>";
+            message += "<td class=\"headerContent\" style=\"border-collapse: collapse;color: #202020;font-family: Arial;font-size: 34px;font-weight: bold;line-height: 100%;padding: 0;text-align: center;vertical-align: middle;\">";
+            message += "<img src=\"http://www.coupons4giving.ca/Images/c4g_email_header.png\" style=\"max-width: 600px;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none; padding-top: 20px;\" id=\"headerImage campaign-icon\">";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "<tr>";
+            message += "<td align=\"center\" valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\" id=\"templateBody\">";
+            message += "<tr>";
+            message += "<td valign=\"top\" class=\"bodyContent\" style=\"border-collapse: collapse;background-color: #FFFFFF;\">";
+            message += "<table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">";
+            message += "<tr>";
+            message += "<td valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"20\" cellspacing=\"0\" width=\"100%\">";
+            message += "<tr>";
+            message += "<td valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\"><h1 class=\"h1\" style=\"color: #22bfe8;display: block;font-family: Arial;font-size: 28px;font-weight: bold;line-height: 100%;margin-top: 0;margin-right: 0;margin-bottom: 10px;margin-left: 0;text-align: center;\">Your Coupons4Giving Purchase</h1>";
+            message += "</div>";
+            message += "<img src=\"http://www.coupons4giving.ca/Images/c4g_email_template_header1.png\" style=\"max-width: 560px;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;display: inline; padding-bottom: 30px;\">";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\"><p>Dear " + item.DealInstance.Deal.Merchant.Name + "</p><p>A coupon for " + item.DealInstance.Deal.Name + " has been purchased by " + Membership.GetUser(item.PurchaseTransaction.cUser.Username).Email + ". We have notified them that you are ready to process their order.</p></div>";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\"><p>Thanks for using Coupons4Giving and helping us to support great causes!</div>";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\"><p>Cheers,</div>";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\"><p>The Coupons4Giving Team</div>";
+            message += "<h4 class=\"null tpl-content-highlight\" style=\"text-align: center;color: #5e5e5e;display: block;font-family: Arial;font-size: 22px;font-weight: bold;line-height: 100%;margin-top: 0;margin-right: 0;margin-bottom: 10px;margin-left: 0;\"><br>";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\"><h1 class=\"h1\" style=\"color: #22bfe8;display: block;font-family: Arial;font-size: 28px;font-weight: bold;line-height: 100%;margin-top: 0;margin-right: 0;margin-bottom: 10px;margin-left: 0;text-align: center;\">Customer's Coupons4Giving Purchase Message</h1>";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\"><h1 class=\"h1\" style=\"color: #22bfe8;display: block;font-family: Arial;font-size: 28px;font-weight: bold;line-height: 100%;margin-top: 0;margin-right: 0;margin-bottom: 10px;margin-left: 0;text-align: center;\">Your Coupons4Giving Purchase</h1>";
+            message += "</div>";
+            message += "<img src=\"http://www.coupons4giving.ca/Images/c4g_email_template_header1.png\" style=\"max-width: 560px;border: 0;height: auto;line-height: 100%;outline: none;text-decoration: none;display: inline; padding-bottom: 30px;\">";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\"><p>Dear " + item.PurchaseTransaction.cUser.Username + "</p><p>Thanks for purchasing a coupon for " + item.DealInstance.Deal.Name + ". Attached is a pdf of your coupon with the details of your purchase and cause you supported. We have notified the merchant of your coupon purchase and they are standing by waiting to process your order. <a href='mailto:" + item.DealInstance.Deal.Merchant.Email + "'>Click here</a> to be connected to them directly.</p></div>";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\"><p>Please note that taxes and shipping may be extra.</div>";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\"><p>Thanks for using Coupons4Giving and supporting great causes!</div>";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\"><p>Cheers,</div>";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 14px;line-height: 150%;text-align: center;\"><p>The Coupons4Giving Team</div>";
+            message += "<h4 class=\"null tpl-content-highlight\" style=\"text-align: center;color: #5e5e5e;display: block;font-family: Arial;font-size: 22px;font-weight: bold;line-height: 100%;margin-top: 0;margin-right: 0;margin-bottom: 10px;margin-left: 0;\"><br>";
+            message += "</div>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "<tr>";
+            message += "<td align=\"center\" valign=\"top\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" width=\"600\" id=\"templateFooter\" style=\"background-color: #FFFFFF;border-top: 0;\">";
+            message += "<tr>";
+            message += "<td valign=\"top\" class=\"footerContent\" style=\"border-collapse: collapse;\">";
+            message += "<table border=\"0\" cellpadding=\"10\" cellspacing=\"0\" width=\"100%\">";
+            message += "<tr>";
+            message += "<td colspan=\"2\" valign=\"middle\" id=\"social\" style=\"border-collapse: collapse;background-color: #ecebe9;border: 0;\">";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 12px;line-height: 125%;text-align: center;\"><h3 class=\"null\" style=\"text-align: center;color: #202020;display: block;font-family: Arial;font-size: 26px;font-weight: bold;line-height: 100%;margin-top: 0;margin-right: 0;margin-bottom: 10px;margin-left: 0;\"><span style=\"font-size:18px;\"><span style=\"color:#ff9900;\">Connect with us on Social Media</span></span></h3>";
+            message += "&nbsp;<a href=\"https://twitter.com/Coupons4Giving\" target=\"_blank\" style=\"color: #22bfe8;font-weight: normal;text-decoration: underline;\"><img align=\"none\" height=\"84\" src=\"http://www.coupons4giving.ca/Images/c4g_email_twitter.png\" style=\"width: 84px;height: 84px;border: 0;line-height: 100%;outline: none;text-decoration: none;display: inline;\" width=\"84\"></a><a href=\"http://www.facebook.com/Coupons4Giving\" target=\"_blank\" style=\"color: #22bfe8;font-weight: normal;text-decoration: underline;\"><img align=\"none\" height=\"84\" src=\"http://www.coupons4giving.ca/Images/c4g_email_facebook.png\" style=\"width: 84px;height: 84px;border: 0;line-height: 100%;outline: none;text-decoration: none;display: inline;\" width=\"84\"></a><a href=\"https://www.coupons4giving.ca/Home.aspx#\" target=\"_blank\" style=\"color: #22bfe8;font-weight: normal;text-decoration: underline;\"><img align=\"none\" height=\"84\" src=\"http://www.coupons4giving.ca/Images/c4g_email_linkedin.png\" style=\"width: 84px;height: 84px;border: 0;line-height: 100%;outline: none;text-decoration: none;display: inline;\" width=\"84\"></a></div>";
+            message += "</td>";
+            message += "</tr>";
+            message += "<tr>";
+            message += "<td valign=\"top\" width=\"550\" style=\"border-collapse: collapse;\">";
+            message += "<div style=\"color: #5e5e5e;font-family: Arial;font-size: 12px;line-height: 125%;text-align: center;\">&copy; 2013 - GenerUS Marketing Solutions | Edmonton, Alberta, Canada</div>";
+            message += "</td>";
+            message += "</tr>";
+            message += "<tr>";
+            message += "<td colspan=\"2\" valign=\"middle\" id=\"utility\" style=\"border-collapse: collapse;background-color: #FFFFFF;border: 0;\">";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "<br>";
+            message += "</td>";
+            message += "</tr>";
+            message += "</table>";
+            message += "</center>";
+            message += "</body>";
+            message += "</html>";
+
+            merchantMessage.Body = message;
+            new SmtpClient().Send(merchantMessage);
+        }
+    }
+
+    public class PDFUtils
+    {
+        public static string CreateCouponPDF(PurchaseOrder item)
+        {
+            string result = "";
+            Utilsmk.GetOrCreateFolder(HttpContext.Current.Request.PhysicalApplicationPath + "tmp\\" + HttpContext.Current.User.Identity.Name + "\\PDFs\\");
+
+            string filePath = HttpContext.Current.Server.MapPath("~/tmp/" + HttpContext.Current.User.Identity.Name + "/PDFs/" + item.PurchaseOrderID + ".pdf");
+
+            if (!File.Exists(filePath))
+            {
+                var googleQr = new GoogleQr("http://www.coupons4giving.ca/Merchant/MyCoupons/Redeem.aspx?cid=" + item.CouponCode.ToString("D"), "100x100", true);
+                string qrText = googleQr.ToString();
+                var qrImage = googleQr.Render();
+
+                string htmlText = "<!DOCTYPE html lang='en'>";
+                htmlText += "<head>";
+                htmlText += "<meta charset='utf-8'>";
+                htmlText += "<title>Your Coupon</title>";
+                htmlText += "<link href='http://www.coupons4giving.ca/Content/style.css' rel='stylesheet'>";
+                htmlText += "<link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'><link href='http://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'><link href='http://netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css' rel='stylesheet' type='text/css'>";
+                //htmlText += "<style type='text/css'>#MainContent .coupon-image-block .qrImage img { width: auto; }</style>";
+                htmlText += "</head>";
+                htmlText += "<body>";
+                htmlText += "<section id='MainContent'>";
+                htmlText += "<div id='content' class='no-sidebar'>";
+                htmlText += "<article class='c4g-coupon'>";
+                //htmlText += "<img src='http://www.coupons4giving.ca/Images/c4g_coupon_logo.png' class='coupon_c4g_logo'>";
+                htmlText += "<div class='coupon-title'>";
+                htmlText += "<h2>" + item.DealInstance.Deal.Name + "</h2>";
+                htmlText += "<h3>" + item.DealInstance.Deal.Merchant.Name + "</h3>";
+                htmlText += "<h3 class='coupon-cost'>" + item.DealInstance.Deal.Prices.FirstOrDefault<Price>().GiftValue.ToString("C") + "</h3>";
+                htmlText += "<span class='coupon-description'>";
+                htmlText += "<p>" + item.DealInstance.Deal.DealDescription + "</p>";
+                htmlText += "</span>";
+                htmlText += "<div class='coupon-details'>";
+                htmlText += "<div class='coupon-value'>";
+                htmlText += "<h4>Value</h4>";
+                htmlText += "<p><span>" + item.DealInstance.Deal.Prices.FirstOrDefault<Price>().RetailValue.ToString("C") + "</span></p>";
+                htmlText += "</div>";
+                htmlText += "<div class='coupon-discount'>";
+                htmlText += "<h4>Discount</h4>";
+                htmlText += "<p><span>" + (int)((1M - (item.DealInstance.Deal.Prices.FirstOrDefault<Price>().GiftValue / item.DealInstance.Deal.Prices.FirstOrDefault<Price>().RetailValue)) * 100) + "</span></p>";
+                htmlText += "</div>";
+                htmlText += "<div class='coupon-giving'>";
+                htmlText += "<h4>You're Giving</h4>";
+                htmlText += "<p><span>" + item.DealInstance.Deal.Prices.FirstOrDefault<Price>().NPOSplit.ToString("C") + "</span></p>";
+                htmlText += "</div>";
+                htmlText += "<div class='coupon-left'>";
+                htmlText += "<h4>Coupons Left</h4>";
+                htmlText += "<p><span>15</span></p>";
+                htmlText += "</div>";
+                htmlText += "</div>";
+                htmlText += "</div>";
+                htmlText += "<div class='coupon-image-block'>";
+                htmlText += "<img src='http://www.coupons4giving.ca/" + item.DealInstance.Deal.ImageURL + "'>";
+                htmlText += "<div class='coupon-info'>";
+                htmlText += "<p class='coupon-date'><span>Dates:</span> " + item.DealInstance.StartDate.ToString("MMMM dd, yyyy") + " - " + item.DealInstance.EndDate.ToString("MMMM dd, yyy") + " </p>";
+                htmlText += "<div class='qrImage'>";
+                htmlText += qrImage;
+                htmlText += "</div>";
+                htmlText += "<p><strong>Your Coupon Code</strong></p>";
+                htmlText += "<p>" + item.CouponCode + "</p>";
+                htmlText += "</div>";
+                htmlText += "</div>";
+                htmlText += "<div class='clear'></div>";
+                htmlText += "</article>";
+                htmlText += "</div>";
+                htmlText += "</section>";
+                htmlText += "</body>";
+                htmlText += "</html>";
+
+                Document document = new Document();
+                PdfWriter.GetInstance(document, new FileStream(filePath, FileMode.Create));
+                document.Open();
+                iTextSharp.text.html.simpleparser.HTMLWorker hw = new iTextSharp.text.html.simpleparser.HTMLWorker(document);
+                hw.Parse(new StringReader(htmlText));
+                document.Close();
+            }
+
+            result = HttpContext.Current.Server.MapPath("~/tmp/" + HttpContext.Current.User.Identity.Name + "/PDFs/" + item.PurchaseOrderID + ".pdf");
+
+            return filePath;
         }
     }
 }
