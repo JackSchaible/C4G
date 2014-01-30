@@ -35,7 +35,7 @@
             if (!isNaN(value)) {
                 var vat = (value * 0.029) + 0.3;
                 var tax = (value * 0.2) * 0.05;
-                var split = (value * 0.54) - (vat + tax);
+                var split = (value * 0.55) - (vat + tax);
 
                 if ((isNaN(vat) || isNaN(tax) || isNaN(split)) || (vat == 0) || (tax == 0) || (split == 0) || value == undefined) {
                     $("#SplitOutput").hide();

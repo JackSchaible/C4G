@@ -108,7 +108,7 @@
                 </div>
                 <div class="FormRow">
                     <label>Last Name</label>
-                    <asp:TextBox ID="LastNameTextBox" runat="server"placeholder="Last Name"></asp:TextBox>
+                    <asp:TextBox ID="LastNameTextBox" runat="server" placeholder="Last Name"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
                         ErrorMessage="Last Name is required." Text="*" ControlToValidate="LastNameTextBox">
                     </asp:RequiredFieldValidator>

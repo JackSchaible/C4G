@@ -121,9 +121,14 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
         decimal mSplit = decimal.Parse(WebConfigurationManager.AppSettings["MerchantSplit"]);
         decimal nSplit = decimal.Parse(WebConfigurationManager.AppSettings["NPOSplit"]);
         decimal oSplit = decimal.Parse(WebConfigurationManager.AppSettings["OurSplit"]);
-        decimal MerchantSplit = GiftValue * mSplit;
+        
+        decimal vat = (GiftValue * 0.029M) + 0.3M;
+        decimal tax = (GiftValue * 0.2M) * 0.05M;
+        decimal split = (GiftValue * 0.55M) - (vat + tax);
+
+        decimal MerchantSplit = (GiftValue * 0.55M) - (tax);
         decimal NPOSplit = GiftValue * nSplit;
-        decimal OurSplit = GiftValue * oSplit;
+        decimal OurSplit = (GiftValue * oSplit) + tax;
 
         //Validate
         if (validation.IsStringBlank(Name))
