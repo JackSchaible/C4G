@@ -60,9 +60,9 @@
                  	<img src="../../Images/c4g_action_link.png" />
                		<p>Copy & Paste <%: URL %></p>
                  </div>
-                 <div class="coupon-social">
+                 <div class="coupon-social" onclick="shareOnFB('<%: URL %>', '<%: Caption %>', 'https://www.coupons4giving.ca/<%: deal.ImageURL %>', '<%: deal.Name %>', '<%: deal.DealDescription %>')">
                		<img src="../../Images/c4g_action_facebook.png" />       
-                	<p class="btn" onclick="shareOnFB()">Share on Facebook</p>
+                	<p class="btn">Share on Facebook</p>
                 	<p id="FBMsg"></p>
                  </div>
                  <div class="coupon-social">                
@@ -70,9 +70,9 @@
                 	<p><a href="https://twitter.com/share" class="twitter-share-button" data-url="<%: URL %>"
                     data-text="<%: Caption %>" data-hashtags="C4G, DealsThatMakeADifference">Tweet</a></p>
                  </div>
-                 <div class="coupon-social">
+                 <div onclick="shareOnLinkedIn('<%: URL %>', '<%: Caption %>', 'https://www.coupons4giving.ca/<%: deal.ImageURL %>', '<%: deal.Name %>', '<%: deal.DealDescription %>')" class="coupon-social">
                 	<img src="../../Images/c4g_action_linkedin.png" />
-                	<p onclick="shareOnLinkedIn()">Share on LinkedIn</p>
+                	<p>Share on LinkedIn</p>
                 </div>
 
 			</div><!-- Close Details -->            
