@@ -2734,7 +2734,7 @@ namespace CouponsForGiving.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PaymentOptionInfo_Insert", paymentOptionIDParameter, addressParameter, cityParameter, provinceParameter, countryParameter, postalCodeParameter);
         }
     
-        public virtual int PurchaseOrder_Insert(Nullable<int> dealID, Nullable<int> campaignID, Nullable<int> transactionID, Nullable<decimal> purchaseAmount, Nullable<decimal> nPOSplit, Nullable<decimal> merchantSplit, Nullable<decimal> ourSplit)
+        public virtual ObjectResult<PurchaseOrder> PurchaseOrder_Insert(Nullable<int> dealID, Nullable<int> campaignID, Nullable<int> transactionID, Nullable<decimal> purchaseAmount, Nullable<decimal> nPOSplit, Nullable<decimal> merchantSplit, Nullable<decimal> ourSplit)
         {
             var dealIDParameter = dealID.HasValue ?
                 new ObjectParameter("DealID", dealID) :
@@ -2764,7 +2764,85 @@ namespace CouponsForGiving.Data
                 new ObjectParameter("OurSplit", ourSplit) :
                 new ObjectParameter("OurSplit", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PurchaseOrder_Insert", dealIDParameter, campaignIDParameter, transactionIDParameter, purchaseAmountParameter, nPOSplitParameter, merchantSplitParameter, ourSplitParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PurchaseOrder>("PurchaseOrder_Insert", dealIDParameter, campaignIDParameter, transactionIDParameter, purchaseAmountParameter, nPOSplitParameter, merchantSplitParameter, ourSplitParameter);
+        }
+    
+        public virtual ObjectResult<PurchaseOrder> PurchaseOrder_Insert(Nullable<int> dealID, Nullable<int> campaignID, Nullable<int> transactionID, Nullable<decimal> purchaseAmount, Nullable<decimal> nPOSplit, Nullable<decimal> merchantSplit, Nullable<decimal> ourSplit, MergeOption mergeOption)
+        {
+            var dealIDParameter = dealID.HasValue ?
+                new ObjectParameter("DealID", dealID) :
+                new ObjectParameter("DealID", typeof(int));
+    
+            var campaignIDParameter = campaignID.HasValue ?
+                new ObjectParameter("CampaignID", campaignID) :
+                new ObjectParameter("CampaignID", typeof(int));
+    
+            var transactionIDParameter = transactionID.HasValue ?
+                new ObjectParameter("TransactionID", transactionID) :
+                new ObjectParameter("TransactionID", typeof(int));
+    
+            var purchaseAmountParameter = purchaseAmount.HasValue ?
+                new ObjectParameter("PurchaseAmount", purchaseAmount) :
+                new ObjectParameter("PurchaseAmount", typeof(decimal));
+    
+            var nPOSplitParameter = nPOSplit.HasValue ?
+                new ObjectParameter("NPOSplit", nPOSplit) :
+                new ObjectParameter("NPOSplit", typeof(decimal));
+    
+            var merchantSplitParameter = merchantSplit.HasValue ?
+                new ObjectParameter("MerchantSplit", merchantSplit) :
+                new ObjectParameter("MerchantSplit", typeof(decimal));
+    
+            var ourSplitParameter = ourSplit.HasValue ?
+                new ObjectParameter("OurSplit", ourSplit) :
+                new ObjectParameter("OurSplit", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PurchaseOrder>("PurchaseOrder_Insert", mergeOption, dealIDParameter, campaignIDParameter, transactionIDParameter, purchaseAmountParameter, nPOSplitParameter, merchantSplitParameter, ourSplitParameter);
+        }
+    
+        public virtual int PurchaseOrder_RedeemByCouponCode(Nullable<System.Guid> couponCode)
+        {
+            var couponCodeParameter = couponCode.HasValue ?
+                new ObjectParameter("CouponCode", couponCode) :
+                new ObjectParameter("CouponCode", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("PurchaseOrder_RedeemByCouponCode", couponCodeParameter);
+        }
+    
+        public virtual ObjectResult<PurchaseOrder> PurchaseOrder_GetByCouponCode(Nullable<System.Guid> couponCode)
+        {
+            var couponCodeParameter = couponCode.HasValue ?
+                new ObjectParameter("CouponCode", couponCode) :
+                new ObjectParameter("CouponCode", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PurchaseOrder>("PurchaseOrder_GetByCouponCode", couponCodeParameter);
+        }
+    
+        public virtual ObjectResult<PurchaseOrder> PurchaseOrder_GetByCouponCode(Nullable<System.Guid> couponCode, MergeOption mergeOption)
+        {
+            var couponCodeParameter = couponCode.HasValue ?
+                new ObjectParameter("CouponCode", couponCode) :
+                new ObjectParameter("CouponCode", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PurchaseOrder>("PurchaseOrder_GetByCouponCode", mergeOption, couponCodeParameter);
+        }
+    
+        public virtual ObjectResult<PurchaseOrder> PurchaseOrder_GetByID(Nullable<int> couponCode)
+        {
+            var couponCodeParameter = couponCode.HasValue ?
+                new ObjectParameter("CouponCode", couponCode) :
+                new ObjectParameter("CouponCode", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PurchaseOrder>("PurchaseOrder_GetByID", couponCodeParameter);
+        }
+    
+        public virtual ObjectResult<PurchaseOrder> PurchaseOrder_GetByID(Nullable<int> couponCode, MergeOption mergeOption)
+        {
+            var couponCodeParameter = couponCode.HasValue ?
+                new ObjectParameter("CouponCode", couponCode) :
+                new ObjectParameter("CouponCode", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PurchaseOrder>("PurchaseOrder_GetByID", mergeOption, couponCodeParameter);
         }
     }
 }

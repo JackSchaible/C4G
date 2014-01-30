@@ -75,6 +75,48 @@
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));
 
+                function shareOnFB(url, caption, imageurl, name, desc) {
+                    FB.login(function (response) {
+                        if (response.authResponse) {
+                            FB.ui({
+                                display: 'iframe',
+                                method: 'feed',
+                                link: url,
+                                picture: imageurl,
+                                caption: caption,
+                                name: name + ' - C4G',
+                                description: desc,
+                    },
+                    function (response) {
+                        if (response && response.post_id) {
+                        }
+                        else {
+                            $("#FBMsg").val("Something went wrong. Your campaign was not shared.");
+                        }
+                    });
+                }
+                else {
+                    $("#FBMsg").val("You must log in to Facebook in order to post your campaign there.");
+                }
+            });
+                }
+
+                //function shareOnLinkedIn(url, caption, imageurl, name, desc) {
+                //            var xml = "<share><comment>" + caption + "</comment><content><title>" + name +" - C4G</title><description>" + desc + "</description><submitted-url>" + url + "</submitted-url><submitted-image-url>" + imageurl + "</submitted-image-url></content><visibility><code>anyone</code></visibility></share>";
+                //            $.ajax({
+                //                type: "POST",
+                //                url: "http://api.linkedin.com/v1/people/~/shares",
+                //                data: xml,
+                //                success: function () {
+                //                    alert();
+                //                },
+                //                dataType: "xml"
+                //            })
+                //            .fail(function () {
+                //                alert("Fail");
+                //            });
+                //        }
+
                 //Forms validation
                 function writeErrors(errorDiv, errors) {
 

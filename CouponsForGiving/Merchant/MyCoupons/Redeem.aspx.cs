@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 
 public partial class Merchant_My_Coupons_Redeem : System.Web.UI.Page
 {
+    
     private List<PurchaseOrder> orders;
 
     protected void Page_Load(object sender, EventArgs e)
@@ -19,6 +20,39 @@ public partial class Merchant_My_Coupons_Redeem : System.Web.UI.Page
 
         if (!IsPostBack)
             BindData();
+
+        if (Request["cid"] != null)
+        {
+            try
+            {
+                Guid couponID = Guid.Parse(Request["cid"]);
+                PurchaseOrder po = PurchaseOrders.Get(couponID);
+
+                if (po == null)
+                    ErrorLabel.Text = "That coupon does not exist.";
+                else if (po.OrderStatusID != 1)
+                    ErrorLabel.Text = "That coupon has already been redeemed.";
+                else
+                {
+                    List<PurchaseOrder> orders = PurchaseOrders.ListActiveByMerchant(User.Identity.Name);
+                    bool orderExists = (from o in orders where o.CouponCode == couponID select o).Count() == 1;
+
+                    if (orderExists)
+                    {
+                        PurchaseOrders.RedeemByCouponCode(couponID);
+                        ErrorLabel.Text = "Coupon has been redeemed!";
+                    }
+                    else
+                    {
+                        ErrorLabel.Text = "The specified coupon does not belong to this merchant account.";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorLabel.Text = ex.Message;
+            }
+        }
     }
 
     private void BindData()
@@ -26,26 +60,27 @@ public partial class Merchant_My_Coupons_Redeem : System.Web.UI.Page
         List<PurchaseOrder> pos = PurchaseOrders.ListActiveByMerchant(User.Identity.Name);
         orders = pos;
         ErrorLabel.Text = "";
-        CouponsGV.DataSource = null;
-            //(
-            //    from
-            //        po
-            //    in
-            //        pos
-            //    orderby
-            //        po.PurchaseDate
-            //    select new
-            //    {
-            //        CouponCode = po.PurchaseOrderID,
-            //        MerchantName = po.DealInstance.Deal.Merchant.Name,
-            //        DealName = po.DealInstance.Deal.Name,
-            //        Customer = po.PurchaseTransaction.cUser.Username,
-            //        NPOName = po.Campaign.NPO.Name,
-            //        CampaignName = po.Campaign.Name,
-            //        StartDate = po.DealInstance.StartDate.ToString("dd MMM yyyy"),
-            //        EndDate = po.DealInstance.EndDate.ToString("dd MMM yyyy")
-            //    }
-            //);
+        CouponsGV.DataSource =
+        (
+            from
+                po
+            in
+                pos
+            orderby
+                po.PurchaseDate
+            select new
+            {
+                CouponID = po.PurchaseOrderID,
+                CouponCode = po.CouponCode,
+                MerchantName = po.DealInstance.Deal.Merchant.Name,
+                DealName = po.DealInstance.Deal.Name,
+                Customer = po.PurchaseTransaction.cUser.Username,
+                NPOName = po.Campaign.NPO.Name,
+                CampaignName = po.Campaign.Name,
+                StartDate = po.DealInstance.StartDate.ToString("dd MMM yyyy"),
+                EndDate = po.DealInstance.EndDate.ToString("dd MMM yyyy")
+            }
+        ).ToList();
 
         CouponsGV.DataBind();
     }
@@ -60,8 +95,29 @@ public partial class Merchant_My_Coupons_Redeem : System.Web.UI.Page
     {
         try
         {
-            PurchaseOrders.Redeem(int.Parse(CouponsGV.DataKeys[e.NewSelectedIndex].ToString()));
-            BindData();
+            int couponID = int.Parse(CouponsGV.DataKeys[e.NewSelectedIndex].Value.ToString());
+            PurchaseOrder po = PurchaseOrders.Get(couponID);
+
+            if (po == null)
+                ErrorLabel.Text = "Coupon does not exist.";
+            else if (po.OrderStatusID != 1)
+                ErrorLabel.Text = "Coupon has already been redeemed.";
+            else
+            {
+                List<PurchaseOrder> orders = PurchaseOrders.ListActiveByMerchant(User.Identity.Name);
+                bool orderExists = (from o in orders where o.PurchaseOrderID == couponID select o).Count() == 1;
+
+                if (orderExists)
+                {
+                    PurchaseOrders.Redeem(couponID);
+                    BindData(); 
+                    ErrorLabel.Text = "Coupon has been redeemed!";
+                }
+                else
+                {
+                    ErrorLabel.Text = "The specified coupon does not belong to this merchant account.";
+                }
+            }
         }
         catch (Exception ex)
         {
@@ -71,28 +127,94 @@ public partial class Merchant_My_Coupons_Redeem : System.Web.UI.Page
 
     protected void RedeemButton_Click(object sender, EventArgs e)
     {
-        if (orders.Contains(new PurchaseOrder { PurchaseOrderID = int.Parse(CouponCodeTextBox.Text.Trim()) }))
+        string couponCode = CouponCodeTextBox.Text.Trim().Replace("-", "");
+        if (couponCode.Length != 32)
         {
+            int id = -1;
+
             try
             {
-                PurchaseOrders.Redeem(int.Parse(CouponCodeTextBox.Text.Trim()));
+                id = int.Parse(couponCode);
             }
             catch (Exception ex)
             {
-                ErrorLabel.Text = "Something went wrong. Your coupon was not redeemed. Please contact us using the button above and retain this error message: " + ex.Message;
+                ErrorLabel.Text = "The coupon code is a valid number (i.e., 44)";
             }
+
+            if (id != -1)
+            {
+                PurchaseOrder po = PurchaseOrders.Get(id);
+
+                if (po == null)
+                    ErrorLabel.Text = "Coupon does not exist.";
+                else if (po.OrderStatusID != 1)
+                    ErrorLabel.Text = "Coupon has already been redeemed.";
+                else
+                {
+                    List<PurchaseOrder> orders = PurchaseOrders.ListActiveByMerchant(User.Identity.Name);
+                    bool orderExists = (from o in orders where o.PurchaseOrderID == id select o).Count() == 1;
+
+                    if (orderExists)
+                    {
+                        PurchaseOrders.Redeem(id);
+                        BindData();
+                        ErrorLabel.Text = "Coupon has been redeemed!";
+                    }
+                    else
+                    {
+                        ErrorLabel.Text = "The specified coupon does not belong to this merchant account.";
+                    }
+                }
+            }
+            else
+            {
+                ErrorLabel.Text = "Something went wrong. We were unable to get the coupon code.";
+            }
+
         }
         else
-            ErrorLabel.Text = "We were unable to find that coupon code. Please try again."; 
+        {
+            Guid id = Guid.Empty;
+
+            try
+            {
+                id = Guid.Parse(couponCode);
+            }
+            catch (Exception ex)
+            {
+                ErrorLabel.Text = "The coupon code is not in a valid format (i.e., '1a3b5c7d-e2f4-1a3b-1a3b-1a3b5c7d9ebc')";
+            }
+
+            if (id != Guid.Empty)
+            {
+                PurchaseOrder po = PurchaseOrders.Get(id);
+
+                if (po == null)
+                    ErrorLabel.Text = "That coupon does not exist.";
+                else if (po.OrderStatusID != 1)
+                    ErrorLabel.Text = "That coupon has already been redeemed.";
+                else
+                {
+                    List<PurchaseOrder> orders = PurchaseOrders.ListActiveByMerchant(User.Identity.Name);
+                    bool orderExists = (from o in orders where o.CouponCode == id select o).Count() == 1;
+
+                    if (orderExists)
+                    {
+                        PurchaseOrders.RedeemByCouponCode(id);
+                        ErrorLabel.Text = "Coupon has been redeemed!";
+                    }
+                    else
+                    {
+                        ErrorLabel.Text = "The specified coupon does not belong to this merchant account.";
+                    }
+                }
+            }
+            else
+            {
+                ErrorLabel.Text = "Something went wrong. We were unable to get the coupon code.";
+            }
+        }
         
         BindData();
-    }
-
-    [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
-    public static string[] GetCompletionList(string prefixText, int count, string contextKey)
-    {
-        List<PurchaseOrder> pos = PurchaseOrders.ListActiveByMerchant(HttpContext.Current.User.Identity.Name);
-
-        return (from po in pos select po.PurchaseOrderID.ToString()).ToArray<string>();
     }
 }

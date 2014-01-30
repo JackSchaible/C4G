@@ -5,13 +5,9 @@
     <h1>Redeem A Coupon</h1>
     <div class="Form">
         <div class="FormRow">
-            <label>Enter a Coupon Code</label>
+            <label>Enter a Coupon Code <br /><small>This is a 32-digit code on the bottom of each coupon.</small></label>
             <asp:TextBox ID="CouponCodeTextBox" runat="server"></asp:TextBox>
             <asp:Button ID="RedeemButton" runat="server" Text="Redeem" OnClick="RedeemButton_Click" />
-            <ajaxToolkit:AutoCompleteExtender ID="CouponCodeAutoCompleteExtender" runat="server"
-                TargetControlID="CouponCodeTextBox" UseContextKey="True" ServiceMethod="GetCompletionList"
-                CompletionInterval="0" MinimumPrefixLength="1">
-            </ajaxToolkit:AutoCompleteExtender>
         </div>
     </div>
     <div class="FormRow">
@@ -21,12 +17,12 @@
         <label>Or select from a list of your coupons:</label>
         <asp:GridView ID="CouponsGV" runat="server" AutoGenerateColumns="false" 
             AllowPaging="True" OnPageIndexChanging="CouponsGV_PageIndexChanging" 
-            OnSelectedIndexChanging="CouponsGV_SelectedIndexChanging" >
+            OnSelectedIndexChanging="CouponsGV_SelectedIndexChanging" DataKeyNames="CouponID">
             <Columns>
                 <asp:CommandField SelectText="Redeem" ShowSelectButton="True"></asp:CommandField>
-                <asp:BoundField DataField="CouponCode" HeaderText="Coupon Code"></asp:BoundField>
+                <asp:BoundField DataField="CouponID" HeaderText="Coupon ID"></asp:BoundField>
                 <asp:HyperLinkField DataNavigateUrlFields="MerchantName,DealName" 
-                    DataNavigateUrlFormatString="../../Coupons/{0}/{1}" DataTextField="DealName"
+                    DataNavigateUrlFormatString="../../Offers/{0}/{1}" DataTextField="DealName"
                     HeaderText="Deal"></asp:HyperLinkField>
                 <asp:HyperLinkField DataNavigateUrlFields="NPOName,CampaignName" 
                     DataNavigateUrlFormatString="../../Causes/{0}/{1}" DataTextField="CampaignName" 
@@ -34,6 +30,7 @@
                 <asp:BoundField DataField="Customer" HeaderText="Customer Username"></asp:BoundField>
                 <asp:BoundField DataField="StartDate" HeaderText="Start Date"></asp:BoundField>
                 <asp:BoundField DataField="EndDate" HeaderText="End Date"></asp:BoundField>
+                <asp:BoundField DataField="CouponCode" HeaderText="Coupon Code"></asp:BoundField>
             </Columns>
             <EmptyDataTemplate>
                 <p>You currently have no unredeemed coupons.</p>

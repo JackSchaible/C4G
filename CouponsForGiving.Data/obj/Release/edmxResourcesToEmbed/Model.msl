@@ -320,6 +320,7 @@
     <EntitySetMapping Name="PurchaseOrders">
       <EntityTypeMapping TypeName="C4GModel.PurchaseOrder">
         <MappingFragment StoreEntitySet="PurchaseOrder">
+          <ScalarProperty Name="CouponCode" ColumnName="CouponCode" />
           <ScalarProperty Name="OurSplit" ColumnName="OurSplit" />
           <ScalarProperty Name="MerchantSplit" ColumnName="MerchantSplit" />
           <ScalarProperty Name="NPOSplit" ColumnName="NPOSplit" />
@@ -333,7 +334,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="PurchaseOrder_Insert" FunctionName="C4GModel.Store.PurchaseOrder_Insert" />
     <FunctionImportMapping FunctionImportName="DealInstance_List" FunctionName="C4GModel.Store.DealInstance_List" />
     <FunctionImportMapping FunctionImportName="Price_GetByDealInstance" FunctionName="C4GModel.Store.Price_GetByDealInstance" />
     <EntitySetMapping Name="CardTypes">
@@ -792,5 +792,12 @@
     <FunctionImportMapping FunctionImportName="Campaign_ListByCity" FunctionName="C4GModel.Store.Campaign_ListByCity" />
     <FunctionImportMapping FunctionImportName="Deal_ListNamesByMerchant" FunctionName="C4GModel.Store.Deal_ListNamesByMerchant" />
     <FunctionImportMapping FunctionImportName="City_Get" FunctionName="C4GModel.Store.City_Get" />
+    <FunctionImportMapping FunctionImportName="PurchaseOrder_ListRedeemedByUser" FunctionName="C4GModel.Store.PurchaseOrder_ListRedeemedByUser" />
+    <FunctionImportMapping FunctionImportName="PurchaseOrder_ListUnredeemedByUser" FunctionName="C4GModel.Store.PurchaseOrder_ListUnredeemedByUser" />
+    <FunctionImportMapping FunctionImportName="PaymentOptionInfo_Insert" FunctionName="C4GModel.Store.PaymentOptionInfo_Insert" />
+    <FunctionImportMapping FunctionImportName="PurchaseOrder_Insert" FunctionName="C4GModel.Store.PurchaseOrder_Insert" />
+    <FunctionImportMapping FunctionImportName="PurchaseOrder_RedeemByCouponCode" FunctionName="C4GModel.Store.PurchaseOrder_RedeemByCouponCode" />
+    <FunctionImportMapping FunctionImportName="PurchaseOrder_GetByCouponCode" FunctionName="C4GModel.Store.PurchaseOrder_GetByCouponCode" />
+    <FunctionImportMapping FunctionImportName="PurchaseOrder_GetByID" FunctionName="C4GModel.Store.PurchaseOrder_GetByID" />
   </EntityContainerMapping>
 </Mapping>

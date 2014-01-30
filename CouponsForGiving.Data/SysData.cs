@@ -281,8 +281,10 @@ namespace CouponsForGiving.Data
         }
         #endregion
         #region PurchaseOrders
-        public static void PurchaseOrder_Insert(List<ShoppingCart> orders, string user)
+        public static List<PurchaseOrder> PurchaseOrder_Insert(List<ShoppingCart> orders, string user)
         {
+            List<PurchaseOrder> result = new List<PurchaseOrder>();
+
             C4GEntities en = new C4GEntities();
             int transactionID = -1;
 
@@ -297,8 +299,8 @@ namespace CouponsForGiving.Data
 
                     foreach (ShoppingCart item in orders)
                     {
-                        en.PurchaseOrder_Insert(item.DealInstanceID, item.CampaignID, transactionID, item.GiftValue, item.NPOSplit, 
-                            item.MerchantSplit, item.OurSplit);
+                        result.Add(en.PurchaseOrder_Insert(item.DealInstanceID, item.CampaignID, transactionID, item.GiftValue, item.NPOSplit, 
+                            item.MerchantSplit, item.OurSplit).FirstOrDefault<PurchaseOrder>());
                     }
 
                     ts.Complete();
@@ -317,6 +319,8 @@ namespace CouponsForGiving.Data
                     }
                 }
             }
+
+            return result;
         }
         #endregion
         #region Theme
@@ -760,6 +764,21 @@ namespace CouponsForGiving.Data.Classes
         public static List<PurchaseOrder> ListRedeemedByUser(string Username)
         {
             return new C4GEntities().PurchaseOrder_ListRedeemedByUser(Username).ToList<PurchaseOrder>();
+        }
+
+        public static void RedeemByCouponCode(Guid couponCode)
+        {
+            new C4GEntities().PurchaseOrder_RedeemByCouponCode(couponCode);
+        }
+
+        public static PurchaseOrder Get(Guid couponCode)
+        {
+            return new C4GEntities().PurchaseOrder_GetByCouponCode(couponCode).FirstOrDefault<PurchaseOrder>();
+        }
+
+        public static PurchaseOrder Get(int PurchaseOrderID)
+        {
+            return new C4GEntities().PurchaseOrder_GetByID(PurchaseOrderID).FirstOrDefault<PurchaseOrder>();
         }
     }
 
