@@ -11,11 +11,11 @@
             $("#ShowControl").click(function () {
                 console.log($("#ShowControl").text());
                 if ($("#ShowControl").text() == "Hide") {
-                    $("#newForm").hide(400);
+                    $("#newForm").slideUp(400);
                     $("#ShowControl").text("Show");
                 }
                 else {
-                    $("#newForm").show(400);
+                    $("#newForm").slideDown(400);
                     $("#ShowControl").text("Hide");
                 }
             });
@@ -43,8 +43,8 @@
             <asp:Label ID="ProceedErrorLabel" runat="server" Text=""></asp:Label>
             <asp:Button ID="Proceed" runat="server" Text="Proceed With Checkout" OnClick="Proceed_Click" CausesValidation="False" />
         </div>
-        <h1>Or Add a New One</h1>
-        <p id="ShowControl">Show</p>
+        <h1>Add a Payment Option</h1>
+        <a class="btn-small" id="ShowControl">Add Now</a>
         <div id="newForm" runat="server" ClientIDMode="Static">
             <p>Note: We don't store your credit card information.</p>
             <div class="Form">
