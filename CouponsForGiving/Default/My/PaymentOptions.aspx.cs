@@ -173,8 +173,14 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
                 }
                 else
                 {
-                    foreach (PurchaseOrder item in orders)
-                        EmailUtils.SendPurchaseEmail(item);
+                    try
+                    {
+                        foreach (PurchaseOrder item in orders)
+                            EmailUtils.SendPurchaseEmail(item);
+                    }
+                    catch (Exception ex)
+                    {
+                    }
 
                     Response.Redirect("ThankYou.aspx");
                 }

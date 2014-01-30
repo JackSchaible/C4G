@@ -22,7 +22,7 @@
     <h2>Previous Orders</h2>
     <asp:GridView ID="RedeemedGV" runat="server" AutoGenerateColumns="False" OnSelectedIndexChanging="UnredeemedGV_SelectedIndexChanging" DataKeyNames="POID">
         <Columns>
-            <asp:CommandField SelectText="Get Coupon!" ShowSelectButton="True" />
+            <asp:CommandField SelectText="Print Coupon!" ShowSelectButton="True" />
             <asp:BoundField DataField="Deal" HeaderText="Offer" />
             <asp:BoundField DataField="Merchant" HeaderText="Merchant" />
             <asp:BoundField DataField="Campaign" HeaderText="Campaign" />

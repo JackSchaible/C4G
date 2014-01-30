@@ -391,7 +391,7 @@ namespace CouponsForGiving
                         
                     }
                 else
-                    result = "<p>We currently aren't running any offers. <strong>Please check back soon!</strong></p>";
+                    result = "<p>We currently aren't running any offers. <strong>Check out our <a href='GlobalMarketplace.aspx'>Global Marketplace!</a></strong></p>";
 
             return result;
         }

@@ -58,7 +58,7 @@ public partial class Default_My_PurchaseHistory : System.Web.UI.Page
             select po
         ).FirstOrDefault<PurchaseOrder>();
 
-        string url = "~\\" + PDFUtils.CreateCouponPDF(item);
+        string url = "../../" + PDFUtils.CreateCouponPDF(item).Replace(Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
         Response.Redirect(url);
     }
 }

@@ -40,7 +40,7 @@
 		            <div class="coupon-details">
         	            <div class="coupon-value">
             	        <h4>Value</h4>
-                	    <p><span>$<%: ((int)(deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().RetailValue)).ToString("D") %></span></p> <!-- Coupon Value -->
+                	    <p><span><%: (deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().RetailValue).ToString("C") %></span></p> <!-- Coupon Value -->
                		</div> <!-- Close Coupon Value-->
                 
                 	<div class="coupon-discount">
@@ -50,7 +50,7 @@
                		
                 	<div class="coupon-giving">
                     	<h4>You're Giving</h4>
-                    	<p><span>$<%: ((int)(deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().NPOSplit)).ToString("D") %></span></p> <!-- NPO Return or portion -->
+                    	<p><span><%: (deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().NPOSplit).ToString("C") %></span></p> <!-- NPO Return or portion -->
                 	</div> <!-- Close Coupon Giving Amount-->
                 	<div class="coupon-left">
                          <h4>Coupons Left</h4>
