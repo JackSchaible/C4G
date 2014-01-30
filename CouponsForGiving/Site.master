@@ -101,21 +101,21 @@
             });
                 }
 
-                function shareOnLinkedIn(url, caption, imageurl, name, desc) {
-                            var xml = "<share><comment>" + caption + "</comment><content><title>" + name +" - C4G</title><description>" + desc + "</description><submitted-url>" + url + "</submitted-url><submitted-image-url>" + imageurl + "</submitted-image-url></content><visibility><code>anyone</code></visibility></share>";
-                            $.ajax({
-                                type: "POST",
-                                url: "http://api.linkedin.com/v1/people/~/shares",
-                                data: xml,
-                                success: function () {
-                                    alert();
-                                },
-                                dataType: "xml"
-                            })
-                            .fail(function () {
-                                alert("Fail");
-                            });
-                        }
+                //function shareOnLinkedIn(url, caption, imageurl, name, desc) {
+                //            var xml = "<share><comment>" + caption + "</comment><content><title>" + name +" - C4G</title><description>" + desc + "</description><submitted-url>" + url + "</submitted-url><submitted-image-url>" + imageurl + "</submitted-image-url></content><visibility><code>anyone</code></visibility></share>";
+                //            $.ajax({
+                //                type: "POST",
+                //                url: "http://api.linkedin.com/v1/people/~/shares",
+                //                data: xml,
+                //                success: function () {
+                //                    alert();
+                //                },
+                //                dataType: "xml"
+                //            })
+                //            .fail(function () {
+                //                alert("Fail");
+                //            });
+                //        }
 
                 //Forms validation
                 function writeErrors(errorDiv, errors) {

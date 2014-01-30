@@ -25,6 +25,9 @@
             }
         }
     </script>
+    <script src="//platform.linkedin.com/in.js" type="text/javascript">
+        lang: en_US
+    </script>
         <article class="c4g-coupon">
             <img src="../../Images/c4g_coupon_logo.png" class="coupon_c4g_logo" /> 
             <div class="coupon-title">
@@ -70,10 +73,14 @@
                 	<p><a href="https://twitter.com/share" class="twitter-share-button" data-url="<%: URL %>"
                     data-text="<%: Caption %>" data-hashtags="C4G, DealsThatMakeADifference">Tweet</a></p>
                  </div>
-                 <div onclick="shareOnLinkedIn('<%: URL %>', '<%: Caption %>', 'https://www.coupons4giving.ca/<%: deal.ImageURL %>', '<%: deal.Name %>', '<%: deal.DealDescription %>')" class="coupon-social">
+                <div class="coupon-social">
+                    <img src="../../Images/c4g_action_linkedin.png" />
+                    <p><script type="IN/Share" data-url="<%: URL %>"></script></p>
+                </div>
+                 <%--<div onclick="shareOnLinkedIn('<%: URL %>', '<%: Caption %>', 'https://www.coupons4giving.ca/<%: deal.ImageURL %>', '<%: deal.Name %>', '<%: deal.DealDescription %>')" class="coupon-social">
                 	<img src="../../Images/c4g_action_linkedin.png" />
                 	<p>Share on LinkedIn</p>
-                </div>
+                </div>--%>
 
 			</div><!-- Close Details -->            
             
