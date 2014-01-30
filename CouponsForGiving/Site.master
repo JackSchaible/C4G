@@ -121,6 +121,7 @@
                             <a href="http://www.facebook.com/Coupons4Giving" target="_blank" title="Follow Us On Facebook"><i class="fa fa-facebook"></i></a>
                             <a href="https://twitter.com/Coupons4Giving" target="_blank" title="Follow Us On Twitter"><i class="fa fa-twitter"></i></a>
                             <a href="http://www.linkedin.com/company/coupons4giving" target="_blank" title="Follow Us on Linkedin"><i class="fa fa-linkedin"></i></a>
+                            <a href="https://plus.google.com/116816151157689700944" target="_blank" title="Follow-us on Google+"><i class="fa fa-google-plus"></i></a>
                         </div>
                         <div class="header-login">
                             <asp:LoginView ID="LoginView1" runat="server" ViewStateMode="Disabled">

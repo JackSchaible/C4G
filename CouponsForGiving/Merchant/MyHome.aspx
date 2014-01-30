@@ -27,23 +27,22 @@
                 <h1>My <%: merchant == null ? "" : merchant.Name %> Dashboard</h1>
             </div>
             <span id="ErrorMessages"></span>
-            <h2 class="my-profile">Merchant Information</h2>
-            <h3 class="profile-icon"><i class="fa fa-user"></i></h3>
             <div class="profile-edit">
-                <div class="two-thirds">
+                <div class="three-quarters">
         	        <div id="profile-edit-name">
                         <h3><%# merchant == null ? "" : merchant.Name %></h3>
-                        <a id="modeButton" href="Edit.aspx" class="btn-profile"><i class="fa fa-pencil-square-o"></i> Edit My Profile</a>
                     </div>
                     <div id="profile-edit-description">
                         <p id="DescriptionText"><%# merchant == null ? "" : merchant.cUser.MerchantInfoes.FirstOrDefault<CouponsForGiving.Data.MerchantInfo>().MerchantDescription %></p>
                     </div>  
                 </div>
-                <div class="thirds">
+                <div class="quarter">
                     <div id="profile-edit-image">
                         <img src="../<%# merchant == null ? "Images/c4g_home_npos_step4.png" : merchant.LargeLogo %>" class="npo_logo" />
                         <div id="LoadImg"></div>
                         <div class="ClearFix"></div>
+                    <a id="modeButton" href="Edit.aspx" class="btn-profile"><i class="fa fa-pencil-square-o"></i> Edit My Profile</a>
+
                     </div>
                 </div>
                 <%--<div class="half">     
