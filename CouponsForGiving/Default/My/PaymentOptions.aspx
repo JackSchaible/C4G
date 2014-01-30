@@ -58,7 +58,7 @@
                 </div>
                 <div class="FormRow">
                     <label>Card Number</label>
-                    <asp:TextBox ID="CCTextBox" runat="server" MaxLength="16"></asp:TextBox>
+                    <asp:TextBox ID="CCTextBox" runat="server" MaxLength="16" placeholder="****************"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" 
                         ErrorMessage="Credit Card Number is required!" Text="*" ControlToValidate="CCTextBox">
                     </asp:RequiredFieldValidator>
@@ -90,7 +90,7 @@
                 </div>
                 <div class="FormRow">
                     <label>CVV Number</label>
-                    <asp:TextBox ID="CVVTextBox" runat="server" MaxLength="3"></asp:TextBox>
+                    <asp:TextBox ID="CVVTextBox" runat="server" MaxLength="3" placeholder="***"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
                         ErrorMessage="Credit Card Number is required!" Text="*" ControlToValidate="CVVTextBox">\
                     </asp:RequiredFieldValidator>
@@ -101,21 +101,21 @@
                 </div>
                 <div class="FormRow">
                     <label>First Name</label>
-                    <asp:TextBox ID="FirstNameTextBox" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="FirstNameTextBox" runat="server" placeholder="First Name"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" 
                         ErrorMessage="First Name is required." Text="*" ControlToValidate="FirstNameTextBox">
                     </asp:RequiredFieldValidator>
                 </div>
                 <div class="FormRow">
                     <label>Last Name</label>
-                    <asp:TextBox ID="LastNameTextBox" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="LastNameTextBox" runat="server"placeholder="Last Name"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" 
                         ErrorMessage="Last Name is required." Text="*" ControlToValidate="LastNameTextBox">
                     </asp:RequiredFieldValidator>
                 </div>
                 <div class="FormRow">
                     <label>Address</label>
-                    <asp:TextBox ID="AddressTextBox" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="AddressTextBox" runat="server" placeholder="1234, 5th Street"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="AddressRFV" runat="server" ControlToValidate="AddressTextBox"
                         ErrorMessage="Address is required." Text="*">
                     </asp:RequiredFieldValidator>
@@ -134,7 +134,7 @@
                 </div>
                 <div class="FormRow">
                     <label for="PostalTextBox">Postal Code</label>
-                    <asp:TextBox ID="PostalTextBox" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="PostalTextBox" runat="server" placeholder="T6L2M9, 90210, or 90210-1234"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="PostalTextBox"
                         ErrorMessage="Postal Code is required." Text="*"></asp:RequiredFieldValidator>
                     <asp:RegularExpressionValidator ID="PostalREV" runat="server" ControlToValidate="PostalTextBox"

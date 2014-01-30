@@ -1666,13 +1666,14 @@ min-height: 1em;}
 
 #MainContent .c4g-coupon h3.coupon-cost {
 float: right;
-font-size: 75px;
+font-size: 55px;
 padding: 0px 15px 0px 0px;
 border-radius: 5px;
 margin-bottom: 30px;
-margin-top: -17px;
+margin-top: 0px;
 margin-right: -25px;
 text-align: right;
+margin-left: 10px;
 }
 
 #MainContent .coupon-image-block {
@@ -1724,7 +1725,7 @@ margin-right: 1.0%;
 #MainContent .coupon-value span, #MainContent .coupon-discount span, #MainContent .coupon-giving span, #MainContent .coupon-left span {
 font-weight: 700;
 text-align: center;
-font-size: 42px;
+font-size: 34px;
 margin: 17px auto;
 width: inherit;
 display: block;
