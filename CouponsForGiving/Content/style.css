@@ -1301,7 +1301,11 @@ float; left;
 }
 
 #MainContent .profile-edit .npo_logo {
-margin: 30px auto 0px;
+margin: -50px auto 0px;
+display: block;
+float: none;
+width: 125px;
+max-width: 125px;
 }
 
 /* .profile-edit #profile-edit-image {
@@ -1473,12 +1477,12 @@ box-shadow: 0px 4px 0px #ff9900;
 -moz-box-shadow: 0px 4px 0px #ff9900;
 -webkit-box-shadow: 0px 4px 0px #ff9900;
 text-transform: uppercase;
-min-width: 85px;
-width: 85px;
+min-width: 200px;
+width: 230px;
 display: block;
 text-align: center;
 text-decoration: none;
-margin: 10px 2px;
+margin: 10px auto;
 float: right;
 color: #fff;
 }
