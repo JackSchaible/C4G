@@ -44,7 +44,7 @@
                             string merchant = item.MerchantName;
                             string deal = item.DealName;
                             string price = item.GiftValue.ToString("C");
-                            string row = String.Format("<td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td>",
+                            string row = String.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td></tr>",
                                 button, deleteButton, campaignList, merchant, deal, price);
 
                             Response.Write(row);
