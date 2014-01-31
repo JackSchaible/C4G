@@ -166,7 +166,7 @@ public partial class Merchant_MyPartners_Search : System.Web.UI.Page
                                 }
                             </style>
                             <p>Congratulations! Our merchant partner '" + merch.Name + @"' has partnered with you to offer great deals!</p>
-                            <p>If you have any questions, contact us at <a href='mailto:teamc4g@coupons4giving.ca'>teamc4g@coupons4giving.ca</a></p>
+                            <p>If you have any questions, contact us at <a href='mailto:team@coupons4giving.ca'>team@coupons4giving.ca</a></p>
                             <p>Cheers!</p>
                             <p>The Coupons4Giving Team</p>
                            ";

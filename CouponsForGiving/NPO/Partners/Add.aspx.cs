@@ -68,7 +68,7 @@ public partial class NPO_Partners_Add : System.Web.UI.Page
                                 }
                             </style>
                             <p>Congratulations! The not-for-profit organization '" + npo.Name + @"' has partnered with you to offer great deals!</p>
-                            <p>If you have any questions, contact us at <a href='mailto:teamc4g@coupons4giving.ca'>teamc4g@coupons4giving.ca</a></p>
+                            <p>If you have any questions, contact us at <a href='mailto:team@coupons4giving.ca'>team@coupons4giving.ca</a></p>
                             <p>Cheers!</p>
                             <p>The Coupons4Giving Team</p>
                            ";
@@ -149,7 +149,7 @@ public partial class NPO_Partners_Add : System.Web.UI.Page
                 }
             </style>
             <h1>Merchant Partner Invite</h1>
-            <p>Your invitation to " + name + " from " + company + " at " + email + @" has been sent! If you have any questions, please contact <a href='mailto:teamc4g@coupons4giving.ca'>teamc4g@coupons4giving.ca</a>.</p>
+            <p>Your invitation to " + name + " from " + company + " at " + email + @" has been sent! If you have any questions, please contact <a href='mailto:team@coupons4giving.ca'>team@coupons4giving.ca</a>.</p>
             <p>Cheers!</p>
             <p>The Coupons4Giving Team</p>
             ";

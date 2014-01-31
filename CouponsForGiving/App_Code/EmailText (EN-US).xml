@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <EmailText>
   <ContactTextPrefix>Please contact us at</ContactTextPrefix>
-  <ContactEmail>teamc4g@coupons4giving.ca</ContactEmail>
+  <ContactEmail>team@coupons4giving.ca</ContactEmail>
   <ContactTextSuffix>with any questions!</ContactTextSuffix>
   <UserSignup>
     <Title>Welcome To Coupons4Giving</Title>
