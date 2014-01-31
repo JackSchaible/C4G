@@ -575,10 +575,12 @@
         <div class="FormRow">
             <label>Offer Image<br /><small>This will be the image associated with your deal. It should represent the product or service.</small></label>
             <input id="Image" name="files[]" type="file" />
+            <div class="centered">
             <input id="UploadButton" type="button" onclick="uploadImage()" value="Upload" disabled="disabled" />
             <div id="ImageErrors" class="ErrorDiv"></div>
             <div id="Loading" class="hide"><img src="../../Images/loading.gif" alt="Loading"/><p>Loading...</p></div>
             <div id="UploadedImage"><img src="../../Images/c4g_home_step4.png" alt="DefaultProfilePic" /></div>
+            </div>
         </div>
         <div class="FormRow">
             <label>Start Date</label>
