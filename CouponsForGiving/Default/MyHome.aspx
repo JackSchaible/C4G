@@ -56,7 +56,7 @@
        	</div>
 		<div class="half">
        	    <h2 class="my-profile">My Preferred Causes</h2>
-       	    <p><img src="images/c4g_comingsoon.png" width="300px"/>		
+       	    <p><img src="../Images/c4g_comingsoon.png" width="300px"/>		
 		</div>
        	<div class="clear"></div>
         <h2 class="my-profile">Notifications</h2>

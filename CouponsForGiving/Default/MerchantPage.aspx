@@ -19,11 +19,11 @@
        	    <h3>Share this Merchant on social media!</h3>
 		    <div class="SidebarShare">
 		        <img src="../Images/c4g_action_link.png" class="left" />
-                <p>Copy & Paste <%: URL %></p>
+                <p>Copy & Paste <span class="btn-url"><%: URL %></span></p>
             </div>
 		    <div class="SidebarShare" onclick="shareOnFB()">
                 <img src="../../Images/c4g_action_facebook.png" class="left" />       
-                <p class="btw" >Share on Facebook</p>
+                <span class="btn-facebook-share">Share on Facebook</span>
                 <p id="FBMsg"></p>
             </div>
 		    <div class="SidebarShare">

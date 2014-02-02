@@ -2411,6 +2411,59 @@ padding: 0px 0px 0px;
 border: none;
 margin: 0px;}
 
+#MainContent .btn-facebook-share {
+background: #ff9900;
+width: 80%;
+display: inline-block;
+line-height: 100%;
+cursor: pointer;
+background-color: #eee;
+background-image: -webkit-linear-gradient(#fff,#dedede);
+background-image: linear-gradient(#fff,#dedede);
+border: #ccc solid 1px;
+border-radius: 3px;
+color: #333;
+font-weight: bold;
+text-shadow: 0 1px 0 rgba(255,255,255,.5);
+cursor: pointer;
+overflow: hidden;
+height: 15px;
+font-size: 12px;
+margin: 10px auto;
+font-weight: 700;
+letter-spacing: -.5px;
+padding: 3px 0px 0px;
+}
+
+#MainContent .btn-facebook-share:hover {
+background-image: -webkit-linear-gradient(#eee,#dedede);
+background-image: linear-gradient(#eee,#dedede);
+}
+
+.SocialSidebar .SidebarShare .btn-facebook-share {
+width: 100px;
+float: left;
+display: inline-block;
+max-width: 54%;
+margin-top: 12px;
+text-align: center;
+top: 10px;
+position: relative;}
+
+.SocialSidebar .SidebarShare .btn-url, .coupon-social .btn-url {
+padding: 6px;
+border: 1px solid #ddd;
+display: inline-block;
+background: #fafafa;
+margin: 4px 0px;
+width: 67%;
+border-radius: 4px;
+cursor: text;}
+
+.coupon-social .btn-url
+{width: 90%;
+font-size: 12px;}
+
 /* Footer 
 ----------------------------------------------------------------------- */
 

@@ -30,11 +30,11 @@
             <h3>Share this Campaign on social media!</h3>
             <div class="SidebarShare">
                 <img src="../../images/c4g_action_link.png" class="left" />
-                <p>Copy & Paste <%: URL %></p>
+                <p>Copy & Paste <span class="btn-url"><%: URL %></span></p>
             </div>
             <div class="SidebarShare">
                 <img src="../../images/c4g_action_facebook.png" class="left" />       
-                <p class="btw" onclick="shareOnFB()">Share on Facebook</p>
+                <span class="btn-facebook-share" onclick="shareOnFB()">Share on Facebook</p>
                 <p id="FBMsg"></p>
             </div>
             <div class="SidebarShare">

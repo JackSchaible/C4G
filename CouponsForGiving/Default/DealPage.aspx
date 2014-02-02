@@ -61,11 +61,11 @@
             <h5>Share this Deal on social media!</h5>
                 <div class="coupon-social">
                  	<img src="../../Images/c4g_action_link.png" />
-               		<p>Copy & Paste <%: URL %></p>
+               		<p>Copy & Paste <span class="btn-url"><%: URL %></span></p>
                  </div>
                  <div class="coupon-social" onclick="shareOnFB('<%: URL %>', '<%: Caption %>', 'https://www.coupons4giving.ca/<%: deal.ImageURL %>', '<%: deal.Name %>', '<%: deal.DealDescription %>')">
                		<img src="../../Images/c4g_action_facebook.png" />       
-                	<p class="btn">Share on Facebook</p>
+                	<span class="btn-facebook-share">Share on Facebook</p>
                 	<p id="FBMsg"></p>
                  </div>
                  <div class="coupon-social">                
