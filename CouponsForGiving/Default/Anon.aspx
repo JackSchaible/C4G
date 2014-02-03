@@ -32,7 +32,7 @@
         </li>
     </ul>
     
-    <a href="../Account/Register.aspx" class="btn-center"><i class="fa fa-arrow-circle-o-right"></i> GET STARTED</a>
+    <a href="DealsInMyArea.aspx" class="btn-center"><i class="fa fa-arrow-circle-o-right"></i> GET STARTED</a>
 
     <hr>
     <h4 class="centered">OUR FEATURED DEALS</h4>

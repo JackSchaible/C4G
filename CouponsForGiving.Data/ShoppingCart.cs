@@ -3,9 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-/// <summary>
-/// Summary description for ShoppingCart
-/// </summary>
+public class PurchaseSplit
+{
+    public float MerchantSplit { get; set; }
+    public float NPOSplit { get; set; }
+    public float OurSplit { get; set; }
+    public float StripeFee { get; set; }
+    public float Tax { get; set; }
+
+    private const float MerchantPercentage = 0.55F;
+    private const float NPOPercentage = 0.25F;
+    private const float OurPercentage = 0.2F;
+
+    public PurchaseSplit(decimal GiftValue)
+    {
+        float giftValue = (float)GiftValue;
+
+        StripeFee = (giftValue * 0.029F) + 0.3F;
+        Tax = ((OurPercentage * giftValue) * 0.05F);
+        MerchantSplit = (MerchantPercentage * giftValue) - Tax;
+        NPOSplit = NPOPercentage * giftValue;
+        OurSplit = (OurPercentage * giftValue) + Tax;
+    }
+}
+
 public class ShoppingCart
 {
     public string NPOName { get; set; }
@@ -17,14 +38,7 @@ public class ShoppingCart
     public string MerchantName { get; set; }
     public decimal GiftValue { get; set; }
     public decimal RetailValue { get; set; }
-    public decimal NPOSplit { get; set; }
-    public decimal MerchantSplit { get; set; }
-    public decimal OurSplit { get; set; }
-
-    public const decimal NPOSplitPerc = 0.25M;
-    //Important: MerchantSplit = 54% - (2.9% Processing Fee + $0.30 + 5% GST on GenerUS fee (21%))
-    public const decimal MerchantSplitPerc = 0.55M;
-    public const decimal OurSplitPerc = 0.2M;
+    public PurchaseSplit Split { get; set; }
 
     public ShoppingCart(string npo, int campaignid, string campaign, int dealinstanceid, string deal, 
         int merchantid, string merchant, decimal giftvalue, decimal retailvalue)
@@ -38,13 +52,6 @@ public class ShoppingCart
         MerchantName = merchant;
         GiftValue = giftvalue;
         RetailValue = retailvalue;
-
-        //Calculate the proper splits      
-        decimal vat = (GiftValue * 0.029M) + 0.3M;
-        decimal tax = (GiftValue * 0.2M) * 0.05M;
-        decimal split = (GiftValue * 0.55M) - (vat + tax);
-        NPOSplit = GiftValue * NPOSplitPerc;
-        MerchantSplit = (GiftValue * 0.55M) - (tax + vat); ;
-        OurSplit = (GiftValue * 0.2M) + tax;
+        Split = new PurchaseSplit(giftvalue);
     }
 }

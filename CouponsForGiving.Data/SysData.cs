@@ -299,8 +299,8 @@ namespace CouponsForGiving.Data
 
                     foreach (ShoppingCart item in orders)
                     {
-                        result.Add(en.PurchaseOrder_Insert(item.DealInstanceID, item.CampaignID, transactionID, item.GiftValue, item.NPOSplit, 
-                            item.MerchantSplit, item.OurSplit).FirstOrDefault<PurchaseOrder>());
+                        result.Add(en.PurchaseOrder_Insert(item.DealInstanceID, item.CampaignID, transactionID, item.GiftValue, (decimal)item.Split.NPOSplit,
+                           (decimal)item.Split.MerchantSplit, (decimal)item.Split.OurSplit).FirstOrDefault<PurchaseOrder>());
                     }
 
                     ts.Complete();
@@ -779,6 +779,11 @@ namespace CouponsForGiving.Data.Classes
         public static PurchaseOrder Get(int PurchaseOrderID)
         {
             return new C4GEntities().PurchaseOrder_GetByID(PurchaseOrderID).FirstOrDefault<PurchaseOrder>();
+        }
+
+        public static List<PurchaseOrder> List()
+        {
+            return new C4GEntities().PurchaseOrder_List().ToList<PurchaseOrder>();
         }
     }
 

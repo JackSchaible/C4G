@@ -2844,5 +2844,15 @@ namespace CouponsForGiving.Data
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PurchaseOrder>("PurchaseOrder_GetByID", mergeOption, couponCodeParameter);
         }
+    
+        public virtual ObjectResult<PurchaseOrder> PurchaseOrder_List()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PurchaseOrder>("PurchaseOrder_List");
+        }
+    
+        public virtual ObjectResult<PurchaseOrder> PurchaseOrder_List(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PurchaseOrder>("PurchaseOrder_List", mergeOption);
+        }
     }
 }

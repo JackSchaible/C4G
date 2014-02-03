@@ -442,6 +442,9 @@
     <Compile Include="PurchaseOrder_ListUnredeemedByUser_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="PurchaseOrder_List_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="PurchaseTransaction.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

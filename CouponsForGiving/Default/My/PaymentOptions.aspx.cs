@@ -135,17 +135,20 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
 
                             StripeToken stripeToken = new StripeTokenService(info.ApiKey).Create(myToken);
                             var stripeService = new StripeChargeService(info.ApiKey);
+                            int chargeAmount = (int)(ds.Sum(x => Math.Round(x.Split.MerchantSplit, 2)) * 100);
+                            int appFee = (int)(Math.Round(ds.Sum(x => x.Split.NPOSplit + x.Split.OurSplit), 2) * 100);
+
                             var stripeChargeOption = new StripeChargeCreateOptions()
                             {
-                                AmountInCents = (int)(ds.Sum(x => x.MerchantSplit) * 100),
+                                AmountInCents = chargeAmount + appFee,
                                 Currency = "cad",
                                 Card = stripeToken.Id,
                                 Description = "Your Purchase with Coupons4Giving - " + info.Merchant.Name,
-                                ApplicationFeeInCents = (int)(ds.Sum(x => x.NPOSplit + x.OurSplit) * 100)
+                                ApplicationFeeInCents = appFee
                             };
                             var response = stripeService.Create(stripeChargeOption);
                         }
-                        Session["Cart"] = new List<ShoppingCart>();
+                        //Session["Cart"] = new List<ShoppingCart>();
                         ts.Complete();
                     }
                     catch (Exception ex)

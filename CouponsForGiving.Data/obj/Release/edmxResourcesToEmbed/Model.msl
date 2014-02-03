@@ -799,5 +799,6 @@
     <FunctionImportMapping FunctionImportName="PurchaseOrder_RedeemByCouponCode" FunctionName="C4GModel.Store.PurchaseOrder_RedeemByCouponCode" />
     <FunctionImportMapping FunctionImportName="PurchaseOrder_GetByCouponCode" FunctionName="C4GModel.Store.PurchaseOrder_GetByCouponCode" />
     <FunctionImportMapping FunctionImportName="PurchaseOrder_GetByID" FunctionName="C4GModel.Store.PurchaseOrder_GetByID" />
+    <FunctionImportMapping FunctionImportName="PurchaseOrder_List" FunctionName="C4GModel.Store.PurchaseOrder_List" />
   </EntityContainerMapping>
 </Mapping>

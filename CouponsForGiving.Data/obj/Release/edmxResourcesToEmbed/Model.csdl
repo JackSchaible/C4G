@@ -840,6 +840,7 @@
     <FunctionImport Name="PurchaseOrder_GetByID" EntitySet="PurchaseOrders" ReturnType="Collection(C4GModel.PurchaseOrder)">
       <Parameter Name="CouponCode" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="PurchaseOrder_List" EntitySet="PurchaseOrders" ReturnType="Collection(C4GModel.PurchaseOrder)" />
   </EntityContainer>
   <EntityType Name="Campaign">
     <Key>
@@ -2706,6 +2707,19 @@
     <Property Type="Guid" Name="CouponCode" Nullable="false" />
   </ComplexType>
   <ComplexType Name="PurchaseOrder_GetByID_Result">
+    <Property Type="Int32" Name="PurchaseOrderID" Nullable="false" />
+    <Property Type="Int32" Name="CampaignID" Nullable="false" />
+    <Property Type="Int32" Name="OrderStatusID" Nullable="false" />
+    <Property Type="Int32" Name="TransactionID" Nullable="false" />
+    <Property Type="DateTime" Name="PurchaseDate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="DealInstanceID" Nullable="false" />
+    <Property Type="Decimal" Name="PurchaseAmount" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="NPOSplit" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="MerchantSplit" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="OurSplit" Nullable="false" Precision="19" />
+    <Property Type="Guid" Name="CouponCode" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PurchaseOrder_List_Result">
     <Property Type="Int32" Name="PurchaseOrderID" Nullable="false" />
     <Property Type="Int32" Name="CampaignID" Nullable="false" />
     <Property Type="Int32" Name="OrderStatusID" Nullable="false" />
