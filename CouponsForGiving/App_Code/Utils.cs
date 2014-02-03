@@ -10,6 +10,7 @@ using System.Data;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Net.Mail;
 using System.Security.Cryptography;
@@ -1418,4 +1419,63 @@ namespace CouponsForGiving
             return filePath;
         }
     }
+
+    #region GridView Utils
+    public static class SortExpressionBuilder<T>
+    {
+        private static IDictionary<SortDirection, ISortExpression> directions =
+                new Dictionary<SortDirection, ISortExpression>
+        {
+            { SortDirection.Ascending, new OrderByAscendingSortExpression() },
+            { SortDirection.Descending, new OrderByDescendingSortExpression() }
+        };
+
+        interface ISortExpression
+        {
+            Func<IEnumerable<T>, Func<T, object>, IEnumerable<T>> GetExpression();
+        }
+
+        class OrderByAscendingSortExpression : ISortExpression
+        {
+            public Func<IEnumerable<T>, Func<T, object>, IEnumerable<T>> GetExpression()
+            {
+                return (c, f) => c.OrderBy(f);
+            }
+        }
+
+        class OrderByDescendingSortExpression : ISortExpression
+        {
+            public Func<IEnumerable<T>, Func<T, object>, IEnumerable<T>> GetExpression()
+            {
+                return (c, f) => c.OrderByDescending(f);
+            }
+        }
+
+        public static Func<IEnumerable<T>, Func<T, object>,
+            IEnumerable<T>> CreateExpression(SortDirection direction)
+        {
+            return directions[direction].GetExpression();
+        }
+    }
+
+    public static class LinqHelper
+    {
+        public static IEnumerable<T> OrderBy<T>(this IEnumerable<T> collection,
+            string columnName, SortDirection direction)
+        {
+            ParameterExpression param = Expression.Parameter(typeof(T), "x");
+            Expression property = Expression.Property(param, columnName);
+            Func<T, object> lambda = Expression.Lambda<Func<T, object>>(
+                    Expression.Convert(property, typeof(object)),
+                    param)
+                .Compile();
+
+            Func<IEnumerable<T>, Func<T, object>, IEnumerable<T>> expression =
+                SortExpressionBuilder<T>.CreateExpression(direction);
+
+            IEnumerable<T> sorted = expression(collection, lambda);
+            return sorted;
+        }
+    }
+    #endregion
 }

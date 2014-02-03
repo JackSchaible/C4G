@@ -33,16 +33,14 @@
 
         function calcSplit(value) {
             if (!isNaN(value)) {
-                var vat = (value * 0.029) + 0.3;
                 var tax = (value * 0.2) * 0.05;
-                var split = (value * 0.55) - (vat + tax);
+                var split = (value * 0.55) - tax;
 
                 if ((isNaN(vat) || isNaN(tax) || isNaN(split)) || (vat == 0) || (tax == 0) || (split == 0) || value == undefined) {
                     $("#SplitOutput").hide();
                 }
                 else {
                     $("#SplitOutput").show();
-                    $("#VAT").text("$" + vat.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
                     $("#Tax").text("$" + tax.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
 
                     //IMPORTANT: MUST BE THE SAME AS THE FORMULA IN ShoppingCart.cs
@@ -621,9 +619,6 @@
             <div id="GiftValueTextBoxErrors" class="ErrorDiv"></div>
         </div>
         <div id="SplitOutput" class="FormRow">
-            <br />
-            <p>Processing Fee (2.9% + $0.30) = <strong id="VAT">$0.00</strong></p>
-            <br />
             <p>5% Tax on Coupons4Giving Fee = <strong id="Tax">$0.00</strong></p>
             <br />
             <p>Your Split on Each Purchase = <strong id="SplitTotal">$0.00</strong></p>

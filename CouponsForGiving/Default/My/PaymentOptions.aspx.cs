@@ -148,7 +148,7 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
                             };
                             var response = stripeService.Create(stripeChargeOption);
                         }
-                        //Session["Cart"] = new List<ShoppingCart>();
+                        Session["Cart"] = new List<ShoppingCart>();
                         ts.Complete();
                     }
                     catch (Exception ex)
