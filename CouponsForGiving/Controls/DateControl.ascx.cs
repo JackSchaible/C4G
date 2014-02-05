@@ -24,7 +24,7 @@ public partial class Controls_DateControl : System.Web.UI.UserControl
 
             try
             {
-                result = new DateTime(int.Parse(YearDDL.SelectedValue), DateTime.ParseExact(MonthDDL.SelectedValue, "MMMM", CultureInfo.CurrentCulture).Month, int.Parse(DayDDL.SelectedValue));
+                result = new DateTime(int.Parse(YearDDL.SelectedValue), DateTime.ParseExact(MonthDDL.SelectedValue, "MM", CultureInfo.CurrentCulture).Month, int.Parse(DayDDL.SelectedValue));
             }
             catch
             {

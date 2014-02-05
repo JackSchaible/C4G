@@ -33,17 +33,19 @@
 
         function calcSplit(value) {
             if (!isNaN(value)) {
+                var stripe = (value * 0.029) + 0.3;
                 var tax = (value * 0.2) * 0.05;
-                var split = (value * 0.55) - tax;
+                var split = (value * 0.55) - (tax + stripe);
 
-                if ((isNaN(vat) || isNaN(tax) || isNaN(split)) || (vat == 0) || (tax == 0) || (split == 0) || value == undefined) {
+                if ((isNaN(stripe) || isNaN(tax) || isNaN(split)) || (stripe == 0) || (tax == 0) || (split == 0) || value == undefined) {
                     $("#SplitOutput").hide();
                 }
                 else {
                     $("#SplitOutput").show();
-                    $("#Tax").text("$" + tax.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
 
                     //IMPORTANT: MUST BE THE SAME AS THE FORMULA IN ShoppingCart.cs
+                    $("#Stripe").text("$" + stripe.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+                    $("#Tax").text("$" + tax.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
                     $("#SplitTotal").text("$" + split.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
                 }
             }
@@ -619,6 +621,8 @@
             <div id="GiftValueTextBoxErrors" class="ErrorDiv"></div>
         </div>
         <div id="SplitOutput" class="FormRow">
+            <p>Payment Processing Fee = <strong id="Stripe">$0.00</strong></p>
+            <br />
             <p>5% Tax on Coupons4Giving Fee = <strong id="Tax">$0.00</strong></p>
             <br />
             <p>Your Split on Each Purchase = <strong id="SplitTotal">$0.00</strong></p>

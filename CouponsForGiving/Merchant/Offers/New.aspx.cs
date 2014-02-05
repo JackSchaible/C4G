@@ -124,9 +124,9 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
         
         decimal vat = (GiftValue * 0.029M) + 0.3M;
         decimal tax = (GiftValue * 0.2M) * 0.05M;
-        decimal split = (GiftValue * 0.55M) - (vat + tax);
+        decimal split = (GiftValue * 0.55M) - (tax);
 
-        decimal MerchantSplit = (GiftValue * 0.55M) - (tax + vat);
+        decimal MerchantSplit = (GiftValue * 0.55M) - (tax);
         decimal NPOSplit = GiftValue * nSplit;
         decimal OurSplit = (GiftValue * oSplit) + tax;
 

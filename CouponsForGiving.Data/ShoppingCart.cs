@@ -21,7 +21,7 @@ public class PurchaseSplit
 
         StripeFee = (giftValue * 0.029F) + 0.3F;
         Tax = ((OurPercentage * giftValue) * 0.05F);
-        MerchantSplit = (MerchantPercentage * giftValue) - Tax;
+        MerchantSplit = (MerchantPercentage * giftValue) - (Tax);
         NPOSplit = NPOPercentage * giftValue;
         OurSplit = (OurPercentage * giftValue) + Tax;
     }
