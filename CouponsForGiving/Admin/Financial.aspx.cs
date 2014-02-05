@@ -76,11 +76,15 @@ public partial class Admin_Financial : System.Web.UI.Page
         ReportGV.DataBind();
     }
 
-    protected void Submit_Click(object sender, EventArgs e)
+    private void BindData(List<Report> Reports)
     {
-        if (FilterState.Value == "Show")
-        {
-            List<Report> Reports =
+        ReportGV.DataSource = Reports;
+        ReportGV.DataBind();
+    }
+
+    private List<Report> ApplyFilters()
+    {
+        List<Report> Reports =
             (
                 from po
                 in PurchaseOrders.List()
@@ -98,187 +102,195 @@ public partial class Admin_Financial : System.Web.UI.Page
                 )
             ).ToList<Report>();
 
-            if (CouponCheckBox.Checked)
-                if (CouponNameRBL.SelectedValue == "Contains")
-                    Reports = Reports.Where(x => x.Coupon.ToLower().Contains(CouponName.Text.Trim().ToLower())).ToList<Report>();
-                else
-                    Reports = Reports.Where(x => x.Coupon.ToLower() == CouponName.Text.Trim().ToLower()).ToList<Report>();
+        if (CouponCheckBox.Checked)
+            if (CouponNameRBL.SelectedValue == "Contains")
+                Reports = Reports.Where(x => x.Coupon.ToLower().Contains(CouponName.Text.Trim().ToLower())).ToList<Report>();
+            else
+                Reports = Reports.Where(x => x.Coupon.ToLower() == CouponName.Text.Trim().ToLower()).ToList<Report>();
 
-            if (MerchantCheckBox.Checked)
-                if (MerchantRBL.SelectedValue == "Contains")
-                    Reports = Reports.Where(x => x.MerchantAccount.ToLower().Contains(MerchantTextBox.Text.Trim().ToLower())).ToList<Report>();
-                else
-                    Reports = Reports.Where(x => x.MerchantAccount.ToLower() == MerchantTextBox.Text.Trim().ToLower()).ToList<Report>();
+        if (MerchantCheckBox.Checked)
+            if (MerchantRBL.SelectedValue == "Contains")
+                Reports = Reports.Where(x => x.MerchantAccount.ToLower().Contains(MerchantTextBox.Text.Trim().ToLower())).ToList<Report>();
+            else
+                Reports = Reports.Where(x => x.MerchantAccount.ToLower() == MerchantTextBox.Text.Trim().ToLower()).ToList<Report>();
 
-            if (MerchantTotalCheckBox.Checked)
+        if (MerchantTotalCheckBox.Checked)
+        {
+            decimal value = decimal.Parse(MerchantTotalTextBox.Text.Trim());
+
+            switch (MerchantTotalRBL.SelectedValue)
             {
-                decimal value = decimal.Parse(MerchantTotalTextBox.Text.Trim());
+                case "GT":
+                    Reports = Reports.Where(x => Math.Round(x.MerchantPay, 2) > value).ToList<Report>();
+                    break;
 
-                switch (MerchantTotalRBL.SelectedValue)
-                {
-                    case "GT":
-                        Reports = Reports.Where(x => Math.Round(x.MerchantPay, 2) > value).ToList<Report>();
-                        break;
+                case "Exactly":
+                    Reports = Reports.Where(x => Math.Round(x.MerchantPay, 2) == value).ToList<Report>();
+                    break;
 
-                    case "Exactly":
-                        Reports = Reports.Where(x => Math.Round(x.MerchantPay, 2) == value).ToList<Report>();
-                        break;
-
-                    case "LT":
-                        Reports = Reports.Where(x => Math.Round(x.MerchantPay, 2) < value).ToList<Report>();
-                        break;
-                }
+                case "LT":
+                    Reports = Reports.Where(x => Math.Round(x.MerchantPay, 2) < value).ToList<Report>();
+                    break;
             }
-
-            if (MerchantSplitCheckBox.Checked)
-            {
-                decimal value = decimal.Parse(MerchantSplitTextBox.Text.Trim());
-
-                switch (MerchantSplitRBL.SelectedValue)
-                {
-                    case "GT":
-                        Reports = Reports.Where(x => Math.Round(x.MerchantSplit, 2) > value).ToList<Report>();
-                        break;
-
-                    case "Exactly":
-                        Reports = Reports.Where(x => Math.Round(x.MerchantSplit, 2) == value).ToList<Report>();
-                        break;
-
-                    case "LT":
-                        Reports = Reports.Where(x => Math.Round(x.MerchantSplit, 2) < value).ToList<Report>();
-                        break;
-                }
-            }
-
-            if (NPOSplitCheckBox.Checked)
-            {
-                decimal value = decimal.Parse(NPOSplitTextBox.Text.Trim());
-
-                switch (NPOSplitRBL.SelectedValue)
-                {
-                    case "GT":
-                        Reports = Reports.Where(x => Math.Round(x.NPOSplit, 2) > value).ToList<Report>();
-                        break;
-
-                    case "Exactly":
-                        Reports = Reports.Where(x => Math.Round(x.NPOSplit, 2) == value).ToList<Report>();
-                        break;
-
-                    case "LT":
-                        Reports = Reports.Where(x => Math.Round(x.NPOSplit, 2) < value).ToList<Report>();
-                        break;
-                }
-            }
-
-            if (OurSplitCheckBox.Checked)
-            {
-                decimal value = decimal.Parse(OurSplitTextBox.Text.Trim());
-
-                switch (OurSplitRBL.SelectedValue)
-                {
-                    case "GT":
-                        Reports = Reports.Where(x => Math.Round(x.OurSplit, 2) > value).ToList<Report>();
-                        break;
-
-                    case "Exactly":
-                        Reports = Reports.Where(x => Math.Round(x.OurSplit, 2) == value).ToList<Report>();
-                        break;
-
-                    case "LT":
-                        Reports = Reports.Where(x => Math.Round(x.OurSplit, 2) < value).ToList<Report>();
-                        break;
-                }
-            }
-
-            if (GSTCheckBox.Checked)
-            {
-                decimal value = decimal.Parse(GSTTextBox.Text.Trim());
-
-                switch (GSTRBL.SelectedValue)
-                {
-                    case "GT":
-                        Reports = Reports.Where(x => Math.Round(x.GST, 2) > value).ToList<Report>();
-                        break;
-
-                    case "Exactly":
-                        Reports = Reports.Where(x => Math.Round(x.GST, 2) == value).ToList<Report>();
-                        break;
-
-                    case "LT":
-                        Reports = Reports.Where(x => Math.Round(x.GST, 2) < value).ToList<Report>();
-                        break;
-                }
-            }
-
-            if (StripeCheckBox.Checked)
-            {
-                decimal value = decimal.Parse(StripeTextBox.Text.Trim());
-
-                switch (StripeRBL.SelectedValue)
-                {
-                    case "GT":
-                        Reports = Reports.Where(x => Math.Round(x.StripeFee, 2) > value).ToList<Report>();
-                        break;
-
-                    case "Exactly":
-                        Reports = Reports.Where(x => Math.Round(x.StripeFee, 2) == value).ToList<Report>();
-                        break;
-
-                    case "LT":
-                        Reports = Reports.Where(x => Math.Round(x.StripeFee, 2) < value).ToList<Report>();
-                        break;
-                }
-            }
-
-            if (NPOCheckBox.Checked)
-                if (NPORBL.SelectedValue == "Contains")
-                    Reports = Reports.Where(x => x.NPOAccount.ToLower().Contains(NPOTextBox.Text.Trim().ToLower())).ToList<Report>();
-                else
-                    Reports = Reports.Where(x => x.NPOAccount.ToLower() == NPOTextBox.Text.Trim().ToLower()).ToList<Report>();
-
-            if (RefundedCheckBox.Checked)
-                if (RefundedRBL.SelectedValue == "True")
-                    Reports = Reports.Where(x => x.Refunded).ToList<Report>();
-                else
-                    Reports = Reports.Where(x => !x.Refunded).ToList<Report>();
-
-            if (DateCheckBox.Checked)
-            {
-                DateTime start = StartDate.Date;
-
-                switch (DateRBL.SelectedValue)
-                {
-                    case "Before":
-                        Reports = Reports.Where(x => x.Date.Date < start.Date).ToList<Report>();
-                        break;
-
-                    case "Exactly":
-                        Reports = Reports.Where(x => x.Date.Date == start.Date).ToList<Report>();
-                        break;
-
-                    case "After":
-                        Reports = Reports.Where(x => x.Date.Date > start.Date).ToList<Report>();
-                        break;
-
-                    case "Between":
-                        DateTime end = EndDate.Date;
-
-                        Reports = Reports.Where(x => x.Date.Date > start.Date && x.Date.Date < end.Date).ToList<Report>();
-                        break;
-                }
-            }
-
-            ReportGV.DataSource = Reports;
-            ReportGV.DataBind();
         }
+
+        if (MerchantSplitCheckBox.Checked)
+        {
+            decimal value = decimal.Parse(MerchantSplitTextBox.Text.Trim());
+
+            switch (MerchantSplitRBL.SelectedValue)
+            {
+                case "GT":
+                    Reports = Reports.Where(x => Math.Round(x.MerchantSplit, 2) > value).ToList<Report>();
+                    break;
+
+                case "Exactly":
+                    Reports = Reports.Where(x => Math.Round(x.MerchantSplit, 2) == value).ToList<Report>();
+                    break;
+
+                case "LT":
+                    Reports = Reports.Where(x => Math.Round(x.MerchantSplit, 2) < value).ToList<Report>();
+                    break;
+            }
+        }
+
+        if (NPOSplitCheckBox.Checked)
+        {
+            decimal value = decimal.Parse(NPOSplitTextBox.Text.Trim());
+
+            switch (NPOSplitRBL.SelectedValue)
+            {
+                case "GT":
+                    Reports = Reports.Where(x => Math.Round(x.NPOSplit, 2) > value).ToList<Report>();
+                    break;
+
+                case "Exactly":
+                    Reports = Reports.Where(x => Math.Round(x.NPOSplit, 2) == value).ToList<Report>();
+                    break;
+
+                case "LT":
+                    Reports = Reports.Where(x => Math.Round(x.NPOSplit, 2) < value).ToList<Report>();
+                    break;
+            }
+        }
+
+        if (OurSplitCheckBox.Checked)
+        {
+            decimal value = decimal.Parse(OurSplitTextBox.Text.Trim());
+
+            switch (OurSplitRBL.SelectedValue)
+            {
+                case "GT":
+                    Reports = Reports.Where(x => Math.Round(x.OurSplit, 2) > value).ToList<Report>();
+                    break;
+
+                case "Exactly":
+                    Reports = Reports.Where(x => Math.Round(x.OurSplit, 2) == value).ToList<Report>();
+                    break;
+
+                case "LT":
+                    Reports = Reports.Where(x => Math.Round(x.OurSplit, 2) < value).ToList<Report>();
+                    break;
+            }
+        }
+
+        if (GSTCheckBox.Checked)
+        {
+            decimal value = decimal.Parse(GSTTextBox.Text.Trim());
+
+            switch (GSTRBL.SelectedValue)
+            {
+                case "GT":
+                    Reports = Reports.Where(x => Math.Round(x.GST, 2) > value).ToList<Report>();
+                    break;
+
+                case "Exactly":
+                    Reports = Reports.Where(x => Math.Round(x.GST, 2) == value).ToList<Report>();
+                    break;
+
+                case "LT":
+                    Reports = Reports.Where(x => Math.Round(x.GST, 2) < value).ToList<Report>();
+                    break;
+            }
+        }
+
+        if (StripeCheckBox.Checked)
+        {
+            decimal value = decimal.Parse(StripeTextBox.Text.Trim());
+
+            switch (StripeRBL.SelectedValue)
+            {
+                case "GT":
+                    Reports = Reports.Where(x => Math.Round(x.StripeFee, 2) > value).ToList<Report>();
+                    break;
+
+                case "Exactly":
+                    Reports = Reports.Where(x => Math.Round(x.StripeFee, 2) == value).ToList<Report>();
+                    break;
+
+                case "LT":
+                    Reports = Reports.Where(x => Math.Round(x.StripeFee, 2) < value).ToList<Report>();
+                    break;
+            }
+        }
+
+        if (NPOCheckBox.Checked)
+            if (NPORBL.SelectedValue == "Contains")
+                Reports = Reports.Where(x => x.NPOAccount.ToLower().Contains(NPOTextBox.Text.Trim().ToLower())).ToList<Report>();
+            else
+                Reports = Reports.Where(x => x.NPOAccount.ToLower() == NPOTextBox.Text.Trim().ToLower()).ToList<Report>();
+
+        if (RefundedCheckBox.Checked)
+            if (RefundedRBL.SelectedValue == "True")
+                Reports = Reports.Where(x => x.Refunded).ToList<Report>();
+            else
+                Reports = Reports.Where(x => !x.Refunded).ToList<Report>();
+
+        if (DateCheckBox.Checked)
+        {
+            DateTime start = StartDate.Date;
+
+            switch (DateRBL.SelectedValue)
+            {
+                case "Before":
+                    Reports = Reports.Where(x => x.Date.Date < start.Date).ToList<Report>();
+                    break;
+
+                case "Exactly":
+                    Reports = Reports.Where(x => x.Date.Date == start.Date).ToList<Report>();
+                    break;
+
+                case "After":
+                    Reports = Reports.Where(x => x.Date.Date > start.Date).ToList<Report>();
+                    break;
+
+                case "Between":
+                    DateTime end = EndDate.Date;
+
+                    Reports = Reports.Where(x => x.Date.Date > start.Date && x.Date.Date < end.Date).ToList<Report>();
+                    break;
+            }
+        }
+
+        return Reports;
+    }
+
+    protected void Submit_Click(object sender, EventArgs e)
+    {
+        if (FilterState.Value == "Show")
+            BindData(ApplyFilters());
         else
             BindData();
-    }
+    } 
 
     protected void ReportView_PageIndexChanging(object sender, GridViewPageEventArgs e)
     {
         ReportGV.PageIndex = e.NewPageIndex;
-        BindData();
+
+        if (FilterState.Value == "Show")
+            BindData(ApplyFilters());
+        else
+            BindData();
     }
 
     protected void ReportView_Sorting(object sender, GridViewSortEventArgs e)
@@ -309,23 +321,28 @@ public partial class Admin_Financial : System.Web.UI.Page
             }
         }
 
-        IEnumerable<Report> reports =
-        (
-            from po
-            in PurchaseOrders.List()
-            select new Report
+        IEnumerable<Report> reports = null;
+
+        if (FilterState.Value == "Show")
+            reports = ApplyFilters();
+        else
+            reports = 
             (
-                po.PurchaseAmount,
-                po.DealInstance.Deal.Name,
-                po.NPOSplit,
-                po.MerchantSplit,
-                po.OurSplit,
-                po.OrderStatusID != 1 && po.OrderStatusID != 2,
-                po.PurchaseDate,
-                po.Campaign.NPO.Name,
-                po.DealInstance.Deal.Merchant.Name
-            )
-        );
+                from po
+                in PurchaseOrders.List()
+                select new Report
+                (
+                    po.PurchaseAmount,
+                    po.DealInstance.Deal.Name,
+                    po.NPOSplit,
+                    po.MerchantSplit,
+                    po.OurSplit,
+                    po.OrderStatusID != 1 && po.OrderStatusID != 2,
+                    po.PurchaseDate,
+                    po.Campaign.NPO.Name,
+                    po.DealInstance.Deal.Merchant.Name
+                )
+            );
 
         reports = reports.OrderBy(e.SortExpression, e.SortDirection);
 
