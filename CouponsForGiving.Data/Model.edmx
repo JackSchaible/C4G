@@ -1781,6 +1781,9 @@
           <Parameter Name="OurSplit" Type="money" Mode="In" />
         </Function>
         <Function Name="PurchaseOrder_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+        <Function Name="PurchaseOrder_ListByMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="PurchaseOrder_ListRedeemedByUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
         </Function>
@@ -2699,6 +2702,9 @@
           <Parameter Name="CouponCode" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="PurchaseOrder_List" EntitySet="PurchaseOrders" ReturnType="Collection(C4GModel.PurchaseOrder)" />
+          <FunctionImport Name="PurchaseOrder_ListByMerchant" EntitySet="PurchaseOrders" ReturnType="Collection(C4GModel.PurchaseOrder)">
+            <Parameter Name="Username" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="Campaign">
           <Key>
@@ -4590,6 +4596,19 @@
           <Property Type="Decimal" Name="OurSplit" Nullable="false" Precision="19" />
           <Property Type="Guid" Name="CouponCode" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="PurchaseOrder_ListByMerchant_Result">
+          <Property Type="Int32" Name="PurchaseOrderID" Nullable="false" />
+          <Property Type="Int32" Name="CampaignID" Nullable="false" />
+          <Property Type="Int32" Name="OrderStatusID" Nullable="false" />
+          <Property Type="Int32" Name="TransactionID" Nullable="false" />
+          <Property Type="DateTime" Name="PurchaseDate" Nullable="false" Precision="23" />
+          <Property Type="Int32" Name="DealInstanceID" Nullable="false" />
+          <Property Type="Decimal" Name="PurchaseAmount" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="NPOSplit" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="MerchantSplit" Nullable="false" Precision="19" />
+          <Property Type="Decimal" Name="OurSplit" Nullable="false" Precision="19" />
+          <Property Type="Guid" Name="CouponCode" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5459,6 +5478,8 @@
           <FunctionImportMapping FunctionImportName="PurchaseOrder_GetByID" FunctionName="C4GModel.Store.PurchaseOrder_GetByID">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="PurchaseOrder_List" FunctionName="C4GModel.Store.PurchaseOrder_List">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="PurchaseOrder_ListByMerchant" FunctionName="C4GModel.Store.PurchaseOrder_ListByMerchant">
           </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>

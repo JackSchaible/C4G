@@ -741,6 +741,11 @@ namespace CouponsForGiving.Data.Classes
 
     public static class PurchaseOrders
     {
+        public static List<PurchaseOrder> ListByMerchant(string Username)
+        {
+            return new C4GEntities().PurchaseOrder_ListByMerchant(Username).ToList<PurchaseOrder>();
+        }
+
         public static List<PurchaseOrder> ListActiveByMerchant(string username)
         {
             return new C4GEntities().PurchaseOrder_ListUnredeemedByMerchant(username).ToList<PurchaseOrder>();

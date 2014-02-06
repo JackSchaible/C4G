@@ -183,7 +183,7 @@
        	    <h2 class="my-profile">Manage My Campaigns</h2>
        	    <h3 class="profile-icon"><i class="fa fa-cog"></i></h3>
        	    <p><strong>Manage and Edit</strong> your current Coupons4Giving campaign. See reports of your previous and current campaigns.</p>
-       	    <a href="Campaigns/MyCampaigns.aspx" class="btn-small"><i class="fa fa-pencil-square-o"></i> Edit Campaigns</a> <a href="Reports.aspx" class="btn-small"><i class="fa fa-file-text-o"></i> Campaign Reports</a>
+       	    <a href="Campaigns/MyCampaigns.aspx" class="btn-small"><i class="fa fa-pencil-square-o"></i> Edit Campaigns</a> <a href="Reports/Default.aspx" class="btn-small"><i class="fa fa-file-text-o"></i> Campaign Reports</a>
 		</div>
         <div class="clear"></div>
        	<div class="half">
@@ -215,7 +215,7 @@
        	    <h2 class="my-profile">Reports</h2>
        	    <h3 class="profile-icon"><i class="fa fa-file-text"></i></h3>
        	    <p><strong>View</strong> current Campaign Reports</p>
-       	    <a href="Reports.aspx" class="btn-small"><i class="fa fa-file-text-o"></i> View Reports</a>
+       	    <a href="Reports/Default.aspx" class="btn-small"><i class="fa fa-file-text-o"></i> View Reports</a>
        	</div>
         <div class="half">
        	    <h2 class="my-profile">Purchase Deals</h2>

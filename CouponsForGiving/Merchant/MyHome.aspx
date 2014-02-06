@@ -113,7 +113,7 @@
        	    <h2 class="my-profile">Manage My Offers</h2>
        	    <h3 class="profile-icon"><i class="fa fa-cog"></i></h3>
        	    <p>Manage and Edit your current Coupons4Giving offers. See reports of your previous and current offers.</p>
-       	    <a href="Offers/MyOffers.aspx" class="btn-small"><i class="fa fa-pencil-square-o"></i> Edit Offers</a> <a href="MyReports.aspx" class="btn-small"><i class="fa fa-file-text-o"></i> Offer Reports</a>
+       	    <a href="Offers/MyOffers.aspx" class="btn-small"><i class="fa fa-pencil-square-o"></i> Edit Offers</a> <a href="Reports/MyReports.aspx" class="btn-small"><i class="fa fa-file-text-o"></i> Offer Reports</a>
 		</div>
        	<div class="clear"></div>
         <div class="half">
@@ -127,7 +127,7 @@
        	    <h3 class="profile-icon"><i class="fa fa-cog"></i></h3>
        	    <p><strong>Manage, Edit and set</strong> the notification of accepted requests for NPO Partners.</p>
             <%--Set Notifications?--%>
-       	    <a href="MyPartners/MyPartners.aspx" class="btn-small"><i class="fa fa-pencil-square-o"></i> Edit Partners</a> <a href="" class="btn-small"><i class="fa fa-pencil-square-o"></i> Set Notifications</a>
+       	    <a href="MyPartners/MyPartners.aspx" class="btn-small"><i class="fa fa-pencil-square-o"></i> Edit Partners</a> <a href="MyPartners/MyPartners.aspx" class="btn-small"><i class="fa fa-pencil-square-o"></i> Set Notifications</a>
 		</div>
         <div class="clear"></div>
         <h2 class="my-profile">Notifications</h2>
@@ -135,7 +135,7 @@
        	    <h2 class="my-profile">Reports</h2>
        	    <h3 class="profile-icon"><i class="fa fa-file-text"></i></h3>
        	    <p><strong>View</strong> current Campaign Reports</p>
-       	    <a href="My Reports.aspx" class="btn-small"><i class="fa fa-file-text-o"></i> View Reports</a>
+       	    <a href="Reports/MyReports.aspx" class="btn-small"><i class="fa fa-file-text-o"></i> View Reports</a>
        	</div>
         <div class="half">
        	    <h2 class="my-profile">Support Causes</h2>

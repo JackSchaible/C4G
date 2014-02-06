@@ -1,4 +1,5 @@
-﻿using CouponsForGiving.Data;
+﻿using CouponsForGiving;
+using CouponsForGiving.Data;
 using CouponsForGiving.Data.Classes;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,9 @@ public partial class Merchant_My_Coupons_Coupons : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
+        control.MenuBar = MenuBarType.Merchant;
+
         if (!IsPostBack)
             BindData();
 

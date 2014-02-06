@@ -433,6 +433,9 @@
     <Compile Include="PurchaseOrder_GetByID_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="PurchaseOrder_ListByMerchant_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="PurchaseOrder_ListRedeemedByUser_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

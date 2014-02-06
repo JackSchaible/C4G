@@ -43,6 +43,9 @@ public partial class Admin_Financial : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
+        control.MenuBar = MenuBarType.Admin;
+
         BindData();
 
         if (!IsPostBack)
@@ -116,7 +119,13 @@ public partial class Admin_Financial : System.Web.UI.Page
 
         if (MerchantTotalCheckBox.Checked)
         {
-            decimal value = decimal.Parse(MerchantTotalTextBox.Text.Trim());
+            string textBoxText = MerchantTotalTextBox.Text.Trim();
+            decimal value = 0;
+
+            if (textBoxText != String.Empty)
+                value = decimal.Parse(MerchantTotalTextBox.Text.Trim());
+            else
+                MerchantTotalTextBox.Text = "0";
 
             switch (MerchantTotalRBL.SelectedValue)
             {
@@ -136,7 +145,13 @@ public partial class Admin_Financial : System.Web.UI.Page
 
         if (MerchantSplitCheckBox.Checked)
         {
-            decimal value = decimal.Parse(MerchantSplitTextBox.Text.Trim());
+            string textBoxText = MerchantSplitTextBox.Text.Trim();
+            decimal value = 0;
+
+            if (textBoxText != String.Empty)
+                value = decimal.Parse(MerchantSplitTextBox.Text.Trim());
+            else
+                MerchantSplitTextBox.Text = "0";
 
             switch (MerchantSplitRBL.SelectedValue)
             {
@@ -156,7 +171,13 @@ public partial class Admin_Financial : System.Web.UI.Page
 
         if (NPOSplitCheckBox.Checked)
         {
-            decimal value = decimal.Parse(NPOSplitTextBox.Text.Trim());
+            string textBoxText = NPOSplitTextBox.Text.Trim();
+            decimal value = 0;
+
+            if (textBoxText != String.Empty)
+                value = decimal.Parse(NPOSplitTextBox.Text.Trim());
+            else
+                NPOSplitTextBox.Text = "0";
 
             switch (NPOSplitRBL.SelectedValue)
             {
@@ -176,7 +197,13 @@ public partial class Admin_Financial : System.Web.UI.Page
 
         if (OurSplitCheckBox.Checked)
         {
-            decimal value = decimal.Parse(OurSplitTextBox.Text.Trim());
+            string textBoxText = OurSplitTextBox.Text.Trim();
+            decimal value = 0;
+
+            if (textBoxText != String.Empty)
+                value = decimal.Parse(OurSplitTextBox.Text.Trim());
+            else
+                OurSplitTextBox.Text = "0";
 
             switch (OurSplitRBL.SelectedValue)
             {
@@ -196,7 +223,13 @@ public partial class Admin_Financial : System.Web.UI.Page
 
         if (GSTCheckBox.Checked)
         {
-            decimal value = decimal.Parse(GSTTextBox.Text.Trim());
+            string textBoxText = GSTTextBox.Text.Trim();
+            decimal value = 0;
+
+            if (textBoxText != String.Empty)
+                value = decimal.Parse(GSTTextBox.Text.Trim());
+            else
+                GSTTextBox.Text = "0";
 
             switch (GSTRBL.SelectedValue)
             {
@@ -216,7 +249,13 @@ public partial class Admin_Financial : System.Web.UI.Page
 
         if (StripeCheckBox.Checked)
         {
-            decimal value = decimal.Parse(StripeTextBox.Text.Trim());
+            string textBoxText = StripeTextBox.Text.Trim();
+            decimal value = 0;
+
+            if (textBoxText != String.Empty)
+                value = decimal.Parse(StripeTextBox.Text.Trim());
+            else
+                StripeTextBox.Text = "0";
 
             switch (StripeRBL.SelectedValue)
             {

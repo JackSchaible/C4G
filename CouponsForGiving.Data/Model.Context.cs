@@ -2854,5 +2854,23 @@ namespace CouponsForGiving.Data
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PurchaseOrder>("PurchaseOrder_List", mergeOption);
         }
+    
+        public virtual ObjectResult<PurchaseOrder> PurchaseOrder_ListByMerchant(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PurchaseOrder>("PurchaseOrder_ListByMerchant", usernameParameter);
+        }
+    
+        public virtual ObjectResult<PurchaseOrder> PurchaseOrder_ListByMerchant(string username, MergeOption mergeOption)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PurchaseOrder>("PurchaseOrder_ListByMerchant", mergeOption, usernameParameter);
+        }
     }
 }
