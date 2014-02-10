@@ -65,7 +65,7 @@
                  </div>
                  <div class="coupon-social" onclick="shareOnFB('<%: URL %>', '<%: Caption %>', 'https://www.coupons4giving.ca/<%: deal.ImageURL %>', '<%: deal.Name %>', '<%: deal.DealDescription %>')">
                		<img src="../../Images/c4g_action_facebook.png" />       
-                	<span class="btn-facebook-share">Share on Facebook</p>
+                	<span class="btn-facebook-share">Share on Facebook</span>
                 	<p id="FBMsg"></p>
                  </div>
                  <div class="coupon-social">                
