@@ -3,6 +3,7 @@ using CouponsForGiving.Data;
 using CouponsForGiving.Data.Classes;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
@@ -41,11 +42,17 @@ public partial class Admin_Financial : System.Web.UI.Page
         }
     }
 
+    decimal totalPaidToMerchant, merchantPortionCollected, npoPortionCollected, GenerUSPortionCollected,
+            GST, StripeFee;
+    int refunds;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.Admin;
         Master.SideBar = false;
+        totalPaidToMerchant = merchantPortionCollected = npoPortionCollected = GenerUSPortionCollected = GST = StripeFee = 0;
+        refunds = 0;
 
         BindData();
 
@@ -388,5 +395,29 @@ public partial class Admin_Financial : System.Web.UI.Page
 
         ReportGV.DataSource = reports.ToList<Report>();
         ReportGV.DataBind();
+    }
+
+    protected void ReportGV_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            totalPaidToMerchant += (Decimal.Parse(e.Row.Cells[2].Text, NumberStyles.Currency));
+            merchantPortionCollected += (Decimal.Parse(e.Row.Cells[3].Text, NumberStyles.Currency));
+            npoPortionCollected += (Decimal.Parse(e.Row.Cells[4].Text, NumberStyles.Currency));
+            GenerUSPortionCollected += (Decimal.Parse(e.Row.Cells[5].Text, NumberStyles.Currency));
+            GST += (Decimal.Parse(e.Row.Cells[6].Text, NumberStyles.Currency));
+            StripeFee += (Decimal.Parse(e.Row.Cells[7].Text, NumberStyles.Currency));
+            refunds += ((e.Row.Cells[9].FindControl("Label1") as Label).Text == "No" ? 0 : 1);
+        }
+        else if (e.Row.RowType == DataControlRowType.Footer)
+        {
+            e.Row.Cells[2].Text = String.Format("Total: {0} Avg: {1}", totalPaidToMerchant.ToString("C"), (totalPaidToMerchant / 10).ToString("C"));
+            e.Row.Cells[3].Text = String.Format("Total: {0} Avg: {1}", merchantPortionCollected.ToString("C"), (merchantPortionCollected / 10).ToString("C"));
+            e.Row.Cells[4].Text = String.Format("Total: {0} Avg: {1}", npoPortionCollected.ToString("C"), (npoPortionCollected / 10).ToString("C"));
+            e.Row.Cells[5].Text = String.Format("Total: {0} Avg: {1}", GenerUSPortionCollected.ToString("C"), (GenerUSPortionCollected / 10).ToString("C"));
+            e.Row.Cells[6].Text = String.Format("Total: {0} Avg: {1}", GST.ToString("C"), (GST / 10).ToString("C"));
+            e.Row.Cells[7].Text = String.Format("Total: {0} Avg: {1}", StripeFee.ToString("C"), (StripeFee / 10).ToString("C"));
+            e.Row.Cells[9].Text = "Refunds: " + refunds;
+        }
     }
 }

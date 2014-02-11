@@ -181,7 +181,7 @@
         </div>
     </div>
     <asp:GridView ID="ReportGV" runat="server" AutoGenerateColumns="False" AllowPaging="True" OnPageIndexChanging="ReportView_PageIndexChanging"
-        AllowSorting="true" OnSorting="ReportView_Sorting">
+        AllowSorting="true" OnSorting="ReportView_Sorting" ShowFooter="true" OnRowDataBound="ReportGV_RowDataBound">
         <Columns>
             <asp:BoundField HeaderText="Coupon" DataField="Coupon" SortExpression="Coupon"/>
             <asp:BoundField DataField="MerchantAccount" HeaderText="Merchant Paid Out" SortExpression="MerchantAccount" />
@@ -199,6 +199,7 @@
             </asp:TemplateField>
             <asp:BoundField DataField="Date" DataFormatString="{0:dd MMMM yyyy}" HeaderText="Date" SortExpression="Date"/>
         </Columns>
+        <FooterStyle CssClass="Report-Footer" />
         <EmptyDataTemplate>
             <p>There were no transactions with the specified parameters. Try being less specific!</p>
         </EmptyDataTemplate>
