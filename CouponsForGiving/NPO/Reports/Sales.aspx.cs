@@ -29,6 +29,9 @@ public partial class NPO_Reports_Sales : System.Web.UI.Page
         }
     }
 
+    int sold, couponsAvailable, daysLeft;
+    decimal percentReached;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
@@ -42,6 +45,9 @@ public partial class NPO_Reports_Sales : System.Web.UI.Page
             ViewState["Sort"] = "Coupon";
             ViewState["Direction"] = "asc";
         }
+
+        sold = couponsAvailable = daysLeft = 0;
+        percentReached = 0;
     }
 
     private void BindData()
@@ -276,5 +282,23 @@ public partial class NPO_Reports_Sales : System.Web.UI.Page
 
         ReportGV.DataSource = reports.ToList<Report>();
         ReportGV.DataBind();
+    }
+
+    protected void ReportGV_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            sold += int.Parse(e.Row.Cells[1].Text);
+            couponsAvailable += int.Parse(e.Row.Cells[2].Text);
+            daysLeft += int.Parse(e.Row.Cells[3].Text);
+            percentReached += Decimal.Parse(e.Row.Cells[4].Text.Trim('%'));
+        }
+        else if (e.Row.RowType == DataControlRowType.Footer)
+        {
+            e.Row.Cells[1].Text = String.Format("Total: {0} Avg: {1}", sold, sold / ReportGV.Rows.Count);
+            e.Row.Cells[2].Text = String.Format("Total: {0} Avg: {1}", couponsAvailable, couponsAvailable / ReportGV.Rows.Count);
+            e.Row.Cells[3].Text = String.Format("Total: {0} Avg: {1}", daysLeft, daysLeft / ReportGV.Rows.Count);
+            e.Row.Cells[4].Text = String.Format("Total: {0} Avg: {1}", (percentReached / 100).ToString("P2"), ((percentReached / ReportGV.Rows.Count) / 100).ToString("P2"));
+        }
     }
 }

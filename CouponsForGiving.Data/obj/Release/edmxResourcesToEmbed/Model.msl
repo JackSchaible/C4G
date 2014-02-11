@@ -801,5 +801,30 @@
     <FunctionImportMapping FunctionImportName="PurchaseOrder_GetByID" FunctionName="C4GModel.Store.PurchaseOrder_GetByID" />
     <FunctionImportMapping FunctionImportName="PurchaseOrder_List" FunctionName="C4GModel.Store.PurchaseOrder_List" />
     <FunctionImportMapping FunctionImportName="PurchaseOrder_ListByMerchant" FunctionName="C4GModel.Store.PurchaseOrder_ListByMerchant" />
+    <FunctionImportMapping FunctionImportName="PurchaseOrder_ListByNPO" FunctionName="C4GModel.Store.PurchaseOrder_ListByNPO">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="C4GModel.PurchaseOrder_ListByNPO_Result">
+          <ScalarProperty Name="PurchaseOrderID" ColumnName="PurchaseOrderID" />
+          <ScalarProperty Name="CampaignID" ColumnName="CampaignID" />
+          <ScalarProperty Name="OrderStatusID" ColumnName="OrderStatusID" />
+          <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+          <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+          <ScalarProperty Name="DealInstanceID" ColumnName="DealInstanceID" />
+          <ScalarProperty Name="PurchaseAmount" ColumnName="PurchaseAmount" />
+          <ScalarProperty Name="NPOSplit" ColumnName="NPOSplit" />
+          <ScalarProperty Name="MerchantSplit" ColumnName="MerchantSplit" />
+          <ScalarProperty Name="OurSplit" ColumnName="OurSplit" />
+          <ScalarProperty Name="CouponCode" ColumnName="CouponCode" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DealInstance_ListAllByMerchant" FunctionName="C4GModel.Store.DealInstance_ListAllByMerchant" />
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="C4GModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="C4GModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="C4GModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="C4GModel.Store.sp_helpdiagramdefinition" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="C4GModel.Store.sp_helpdiagrams" />
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="C4GModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="C4GModel.Store.sp_upgraddiagrams" />
   </EntityContainerMapping>
 </Mapping>

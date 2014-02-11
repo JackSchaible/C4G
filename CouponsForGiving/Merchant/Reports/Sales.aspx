@@ -98,7 +98,8 @@
         </div>
     </div>
     <asp:GridView ID="ReportGV" runat="server" AutoGenerateColumns="False" AllowPaging="True"
-        AllowSorting="True" OnPageIndexChanging="ReportsGV_PageIndexChanging" OnSorting="ReportsGV_Sorting">
+        AllowSorting="True" OnPageIndexChanging="ReportsGV_PageIndexChanging" OnSorting="ReportsGV_Sorting"
+        ShowFooter="true" OnRowDataBound="ReportGV_RowDataBound">
         <Columns>
             <asp:BoundField DataField="Offer" HeaderText="Offer" />
             <asp:BoundField DataField="AmountCollected" DataFormatString="{0:c}" HeaderText="Amount Collected" />
@@ -106,6 +107,7 @@
             <asp:BoundField DataField="CouponsLeft" HeaderText="Coupons Left" />
             <asp:BoundField DataField="CouponsRedeemed" HeaderText="Coupons Redeemed" />
         </Columns>
+        <FooterStyle CssClass="Report-Footer" />
         <EmptyDataTemplate>
             <p>There was no data with the specified parameters. Try being less specific!</p>
         </EmptyDataTemplate>

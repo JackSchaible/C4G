@@ -844,6 +844,42 @@
     <FunctionImport Name="PurchaseOrder_ListByMerchant" EntitySet="PurchaseOrders" ReturnType="Collection(C4GModel.PurchaseOrder)">
       <Parameter Name="Username" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="PurchaseOrder_ListByNPO" ReturnType="Collection(C4GModel.PurchaseOrder_ListByNPO_Result)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="DealInstance_ListAllByMerchant" EntitySet="DealInstances" ReturnType="Collection(C4GModel.DealInstance)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
   <EntityType Name="Campaign">
     <Key>
@@ -2747,5 +2783,27 @@
     <Property Type="Decimal" Name="MerchantSplit" Nullable="false" Precision="19" />
     <Property Type="Decimal" Name="OurSplit" Nullable="false" Precision="19" />
     <Property Type="Guid" Name="CouponCode" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PurchaseOrder_ListByNPO_Result">
+    <Property Type="Int32" Name="PurchaseOrderID" Nullable="false" />
+    <Property Type="Int32" Name="CampaignID" Nullable="false" />
+    <Property Type="Int32" Name="OrderStatusID" Nullable="false" />
+    <Property Type="Int32" Name="TransactionID" Nullable="false" />
+    <Property Type="DateTime" Name="PurchaseDate" Nullable="false" Precision="23" />
+    <Property Type="Int32" Name="DealInstanceID" Nullable="false" />
+    <Property Type="Decimal" Name="PurchaseAmount" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="NPOSplit" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="MerchantSplit" Nullable="false" Precision="19" />
+    <Property Type="Decimal" Name="OurSplit" Nullable="false" Precision="19" />
+    <Property Type="Guid" Name="CouponCode" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="DealInstance_ListAllByMerchant_Result">
+    <Property Type="Int32" Name="DealInstanceID" Nullable="false" />
+    <Property Type="Int32" Name="DealID" Nullable="false" />
+    <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="EndDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="RedeemableAfter" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="ExpiryDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="DealStatusID" Nullable="false" />
   </ComplexType>
 </Schema>

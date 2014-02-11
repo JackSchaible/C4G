@@ -367,285 +367,6 @@ namespace CouponsForGiving.Data
 
 namespace CouponsForGiving.Data.Classes
 {
-    public static class Countries
-    {
-        public static List<Country> List()
-        {
-            return new C4GEntities().Countries_List().ToList<Country>();
-        }
-    }
-
-    public static class Provinces
-    {
-        public static List<PoliticalDivision> List(string countryCode)
-        {
-            return new C4GEntities().Provinces_ListByCountry(countryCode).ToList<PoliticalDivision>();
-        }
-    }
-
-    public static class Cities
-    {
-        public static City Get(int CityID)
-        {
-            return new C4GEntities().City_Get(CityID).FirstOrDefault<City>();
-        }
-
-        public static City GetByName(string name, string provinceCode, string countryCode)
-        {
-            return new C4GEntities().City_GetByName(name, provinceCode, countryCode).FirstOrDefault<City>();
-        }
-
-        public static City GetByNameWithProvinceAndCountry(string name, string province, string country)
-        {
-            return new C4GEntities().City_GetByNameWithProvinceAndCountry(name, province, country).FirstOrDefault<City>();
-        }
-
-        public static List<City> List()
-        {
-            return new C4GEntities().Cities_ListWhereActiveDeals().ToList<City>();
-        }
-
-        public static List<City> ListAll()
-        {
-            return new C4GEntities().Cities_List().ToList<City>();
-        }
-    }
-
-    public static class FinePrints
-    {
-        public static List<FinePrint> List()
-        {
-            return new C4GEntities().FinePrint_List().ToList<FinePrint>();
-        }
-
-        public static List<FinePrint> List(int DealID)
-        {
-            return new C4GEntities().FinePrint_ListByDeal(DealID).ToList<FinePrint>();
-        }
-
-        public static void Add (int DealID, int FinePrintID)
-        {
-            new C4GEntities().FinePrint_AddToDeal(DealID, FinePrintID);
-        }
-
-        public static void Remove(int DealID, int FinePrintID)
-        {
-            new C4GEntities().Deal_FinePrint_Remove(DealID, FinePrintID);
-        }
-    }
-
-    public static class Merchants
-    {
-        public static Merchant GetByUsername(string Username)
-        {
-            return new C4GEntities().Merchant_GetByUsername(Username).FirstOrDefault<Merchant>();
-        }
-        
-        public static List<string> ListNames()
-        {
-            return new C4GEntities().Merchant_ListNames().ToList<string>();
-        }
-
-        public static List<Merchant> ListPartnersByNPO(string username)
-        {
-            return new C4GEntities().Merchant_ListPartnersByNPO(username).ToList<Merchant>();
-        }
-
-        public static List<NPO> ListNPORequests(string username)
-        {
-            return (new C4GEntities().Merchant_ListNPORequests(username)).ToList<NPO>();
-        }
-
-        public static void ApproveNPORequest(string username, int NPOID)
-        {
-            new C4GEntities().Merchant_ApproveNPORequest(username, NPOID);
-        }
-
-        public static void RemoveNPOPartner(string username, int merchantID)
-        {
-            C4GEntities e = new C4GEntities();
-            e.RemovePartnership(e.NPO_GetByUser(username).FirstOrDefault<NPO_GetByUser_Result>().NPOID, merchantID);
-        }
-
-        public static void AddNPOPartner(int NPOID, int MerchantID)
-        {
-            new C4GEntities().Merchant_InsertNPOPartner(MerchantID, NPOID);
-        }
-    }
-
-    public static class NPOs
-    {
-        public static List<NPO> List()
-        {
-            return new C4GEntities().NPO_List().ToList<NPO>();
-        }
-
-        public static void ApproveMerchantRequest(string username, int merchantID)
-        {
-            new C4GEntities().NPO_ApproveMerchantRequest(username, merchantID);
-        }
-
-        public static List<Merchant> ListMerchantRequests(string username)
-        {
-            return new C4GEntities().NPO_ListMerchantRequests(username).ToList<Merchant>();
-        }
-
-        public static void RemoveMerchantPartner(string username, int NPOID)
-        {
-            C4GEntities e = new C4GEntities();
-            e.RemovePartnership(e.Merchant_GetByUsername(username).FirstOrDefault<Merchant>().MerchantID, NPOID);
-        }
-
-        public static List<NPO> ListPartnersByMerchant(string username)
-        {
-            return new C4GEntities().NPO_ListNPOPartners(username).ToList<NPO>();
-        }
-
-        public static NPO NPO_GetByUser(string Username)
-        {
-            return new C4GEntities().NPO_GetByUsername(Username).FirstOrDefault<NPO>();
-        }
-
-        public static bool HasMerchantPartners(string Username)
-        {
-            return (new C4GEntities().NPO_HasPartners(Username).First() == 1) ? true : false;
-        }
-
-        public static void AddMerchantPartner(int NPOID, int MerchantID)
-        {
-            new C4GEntities().NPO_InsertMerchantPartner(MerchantID, NPOID);
-        }
-    }
-
-    public static class NPOSettings
-    {
-        public static NPOSetting Get (int NPOID)
-        {
-            return new C4GEntities().NPOSetting_Get(NPOID).FirstOrDefault<NPOSetting>();
-        }
-
-        public static void Insert(int NPOID, bool AutoAcceptMerchantRequests)
-        {
-            new C4GEntities().NPOSetting_Insert(NPOID, AutoAcceptMerchantRequests);
-        }
-
-        public static void Update(string username, bool AutoAcceptMerchantRequests)
-        {
-            new C4GEntities().NPOSettings_Update(username, AutoAcceptMerchantRequests);
-        }
-    }
-
-    public static class MerchantNPO
-    {
-        public static List<Merchant> ListEligiblePartnersByNPO(string username, int cityID)
-        {
-            return new C4GEntities().Merchant_ListEligiblePartnersByNPO(username, cityID).ToList<Merchant>();
-        }
-    }
-
-    [DataObject]
-    public static class NPOMerchants
-    {
-        public static List<NPO> ListEligiblePartnersByMerchant(string username)
-        {
-            return new C4GEntities().NPO_ListEligiblePartnersByMerchant(username).ToList<NPO>();
-        }
-
-        [DataObjectMethod(DataObjectMethodType.Select)]
-        public static List<Merchant> ListForNPO(string username, int cityCode)
-        {
-            return new C4GEntities().Merchant_ListForNPO(username, cityCode).ToList<Merchant>();
-        }
-    }
-
-    public static class NotificationcUsers
-    {
-        public static List<Notification> ListByUser(string Username)
-        {
-            return new C4GEntities().NotificationcUser_List(Username).ToList<Notification>();
-        }
-
-        public static void Insert(string NotificationCode, string Username)
-        {
-            new C4GEntities().NotificationcUser_Insert(Username, NotificationCode);
-        }
-
-        public static void Delete(string NotificationCode, string Username)
-        {
-            new C4GEntities().NotificationcUser_Delete(NotificationCode, Username);
-        }
-    }
-
-    public static class MerchantSettings
-    {
-        public static MerchantSetting GetByMerchant(int MerchantID)
-        {
-            return new C4GEntities().MerchantSettings_GetByMerchantID(MerchantID).FirstOrDefault<MerchantSetting>();
-        }
-
-        public static MerchantSetting GetByMerchant(string username)
-        {
-            return new C4GEntities().MerchantSetting_GetByMerchant(username).FirstOrDefault<MerchantSetting>();
-        }
-
-        public static void Insert(int merchantID, bool autoApproveRequests)
-        {
-            new C4GEntities().MerchantSetting_Insert(merchantID);
-        }
-
-        public static void Update(int merchantID, bool autoApproveRequests)
-        {
-            new C4GEntities().MerchantSetting_Update(merchantID, autoApproveRequests);
-        }
-
-        //Setting-specific methods
-        public static bool AcceptsAllRequests(int MerchantID)
-        {
-            bool? result = GetByMerchant(MerchantID).AutoAcceptRequests;
-            return result.HasValue ? (bool)result : false;
-        }
-    }
-
-    public static class Deals
-    {
-        public static List<string> ListNamesByMerchant(string Username)
-        {
-            return new C4GEntities().Deal_ListNamesByMerchant(Username).ToList<string>();
-        }
-
-        public static List<Deal_GetEligibleByUsername_Result> GetEligibleByUsername(string username, DateTime endDate)
-        {
-            return new C4GEntities().Deal_GetEligibleByUsername(username, endDate).ToList<Deal_GetEligibleByUsername_Result>();
-        }
-
-        public static List<DealInstance> ListByCity(string city, string province)
-        {
-            return new C4GEntities().Deal_ListByCity(city, province).ToList<DealInstance>();
-        }
-
-        public static int Insert (int merchantID, string name, string description, 
-            int absoluteCouponLimit, int limitPerCustomer, string image)
-        {
-            return (new C4GEntities()).Deal_Insert(merchantID, name, description, 
-                absoluteCouponLimit, limitPerCustomer, image).FirstOrDefault() ?? -1;
-        }
-
-        public static void Update (int dealID, int merchantID, string name, string description,
-            int absoluteCouponLimit, int limitPerCustomer, string image)
-        {
-            new C4GEntities().Deal_Update(dealID, merchantID, name, description, 
-                absoluteCouponLimit, limitPerCustomer, image);
-        }
-    }
-
-    public static class DealInstances
-    {
-        public static List<DealInstance> ListForGlobalMarketplace()
-        {
-            return new C4GEntities().DealInstance_ListForGlobalMarketplace().ToList<DealInstance>();
-        }
-    }
-
     public static class Campaigns
     {
         public static List<Campaign> List()
@@ -670,7 +391,7 @@ namespace CouponsForGiving.Data.Classes
                 showonhome, displaypriority, campaigngoal).FirstOrDefault<int?>() ?? default(int);
         }
 
-        public static int Save(int campaignID, string username, string name, DateTime? startDate, DateTime? enddate, string campaigndescription, 
+        public static int Save(int campaignID, string username, string name, DateTime? startDate, DateTime? enddate, string campaigndescription,
             int? fundraisinggoal, string campaignimage, bool? showonhome, int? displaypriority, string campaigngoal)
         {
             return new C4GEntities().Campaign_Save(campaignID, username, name, startDate, enddate, campaigndescription, fundraisinggoal, campaignimage,
@@ -736,6 +457,298 @@ namespace CouponsForGiving.Data.Classes
             result = bool.Parse(new C4GEntities().CampaignDealInstance_Exists(CampaignID, DealInstanceID).FirstOrDefault<string>());
 
             return result;
+        }
+    }
+
+    public static class Cities
+    {
+        public static City Get(int CityID)
+        {
+            return new C4GEntities().City_Get(CityID).FirstOrDefault<City>();
+        }
+
+        public static City GetByName(string name, string provinceCode, string countryCode)
+        {
+            return new C4GEntities().City_GetByName(name, provinceCode, countryCode).FirstOrDefault<City>();
+        }
+
+        public static City GetByNameWithProvinceAndCountry(string name, string province, string country)
+        {
+            return new C4GEntities().City_GetByNameWithProvinceAndCountry(name, province, country).FirstOrDefault<City>();
+        }
+
+        public static List<City> List()
+        {
+            return new C4GEntities().Cities_ListWhereActiveDeals().ToList<City>();
+        }
+
+        public static List<City> ListAll()
+        {
+            return new C4GEntities().Cities_List().ToList<City>();
+        }
+    }
+
+    public static class Countries
+    {
+        public static List<Country> List()
+        {
+            return new C4GEntities().Countries_List().ToList<Country>();
+        }
+    }
+
+    public static class cUsers
+    {
+        public static List<cUser> List()
+        {
+            return new C4GEntities().Users_List().ToList<cUser>();
+        }
+    }
+
+    public static class Deals
+    {
+        public static List<string> ListNamesByMerchant(string Username)
+        {
+            return new C4GEntities().Deal_ListNamesByMerchant(Username).ToList<string>();
+        }
+
+        public static List<Deal_GetEligibleByUsername_Result> GetEligibleByUsername(string username, DateTime endDate)
+        {
+            return new C4GEntities().Deal_GetEligibleByUsername(username, endDate).ToList<Deal_GetEligibleByUsername_Result>();
+        }
+
+        public static List<DealInstance> ListByCity(string city, string province)
+        {
+            return new C4GEntities().Deal_ListByCity(city, province).ToList<DealInstance>();
+        }
+
+        public static int Insert(int merchantID, string name, string description,
+            int absoluteCouponLimit, int limitPerCustomer, string image)
+        {
+            return (new C4GEntities()).Deal_Insert(merchantID, name, description,
+                absoluteCouponLimit, limitPerCustomer, image).FirstOrDefault() ?? -1;
+        }
+
+        public static void Update(int dealID, int merchantID, string name, string description,
+            int absoluteCouponLimit, int limitPerCustomer, string image)
+        {
+            new C4GEntities().Deal_Update(dealID, merchantID, name, description,
+                absoluteCouponLimit, limitPerCustomer, image);
+        }
+    }
+
+    public static class DealInstances
+    {
+        public static List<DealInstance> ListAllByMerchant(string username)
+        {
+            return new C4GEntities().DealInstance_ListAllByMerchant(username).ToList<DealInstance>();
+        }
+
+        public static List<DealInstance> ListForGlobalMarketplace()
+        {
+            return new C4GEntities().DealInstance_ListForGlobalMarketplace().ToList<DealInstance>();
+        }
+    }
+
+    public static class FinePrints
+    {
+        public static List<FinePrint> List()
+        {
+            return new C4GEntities().FinePrint_List().ToList<FinePrint>();
+        }
+
+        public static List<FinePrint> List(int DealID)
+        {
+            return new C4GEntities().FinePrint_ListByDeal(DealID).ToList<FinePrint>();
+        }
+
+        public static void Add (int DealID, int FinePrintID)
+        {
+            new C4GEntities().FinePrint_AddToDeal(DealID, FinePrintID);
+        }
+
+        public static void Remove(int DealID, int FinePrintID)
+        {
+            new C4GEntities().Deal_FinePrint_Remove(DealID, FinePrintID);
+        }
+    }
+
+    public static class MerchantNPO
+    {
+        public static List<Merchant> ListEligiblePartnersByNPO(string username, int cityID)
+        {
+            return new C4GEntities().Merchant_ListEligiblePartnersByNPO(username, cityID).ToList<Merchant>();
+        }
+    }
+
+    public static class Merchants
+    {
+        public static Merchant GetByUsername(string Username)
+        {
+            return new C4GEntities().Merchant_GetByUsername(Username).FirstOrDefault<Merchant>();
+        }
+        
+        public static List<string> ListNames()
+        {
+            return new C4GEntities().Merchant_ListNames().ToList<string>();
+        }
+
+        public static List<Merchant> ListPartnersByNPO(string username)
+        {
+            return new C4GEntities().Merchant_ListPartnersByNPO(username).ToList<Merchant>();
+        }
+
+        public static List<NPO> ListNPORequests(string username)
+        {
+            return (new C4GEntities().Merchant_ListNPORequests(username)).ToList<NPO>();
+        }
+
+        public static void ApproveNPORequest(string username, int NPOID)
+        {
+            new C4GEntities().Merchant_ApproveNPORequest(username, NPOID);
+        }
+
+        public static void RemoveNPOPartner(string username, int merchantID)
+        {
+            C4GEntities e = new C4GEntities();
+            e.RemovePartnership(e.NPO_GetByUser(username).FirstOrDefault<NPO_GetByUser_Result>().NPOID, merchantID);
+        }
+
+        public static void AddNPOPartner(int NPOID, int MerchantID)
+        {
+            new C4GEntities().Merchant_InsertNPOPartner(MerchantID, NPOID);
+        }
+    }
+
+    public static class NotificationcUsers
+    {
+        public static List<Notification> ListByUser(string Username)
+        {
+            return new C4GEntities().NotificationcUser_List(Username).ToList<Notification>();
+        }
+
+        public static void Insert(string NotificationCode, string Username)
+        {
+            new C4GEntities().NotificationcUser_Insert(Username, NotificationCode);
+        }
+
+        public static void Delete(string NotificationCode, string Username)
+        {
+            new C4GEntities().NotificationcUser_Delete(NotificationCode, Username);
+        }
+    }
+
+    public static class NPOs
+    {
+        public static List<NPO> List()
+        {
+            return new C4GEntities().NPO_List().ToList<NPO>();
+        }
+
+        public static void ApproveMerchantRequest(string username, int merchantID)
+        {
+            new C4GEntities().NPO_ApproveMerchantRequest(username, merchantID);
+        }
+
+        public static List<Merchant> ListMerchantRequests(string username)
+        {
+            return new C4GEntities().NPO_ListMerchantRequests(username).ToList<Merchant>();
+        }
+
+        public static void RemoveMerchantPartner(string username, int NPOID)
+        {
+            C4GEntities e = new C4GEntities();
+            e.RemovePartnership(e.Merchant_GetByUsername(username).FirstOrDefault<Merchant>().MerchantID, NPOID);
+        }
+
+        public static List<NPO> ListPartnersByMerchant(string username)
+        {
+            return new C4GEntities().NPO_ListNPOPartners(username).ToList<NPO>();
+        }
+
+        public static NPO NPO_GetByUser(string Username)
+        {
+            return new C4GEntities().NPO_GetByUsername(Username).FirstOrDefault<NPO>();
+        }
+
+        public static bool HasMerchantPartners(string Username)
+        {
+            return (new C4GEntities().NPO_HasPartners(Username).First() == 1) ? true : false;
+        }
+
+        public static void AddMerchantPartner(int NPOID, int MerchantID)
+        {
+            new C4GEntities().NPO_InsertMerchantPartner(MerchantID, NPOID);
+        }
+    }
+
+    [DataObject]
+    public static class NPOMerchants
+    {
+        public static List<NPO> ListEligiblePartnersByMerchant(string username)
+        {
+            return new C4GEntities().NPO_ListEligiblePartnersByMerchant(username).ToList<NPO>();
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public static List<Merchant> ListForNPO(string username, int cityCode)
+        {
+            return new C4GEntities().Merchant_ListForNPO(username, cityCode).ToList<Merchant>();
+        }
+    }
+
+    public static class NPOSettings
+    {
+        public static NPOSetting Get (int NPOID)
+        {
+            return new C4GEntities().NPOSetting_Get(NPOID).FirstOrDefault<NPOSetting>();
+        }
+
+        public static void Insert(int NPOID, bool AutoAcceptMerchantRequests)
+        {
+            new C4GEntities().NPOSetting_Insert(NPOID, AutoAcceptMerchantRequests);
+        }
+
+        public static void Update(string username, bool AutoAcceptMerchantRequests)
+        {
+            new C4GEntities().NPOSettings_Update(username, AutoAcceptMerchantRequests);
+        }
+    }
+
+    public static class MerchantSettings
+    {
+        public static MerchantSetting GetByMerchant(int MerchantID)
+        {
+            return new C4GEntities().MerchantSettings_GetByMerchantID(MerchantID).FirstOrDefault<MerchantSetting>();
+        }
+
+        public static MerchantSetting GetByMerchant(string username)
+        {
+            return new C4GEntities().MerchantSetting_GetByMerchant(username).FirstOrDefault<MerchantSetting>();
+        }
+
+        public static void Insert(int merchantID, bool autoApproveRequests)
+        {
+            new C4GEntities().MerchantSetting_Insert(merchantID);
+        }
+
+        public static void Update(int merchantID, bool autoApproveRequests)
+        {
+            new C4GEntities().MerchantSetting_Update(merchantID, autoApproveRequests);
+        }
+
+        //Setting-specific methods
+        public static bool AcceptsAllRequests(int MerchantID)
+        {
+            bool? result = GetByMerchant(MerchantID).AutoAcceptRequests;
+            return result.HasValue ? (bool)result : false;
+        }
+    }
+
+    public static class Provinces
+    {
+        public static List<PoliticalDivision> List(string countryCode)
+        {
+            return new C4GEntities().Provinces_ListByCountry(countryCode).ToList<PoliticalDivision>();
         }
     }
 
@@ -817,14 +830,6 @@ namespace CouponsForGiving.Data.Classes
         public static void Delete(int NewsID)
         {
             new C4GEntities().News_Delete(NewsID);
-        }
-    }
-
-    public static class cUsers
-    {
-        public static List<cUser> List()
-        {
-            return new C4GEntities().Users_List().ToList<cUser>();
         }
     }
 }

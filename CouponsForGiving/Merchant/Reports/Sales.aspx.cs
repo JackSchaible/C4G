@@ -3,6 +3,7 @@ using CouponsForGiving.Data;
 using CouponsForGiving.Data.Classes;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,6 +11,11 @@ using System.Web.UI.WebControls;
 
 public partial class Merchant_Reports_Sales : System.Web.UI.Page
 {
+    decimal amountCollected;
+    int sold;
+    int left;
+    int redeemed;
+
     private class Report
     {
         public string Offer { get; set; }
@@ -42,11 +48,13 @@ public partial class Merchant_Reports_Sales : System.Web.UI.Page
             ViewState["Sort"] = "Coupon";
             ViewState["Direction"] = "asc";
         }
+
+        amountCollected = sold = left = redeemed = 0;
     }
 
     private void BindData()
     {
-        List<DealInstance> deals = SysData.DealInstance_ListByMerchant(Merchants.GetByUsername(User.Identity.Name).MerchantID);
+        List<DealInstance> deals = DealInstances.ListAllByMerchant(User.Identity.Name);
 
         List<Report> Reports =
         (
@@ -74,7 +82,7 @@ public partial class Merchant_Reports_Sales : System.Web.UI.Page
 
     private List<Report> ApplyFilters()
     {
-        List<DealInstance> deals = SysData.DealInstance_ListByMerchant(Merchants.GetByUsername(User.Identity.Name).MerchantID);
+        List<DealInstance> deals = DealInstances.ListAllByMerchant(User.Identity.Name);
 
         List<Report> Reports =
         (
@@ -255,7 +263,7 @@ public partial class Merchant_Reports_Sales : System.Web.UI.Page
             reports = ApplyFilters();
         else
         {
-            List<DealInstance> deals = SysData.DealInstance_ListByMerchant(Merchants.GetByUsername(User.Identity.Name).MerchantID);
+            List<DealInstance> deals = DealInstances.ListAllByMerchant(User.Identity.Name);
             reports =
             (
                 from d
@@ -276,5 +284,22 @@ public partial class Merchant_Reports_Sales : System.Web.UI.Page
         ReportGV.DataSource = reports.ToList<Report>();
         ReportGV.DataBind();
     }
-    
+
+    protected void ReportGV_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            amountCollected += Decimal.Parse(e.Row.Cells[1].Text, NumberStyles.Currency);
+            sold += int.Parse(e.Row.Cells[2].Text);
+            left += int.Parse(e.Row.Cells[3].Text);
+            redeemed += int.Parse(e.Row.Cells[4].Text);
+        }
+        else if (e.Row.RowType == DataControlRowType.Footer)
+        {
+            e.Row.Cells[1].Text = String.Format("Total: {0} Avg: {1}", amountCollected.ToString("C"), (amountCollected / ReportGV.Rows.Count).ToString("C"));
+            e.Row.Cells[2].Text = String.Format("Total: {0} Avg: {1}", sold, sold / ReportGV.Rows.Count);
+            e.Row.Cells[3].Text = String.Format("Total: {0} Avg: {1}", left, left / ReportGV.Rows.Count);
+            e.Row.Cells[4].Text = String.Format("Total: {0} Avg: {1}", redeemed, redeemed / ReportGV.Rows.Count);
+        }
+    }
 }

@@ -100,7 +100,7 @@
     </div>
     <asp:GridView ID="ReportGV" runat="server" AutoGenerateColumns="False"
         AllowSorting="True" AllowPaging="True" OnPageIndexChanging="ReportGV_PageIndexChanging"
-        OnSorting="ReportGV_Sorting">
+        OnSorting="ReportGV_Sorting" ShowFooter="true" OnRowDataBound="ReportGV_RowDataBound">
         <Columns>
             <asp:BoundField DataField="Campaign" HeaderText="Campaign" />
             <asp:BoundField DataField="CouponsSold" HeaderText="Coupons Sold" />
@@ -108,6 +108,7 @@
             <asp:BoundField DataField="DaysLeft" HeaderText="Days Left in Campaign" />
             <asp:BoundField DataField="PercentageReached" HeaderText="Percent Reached" DataFormatString="{0:P2}" />
         </Columns>
+        <FooterStyle CssClass="Report-Footer" />
         <EmptyDataTemplate>
             <p>There was no data with the specified filters. Try being less specific!</p>
         </EmptyDataTemplate>
