@@ -45,6 +45,7 @@ public partial class Admin_Financial : System.Web.UI.Page
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.Admin;
+        Master.SideBar = false;
 
         BindData();
 

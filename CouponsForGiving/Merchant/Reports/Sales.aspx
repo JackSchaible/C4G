@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="Sales Report" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Sales.aspx.cs" Inherits="Merchant_Reports_Sales" %>
 <%@ Reference Control="~/Controls/MenuBar.ascx" %>
+<%@ MasterType VirtualPath="~/Site.master" %>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="Main_Content" Runat="Server">
     <script type="text/javascript">

@@ -33,6 +33,7 @@ public partial class Merchant_Reports_Sales : System.Web.UI.Page
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.Merchant;
+        Master.SideBar = false;
 
         BindData();
 

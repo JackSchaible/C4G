@@ -33,6 +33,7 @@ public partial class NPO_Reports_Sales : System.Web.UI.Page
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.NPO;
+        Master.SideBar = false;
 
         BindData();
 

@@ -12,5 +12,6 @@ public partial class NPO_Campaigns_Reports : System.Web.UI.Page
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.Merchant;
+        Master.SideBar = false;
     }
 }

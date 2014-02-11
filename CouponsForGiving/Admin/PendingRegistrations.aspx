@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="Account Requests" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="PendingRegistrations.aspx.cs" Inherits="Admin_PendingRegistrations" %>
 <%@ Reference Control="~/Controls/MenuBar.ascx" %>
+<%@ MasterType VirtualPath="~/Site.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
 </asp:Content>

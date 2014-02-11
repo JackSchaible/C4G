@@ -15,6 +15,7 @@ public partial class Admin_Users : System.Web.UI.Page
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.Admin;
+        Master.SideBar = false;
 
         if (!IsPostBack)
             BindData();

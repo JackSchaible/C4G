@@ -14,6 +14,7 @@ public partial class Admin_PendingRegistrations : System.Web.UI.Page
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
         control.MenuBar = MenuBarType.Admin;
+        Master.SideBar = false;
     }
 
     protected void ApproveAllButton_Click(object sender, EventArgs e)
