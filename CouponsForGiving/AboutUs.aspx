@@ -17,7 +17,7 @@
                     break;
 
                 case "Community":
-                    $("#content").html('<h1>In The Community</h1><h3>In the Media</h3><ul><li><strong>December 12th, 2013</strong> - <a href="http://www.techvibes.com/blog/new-social-fundraising-tool-coupons4giving-launches-in-edmonton-2013-12-12" target="_blank">New Social Fundraising Tool Coupons4Giving Launches in Edmonton</a></li><li><strong>December 04th, 2013</strong> - <a href="http://www.marketwired.com/press-release/disruptive-new-social-fundraising-tool-coupons4giving-launches-time-holiday-season-1859173.htm" target="_blank">Disruptive New Social Fundraising Tool Coupons4Giving Launches in Time for Holiday Season</a></li></ul>');
+                    $("#content").html('<h1>In The Community</h1><h3>In the Media</h3><ul><li><strong>Feburary 11th, 2014</strong> - <a href="http://www.marketwired.com/press-release/disruptive-social-fundraising-tool-coupons4giving-partners-with-north-americas-largest-1877897.htm" target="_blank">Disruptive Social Fundraising Tool, Coupons4Giving, Partners with North America\'s Largest Charity Search Engine</a></li><li><strong>December 12th, 2013</strong> - <a href="http://www.techvibes.com/blog/new-social-fundraising-tool-coupons4giving-launches-in-edmonton-2013-12-12" target="_blank">New Social Fundraising Tool Coupons4Giving Launches in Edmonton</a></li><li><strong>December 04th, 2013</strong> - <a href="http://www.marketwired.com/press-release/disruptive-new-social-fundraising-tool-coupons4giving-launches-time-holiday-season-1859173.htm" target="_blank">Disruptive New Social Fundraising Tool Coupons4Giving Launches in Time for Holiday Season</a></li></ul>');
                     break;
             }
         });

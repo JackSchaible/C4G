@@ -229,14 +229,14 @@
 			    <li><a runat="server" href="~/Default/MyHome.aspx">My Coupons</a></li>
 			    <li><a runat="server" href="~/NPO/MyHome.aspx">My Campaigns</a></li>
 			    <li><a runat="server" href="~/Merchant/MyHome.aspx">For Merchants</a></li>
-			    <li><a runat="server" href="~/Blog.aspx">Blog</a></li>
+			    <li><a runat="server" href="http://blog.coupons4giving.ca/" target="_blank">Blog</a></li>
 		    </ul>
             <ul>
                 <li><a runat="server" href="~/LegalAgreements.aspx">Legal Agreements</a></li>
                 <li><a runat="server" href="~/FAQ.aspx">FAQs</a></li>
                 <li><a runat="server" href="~/Careers.aspx">Careers</a></li>
             </ul>
-            <p>&copy; <%:DateTime.Now.Year%> - GenerUS Marketing Solutions</p>
+            <p>&copy; 2013-<%:DateTime.Now.Year%> - GenerUS Marketing Solutions</p>
         </div>
     </footer>
 </body>
