@@ -19,6 +19,7 @@ public partial class SiteMaster : MasterPage
     protected void Page_Init(object sender, EventArgs e)
     {
         SideBar = true;
+        Page.MaintainScrollPositionOnPostBack = true;
 
         Page.ClientScript.RegisterClientScriptInclude("ValidationScript", Page.ResolveClientUrl(String.Format("~/Scripts/Validation ({0}).js", WebConfigurationManager.AppSettings["Language"])));
 

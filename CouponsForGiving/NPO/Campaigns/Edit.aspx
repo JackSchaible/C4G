@@ -96,7 +96,7 @@
                 <p><%: campaign.CampaignGoal %></p><!-- Fund Description -->
             </div>
             <h4>Target Goal</h4> 
-            <p class="campaign-goal"><%: ((decimal)(campaign.FundraisingGoal)).ToString("C") %></p> <!-- Fund Goal -->
+            <p class="campaign-goal"><%: campaign.FundraisingGoal == null ? "" : ((decimal)(campaign.FundraisingGoal)).ToString("C") %></p> <!-- Fund Goal -->
         </div>
         <div class="thermometer-wrap"> 
             <span class="thermometer"></span><span class="thermometer-raised"><%: (from po in campaign.PurchaseOrders where po.OrderStatusID != 3 select po.NPOSplit).Sum().ToString("C") %></span>

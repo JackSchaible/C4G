@@ -1490,6 +1490,9 @@
         <Function Name="Merchant_ListByCity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
           <Parameter Name="CityID" Type="int" Mode="In" />
         </Function>
+        <Function Name="Merchant_ListEligibleGlobalPartnersByNPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="Merchant_ListEligiblePartnersByNPO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
           <Parameter Name="CityID" Type="int" Mode="In" />
@@ -2746,7 +2749,7 @@
           <Parameter Name="Username" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DealInstance_ListAllByMerchant" EntitySet="DealInstances" ReturnType="Collection(C4GModel.DealInstance)">
-            <Parameter Name="Username" Mode="In" Type="String" />
+          <Parameter Name="Username" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -2778,6 +2781,9 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="Merchant_ListEligibleGlobalPartnersByNPO" EntitySet="Merchants" ReturnType="Collection(C4GModel.Merchant)">
+            <Parameter Name="Username" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="Campaign">
           <Key>
@@ -4704,6 +4710,20 @@
           <Property Type="DateTime" Name="ExpiryDate" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="DealStatusID" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="Merchant_ListEligibleGlobalPartnersByNPO_Result">
+          <Property Type="Int32" Name="MerchantID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="LargeLogo" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="SmallLogo" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="cAddress" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="PostalCode" Nullable="true" MaxLength="16" />
+          <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="16" />
+          <Property Type="String" Name="Website" Nullable="false" MaxLength="256" />
+          <Property Type="Int32" Name="StatusID" Nullable="false" />
+          <Property Type="Int32" Name="cUserID" Nullable="false" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="256" />
+          <Property Type="Int32" Name="CityID" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5602,6 +5622,8 @@
           <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="C4GModel.Store.sp_helpdiagrams" />
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="C4GModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="C4GModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="Merchant_ListEligibleGlobalPartnersByNPO" FunctionName="C4GModel.Store.Merchant_ListEligibleGlobalPartnersByNPO">
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

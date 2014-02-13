@@ -30,7 +30,7 @@
                             keeping track of all those quarters, dimes and nickels, 
                             checks are a pain! <br />
                             <strong>Coupons4Giving makes fundraising easy and secure.</strong></h2>
-                            <a href="<%: User.Identity.IsAuthenticated ? "NPO/Campaigns/New.aspx" : "Account/Register.aspx" %>" class="btn"><i class="fa fa-arrow-circle-o-right"></i> START A CAMPAIGN</a>
+                            <a href="<%: Roles.IsUserInRole("User") ? "NPO/Signup.aspx" : (Roles.IsUserInRole("NPO") ? "NPO/MyHome.aspx" : "Account/Register.aspx") %>" class="btn"><i class="fa fa-arrow-circle-o-right"></i> START A CAMPAIGN</a>
                         </div>
                     </div>
                 </li>
@@ -38,7 +38,7 @@
                     <div class="content">
                         <div class="two-thirds"><h2>Be effective and target the right customers while supporting local charities and community groups.<br />
                             <strong>Coupons4Giving is a great marketing tool.</strong></h2>
-                            <a href="Account/Register.aspx" class="btn"><i class="fa fa-arrow-circle-o-right"></i> BECOME A MERCHANT</a>
+                            <a href='<%: Roles.IsUserInRole("User") ? "Merchant/Signup.aspx" : (Roles.IsUserInRole("Merchant") ? "Merchant/MyHome.aspx" : "Account/Register.aspx") %>' class="btn"><i class="fa fa-arrow-circle-o-right"></i> BECOME A MERCHANT</a>
                         </div>
                     </div>
                 </li>
@@ -68,7 +68,7 @@
                     <h4>NON-PROFITS</h4>
                     <img src="images/c4g_main_npo.png" alt="Coupons 4 Giving" />
                     <p class="centered">If you are a <strong>Not-For-Profit</strong>, you can build simple & effective campaigns</p>
-                    <a class="btn" href="Account/Register.aspx"><i class="fa fa-arrow-circle-o-right"></i> START A CAMPAIGN</a> 
+                    <a class="btn" href="<%: Roles.IsUserInRole("User") ? "NPO/Signup.aspx" : (Roles.IsUserInRole("NPO") ? "NPO/MyHome.aspx" : "Account/Register.aspx") %>"><i class="fa fa-arrow-circle-o-right"></i> START A CAMPAIGN</a> 
                 </div>
                 <div class="thirds">
                     <h4>CUSTOMERS</h4>
@@ -80,7 +80,7 @@
                     <h4 class="centred">MERCHANTS</h4>
                     <img src="images/c4g_main_market.png" alt="Coupons 4 Giving" />
                     <p class="centered">If you are a <strong>Merchant or On-line retailer</strong>, set up your offers with Coupons4Giving</p>
-                    <a class="btn" href="<%: (User.IsInRole("Merchant")) ? "Merchant/MyHome.aspx" : "Account/Register.aspx" %>"><i class="fa fa-arrow-circle-o-right"></i> BECOME A MERCHANT</a>
+                    <a class="btn" href="<%: Roles.IsUserInRole("User") ? "Merchant/Signup.aspx" : (Roles.IsUserInRole("Merchant") ? "Merchant/MyHome.aspx" : "Account/Register.aspx") %>"><i class="fa fa-arrow-circle-o-right"></i> BECOME A MERCHANT</a>
                 </div>
             </div>
         </section>

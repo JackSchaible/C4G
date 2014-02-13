@@ -578,6 +578,11 @@ namespace CouponsForGiving.Data.Classes
         {
             return new C4GEntities().Merchant_ListEligiblePartnersByNPO(username, cityID).ToList<Merchant>();
         }
+
+        public static List<Merchant> ListEligibleGlobalPartnersByNPO(string username)
+        {
+            return new C4GEntities().Merchant_ListEligibleGlobalPartnersByNPO(username).ToList<Merchant>();
+        }
     }
 
     public static class Merchants

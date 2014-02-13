@@ -880,6 +880,9 @@
       <Parameter Name="new_diagramname" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="Merchant_ListEligibleGlobalPartnersByNPO" EntitySet="Merchants" ReturnType="Collection(C4GModel.Merchant)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="Campaign">
     <Key>
@@ -2805,5 +2808,19 @@
     <Property Type="DateTime" Name="RedeemableAfter" Nullable="false" Precision="23" />
     <Property Type="DateTime" Name="ExpiryDate" Nullable="true" Precision="23" />
     <Property Type="Int32" Name="DealStatusID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Merchant_ListEligibleGlobalPartnersByNPO_Result">
+    <Property Type="Int32" Name="MerchantID" Nullable="false" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="LargeLogo" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="SmallLogo" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="cAddress" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="PostalCode" Nullable="true" MaxLength="16" />
+    <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="16" />
+    <Property Type="String" Name="Website" Nullable="false" MaxLength="256" />
+    <Property Type="Int32" Name="StatusID" Nullable="false" />
+    <Property Type="Int32" Name="cUserID" Nullable="false" />
+    <Property Type="String" Name="Email" Nullable="false" MaxLength="256" />
+    <Property Type="Int32" Name="CityID" Nullable="false" />
   </ComplexType>
 </Schema>

@@ -11,16 +11,16 @@
         function addToCart(dealID, campaignID) {
             if (arguments.length == 1) {
                 PageMethods.AddDealToCart(dealID, function () {
-                    window.location.replace("My/Cart.aspx");
+                    window.location.replace("https://www.coupons4giving.ca/Default/My/Cart.aspx");
                 }, function () {
-                    window.location.replace("My/Cart.aspx");
+                    window.location.replace("https://www.coupons4giving.ca/Default/My/Cart.aspx");
                 });
             }
             else if (arguments.length == 2) {
                 PageMethods.AddToCart(dealID, campaignID, function () {
-                    window.location.replace("My/Cart.aspx");
+                    window.location.replace("https://www.coupons4giving.ca/Default/My/Cart.aspx");
                 }, function () {
-                    window.location.replace("My/Cart.aspx");
+                    window.location.replace("https://www.coupons4giving.ca/Default/My/Cart.aspx");
                 });
             }
         }

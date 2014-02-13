@@ -30,9 +30,12 @@
     </asp:GridView>
     <asp:Label ID="ErrorLabel" runat="server"></asp:Label>
     <h2>Global Marketplace</h2>
-    <%--<asp:GridView ID="GlobalMarketplaceGV" runat="server" AutoGenerateColumns="False" DataKeyNames="MerchantID" DataSourceID="GlobalMerchantsODS" OnSelectedIndexChanging="GlobalMarketplaceGV_SelectedIndexChanging">
+    <asp:GridView ID="GlobalMarketplaceGV" runat="server" AutoGenerateColumns="False" 
+        DataKeyNames="MerchantID" OnSelectedIndexChanging="GlobalMarketplaceGV_SelectedIndexChanging">
         <Columns>
-            <asp:CommandField InsertText="Add" NewText="Add" SelectText="View" ShowInsertButton="True" ShowSelectButton="True" />
+            <asp:CommandField InsertText="Add" NewText="Add" ShowSelectButton="True" />
+            <asp:HyperLinkField DataNavigateUrlFields="Name" 
+                DataNavigateUrlFormatString="../../Default/MerchantPage.aspx?MerchantName={0}" Text="View" />
             <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />
             <asp:ImageField DataImageUrlField="SmallLogo">
             </asp:ImageField>
@@ -41,10 +44,8 @@
         </Columns>
         <EmptyDataTemplate>
         </EmptyDataTemplate>
-    </asp:GridView>--%>
-    <img src="../../images/c4g_comingsoon.png" />
+    </asp:GridView>
     <asp:Label ID="GlobalError" runat="server"></asp:Label>
-    <asp:ObjectDataSource ID="GlobalMerchantsODS" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="Merchant_ListGlobal" TypeName="CouponsForGiving.Data.SysData"></asp:ObjectDataSource>
     <h2>Invite Your Preferred Merchants</h2>
     <p>You can add your own merchants by sending them an invitation to sign up with Coupons4Giving! When your
         preferred merchant accepts your invitation and registers with Coupons4Giving you will recieve

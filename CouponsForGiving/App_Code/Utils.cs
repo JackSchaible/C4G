@@ -236,7 +236,7 @@ namespace CouponsForGiving
                         result += "</span>";
                         result +="<div class=\"campaign-details-tile\">";
                         result += "<p>" + item.Deal.DealDescription + "</p><!-- Merchant Offer Description -->";
-                        result += "<p><strong>Price You Pay:</strong> <span>$80</span><br /> <!-- Offer Price -->";
+                        result += "<p><strong>Price You Pay:</strong> <span>" + item.Deal.Prices.FirstOrDefault<Price>().GiftValue.ToString("C") + "</span><br /> <!-- Offer Price -->";
                         result += "<strong>Value of Deal:</strong> <em>$" + ((int)(item.Deal.Prices.FirstOrDefault<Price>().RetailValue)).ToString("D") + "</em><!-- Offer Value --> <br />";
                         result += "<strong>You're Giving:</strong> <span>$" + ((int)(item.Deal.Prices.FirstOrDefault<Price>().NPOSplit)).ToString("D") + "</span><!-- Donation Value --> <br />";
                         result += "<strong>Discount:</strong> <span>$" + (1 - (item.Deal.Prices.FirstOrDefault<Price>().GiftValue / item.Deal.Prices.FirstOrDefault<Price>().RetailValue)).ToString("0%") + "</span><!-- Discount Value --> <br />";

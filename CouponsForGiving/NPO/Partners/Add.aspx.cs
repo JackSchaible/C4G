@@ -37,13 +37,77 @@ public partial class NPO_Partners_Add : System.Web.UI.Page
     private void BindData()
     {
         List<Merchant> local = MerchantNPO.ListEligiblePartnersByNPO(User.Identity.Name, int.Parse(CitiesDDL.SelectedValue));
+
         LocalMerchantsGV.DataSource = local;
         LocalMerchantsGV.DataBind();
+
+        List<Merchant> global = MerchantNPO.ListEligibleGlobalPartnersByNPO(User.Identity.Name);
+        GlobalMarketplaceGV.DataSource = global;
+        GlobalMarketplaceGV.DataBind();
     }
 
     protected void GlobalMarketplaceGV_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
     {
+        try
+        {
+            Merchant merch = SysData.Merchant_Get(int.Parse(GlobalMarketplaceGV.DataKeys[e.NewSelectedIndex].Value.ToString()));
+            SysData.NPO_InsertMerchantPartner(merch.MerchantID, User.Identity.Name);
+            NPO npo = SysDatamk.NPO_GetByUsername(User.Identity.Name);
+            MailMessage mm = new MailMessage();
+            mm.IsBodyHtml = true;
 
+            if (MerchantSettings.AcceptsAllRequests(merch.MerchantID))
+            {
+                mm.To.Add(merch.Email);
+                Merchants.AddNPOPartner(npo.NPOID, merch.MerchantID);
+                mm.Subject = "C4G: " + npo.Name + " Has Partnered with You!";
+                mm.Body = @"
+                            <style type='text/css'>
+                                h1, a, p {
+                                    font-family: Corbel, Arial, sans-serif;
+                                }
+                            </style>
+                            <p>Congratulations! The not-for-profit organization '" + npo.Name + @"' has partnered with you to offer great deals!</p>
+                            <p>If you have any questions, contact us at <a href='mailto:team@coupons4giving.ca'>team@coupons4giving.ca</a></p>
+                            <p>Cheers!</p>
+                            <p>The Coupons4Giving Team</p>
+                           ";
+
+                GlobalError.Text = "Congratulations! You are now partnered with that Merchant!";
+                GlobalError.Style.Add("display", "block");
+            }
+            else
+            {
+                mm.To.Add(merch.Email);
+                //Add to db record, send email request to merchant
+                string request = String.Format("mid={0}&npoid={1}", merch.MerchantID, npo.NPOID);
+                request = CouponsForGiving.EncryptionUtils.Encrypt(request);
+
+                mm.Subject = String.Format("C4G: New Request from {0}", npo.Name);
+                mm.Body = @"
+                            <style type='text/css'>
+                                h1, a, p {
+                                    font-family: Corbel, Arial, sans-serif;
+                                }
+                            </style>
+                            <h1>You have a New Request from Coupons4Giving!</h1>
+                            <p>" + npo.Name + @" has requested to partner with you!</p>
+                            <p><a href='https://www.coupons4giving.ca/'" + npo.Name + @">Click here</a> to view their page!</p>
+                            <p><a href='https://www.coupons4giving.ca/Merchant/Partners/Requests.aspx'>Click here to log in and accept the request!</a>
+                            ";
+                GlobalError.Text = "A request has been sent to that Merchant!";
+                GlobalError.ForeColor = Color.Black;
+            }
+
+            SmtpClient c = new SmtpClient();
+            c.Send(mm);
+            BindData();
+        }
+        catch (Exception ex)
+        {
+            GlobalError.Text = ex.Message;
+            GlobalError.ForeColor = Color.Red;
+        }
     }
 
     protected void LocalMerchantsGV_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)

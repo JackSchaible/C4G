@@ -826,5 +826,6 @@
     <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="C4GModel.Store.sp_helpdiagrams" />
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="C4GModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="C4GModel.Store.sp_upgraddiagrams" />
+    <FunctionImportMapping FunctionImportName="Merchant_ListEligibleGlobalPartnersByNPO" FunctionName="C4GModel.Store.Merchant_ListEligibleGlobalPartnersByNPO" />
   </EntityContainerMapping>
 </Mapping>

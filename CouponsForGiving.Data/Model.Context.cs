@@ -3002,5 +3002,23 @@ namespace CouponsForGiving.Data
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual ObjectResult<Merchant> Merchant_ListEligibleGlobalPartnersByNPO(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Merchant>("Merchant_ListEligibleGlobalPartnersByNPO", usernameParameter);
+        }
+    
+        public virtual ObjectResult<Merchant> Merchant_ListEligibleGlobalPartnersByNPO(string username, MergeOption mergeOption)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Merchant>("Merchant_ListEligibleGlobalPartnersByNPO", mergeOption, usernameParameter);
+        }
     }
 }
