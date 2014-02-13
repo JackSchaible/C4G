@@ -9,6 +9,6 @@
     <siteMapNode title="For Customers" url="~/Default/MyHome.aspx" />
     <siteMapNode title="My Campaigns" url="~/NPO/Anon.aspx" />
     <siteMapNode title="For Merchants" url="~/Merchant/Anon.aspx" />
-    <siteMapNode title="Blog" url="/Blog.aspx" />
+    <siteMapNode title="Blog" url="http://blog.coupons4giving.ca" target="_blank"/>
   </siteMapNode>
 </siteMap>
