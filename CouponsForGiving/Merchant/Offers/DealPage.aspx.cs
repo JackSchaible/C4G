@@ -1,5 +1,6 @@
 ﻿using CouponsForGiving;
 using CouponsForGiving.Data;
+using CouponsForGiving.Data.Classes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -44,7 +45,7 @@ public partial class Merchant_Offers_DealPage : System.Web.UI.Page
         }
 
 
-        merchant = SysData.Merchant_GetByName(merchantName);
+        merchant = Merchants.GetByUsername(User.Identity.Name);
         dealInstance = SysData.DealInstance_GetByDealName(dealName, merchant.MerchantID);
         deal = dealInstance.Deal;
 

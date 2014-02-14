@@ -67,7 +67,9 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
                 break;
         }
         DateTime StartDate = DateTime.Parse(sDate);
+        //StartDate.TimeOfDay = TimeSpan.MinValue;
         DateTime EndDate = DateTime.Parse(eDate);
+        //StartDate.TimeOfDay = TimeSpan.MinValue;
         int AbsoluteCouponLimit = -1;
         int LimitPerCustomer = -1;
         decimal RetailValue = -1M;

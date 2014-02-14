@@ -372,7 +372,7 @@ public partial class Merchant_Offers_Edit : System.Web.UI.Page
                 }
             }
 
-            result = "DealPage.aspx?deal=" + Name + "&merchantname=" + merchant.Name;
+            result = "DealPage.aspx?deal=" + HttpContext.Current.Server.UrlEncode(Name) + "&merchantname=" + HttpContext.Current.Server.UrlEncode(merchant.Name);
         }
 
         if (errors.Count > 0)

@@ -112,7 +112,6 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
                     deals.Add(cart.Where(x => x.MerchantID == item).ToList<ShoppingCart>());
 
                 StripeCharge charge = null;
-                int id = -1;
 
                 List<PurchaseOrder> orders = new List<PurchaseOrder>();
 
@@ -137,6 +136,17 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
                             var stripeService = new StripeChargeService(info.ApiKey);
                             int chargeAmount = (int)(ds.Sum(x => Math.Round(x.Split.MerchantSplit, 2)) * 100);
                             int appFee = (int)(Math.Round(ds.Sum(x => x.Split.NPOSplit + x.Split.OurSplit), 2) * 100);
+
+                            int ca = 0;
+                            int af = 0;
+                            Price p = SysData.Price_GetByDealInstance(ds[0].DealInstanceID);
+
+                            foreach (ShoppingCart item in ds)
+                            {
+                                decimal tax = p.OurSplit * 0.05M;
+                                ca += (int)((p.MerchantSplit - tax) * 100);
+                                af += (int)((p.OurSplit + tax + p.NPOSplit) * 100);
+                            }
 
                             var stripeChargeOption = new StripeChargeCreateOptions()
                             {

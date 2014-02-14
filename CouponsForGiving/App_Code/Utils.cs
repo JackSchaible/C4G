@@ -372,10 +372,10 @@ namespace CouponsForGiving
                         result += "<article class=\"c4g-campaign-tile\"><!-- New Class Campaign Title -->";
                         result += "<img src=\"../../Images/c4g_campaign_logo.png\" class=\"coupon_c4g_logo\" />";
                         result += "<div class=\"coupon-title-tile\">";
-                        result += "<h2><a href=\"DealPage.aspx?merchantname=" + item.Deal.Merchant.Name + "&deal=" + item.Deal.Name + "\">" + item.Deal.Name + "</a></h2><!-- Offer Title -->";
-                        result += "<h3><a href=\"MerchantPage.aspx?MerchantName=" + item.Deal.Merchant.Name + "\">" + item.Deal.Merchant.Name + "</a></h3><!-- Merchant Name -->";
+                        result += "<h2><a href=\"DealPage.aspx?merchantname=" + HttpContext.Current.Server.UrlEncode(item.Deal.Merchant.Name) + "&deal=" + HttpContext.Current.Server.UrlEncode(item.Deal.Name) + "\">" + item.Deal.Name + "</a></h2><!-- Offer Title -->";
+                        result += "<h3><a href=\"MerchantPage.aspx?MerchantName=" + HttpContext.Current.Server.UrlEncode(item.Deal.Merchant.Name) + "\">" + HttpContext.Current.Server.UrlEncode(item.Deal.Merchant.Name) + "</a></h3><!-- Merchant Name -->";
                         result += "<span class=\"company-frame\">";
-                        result += "<a href=\"DealPage.aspx?merchantname=" + item.Deal.Merchant.Name + "&deal=" + item.Deal.Name + "\"><img src=\"../" + item.Deal.ImageURL + "\" /></a>";
+                        result += "<a href=\"DealPage.aspx?merchantname=" + HttpContext.Current.Server.UrlEncode(item.Deal.Merchant.Name) + "&deal=" + HttpContext.Current.Server.UrlEncode(item.Deal.Name) + "\"><img src=\"../" + item.Deal.ImageURL + "\" /></a>";
                         result += "</span>"; 
                         result += "<div class=\"campaign-details-tile\">";
                         result += "<p>" + item.Deal.DealDescription + "</p><!-- Coupon Description (limited to 200 characters if possible -->"; 
@@ -386,7 +386,7 @@ namespace CouponsForGiving
                         result += "<strong>Coupons Left :</strong> <em>" + (item.Deal.AbsoluteCouponLimit - item.PurchaseOrders.Count()) + "</em></p>";
                         result += "</div><!--Close Coupon Title -->";
                         result += "</div><!-- Close Details -->";
-                        result += "<a href=\"DealPage.aspx?merchantname=" + item.Deal.Merchant.Name + "&deal=" + item.Deal.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> Offer Details</a><!-- Link To Campaign Page -->";
+                        result += "<a href=\"DealPage.aspx?merchantname=" + HttpContext.Current.Server.UrlEncode(item.Deal.Merchant.Name) + "&deal=" + HttpContext.Current.Server.UrlEncode(item.Deal.Name) + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> Offer Details</a><!-- Link To Campaign Page -->";
                         result += "</article>";
                         result += "</div>";
                         
@@ -405,10 +405,10 @@ namespace CouponsForGiving
             result += "<article class=\"c4g-coupon-tile\">";
             result += "<img src=\"../Images/c4g_coupon_logo.png\" class=\"coupon_c4g_logo\" />";
             result += "<div class=\"coupon-title-tile\">";
-            result += "<h2><a href=\"DealPage.aspx?merchantname=" + deal.Deal.Merchant.Name + "&deal=" + deal.Deal.Name + "\">" + deal.Deal.Name + "</a></h2><!-- Merchant Offer -->";
-            result += "<h3><a href=\"MerchantPage.aspx?Name=" + deal.Deal.Merchant.Name + "\"></a></h3><!-- Merchant Name -->";
+            result += "<h2><a href=\"DealPage.aspx?merchantname=" + HttpContext.Current.Server.UrlEncode(deal.Deal.Merchant.Name) + "&deal=" + HttpContext.Current.Server.UrlEncode(deal.Deal.Name) + "\">" + deal.Deal.Name + "</a></h2><!-- Merchant Offer -->";
+            result += "<h3><a href=\"MerchantPage.aspx?Name=" + HttpContext.Current.Server.UrlEncode(deal.Deal.Merchant.Name) + "\"></a></h3><!-- Merchant Name -->";
             result += "<span class=\"campaign-frame\">";
-            result += "<a href=\"DealPage.aspx?merchantname=" + deal.Deal.Merchant.Name + "&deal=" + deal.Deal.Name + "\" ><img src=\"../../" + deal.Deal.ImageURL + "\" /></a>";
+            result += "<a href=\"DealPage.aspx?merchantname=" + HttpContext.Current.Server.UrlEncode(deal.Deal.Merchant.Name) + "&deal=" + HttpContext.Current.Server.UrlEncode(deal.Deal.Name) + "\" ><img src=\"../../" + deal.Deal.ImageURL + "\" /></a>";
             result += "</span>";
             result += "<div class=\"campaign-details-tile\">";
             result += "<p></p><!-- Merchant Offer Description -->";
@@ -419,7 +419,7 @@ namespace CouponsForGiving
             result += "<strong>Coupons Left :</strong> <em>" + (deal.Deal.AbsoluteCouponLimit - deal.PurchaseOrders.Count()) + "</em></p>";
 
             result += "</div><!--Close Coupon Details Title -->";
-            result += "<a href=\"DealPage.aspx?merchantname=" + deal.Deal.Merchant.Name + "&deal=" + deal.Deal.Name + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> More Details</a>";
+            result += "<a href=\"DealPage.aspx?merchantname=" + HttpContext.Current.Server.UrlEncode(deal.Deal.Merchant.Name) + "&deal=" + HttpContext.Current.Server.UrlEncode(deal.Deal.Name) + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> More Details</a>";
             result += "</article>";
             result += "</div>";
 
