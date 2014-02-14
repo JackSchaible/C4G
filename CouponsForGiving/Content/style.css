@@ -2234,6 +2234,39 @@ text-align: right;
         }
 
 
+/* Admin Reporting Tables
+---------------------------------------------------------------- */
+
+#Main_Content_UsersGV, #Main_Content_ReportGV {
+width: 100%;
+font-size: 17px;
+margin: 50px 0px;
+border: 1px solid #ccc;
+}
+
+#Main_Content_UsersGV th {
+font-size: 18px;
+padding: 5px 0px 10px;
+border-bottom: 3px solid #ff9900;
+font-weight: 300;
+}
+
+#Main_Content_ReportGV th {
+font-size: 14px;
+padding: 5px 0px 10px;
+border-bottom: 3px solid #ff9900;
+font-weight: 300;
+}
+
+#Main_Content_ReportGV th a {
+font-weight: bold;
+text-decoration: none;
+}
+
+#MainContent #content #Main_Content_UsersGV tr, #MainContent #content #Main_Content_ReportGV tr {
+font-size: 15px;
+}
+
 /* Sidebar
 ________________________________________________________________ */
 

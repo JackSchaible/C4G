@@ -5,6 +5,8 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
     <h1>Admin Functions</h1>
-    <a href="Users.aspx">Users</a>
-    <a href="Financial.aspx">Financial Report</a>
+    <p>Use the links below to access the various Administrator reports.</p>
+    <hr />
+    <a href="Users.aspx" class="btn"><i class="fa fa-group"></i> Users Reports</a>
+    <a href="Financial.aspx" class="btn"><i class="fa fa-credit-card"></i> Financial Report</a>
 </asp:Content>

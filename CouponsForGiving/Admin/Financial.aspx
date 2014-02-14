@@ -45,10 +45,10 @@
     <h1>Financial Report</h1>
     <h2>Filtering Options</h2>
     <asp:HiddenField ID="FilterState" runat="server" ClientIDMode="Static" />
-    <a id="FilterControl" href="javascript:toggleFilter()">Show</a>
+    <a id="FilterControl" href="javascript:toggleFilter()" class="btw"><i class="fa fa-sort"></i> Show</a>
     <div id="FilterOptions" style="display: none;" class="FilterOptions">
         <div class="FormRow">
-            <label>Coupon Name</label>
+            <label><i class="fa fa-sort"></i> Coupon Name</label>
             <asp:CheckBox ID="CouponCheckBox" runat="server" />
             <asp:RadioButtonList ID="CouponNameRBL" runat="server">
                 <asp:ListItem Text="Contains" Value="Contains" Selected="True" />
