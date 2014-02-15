@@ -11,8 +11,8 @@
     <div class="clear"></div>
     <h2>Pending Not-For-Profit Organizations</h2>
     <asp:Button ID="ApproveAllNPOs" runat="server" Text="Approve ALL Not-for-Profit Requests" OnClick="ApproveAllNPOs_Click" />
-    <asp:GridView ID="NPOGV" runat="server" AutoGenerateColumns="False" DataKeyNames="NPOID" DataSourceID="NPOODS" OnSelectedIndexChanging="NPOGV_SelectedIndexChanging">
     <div class="clear"></div>
+    <asp:GridView ID="NPOGV" runat="server" AutoGenerateColumns="False" DataKeyNames="NPOID" DataSourceID="NPOODS" OnSelectedIndexChanging="NPOGV_SelectedIndexChanging">
         <Columns>
             <asp:CommandField SelectText="Approve" ShowSelectButton="True" />
             <asp:BoundField DataField="Name" HeaderText="Name" SortExpression="Name" />

@@ -53,6 +53,6 @@ public partial class Default_MerchantPage : System.Web.UI.Page
 
     private void BindData()
     {
-        deals = SysData.DealInstance_ListByMerchant(merchant.MerchantID);
+        deals = SysData.DealInstance_ListByMerchant(merchant.MerchantID).Where(x => x.Campaigns.Count > 0).ToList<DealInstance>();
     }
 }

@@ -37,13 +37,13 @@ public partial class Default_DealPage : System.Web.UI.Page
 
         if (Page.RouteData.Values["MerchantName"] == null || Page.RouteData.Values["OfferName"] == null)
         {
-            merchantName = Request.QueryString["merchantname"];
-            dealName = Request.QueryString["deal"];
+            Server.UrlDecode(merchantName = Request.QueryString["merchantname"]);
+            Server.UrlDecode(dealName = Request.QueryString["deal"]);
         }
         else
         {
-            merchantName = Page.RouteData.Values["MerchantName"].ToString();
-            dealName = Page.RouteData.Values["OfferName"].ToString();
+            merchantName = Server.UrlDecode(Page.RouteData.Values["MerchantName"].ToString());
+            dealName = Server.UrlDecode(Page.RouteData.Values["OfferName"].ToString());
         }
 
         merchant = SysData.Merchant_GetByName(merchantName);

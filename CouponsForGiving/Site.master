@@ -150,6 +150,9 @@
                     $("#ShoppingCart").val(number);
                 }
             </script>
+            <script src="//platform.linkedin.com/in.js" type="text/javascript">
+                lang: en_US
+            </script>
             <header>
                 <asp:Literal ID="ValidationScript" runat="server"></asp:Literal>
                 <div id="mainHeader">
@@ -198,14 +201,22 @@
                         <img src="~/images/c4g_side_coupon.png" class="sideMerchants" runat="server">
                         <asp:GridView ID="FeaturedMerchantGV" runat="server" AutoGenerateColumns="False" DataSourceID="FMerchantsODS">
                             <Columns>
-                                <asp:HyperLinkField DataNavigateUrlFields="Name" DataNavigateUrlFormatString="~/Default/MerchantPage.aspx?MerchantName={0}" DataTextField="Name" HeaderText="Our Featured Merchants" />
+                                <asp:TemplateField HeaderText="Our Featured Merchants">
+                                    <ItemTemplate>
+                                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# String.Format("~/Default/MerchantPage.aspx?MerchantName={0}", HttpUtility.UrlEncode(Eval("Name").ToString())) %>' Text='<%# Eval("Name") %>'></asp:HyperLink>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
                         <a class="btn" href="~/Merchant/Signup.aspx" runat="server">Become a Merchant</a>
                         <img src="~/images/c4g_side_market.png" class="sideMerchants" runat="server">
                         <asp:GridView ID="FeaturedNPOGV" runat="server" AutoGenerateColumns="False" DataSourceID="FNPOODS">
                             <Columns>
-                                <asp:HyperLinkField DataNavigateUrlFields="URL" DataNavigateUrlFormatString="~/Default/NPOPage.aspx?name={0}" DataTextField="Name" HeaderText="Our Featured NPOs" />
+                                <asp:TemplateField HeaderText="Our Featured NPOs">
+                                    <ItemTemplate>
+                                        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# String.Format("~/Default/NPOPage.aspx?name={0}", HttpUtility.UrlEncode(Eval("URL").ToString())) %>' Text='<%# Eval("Name") %>'></asp:HyperLink>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                             </Columns>
                         </asp:GridView>
                         <a class="btn" href="~/NPO/Signup.aspx" runat="server">Become a Not-For-Profit</a>

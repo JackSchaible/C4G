@@ -134,8 +134,8 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
 
                             StripeToken stripeToken = new StripeTokenService(info.ApiKey).Create(myToken);
                             var stripeService = new StripeChargeService(info.ApiKey);
-                            int chargeAmount = (int)(ds.Sum(x => Math.Round(x.Split.MerchantSplit, 2)) * 100);
-                            int appFee = (int)(Math.Round(ds.Sum(x => x.Split.NPOSplit + x.Split.OurSplit), 2) * 100);
+                            //int chargeAmount = (int)(ds.Sum(x => Math.Round(x.Split.MerchantSplit, 2)) * 100);
+                            //int appFee = (int)(Math.Round(ds.Sum(x => x.Split.NPOSplit + x.Split.OurSplit), 2) * 100);
 
                             int ca = 0;
                             int af = 0;
@@ -150,13 +150,13 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
 
                             var stripeChargeOption = new StripeChargeCreateOptions()
                             {
-                                AmountInCents = chargeAmount + appFee,
+                                AmountInCents = ca + af,
                                 Currency = "cad",
                                 Card = stripeToken.Id,
                                 Description = "Your Purchase with Coupons4Giving - " + info.Merchant.Name,
-                                ApplicationFeeInCents = appFee
+                                ApplicationFeeInCents = af
                             };
-                            var response = stripeService.Create(stripeChargeOption);
+                            //var response = stripeService.Create(stripeChargeOption);
                         }
                         Session["Cart"] = new List<ShoppingCart>();
                         ts.Complete();

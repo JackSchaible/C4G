@@ -25,9 +25,6 @@
             }
         }
     </script>
-    <script src="//platform.linkedin.com/in.js" type="text/javascript">
-        lang: en_US
-    </script>
         <article class="c4g-coupon">
             <img src="../../Images/c4g_coupon_logo.png" class="coupon_c4g_logo" /> 
             <div class="coupon-title">
