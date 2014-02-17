@@ -23,26 +23,26 @@
             }
 
             function calcSplit(value) {
-                if (!isNaN(value)) {
-                    var vat = (value * 0.029) + 0.3;
-                    var tax = (value * 0.2) * 0.05;
-                    var split = (value * 0.54) - (vat + tax);
+                //if (!isNaN(value)) {
+                //    var vat = (value * 0.029) + 0.3;
+                //    var tax = (value * 0.2) * 0.05;
+                //    var split = (value * 0.54) - (vat + tax);
 
-                    if ((isNaN(vat) || isNaN(tax) || isNaN(split)) || (vat == 0) || (tax == 0) || (split == 0) || value == undefined) {
-                        $("#SplitOutput").hide();
-                    }
-                    else {
-                        $("#SplitOutput").show();
-                        $("#VAT").text("$" + vat.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
-                        $("#Tax").text("$" + tax.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+                //    if ((isNaN(vat) || isNaN(tax) || isNaN(split)) || (vat == 0) || (tax == 0) || (split == 0) || value == undefined) {
+                //        $("#SplitOutput").hide();
+                //    }
+                //    else {
+                //        $("#SplitOutput").show();
+                //        $("#VAT").text("$" + vat.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+                //        $("#Tax").text("$" + tax.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
 
-                        //IMPORTANT: MUST BE THE SAME AS THE FORMULA IN ShoppingCart.cs
-                        $("#SplitTotal").text("$" + split.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
-                    }
-                }
-                else {
-                    $("#SplitOutput").hide();
-                }
+                //        //IMPORTANT: MUST BE THE SAME AS THE FORMULA IN ShoppingCart.cs
+                //        $("#SplitTotal").text("$" + split.toFixed(2).replace(/(\d)(?=(\d{3})+\.)/g, '$1,'));
+                //    }
+                //}
+                //else {
+                //    $("#SplitOutput").hide();
+                //}
             }
 
             function checkName(write) {
@@ -372,8 +372,8 @@
                     var limitPerCustomer = $("#LimitPerCustomerTextBox").val();
 
                     //If locked, put default values in
-                    <%= locked ? "var giftValue = '" + di.Deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().GiftValue + "';" : "var giftValue = $(\"#GiftValueTextBox\").val();" %>
-                    <%= locked ? "var retailValue = '" + di.Deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().RetailValue + "';" : "var retailValue = $(\"#RetailValueTextBox\").val();" %>
+                    var giftValue = <%: di.Deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().GiftValue %>;
+                    var retailValue = <%: di.Deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().RetailValue %>;
                     <%= locked ? "var redeemDetails = new Array();" : "var redeemDetails = new Array(); $(\"#FinePrintList input:checked\").each(function () { redeemDetails.push(this.value); });" %>
                     <%= locked ? "var additionalRedeemDetails = '';" : "var additionalRedeemDetails = $(\"#AdditionalRedemptionDetailsTextBox\").val();" %>
 
@@ -398,7 +398,7 @@
                 errors.push.apply(errors, checkAbsCouponLimit(false));
                 errors.push.apply(errors, checkPCCouponLimit(false));
 
-                <%: locked ? "" : "errors.push.apply(errors, checkRetailValue(false)); errors.push.apply(errors, checkGiftValue(false));" %>
+                <%-- locked ? "" : "errors.push.apply(errors, checkRetailValue(false)); errors.push.apply(errors, checkGiftValue(false));" --%>
 
                 if (arguments.length == 0) {
                     if (errors.length > 0) {
@@ -582,10 +582,10 @@
         </div>
 
         <%--Output the retail value textbox if not locked--%>
-        <%= locked ? "" : "<div class=\"FormRow\"><label>Retail Value<br /><small>The regular price of the product/service.</small></label> $<input type=\"text\" ID=\"RetailValueTextBox\" maxlength=\"10\" placeholder=\"10.00\" value=\"" + Math.Round(di.Deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().RetailValue, 2) + "\" onkeyup=\"checkRetailValue()\" onblur=\"checkRetailValue()\" oninput=\"checkRetailValue()\"/><div id=\"RetailValueTextBoxErrors\" class=\"ErrorDiv\"></div></div>" %>
+        <%-- locked ? "" : "<div class=\"FormRow\"><label>Retail Value<br /><small>The regular price of the product/service.</small></label> $<input type=\"text\" ID=\"RetailValueTextBox\" maxlength=\"10\" placeholder=\"10.00\" value=\"" + Math.Round(di.Deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().RetailValue, 2) + "\" onkeyup=\"checkRetailValue()\" onblur=\"checkRetailValue()\" oninput=\"checkRetailValue()\"/><div id=\"RetailValueTextBoxErrors\" class=\"ErrorDiv\"></div></div>" %>
         
         <%--Output the gift value & split textbox if not locked--%>
-        <%= locked ? "" : "<div class=\"FormRow\"><label>Gift Value<br /><small>The Sale Price</small></label> $<input type=\"text\" ID=\"GiftValueTextBox\" maxlength=\"10\" onkeyup=\"checkGiftValue()\" onblur=\"checkGiftValue()\" oninput=\"checkGiftValue()\" placeholder=\"10.00\" value=\"" + Math.Round(di.Deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().GiftValue, 2) + "\" /><div id=\"GiftValueTextBoxErrors\" class=\"ErrorDiv\"></div></div><div id=\"SplitOutput\" class=\"FormRow\"><br /><p>Processing Fee (2.9% + $0.30) = <strong id=\"VAT\">" + (((di.Deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().GiftValue * (decimal)0.029)) + (decimal)0.3).ToString("C") + "</strong></p><br /><p>5% Tax on Coupons4Giving Fee = <strong id=\"Tax\">" + (((di.Deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().GiftValue * (decimal)0.02)) * (decimal)0.05).ToString("C") + "</strong></p><br /><p>Your Split on Each Purchase = <strong id=\"SplitTotal\">" + ((di.Deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().GiftValue * (decimal)0.55)).ToString("C") + "</strong></p></div>" %>
+        <%-- locked ? "" : "<div class=\"FormRow\"><label>Gift Value<br /><small>The Sale Price</small></label> $<input type=\"text\" ID=\"GiftValueTextBox\" maxlength=\"10\" onkeyup=\"checkGiftValue()\" onblur=\"checkGiftValue()\" oninput=\"checkGiftValue()\" placeholder=\"10.00\" value=\"" + Math.Round(di.Deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().GiftValue, 2) + "\" /><div id=\"GiftValueTextBoxErrors\" class=\"ErrorDiv\"></div></div>" %>
         
         <%--Output the redeem details checkbox list if not locked--%>
         <%--<asp:Panel CssClass="FormRow" ID="OldRedeemDetailsRow" runat="server">
@@ -609,7 +609,11 @@
         </asp:Panel>--%>
         <%--Output the additional redeem details textbox if not locked--%>
         <%--<%= locked ? "" : "<div class=\"FormRow TextAreaRow\"><label>Additional Redemption Details</label><textarea id=\"AdditionalRedemptionDetailsTextBox\" maxlength=\"500\" onkeyup=\"checkRedemptionDetails()\" onblur=\"checkRedemptionDetails()\" oninput=\"checkRedemptionDetails()\">" + di.Deal.RedeemDetails.FirstOrDefault<CouponsForGiving.Data.RedeemDetail>().AdditionalDetails + "</textarea><div id=\"AdditionalRedemptionDetailsTextBoxErrors\" class=\"ErrorDiv\"></div></div>" %>--%>
-
+        <div class="FormRow">
+            <h2>The Split</h2>
+            <p><strong>Your Split: </strong><%: di.Deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().MerchantSplit.ToString("C") %></p>
+            <p><strong>Your Donation: </strong><%: di.Deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().NPOSplit.ToString("C") %></p>
+        </div>
         <div class="FormRow">
             <input type="button" id="SubmitButton" value="Submit" onclick="submitForm()" />
             <div id="FormErrors" class="ErrorDiv"></div>

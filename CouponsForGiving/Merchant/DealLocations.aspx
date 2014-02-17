@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Deal Location Management" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Add.aspx.cs" Inherits="Merchant_DealLocations_Add" %>
+﻿<%@ Page Title="Deal Location Management" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="DealLocations.aspx.cs" Inherits="Merchant_DealLocations_Add" %>
 <%@ Reference Control="~/Controls/MenuBar.ascx" %>
 
 <asp:Content ID="Content4" ContentPlaceHolderID="Main_Content" Runat="Server">

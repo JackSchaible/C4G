@@ -19,9 +19,13 @@
     </asp:Panel>
     <h1>My Campaigns</h1>
     <p>This is a list of campaigns that you are currently running.</p>
-    <asp:GridView ID="CurrentCampaignsGV" runat="server">
+    <asp:GridView ID="CurrentCampaignsGV" runat="server" AutoGenerateColumns="false">
         <Columns>
-
+            <asp:HyperLinkField DataNavigateUrlFields="CampaignID" DataNavigateUrlFormatString="Edit.aspx?cid={0}" Text="Edit" />
+            <asp:BoundField DataField="Name" HeaderText="Name" />
+            <asp:BoundField DataField="StartDate" DataFormatString="{0: dd MMM yyyy}" HeaderText="Start Date" />
+            <asp:BoundField DataField="EndDate" DataFormatString="{0: dd MMM yyyy}" HeaderText="End Date" />
+            <asp:BoundField DataField="FundraisingGoal" DataFormatString="{0:c}" HeaderText="Fundraising Goal" />
         </Columns>
         <EmptyDataTemplate>
             <p>You currently have no active campaigns.</p>

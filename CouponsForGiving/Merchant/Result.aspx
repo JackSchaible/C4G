@@ -16,6 +16,10 @@
             case "3":
                 Response.Write("<h1>Error!</h1><p>You attempted to add locations to an offer, but it appears that offer does not exist. <a href='MyHome.aspx'>Click here</a> to return to your merchant page.");
                 break;
+
+            case "4":
+                Response.Write("<h1>Success!</h1><p>Your profile was successfully updated! <a href='MyHome.aspx'>Click here</a> to return to your merchant page.");
+                break;
         }
     %>
 </asp:Content>
