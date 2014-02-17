@@ -482,9 +482,19 @@ namespace CouponsForGiving.Data.Classes
             return new C4GEntities().Cities_ListWhereActiveDeals().ToList<City>();
         }
 
+        public static List<City> ListWhereActiveCampaigns()
+        {
+            return new C4GEntities().Cities_ListWhereActiveCampaigns().ToList<City>();
+        }
+
         public static List<City> ListAll()
         {
             return new C4GEntities().Cities_List().ToList<City>();
+        }
+
+        public static List<City> ListByProvince(int ProvinceID)
+        {
+            return new C4GEntities().Cities_ListByPoliticalDivision(ProvinceID).ToList<City>();
         }
     }
 
@@ -547,6 +557,11 @@ namespace CouponsForGiving.Data.Classes
         {
             return new C4GEntities().DealInstance_ListForGlobalMarketplace().ToList<DealInstance>();
         }
+
+        public static DealInstance Get(int DealInstanceID)
+        {
+            return new C4GEntities().DealInstance_Get(DealInstanceID).FirstOrDefault<DealInstance>();
+        }
     }
 
     public static class FinePrints
@@ -569,6 +584,57 @@ namespace CouponsForGiving.Data.Classes
         public static void Remove(int DealID, int FinePrintID)
         {
             new C4GEntities().Deal_FinePrint_Remove(DealID, FinePrintID);
+        }
+    }
+
+    public static class MerchantLocations
+    {
+        public static List<MerchantLocation> ListByMerchant(string username)
+        {
+            return new C4GEntities().MerchantLocation_ListByMerchant(username).ToList<MerchantLocation>();
+        }
+
+        public static MerchantLocation Get (int MerchantLocationID)
+        {
+            return new C4GEntities().MerchantLocation_Get(MerchantLocationID).FirstOrDefault<MerchantLocation>();
+        }
+
+        public static void Insert(string username, string description, string address, string phoneNumber,
+            int cityID, string postal)
+        {
+            new C4GEntities().MerchantLocation_Insert(username, postal, address, cityID, phoneNumber, description);
+        }
+
+        public static void Update(int merchantLocationID, string username, string description, string address,
+            string phoneNumber, int cityID, string postal)
+        {
+            new C4GEntities().MerchantLocation_Update(merchantLocationID, username, postal, address, cityID,
+                phoneNumber, description);
+        }
+
+        public static void Delete(int MerchantLocationID)
+        {
+            new C4GEntities().MerchantLocation_Delete(MerchantLocationID);
+        }
+
+        public static void AddToDeal(int MerchantLocationID, int DealID)
+        {
+            new C4GEntities().DealMerchantLocation_Insert(DealID, MerchantLocationID);
+        }
+
+        public static void RemoveFromDeal(int MerchantLocationID, int DealID)
+        {
+            new C4GEntities().DealMerchantLocation_Delete(DealID, MerchantLocationID);
+        }
+
+        public static void Activate(int merchantLocationID)
+        {
+            new C4GEntities().MerchantLocation_Activate(merchantLocationID);
+        }
+
+        public static void Deactivate(int merchantLocationID)
+        {
+            new C4GEntities().MerchantLocation_Deactivate(merchantLocationID);
         }
     }
 

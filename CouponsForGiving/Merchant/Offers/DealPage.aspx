@@ -62,7 +62,7 @@
             
            	<div class="coupon-image-block">
                 <img src="../../<%: deal.ImageURL %>" /> <!-- Pulled From Merchant Profile -->
-	            <a href="" class="btn-buy-now"><i class="fa fa-shopping-cart"></i> BUY NOW!</a>
+	            <a class="btn-buy-now"><i class="fa fa-shopping-cart"></i> BUY NOW!</a>
             
         	    <div class="coupon-info">
     	        	<p class="coupon-date"><span>Dates:</span> <%: deal.DealInstances.FirstOrDefault < CouponsForGiving.Data.DealInstance>().StartDate.ToString("MMMM dd, yyyy") %> - <%: deal.DealInstances.FirstOrDefault < CouponsForGiving.Data.DealInstance>().EndDate.ToString("MMMM dd, yyyy") %> </p> <!-- Dates of Campaign/Offer -->
@@ -82,6 +82,28 @@
     %>
     <hr>
     <div class="two-thirds">
+        <%
+            if (deal.Merchant.MerchantLocations.Where(x => x.StatusID == 2).Count() > 0)
+            {
+                Response.Write("<h2>Participating Locations</h2>");
+
+                if (deal.MerchantLocations.Count > 0)
+                {
+                    Response.Write("<ul>");
+
+                    foreach (CouponsForGiving.Data.MerchantLocation item in deal.MerchantLocations)
+                    {
+                        Response.Write("<li><strong>" + item.LocationDescription + ": </strong> " + item.cAddress + ", " + item.City.Name + ", " + item.City.PoliticalDivision.Name + ", " + item.PostalCode + " " + item.PhoneNumber);
+                    }
+
+                    Response.Write("</ul>");
+                }
+                else
+                {
+                    Response.Write("<p>This merchant has not added any participating locations to this offer.</p>");
+                }
+            }
+        %>
         <h2>Fine Print</h2> 
         <ul>
             <%

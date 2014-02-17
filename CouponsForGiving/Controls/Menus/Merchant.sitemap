@@ -13,5 +13,8 @@
       <siteMapNode title="Redeem A Coupon" url="~/Merchant/MyCoupons/Redeem.aspx" />
       <siteMapNode title="View" url="~/Merchant/MyCoupons/" />
     </siteMapNode>
+    <siteMapNode title="My Locations" url="~/Merchant/Locations/Default.aspx">
+      <siteMapNode title="Add New" url="~/Merchant/Locations/Add.aspx" />
+    </siteMapNode>
   </siteMapNode>
 </siteMap>

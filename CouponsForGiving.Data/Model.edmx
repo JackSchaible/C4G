@@ -51,6 +51,10 @@
           <EntitySet Name="RedeemDetails" EntityType="C4GModel.Store.RedeemDetails" store:Type="Tables" Schema="Database_User" />
           <EntitySet Name="Theme" EntityType="C4GModel.Store.Theme" store:Type="Tables" Schema="Database_User" />
           <EntitySet Name="sysdiagrams" EntityType="C4GModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__MerchantL__Statu__60C757A0" Association="C4GModel.Store.FK__MerchantL__Statu__60C757A0">
+            <End Role="cStatus" EntitySet="cStatus" />
+            <End Role="MerchantLocation" EntitySet="MerchantLocation" />
+          </AssociationSet>
           <AssociationSet Name="FK_Campaign_CampaignStatus" Association="C4GModel.Store.FK_Campaign_CampaignStatus">
             <End Role="CampaignStatus" EntitySet="CampaignStatus" />
             <End Role="Campaign" EntitySet="Campaign" />
@@ -418,6 +422,9 @@
           <Property Name="cAddress" Type="nvarchar" Nullable="false" MaxLength="256" />
           <Property Name="PhoneNumber" Type="nvarchar" Nullable="false" MaxLength="16" />
           <Property Name="CityID" Type="int" Nullable="false" />
+          <Property Name="LocationDescription" Type="nvarchar" MaxLength="256" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="16" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="MerchantNPO">
           <Key>
@@ -630,6 +637,18 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <Association Name="FK__MerchantL__Statu__60C757A0">
+          <End Role="cStatus" Type="C4GModel.Store.cStatus" Multiplicity="1" />
+          <End Role="MerchantLocation" Type="C4GModel.Store.MerchantLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cStatus">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="MerchantLocation">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Campaign_CampaignStatus">
           <End Role="CampaignStatus" Type="C4GModel.Store.CampaignStatus" Multiplicity="1" />
           <End Role="Campaign" Type="C4GModel.Store.Campaign" Multiplicity="*" />
@@ -1306,6 +1325,10 @@
           <Parameter Name="CampaignID" Type="int" Mode="In" />
         </Function>
         <Function Name="Cities_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+        <Function Name="Cities_ListByPoliticalDivision" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+          <Parameter Name="PoliticalDivisionID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Cities_ListWhereActiveCampaigns" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
         <Function Name="Cities_ListWhereActiveDeals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
         <Function Name="City_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
           <Parameter Name="CityID" Type="int" Mode="In" />
@@ -1378,7 +1401,7 @@
           <Parameter Name="imageURL" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="DealInstance_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
-          <Parameter Name="dealinstanceid" Type="int" Mode="In" />
+          <Parameter Name="DealInstanceID" Type="int" Mode="In" />
         </Function>
         <Function Name="DealInstance_GetByDealName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
           <Parameter Name="DealName" Type="nvarchar" Mode="In" />
@@ -1536,6 +1559,18 @@
           <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
           <Parameter Name="MerchantDescription" Type="nvarchar(max)" Mode="In" />
         </Function>
+        <Function Name="MerchantLocation_Activate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+          <Parameter Name="MerchantLocationID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="MerchantLocation_Deactivate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+          <Parameter Name="MerchantLocationID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="MerchantLocation_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+          <Parameter Name="MerchantLocationID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="MerchantLocation_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+          <Parameter Name="MerchantLocationID" Type="int" Mode="In" />
+        </Function>
         <Function Name="MerchantLocation_GetActiveByDealID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
           <Parameter Name="dealid" Type="int" Mode="In" />
         </Function>
@@ -1550,17 +1585,24 @@
           <Parameter Name="dealid" Type="int" Mode="In" />
         </Function>
         <Function Name="MerchantLocation_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
-          <Parameter Name="merchantid" Type="int" Mode="In" />
-          <Parameter Name="cAddress" Type="nvarchar" Mode="In" />
-          <Parameter Name="cityid" Type="int" Mode="In" />
-          <Parameter Name="phonenumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="postalCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="address" Type="nvarchar" Mode="In" />
+          <Parameter Name="cityID" Type="int" Mode="In" />
+          <Parameter Name="phoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="description" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="MerchantLocation_ListByMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="MerchantLocation_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
-          <Parameter Name="merchantlocationid" Type="int" Mode="In" />
-          <Parameter Name="merchantid" Type="int" Mode="In" />
-          <Parameter Name="caddress" Type="nvarchar" Mode="In" />
+          <Parameter Name="merchantLocationID" Type="int" Mode="In" />
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="postalCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="address" Type="nvarchar" Mode="In" />
           <Parameter Name="cityID" Type="int" Mode="In" />
-          <Parameter Name="phonenumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="phoneNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="description" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="MerchantSetting_GetByMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
@@ -1741,6 +1783,7 @@
           <Parameter Name="Country" Type="nvarchar" Mode="In" />
           <Parameter Name="PostalCode" Type="nchar" Mode="In" />
         </Function>
+        <Function Name="PoliticalDivision_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
         <Function Name="PreferredCity_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
           <Parameter Name="Username" Type="nvarchar" Mode="In" />
         </Function>
@@ -2060,18 +2103,22 @@
             <Parameter Name="metakeywords" Mode="In" Type="String" />
             <Parameter Name="metadescription" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="MerchantLocation_Insert" ReturnType="Collection(Int32)">
-            <Parameter Name="merchantid" Mode="In" Type="Int32" />
-            <Parameter Name="cAddress" Mode="In" Type="String" />
-            <Parameter Name="cityid" Mode="In" Type="Int32" />
-            <Parameter Name="phonenumber" Mode="In" Type="String" />
+          <FunctionImport Name="MerchantLocation_Insert">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="postalCode" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="cityID" Mode="In" Type="Int32" />
+            <Parameter Name="phoneNumber" Mode="In" Type="String" />
+            <Parameter Name="description" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="MerchantLocation_Update">
-            <Parameter Name="merchantlocationid" Mode="In" Type="Int32" />
-            <Parameter Name="merchantid" Mode="In" Type="Int32" />
-            <Parameter Name="caddress" Mode="In" Type="String" />
+            <Parameter Name="merchantLocationID" Mode="In" Type="Int32" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="postalCode" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
             <Parameter Name="cityID" Mode="In" Type="Int32" />
-            <Parameter Name="phonenumber" Mode="In" Type="String" />
+            <Parameter Name="phoneNumber" Mode="In" Type="String" />
+            <Parameter Name="description" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Price_Insert" ReturnType="Collection(Int32)">
             <Parameter Name="dealid" Mode="In" Type="Int32" />
@@ -2231,8 +2278,8 @@
             <Parameter Name="displaypriority" Mode="In" Type="Int32" />
             <Parameter Name="campaigngoal" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="DealInstance_Get" ReturnType="Collection(C4GModel.DealInstance_Get_Result)">
-          <Parameter Name="dealinstanceid" Mode="In" Type="Int32" />
+          <FunctionImport Name="DealInstance_Get" EntitySet="DealInstances" ReturnType="Collection(C4GModel.DealInstance)">
+          <Parameter Name="DealInstanceID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="cUser_GetByUsername" ReturnType="Collection(C4GModel.cUser_GetByUsername_Result)">
           <Parameter Name="username" Mode="In" Type="String" />
@@ -2782,8 +2829,32 @@
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="Merchant_ListEligibleGlobalPartnersByNPO" EntitySet="Merchants" ReturnType="Collection(C4GModel.Merchant)">
-            <Parameter Name="Username" Mode="In" Type="String" />
+          <Parameter Name="Username" Mode="In" Type="String" />
           </FunctionImport>
+          <AssociationSet Name="FK__MerchantL__Statu__60C757A0" Association="C4GModel.FK__MerchantL__Statu__60C757A0">
+            <End Role="cStatu" EntitySet="cStatus" />
+            <End Role="MerchantLocation" EntitySet="MerchantLocations" />
+          </AssociationSet>
+          <FunctionImport Name="MerchantLocation_ListByMerchant" EntitySet="MerchantLocations" ReturnType="Collection(C4GModel.MerchantLocation)">
+          <Parameter Name="Username" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="MerchantLocation_Get" EntitySet="MerchantLocations" ReturnType="Collection(C4GModel.MerchantLocation)">
+          <Parameter Name="MerchantLocationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="MerchantLocation_Delete">
+          <Parameter Name="MerchantLocationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PoliticalDivision_List" EntitySet="PoliticalDivisions" ReturnType="Collection(C4GModel.PoliticalDivision)" />
+          <FunctionImport Name="Cities_ListByPoliticalDivision" EntitySet="Cities" ReturnType="Collection(C4GModel.City)">
+          <Parameter Name="PoliticalDivisionID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="MerchantLocation_Activate">
+          <Parameter Name="MerchantLocationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="MerchantLocation_Deactivate">
+          <Parameter Name="MerchantLocationID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Cities_ListWhereActiveCampaigns" EntitySet="Cities" ReturnType="Collection(C4GModel.City)" />
           </EntityContainer>
         <EntityType Name="Campaign">
           <Key>
@@ -2826,6 +2897,7 @@
           <NavigationProperty Name="cUsers" Relationship="C4GModel.FK_cUser_Status" FromRole="cStatus" ToRole="cUser" />
           <NavigationProperty Name="NPOes" Relationship="C4GModel.FK_NPO_Status" FromRole="cStatu" ToRole="NPO" />
           <NavigationProperty Name="Merchants" Relationship="C4GModel.FK_Merchant_Status" FromRole="cStatu" ToRole="Merchant" />
+          <NavigationProperty Name="MerchantLocations" Relationship="C4GModel.FK__MerchantL__Statu__60C757A0" FromRole="cStatu" ToRole="MerchantLocation" />
         </EntityType>
         <EntityType Name="cUser">
           <Key>
@@ -2875,6 +2947,10 @@
           <NavigationProperty Name="Merchant" Relationship="C4GModel.FK_MerchantLocation_Merchant" FromRole="MerchantLocation" ToRole="Merchant" />
           <Property Type="Int32" Name="CityID" Nullable="false" />
           <NavigationProperty Name="City" Relationship="C4GModel.FK_MerchantLocation_City" FromRole="MerchantLocation" ToRole="City" />
+          <Property Type="String" Name="LocationDescription" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PostalCode" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="StatusID" Nullable="false" />
+          <NavigationProperty Name="cStatu" Relationship="C4GModel.FK__MerchantL__Statu__60C757A0" FromRole="MerchantLocation" ToRole="cStatu" />
         </EntityType>
         <EntityType Name="NewsletterUser">
           <Key>
@@ -4724,6 +4800,58 @@
           <Property Type="String" Name="Email" Nullable="false" MaxLength="256" />
           <Property Type="Int32" Name="CityID" Nullable="false" />
         </ComplexType>
+        <Association Name="FK__MerchantL__Statu__60C757A0">
+          <End Type="C4GModel.cStatu" Role="cStatu" Multiplicity="1" />
+          <End Type="C4GModel.MerchantLocation" Role="MerchantLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="cStatu">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="MerchantLocation">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="MerchantLocation_ListByMerchant_Result">
+          <Property Type="Int32" Name="MerchantLocationID" Nullable="false" />
+          <Property Type="Int32" Name="MerchantID" Nullable="false" />
+          <Property Type="String" Name="cAddress" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="16" />
+          <Property Type="Int32" Name="CityID" Nullable="false" />
+          <Property Type="String" Name="LocationDescription" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="PostalCode" Nullable="true" MaxLength="16" />
+          <Property Type="Int32" Name="StatusID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="MerchantLocation_Get_Result">
+          <Property Type="Int32" Name="MerchantLocationID" Nullable="false" />
+          <Property Type="Int32" Name="MerchantID" Nullable="false" />
+          <Property Type="String" Name="cAddress" Nullable="false" MaxLength="256" />
+          <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="16" />
+          <Property Type="Int32" Name="CityID" Nullable="false" />
+          <Property Type="String" Name="LocationDescription" Nullable="true" MaxLength="256" />
+          <Property Type="String" Name="PostalCode" Nullable="true" MaxLength="16" />
+          <Property Type="Int32" Name="StatusID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="PoliticalDivision_List_Result">
+          <Property Type="Int32" Name="PoliticalDivisionID" Nullable="false" />
+          <Property Type="String" Name="CountryCode" Nullable="false" MaxLength="2" />
+          <Property Type="String" Name="DivisionCode" Nullable="false" MaxLength="16" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+        </ComplexType>
+        <ComplexType Name="Cities_ListByPoliticalDivision_Result">
+          <Property Type="String" Name="CityCode" Nullable="false" MaxLength="3" />
+          <Property Type="Int32" Name="PoliticalDivisionID" Nullable="true" />
+          <Property Type="String" Name="CountryCode" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+          <Property Type="Int32" Name="CityID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Cities_ListWhereActiveCampaigns_Result">
+          <Property Type="String" Name="CityCode" Nullable="false" MaxLength="3" />
+          <Property Type="Int32" Name="PoliticalDivisionID" Nullable="true" />
+          <Property Type="String" Name="CountryCode" Nullable="true" MaxLength="2" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+          <Property Type="Int32" Name="CityID" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4798,6 +4926,9 @@
           <EntitySetMapping Name="MerchantLocations">
             <EntityTypeMapping TypeName="C4GModel.MerchantLocation">
               <MappingFragment StoreEntitySet="MerchantLocation">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="LocationDescription" ColumnName="LocationDescription" />
                 <ScalarProperty Name="CityID" ColumnName="CityID" />
                 <ScalarProperty Name="MerchantLocationID" ColumnName="MerchantLocationID" />
                 <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
@@ -5129,17 +5260,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Campaign_Update" FunctionName="C4GModel.Store.Campaign_Update" />
           <FunctionImportMapping FunctionImportName="DealInstance_Get" FunctionName="C4GModel.Store.DealInstance_Get">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="C4GModel.DealInstance_Get_Result">
-                <ScalarProperty Name="DealInstanceID" ColumnName="DealInstanceID" />
-                <ScalarProperty Name="DealID" ColumnName="DealID" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="RedeemableAfter" ColumnName="RedeemableAfter" />
-                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
-                <ScalarProperty Name="DealStatusID" ColumnName="DealStatusID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="cUser_GetByUsername" FunctionName="C4GModel.Store.cUser_GetByUsername">
             <ResultMapping>
@@ -5623,6 +5743,19 @@
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="C4GModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="C4GModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="Merchant_ListEligibleGlobalPartnersByNPO" FunctionName="C4GModel.Store.Merchant_ListEligibleGlobalPartnersByNPO">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MerchantLocation_ListByMerchant" FunctionName="C4GModel.Store.MerchantLocation_ListByMerchant">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MerchantLocation_Get" FunctionName="C4GModel.Store.MerchantLocation_Get">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MerchantLocation_Delete" FunctionName="C4GModel.Store.MerchantLocation_Delete" />
+          <FunctionImportMapping FunctionImportName="PoliticalDivision_List" FunctionName="C4GModel.Store.PoliticalDivision_List">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Cities_ListByPoliticalDivision" FunctionName="C4GModel.Store.Cities_ListByPoliticalDivision">
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="MerchantLocation_Activate" FunctionName="C4GModel.Store.MerchantLocation_Activate" />
+          <FunctionImportMapping FunctionImportName="MerchantLocation_Deactivate" FunctionName="C4GModel.Store.MerchantLocation_Deactivate" />
+          <FunctionImportMapping FunctionImportName="Cities_ListWhereActiveCampaigns" FunctionName="C4GModel.Store.Cities_ListWhereActiveCampaigns">
           </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>

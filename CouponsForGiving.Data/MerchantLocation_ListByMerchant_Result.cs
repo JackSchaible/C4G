@@ -10,15 +10,9 @@
 namespace CouponsForGiving.Data
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class MerchantLocation
+    public partial class MerchantLocation_ListByMerchant_Result
     {
-        public MerchantLocation()
-        {
-            this.Deals = new HashSet<Deal>();
-        }
-    
         public int MerchantLocationID { get; set; }
         public int MerchantID { get; set; }
         public string cAddress { get; set; }
@@ -27,10 +21,5 @@ namespace CouponsForGiving.Data
         public string LocationDescription { get; set; }
         public string PostalCode { get; set; }
         public int StatusID { get; set; }
-    
-        public virtual ICollection<Deal> Deals { get; set; }
-        public virtual Merchant Merchant { get; set; }
-        public virtual City City { get; set; }
-        public virtual cStatu cStatu { get; set; }
     }
 }

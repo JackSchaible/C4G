@@ -290,7 +290,11 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
             List<string> to = new List<string>();
             to.Add(Membership.GetUser(HttpContext.Current.User.Identity.Name).Email);
             EmailUtils.SendOfferCreationEmail(to, merchant.Name, Name);
-            result = "DealPage.aspx?deal=" + Name + "&merchantname=" + merchant.Name;
+
+            if (merchant.MerchantLocations.Where(x => x.StatusID == 2).Count() > 0)
+                result = "../DealLocations.aspx?diid=" + dealInstanceID;
+            else
+                result = "DealPage.aspx?deal=" + Name + "&merchantname=" + merchant.Name;
         }
 
         if (errors.Count > 0)

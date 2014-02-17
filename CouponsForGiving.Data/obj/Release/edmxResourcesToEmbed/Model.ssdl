@@ -46,6 +46,10 @@
     <EntitySet Name="RedeemDetails" EntityType="C4GModel.Store.RedeemDetails" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="Theme" EntityType="C4GModel.Store.Theme" store:Type="Tables" Schema="Database_User" />
     <EntitySet Name="sysdiagrams" EntityType="C4GModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__MerchantL__Statu__60C757A0" Association="C4GModel.Store.FK__MerchantL__Statu__60C757A0">
+      <End Role="cStatus" EntitySet="cStatus" />
+      <End Role="MerchantLocation" EntitySet="MerchantLocation" />
+    </AssociationSet>
     <AssociationSet Name="FK_Campaign_CampaignStatus" Association="C4GModel.Store.FK_Campaign_CampaignStatus">
       <End Role="CampaignStatus" EntitySet="CampaignStatus" />
       <End Role="Campaign" EntitySet="Campaign" />
@@ -413,6 +417,9 @@
     <Property Name="cAddress" Type="nvarchar" Nullable="false" MaxLength="256" />
     <Property Name="PhoneNumber" Type="nvarchar" Nullable="false" MaxLength="16" />
     <Property Name="CityID" Type="int" Nullable="false" />
+    <Property Name="LocationDescription" Type="nvarchar" MaxLength="256" />
+    <Property Name="PostalCode" Type="nvarchar" MaxLength="16" />
+    <Property Name="StatusID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="MerchantNPO">
     <Key>
@@ -625,6 +632,18 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <Association Name="FK__MerchantL__Statu__60C757A0">
+    <End Role="cStatus" Type="C4GModel.Store.cStatus" Multiplicity="1" />
+    <End Role="MerchantLocation" Type="C4GModel.Store.MerchantLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cStatus">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="MerchantLocation">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Campaign_CampaignStatus">
     <End Role="CampaignStatus" Type="C4GModel.Store.CampaignStatus" Multiplicity="1" />
     <End Role="Campaign" Type="C4GModel.Store.Campaign" Multiplicity="*" />
@@ -1301,6 +1320,10 @@
     <Parameter Name="CampaignID" Type="int" Mode="In" />
   </Function>
   <Function Name="Cities_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="Cities_ListByPoliticalDivision" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="PoliticalDivisionID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="Cities_ListWhereActiveCampaigns" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
   <Function Name="Cities_ListWhereActiveDeals" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
   <Function Name="City_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="CityID" Type="int" Mode="In" />
@@ -1373,7 +1396,7 @@
     <Parameter Name="imageURL" Type="nvarchar(max)" Mode="In" />
   </Function>
   <Function Name="DealInstance_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
-    <Parameter Name="dealinstanceid" Type="int" Mode="In" />
+    <Parameter Name="DealInstanceID" Type="int" Mode="In" />
   </Function>
   <Function Name="DealInstance_GetByDealName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="DealName" Type="nvarchar" Mode="In" />
@@ -1531,6 +1554,18 @@
     <Parameter Name="PhoneNumber" Type="nvarchar" Mode="In" />
     <Parameter Name="MerchantDescription" Type="nvarchar(max)" Mode="In" />
   </Function>
+  <Function Name="MerchantLocation_Activate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="MerchantLocationID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="MerchantLocation_Deactivate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="MerchantLocationID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="MerchantLocation_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="MerchantLocationID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="MerchantLocation_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="MerchantLocationID" Type="int" Mode="In" />
+  </Function>
   <Function Name="MerchantLocation_GetActiveByDealID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="dealid" Type="int" Mode="In" />
   </Function>
@@ -1545,17 +1580,24 @@
     <Parameter Name="dealid" Type="int" Mode="In" />
   </Function>
   <Function Name="MerchantLocation_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
-    <Parameter Name="merchantid" Type="int" Mode="In" />
-    <Parameter Name="cAddress" Type="nvarchar" Mode="In" />
-    <Parameter Name="cityid" Type="int" Mode="In" />
-    <Parameter Name="phonenumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+    <Parameter Name="postalCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="address" Type="nvarchar" Mode="In" />
+    <Parameter Name="cityID" Type="int" Mode="In" />
+    <Parameter Name="phoneNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="description" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="MerchantLocation_ListByMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
+    <Parameter Name="Username" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="MerchantLocation_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
-    <Parameter Name="merchantlocationid" Type="int" Mode="In" />
-    <Parameter Name="merchantid" Type="int" Mode="In" />
-    <Parameter Name="caddress" Type="nvarchar" Mode="In" />
+    <Parameter Name="merchantLocationID" Type="int" Mode="In" />
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+    <Parameter Name="postalCode" Type="nvarchar" Mode="In" />
+    <Parameter Name="address" Type="nvarchar" Mode="In" />
     <Parameter Name="cityID" Type="int" Mode="In" />
-    <Parameter Name="phonenumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="phoneNumber" Type="nvarchar" Mode="In" />
+    <Parameter Name="description" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="MerchantSetting_GetByMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="Username" Type="nvarchar" Mode="In" />
@@ -1736,6 +1778,7 @@
     <Parameter Name="Country" Type="nvarchar" Mode="In" />
     <Parameter Name="PostalCode" Type="nchar" Mode="In" />
   </Function>
+  <Function Name="PoliticalDivision_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
   <Function Name="PreferredCity_Get" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="Username" Type="nvarchar" Mode="In" />
   </Function>

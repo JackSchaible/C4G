@@ -105,6 +105,12 @@
     <Compile Include="CardType.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Cities_ListByPoliticalDivision_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cities_ListWhereActiveCampaigns_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Cities_ListWhereActiveDeals_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -244,6 +250,12 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="MerchantLocation_GetEligible_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MerchantLocation_Get_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MerchantLocation_ListByMerchant_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="MerchantSetting.cs">
@@ -415,6 +427,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="PoliticalDivision.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PoliticalDivision_List_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="PreferredCity_Get_Result.cs">

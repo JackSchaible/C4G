@@ -99,6 +99,28 @@
                 Response.Write(CouponsForGiving.HttpRendering.GetNPOCampaign(c, deal.DealInstances.FirstOrDefault<CouponsForGiving.Data.DealInstance>()));
             }
         %>
+        <%
+            if (deal.Merchant.MerchantLocations.Where(x => x.StatusID == 2).Count() > 0)
+            {
+                Response.Write("<h2>Participating Locations</h2>");
+
+                if (deal.MerchantLocations.Count > 0)
+                {
+                    Response.Write("<ul>");
+
+                    foreach (CouponsForGiving.Data.MerchantLocation item in deal.MerchantLocations)
+                    {
+                        Response.Write("<li><strong>" + item.LocationDescription + ": </strong> " + item.cAddress + ", " + item.City.Name + ", " + item.City.PoliticalDivision.Name + ", " + item.PostalCode + " " + item.PhoneNumber);
+                    }
+
+                    Response.Write("</ul>");
+                }
+                else
+                {
+                    Response.Write("<p>This merchant has not added any participating locations to this offer.</p>");
+                }
+            }
+        %>
         <h2>The Fine Print</h2>
         <%
             if (deal.FinePrints.Count > 0)

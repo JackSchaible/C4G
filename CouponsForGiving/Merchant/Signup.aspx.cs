@@ -282,7 +282,7 @@ public partial class Merchant_Signup : System.Web.UI.Page
                         if (merchantID > -1)
                         {
                             if (!globalMerchant)
-                                SysDatamk.AddMerchantLocation(merchantID, Address, CityID, PhoneNumber);
+                                MerchantLocations.Insert(HttpContext.Current.User.Identity.Name, "Default Location", Address, PhoneNumber, CityID, Postal);
 
                             SysData.MerchantInfo_Insert(username, FirstName + LastName, ContactPhoneNumber, Description);
                             MerchantSettings.Insert(merchantID, autoAcceptRequests);

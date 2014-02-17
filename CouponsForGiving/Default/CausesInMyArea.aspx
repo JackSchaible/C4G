@@ -17,9 +17,9 @@
         }
     </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server" EnableViewState="True" ViewStateMode="Inherit" ValidateRequestMode="Inherit">
+<asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
     <h1>Causes in <strong id="Location"><%: City %>, <%: Province %></strong></h1>
-    <p>Want to see great deals in another city? Pick one from the drop-down below!</p>
+    <p>Want to see great causes in another city? Pick one from the drop-down below!</p>
     <asp:DropDownList ID="CitiesDDL" runat="server" ClientIDMode="Static" AutoPostBack="true">
         <asp:ListItem Text="Select a City"></asp:ListItem>
     </asp:DropDownList>

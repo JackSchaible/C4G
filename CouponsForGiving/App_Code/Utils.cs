@@ -1402,6 +1402,26 @@ namespace CouponsForGiving
                 htmlText += "</article>";
                 htmlText += "</div>";
                 htmlText += "</section>";
+
+                if (item.DealInstance.Deal.Merchant.MerchantLocations.Where(x => x.StatusID == 2).Count() > 0)
+                {
+                    htmlText += "<h2>Participating Locations</h2>";
+
+                    if (item.DealInstance.Deal.MerchantLocations.Count > 0)
+                    {
+                        htmlText += "<ul>";
+
+                        foreach (CouponsForGiving.Data.MerchantLocation item2 in item.DealInstance.Deal.MerchantLocations)
+                            htmlText += "<li><strong>" + item2.LocationDescription + ": </strong> " + item2.cAddress + ", " + item2.City.Name + ", " + item2.City.PoliticalDivision.Name + ", " + item2.PostalCode + " " + item2.PhoneNumber;
+
+                        htmlText += "</ul>";
+                    }
+                    else
+                    {
+                        htmlText += "<p>This merchant has not added any participating locations to this offer.</p>";
+                    }
+                }
+
                 htmlText += "</body>";
                 htmlText += "</html>";
 

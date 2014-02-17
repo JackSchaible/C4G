@@ -50,7 +50,6 @@ public partial class Default_My_PurchaseHistory : System.Web.UI.Page
 
     protected void UnredeemedGV_SelectedIndexChanging(object sender, GridViewSelectEventArgs e)
     {
-        //Magic?
         PurchaseOrder item = (
             from po
             in PurchaseOrders.ListUnredeemedByUser(User.Identity.Name)

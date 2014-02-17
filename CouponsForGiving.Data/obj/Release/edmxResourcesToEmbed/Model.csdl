@@ -159,18 +159,22 @@
       <Parameter Name="metakeywords" Mode="In" Type="String" />
       <Parameter Name="metadescription" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="MerchantLocation_Insert" ReturnType="Collection(Int32)">
-      <Parameter Name="merchantid" Mode="In" Type="Int32" />
-      <Parameter Name="cAddress" Mode="In" Type="String" />
-      <Parameter Name="cityid" Mode="In" Type="Int32" />
-      <Parameter Name="phonenumber" Mode="In" Type="String" />
+    <FunctionImport Name="MerchantLocation_Insert">
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="postalCode" Mode="In" Type="String" />
+      <Parameter Name="address" Mode="In" Type="String" />
+      <Parameter Name="cityID" Mode="In" Type="Int32" />
+      <Parameter Name="phoneNumber" Mode="In" Type="String" />
+      <Parameter Name="description" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="MerchantLocation_Update">
-      <Parameter Name="merchantlocationid" Mode="In" Type="Int32" />
-      <Parameter Name="merchantid" Mode="In" Type="Int32" />
-      <Parameter Name="caddress" Mode="In" Type="String" />
+      <Parameter Name="merchantLocationID" Mode="In" Type="Int32" />
+      <Parameter Name="username" Mode="In" Type="String" />
+      <Parameter Name="postalCode" Mode="In" Type="String" />
+      <Parameter Name="address" Mode="In" Type="String" />
       <Parameter Name="cityID" Mode="In" Type="Int32" />
-      <Parameter Name="phonenumber" Mode="In" Type="String" />
+      <Parameter Name="phoneNumber" Mode="In" Type="String" />
+      <Parameter Name="description" Mode="In" Type="String" />
     </FunctionImport>
     <FunctionImport Name="Price_Insert" ReturnType="Collection(Int32)">
       <Parameter Name="dealid" Mode="In" Type="Int32" />
@@ -330,8 +334,8 @@
       <Parameter Name="displaypriority" Mode="In" Type="Int32" />
       <Parameter Name="campaigngoal" Mode="In" Type="String" />
     </FunctionImport>
-    <FunctionImport Name="DealInstance_Get" ReturnType="Collection(C4GModel.DealInstance_Get_Result)">
-      <Parameter Name="dealinstanceid" Mode="In" Type="Int32" />
+    <FunctionImport Name="DealInstance_Get" EntitySet="DealInstances" ReturnType="Collection(C4GModel.DealInstance)">
+      <Parameter Name="DealInstanceID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="cUser_GetByUsername" ReturnType="Collection(C4GModel.cUser_GetByUsername_Result)">
       <Parameter Name="username" Mode="In" Type="String" />
@@ -883,6 +887,30 @@
     <FunctionImport Name="Merchant_ListEligibleGlobalPartnersByNPO" EntitySet="Merchants" ReturnType="Collection(C4GModel.Merchant)">
       <Parameter Name="Username" Mode="In" Type="String" />
     </FunctionImport>
+    <AssociationSet Name="FK__MerchantL__Statu__60C757A0" Association="C4GModel.FK__MerchantL__Statu__60C757A0">
+      <End Role="cStatu" EntitySet="cStatus" />
+      <End Role="MerchantLocation" EntitySet="MerchantLocations" />
+    </AssociationSet>
+    <FunctionImport Name="MerchantLocation_ListByMerchant" EntitySet="MerchantLocations" ReturnType="Collection(C4GModel.MerchantLocation)">
+      <Parameter Name="Username" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="MerchantLocation_Get" EntitySet="MerchantLocations" ReturnType="Collection(C4GModel.MerchantLocation)">
+      <Parameter Name="MerchantLocationID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="MerchantLocation_Delete">
+      <Parameter Name="MerchantLocationID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="PoliticalDivision_List" EntitySet="PoliticalDivisions" ReturnType="Collection(C4GModel.PoliticalDivision)" />
+    <FunctionImport Name="Cities_ListByPoliticalDivision" EntitySet="Cities" ReturnType="Collection(C4GModel.City)">
+      <Parameter Name="PoliticalDivisionID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="MerchantLocation_Activate">
+      <Parameter Name="MerchantLocationID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="MerchantLocation_Deactivate">
+      <Parameter Name="MerchantLocationID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="Cities_ListWhereActiveCampaigns" EntitySet="Cities" ReturnType="Collection(C4GModel.City)" />
   </EntityContainer>
   <EntityType Name="Campaign">
     <Key>
@@ -925,6 +953,7 @@
     <NavigationProperty Name="cUsers" Relationship="C4GModel.FK_cUser_Status" FromRole="cStatus" ToRole="cUser" />
     <NavigationProperty Name="NPOes" Relationship="C4GModel.FK_NPO_Status" FromRole="cStatu" ToRole="NPO" />
     <NavigationProperty Name="Merchants" Relationship="C4GModel.FK_Merchant_Status" FromRole="cStatu" ToRole="Merchant" />
+    <NavigationProperty Name="MerchantLocations" Relationship="C4GModel.FK__MerchantL__Statu__60C757A0" FromRole="cStatu" ToRole="MerchantLocation" />
   </EntityType>
   <EntityType Name="cUser">
     <Key>
@@ -974,6 +1003,10 @@
     <NavigationProperty Name="Merchant" Relationship="C4GModel.FK_MerchantLocation_Merchant" FromRole="MerchantLocation" ToRole="Merchant" />
     <Property Type="Int32" Name="CityID" Nullable="false" />
     <NavigationProperty Name="City" Relationship="C4GModel.FK_MerchantLocation_City" FromRole="MerchantLocation" ToRole="City" />
+    <Property Type="String" Name="LocationDescription" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="PostalCode" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="StatusID" Nullable="false" />
+    <NavigationProperty Name="cStatu" Relationship="C4GModel.FK__MerchantL__Statu__60C757A0" FromRole="MerchantLocation" ToRole="cStatu" />
   </EntityType>
   <EntityType Name="NewsletterUser">
     <Key>
@@ -2821,6 +2854,58 @@
     <Property Type="Int32" Name="StatusID" Nullable="false" />
     <Property Type="Int32" Name="cUserID" Nullable="false" />
     <Property Type="String" Name="Email" Nullable="false" MaxLength="256" />
+    <Property Type="Int32" Name="CityID" Nullable="false" />
+  </ComplexType>
+  <Association Name="FK__MerchantL__Statu__60C757A0">
+    <End Type="C4GModel.cStatu" Role="cStatu" Multiplicity="1" />
+    <End Type="C4GModel.MerchantLocation" Role="MerchantLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cStatu">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="MerchantLocation">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="MerchantLocation_ListByMerchant_Result">
+    <Property Type="Int32" Name="MerchantLocationID" Nullable="false" />
+    <Property Type="Int32" Name="MerchantID" Nullable="false" />
+    <Property Type="String" Name="cAddress" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="16" />
+    <Property Type="Int32" Name="CityID" Nullable="false" />
+    <Property Type="String" Name="LocationDescription" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="PostalCode" Nullable="true" MaxLength="16" />
+    <Property Type="Int32" Name="StatusID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="MerchantLocation_Get_Result">
+    <Property Type="Int32" Name="MerchantLocationID" Nullable="false" />
+    <Property Type="Int32" Name="MerchantID" Nullable="false" />
+    <Property Type="String" Name="cAddress" Nullable="false" MaxLength="256" />
+    <Property Type="String" Name="PhoneNumber" Nullable="false" MaxLength="16" />
+    <Property Type="Int32" Name="CityID" Nullable="false" />
+    <Property Type="String" Name="LocationDescription" Nullable="true" MaxLength="256" />
+    <Property Type="String" Name="PostalCode" Nullable="true" MaxLength="16" />
+    <Property Type="Int32" Name="StatusID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="PoliticalDivision_List_Result">
+    <Property Type="Int32" Name="PoliticalDivisionID" Nullable="false" />
+    <Property Type="String" Name="CountryCode" Nullable="false" MaxLength="2" />
+    <Property Type="String" Name="DivisionCode" Nullable="false" MaxLength="16" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+  </ComplexType>
+  <ComplexType Name="Cities_ListByPoliticalDivision_Result">
+    <Property Type="String" Name="CityCode" Nullable="false" MaxLength="3" />
+    <Property Type="Int32" Name="PoliticalDivisionID" Nullable="true" />
+    <Property Type="String" Name="CountryCode" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
+    <Property Type="Int32" Name="CityID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="Cities_ListWhereActiveCampaigns_Result">
+    <Property Type="String" Name="CityCode" Nullable="false" MaxLength="3" />
+    <Property Type="Int32" Name="PoliticalDivisionID" Nullable="true" />
+    <Property Type="String" Name="CountryCode" Nullable="true" MaxLength="2" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
     <Property Type="Int32" Name="CityID" Nullable="false" />
   </ComplexType>
 </Schema>

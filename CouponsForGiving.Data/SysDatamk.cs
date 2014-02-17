@@ -58,26 +58,26 @@ namespace CouponsForGiving.Data
 
         // Insert a new Merchant Location
         // Returns ID of new Merchant Location.
-        [DataObjectMethod(DataObjectMethodType.Insert, false)]
-        public static int AddMerchantLocation(int merchantid,
-                                              string address,
-                                              int citycode,
-                                              string phonenumber)
-        {
-            int? rval = (new C4GEntities()).MerchantLocation_Insert(merchantid, address, citycode, phonenumber).FirstOrDefault();
-            return rval ?? -1;
-        }
+        //[DataObjectMethod(DataObjectMethodType.Insert, false)]
+        //public static int AddMerchantLocation(int merchantid,
+        //                                      string address,
+        //                                      int citycode,
+        //                                      string phonenumber)
+        //{
+        //    int? rval = (new C4GEntities()).MerchantLocation_Insert(merchantid, address, citycode, phonenumber).FirstOrDefault();
+        //    return rval ?? -1;
+        //}
 
         // Update an existing Merchant Location
-        [DataObjectMethod(DataObjectMethodType.Update, false)]
-        public static void UpdateMerchantLocation(int merchantlocationid,
-                                                  int merchantid,
-                                                  string address,
-                                                  int citycode,
-                                                  string phonenumber)
-        {
-            (new C4GEntities()).MerchantLocation_Update(merchantlocationid, merchantid, address, citycode, phonenumber);
-        }
+        //[DataObjectMethod(DataObjectMethodType.Update, false)]
+        //public static void UpdateMerchantLocation(int merchantlocationid,
+        //                                          int merchantid,
+        //                                          string address,
+        //                                          int citycode,
+        //                                          string phonenumber)
+        //{
+        //    (new C4GEntities()).MerchantLocation_Update(merchantlocationid, merchantid, address, citycode, phonenumber);
+        //}
 
         [DataObjectMethod(DataObjectMethodType.Select, false)]
         public static List<MerchantLocation_GetByMerchantID_Result> GetMerchantLocationsByMerchantID (int merchantid)
@@ -140,11 +140,11 @@ namespace CouponsForGiving.Data
             (new C4GEntities()).DealInstance_Update(dealinstanceid, dealid, startdate, enddate, redeemableafter, expirydate, dealstatusid);
         }
 
-        [DataObjectMethod(DataObjectMethodType.Select, false)]
-        public static DealInstance_Get_Result GetDealInstance(int dealinstanceid)
-        {
-            return (new C4GEntities()).DealInstance_Get(dealinstanceid).FirstOrDefault<DealInstance_Get_Result>();
-        }
+        //[DataObjectMethod(DataObjectMethodType.Select, false)]
+        //public static DealInstance_Get_Result GetDealInstance(int dealinstanceid)
+        //{
+        //    return (new C4GEntities()).DealInstance_Get(dealinstanceid).FirstOrDefault<DealInstance_Get_Result>();
+        //}
 
         [DataObjectMethod(DataObjectMethodType.Insert, false)]
         public static void AddDealMerchantLocation(int dealid,

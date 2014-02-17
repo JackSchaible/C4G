@@ -156,7 +156,7 @@ public partial class Default_My_PaymentOptions : System.Web.UI.Page
                                 Description = "Your Purchase with Coupons4Giving - " + info.Merchant.Name,
                                 ApplicationFeeInCents = af
                             };
-                            //var response = stripeService.Create(stripeChargeOption);
+                            var response = stripeService.Create(stripeChargeOption);
                         }
                         Session["Cart"] = new List<ShoppingCart>();
                         ts.Complete();

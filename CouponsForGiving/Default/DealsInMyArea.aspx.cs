@@ -69,8 +69,13 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
         CityObj current = GetLocation(Request.ServerVariables["REMOTE_ADDR"]);
         cities.Insert(0, current.City + ", " + current.Province);
 
+        string selected = CitiesDDL.SelectedItem.Text;
+
         CitiesDDL.DataSource = cities;
         CitiesDDL.DataBind();
+
+        if (selected != "Select a City")
+            CitiesDDL.Items.FindByText(selected).Selected = true;
     }
 
     private void SetLocation(string IP)

@@ -69,6 +69,9 @@
     <EntitySetMapping Name="MerchantLocations">
       <EntityTypeMapping TypeName="C4GModel.MerchantLocation">
         <MappingFragment StoreEntitySet="MerchantLocation">
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+          <ScalarProperty Name="LocationDescription" ColumnName="LocationDescription" />
           <ScalarProperty Name="CityID" ColumnName="CityID" />
           <ScalarProperty Name="MerchantLocationID" ColumnName="MerchantLocationID" />
           <ScalarProperty Name="MerchantID" ColumnName="MerchantID" />
@@ -387,19 +390,7 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="Campaign_Update" FunctionName="C4GModel.Store.Campaign_Update" />
-    <FunctionImportMapping FunctionImportName="DealInstance_Get" FunctionName="C4GModel.Store.DealInstance_Get">
-      <ResultMapping>
-        <ComplexTypeMapping TypeName="C4GModel.DealInstance_Get_Result">
-          <ScalarProperty Name="DealInstanceID" ColumnName="DealInstanceID" />
-          <ScalarProperty Name="DealID" ColumnName="DealID" />
-          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-          <ScalarProperty Name="RedeemableAfter" ColumnName="RedeemableAfter" />
-          <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
-          <ScalarProperty Name="DealStatusID" ColumnName="DealStatusID" />
-        </ComplexTypeMapping>
-      </ResultMapping>
-    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="DealInstance_Get" FunctionName="C4GModel.Store.DealInstance_Get" />
     <FunctionImportMapping FunctionImportName="cUser_GetByUsername" FunctionName="C4GModel.Store.cUser_GetByUsername">
       <ResultMapping>
         <ComplexTypeMapping TypeName="C4GModel.cUser_GetByUsername_Result">
@@ -827,5 +818,13 @@
     <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="C4GModel.Store.sp_renamediagram" />
     <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="C4GModel.Store.sp_upgraddiagrams" />
     <FunctionImportMapping FunctionImportName="Merchant_ListEligibleGlobalPartnersByNPO" FunctionName="C4GModel.Store.Merchant_ListEligibleGlobalPartnersByNPO" />
+    <FunctionImportMapping FunctionImportName="MerchantLocation_ListByMerchant" FunctionName="C4GModel.Store.MerchantLocation_ListByMerchant" />
+    <FunctionImportMapping FunctionImportName="MerchantLocation_Get" FunctionName="C4GModel.Store.MerchantLocation_Get" />
+    <FunctionImportMapping FunctionImportName="MerchantLocation_Delete" FunctionName="C4GModel.Store.MerchantLocation_Delete" />
+    <FunctionImportMapping FunctionImportName="PoliticalDivision_List" FunctionName="C4GModel.Store.PoliticalDivision_List" />
+    <FunctionImportMapping FunctionImportName="Cities_ListByPoliticalDivision" FunctionName="C4GModel.Store.Cities_ListByPoliticalDivision" />
+    <FunctionImportMapping FunctionImportName="MerchantLocation_Activate" FunctionName="C4GModel.Store.MerchantLocation_Activate" />
+    <FunctionImportMapping FunctionImportName="MerchantLocation_Deactivate" FunctionName="C4GModel.Store.MerchantLocation_Deactivate" />
+    <FunctionImportMapping FunctionImportName="Cities_ListWhereActiveCampaigns" FunctionName="C4GModel.Store.Cities_ListWhereActiveCampaigns" />
   </EntityContainerMapping>
 </Mapping>

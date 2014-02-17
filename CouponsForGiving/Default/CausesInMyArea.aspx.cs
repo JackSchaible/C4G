@@ -61,7 +61,7 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
         List<string> cities =
             (
                 from c
-                in Cities.List()
+                in Cities.ListWhereActiveCampaigns()
                 orderby c.Country.Name, c.PoliticalDivision.Name, c.Name
                 select c.Name + ", " + c.PoliticalDivision.Name
             ).ToList<string>();
@@ -69,8 +69,14 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
         CityObj current = GetLocation(Request.ServerVariables["REMOTE_ADDR"]);
         cities.Insert(0, current.City + ", " + current.Province);
 
+        string selected = CitiesDDL.SelectedItem.Text;
+
         CitiesDDL.DataSource = cities;
         CitiesDDL.DataBind();
+
+        if (selected != "Select a City")
+            CitiesDDL.Items.FindByText(selected).Selected = true;
+
     }
 
 

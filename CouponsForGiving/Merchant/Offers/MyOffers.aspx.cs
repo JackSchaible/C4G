@@ -9,7 +9,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 public partial class Merchant_Offers_MyOffers : System.Web.UI.Page
-{    
+{
+    public Merchant merchant;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         Controls_MenuBar control = (Controls_MenuBar)Master.FindControl("MenuBarControl");
@@ -21,7 +23,7 @@ public partial class Merchant_Offers_MyOffers : System.Web.UI.Page
 
     private void BindData()
     {
-        Merchant merchant = Merchants.GetByUsername(User.Identity.Name);
+        merchant = Merchants.GetByUsername(User.Identity.Name);
 
         if (merchant == null)
             Response.Redirect("../MyHome.aspx");

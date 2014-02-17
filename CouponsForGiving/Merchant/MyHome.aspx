@@ -113,7 +113,9 @@
        	    <h2 class="my-profile">Manage My Offers</h2>
        	    <h3 class="profile-icon"><i class="fa fa-cog"></i></h3>
        	    <p>Manage and Edit your current Coupons4Giving offers. See reports of your previous and current offers.</p>
-       	    <a href="Offers/MyOffers.aspx" class="btn-small"><i class="fa fa-pencil-square-o"></i> Edit Offers</a> <a href="Reports/MyReports.aspx" class="btn-small"><i class="fa fa-file-text-o"></i> Offer Reports</a>
+       	    <a href="Offers/MyOffers.aspx" class="btn-small"><i class="fa fa-pencil-square-o"></i> Edit Offers</a> 
+            <a href="Reports/MyReports.aspx" class="btn-small"><i class="fa fa-file-text-o"></i> Offer Reports</a>
+            <a href="Locations/Default.aspx" class="btn-small"><i class="fa fa-file-text-o"></i> Manage My Locations</a>
 		</div>
        	<div class="clear"></div>
         <div class="half">

@@ -564,50 +564,66 @@ namespace CouponsForGiving.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DealSEO_Update", dealseoidParameter, dealidParameter, metakeywordsParameter, metadescriptionParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> MerchantLocation_Insert(Nullable<int> merchantid, string cAddress, Nullable<int> cityid, string phonenumber)
+        public virtual int MerchantLocation_Insert(string username, string postalCode, string address, Nullable<int> cityID, string phoneNumber, string description)
         {
-            var merchantidParameter = merchantid.HasValue ?
-                new ObjectParameter("merchantid", merchantid) :
-                new ObjectParameter("merchantid", typeof(int));
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
     
-            var cAddressParameter = cAddress != null ?
-                new ObjectParameter("cAddress", cAddress) :
-                new ObjectParameter("cAddress", typeof(string));
+            var postalCodeParameter = postalCode != null ?
+                new ObjectParameter("postalCode", postalCode) :
+                new ObjectParameter("postalCode", typeof(string));
     
-            var cityidParameter = cityid.HasValue ?
-                new ObjectParameter("cityid", cityid) :
-                new ObjectParameter("cityid", typeof(int));
-    
-            var phonenumberParameter = phonenumber != null ?
-                new ObjectParameter("phonenumber", phonenumber) :
-                new ObjectParameter("phonenumber", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("MerchantLocation_Insert", merchantidParameter, cAddressParameter, cityidParameter, phonenumberParameter);
-        }
-    
-        public virtual int MerchantLocation_Update(Nullable<int> merchantlocationid, Nullable<int> merchantid, string caddress, Nullable<int> cityID, string phonenumber)
-        {
-            var merchantlocationidParameter = merchantlocationid.HasValue ?
-                new ObjectParameter("merchantlocationid", merchantlocationid) :
-                new ObjectParameter("merchantlocationid", typeof(int));
-    
-            var merchantidParameter = merchantid.HasValue ?
-                new ObjectParameter("merchantid", merchantid) :
-                new ObjectParameter("merchantid", typeof(int));
-    
-            var caddressParameter = caddress != null ?
-                new ObjectParameter("caddress", caddress) :
-                new ObjectParameter("caddress", typeof(string));
+            var addressParameter = address != null ?
+                new ObjectParameter("address", address) :
+                new ObjectParameter("address", typeof(string));
     
             var cityIDParameter = cityID.HasValue ?
                 new ObjectParameter("cityID", cityID) :
                 new ObjectParameter("cityID", typeof(int));
     
-            var phonenumberParameter = phonenumber != null ?
-                new ObjectParameter("phonenumber", phonenumber) :
-                new ObjectParameter("phonenumber", typeof(string));
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("phoneNumber", phoneNumber) :
+                new ObjectParameter("phoneNumber", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MerchantLocation_Update", merchantlocationidParameter, merchantidParameter, caddressParameter, cityIDParameter, phonenumberParameter);
+            var descriptionParameter = description != null ?
+                new ObjectParameter("description", description) :
+                new ObjectParameter("description", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MerchantLocation_Insert", usernameParameter, postalCodeParameter, addressParameter, cityIDParameter, phoneNumberParameter, descriptionParameter);
+        }
+    
+        public virtual int MerchantLocation_Update(Nullable<int> merchantLocationID, string username, string postalCode, string address, Nullable<int> cityID, string phoneNumber, string description)
+        {
+            var merchantLocationIDParameter = merchantLocationID.HasValue ?
+                new ObjectParameter("merchantLocationID", merchantLocationID) :
+                new ObjectParameter("merchantLocationID", typeof(int));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var postalCodeParameter = postalCode != null ?
+                new ObjectParameter("postalCode", postalCode) :
+                new ObjectParameter("postalCode", typeof(string));
+    
+            var addressParameter = address != null ?
+                new ObjectParameter("address", address) :
+                new ObjectParameter("address", typeof(string));
+    
+            var cityIDParameter = cityID.HasValue ?
+                new ObjectParameter("cityID", cityID) :
+                new ObjectParameter("cityID", typeof(int));
+    
+            var phoneNumberParameter = phoneNumber != null ?
+                new ObjectParameter("phoneNumber", phoneNumber) :
+                new ObjectParameter("phoneNumber", typeof(string));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("description", description) :
+                new ObjectParameter("description", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MerchantLocation_Update", merchantLocationIDParameter, usernameParameter, postalCodeParameter, addressParameter, cityIDParameter, phoneNumberParameter, descriptionParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> Price_Insert(Nullable<int> dealid, Nullable<decimal> retailvalue, Nullable<decimal> giftvalue, Nullable<decimal> merchantsplit, Nullable<decimal> nposplit, Nullable<decimal> oursplit)
@@ -946,13 +962,22 @@ namespace CouponsForGiving.Data
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Campaign_Update", campaignidParameter, nameParameter, npoidParameter, startdateParameter, enddateParameter, campaigndescriptionParameter, fundraisinggoalParameter, campaignimageParameter, showonhomeParameter, displaypriorityParameter, campaigngoalParameter);
         }
     
-        public virtual ObjectResult<DealInstance_Get_Result> DealInstance_Get(Nullable<int> dealinstanceid)
+        public virtual ObjectResult<DealInstance> DealInstance_Get(Nullable<int> dealInstanceID)
         {
-            var dealinstanceidParameter = dealinstanceid.HasValue ?
-                new ObjectParameter("dealinstanceid", dealinstanceid) :
-                new ObjectParameter("dealinstanceid", typeof(int));
+            var dealInstanceIDParameter = dealInstanceID.HasValue ?
+                new ObjectParameter("DealInstanceID", dealInstanceID) :
+                new ObjectParameter("DealInstanceID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DealInstance_Get_Result>("DealInstance_Get", dealinstanceidParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DealInstance>("DealInstance_Get", dealInstanceIDParameter);
+        }
+    
+        public virtual ObjectResult<DealInstance> DealInstance_Get(Nullable<int> dealInstanceID, MergeOption mergeOption)
+        {
+            var dealInstanceIDParameter = dealInstanceID.HasValue ?
+                new ObjectParameter("DealInstanceID", dealInstanceID) :
+                new ObjectParameter("DealInstanceID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DealInstance>("DealInstance_Get", mergeOption, dealInstanceIDParameter);
         }
     
         public virtual ObjectResult<cUser_GetByUsername_Result> cUser_GetByUsername(string username)
@@ -3019,6 +3044,107 @@ namespace CouponsForGiving.Data
                 new ObjectParameter("Username", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Merchant>("Merchant_ListEligibleGlobalPartnersByNPO", mergeOption, usernameParameter);
+        }
+    
+        public virtual ObjectResult<MerchantLocation> MerchantLocation_ListByMerchant(string username)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MerchantLocation>("MerchantLocation_ListByMerchant", usernameParameter);
+        }
+    
+        public virtual ObjectResult<MerchantLocation> MerchantLocation_ListByMerchant(string username, MergeOption mergeOption)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MerchantLocation>("MerchantLocation_ListByMerchant", mergeOption, usernameParameter);
+        }
+    
+        public virtual ObjectResult<MerchantLocation> MerchantLocation_Get(Nullable<int> merchantLocationID)
+        {
+            var merchantLocationIDParameter = merchantLocationID.HasValue ?
+                new ObjectParameter("MerchantLocationID", merchantLocationID) :
+                new ObjectParameter("MerchantLocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MerchantLocation>("MerchantLocation_Get", merchantLocationIDParameter);
+        }
+    
+        public virtual ObjectResult<MerchantLocation> MerchantLocation_Get(Nullable<int> merchantLocationID, MergeOption mergeOption)
+        {
+            var merchantLocationIDParameter = merchantLocationID.HasValue ?
+                new ObjectParameter("MerchantLocationID", merchantLocationID) :
+                new ObjectParameter("MerchantLocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<MerchantLocation>("MerchantLocation_Get", mergeOption, merchantLocationIDParameter);
+        }
+    
+        public virtual int MerchantLocation_Delete(Nullable<int> merchantLocationID)
+        {
+            var merchantLocationIDParameter = merchantLocationID.HasValue ?
+                new ObjectParameter("MerchantLocationID", merchantLocationID) :
+                new ObjectParameter("MerchantLocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MerchantLocation_Delete", merchantLocationIDParameter);
+        }
+    
+        public virtual ObjectResult<PoliticalDivision> PoliticalDivision_List()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PoliticalDivision>("PoliticalDivision_List");
+        }
+    
+        public virtual ObjectResult<PoliticalDivision> PoliticalDivision_List(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PoliticalDivision>("PoliticalDivision_List", mergeOption);
+        }
+    
+        public virtual ObjectResult<City> Cities_ListByPoliticalDivision(Nullable<int> politicalDivisionID)
+        {
+            var politicalDivisionIDParameter = politicalDivisionID.HasValue ?
+                new ObjectParameter("PoliticalDivisionID", politicalDivisionID) :
+                new ObjectParameter("PoliticalDivisionID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<City>("Cities_ListByPoliticalDivision", politicalDivisionIDParameter);
+        }
+    
+        public virtual ObjectResult<City> Cities_ListByPoliticalDivision(Nullable<int> politicalDivisionID, MergeOption mergeOption)
+        {
+            var politicalDivisionIDParameter = politicalDivisionID.HasValue ?
+                new ObjectParameter("PoliticalDivisionID", politicalDivisionID) :
+                new ObjectParameter("PoliticalDivisionID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<City>("Cities_ListByPoliticalDivision", mergeOption, politicalDivisionIDParameter);
+        }
+    
+        public virtual int MerchantLocation_Activate(Nullable<int> merchantLocationID)
+        {
+            var merchantLocationIDParameter = merchantLocationID.HasValue ?
+                new ObjectParameter("MerchantLocationID", merchantLocationID) :
+                new ObjectParameter("MerchantLocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MerchantLocation_Activate", merchantLocationIDParameter);
+        }
+    
+        public virtual int MerchantLocation_Deactivate(Nullable<int> merchantLocationID)
+        {
+            var merchantLocationIDParameter = merchantLocationID.HasValue ?
+                new ObjectParameter("MerchantLocationID", merchantLocationID) :
+                new ObjectParameter("MerchantLocationID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MerchantLocation_Deactivate", merchantLocationIDParameter);
+        }
+    
+        public virtual ObjectResult<City> Cities_ListWhereActiveCampaigns()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<City>("Cities_ListWhereActiveCampaigns");
+        }
+    
+        public virtual ObjectResult<City> Cities_ListWhereActiveCampaigns(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<City>("Cities_ListWhereActiveCampaigns", mergeOption);
         }
     }
 }

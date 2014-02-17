@@ -10,6 +10,11 @@
     <asp:GridView ID="CurrentOffersGV" runat="server" AutoGenerateColumns="False">
         <Columns>
             <asp:HyperLinkField DataNavigateUrlFields="DealID" DataNavigateUrlFormatString="Edit.aspx?diid={0}" Text="Edit" />
+            <asp:TemplateField>
+                <ItemTemplate>
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# String.Format("DealPage.aspx?merchantname={0}&deal={1}", HttpUtility.UrlEncode(merchant.Name), HttpUtility.UrlEncode(Eval("Name").ToString())) %>' Text='View'></asp:HyperLink>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="Name" HeaderText="Name" />
             <asp:BoundField DataField="Purchases" HeaderText="Purchases" />
             <asp:BoundField DataField="Revenue" HeaderText="Revenue" DataFormatString="{0:c}" />
@@ -23,6 +28,11 @@
     <asp:GridView ID="UpcomingOffersGV" runat="server" AutoGenerateColumns="False">
         <Columns>
             <asp:HyperLinkField DataNavigateUrlFields="DealID" DataNavigateUrlFormatString="Edit.aspx?diid={0}" Text="Edit" />
+            <asp:TemplateField>
+                <ItemTemplate>
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# String.Format("DealPage.aspx?merchantname={0}&deal={1}", HttpUtility.UrlEncode(merchant.Name), HttpUtility.UrlEncode(Eval("Name").ToString())) %>' Text='View'></asp:HyperLink>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="Name" HeaderText="Name" />
             <asp:BoundField DataField="StartDate" HeaderText="Start Date" />
             <asp:BoundField DataField="EndDate" HeaderText="End Date" />
@@ -35,6 +45,11 @@
     <h2>Past Offers</h2>
     <asp:GridView ID="PastOffersGV" runat="server" AutoGenerateColumns="False">
         <Columns>
+            <asp:TemplateField>
+                <ItemTemplate>
+                    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# String.Format("DealPage.aspx?merchantname={0}&deal={1}", HttpUtility.UrlEncode(merchant.Name), HttpUtility.UrlEncode(Eval("Name").ToString())) %>' Text='View'></asp:HyperLink>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:BoundField DataField="Name" HeaderText="Name" />
             <asp:BoundField DataField="Purchases" HeaderText="Purchases" />
             <asp:BoundField DataField="Revenue" HeaderText="Revenue" DataFormatString="{0:c}" />

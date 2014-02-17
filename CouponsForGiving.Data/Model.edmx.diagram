@@ -4,14 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="28e12cb9ad9446baba9ec955def09c39" Name="Diagram1" ZoomLevel="65">
+      <Diagram DiagramId="28e12cb9ad9446baba9ec955def09c39" Name="Diagram1" ZoomLevel="192">
         <EntityTypeShape EntityType="C4GModel.Campaign" Width="1.5" PointX="7.5" PointY="15.875" IsExpanded="true" />
         <EntityTypeShape EntityType="C4GModel.Country" Width="1.5" PointX="1.5" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="C4GModel.cStatu" Width="1.5" PointX="0.75" PointY="19.25" IsExpanded="true" />
         <EntityTypeShape EntityType="C4GModel.cUser" Width="1.5" PointX="3.125" PointY="15.125" IsExpanded="true" />
         <EntityTypeShape EntityType="C4GModel.DealSEO" Width="1.5" PointX="7.5" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="C4GModel.DealStatu" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="C4GModel.MerchantLocation" Width="1.5" PointX="5.25" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="C4GModel.MerchantLocation" Width="1.5" PointX="3.75" PointY="25.625" IsExpanded="true" />
         <EntityTypeShape EntityType="C4GModel.NewsletterUser" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="C4GModel.NPOMailingList" Width="1.5" PointX="7.5" PointY="20" IsExpanded="true" />
         <EntityTypeShape EntityType="C4GModel.OrderStatu" Width="1.5" PointX="5.25" PointY="32" IsExpanded="true" />
@@ -75,8 +75,9 @@
         <EntityTypeShape EntityType="C4GModel.NPOSetting" Width="1.5" PointX="10.282081144993231" PointY="22.236858735902636" />
         <AssociationConnector Association="C4GModel.FK_NPOSetting_NPO" />
         <EntityTypeShape EntityType="C4GModel.News" Width="1.5" PointX="3.1340910844197918" PointY="4.4885619303623967" />
-        <EntityTypeShape EntityType="C4GModel.Notification" Width="1.5" PointX="7.6872604543749521" PointY="10.326580261032367" />
+        <EntityTypeShape EntityType="C4GModel.Notification" Width="1.5" PointX="6" PointY="10.25" />
         <AssociationConnector Association="C4GModel.NotificationcUser" />
+        <AssociationConnector Association="C4GModel.FK__MerchantL__Statu__60C757A0" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
