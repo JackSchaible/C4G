@@ -1962,11 +1962,12 @@ border-bottom: 1px solid #ccc;
 #MainContent .c4g-coupon-tile p, #MainContent .c4g-campaign-tile p {
 margin: 10px auto;
 line-height: 140%;
-font-size: 14px;
+font-size: 13px;
 padding: 0px 0px 0px 0px;
 width: 92%;
 text-align: center;
 font-weight: 300;
+word-break: break-word;
 }
 
 #MainContent .campaign-details-tile strong, #MainContent .coupon-details-tile strong {
