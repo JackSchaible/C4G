@@ -43,7 +43,9 @@
         }        
     </script>
     <h1>Financial Report</h1>
-    <h2>Filtering Options</h2>
+    
+    <hr>
+    <h4>Filtering Options</h4>
     <asp:HiddenField ID="FilterState" runat="server" ClientIDMode="Static" />
     <a id="FilterControl" href="javascript:toggleFilter()" class="btw"><i class="fa fa-sort"></i> Show</a>
     <div id="FilterOptions" style="display: none;" class="FilterOptions">
