@@ -7,7 +7,9 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="BannerContent" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="Main_Content" Runat="Server">
-
+    <h1>User Report</h1>
+    <p>Below is a comprehensive list of all the users currently registered with Coupons4Giving.</p>
+    <hr>
     <asp:GridView ID="UsersGV" runat="server" AutoGenerateColumns="False">
         <Columns>
             <asp:BoundField DataField="Username" HeaderText="Username" />
