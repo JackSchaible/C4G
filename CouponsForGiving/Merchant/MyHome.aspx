@@ -46,18 +46,6 @@
                     </div>
                 </div>
                 <h3 class="profile-icon"><i class="fa fa-envelope"></i></h3>
-                <%
-                    string notifications = "<ul>";
-                    notifications += !User.IsInRole("Merchant") ? "Your profile has not been completed! <a href=\"Signup.aspx\">Click here</a> to complete your profile." : "";
-                    notifications += merchant == null ? "" : (merchant.MerchantStripeInfoes.Count == 0 ? "Something went wrong when connecting to Stripe. Until you do, you won't be able to accept payments, set up offers, or partner with not-for-profits, <a href=\"ConnectToStripe.aspx\">Click here</a> to set up your Stripe account!" : "");
-                    /*
-                    foreach (CouponsForGiving.Data.Notification item in CouponsForGiving.Data.Classes.NotificationcUsers.ListByUser(HttpContext.Current.User.Identity.Name))
-                        notifications += String.Format("<li>{0}</li>", item.Value);
-                    notifications += "</ul>";
-                    */
-            
-                    Response.Write(notifications);
-                %>
                 <div class="clear"></div>
                 <%--<div class="half">     
                     <div id="profile-edit-address">
@@ -133,6 +121,19 @@
 		</div>
         <div class="clear"></div>
         <h2 class="my-profile">Notifications</h2>
+        <%
+            string notifications = "<ul>";
+            //notifications += !User.IsInRole("Merchant") ? "Your profile has not been completed! <a href=\"Signup.aspx\">Click here</a> to complete your profile." : "";
+            notifications += merchant == null ? "" : (merchant.MerchantStripeInfoes.Count == 0 ? "Something went wrong when connecting to Stripe. Until you do, you won't be able to accept payments, set up offers, or partner with not-for-profits, <a href=\"ConnectToStripe.aspx\">Click here</a> to set up your Stripe account!" : "");
+            /*
+            foreach (CouponsForGiving.Data.Notification item in CouponsForGiving.Data.Classes.NotificationcUsers.ListByUser(HttpContext.Current.User.Identity.Name))
+                notifications += String.Format("<li>{0}</li>", item.Value);
+            notifications += "</ul>";
+            */
+            
+            Response.Write(notifications);
+        %>
+        <div class="clear"></div>
         <div class="half">
        	    <h2 class="my-profile">Reports</h2>
        	    <h3 class="profile-icon"><i class="fa fa-file-text"></i></h3>
