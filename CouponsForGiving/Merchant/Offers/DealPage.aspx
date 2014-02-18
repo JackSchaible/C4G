@@ -15,7 +15,7 @@
                 <h2><%: deal.Name %></h2><!-- Merchant Offer -->
                 <h3><%: deal.Merchant.Name %></h3><!-- Merchant Name -->
                 <span class="coupon-description">
-                <p><%: deal.DealDescription %></p><!-- Merchant Offer Description -->
+                <p><% Response.Write(deal.DealDescription); %></p><!-- Merchant Offer Description -->
                 </span>
 		            <div class="coupon-details">
         	            <div class="coupon-value">
@@ -112,7 +112,7 @@
             %>
         </ul>
         <h4>Restrictions</h4>
-        <p><%: deal.RedeemDetails.FirstOrDefault<CouponsForGiving.Data.RedeemDetail>().AdditionalDetails %></p>
+        <p><% Response.Write(deal.RedeemDetails.FirstOrDefault<CouponsForGiving.Data.RedeemDetail>().AdditionalDetails); %></p>
         <hr>
         <h1><%: deal.Merchant.Name %></h1>
         <img alt="Our Logo" class="merchant_logo" src="../../<%: deal.Merchant.LargeLogo %>" />

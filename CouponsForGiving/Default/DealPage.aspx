@@ -32,7 +32,7 @@
                 <h3><a href="MerchantPage.aspx?MerchantName=<%: deal.Merchant.Name %>" target="_blank"><%: deal.Merchant.Name %></a></h3><!-- Merchant Name -->
                 <h3 class="coupon-cost"><%: deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().GiftValue.ToString("C") %></h3>
                 <span class="coupon-description">
-                <p><%: deal.DealDescription %></p><!-- Merchant Offer Description -->
+                <p><% Response.Write(deal.DealDescription); %></p><!-- Merchant Offer Description -->
                 </span>
 		            <div class="coupon-details">
         	            <div class="coupon-value">
@@ -149,7 +149,7 @@
                 Response.Write("<p>There are no locations participating in this merchant offer.</p>");
         %>
         <h4>Additional Redemption Details</h4>
-        <p><%: deal.RedeemDetails.FirstOrDefault<CouponsForGiving.Data.RedeemDetail>().AdditionalDetails %></p>
+        <p><% Response.Write(deal.RedeemDetails.FirstOrDefault<CouponsForGiving.Data.RedeemDetail>().AdditionalDetails); %></p>
         <hr>
         <h1><%: merchant.Name %></h1>
         <a href="<%:merchant.Website %>"><img alt="Our Logo" class="merchant_logo" src="../../<%: deal.Merchant.LargeLogo %>" /></a>
