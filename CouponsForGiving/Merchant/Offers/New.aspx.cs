@@ -230,7 +230,7 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
             //Save image
             //Check to see if there's a temp image, assign default if not
             DirectoryInfo root = new DirectoryInfo(HttpContext.Current.Server.MapPath("~/tmp/Images/Offers"));
-            FileInfo[] listFiles = root.GetFiles(HttpContext.Current.User.Identity.Name + "logo.*");
+            FileInfo[] listFiles = root.GetFiles(HttpContext.Current.User.Identity.Name + "OfferLogo.*");
 
             if (listFiles.Length > 0)
             {
