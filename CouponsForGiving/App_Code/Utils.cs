@@ -379,8 +379,9 @@ namespace CouponsForGiving
                         result += "<div class=\"campaign-details-tile\">";
                         result += "<p>" + item.Deal.DealDescription + "</p><!-- Coupon Description (limited to 200 characters if possible -->"; 
                         result += "<p><strong>Price You Pay:</strong> <span>" + item.Deal.Prices.FirstOrDefault<Price>().GiftValue.ToString("C") + "</span><!-- Number of Merchant Offers in Camapign--> <br />";
-                        result += "<strong>Discount:</strong> <em>" + (int)((1M - (item.Deal.Prices.FirstOrDefault<Price>().GiftValue / item.Deal.Prices.FirstOrDefault<Price>().RetailValue)) * 100) + "%</em><!-- Campaign Dates --> </p>";
-                        result += "<p><strong>Value of Deal:</strong> <span>" + item.Deal.Prices.FirstOrDefault<Price>().RetailValue.ToString("C") + "</span><!-- Number of Merchant Offers in Camapign--> <br />";
+                        //result += "<strong>Discount:</strong> <em>" + (int)((1M - (item.Deal.Prices.FirstOrDefault<Price>().GiftValue / item.Deal.Prices.FirstOrDefault<Price>().RetailValue)) * 100) + "%</em><!-- Campaign Dates --> </p>";
+                        result += "<strong>Discount:</strong> <em>" + (item.Deal.Prices.FirstOrDefault<Price>().RetailValue - item.Deal.Prices.FirstOrDefault<Price>().GiftValue).ToString("C") + "</em><!-- Campaign Dates --> </p>";
+                        //result += "<p><strong>Value of Deal:</strong> <span>" + item.Deal.Prices.FirstOrDefault<Price>().RetailValue.ToString("C") + "</span><!-- Number of Merchant Offers in Camapign--> <br />";
                         result += "<p><strong>You're Giving:</strong> <span>" + item.Deal.Prices.FirstOrDefault<Price>().NPOSplit.ToString("C") + "</span><!-- Number of Merchant Offers in Camapign--><br />";
                         result += "<strong>Coupons Left :</strong> <em>" + (item.Deal.AbsoluteCouponLimit - item.PurchaseOrders.Count()) + "</em></p>";
                         result += "</div><!--Close Coupon Title -->";
