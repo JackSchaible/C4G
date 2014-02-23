@@ -245,24 +245,6 @@
             return errors;
         }
 
-        function checkWebsite(write) {
-            var website = $("#URLTextBox").val();
-            var errors = new Array();
-
-            if (IsStringBlank(website))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullWebsite").InnerText %>');
-
-            if (IsStringTooShort(website, 8))
-                errors.push('<%: strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/WebsiteTooShort").InnerText %>');
-
-            if (arguments.length == 0) {
-                writeErrors('URLTextBoxErrors', errors);
-                checkForm(); 
-            }
-
-            return errors;
-        }
-
         function checkTermsCheckBox(write) {
             var checked = $("#TermsCheckBox").is(":checked");
             var errors = new Array();
@@ -330,7 +312,6 @@
             errors.push.apply(errors, goPostal(false));
             errors.push.apply(errors, checkBusinessPhone(false));
             errors.push.apply(errors, checkYourEmail(false));
-            errors.push.apply(errors, checkWebsite(false));
             errors.push.apply(errors, checkTermsCheckBox(false));
 
             if (arguments.length == 0) {

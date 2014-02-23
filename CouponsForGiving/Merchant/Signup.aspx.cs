@@ -228,14 +228,21 @@ public partial class Merchant_Signup : System.Web.UI.Page
         else
             ContactEmail = Membership.GetUser().Email;
 
-        //Ensure website starts with 'http://'
-        Website = (Website.StartsWith("http") ? Website : "http://" + Website);
-
         if (validation.IsStringBlank(Website))
-            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullWebsite").InnerText);
+        {
+            Website = "https://www.coupons4giving.ca/Offers/" + BusinessName;
+        }
+        else
+        {
+            //Ensure website starts with 'http://'
+            Website = (Website.StartsWith("http") ? Website : "http://" + Website);
 
-        if (validation.IsStringTooShort(Website, 8))
-            errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/WebsiteTooShort").InnerText);
+            if (validation.IsStringBlank(Website))
+                errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/NullWebsite").InnerText);
+
+            if (validation.IsStringTooShort(Website, 8))
+                errors.Add(strings.SelectSingleNode("/SiteText/Pages/Signup/ErrorMessages/WebsiteTooShort").InnerText);
+        }
 
         if (errors.Count == 0)
         {
