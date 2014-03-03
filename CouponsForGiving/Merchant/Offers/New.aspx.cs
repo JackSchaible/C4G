@@ -236,7 +236,10 @@ public partial class Merchant_Deals_New : System.Web.UI.Page
             {
                 logoPath = HttpContext.Current.Server.MapPath("..\\Images\\Merchant\\" + merchant.Name + "\\Offers");
                 logoPath = Utilsmk.GetOrCreateFolder(logoPath) + listFiles[0].Name;
-                listFiles[0].MoveTo(logoPath);
+
+                if (!File.Exists(logoPath))
+                    listFiles[0].MoveTo(logoPath);
+
                 logoPath = logoPath.Replace(HttpContext.Current.Request.ServerVariables["APPL_PHYSICAL_PATH"], String.Empty);
             }
             else
