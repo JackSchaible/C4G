@@ -10,11 +10,15 @@
 
 <p>Our goal is to provide online merchants from around the globe the opportunity to support great causes with offers and discounts on unique products and services. Not-For-Profits can select Global Marketplace merchants to add to their Merchant Partner list. This is a great way to empower both merchants and not-for-profits with new opportunities and new connections.</p>
 
+<a href="#" class="btn-xsmall"> <i class="fa-arrow-circle-o-down fa"></i> Read More</a>
+
+<div class="more-content">
 <p>Customers can purchase coupons that are redeemable for a wide range of products and services from global merchants. As Coupons4Giving only sells coupons, we will connect you directly with a global merchant to redeem your coupon. </p>
 
 <p>Many of our global merchants have been sourced in areas of the world where fair trade, environmental best practices and economic sustainability are essential to both community values and business models. By supporting your favorite not-for-profit cause with a coupon from a global marketplace merchant you are getting a double-wammy on greatness! <strong>We call this cause-for-cause marketing</strong>.</p>
 
 <p>If you have any suggestions for online retailers we should meet and add to our marketplace please email us at <a href="mailto:info@coupons4giving.ca" target="_blank">info@coupons4giving.ca</a>.</p>
+</div>
 
 <hr />
     <div id="Deals">
