@@ -1514,6 +1514,27 @@ float: right;
 color: #fff;
 }
 
+#MainContent a.btn-xsmall {
+background: #fbad3e;
+color: #FFF;
+font-family: Ubuntu, Corbel, Arial, sans-serif;
+border-radius: 2px;
+padding: 6px 1%;
+min-width: inherit;
+border: none;
+font-size: 12px;
+font-weight: 400;
+box-shadow: 0px 4px 0px #ff9900;
+-moz-box-shadow: 0px 4px 0px #ff9900;
+-webkit-box-shadow: 0px 4px 0px #ff9900;
+text-transform: uppercase;
+width: 130px;
+display: block;
+text-align: center;
+text-decoration: none;
+margin: 20px auto;
+}
+
 #MainContent a.btn-large {
 width: 275px;
 }
@@ -1548,7 +1569,7 @@ box-shadow: 0px 4px 0px #0099cc;
 -webkit-box-shadow: 0px 4px 0px #0099cc;
 }
 
-#MainContent a.btn:hover, #MainContent a.btn-large:hover, #MainContent a.btn-center:hover, #MainContent a.btn-small:hover, #MainContent a.btn-regular:hover, #MainContent input[type=submit].btn-shoppingcart:hover, #MainContent a.btn-profile:hover  {background: #22bfe8;
+#MainContent a.btn:hover, #MainContent a.btn-large:hover, #MainContent a.btn-center:hover, #MainContent a.btn-small:hover, #MainContent a.btn-regular:hover, #MainContent input[type=submit].btn-shoppingcart:hover, #MainContent a.btn-profile:hover, #MainContent a.btn-xsmall:hover  {background: #22bfe8;
 box-shadow: 0px 4px 0px #0099cc;
 -moz-box-shadow: 0px 4px 0px #0099cc;
 -webkit-box-shadow: 0px 4px 0px #0099cc;}
@@ -1711,7 +1732,7 @@ display: block;
 }
 
 #MainContent .coupon-value, #MainContent .coupon-discount, #MainContent .coupon-giving, #MainContent .coupon-left {
-width: 23%;
+width: 31%;
 float: left;
 display: inline-table;
 }
@@ -1877,7 +1898,7 @@ position: static;
 font-family: 'Lato', sans-serif;
 font-weight: 700;
 margin: 0px 0px 0px 0px;
-padding: 0px 0px 0px 0px;
+padding: 0px 10px 0px 10px;
 font-size: 17px;
 text-align: center;
 display: block;
@@ -1898,8 +1919,8 @@ color: #fbad3e;
 font-family: 'Lato', sans-serif;
 font-weight: 700;
 margin: 0px 0px 0px;
-padding: 0px 0px 0px 0px;
-font-size: 16px;
+padding: 0px 10px 0px 10px;
+font-size: 13px;
 text-align: center;
 left: 0px;
 }
@@ -1960,13 +1981,13 @@ border-bottom: 1px solid #ccc;
 }
 
 #MainContent .c4g-coupon-tile p, #MainContent .c4g-campaign-tile p {
-margin: 10px auto;
-line-height: 140%;
-font-size: 13px;
+margin: 10px auto 20px;
+line-height: 135%;
+font-size: 12px;
 padding: 0px 0px 0px 0px;
 width: 92%;
 text-align: center;
-font-weight: 300;
+font-weight: 400;
 word-break: break-word;
 }
 

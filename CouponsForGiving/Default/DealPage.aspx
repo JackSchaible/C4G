@@ -40,10 +40,10 @@
                 	    <p><span><%: (deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().RetailValue).ToString("C") %></span></p> <!-- Coupon Value -->
                		</div> <!-- Close Coupon Value-->
                 
-                	<div class="coupon-discount">
+                	<!--div class="coupon-discount">
                     	<h4>Discount</h4> 
-                    	<p><span><%: (1 - (deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().GiftValue / deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().RetailValue)).ToString("0%") %></span></p> <!-- Coupon Savings/Discount -->
-               		</div> <!-- Close Coupon Discount-->
+                    	<p><span><%: (1 - (deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().GiftValue / deal.Prices.FirstOrDefault<CouponsForGiving.Data.Price>().RetailValue)).ToString("0%") %></span></p--> <!-- Coupon Savings/Discount -->
+               		<!-- /div --> <!-- Close Coupon Discount-->
                		
                 	<div class="coupon-giving">
                     	<h4>You're Giving</h4>

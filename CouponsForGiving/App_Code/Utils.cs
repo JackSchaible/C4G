@@ -313,8 +313,7 @@ namespace CouponsForGiving
                         result += "</span>"; 
                         result += "<div class=\"campaign-details-tile\">";
                         result += "<p>" + item.CampaignDescription + "</p><!-- Coupon Description (limited to 200 characters if possible -->"; 
-                        result += "<p><strong>Number of Offers:</strong> <span>" + item.DealInstances.Count + "</span><!-- Number of Merchant Offers in Camapign--> <br />";
-                        result += "<strong>Campaign Goal:</strong> <span>$" + item.FundraisingGoal + "</span><!-- Campaign Goal--> ";                      
+                        result += "<p><strong>Campaign Goal:</strong> <span>$" + item.FundraisingGoal + "</span><!-- Campaign Goal--> ";                      
                         result += "<strong>Campaign Dates:</strong> <em>" + (item.StartDate != null ? item.StartDate.Value.ToString("MMMM dd, yyyy") : "") + " - " + (item.EndDate != null ? item.EndDate.Value.ToString("MMMM dd, yyyy") : "") + "</em><!-- Campaign Dates --> </p>";
                         result += "</div><!--Close Coupon Title -->";
                         result += "<a href=\"../../Default/CampaignPage.aspx?nponame=" + HttpUtility.UrlEncode(item.NPO.Name) + "&campaign=" + HttpUtility.UrlEncode(item.Name) + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> Campaign Details</a><!-- Link To Campaign Page -->";
@@ -346,8 +345,7 @@ namespace CouponsForGiving
                         result += "</span>"; 
                         result += "<div class=\"campaign-details-tile\">";
                      	result += "<p></p><!-- Merchant Offer Description -->";
-                        result += "<p><strong>Number of Offers:</strong> <span> </span><!-- Number of Merchant Offers in Camapign--> <br />";
-                        result += "<strong>Campaign Goal:</strong> <span> </span><!-- Campaign Goal--> ";                      
+                        result += "<p><strong>Campaign Goal:</strong> <span> </span><!-- Campaign Goal--> ";                      
                         result += "<strong>Campaign Dates:</strong> <em>" + (item.StartDate != null ? item.StartDate.Value.ToString("MMMM dd, yyyy") : "") + " - " + (item.EndDate != null ? item.EndDate.Value.ToString("MMMM dd, yyyy") : "") + "</em><!-- Campaign Dates --> </p>";
                         result += "</div><!--Close Coupon Title -->";                        result += "<a href=\"Campaigns/Edit.aspx?cid=" + item.CampaignID + "\" class=\"btn-coupon\"><i class=\"fa fa-arrow-circle-o-right\"></i> Edit</a><!-- Link To Campaign Page -->";
                         result += "</article>";
