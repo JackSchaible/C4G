@@ -240,8 +240,8 @@ public partial class NPO_newCampaign : System.Web.UI.Page
         endDateMonth = enddate.Split(split)[1];
         endDateYear = enddate.Split(split)[2];
 
-        DateTime startDate = new DateTime(int.Parse(startDateYear), DateTime.ParseExact(startDateMonth, "MMMM", CultureInfo.CurrentCulture).Month, int.Parse(startDateDay));
-        DateTime endDate = new DateTime(int.Parse(endDateYear), DateTime.ParseExact(endDateMonth, "MMMM", CultureInfo.CurrentCulture).Month, int.Parse(endDateDay));
+        DateTime startDate = new DateTime(int.Parse(startDateYear), DateTime.ParseExact(startDateMonth, "MM", CultureInfo.CurrentCulture).Month, int.Parse(startDateDay));
+        DateTime endDate = new DateTime(int.Parse(endDateYear), DateTime.ParseExact(endDateMonth, "MM", CultureInfo.CurrentCulture).Month, int.Parse(endDateDay));
 
         try
         {
