@@ -1937,7 +1937,7 @@ text-decoration: none;
 
 #MainContent .c4g-coupon-tile .campaign-frame, #MainContent .c4g-coupon-tile .company-frame {
 width: 91%;
-height: 155px;
+height: 135px;
 border: 2px solid #ccc;
 background: #fff;
 overflow: hidden;
@@ -1948,7 +1948,7 @@ max-width: 275px;}
 
 #MainContent .coupon-title-tile .campaign-frame, #MainContent .coupon-title-tile .company-frame {
 width: 91%;
-height: 155px;
+height: 135px;
 border: 2px solid #ccc;
 background: #fff;
 overflow: hidden;
@@ -1968,6 +1968,11 @@ width: 100%;
 height: 100%;
 }
 
+
+#MainContent .coupon-title-tile .campaign-frame img {
+max-width: 275px;
+width: 100%;
+}
 
 #MainContent .coupon-details-tile, #MainContent .campaign-details-tile {
 height: 100%;
