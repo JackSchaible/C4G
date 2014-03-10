@@ -247,6 +247,9 @@ public partial class NPO_newNPO : System.Web.UI.Page
                                 Roles.AddUserToRole(thisusername, "NPO");
                             }
 
+                            if (User.IsInRole("IncompleteNPO"))
+                                Roles.RemoveUserFromRole(User.Identity.Name, "IncompleteNPO");
+
                             string name = User.Identity.Name;
                             string org = newName;
                             string email = Membership.GetUser(name).Email;
