@@ -168,6 +168,9 @@
     <Compile Include="DealInstance_Get_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="DealInstance_ListAllActive_Result.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="DealInstance_ListAllByMerchant_Result.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

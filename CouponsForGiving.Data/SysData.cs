@@ -562,6 +562,11 @@ namespace CouponsForGiving.Data.Classes
         {
             return new C4GEntities().DealInstance_Get(DealInstanceID).FirstOrDefault<DealInstance>();
         }
+
+        public static List<DealInstance> ListAll()
+        {
+            return new C4GEntities().DealInstance_ListAllActive().ToList<DealInstance>();
+        }
     }
 
     public static class FinePrints

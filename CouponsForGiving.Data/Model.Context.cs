@@ -3146,5 +3146,15 @@ namespace CouponsForGiving.Data
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<City>("Cities_ListWhereActiveCampaigns", mergeOption);
         }
+    
+        public virtual ObjectResult<DealInstance> DealInstance_ListAllActive()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DealInstance>("DealInstance_ListAllActive");
+        }
+    
+        public virtual ObjectResult<DealInstance> DealInstance_ListAllActive(MergeOption mergeOption)
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DealInstance>("DealInstance_ListAllActive", mergeOption);
+        }
     }
 }

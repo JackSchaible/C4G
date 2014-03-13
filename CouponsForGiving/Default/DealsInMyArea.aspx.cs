@@ -32,6 +32,8 @@ public partial class Default_DealsInMyArea : System.Web.UI.Page
 
     protected override void OnPreInit(EventArgs e)
     {
+        Response.Redirect("AllDeals.aspx", true);
+
         string ip = Request.ServerVariables["REMOTE_ADDR"];
         SetLocation(ip);
 

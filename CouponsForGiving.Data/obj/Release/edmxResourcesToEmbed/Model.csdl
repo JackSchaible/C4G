@@ -911,6 +911,7 @@
       <Parameter Name="MerchantLocationID" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="Cities_ListWhereActiveCampaigns" EntitySet="Cities" ReturnType="Collection(C4GModel.City)" />
+    <FunctionImport Name="DealInstance_ListAllActive" EntitySet="DealInstances" ReturnType="Collection(C4GModel.DealInstance)" />
   </EntityContainer>
   <EntityType Name="Campaign">
     <Key>
@@ -2907,5 +2908,14 @@
     <Property Type="String" Name="CountryCode" Nullable="true" MaxLength="2" />
     <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
     <Property Type="Int32" Name="CityID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="DealInstance_ListAllActive_Result">
+    <Property Type="Int32" Name="DealInstanceID" Nullable="false" />
+    <Property Type="Int32" Name="DealID" Nullable="false" />
+    <Property Type="DateTime" Name="StartDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="EndDate" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="RedeemableAfter" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="ExpiryDate" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="DealStatusID" Nullable="false" />
   </ComplexType>
 </Schema>

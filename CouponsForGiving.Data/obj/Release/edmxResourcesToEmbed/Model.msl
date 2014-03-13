@@ -826,5 +826,6 @@
     <FunctionImportMapping FunctionImportName="MerchantLocation_Activate" FunctionName="C4GModel.Store.MerchantLocation_Activate" />
     <FunctionImportMapping FunctionImportName="MerchantLocation_Deactivate" FunctionName="C4GModel.Store.MerchantLocation_Deactivate" />
     <FunctionImportMapping FunctionImportName="Cities_ListWhereActiveCampaigns" FunctionName="C4GModel.Store.Cities_ListWhereActiveCampaigns" />
+    <FunctionImportMapping FunctionImportName="DealInstance_ListAllActive" FunctionName="C4GModel.Store.DealInstance_ListAllActive" />
   </EntityContainerMapping>
 </Mapping>

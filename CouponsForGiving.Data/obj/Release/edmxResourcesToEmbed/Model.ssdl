@@ -1411,6 +1411,7 @@
     <Parameter Name="dealstatusid" Type="int" Mode="In" />
   </Function>
   <Function Name="DealInstance_List" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
+  <Function Name="DealInstance_ListAllActive" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User" />
   <Function Name="DealInstance_ListAllByMerchant" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Database_User">
     <Parameter Name="Username" Type="nvarchar" Mode="In" />
   </Function>
