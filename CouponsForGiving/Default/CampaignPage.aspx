@@ -40,7 +40,7 @@
             <div class="SidebarShare">
                 <img src="../../images/c4g_action_twitter.png" class="left" />
                 <p><a href="https://twitter.com/share" class="twitter-share-button" data-url="<%: URL %>"
-                data-text="<%: Caption %>" data-hashtags="C4G, DealsThatMakeADifference">Tweet</a></p>
+                data-text="I purchased a great deal @Coupons4Giving to support <%: npo.Name %>" data-hashtags="DealsThatMakeADifference">Tweet</a></p>
             </div>
             <div class="SidebarShare">
                 <img src="../../images/c4g_action_linkedin.png" class="left" />

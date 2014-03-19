@@ -306,7 +306,7 @@ namespace CouponsForGiving
                         result += "<article class=\"c4g-campaign-tile\"><!-- New Class Campaign Title -->";
                         result += "<img src=\"../../Images/c4g_campaign_logo.png\" class=\"coupon_c4g_logo\" />";
                         result += "<div class=\"coupon-title-tile\">";
-                        result += "<h2><a href=\"../../Causes/" + HttpUtility.UrlEncode(item.NPO.Name) + "/" + HttpUtility.UrlEncode(item.Name) + "\">" + item.Name + "</a></h2><!-- Campaign Title -->";
+                        result += "<h2><a href=\"CampaignPage.aspx?nponame=" + HttpUtility.UrlEncode(item.NPO.Name) + "&campaign=" + HttpUtility.UrlEncode(item.Name) + "\">" + item.Name + "</a></h2><!-- Campaign Title -->";
                         result += "<h3><a href=\"NPOPage.aspx?name=" + HttpUtility.UrlEncode(item.NPO.Name) + "\">" + item.NPO.Name + "</a></h3><!-- NPO Name -->";
                         result += "<span class=\"campaign-frame\">";
                         result += "<a href=\"CampaignPage.aspx?nponame=" + HttpUtility.UrlEncode(item.NPO.Name) + "&campaign=" + HttpUtility.UrlEncode(item.Name) + "\"><img src=\"../" + item.CampaignImage + "\" /></a>";
