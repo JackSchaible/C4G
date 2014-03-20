@@ -50,7 +50,7 @@
                  <div class="coupon-social">                
                  	<img src="../../Images/c4g_action_twitter.png" />
                 	<p><a href="https://twitter.com/share" class="twitter-share-button" data-url="<%: URL %>"
-                    data-text="<%: Caption %>" data-hashtags="C4G, DealsThatMakeADifference">Tweet</a></p>
+                    data-text="<%-- Caption --%>" data-hashtags="C4G, DealsThatMakeADifference">Tweet</a></p>
                  </div>
                  <div class="coupon-social">
                 	<img src="../../Images/c4g_action_linkedin.png" />

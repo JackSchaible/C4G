@@ -34,7 +34,7 @@
             </div>
             <div class="SidebarShare">
                 <img src="../../images/c4g_action_facebook.png" class="left" />       
-                <span class="btn-facebook-share" onclick="shareOnFB('<%: URL %>', '<%: Caption %>', 'https://www.coupons4giving.ca/<%: campaign.CampaignImage %>', '<%: campaign.Name %>', '<%: campaign.CampaignDescription %>')">Share on Facebook</span>
+                <span class="btn-facebook-share" onclick="shareOnFB('<%: URL %>', 'I discovered a great cause on Coupons4Giving. Help support <%: npo.Name %>. Buy Great Deals and Share Great Causes <%: URL %>', 'https://www.coupons4giving.ca/<%: campaign.CampaignImage %>', '<%: campaign.Name %>', '<%: campaign.CampaignDescription %>')">Share on Facebook</span>
                 <p id="FBMsg"></p>
             </div>
             <div class="SidebarShare">

@@ -16,14 +16,6 @@ public partial class Default_NpoPage : System.Web.UI.Page
     public NPO npo;
     public Campaign campaign;
     public List<DealInstance> deals;
-    //public System.Drawing.Image Image;
-    public string Caption
-    {
-        get
-        {
-            return WebConfigurationManager.AppSettings["CampaignPostTitle"];
-        }
-    }
     public string URL { get; set; }
 
     protected override void OnPreInit(EventArgs e)

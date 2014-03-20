@@ -11,13 +11,6 @@ using System.Web.UI.WebControls;
 
 public partial class Default_CouponPage : System.Web.UI.Page
 {
-    public string Caption
-    {
-        get
-        {
-            return WebConfigurationManager.AppSettings["CampaignPostTitle"];
-        }
-    }
     public string URL { get; set; }
     public Campaign campaign { get; set; }
     public NPO npo { get; set; }

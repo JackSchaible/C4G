@@ -34,13 +34,13 @@
             </div>
             <div class="SidebarShare">
                 <img src="../../images/c4g_action_facebook.png" class="left" />       
-                <p class="btw" onclick="shareOnFB()">Share on Facebook</p>
+                <p class="btw" onclick="shareOnFB('<%: URL %>', 'Help support our cause <%: npo.Name %> <%: campaign.Name %> and buy a great deal from Coupons4Giving!', 'https://www.coupons4giving.ca/<%: campaign.CampaignImage %>', '<%: campaign.Name %>', '<%: campaign.CampaignDescription %>')">Share on Facebook</p>
                 <p id="FBMsg"></p>
             </div>
             <div class="SidebarShare">
                 <img src="../../images/c4g_action_twitter.png" class="left" />
                 <p><a href="https://twitter.com/share" class="twitter-share-button" data-url="<%: URL %>"
-                data-text="<%: Caption %>" data-hashtags="C4G, DealsThatMakeADifference">Tweet</a></p>
+                data-text="Help us reach our <%: campaign.Name %> goals and buy a great deal on @Coupons4Giving!" data-hashtags="DealsThatMakeADifference">Tweet</a></p>
             </div>
             <div class="SidebarShare">
                 <img src="../../images/c4g_action_linkedin.png" class="left" />
