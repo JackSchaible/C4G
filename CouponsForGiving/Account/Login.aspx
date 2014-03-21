@@ -13,13 +13,13 @@
                     </p>
                     <fieldset>
                         <div class="FormRow">
-                            <asp:Label runat="server" AssociatedControlID="UserName">User Name</asp:Label>
+                            <asp:Label runat="server" AssociatedControlID="UserName" class="login-label">User Name</asp:Label>
                             <asp:TextBox runat="server" ID="UserName" placeholder="User Name" />
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName" 
                                 CssClass="field-validation-error" ErrorMessage="The user name field is required." />
                         </div>
                         <div class="FormRow">
-                            <asp:Label runat="server" AssociatedControlID="Password">Password</asp:Label>
+                            <asp:Label runat="server" AssociatedControlID="Password" class="login-label">Password</asp:Label>
                             <asp:TextBox runat="server" ID="Password" TextMode="Password" />
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="Password" CssClass="field-validation-error" ErrorMessage="The password field is required." />
                         </div>
