@@ -26,7 +26,7 @@
                 ErrorMessage="Address is Required" ForeColor="Red">*</asp:RequiredFieldValidator>
         </div>
         <div class="FormRow">
-            <label>City<br /><small>Please select from the dropdown.</small></label>
+            <label>City<br /><small>Keep typing until your city appears in the dropdown.</small></label>
             <asp:TextBox ID="CityTextBox" runat="server"></asp:TextBox>
             <ajaxToolkit:AutoCompleteExtender ID="CityAutoCompleteExtender" runat="server"
                 TargetControlID="CityTextBox" UseContextKey="True" ServiceMethod="GetCompletionList" 
@@ -56,7 +56,7 @@
             <asp:TextBox ID="newNPOEmail" runat="server" MaxLength="256" placeholder="yourname@yourorganization.com"></asp:TextBox>
         </div>
         <div class="FormRow TextAreaRow">
-            <asp:Label ID="Label3" runat="server" Text="Describe Your Organization" AssociatedControlID="newNPODescription"></asp:Label>
+            <label>Describe Your Organization<br /><small>Maximum length 200 characters.</small></label>
             <asp:TextBox ID="newNPODescription" runat="server" TextMode="MultiLine" MaxLength="200"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="newNPODescription" 
                 ErrorMessage="Description is Required" ForeColor="Red">*</asp:RequiredFieldValidator>
