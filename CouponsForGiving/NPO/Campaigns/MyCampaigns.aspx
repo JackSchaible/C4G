@@ -21,6 +21,32 @@
     <p>This is a list of campaigns that you are currently running.</p>
     <asp:GridView ID="CurrentCampaignsGV" runat="server" AutoGenerateColumns="false">
         <Columns>
+            <asp:TemplateField>
+                <ItemTemplate>
+                    <img src="../../images/c4g_action_link.png" class="left" />
+                    <p><asp:Label ID="Label1" runat="server" class="btn-url" Text='<%# Bind("URL") %>'></asp:Label></p>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField>
+                <ItemTemplate>
+                    <img src="../../Images/c4g_email_facebook.png" OnClick="shareOnFB('<%# Eval("URL") %>', 'Help support our cause <%# Eval("NPOName") %> <%# Eval("Name") %> and buy a great deal from Coupons4Giving', 'https://www.coupons4giving.ca/<%# Eval("NPOName") %>', '<%# Eval("Name") %>', '')" />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField>
+                <ItemTemplate>
+                    <p>
+                        <a href="https://twitter.com/share" class="twitter-share-button" data-url="<%# Eval("URL") %>"
+                            data-text="Help us reach our <%# Eval("Name") %> goals and buy a great deal on @Coupons4Giving!" data-hashtags="DealsThatMakeADifference">Tweet</a>
+                    </p>
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField>
+                <ItemTemplate>
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&url=<%# Eval("URL") %>&title=<%# Eval("Name") %>&summary=Help support our cause <%# Eval("NPOName") %> <%# Eval("Name") %> and buy great deals from Coupons4Giving!&source=Coupons4Giving" rel="nofollow" onclick="window.open(this.href,'_blank','location=yes,height=570,width=520,scrollbars=yes,status=yes');return false" onfocus="this.blur()">
+                        <img src="../../Images/c4g_email_linkedin.png" />
+                    </a>
+                </ItemTemplate>
+            </asp:TemplateField>
             <asp:HyperLinkField DataNavigateUrlFields="CampaignID" DataNavigateUrlFormatString="Edit.aspx?cid={0}" Text="Edit" />
             <asp:BoundField DataField="Name" HeaderText="Name" />
             <asp:BoundField DataField="StartDate" DataFormatString="{0: dd MMM yyyy}" HeaderText="Start Date" />

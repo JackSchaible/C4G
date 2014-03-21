@@ -35,7 +35,21 @@ public partial class NPO_Campaigns_MyCampaigns : System.Web.UI.Page
             IncompleteCampaignsPanel.Visible = false;
         }
 
-        CurrentCampaignsGV.DataSource = Campaigns.ListActiveByUsername(User.Identity.Name);
+        CurrentCampaignsGV.DataSource =
+        (
+            from c
+            in Campaigns.ListActiveByUsername(User.Identity.Name)
+            select new
+            {
+                c.CampaignID,
+                NPOName = c.NPO.Name,
+                Name = c.Name,
+                c.StartDate,
+                c.EndDate,
+                FundraisingGoal = c.FundraisingGoal,
+                URL = WebServices.GetGoogleURL("https://www.coupons4giving.ca/Causes/" + c.NPO.Name + "/" + c.Name)
+            }
+        );
 
         IncompleteCampaignsGV.DataBind();
         CurrentCampaignsGV.DataBind();

@@ -54,16 +54,13 @@
                     <%--Site scripts--%>
                 </Scripts>
             </ajaxToolkit:ToolkitScriptManager>
-                    <script>
-                        window.fbAsyncInit = function () {
-                            // init the FB JS SDK
-                            FB.init({
-                                appId: '<%:System.Web.Configuration.WebConfigurationManager.AppSettings["FB_App_ID"]%>', // App ID from the app dashboard
+            <script>
+                window.fbAsyncInit = function () {
+                    FB.init({
+                        appId: '<%:System.Web.Configuration.WebConfigurationManager.AppSettings["FB_App_ID"]%>', // App ID from the app dashboard
                         status: true,                                 // Check Facebook Login status
                         xfbml: true                                  // Look for social plugins on the page
                     });
-
-                    // Additional initialization code such as adding Event Listeners goes here
                 };
 
                 // Load the SDK asynchronously
@@ -74,33 +71,37 @@
                     js.src = "//connect.facebook.net/en_US/all.js";
                     fjs.parentNode.insertBefore(js, fjs);
                 }(document, 'script', 'facebook-jssdk'));
-
+            </script>
+            <script>
                 function shareOnFB(url, caption, imageurl, name, desc) {
-                    FB.login(function (response) {
-                        if (response.authResponse) {
-                            FB.ui({
-                                display: 'iframe',
-                                method: 'feed',
-                                link: url,
-                                picture: imageurl,
-                                caption: caption,
-                                name: name + ' - C4G',
-                                description: desc,
-                    },
-                    function (response) {
-                        if (response && response.post_id) {
+                    //console.log("Url: " + url + "; Caption: " + caption + "; ImageURL: " + imageurl + "; Name: + " name + "; Description: " + desc);
+                    FB.login(
+                        function (response) {
+                            if (response.authResponse) {
+                                FB.ui({
+                                    display: 'iframe',
+                                    method: 'feed',
+                                    link: url,
+                                    picture: imageurl,
+                                    caption: caption,
+                                    name: name + ' - C4G',
+                                    description: '',
+                                },
+                                function (response) {
+                                    if (response && response.post_id) {
+                                    } else {
+                                        $("#FBMsg").val("Something went wrong. Your campaign was not shared.");
+                                    }
+                                });
+                            }
+                            else {
+                                $("#FBMsg").val("You must log in to Facebook in order to post your campaign there.");
+                            }
                         }
-                        else {
-                            $("#FBMsg").val("Something went wrong. Your campaign was not shared.");
-                        }
-                    });
+                     );
                 }
-                else {
-                    $("#FBMsg").val("You must log in to Facebook in order to post your campaign there.");
-                }
-            });
-                }
-
+            </script>
+            <script>
                 //function shareOnLinkedIn(url, caption, imageurl, name, desc) {
                 //            var xml = "<share><comment>" + caption + "</comment><content><title>" + name +" - C4G</title><description>" + desc + "</description><submitted-url>" + url + "</submitted-url><submitted-image-url>" + imageurl + "</submitted-image-url></content><visibility><code>anyone</code></visibility></share>";
                 //            $.ajax({
