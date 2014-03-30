@@ -2,20 +2,8 @@
 <%@ Reference Control="~/Controls/MenuBar.ascx" %>
 <%@ Reference Control="~/Controls/DateControl.ascx" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" Runat="Server">
-</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="Main_Content" Runat="Server">
     <script type="text/javascript">
-        //window.setInterval(function () {
-        //    PageMethods.SaveCampaign($("#CampaignID").val(), $("#Username").val(), $("#newCampaignName").val(), $("#newCampaignStartDate").val(),
-        //        $("#newCampaignEndDate").val(), $("#newCampaignDescription").val(), $("#newCampaignFundraisingGoal").val(),
-        //        $("#newCampaignShowOnHome").val(), $("#newCampaignGoal").val(), function (result, userContext, methodName) {
-        //            $("#CampaignID").val(result);
-        //        }
-        //    );
-        //},
-        //120000);
-
         function addDeal(dealInstanceID, name) {
             var startDate = $("#StartDate>#DayDDL").val() + '-' + $("#StartDate>#MonthDDL").val() + '-' + $("#StartDate>#YearDDL").val();
             var endDate = $("#EndDate>#DayDDL").val() + '-' + $("#EndDate>#MonthDDL").val() + '-' + $("#EndDate>#YearDDL").val();
@@ -33,10 +21,16 @@
                            $("#EndDate>#DayDDL").prop('disabled', 'disabled');
                            $("#EndDate>#MonthDDL").prop('disabled', 'disabled');
                            $("#EndDate>#YearDDL").prop('disabled', 'disabled');
+                           $("#OfferMessage").hide();
                        }
                    });
                }
             );
+
+            $("#DealAddConfirmation").show();
+            window.setInterval(function () {
+                $("#DealAddConfirmation").hide();
+            }, 5000);
         }
 
         function removeDeal(dealInstanceID) {
@@ -48,7 +42,6 @@
                     $("#EndDate>#DayDDL").prop('disabled', false);
                     $("#EndDate>#MonthDDL").prop('disabled', false);
                     $("#EndDate>#YearDDL").prop('disabled', false);
-
                 }
             });
         }
@@ -146,10 +139,13 @@
         </div>
         <div class="FormRow">
             <asp:Label ID="Label11" runat="server" Text="Your Eligible Deals:"></asp:Label>
+            <p style="display:none;" id="DealAddConfirmation">You have successfully added a deal to your campaign.</p>
             <div id="Offers">
                 <% Response.Write(CouponsForGiving.Data.Classes.NPOs.HasMerchantPartners(User.Identity.Name) ? "<p>There are no deals from your merchant partners whose dates coincide with yours. Consider revising the End Date of your campaign.</p>" : "<p>You have not yet added any Merchant partners! <a href='../Partners/Add.aspx'>Click here</a> to add some to see their great deals.</p>"); %>
             </div>
-            <div id="DealInstances"></div>
+            <div id="DealInstances">
+                <p>These are your current campaign offers. Click to remove.</p>
+            </div>
             <div class="ClearFix"></div>
         </div>
         <div class="FormRow">
@@ -158,6 +154,7 @@
             <div class="ClearFix"></div>
         </div>
         <div class="FormRow">
+            <p id="OfferMessage">Don't forget to add your eligible deals before you save!</p>
             <asp:Button ID="newCampaignSubmit" runat="server" Text="Save" OnClick="newCampaignSubmit_Click" />
         </div>
     </div>

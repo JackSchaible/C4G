@@ -90,7 +90,6 @@ public partial class Default_NpoPage : System.Web.UI.Page
                     npo.Campaigns
                 where
                     c.CampaignStatusID == 2
-                    && c.StartDate <= DateTime.Now
                     && c.EndDate >= DateTime.Now
                 select
                     c

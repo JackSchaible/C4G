@@ -13,7 +13,9 @@ public partial class redirect : System.Web.UI.Page
         {
             if (User.IsInRole("Admin"))
                 Response.Redirect("Admin/MyHome.aspx");
-            else if (User.IsInRole("NPO") || User.IsInRole("IncompleteNPO"))
+            else if (User.IsInRole("IncompleteNPO"))
+                Response.Redirect("NPO/Signup.aspx");
+            else if (User.IsInRole("NPO"))
                 Response.Redirect("NPO/MyHome.aspx");
             else if (User.IsInRole("Merchant") || User.IsInRole("IncompleteMerchant"))
                 Response.Redirect("Merchant/MyHome.aspx");

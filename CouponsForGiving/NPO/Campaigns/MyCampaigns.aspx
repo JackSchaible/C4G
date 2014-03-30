@@ -55,6 +55,7 @@
         </Columns>
         <EmptyDataTemplate>
             <p>You currently have no active campaigns.</p>
+            <a href="New.aspx">Click here to create one!</a>
         </EmptyDataTemplate>
     </asp:GridView>
 </asp:Content>

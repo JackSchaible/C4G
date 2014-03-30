@@ -341,7 +341,7 @@ public partial class NPO_newCampaign : System.Web.UI.Page
                 row = "";
                 row = "<tr>";
                 row += String.Format("<td><input style=\"cursor: pointer;\" type=\"button\" onclick=\"addDeal({0}, '{1}')\" value=\"Add Deal\" />", item.DealInstanceID, HttpContext.Current.Server.UrlEncode(item.Name).Replace("+", "%20"));
-                row += String.Format("<td><a href=\"../../Default/DealPage.aspx?merchantname={0}&deal={1}\">View</a></td>", item.MerchantName, item.Name);
+                row += String.Format("<td><a target=\"_blank\" href=\"../../Default/DealPage.aspx?merchantname={0}&deal={1}\">View</a></td>", item.MerchantName, item.Name);
                 row += String.Format("<td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td>", item.MerchantName, item.Name, item.StartDate.ToString("MMM dd, yyyy"), item.EndDate.ToString("MMM dd, yyyy"));
                 row += "</tr>";
 
