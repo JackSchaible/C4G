@@ -501,6 +501,11 @@ text-align: right;
 margin-right: 10px;
 }
 
+#MainContent .FormRow label.login-label, #MainContent .Form label.login-label {
+width: 25%;
+text-align: left;
+}
+
 label a, #MainContent .FormRow label a, #MainContent .Form label a {
 font-weight: 400;
 }
