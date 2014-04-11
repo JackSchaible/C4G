@@ -40,11 +40,11 @@
             <div class="SidebarShare">
                 <img src="../../images/c4g_action_twitter.png" class="left" />
                 <p><a href="https://twitter.com/share" class="twitter-share-button" data-url="<%: URL %>"
-                data-text="<%: Caption %>" data-hashtags="C4G, DealsThatMakeADifference">Tweet</a></p>
+                data-text="Help us reach our <%: campaign.Name %> goals and buy a great deal on @Coupons4Giving!" data-hashtags="DealsThatMakeADifference">Tweet</a></p>
             </div>
             <div class="SidebarShare">
-                <img src="../../images/c4g_action_linkedin.png" class="left" />
-                <p onclick="shareOnLinkedIn()">Share on LinkedIn</p>
+                <img src="../../images/c4g_action_linkedin.png" />
+                    <a href="http://www.linkedin.com/shareArticle?mini=true&url=<%: URL %>&title=<%: campaign.Name %>&summary=<%: "Help us reach our " + campaign.Name + " goals and buy a great deal on @Coupons4Giving!" %>&source=Coupons4Giving" rel="nofollow" onclick="window.open(this.href,'_blank','location=yes,height=570,width=520,scrollbars=yes,status=yes');return false" onfocus="this.blur()"><span class="btn-facebook-share">Share on LinkedIn</span></a>
             </div>
         </div>
     </div>

@@ -68,16 +68,16 @@
                  <div class="coupon-social">                
                  	<img src="../../Images/c4g_action_twitter.png" />
                 	<p><a href="https://twitter.com/share" class="twitter-share-button" data-url="<%: URL %>"
-                    data-text="I purchased <%: deal.Name %> @Coupons4Giving" data-hashtags="DealsThatMakeADifference">Tweet</a></p>
+                    data-text="I purchased <%: deal.Name %> @Coupons4Giving!" data-hashtags="DealsThatMakeADifference">Tweet</a></p>
                  </div>
-                <div class="coupon-social">
+                <%--<div class="coupon-social">
+                    <img src="../../Images/c4g_action_linkedin.png" />
+                    <p><script type="IN/Share" data-url="<%: URL %>"></script></p>
+                </div>--%>
+                 <div class="coupon-social">
                     <img src="../../images/c4g_action_linkedin.png" />
                     <a href="http://www.linkedin.com/shareArticle?mini=true&url=<%: URL %>&title=<%: deal.Name %>&summary=<%: "I purchased a great deal on Coupons4Giving! Help support a worthy cause and buy a coupon from " + merchant.Name + " for " + deal.Name + "." %>&source=Coupons4Giving" rel="nofollow" onclick="window.open(this.href,'_blank','location=yes,height=570,width=520,scrollbars=yes,status=yes');return false" onfocus="this.blur()"><span class="btn-facebook-share">Share on LinkedIn</span></a>
                 </div>
-                 <%--<div onclick="shareOnLinkedIn('<%: URL %>', '<%: Caption %>', 'https://www.coupons4giving.ca/<%: deal.ImageURL %>', '<%: deal.Name %>', '<%: deal.DealDescription %>')" class="coupon-social">
-                	<img src="../../Images/c4g_action_linkedin.png" />
-                	<p>Share on LinkedIn</p>
-                </div>--%>
 
 			</div><!-- Close Details -->            
             
@@ -93,12 +93,12 @@
             <div class="clear"></div>
         </article><!-- Close Full Coupon Details Div -->
         <hr>
-        <%
-            foreach (CouponsForGiving.Data.Campaign c in (from c in deal.DealInstances.FirstOrDefault<CouponsForGiving.Data.DealInstance>().Campaigns where c.CampaignStatusID == 2 select c))
+        <%--
+            foreach (CouponsForGiving.Data.Campaign c in (from c in deal.DealInstances.FirstOrDefault<CouponsForGiving.Data.DealInstance>().Campaigns where c.CampaignStatusID == 2 && c.NPOID == CouponsForGiving.Data.Classes.NPOs.NPO_GetByUser(User.Identity.Name).NPOID select c))
             {
                 Response.Write(CouponsForGiving.HttpRendering.GetNPOCampaign(c, deal.DealInstances.FirstOrDefault<CouponsForGiving.Data.DealInstance>()));
             }
-        %>
+        --%>
         <%
             if (deal.Merchant.MerchantLocations.Where(x => x.StatusID == 2).Count() > 0)
             {
