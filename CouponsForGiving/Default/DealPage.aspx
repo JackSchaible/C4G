@@ -60,7 +60,12 @@
                  	<img src="../../Images/c4g_action_link.png" />
                		<p>Copy & Paste <span class="btn-url"><%: URL %></span></p>
                  </div>
-                 <div class="coupon-social" onclick="shareOnFB('<%: URL %>', 'I purchased a great deal on Coupons4Giving! Help support a worthy cause and buy a coupon from <%: merchant.Name %> for <%: deal.Name %>.', 'https://www.coupons4giving.ca/<%: deal.ImageURL %>', '<%: deal.Name %>', '<%: deal.DealDescription %>')">
+                 <div class="coupon-social" onclick="<%
+                     if (User.Identity.IsAuthenticated && (merchant.MerchantID == CouponsForGiving.Data.Classes.Merchants.GetByUsername(User.Identity.Name).MerchantID))
+                         Response.Write("shareOnFB('" + URL + "', 'Check out our deal on Coupons4Giving! Help support a worthy cause and buy a coupon for " + deal.Name + ".', 'https://www.coupons4giving.ca/" + deal.ImageURL + "', '" + deal.Name + "', '" + deal.DealDescription + "'");
+                     else
+                         Response.Write("shareOnFB('" + URL + "', 'I purchased a great deal on Coupons4Giving! Help support a worthy cause and buy a coupon from " + merchant.Name + " for " + deal.Name + ".', 'https://www.coupons4giving.ca/" + deal.ImageURL + "', '" + deal.Name + "', '" + deal.DealDescription + "'");
+                    %>)">
                		<img src="../../Images/c4g_action_facebook.png" />       
                 	<span class="btn-facebook-share">Share on Facebook</span>
                 	<p id="FBMsg"></p>
@@ -68,17 +73,22 @@
                  <div class="coupon-social">                
                  	<img src="../../Images/c4g_action_twitter.png" />
                 	<p><a href="https://twitter.com/share" class="twitter-share-button" data-url="<%: URL %>"
-                    data-text="I purchased <%: deal.Name %> @Coupons4Giving!" data-hashtags="DealsThatMakeADifference">Tweet</a></p>
+                    data-text="<%
+                           if (User.Identity.IsAuthenticated && (merchant.MerchantID == CouponsForGiving.Data.Classes.Merchants.GetByUsername(User.Identity.Name).MerchantID))
+                               Response.Write("Check out our deal: " + deal.Name + " @Coupons4Giving!");
+                           else
+                             Response.Write("I purchased " + deal.Name + " @Coupons4Giving!");  
+                         %>" data-hashtags="DealsThatMakeADifference">Tweet</a></p>
                  </div>
-                <%--<div class="coupon-social">
-                    <img src="../../Images/c4g_action_linkedin.png" />
-                    <p><script type="IN/Share" data-url="<%: URL %>"></script></p>
-                </div>--%>
                  <div class="coupon-social">
                     <img src="../../images/c4g_action_linkedin.png" />
-                    <a href="http://www.linkedin.com/shareArticle?mini=true&url=<%: URL %>&title=<%: deal.Name %>&summary=<%: "I purchased a great deal on Coupons4Giving! Help support a worthy cause and buy a coupon from " + merchant.Name + " for " + deal.Name + "." %>&source=Coupons4Giving" rel="nofollow" onclick="window.open(this.href,'_blank','location=yes,height=570,width=520,scrollbars=yes,status=yes');return false" onfocus="this.blur()"><span class="btn-facebook-share">Share on LinkedIn</span></a>
+                     <%
+                        if (User.Identity.IsAuthenticated && (merchant.MerchantID == CouponsForGiving.Data.Classes.Merchants.GetByUsername(User.Identity.Name).MerchantID))
+                            Response.Write("<a href=\"http://www.linkedin.com/shareArticle?mini=true&url=" + URL + "&title=" + deal.Name + "&summary=Check out our great deal on Coupons4Giving! Help support a worthy cause and buy a coupon for " + Server.UrlEncode(deal.Name) + ".&source=Coupons4Giving\" rel=\"nofollow\" onclick=\"window.open(this.href,'_blank','location=yes,height=570,width=520,scrollbars=yes,status=yes');return false\" onfocus=\"this.blur()\"><span class=\"btn-facebook-share\">Share on LinkedIn</span></a>");
+                        else
+                            Response.Write("<a href=\"http://www.linkedin.com/shareArticle?mini=true&url=" + URL + "&title=" + deal.Name + "&summary=I purchased a great deal on Coupons4Giving! Help support a worthy cause and buy a coupon from " + Server.UrlEncode(merchant.Name) + " for " + Server.UrlEncode(deal.Name) + ".&source=Coupons4Giving\" rel=\"nofollow\" onclick=\"window.open(this.href,'_blank','location=yes,height=570,width=520,scrollbars=yes,status=yes');return false\" onfocus=\"this.blur()\"><span class=\"btn-facebook-share\">Share on LinkedIn</span></a>");
+                    %>
                 </div>
-
 			</div><!-- Close Details -->            
             
            	<div class="coupon-image-block">

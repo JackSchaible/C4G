@@ -33,18 +33,34 @@
                 <p>Copy & Paste <span class="btn-url"><%: URL %></span></p>
             </div>
             <div class="SidebarShare">
-                <img src="../../images/c4g_action_facebook.png" class="left" />       
-                <span class="btn-facebook-share" onclick="shareOnFB('<%: URL %>', 'I discovered a great cause on Coupons4Giving. Help support <%: npo.Name %>. Buy Great Deals and Share Great Causes <%: URL %>', 'https://www.coupons4giving.ca/<%: campaign.CampaignImage %>', '<%: campaign.Name %>', '')">Share on Facebook</span>
+                <img src="../../images/c4g_action_facebook.png" class="left" />  
+                <%
+                    if (User.Identity.IsAuthenticated && (npo.NPOID == CouponsForGiving.Data.Classes.NPOs.NPO_GetByUser(User.Identity.Name).NPOID))
+                        Response.Write("<span class=\"btn-facebook-share\" onclick=\"shareOnFB('" + URL + "', 'Check out our campaign on Coupons4Giving! Buy Great Deals and Share Great Causes " + URL + "', 'https://www.coupons4giving.ca/" + campaign.CampaignImage + "', '" + campaign.Name + "', '')\">Share on Facebook</span>");
+                    else
+                        Response.Write("<span class=\"btn-facebook-share\" onclick=\"shareOnFB('" + URL + "', 'I discovered a great cause on Coupons4Giving. Help support " + npo.Name + ". Buy Great Deals and Share Great Causes " + URL + "', 'https://www.coupons4giving.ca/" + campaign.CampaignImage + "', '" + campaign.Name + "', '')\">Share on Facebook</span>");
+                %>     
                 <p id="FBMsg"></p>
             </div>
             <div class="SidebarShare">
                 <img src="../../images/c4g_action_twitter.png" class="left" />
                 <p><a href="https://twitter.com/share" class="twitter-share-button" data-url="<%: URL %>"
-                data-text="I discovered a great cause @coupons4giving. Buy Great Deals and Share Great Causes!" data-hashtags="DealsThatMakeADifference">Tweet</a></p>
+                data-text="<% 
+                    if (User.Identity.IsAuthenticated && (npo.NPOID == CouponsForGiving.Data.Classes.NPOs.NPO_GetByUser(User.Identity.Name).NPOID))
+                    {
+                        Response.Write("Check out our campaign on @Coupons4Giving! Buy Great Deals and Share Great Causes!");
+                    }
+                    else
+                        Response.Write("I discovered a great cause @Coupons4giving. Buy Great Deals and Share Great Causes!");%>" data-hashtags="DealsThatMakeADifference">Tweet</a></p>
             </div>
             <div class="SidebarShare">
                 <img src="../../images/c4g_action_linkedin.png" class="left" />
-                <a href="http://www.linkedin.com/shareArticle?mini=true&url=<%: URL %>&title=<%: campaign.Name %>&summary=<%: "I discovered a great cause on Coupons4Giving. Help support " + npo.Name + ". Buy Great Deals and Share Great Causes " + URL %>&source=Coupons4Giving" rel="nofollow" onclick="window.open(this.href,'_blank','location=yes,height=570,width=520,scrollbars=yes,status=yes');return false" onfocus="this.blur()"><span class="btn-facebook-share">Share on LinkedIn</span></a>
+                <% 
+                    if (User.Identity.IsAuthenticated && (npo.NPOID == CouponsForGiving.Data.Classes.NPOs.NPO_GetByUser(User.Identity.Name).NPOID))
+                        Response.Write("<a href=\"http://www.linkedin.com/shareArticle?mini=true&url=" + URL + "&title=" + campaign.Name + "&summary=\"Check out our campaign on Coupons4Giving! Buy Great Deals and Share Great Causes " + URL + "&source=Coupons4Giving\" rel=\"nofollow\" onclick=\"window.open(this.href,'_blank','location=yes,height=570,width=520,scrollbars=yes,status=yes');return false\" onfocus=\"this.blur()\"><span class=\"btn-facebook-share\">Share on LinkedIn</span></a>");
+                    else
+                        Response.Write("<a href=\"http://www.linkedin.com/shareArticle?mini=true&url=" + URL + "&title=" + campaign.Name + "&summary=\"I discovered a great cause on Coupons4Giving. Help support " + npo.Name + ". Buy Great Deals and Share Great Causes " + URL + "&source=Coupons4Giving\" rel=\"nofollow\" onclick=\"window.open(this.href,'_blank','location=yes,height=570,width=520,scrollbars=yes,status=yes');return false\" onfocus=\"this.blur()\"><span class=\"btn-facebook-share\">Share on LinkedIn</span></a>");
+                %>
             </div>
         </div>
     </div>

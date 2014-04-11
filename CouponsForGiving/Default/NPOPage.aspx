@@ -30,19 +30,19 @@
                 <img src="../../images/c4g_action_link.png" class="left" />
                 <p>Copy & Paste <span class="btn-url"><%: URL %></span></p>
             </div>
-            <div class="SidebarShare">
-                <img src="../../images/c4g_action_facebook.png" class="left" />       
-                <span class="btn-facebook-share" onclick="shareOnFB()">Share on Facebook</p>
+            <div class="SidebarShare" onclick="shareOnFB('<%: URL %>', 'I discovered a great cause on Coupons4Giving. Help support <%: npo.Name %>! Buy Great Deals and Share Great Causes <%: URL %>', 'https://www.coupons4giving.ca/<%: npo.Logo %>', '<%: npo.Name %>', '')">
+                <img src="../../Images/c4g_action_facebook.png" class="left" />       
+                <span class="btn-facebook-share">Share on Facebook</span>
                 <p id="FBMsg"></p>
             </div>
             <div class="SidebarShare">
                 <img src="../../images/c4g_action_twitter.png" class="left" />
                 <p><a href="https://twitter.com/share" class="twitter-share-button" data-url="<%: URL %>"
-                data-text="<%: Caption %>" data-hashtags="C4G, DealsThatMakeADifference">Tweet</a></p>
+                data-text="I discovered a great cause @coupons4giving. Buy Great Deals and Share Great Causes!" data-hashtags="DealsThatMakeADifference">Tweet</a></p>
             </div>
             <div class="SidebarShare">
                 <img src="../../images/c4g_action_linkedin.png" class="left" />
-                <p onclick="shareOnLinkedIn()">Share on LinkedIn</p>
+                <a href="http://www.linkedin.com/shareArticle?mini=true&url=<%: URL %>&title=<%: npo.Name %>&summary=<%: "I discovered a great cause on Coupons4Giving. Help support " + npo.Name + "! Buy Great Deals and Share Great Causes " + URL %>&source=Coupons4Giving" rel="nofollow" onclick="window.open(this.href,'_blank','location=yes,height=570,width=520,scrollbars=yes,status=yes');return false" onfocus="this.blur()"><span class="btn-facebook-share">Share on LinkedIn</span></a>
             </div>
         </div>
     </div>
