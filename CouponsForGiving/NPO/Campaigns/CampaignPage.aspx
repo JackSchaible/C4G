@@ -34,7 +34,7 @@
             </div>
             <div class="SidebarShare">
                 <img src="../../images/c4g_action_facebook.png" class="left" />       
-                <p class="btw" onclick="shareOnFB()">Share on Facebook</p>
+                <p class="btw" onclick="shareOnFB('<%: URL %>', 'Help support our cause <%:npo.Name%> <%:campaign.Name%> and buy a great deal from Coupons4Giving!', 'https://www.coupons4giving.ca/<%: campaign.CampaignImage %>', '<%: campaign.Name %>', '')">Share on Facebook</p>
                 <p id="FBMsg"></p>
             </div>
             <div class="SidebarShare">

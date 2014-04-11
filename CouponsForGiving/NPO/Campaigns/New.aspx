@@ -50,15 +50,14 @@
 
             $("#EndDate>select").change(function (e) {
 
-                if ($("#DealInstances").html() == "") {
-
+                if ($("#DealInstances").html().indexOf("<table>") == -1) {
                     var day = $("#EndDate>#DayDDL").val();
                     var month = $("#EndDate>#MonthDDL").val();
                     var year = $("#EndDate>#YearDDL").val();
                     var date = month + " " + day + ", " + year;
 
                     PageMethods.GetGridView(date, function (result) {
-                        $("#Offers").html(result);
+                        $("#Offers").append(result);
                     });
 
                 }
